@@ -1,0 +1,44 @@
+---
+// Structured data helpers. Emitted into <head> via the Base layout's head slot.
+//
+// BreadcrumbList mirrors the visible breadcrumb exactly — Google requires the
+// markup to match what a user sees, and mismatched breadcrumb markup is a
+// common cause of a rich result being dropped.
+import site from '../data/site.json';
+
+const { breadcrumb = [], faqs = [], extra = null } = Astro.props;
+
+const abs = (href: string) => new URL(href, site.url).href.replace(/\/$/, '') || site.url;
+
+const graph: Record<string, any>[] = [];
+
+if (breadcrumb.length > 1) {
+  graph.push({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumb.map((c: any, i: number) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: c.label,
+      ...(c.href ? { item: abs(c.href) } : {}),
+    })),
+  });
+}
+
+if (faqs.length > 0) {
+  graph.push({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f: any) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  });
+}
+
+if (extra) graph.push(extra);
+---
+{graph.map((node) => (
+  <script type="application/ld+json" set:html={JSON.stringify(node)} />
+))}

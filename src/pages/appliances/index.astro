@@ -1,0 +1,109 @@
+---
+// Hub for the appliance and fixture pages, grouped the way the data is.
+// Mirrors /boilers: a section outside /services with its own index, so the
+// service pages keep the clean /services/[slug] namespace.
+import Base from '../../layouts/Base.astro';
+import site from '../../data/site.json';
+import { appliances, applianceGroups } from '../../data/appliances';
+import { services } from '../../data/services';
+import ServiceIcon from '../../components/ServiceIcon.astro';
+import PhoneIcon from '../../components/PhoneIcon.astro';
+import WhatsAppIcon from '../../components/WhatsAppIcon.astro';
+import HeroWithForm from '../../components/HeroWithForm.astro';
+import Schema from '../../components/Schema.astro';
+
+const crumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Appliances & fixtures' },
+];
+
+const grouped = applianceGroups.map((g) => ({
+  ...g,
+  items: appliances.filter((a) => a.group === g.slug),
+}));
+
+// Named here so the hub can point back at the core services rather than being
+// a dead end that only goes downwards.
+const backTo = ['general-plumbing', 'boiler-service', 'bathroom-installation']
+  .map((slug) => services.find((s) => s.slug === slug)!);
+---
+<Base
+  title="Appliance & Fixture Plumbing London | Tamesis Plumbers"
+  description={`Water softeners, underfloor heating, power flushing, boiling taps, pumps and appliance plumbing across London. Call ${site.booking.display}.`}
+>
+  <Schema slot="head" breadcrumb={crumbs} />
+
+  <HeroWithForm
+    eyebrow="Appliances & fixtures"
+    h1="Appliance and fixture plumbing in London"
+    intro="The jobs people look for by the thing itself rather than by the trade: a softener, a power flush, a boiling tap, a pump that has stopped. Each one has its own page covering what is involved and what to check first."
+    breadcrumb={crumbs}
+    bullets={[
+      'Gas Safe registered and fully insured',
+      'DBS-checked engineers',
+      'Emergency callout available 24/7',
+      'Price agreed before work starts',
+    ]}
+    formHeading="Tell us what needs fitting"
+  />
+
+  {grouped.map((g) => (
+    <section class="section">
+      <div class="container">
+        <span class="eyebrow">{g.label}</span>
+        <h2>{g.label}</h2>
+        <p class="measure">{g.blurb}</p>
+        <ul class="grid grid-3 card-grid">
+          {g.items.map((a) => (
+            <li class="card" id={a.slug}>
+              <div class="icon"><ServiceIcon name={a.icon} /></div>
+              <h3><a href={`/appliances/${a.slug}`} class="card-title-link">{a.title}</a></h3>
+              <p>{a.summary}</p>
+              <a href={`/appliances/${a.slug}`} class="card-link" aria-label={`More on ${a.title}`}>
+                Read more <span aria-hidden="true">&rarr;</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  ))}
+
+  <section class="section section-alt">
+    <div class="container">
+      <span class="eyebrow">Looking for something else</span>
+      <h2>The main services</h2>
+      <p class="measure">
+        If the job is a repair rather than an installation, it is probably covered on one of these.
+      </p>
+      <ul class="grid grid-3 card-grid">
+        {backTo.map((s) => (
+          <li class="card">
+            <div class="icon"><ServiceIcon name={s.icon} /></div>
+            <h3><a href={`/services/${s.slug}`} class="card-title-link" set:html={s.title} /></h3>
+            <p>{s.summary}</p>
+            <a href={`/services/${s.slug}`} class="card-link">
+              More on {s.title.replace('&amp;', 'and')} <span aria-hidden="true">&rarr;</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <p><a href="/services" class="btn btn-navy">All services</a></p>
+    </div>
+  </section>
+
+  <section class="section section-navy">
+    <div class="container center measure-wide">
+      <h2>Not sure which one you need?</h2>
+      <p>Describe what the problem actually is &mdash; scale, pressure, a leak, a machine that will not drain &mdash; and we will tell you which of these does something about it. Sometimes the answer is none of them, and we will say so.</p>
+      <div class="cta-row center-row">
+        <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">
+          <PhoneIcon /> Call {site.booking.display}
+        </a>
+        <a href={site.whatsapp.url} class="btn btn-outline btn-lg">
+          <WhatsAppIcon /> WhatsApp us
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

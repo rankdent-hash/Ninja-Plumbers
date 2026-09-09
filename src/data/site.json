@@ -1,0 +1,40 @@
+{
+  "name": "Tamesis Plumbers",
+  "legalName": "Tamesis Development Ltd",
+  "companyNumber": "12210539",
+  "established": "2019",
+  "url": "https://www.tamesisplumbers.co.uk",
+  "tagline": "London Plumbing Specialists",
+  "booking": {
+    "display": "020 3488 3737",
+    "tel": "+442034883737"
+  },
+  "management": {
+    "display": "020 3592 0042",
+    "tel": "+442035920042"
+  },
+  "whatsapp": {
+    "display": "020 3488 3737",
+    "url": "https://wa.me/442034883737"
+  },
+  "email": "info@tamesisdevelopment.co.uk",
+  "address": {
+    "line1": "Upper Level, 48 Fulham High Street",
+    "city": "London",
+    "postcode": "SW6 3LQ",
+    "country": "GB"
+  },
+  "hours": {
+    "office": "Mon–Fri 8:00–17:30",
+    "emergency": "Emergency callout available 24/7",
+    "opens": "08:00",
+    "closes": "17:30",
+    "days": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ]
+  }
+}

@@ -1,0 +1,83 @@
+---
+// Layout for paid-search landing pages. No nav, one conversion goal, and
+// noindex so these never compete with the organic service pages.
+import site from '../data/site.json';
+import PhoneIcon from '../components/PhoneIcon.astro';
+import MobileBar from '../components/MobileBar.astro';
+import BookPopup from '../components/BookPopup.astro';
+import '@fontsource-variable/inter';
+import '@fontsource/poppins/600.css';
+import '@fontsource/poppins/700.css';
+import '../styles/global.css';
+
+const { title, description } = Astro.props;
+const year = new Date().getFullYear();
+---
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{title}</title>
+<meta name="description" content={description}>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+<body class="lp-body">
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="lp-header">
+  <div class="container lp-header-bar">
+    <span class="logo lp-logo">
+      <span><span class="brand-mark">Tamesis</span> Plumbers</span>
+      <span class="sub">{site.tagline}</span>
+    </span>
+    <a href={`tel:${site.booking.tel}`} class="header-cta">
+      <PhoneIcon />
+      <span class="header-cta-text">
+        <span class="header-cta-label">Call now</span>
+        <span class="header-cta-number">{site.booking.display}</span>
+      </span>
+    </a>
+  </div>
+</header>
+
+<main id="main">
+  <slot />
+</main>
+
+<footer class="lp-footer">
+  <div class="container">
+    <p class="lp-footer-contact">
+      <a href={`tel:${site.booking.tel}`}>{site.booking.display}</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href={site.whatsapp.url}>WhatsApp {site.whatsapp.display}</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href={`mailto:${site.email}`}>{site.email}</a>
+    </p>
+    <p class="lp-footer-meta">
+      {site.address.line1}, {site.address.city}, {site.address.postcode}<br>
+      {site.hours.office} &middot; {site.hours.emergency}
+    </p>
+    <ul class="lp-footer-legal">
+      <li><a href="/">Main site</a></li>
+      <li><a href="/privacy">Privacy Policy</a></li>
+      <li><a href="/cookies">Cookie Policy</a></li>
+      <li><a href="/terms">Terms of Use</a></li>
+    </ul>
+    <p class="lp-footer-legalline">
+      &copy; {year} {site.legalName}. All rights reserved. Company No. {site.companyNumber}.
+      Tamesis Plumbers is a trading name of {site.legalName}.
+    </p>
+  </div>
+</footer>
+
+<MobileBar />
+<BookPopup />
+<script src="/book.js" is:inline></script>
+
+</body>
+</html>

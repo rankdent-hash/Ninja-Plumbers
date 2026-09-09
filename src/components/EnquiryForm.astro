@@ -1,0 +1,315 @@
+---
+// Compact enquiry form. Two fields to a row where the screen allows, a
+// leading icon in every input, urgency as three pills. Name, phone and
+// postcode are required; email sits in the open because a written quote is
+// the most common reason to give it. There is no consent checkbox: the
+// privacy notice sits under the button, and the lawful basis for handling
+// an enquiry is the pre-contract steps the customer is asking for.
+import site from '../data/site.json';
+import { services } from '../data/services';
+import { appliances } from '../data/appliances';
+
+// `service` preselects "What do you need?", so someone on the boiler repair
+// page is not asked to choose boiler repair again. Anything unknown falls
+// through to "Choose one…".
+const { service = '' } = Astro.props;
+
+const ICON = {
+  user:    '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+  phone:   '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>',
+  pin:     '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>',
+  wrench:  '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>',
+  home:    '<path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><path d="M9 21v-7h6v7"/>',
+  message: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+  mail:    '<rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/>',
+};
+const icon = (k: keyof typeof ICON) =>
+  `<svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON[k]}</svg>`;
+---
+
+<div class="enquiry" id="enquiry">
+  <form class="enquiry-form" id="enquiry-form" novalidate>
+    <div class="form-error-summary" id="form-summary" role="alert" hidden></div>
+
+    <div class="field-row">
+      <div class="field">
+        <label for="f-name">Your name <span class="req-mark" aria-hidden="true">*</span></label>
+        <div class="input-wrap">
+          <Fragment set:html={icon('user')} />
+          <input id="f-name" name="name" type="text" autocomplete="name" autocapitalize="words" required aria-describedby="e-name" placeholder="Full name">
+        </div>
+        <p class="field-error" id="e-name" hidden></p>
+      </div>
+
+      <div class="field">
+        <label for="f-phone">Phone <span class="req-mark" aria-hidden="true">*</span></label>
+        <div class="input-wrap">
+          <Fragment set:html={icon('phone')} />
+          <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required aria-describedby="e-phone" placeholder="Best number to call">
+        </div>
+        <p class="field-error" id="e-phone" hidden></p>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="f-email">Email</label>
+      <div class="input-wrap">
+        <Fragment set:html={icon('mail')} />
+        <input id="f-email" name="email" type="email" autocomplete="email" aria-describedby="e-email" placeholder="If you want the quote in writing">
+      </div>
+      <p class="field-error" id="e-email" hidden></p>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label for="f-postcode">Postcode <span class="req-mark" aria-hidden="true">*</span></label>
+        <div class="input-wrap">
+          <Fragment set:html={icon('pin')} />
+          <input id="f-postcode" name="postcode" type="text" autocomplete="postal-code" autocapitalize="characters" required aria-describedby="e-postcode" placeholder="e.g. SW6 4AB">
+        </div>
+        <p class="field-error" id="e-postcode" hidden></p>
+      </div>
+
+      <div class="field">
+        <label for="f-service">What do you need?</label>
+        <div class="input-wrap">
+          <Fragment set:html={icon('wrench')} />
+          <select id="f-service" name="service">
+            <option value="">Choose one&hellip;</option>
+            {services.map((s) => <option value={s.title} selected={s.title === service} set:html={s.title} />)}
+            {/* Grouped separately so the list of ten core services still reads
+                first — an appliance page passes its own title in and it
+                preselects from here. */}
+            <optgroup label="Appliances & fixtures">
+              {appliances.map((a) => <option value={a.title} selected={a.title === service}>{a.title}</option>)}
+            </optgroup>
+            <option value="Something else">Something else</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live service-area verdict. Full width, so it reads in a line or two. -->
+    <p class="postcode-status" id="postcode-status" role="status" hidden></p>
+
+    <fieldset class="field urgency">
+      <legend>How urgent is it?</legend>
+      <div class="urgency-options">
+        <label class="urgency-opt">
+          <input type="radio" name="urgency" value="Emergency">
+          <span>Emergency</span>
+        </label>
+        <label class="urgency-opt">
+          <input type="radio" name="urgency" value="This week" checked>
+          <span>This week</span>
+        </label>
+        <label class="urgency-opt">
+          <input type="radio" name="urgency" value="Planning ahead">
+          <span>Planning</span>
+        </label>
+      </div>
+    </fieldset>
+
+    <details class="enquiry-more">
+      <summary>Add address or details <span class="opt">optional</span></summary>
+      <div class="enquiry-more-inner">
+        <div class="field">
+          <label for="f-address">Address</label>
+          <div class="input-wrap">
+            <Fragment set:html={icon('home')} />
+            <input id="f-address" name="address_line" type="text" autocomplete="street-address" placeholder="House number and street">
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-description">What&rsquo;s happening?</label>
+          <div class="input-wrap input-wrap-area">
+            <Fragment set:html={icon('message')} />
+            <textarea id="f-description" name="description" rows="3" placeholder="What the problem is, when it started, and whether the water is still running."></textarea>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- Honeypot: hidden from people, catches bots that fill everything -->
+    <div class="hp" aria-hidden="true">
+      <label for="f-company">Company</label>
+      <input id="f-company" name="company" type="text" tabindex="-1" autocomplete="off">
+    </div>
+
+    <button type="submit" class="btn btn-orange btn-block btn-lg" id="enquiry-submit">
+      Send enquiry
+    </button>
+    <p class="enquiry-foot">
+      <span>Or call <a href={`tel:${site.booking.tel}`}>{site.booking.display}</a></span>
+      <span class="foot-sep" aria-hidden="true">&middot;</span>
+      <span>WhatsApp <a href={site.whatsapp.url}>{site.whatsapp.display}</a></span>
+    </p>
+    <p class="enquiry-privacy">We only use these details to deal with your enquiry. <a href="/privacy">Privacy policy</a></p>
+  </form>
+
+  <div class="enquiry-done" id="enquiry-done" hidden tabindex="-1">
+    <div class="done-mark" aria-hidden="true">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h3>Thanks &mdash; we&rsquo;ve got it</h3>
+    <p id="done-detail">We&rsquo;ll come back to you on the number you gave us. If it&rsquo;s urgent and you&rsquo;d rather not wait, call <a href={`tel:${site.booking.tel}`}>{site.booking.display}</a>.</p>
+  </div>
+</div>
+
+<script is:inline define:vars={{ bookingTel: site.booking.tel, bookingDisplay: site.booking.display, waUrl: site.whatsapp.url }}>
+  (function () {
+    var form = document.getElementById('enquiry-form');
+    if (!form) return;
+
+    var summary = document.getElementById('form-summary');
+    var submit = document.getElementById('enquiry-submit');
+    var pcInput = document.getElementById('f-postcode');
+    var pcStatus = document.getElementById('postcode-status');
+    var done = document.getElementById('enquiry-done');
+    var outOfArea = false;
+
+    var EXCLUDED = { SG: 'Stevenage and Hertfordshire', NG: 'Nottingham and Nottinghamshire' };
+
+    function showError(id, msg) {
+      var el = document.getElementById('e-' + id);
+      var input = document.getElementById('f-' + id);
+      if (el) { el.textContent = msg; el.hidden = false; }
+      if (input) input.setAttribute('aria-invalid', 'true');
+    }
+    function clearErrors() {
+      form.querySelectorAll('.field-error').forEach(function (el) { el.hidden = true; el.textContent = ''; });
+      form.querySelectorAll('[aria-invalid]').forEach(function (el) { el.removeAttribute('aria-invalid'); });
+      summary.hidden = true; summary.textContent = '';
+    }
+    function setSummary(msg) {
+      summary.innerHTML = msg;
+      summary.hidden = false;
+      summary.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }
+
+    // --- Live postcode check -------------------------------------------------
+    function setStatus(kind, html) {
+      pcStatus.className = 'postcode-status is-' + kind;
+      pcStatus.innerHTML = html;
+      pcStatus.hidden = false;
+    }
+
+    async function checkPostcode() {
+      var raw = (pcInput.value || '').trim();
+      if (raw.length < 5) { pcStatus.hidden = true; outOfArea = false; submit.disabled = false; return; }
+
+      var area = raw.toUpperCase().replace(/\s+/g, '').replace(/[0-9].*$/, '');
+      if (EXCLUDED[area]) {
+        outOfArea = true;
+        submit.disabled = true;
+        setStatus('out',
+          '<strong>Sorry &mdash; that&rsquo;s outside our area.</strong> We cover Greater London only, and ' +
+          area + ' postcodes are ' + EXCLUDED[area] + '. You&rsquo;ll be better served by a local firm.');
+        return;
+      }
+
+      setStatus('checking', 'Checking&hellip;');
+      try {
+        var res = await fetch('https://api.postcodes.io/postcodes/' + encodeURIComponent(raw));
+        if (!res.ok) {
+          outOfArea = false; submit.disabled = false;
+          setStatus('unknown', 'We couldn&rsquo;t look that postcode up &mdash; check it, or just send it and we&rsquo;ll confirm.');
+          return;
+        }
+        var data = await res.json();
+        var r = data.result || {};
+        if (r.region === 'London') {
+          outOfArea = false; submit.disabled = false;
+          setStatus('in', '<strong>' + (r.admin_district || 'London') + '</strong> &mdash; yes, we cover you.');
+        } else {
+          outOfArea = true; submit.disabled = true;
+          setStatus('out',
+            '<strong>That&rsquo;s outside Greater London.</strong> ' +
+            (r.admin_district ? r.admin_district + ' is in ' + (r.region || 'another region') + '. ' : '') +
+            'We only work across the London boroughs.');
+        }
+      } catch (err) {
+        outOfArea = false; submit.disabled = false;
+        pcStatus.hidden = true;
+      }
+    }
+
+    // Check while the user types, not on blur. A blur-triggered check
+    // inserted the "Checking…" box the instant the pointer went down on the
+    // next control, shifting that control out from under the tap. Debounced
+    // input means the result is already on screen before they move on.
+    var checkTimer = null;
+    pcInput.addEventListener('input', function () {
+      if (outOfArea) { outOfArea = false; submit.disabled = false; pcStatus.hidden = true; }
+      clearTimeout(checkTimer);
+      checkTimer = setTimeout(checkPostcode, 350);
+    });
+
+    // --- Submit --------------------------------------------------------------
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      clearErrors();
+
+      if (outOfArea) {
+        setSummary('That postcode is outside our service area, so we can&rsquo;t take the job.');
+        return;
+      }
+
+      var fd = new FormData(form);
+      var payload = {
+        name: fd.get('name') || '',
+        phone: fd.get('phone') || '',
+        postcode: fd.get('postcode') || '',
+        email: fd.get('email') || '',
+        address_line: fd.get('address_line') || '',
+        service: fd.get('service') || '',
+        urgency: fd.get('urgency') || '',
+        description: fd.get('description') || '',
+        company: fd.get('company') || '',
+        source_page: location.pathname,
+      };
+
+      submit.disabled = true;
+      var original = submit.textContent;
+      submit.textContent = 'Sending…';
+
+      try {
+        var res = await fetch('/api/enquiry', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        var body = await res.json().catch(function () { return {}; });
+
+        if (res.ok && body.ok) {
+          form.hidden = true;
+          done.hidden = false;
+          done.focus();
+          return;
+        }
+
+        if (body.errors) {
+          Object.keys(body.errors).forEach(function (k) { showError(k, body.errors[k]); });
+        }
+
+        if (body.code === 'not_configured') {
+          setSummary(
+            '<strong>The form isn&rsquo;t connected yet.</strong> Please call ' +
+            '<a href="tel:' + bookingTel + '">' + bookingDisplay + '</a> or ' +
+            '<a href="' + waUrl + '">message us on WhatsApp</a> and we&rsquo;ll pick it up straight away.'
+          );
+        } else {
+          setSummary(body.message || 'Something went wrong. Please call <a href="tel:' + bookingTel + '">' + bookingDisplay + '</a>.');
+        }
+      } catch (err) {
+        setSummary(
+          'We couldn&rsquo;t send that &mdash; you may be offline. Please call ' +
+          '<a href="tel:' + bookingTel + '">' + bookingDisplay + '</a>.'
+        );
+      } finally {
+        submit.disabled = false;
+        submit.textContent = original;
+      }
+    });
+  })();
+</script>

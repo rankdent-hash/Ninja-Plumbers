@@ -1,0 +1,74 @@
+---
+// Blog hub: every published post, newest first. Server-rendered (not static)
+// so a post published from /admin/blog is live here immediately, unlike the
+// cross-link sections on service/appliance/damp pages which read the
+// build-time src/data/blog.ts snapshot instead.
+export const prerender = false;
+
+import Base from '../../layouts/Base.astro';
+import site from '../../data/site.json';
+import { getSupabaseAdmin } from '../../lib/supabaseAdmin';
+import HeroWithForm from '../../components/HeroWithForm.astro';
+import Schema from '../../components/Schema.astro';
+
+const crumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Blog' },
+];
+
+type Row = { slug: string; title: string; excerpt: string; hero_image_url: string | null; published_at: string };
+
+let posts: Row[] = [];
+const supabase = getSupabaseAdmin();
+if (supabase) {
+  const { data } = await supabase
+    .from('blog_posts')
+    .select('slug, title, excerpt, hero_image_url, published_at')
+    .eq('status', 'published')
+    .order('published_at', { ascending: false });
+  posts = data ?? [];
+}
+
+const fmt = (iso: string) => new Date(iso).toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' });
+---
+<Base
+  title="Plumbing & Heating Advice | Tamesis Plumbers Blog"
+  description={`Plumbing and heating advice from Tamesis Plumbers: what to check yourself, and when to call an engineer. ${site.booking.display}.`}
+>
+  <Schema slot="head" breadcrumb={crumbs} />
+
+  <HeroWithForm
+    eyebrow="Advice"
+    h1="Plumbing and heating advice"
+    intro="What to check yourself before calling, and how to tell when a job needs an engineer. Written by the people who do the work."
+    breadcrumb={crumbs}
+    bullets={[
+      'Gas Safe registered and fully insured',
+      'DBS-checked engineers',
+      'Emergency callout available 24/7',
+      'Price agreed before work starts',
+    ]}
+    formHeading="Can't find your answer here?"
+  />
+
+  <section class="section">
+    <div class="container">
+      {posts.length === 0 && <p class="admin-empty">Nothing published yet &mdash; check back soon.</p>}
+      {posts.length > 0 && (
+        <ul class="grid grid-3 card-grid blog-card-grid">
+          {posts.map((post) => (
+            <li class="card blog-card">
+              {post.hero_image_url && <img class="blog-card-image" src={post.hero_image_url} alt="" width="400" height="225" loading="lazy" />}
+              <p class="blog-card-date">{fmt(post.published_at)}</p>
+              <h2><a href={`/blog/${post.slug}`} class="card-title-link">{post.title}</a></h2>
+              <p>{post.excerpt}</p>
+              <a href={`/blog/${post.slug}`} class="card-link" aria-label={`Read ${post.title}`}>
+                Read more <span aria-hidden="true">&rarr;</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </section>
+</Base>

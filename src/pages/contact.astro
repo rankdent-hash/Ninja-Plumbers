@@ -1,0 +1,111 @@
+---
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+import HeroWithForm from '../components/HeroWithForm.astro';
+---
+<Base
+  title="Contact Tamesis Plumbers | Book a Plumber in London"
+  description={`Book a plumber in London. Call ${site.booking.display}, WhatsApp ${site.whatsapp.display} or email us. Office in Fulham, emergency callout 24/7.`}
+>
+
+<HeroWithForm
+  eyebrow="Contact us"
+  h1="Book a plumber"
+  intro="The booking line is answered by someone who can actually get an engineer to you. For anything urgent, call — don't email and wait."
+  breadcrumb={[{ label: 'Home', href: '/' }, { label: 'Contact' }]}
+  bullets={[
+    'Gas Safe registered and fully insured',
+    'DBS-checked engineers',
+    'Emergency callout available 24/7',
+    'Price agreed before work starts',
+  ]}
+  formHeading="Send us the job"
+/>
+
+<section class="section">
+  <div class="container contact-layout">
+    <div>
+      <h2>How to reach us</h2>
+      <p class="measure">Pick whichever suits — they all reach the same Fulham office.</p>
+
+      <a href={`tel:${site.booking.tel}`} class="route route-call route-lg">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span class="route-text">
+          <span class="route-label">Job booking &mdash; fastest way to get an engineer</span>
+          <span class="route-value">{site.booking.display}</span>
+        </span>
+      </a>
+      <a href={site.whatsapp.url} class="route route-wa route-lg">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.13h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.36c0-4.54 3.7-8.23 8.25-8.23a8.2 8.2 0 0 1 8.23 8.24c0 4.54-3.69 8.21-8.23 8.21zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.09-.16.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.03s.87 2.35.99 2.51c.12.16 1.71 2.61 4.14 3.66.58.25 1.03.4 1.38.51.58.19 1.11.16 1.53.1.47-.07 1.44-.59 1.64-1.16.2-.57.2-1.05.14-1.16-.06-.1-.22-.16-.47-.28z"/></svg>
+        <span class="route-text">
+          <span class="route-label">WhatsApp &mdash; send us a photo of the problem</span>
+          <span class="route-value">{site.whatsapp.display}</span>
+        </span>
+      </a>
+      <a href={`mailto:${site.email}`} class="route route-mail route-lg">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+        <span class="route-text">
+          <span class="route-label">Email &mdash; best for quotes that aren&rsquo;t urgent</span>
+          <span class="route-value">{site.email}</span>
+        </span>
+      </a>
+      <a href={`tel:${site.management.tel}`} class="route route-mgmt route-lg">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span class="route-text">
+          <span class="route-label">Management &mdash; accounts, complaints, commercial</span>
+          <span class="route-value">{site.management.display}</span>
+        </span>
+      </a>
+
+      <div class="tell-us">
+        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg></div>
+        <div>
+          <h3>What to tell us</h3>
+          <p>Four things get you a useful answer on the first call rather than the third:</p>
+          <ul class="ticks">
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Your postcode</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> What&rsquo;s happening, and roughly when it started</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Whether the water is still running or you&rsquo;ve shut it off</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> How we get in, and when you&rsquo;re there</li>
+          </ul>
+          <p class="small">A photo on WhatsApp is worth a long description &mdash; it often means the engineer arrives with the right part rather than coming back a second time.</p>
+        </div>
+      </div>
+    </div>
+
+    <aside class="contact-side">
+      <div class="check-area">
+        <h2>Office</h2>
+        <dl class="detail-list">
+          <dt>Address</dt>
+          <dd>{site.address.line1},<br>{site.address.city}, {site.address.postcode}</dd>
+          <dt>Opening hours</dt>
+          <dd>{site.hours.office}</dd>
+          <dt>Emergencies</dt>
+          <dd>Callout available 24/7</dd>
+          <dt>Coverage</dt>
+          <dd>Greater London &mdash; <a href="/areas-we-cover">see the full list</a></dd>
+        </dl>
+      </div>
+      <div class="check-area">
+        <h2>Company</h2>
+        <dl class="detail-list">
+          <dt>Registered company</dt>
+          <dd>Tamesis Development Ltd</dd>
+          <dt>Company number</dt>
+          <dd>{site.companyNumber}</dd>
+        </dl>
+        <p class="small">Tamesis Plumbers is a trading name of Tamesis Development Ltd.</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<div class="emergency-banner">
+  <div class="container">
+    <strong>Burst pipe, no water, no heating?</strong>
+    <p>Don&rsquo;t email &mdash; <a href={`tel:${site.booking.tel}`}>call {site.booking.display}</a>. Emergency callout across London, 24 hours a day.</p>
+  </div>
+</div>
+
+</Base>

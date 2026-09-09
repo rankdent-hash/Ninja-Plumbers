@@ -1,0 +1,219 @@
+---
+import Base from '../../../layouts/Base.astro';
+import site from '../../../data/site.json';
+import { combos } from '../../../data/combos';
+import { services } from '../../../data/services';
+import { areas } from '../../../data/areas';
+import { comboDetail } from '../../../data/combo-detail';
+import HeroWithForm from '../../../components/HeroWithForm.astro';
+import Schema from '../../../components/Schema.astro';
+import ServiceIcon from '../../../components/ServiceIcon.astro';
+import Tick from '../../../components/Tick.astro';
+import PhoneIcon from '../../../components/PhoneIcon.astro';
+import WhatsAppIcon from '../../../components/WhatsAppIcon.astro';
+
+export function getStaticPaths() {
+  return combos.map((combo) => {
+    const service = services.find((s) => s.slug === combo.service)!;
+    const area = areas.find((a) => a.slug === combo.area)!;
+    return {
+      params: { service: combo.service, area: combo.area },
+      props: { combo, service, area },
+    };
+  });
+}
+
+const { combo, service, area } = Astro.props;
+
+// "Emergency Plumbing" reads as "Emergency plumber in Croydon" in a heading.
+const HEADING: Record<string, string> = {
+  'emergency-plumbing': 'Emergency plumber',
+  'boiler-repair': 'Boiler repair',
+  'boiler-service': 'Boiler service',
+  'boiler-installation': 'Boiler installation',
+  'boiler-replacement': 'Boiler replacement',
+  'bathroom-installation': 'Bathroom installation',
+  'drain-unblocking': 'Drain unblocking',
+};
+const label = HEADING[service.slug] ?? service.title;
+const detail = comboDetail[`${combo.service}|${combo.area}`];
+const crumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Services', href: '/services' },
+  { label: service.title.replace('&amp;', 'and'), href: `/services/${service.slug}` },
+  { label: area.name },
+];
+// Matches the visible FAQ on the page, in the same order.
+const pageFaqs = [
+  { q: `Do you cover ${area.name}?`,
+    a: `Yes. We cover ${area.name} and the ${area.postcodes.join(', ')} postcodes, as part of ${area.borough}. Our office is in Fulham and our engineers work out across Greater London from there.` },
+  ...(detail ? [detail.faq] : []),
+  { q: 'What does it cost?',
+    a: 'You get a price for the work before an engineer starts. If something behind the wall changes the job, we stop and talk to you rather than press on and bill for it afterwards.' },
+];
+const h1 = `${label} in ${area.name}`;
+
+// Other pages for the same area, and the same service elsewhere.
+const sameArea = combos.filter((c) => c.area === area.slug && c.service !== service.slug);
+const sameService = combos
+  .filter((c) => c.service === service.slug && c.area !== area.slug)
+  .sort((a, b) => b.volume - a.volume)
+  .slice(0, 6);
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: h1,
+  serviceType: service.title.replace('&amp;', 'and'),
+  description: `${label} in ${area.name}, ${area.borough}. ${service.summary}`,
+  provider: {
+    '@type': 'Plumber',
+    name: site.name,
+    telephone: site.booking.tel,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: site.address.line1,
+      addressLocality: site.address.city,
+      postalCode: site.address.postcode,
+      addressCountry: site.address.country,
+    },
+  },
+  areaServed: {
+    '@type': 'Place',
+    name: `${area.name}, London`,
+    containedInPlace: { '@type': 'AdministrativeArea', name: area.borough },
+  },
+};
+---
+<Base
+  title={`${label} ${area.name} | ${area.postcodes[0]} | Tamesis Plumbers`}
+  description={`${label} in ${area.name}, ${area.borough}, covering ${area.postcodes.join(', ')}. Gas Safe registered and fully insured. Call ${site.booking.display}.`}
+>
+  <Schema slot="head" breadcrumb={crumbs} faqs={pageFaqs} extra={schema} />
+
+  <HeroWithForm
+    eyebrow={`${area.borough} · ${area.postcodes.join(', ')}`}
+    h1={h1}
+    intro={combo.angle}
+    breadcrumb={crumbs}
+    bullets={[
+      'Gas Safe registered and fully insured',
+      'DBS-checked engineers',
+      'Emergency callout available 24/7',
+      'Price agreed before work starts',
+    ]}
+    formHeading={`${label} in ${area.name}`}
+    service={service.title}
+  />
+
+  <section class="section">
+    <div class="container measure-wide">
+      <div class="service-copy">
+        <span class="eyebrow">What we see here</span>
+        <h2>{label} in {area.name}</h2>
+        {detail && (
+          <ul class="ticks">
+            {detail.points.map((pt) => <li><Tick /> {pt}</li>)}
+          </ul>
+        )}
+        <details class="combo-general">
+          <summary>Everything {service.title.replace('&amp;', 'and').toLowerCase()} covers</summary>
+          <ul class="ticks">
+            {service.does.map((d) => <li><Tick /> {d}</li>)}
+          </ul>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container measure-wide">
+      <div class="combo-area-note">
+        <p>
+          <strong>{area.name === area.borough
+            ? `We cover ${area.name},`
+            : `${area.name} is in the London Borough of ${area.borough},`}</strong> across {area.postcodes.join(', ')}. The housing stock here shapes what goes wrong:
+          <a href={`/areas/${area.slug}`} class="inline-link">read more about plumbing in {area.name} &rarr;</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container measure-wide">
+      <span class="eyebrow">Questions</span>
+      <h2>Common questions</h2>
+      <div class="faqs">
+        <details class="faq">
+          <summary>Do you cover {area.name}?</summary>
+          <p>Yes. We cover {area.name} and the {area.postcodes.join(', ')} postcodes, as part of {area.borough}. Our office is in Fulham and our engineers work out across Greater London from there.</p>
+        </details>
+        {detail && (
+          <details class="faq">
+            <summary>{detail.faq.q}</summary>
+            <p>{detail.faq.a}</p>
+          </details>
+        )}
+        <details class="faq">
+          <summary>What does it cost?</summary>
+          <p>You get a price for the work before an engineer starts. If something behind the wall changes the job, we stop and talk to you rather than press on and bill for it afterwards.</p>
+        </details>
+        <p class="faq-more">
+          <a href={`/services/${service.slug}`} class="inline-link">More questions about {service.title.replace('&amp;', 'and').toLowerCase()} &rarr;</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      {sameArea.length > 0 && (
+        <>
+          <span class="eyebrow">Also in {area.name}</span>
+          <h2>Other work we do here</h2>
+          <ul class="grid grid-3 card-grid">
+            {sameArea.map((c) => {
+              const s = services.find((x) => x.slug === c.service)!;
+              return (
+                <li class="card">
+                  <div class="icon"><ServiceIcon name={s.icon} /></div>
+                  <h3>
+                    <a href={`/services/${c.service}/${c.area}`} class="card-title-link">
+                      {HEADING[c.service] ?? s.title} in {area.name}
+                    </a>
+                  </h3>
+                  <p>{s.summary}</p>
+                </li>
+              );
+            })}
+          </ul>
+        </>
+      )}
+
+      <span class="eyebrow" style="margin-top:40px;">Nearby</span>
+      <h2>{label} in other areas</h2>
+      <ul class="combo-links">
+        {sameService.map((c) => {
+          const a = areas.find((x) => x.slug === c.area)!;
+          return <li><a href={`/services/${c.service}/${c.area}`}>{label} in {a.name}</a></li>;
+        })}
+        <li><a href={`/services/${service.slug}`}>{service.title.replace('&amp;', 'and')} across London</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section-navy">
+    <div class="container center measure-wide">
+      <h2>{label} in {area.name}</h2>
+      <p>Tell us your postcode and what&rsquo;s happening, and we&rsquo;ll tell you what it costs before anyone starts work.</p>
+      <div class="cta-row center-row">
+        <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">
+          <PhoneIcon /> Call {site.booking.display}
+        </a>
+        <a href={site.whatsapp.url} class="btn btn-outline btn-lg">
+          <WhatsAppIcon /> WhatsApp us
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

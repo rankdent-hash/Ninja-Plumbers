@@ -1,0 +1,242 @@
+---
+// Site header. The primary menu is built from mainNav in src/data/nav.ts:
+// each service group opens a panel of its services, Home opens a small panel
+// of company pages, Contact is a plain link. Which item is "current" is read
+// from the page URL, so a service page lights its own group and a
+// service-in-area page lights the same one.
+import site from '../data/site.json';
+import { mainNav, groupedServices } from '../data/nav';
+import { appliances, applianceGroups } from '../data/appliances';
+import ServiceIcon from './ServiceIcon.astro';
+import PhoneIcon from './PhoneIcon.astro';
+import WhatsAppIcon from './WhatsAppIcon.astro';
+
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isPage = (href: string) => path === href;
+const under = (href: string) => path === href || path.startsWith(href + '/');
+// A link is "current" for its own page, anything beneath it, and any extra
+// prefixes it claims — so /areas/fulham still lights "Areas".
+const inSection = (href: string, match?: string[]) =>
+  under(href) || (match ?? []).some((m) => under(m));
+// A group lights for its own services, and for its extra links — but not when
+// a top-level link already owns the path. The Boilers group links across to
+// the radiator page, which lives under Appliances; without this both light at
+// once and two items claim aria-current="page".
+const linkOwnsPath = mainNav.some(
+  (i) => !('group' in i) && i.href !== '/' && inSection(i.href, i.match)
+);
+const groupIsCurrent = (g: (typeof groupedServices)[number]) =>
+  g.items.some((s) => under(`/services/${s.slug}`)) ||
+  (!linkOwnsPath && (g.extra ?? []).some((x) => under(x.href)));
+
+// First sentence of the service summary is the menu one-liner.
+const oneLine = (s: string) => s.split(/(?<=\.)\s/)[0];
+const menuId = (s: string) => `menu-${s.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+const chev =
+  '<svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>';
+---
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<aside class="top-strip" aria-label="Opening hours and contact">
+  <div class="container">
+    <p class="top-hours">{site.hours.office} &middot; {site.hours.emergency}</p>
+    <ul class="top-links">
+      <li><a href={site.whatsapp.url}>WhatsApp {site.whatsapp.display}</a></li>
+      <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+    </ul>
+  </div>
+</aside>
+
+<header class="site-header">
+  <div class="container header-bar">
+    <a href="/" class="logo" aria-label="Tamesis Plumbers — home">
+      <img class="logo-img" src="/images/logo.png" width="747" height="220" alt="Tamesis Plumbers" />
+    </a>
+
+    <nav class="main-nav" id="main-nav" aria-label="Main">
+      {/* Drawer only: the header's search button is hidden on small screens. */}
+      <button type="button" class="drawer-search" data-search-open aria-expanded="false" aria-controls="site-search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="20" y1="20" x2="16.65" y2="16.65"/></svg>
+        <span>Search a service, area or postcode</span>
+      </button>
+      <ul>
+        {mainNav.map((item) => {
+          if ('group' in item) {
+            const g = groupedServices.find((x) => x.slug === item.group)!;
+            const id = menuId(g.slug);
+            const on = groupIsCurrent(g);
+            return (
+              <li class="has-dropdown">
+                <button
+                  type="button"
+                  class="nav-link dropdown-toggle"
+                  aria-expanded="false"
+                  aria-controls={id}
+                  aria-current={on ? 'page' : undefined}
+                >
+                  {g.navLabel ?? g.label}
+                  <Fragment set:html={chev} />
+                </button>
+
+                {/* Panel: the group's services on the left, a short note and
+                    the call CTA on the right. On mobile it stacks inside the
+                    drawer and the right-hand side is hidden. */}
+                <div class="mega" id={id}>
+                  <div class="mega-inner">
+                    <div class="mega-main">
+                      <ul class="mega-list">
+                        {g.items.map((s) => (
+                          <li>
+                            <a
+                              href={`/services/${s.slug}`}
+                              class="mega-link"
+                              aria-current={isPage(`/services/${s.slug}`) ? 'page' : undefined}
+                            >
+                              <span class="mega-ico"><ServiceIcon name={s.icon} size={20} /></span>
+                              <span class="mega-text">
+                                <strong set:html={s.title} />
+                                <small>{oneLine(s.summary)}</small>
+                              </span>
+                            </a>
+                          </li>
+                        ))}
+                        {g.extra?.map((x) => (
+                          <li><a href={x.href} class="mega-more">{x.label} <span aria-hidden="true">&rarr;</span></a></li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div class="mega-side">
+                      <p class="mega-heading">{g.label}</p>
+                      <p class="mega-blurb">{g.blurb}</p>
+                      <span class="mega-panel-eyebrow">Need someone now?</span>
+                      <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-block"><PhoneIcon /> Call {site.booking.display}</a>
+                      <a href={site.whatsapp.url} class="btn btn-ghost btn-block"><WhatsAppIcon /> WhatsApp us</a>
+                      <a href="/services" class="mega-all">All services <span aria-hidden="true">&rarr;</span></a>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            );
+          }
+
+          if (item.mega === 'appliances') {
+            const id = menuId(item.label);
+            return (
+              <li class="has-dropdown nav-split">
+                <a class="nav-link" href={item.href} aria-current={inSection(item.href, item.match) ? 'page' : undefined}>{item.label}</a>
+                <button
+                  type="button"
+                  class="nav-link dropdown-toggle nav-split-toggle"
+                  aria-expanded="false"
+                  aria-controls={id}
+                  aria-label={`${item.label} menu`}
+                >
+                  <Fragment set:html={chev} />
+                </button>
+                <div class="mega mega-wide" id={id}>
+                  <div class="mega-inner mega-inner-wide">
+                    <div class="mega-main">
+                      <div class="mega-groups">
+                        {applianceGroups.map((g) => (
+                          <div class="mega-group">
+                            <div class="mega-group-heading">
+                              <span class="mega-ico"><ServiceIcon name={g.icon} size={16} /></span>
+                              <span>{g.label}</span>
+                            </div>
+                            <ul class="mega-list mega-list-compact">
+                              {appliances.filter((a) => a.group === g.slug).map((a) => (
+                                <li>
+                                  <a
+                                    href={`/appliances/${a.slug}`}
+                                    class="mega-link-compact"
+                                    aria-current={isPage(`/appliances/${a.slug}`) ? 'page' : undefined}
+                                  >
+                                    <span class="mega-ico"><ServiceIcon name={a.icon} size={16} /></span>
+                                    <span set:html={a.title} />
+                                  </a>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                      <a href="/appliances" class="mega-more">All appliance work <span aria-hidden="true">&rarr;</span></a>
+                    </div>
+                    <div class="mega-side">
+                      <p class="mega-heading">Appliances &amp; fixtures</p>
+                      <p class="mega-blurb">Fitted, replaced and serviced &mdash; the parts of a house that are not the boiler.</p>
+                      <span class="mega-panel-eyebrow">Need someone now?</span>
+                      <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-block"><PhoneIcon /> Call {site.booking.display}</a>
+                      <a href={site.whatsapp.url} class="btn btn-ghost btn-block"><WhatsAppIcon /> WhatsApp us</a>
+                      <a href="/appliances" class="mega-all">All appliance work <span aria-hidden="true">&rarr;</span></a>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            );
+          }
+
+          if (item.children?.length) {
+            const id = menuId(item.label);
+            return (
+              <li class="has-dropdown nav-split">
+                <a class="nav-link" href={item.href} aria-current={inSection(item.href, item.match) ? 'page' : undefined}>{item.label}</a>
+                <button
+                  type="button"
+                  class="nav-link dropdown-toggle nav-split-toggle"
+                  aria-expanded="false"
+                  aria-controls={id}
+                  aria-label={`${item.label} menu`}
+                >
+                  <Fragment set:html={chev} />
+                </button>
+                <div class="mega mega-narrow" id={id}>
+                  <div class="mega-inner mega-inner-narrow">
+                    <div class="mega-main">
+                      <ul class="mega-list">
+                        {item.children.map((c) => (
+                          <li>
+                            <a href={c.href} class="mega-link mega-link-plain" aria-current={isPage(c.href) ? 'page' : undefined}>{c.label}</a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            );
+          }
+
+          return (
+            <li>
+              <a class="nav-link" href={item.href} aria-current={inSection(item.href, item.match) ? 'page' : undefined}>{item.label}</a>
+            </li>
+          );
+        })}
+      </ul>
+
+      {/* Drawer footer: only rendered in the mobile menu. */}
+      <div class="drawer-cta">
+        <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-block btn-lg"><PhoneIcon /> Call {site.booking.display}</a>
+        <a href={site.whatsapp.url} class="btn btn-ghost btn-block btn-lg"><WhatsAppIcon /> WhatsApp us</a>
+        <p>{site.hours.office} &middot; {site.hours.emergency}</p>
+      </div>
+    </nav>
+
+    <div class="header-actions">
+      <button type="button" class="search-toggle" data-search-open aria-label="Search the site" aria-expanded="false" aria-controls="site-search">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="20" y1="20" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <a href={`tel:${site.booking.tel}`} class="header-cta">
+        <PhoneIcon />
+        <span class="header-cta-text">
+          <span class="header-cta-label">Call now</span>
+          <span class="header-cta-number">{site.booking.display}</span>
+        </span>
+      </a>
+      <button type="button" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
+        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+</header>

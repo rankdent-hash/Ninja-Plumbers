@@ -1,0 +1,117 @@
+---
+import site from '../data/site.json';
+import { groupedServices } from '../data/nav';
+import { appliances, applianceGroups } from '../data/appliances';
+import { areas } from '../data/areas';
+import PhoneIcon from './PhoneIcon.astro';
+import WhatsAppIcon from './WhatsAppIcon.astro';
+const year = new Date().getFullYear();
+
+// Small icons for the short, curated Company column only — the long
+// services/appliances/areas lists stay text-only so the footer does not
+// turn into a wall of icons.
+const companyLinks = [
+  { href: '/services', label: 'All services', icon: '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>' },
+  { href: '/blog', label: 'Blog', icon: '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/>' },
+  { href: '/about', label: 'About us', icon: '<circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="11"/><line x1="12" y1="7.5" x2="12.01" y2="7.5"/>' },
+  { href: '/reviews', label: 'Reviews', icon: '<polygon points="12 2.5 15.09 8.76 22 9.77 17 14.64 18.18 21.52 12 18.27 5.82 21.52 7 14.64 2 9.77 8.91 8.76 12 2.5"/>' },
+  { href: '/contact', label: 'Contact', icon: '<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>' },
+];
+
+// The areas most people search for a plumber in, so the footer's area links
+// are the ones that get used. The hub carries the full list.
+const topAreas = [...areas].sort((a, b) => b.volume - a.volume).slice(0, 12);
+---
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="footer-logo" aria-label="Tamesis Plumbers — home">
+          <img src="/images/logo-light.png" width="747" height="220" alt="Tamesis Plumbers" />
+        </a>
+        <p>Plumbing, heating and drainage across London. Part of {site.legalName}, established {site.established}. Gas Safe registered and fully insured.</p>
+        <div class="footer-cta">
+          <a href={`tel:${site.booking.tel}`} class="btn btn-orange"><PhoneIcon /> {site.booking.display}</a>
+          <a href={site.whatsapp.url} class="btn btn-outline"><WhatsAppIcon /> WhatsApp</a>
+        </div>
+        <ul class="footer-contact">
+          <li>{site.address.line1}, {site.address.city}, {site.address.postcode}</li>
+          <li>{site.hours.office} &middot; Emergency callout 24/7</li>
+          <li>Management: <a href={`tel:${site.management.tel}`}>{site.management.display}</a></li>
+          <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+        </ul>
+      </div>
+
+      {groupedServices.map((g) => (
+        <div>
+          <h2>{g.label}</h2>
+          <ul class="footer-links">
+            {g.items.map((s) => (
+              <li><a href={`/services/${s.slug}`} set:html={s.title} /></li>
+            ))}
+            {g.extra?.map((x) => (
+              <li><a href={x.href}>{x.label}</a></li>
+            ))}
+          </ul>
+        </div>
+      ))}
+
+      <div>
+        <h2>Company</h2>
+        <ul class="footer-links footer-links-icon">
+          {companyLinks.map((c) => (
+            <li>
+              <a href={c.href}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={c.icon} />
+                {c.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    {/* Every appliance page, grouped. The header only carries the busiest of
+        them, so this is what guarantees none of them is more than one click
+        from any page on the site. */}
+    <div class="footer-areas footer-appliances">
+      <h2>Appliances &amp; fixtures</h2>
+      <div class="footer-appliance-groups">
+        {applianceGroups.map((g) => (
+          <div>
+            <h3>{g.label}</h3>
+            <ul class="footer-links">
+              {appliances.filter((a) => a.group === g.slug).map((a) => (
+                <li><a href={`/appliances/${a.slug}`}>{a.title}</a></li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <p class="footer-area-more"><a href="/appliances">All appliance work <span aria-hidden="true">&rarr;</span></a></p>
+    </div>
+
+    <div class="footer-areas">
+      <h2>Areas we cover</h2>
+      <ul class="footer-area-links">
+        {topAreas.map((a) => (
+          <li><a href={`/areas/${a.slug}`}>{a.name}</a></li>
+        ))}
+        <li class="footer-area-more"><a href="/areas-we-cover">All {areas.length} areas <span aria-hidden="true">&rarr;</span></a></li>
+        <li class="footer-area-more"><a href="/postcodes">Postcode districts <span aria-hidden="true">&rarr;</span></a></li>
+      </ul>
+    </div>
+
+    <div class="footer-bottom">
+      <ul class="footer-legal">
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/privacy">Privacy Policy</a></li>
+        <li><a href="/cookies">Cookie Policy</a></li>
+        <li><a href="/terms">Terms of Use</a></li>
+        <li><a href="/site-map">Site map</a></li>
+        <li><a href="/sitemap-index.xml">XML sitemap</a></li>
+      </ul>
+      <p>© {year} {site.legalName}. All rights reserved. Company No. {site.companyNumber}. Tamesis Plumbers is a trading name of {site.legalName}.</p>
+    </div>
+  </div>
+</footer>

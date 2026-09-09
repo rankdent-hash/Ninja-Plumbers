@@ -1,0 +1,42 @@
+---
+// Kicks off an AI-generated draft. The result is never published straight
+// from here — it lands on the edit screen for review first.
+import AdminLayout from '../../../layouts/AdminLayout.astro';
+
+export const prerender = false;
+
+const admin = Astro.locals.admin!;
+---
+<AdminLayout title="New post" admin={admin}>
+  <div class="admin-head">
+    <h1>New post</h1>
+    <p class="admin-sub">Generates a draft for you to review, edit and publish — nothing goes live from this screen.</p>
+  </div>
+
+  <div class="admin-add admin-settings-card">
+    <form id="blog-generate-form" class="admin-add-form">
+      <p class="form-error-summary" id="generate-error" role="alert" hidden></p>
+      <div class="field field-wide">
+        <label for="topic">Topic or target keyword</label>
+        <input id="topic" name="topic" type="text" required maxlength="300" placeholder="e.g. why does my boiler keep cutting out">
+      </div>
+      <div class="field">
+        <label for="provider">Write with</label>
+        <select id="provider" name="provider" required>
+          <option value="claude">Claude</option>
+          <option value="openai">ChatGPT</option>
+          <option value="gemini">Gemini</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="tone">Tone (optional)</label>
+        <input id="tone" name="tone" type="text" maxlength="60" placeholder="e.g. practical, reassuring">
+      </div>
+      <button type="submit" class="btn btn-navy" id="generate-submit">Generate draft</button>
+    </form>
+  </div>
+
+  <p><a href="/admin/blog">&larr; Back to all posts</a></p>
+</AdminLayout>
+
+<script src="/admin-blog.js" is:inline></script>

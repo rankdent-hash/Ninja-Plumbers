@@ -1,0 +1,187 @@
+---
+// One page per damp/condensation topic. Same shape as the appliance page
+// template, with a cross-link block back to the core services these
+// overlap with.
+import Base from '../../layouts/Base.astro';
+import site from '../../data/site.json';
+import { dampPages } from '../../data/damp';
+import { services } from '../../data/services';
+import { blogPosts } from '../../data/blog';
+import ServiceIcon from '../../components/ServiceIcon.astro';
+import Tick from '../../components/Tick.astro';
+import PhoneIcon from '../../components/PhoneIcon.astro';
+import WhatsAppIcon from '../../components/WhatsAppIcon.astro';
+import HeroWithForm from '../../components/HeroWithForm.astro';
+import Schema from '../../components/Schema.astro';
+
+export function getStaticPaths() {
+  return dampPages.map((page) => ({ params: { slug: page.slug }, props: { page } }));
+}
+
+const { page } = Astro.props;
+
+const related = page.related.map((slug) => services.find((s) => s.slug === slug)!);
+const siblings = dampPages.filter((d) => d.slug !== page.slug);
+const relatedPosts = blogPosts.filter((p) => (p.relatedDamp ?? []).includes(page.slug));
+
+const crumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Damp & Condensation', href: '/damp' },
+  { label: page.title },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: page.title,
+  description: page.metaDescription,
+  serviceType: page.title,
+  provider: {
+    '@type': 'Plumber',
+    name: site.name,
+    telephone: site.booking.tel,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: site.address.line1,
+      addressLocality: site.address.city,
+      postalCode: site.address.postcode,
+      addressCountry: site.address.country,
+    },
+  },
+  areaServed: { '@type': 'City', name: 'London' },
+};
+---
+<Base title={page.metaTitle} description={page.metaDescription} noindex>
+  <Schema slot="head" breadcrumb={crumbs} faqs={page.faqs} extra={serviceSchema} />
+
+  <HeroWithForm
+    eyebrow={page.eyebrow}
+    h1={page.h1}
+    intro={page.intro}
+    breadcrumb={crumbs}
+    bullets={[
+      'Gas Safe registered and fully insured',
+      'DBS-checked engineers',
+      'Emergency callout available 24/7',
+      'Price agreed before work starts',
+    ]}
+    formHeading={`Get a price for ${page.title.toLowerCase()}`}
+    service={page.title}
+    tel={site.booking}
+  />
+
+  <section class="section">
+    <div class="container service-row">
+      <div class="service-copy">
+        <span class="eyebrow">What we cover</span>
+        <h2>What this includes</h2>
+        <ul class="ticks">
+          {page.does.map((d) => <li><Tick /> {d}</li>)}
+        </ul>
+        <div class="cta-row">
+          <a href="/contact#enquiry" class="btn btn-navy">Send us the job</a>
+        </div>
+      </div>
+      <aside class="service-aside">
+        <div class="icon"><ServiceIcon name={page.icon} /></div>
+        <h3>{page.aside.title}</h3>
+        <p>{page.aside.body}</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <span class="eyebrow">Before you call</span>
+      <h2>Worth knowing first</h2>
+      <p class="measure">Some of this may save you a callout entirely. We would rather tell you than not.</p>
+      <div class="guidance">
+        {page.guidance.map((g) => (
+          <div class="guidance-item">
+            <h3>{g.title}</h3>
+            <p>{g.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container measure-wide">
+      <span class="eyebrow">Questions</span>
+      <h2>Common questions</h2>
+      <div class="faqs">
+        {page.faqs.map((f) => (
+          <details class="faq">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <span class="eyebrow">Related work</span>
+      <h2>If it turns out to be plumbing</h2>
+      <p class="measure">
+        Where the cause is a leak or a pipe rather than damp itself, these are the pages that cover it.
+      </p>
+      <ul class="grid grid-3 card-grid">
+        {related.map((s) => (
+          <li class="card">
+            <div class="icon"><ServiceIcon name={s.icon} /></div>
+            <h3><a href={`/services/${s.slug}`} class="card-title-link" set:html={s.title} /></h3>
+            <p>{s.summary}</p>
+            <a href={`/services/${s.slug}`} class="card-link">
+              More on {s.title.replace('&amp;', 'and')} <span aria-hidden="true">&rarr;</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Also on this</span>
+      <h2>Damp and condensation, the other pages</h2>
+      <ul class="combo-links">
+        {siblings.map((d) => (
+          <li><a href={`/damp/${d.slug}`}>{d.title}</a></li>
+        ))}
+      </ul>
+      <p><a href="/damp" class="btn btn-navy">All damp &amp; condensation</a></p>
+    </div>
+  </section>
+
+  {relatedPosts.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <span class="eyebrow">From the blog</span>
+        <h2>Related advice</h2>
+        <ul class="combo-links">
+          {relatedPosts.map((p) => (
+            <li><a href={`/blog/${p.slug}`}>{p.title}</a></li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <section class="section section-navy">
+    <div class="container center measure-wide">
+      <h2>Need {page.title.toLowerCase()} in London?</h2>
+      <p>Tell us what&rsquo;s happening and where you are, and we&rsquo;ll tell you what it costs before anyone starts work.</p>
+      <div class="cta-row center-row">
+        <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">
+          <PhoneIcon /> Call {site.booking.display}
+        </a>
+        <a href={site.whatsapp.url} class="btn btn-outline btn-lg">
+          <WhatsAppIcon /> WhatsApp us
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

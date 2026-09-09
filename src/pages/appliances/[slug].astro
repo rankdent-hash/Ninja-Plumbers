@@ -1,0 +1,196 @@
+---
+// One page per appliance or fixture. Same shape as a service page so the two
+// read as one site, with a cross-link block back to the core services this
+// job belongs to — nothing under /appliances is a dead end.
+import Base from '../../layouts/Base.astro';
+import site from '../../data/site.json';
+import { appliances, applianceGroups } from '../../data/appliances';
+import { services } from '../../data/services';
+import { blogPosts } from '../../data/blog';
+import ServiceIcon from '../../components/ServiceIcon.astro';
+import Tick from '../../components/Tick.astro';
+import PhoneIcon from '../../components/PhoneIcon.astro';
+import WhatsAppIcon from '../../components/WhatsAppIcon.astro';
+import HeroWithForm from '../../components/HeroWithForm.astro';
+import Schema from '../../components/Schema.astro';
+
+export function getStaticPaths() {
+  return appliances.map((appliance) => ({
+    params: { slug: appliance.slug },
+    props: { appliance },
+  }));
+}
+
+const { appliance } = Astro.props;
+
+const group = applianceGroups.find((g) => g.slug === appliance.group)!;
+const related = appliance.related.map((slug) => services.find((s) => s.slug === slug)!);
+// Others in the same group first, then the rest — the sideways links people
+// actually follow are the ones next to what they were already reading.
+const siblings = [
+  ...appliances.filter((a) => a.slug !== appliance.slug && a.group === appliance.group),
+  ...appliances.filter((a) => a.slug !== appliance.slug && a.group !== appliance.group),
+].slice(0, 6);
+const relatedPosts = blogPosts.filter((p) => (p.relatedAppliances ?? []).includes(appliance.slug));
+
+const crumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Appliances', href: '/appliances' },
+  { label: appliance.title },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: appliance.title,
+  description: appliance.metaDescription,
+  serviceType: appliance.title,
+  provider: {
+    '@type': 'Plumber',
+    name: site.name,
+    telephone: site.booking.tel,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: site.address.line1,
+      addressLocality: site.address.city,
+      postalCode: site.address.postcode,
+      addressCountry: site.address.country,
+    },
+  },
+  areaServed: { '@type': 'City', name: 'London' },
+};
+---
+<Base title={appliance.metaTitle} description={appliance.metaDescription}>
+  <Schema slot="head" breadcrumb={crumbs} faqs={appliance.faqs} extra={serviceSchema} />
+
+  <HeroWithForm
+    eyebrow={appliance.eyebrow}
+    h1={appliance.h1}
+    intro={appliance.intro}
+    breadcrumb={crumbs}
+    bullets={[
+      'Gas Safe registered and fully insured',
+      'DBS-checked engineers',
+      'Emergency callout available 24/7',
+      'Price agreed before work starts',
+    ]}
+    formHeading={`Get a price for ${appliance.title.toLowerCase()}`}
+    service={appliance.title}
+    tel={site.booking}
+  />
+
+  <section class="section">
+    <div class="container service-row">
+      <div class="service-copy">
+        <span class="eyebrow">What we cover</span>
+        <h2>What this includes</h2>
+        <ul class="ticks">
+          {appliance.does.map((d) => <li><Tick /> {d}</li>)}
+        </ul>
+        <div class="cta-row">
+          <a href="/contact#enquiry" class="btn btn-navy">Send us the job</a>
+        </div>
+      </div>
+      <aside class="service-aside">
+        <div class="icon"><ServiceIcon name={appliance.icon} /></div>
+        <h3>{appliance.aside.title}</h3>
+        <p>{appliance.aside.body}</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <span class="eyebrow">Before you call</span>
+      <h2>Worth knowing first</h2>
+      <p class="measure">Some of this may save you a callout entirely. We would rather tell you than not.</p>
+      <div class="guidance">
+        {appliance.guidance.map((g) => (
+          <div class="guidance-item">
+            <h3>{g.title}</h3>
+            <p>{g.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container measure-wide">
+      <span class="eyebrow">Questions</span>
+      <h2>Common questions</h2>
+      <div class="faqs">
+        {appliance.faqs.map((f) => (
+          <details class="faq">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <span class="eyebrow">Related work</span>
+      <h2>Part of our {group.label.toLowerCase()} work</h2>
+      <p class="measure">
+        If the job turns out to be a repair rather than an installation, these are the pages that cover it.
+      </p>
+      <ul class="grid grid-3 card-grid">
+        {related.map((s) => (
+          <li class="card">
+            <div class="icon"><ServiceIcon name={s.icon} /></div>
+            <h3><a href={`/services/${s.slug}`} class="card-title-link" set:html={s.title} /></h3>
+            <p>{s.summary}</p>
+            <a href={`/services/${s.slug}`} class="card-link">
+              More on {s.title.replace('&amp;', 'and')} <span aria-hidden="true">&rarr;</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Also fitted and serviced</span>
+      <h2>Other appliance work</h2>
+      <ul class="combo-links">
+        {siblings.map((a) => (
+          <li><a href={`/appliances/${a.slug}`}>{a.title}</a></li>
+        ))}
+      </ul>
+      <p><a href="/appliances" class="btn btn-navy">All appliance work</a></p>
+    </div>
+  </section>
+
+  {relatedPosts.length > 0 && (
+    <section class="section section-alt">
+      <div class="container">
+        <span class="eyebrow">From the blog</span>
+        <h2>Related advice</h2>
+        <ul class="combo-links">
+          {relatedPosts.map((p) => (
+            <li><a href={`/blog/${p.slug}`}>{p.title}</a></li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <section class="section section-navy">
+    <div class="container center measure-wide">
+      <h2>Need {appliance.title.toLowerCase()} in London?</h2>
+      <p>Tell us what&rsquo;s happening and where you are, and we&rsquo;ll tell you what it costs before anyone starts work.</p>
+      <div class="cta-row center-row">
+        <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">
+          <PhoneIcon /> Call {site.booking.display}
+        </a>
+        <a href={site.whatsapp.url} class="btn btn-outline btn-lg">
+          <WhatsAppIcon /> WhatsApp us
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,118 @@
+---
+import Base from '../layouts/Base.astro';
+import HeroWithForm from '../components/HeroWithForm.astro';
+import site from '../data/site.json';
+---
+<Base
+  title="About Tamesis Plumbers | London Plumbing &amp; Heating"
+  description="Tamesis Plumbers is the plumbing arm of Tamesis Development Ltd, a London property company established in 2019. Gas Safe registered, insured, based in Fulham."
+>
+
+<HeroWithForm
+  eyebrow="About us"
+  h1="The plumbing arm of a London property firm"
+  intro="Tamesis Plumbers is part of Tamesis Development Ltd, a London property maintenance and refurbishment company established in 2019. Plumbing is what we were already doing on our own sites — now we do it for other people's too."
+  breadcrumb={[{ label: 'Home', href: '/' }, { label: 'About' }]}
+  bullets={[
+    'Gas Safe registered and fully insured',
+    'DBS-checked engineers',
+    'Emergency callout available 24/7',
+    'Price agreed before work starts',
+  ]}
+  formHeading="Send us the job"
+/>
+
+<section class="section">
+  <div class="container service-row">
+    <div class="service-copy">
+      <span class="eyebrow">Who we are</span>
+      <h2>Property people who do plumbing properly</h2>
+      <p class="lead">Tamesis Development Ltd works on London property &mdash; maintenance, repairs and refurbishment. Plumbing runs through nearly all of it, so we built a dedicated team around it rather than subcontracting it out.</p>
+      <p>That background is the reason we care about the parts of the job trades usually treat as optional: arriving when we said we would, giving a price before the work rather than after it, and leaving the place clean enough that you can&rsquo;t tell we were there.</p>
+      <p>The office is in Fulham. Our engineers work out from there across Greater London, for homeowners, tenants, landlords, managing agents and commercial premises.</p>
+    </div>
+    <aside class="service-aside">
+      <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/><path d="M9 8h1"/><path d="M9 12h1"/><path d="M9 16h1"/><path d="M14 8h1"/><path d="M14 12h1"/><path d="M14 16h1"/></svg></div>
+      <h3>Tamesis Development Ltd</h3>
+      <p>Established 2019. Registered in England and Wales, company number {site.companyNumber}.</p>
+      <p>Tamesis Plumbers is a trading name of Tamesis Development Ltd.</p>
+    </aside>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <span class="eyebrow">How we work</span>
+    <h2>What we can put our name to</h2>
+    <p class="measure">Four things we will state plainly, because we can stand behind all of them.</p>
+    <ul class="grid grid-2 card-grid">
+      <li class="card">
+        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></div>
+        <h3>Gas Safe registered</h3>
+        <p>Gas work is carried out by Gas Safe registered engineers and certificated where the job requires it. Ask to see the card on the doorstep &mdash; any engineer should be glad to show it.</p>
+      </li>
+      <li class="card">
+        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>Fully insured</h3>
+        <p>We carry insurance on the work we do, so you are covered if something goes wrong on your property.</p>
+      </li>
+      <li class="card">
+        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg></div>
+        <h3>DBS-checked engineers</h3>
+        <p>Our engineers are DBS checked. That matters when someone is coming into your home, and more so in tenanted and managed buildings.</p>
+      </li>
+      <li class="card">
+        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
+        <h3>Price agreed before we start</h3>
+        <p>You get a price for the work before an engineer begins. If something behind the wall changes the job, we stop and talk to you rather than press on and bill you for it afterwards.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="coverage-split">
+      <div class="check-area">
+        <h2>Company details</h2>
+        <dl class="detail-list">
+          <dt>Registered company</dt>
+          <dd>Tamesis Development Ltd</dd>
+          <dt>Company number</dt>
+          <dd>{site.companyNumber}</dd>
+          <dt>Office</dt>
+          <dd>{site.address.line1},<br>{site.address.city}, {site.address.postcode}</dd>
+          <dt>Opening hours</dt>
+          <dd>{site.hours.office}<br>Emergency callout available 24/7</dd>
+        </dl>
+      </div>
+      <div class="check-area">
+        <h2>How to reach us</h2>
+        <dl class="detail-list">
+          <dt>Job booking</dt>
+          <dd><a href={`tel:${site.booking.tel}`}>{site.booking.display}</a></dd>
+          <dt>Management</dt>
+          <dd><a href={`tel:${site.management.tel}`}>{site.management.display}</a></dd>
+          <dt>WhatsApp</dt>
+          <dd><a href={site.whatsapp.url}>{site.whatsapp.display}</a></dd>
+          <dt>Email</dt>
+          <dd><a href={`mailto:${site.email}`}>{site.email}</a></dd>
+        </dl>
+        <p class="small">For anything urgent, call rather than email. The booking line is answered by someone who can get an engineer to you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-navy">
+  <div class="container center measure-wide">
+    <h2>Need a plumber in London?</h2>
+    <p>Tell us what&rsquo;s happening and where you are, and we&rsquo;ll tell you what it costs before anyone starts work.</p>
+    <div class="cta-row center-row">
+      <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">Call {site.booking.display}</a>
+      <a href={site.whatsapp.url} class="btn btn-outline btn-lg"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.13h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.36c0-4.54 3.7-8.23 8.25-8.23a8.2 8.2 0 0 1 8.23 8.24c0 4.54-3.69 8.21-8.23 8.21zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.09-.16.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.03s.87 2.35.99 2.51c.12.16 1.71 2.61 4.14 3.66.58.25 1.03.4 1.38.51.58.19 1.11.16 1.53.1.47-.07 1.44-.59 1.64-1.16.2-.57.2-1.05.14-1.16-.06-.1-.22-.16-.47-.28z"/></svg> WhatsApp us</a>
+    </div>
+  </div>
+</section>
+
+</Base>

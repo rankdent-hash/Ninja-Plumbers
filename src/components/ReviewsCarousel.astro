@@ -1,0 +1,87 @@
+---
+// Sliding Google review cards, read from the testimonials table at build
+// time — approved rows only. A row lands in that table from the admin panel
+// (/admin/reviews), manually typed in or landed by a Firecrawl scrape, and
+// stays hidden until a person checks it against the real listing and
+// switches it on. This section renders nothing at all while there are no
+// approved rows, rather than showing an empty rail or invented content.
+//
+// New approvals take effect on the next deploy, the same as every other
+// piece of content on this site — there is no live database read on the
+// public homepage itself.
+import { getSupabaseAdmin } from '../lib/supabaseAdmin';
+
+type Testimonial = { name: string; rating: 1 | 2 | 3 | 4 | 5; text: string };
+
+let testimonials: Testimonial[] = [];
+const supabase = getSupabaseAdmin();
+if (supabase) {
+  const { data } = await supabase
+    .from('testimonials')
+    .select('name, rating, text')
+    .eq('approved', true)
+    .order('created_at', { ascending: false });
+  if (data) testimonials = data as Testimonial[];
+}
+---
+{testimonials.length > 0 && (
+  <section class="section reviews-rail" aria-label="Google reviews">
+    <div class="container">
+      <div class="reviews-head">
+        <div>
+          <span class="eyebrow">What customers say</span>
+          <h2>Reviews from Google</h2>
+        </div>
+        <div class="reviews-nav">
+          <button type="button" class="reviews-arrow" data-reviews-prev aria-label="Previous review">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button type="button" class="reviews-arrow" data-reviews-next aria-label="Next review">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <ul class="reviews-track" data-reviews-track>
+        {testimonials.map((t) => (
+          <li class="reviews-card">
+            <div class="reviews-card-top">
+              {/* Google's own four-colour "G", not a generic star icon — this
+                  is what tells a visitor the review is a Google review. */}
+              <svg width="22" height="22" viewBox="0 0 48 48" aria-hidden="true">
+                <path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/>
+                <path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/>
+                <path fill="#FBBC05" d="M11.69 28.18A13.99 13.99 0 0 1 10.94 24c0-1.45.25-2.86.7-4.18v-5.7H4.34A21.99 21.99 0 0 0 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/>
+                <path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/>
+              </svg>
+              <span class="reviews-stars" aria-label={`${t.rating} out of 5 stars`}>
+                {Array.from({ length: 5 }, (_, i) => (
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill={i < t.rating ? 'currentColor' : 'none'} stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/>
+                  </svg>
+                ))}
+              </span>
+            </div>
+            <p class="reviews-text">&ldquo;{t.text}&rdquo;</p>
+            <p class="reviews-name">{t.name}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)}
+
+<script is:inline>
+  (function () {
+    var track = document.querySelector('[data-reviews-track]');
+    if (!track) return;
+    var step = function () {
+      var card = track.querySelector('.reviews-card');
+      return card ? card.getBoundingClientRect().width + 20 : 320;
+    };
+    var prev = document.querySelector('[data-reviews-prev]');
+    var next = document.querySelector('[data-reviews-next]');
+    if (prev) prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+    if (next) next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
+  })();
+</script>

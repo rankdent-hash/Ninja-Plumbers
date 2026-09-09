@@ -1,0 +1,89 @@
+---
+// Index of the postcode district pages, grouped by London region so 122 links
+// are browsable rather than a wall.
+import Base from '../../layouts/Base.astro';
+import site from '../../data/site.json';
+import { postcodes } from '../../data/postcodes';
+import Schema from '../../components/Schema.astro';
+import PhoneIcon from '../../components/PhoneIcon.astro';
+import WhatsAppIcon from '../../components/WhatsAppIcon.astro';
+
+const ORDER = [
+  'East Central London',
+  'West Central London',
+  'North London',
+  'North West London',
+  'East London',
+  'West London',
+  'South East London',
+  'South West London',
+];
+
+const groups = ORDER.map((region) => ({
+  region,
+  items: postcodes.filter((p) => p.region === region),
+})).filter((g) => g.items.length > 0);
+
+// Every district must land in exactly one group, or the index silently hides
+// pages that exist.
+const grouped = groups.reduce((n, g) => n + g.items.length, 0);
+if (grouped !== postcodes.length) {
+  throw new Error(`postcodes index: ${grouped} grouped but ${postcodes.length} districts exist`);
+}
+
+const crumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Areas We Cover', href: '/areas-we-cover' },
+  { label: 'Postcode districts' },
+];
+---
+<Base
+  title="London Postcode Districts We Cover | Tamesis Plumbers"
+  description={`Plumbing, heating and drainage across ${postcodes.length} London postcode districts. Find yours and get a price before work starts. Call ${site.booking.display}.`}
+>
+  <Schema slot="head" breadcrumb={crumbs} />
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="/">Home</a> / <a href="/areas-we-cover">Areas We Cover</a> / Postcode districts</div>
+      <span class="eyebrow">Coverage</span>
+      <h1>London postcode districts</h1>
+      <p>
+        {postcodes.length} districts across the eight London postal areas. Find yours for the
+        neighbourhoods it covers, or go straight to the area page if you know the name of your
+        part of town.
+      </p>
+    </div>
+  </section>
+
+  {groups.map((g, i) => (
+    <section class={i % 2 === 0 ? 'section' : 'section section-alt'}>
+      <div class="container">
+        <h2 class="xp-h2">{g.region}</h2>
+        <ul class="combo-links">
+          {g.items.map((p) => (
+            <li><a href={`/postcodes/${p.slug}`}>{p.district} &mdash; {p.primary}</a></li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  ))}
+
+  <section class="section section-navy">
+    <div class="container center measure-wide">
+      <h2>Not sure which district you are in?</h2>
+      <p>
+        Tell us your full postcode and we will confirm whether we cover you. We work across
+        Greater London.
+      </p>
+      <div class="cta-row center-row">
+        <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">
+          <PhoneIcon /> Call {site.booking.display}
+        </a>
+        <a href={site.whatsapp.url} class="btn btn-outline btn-lg">
+          <WhatsAppIcon /> WhatsApp us
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

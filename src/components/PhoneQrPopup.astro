@@ -1,0 +1,42 @@
+---
+// Desktop/tablet only (public/phone-qr.js gates it by viewport width): a
+// click on any tel: link opens this instead of doing nothing, since a
+// pointer-driven device has no dialler to hand off to. Phones skip this
+// entirely and place the call directly, as normal. The three QR codes are
+// pre-rendered at build time in src/data/qrcodes.ts — no client-side QR
+// library and no third-party request.
+import { qrCodes, qrTargets } from '../data/qrcodes';
+import site from '../data/site.json';
+---
+<div class="qr-overlay" id="phone-qr-popup" data-management-tel={site.management.tel} hidden>
+  <div class="qr-backdrop" data-qr-close></div>
+  <div class="qr-panel" role="dialog" aria-modal="true" aria-labelledby="qr-title">
+    <button type="button" class="qr-close" data-qr-close aria-label="Close">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <h2 id="qr-title">Scan instead of dialling</h2>
+    <p class="qr-sub">Point your phone's camera at a code to call, text or WhatsApp us straight from here.</p>
+    <div class="qr-grid">
+      <div class="qr-item" data-qr-call="booking">
+        <div class="qr-code" set:html={qrCodes.callBooking} />
+        <strong>Call</strong>
+        <span class="qr-number">{site.booking.display}</span>
+      </div>
+      <div class="qr-item" data-qr-call="management" hidden>
+        <div class="qr-code" set:html={qrCodes.callManagement} />
+        <strong>Call</strong>
+        <span class="qr-number">{site.management.display}</span>
+      </div>
+      <div class="qr-item">
+        <div class="qr-code" set:html={qrCodes.sms} />
+        <strong>Text (SMS)</strong>
+        <span class="qr-number">{qrTargets.smsDisplay}</span>
+      </div>
+      <div class="qr-item">
+        <div class="qr-code" set:html={qrCodes.whatsapp} />
+        <strong>WhatsApp</strong>
+        <span class="qr-number">{site.whatsapp.display}</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,112 @@
+---
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+
+const updated = '4 September 2026';
+---
+<Base
+  title="Privacy Policy | Tamesis Plumbers"
+  description={`How Tamesis Development Ltd collects, uses and protects personal information from customers and visitors to ${site.name}.`}
+>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="/">Home</a> / Privacy Policy</div>
+    <span class="eyebrow">Legal</span>
+    <h1>Privacy Policy</h1>
+    <p>How we handle your personal information, and what you can ask us to do with it.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container legal">
+    <p class="legal-meta">Last updated {updated}</p>
+
+    <h2>Who we are</h2>
+    <p>{site.name} is a trading name of {site.legalName}, a company registered in England and Wales under company number {site.companyNumber}. Our registered office is {site.address.line1}, {site.address.city}, {site.address.postcode}.</p>
+    <p>{site.legalName} is the data controller for the information described in this policy. That means we are responsible for deciding how and why your personal information is used.</p>
+    <p>If you have any question about this policy, or about how we handle your information, email <a href={`mailto:${site.email}`}>{site.email}</a> or call <a href={`tel:${site.management.tel}`}>{site.management.display}</a>.</p>
+
+    <h2>Information we collect</h2>
+
+    <h3>When you visit this website</h3>
+    <p>This website does not set cookies, does not use analytics or advertising trackers, and does not store anything in your browser. See our <a href="/cookies">Cookie Policy</a> for detail.</p>
+    <p>Our hosting provider records standard technical information in its server logs when a page is requested, including your IP address, the page requested, the time of the request and your browser type. This happens automatically for every website and is used to run and secure the service.</p>
+    <p>Everything else this site needs is served from this domain. Your browser contacts no third party to display these pages, so no other company learns anything about your visit.</p>
+
+    <h3>When you contact us</h3>
+    <p>If you call, message us on WhatsApp, email us, or submit the enquiry form on this site, we collect what you give us. For a plumbing enquiry that normally means:</p>
+    <ul>
+      <li>your name</li>
+      <li>your phone number, and your email address if you give one</li>
+      <li>the address where the work is needed, including the postcode</li>
+      <li>a description of the problem, and any photographs you choose to send us</li>
+    </ul>
+    <p>We only ask for what we need to quote for the work and get an engineer to the right place. You do not have to give us an email address to book a job.</p>
+
+    <h2>Why we use it, and our lawful basis</h2>
+    <table class="legal-table">
+      <thead><tr><th>What we do</th><th>Lawful basis</th></tr></thead>
+      <tbody>
+        <tr><td>Respond to your enquiry and give you a price</td><td>Steps taken at your request before entering a contract</td></tr>
+        <tr><td>Carry out the work, and contact you about it</td><td>Performance of our contract with you</td></tr>
+        <tr><td>Keep records of work done, invoices and payments</td><td>Legal obligation (accounting and tax) and our legitimate interest in defending claims</td></tr>
+        <tr><td>Keep gas safety records where the work requires it</td><td>Legal obligation</td></tr>
+        <tr><td>Run and secure this website</td><td>Our legitimate interest in keeping the site available and free from abuse</td></tr>
+      </tbody>
+    </table>
+    <p>We do not use your information for marketing unless you have asked us to, and we do not sell it to anyone.</p>
+
+    <h2>Who we share it with</h2>
+    <p>We share personal information only where we need to:</p>
+    <ul>
+      <li><strong>Our engineers</strong> — the person attending your job needs your address, phone number and a description of the work.</li>
+      <li><strong>Our hosting and IT providers</strong> — the suppliers who run this website and our systems process data on our behalf under contract.</li>
+      <li><strong>Gas Safe Register</strong> — where a job requires gas work to be notified or certificated.</li>
+      <li><strong>Our accountants, and HMRC</strong> — for invoicing, accounts and tax.</li>
+      <li><strong>Insurers or legal advisers</strong> — if there is a claim or dispute.</li>
+    </ul>
+    <p>We may also disclose information where the law requires it.</p>
+
+    <h2>Information sent outside the UK</h2>
+    <p>Our website hosting provider is based in the United States and may process the technical server-log information described above outside the UK. Where that happens, the transfer is covered by the safeguards that provider has in place, such as the UK International Data Transfer Addendum or an adequacy decision.</p>
+    <p>Enquiries you submit through the form are stored on servers in London, so the personal details you give us &mdash; your name, phone number and address &mdash; stay in the UK.</p>
+
+    <h2>How long we keep it</h2>
+    <ul>
+      <li><strong>Enquiries that do not become jobs</strong> — up to 12 months, so we can pick the conversation back up if you come back to us.</li>
+      <li><strong>Records of completed work, invoices and payments</strong> — six years from the end of the relevant accounting period, which is what tax law and the usual limitation period require.</li>
+      <li><strong>Gas safety records</strong> — for as long as the relevant regulations require.</li>
+      <li><strong>Website server logs</strong> — for the short retention period set by our hosting provider.</li>
+    </ul>
+
+    <h2>Your rights</h2>
+    <p>Under UK data protection law you have the right to:</p>
+    <ul>
+      <li>ask for a copy of the personal information we hold about you</li>
+      <li>have inaccurate information corrected</li>
+      <li>ask us to delete information, where we no longer have a reason to keep it</li>
+      <li>ask us to restrict how we use it while a concern is looked into</li>
+      <li>object to us using it on the basis of our legitimate interests</li>
+      <li>ask for the information you gave us in a portable format</li>
+      <li>withdraw consent, where we relied on consent</li>
+    </ul>
+    <p>To exercise any of these, email <a href={`mailto:${site.email}`}>{site.email}</a>. We will respond within one month. There is no charge.</p>
+    <p>Some of these rights are qualified. For example, we cannot delete records we are legally required to keep, such as invoices or gas safety certificates. If that applies we will tell you why.</p>
+
+    <h2>Complaints</h2>
+    <p>If you are unhappy with how we have handled your information, please tell us first — call <a href={`tel:${site.management.tel}`}>{site.management.display}</a> or email <a href={`mailto:${site.email}`}>{site.email}</a> and we will look into it.</p>
+    <p>You also have the right to complain to the Information Commissioner's Office, the UK's data protection regulator, at <a href="https://ico.org.uk/make-a-complaint/" rel="noopener">ico.org.uk/make-a-complaint</a> or on 0303 123 1113.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>If we change how we handle personal information &mdash; for example if we add website analytics, or turn on photo uploads in the enquiry form &mdash; we will update this policy and change the date at the top.</p>
+
+    <div class="legal-contact">
+      <h3>Contact us about your information</h3>
+      <p>{site.legalName}<br>{site.address.line1}<br>{site.address.city}, {site.address.postcode}</p>
+      <p><a href={`mailto:${site.email}`}>{site.email}</a><br><a href={`tel:${site.management.tel}`}>{site.management.display}</a></p>
+    </div>
+  </div>
+</section>
+
+</Base>

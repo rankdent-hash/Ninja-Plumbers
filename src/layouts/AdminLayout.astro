@@ -1,0 +1,57 @@
+---
+// Minimal shell for the internal /admin panel: no site header, footer, mega
+// menu, search or Book now popup, and always noindex. Shares global.css so
+// colours, type and .btn/.field styles match the rest of the site.
+import '../styles/global.css';
+
+const { title, admin } = Astro.props as { title: string; admin?: { email: string } | null };
+const path = Astro.url.pathname;
+const sections = [
+  { href: '/admin', label: 'Leads' },
+  { href: '/admin/reviews', label: 'Reviews' },
+  { href: '/admin/blog', label: 'Blog' },
+  { href: '/admin/settings', label: 'Settings' },
+];
+---
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{title} · Tamesis Admin</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+<body class="admin-body">
+{admin && (
+  <header class="admin-bar">
+    <div class="container admin-bar-inner">
+      <a href="/admin" class="admin-brand"><span class="brand-mark">Tamesis</span> Admin</a>
+      <nav class="admin-sections" aria-label="Admin sections">
+        {sections.map((s) => (
+          <a href={s.href} aria-current={path === s.href ? 'page' : undefined}>{s.label}</a>
+        ))}
+      </nav>
+      <div class="admin-bar-right">
+        <span class="admin-bar-email">{admin.email}</span>
+        <button type="button" class="btn btn-ghost admin-logout-btn" id="admin-logout-btn">Log out</button>
+      </div>
+    </div>
+  </header>
+)}
+<main class="admin-main">
+  <div class="container">
+    <slot />
+  </div>
+</main>
+{admin && (
+  <script is:inline>
+    document.getElementById('admin-logout-btn').addEventListener('click', function () {
+      fetch('/api/admin/logout', { method: 'POST' }).finally(function () { location.href = '/admin/login'; });
+    });
+  </script>
+)}
+</body>
+</html>

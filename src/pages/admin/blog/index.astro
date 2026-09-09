@@ -1,0 +1,62 @@
+---
+// Blog posts queue: drafts (hand-written or AI-generated) and published
+// posts. Publishing here is instant — /blog and /blog/[slug] read Supabase
+// at request time, unlike the rest of the site.
+import AdminLayout from '../../../layouts/AdminLayout.astro';
+import { getSupabaseAdmin } from '../../../lib/supabaseAdmin';
+
+export const prerender = false;
+
+const admin = Astro.locals.admin!;
+const supabase = getSupabaseAdmin();
+
+type Row = { id: string; slug: string; title: string; status: 'draft' | 'published'; generated_by: string; updated_at: string; published_at: string | null };
+
+let rows: Row[] = [];
+let loadError = '';
+if (!supabase) {
+  loadError = 'The admin panel is not connected to Supabase yet.';
+} else {
+  const { data, error } = await supabase
+    .from('blog_posts')
+    .select('id, slug, title, status, generated_by, updated_at, published_at')
+    .order('updated_at', { ascending: false });
+  if (error) loadError = 'Could not load blog posts from the database.';
+  else rows = (data ?? []) as Row[];
+}
+
+const publishedCount = rows.filter((r) => r.status === 'published').length;
+const fmt = (iso: string) => new Date(iso).toLocaleString('en-GB', { day: '2-digit', month: 'short', timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit' });
+---
+<AdminLayout title="Blog" admin={admin}>
+  <div class="admin-head">
+    <h1>Blog</h1>
+    <p class="admin-sub">{publishedCount} published · {rows.length} total</p>
+  </div>
+
+  <p class="cta-row"><a href="/admin/blog/new" class="btn btn-navy">New post</a></p>
+
+  {loadError && <p class="form-error-summary" role="alert">{loadError}</p>}
+  {!loadError && rows.length === 0 && <p class="admin-empty">No posts yet.</p>}
+
+  {rows.length > 0 && (
+    <div class="admin-table-scroll" tabindex="0">
+      <table class="admin-table">
+        <thead>
+          <tr><th>Title</th><th>Status</th><th>Written by</th><th>Updated</th><th class="admin-col-view"></th></tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr>
+              <td>{r.title}</td>
+              <td><span class:list={['admin-urgency', r.status === 'published' ? 'is-live' : 'is-draft']}>{r.status}</span></td>
+              <td>{r.generated_by}</td>
+              <td class="admin-nowrap">{fmt(r.updated_at)}</td>
+              <td class="admin-col-view"><a href={`/admin/blog/${r.id}`}>Edit &rarr;</a></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )}
+</AdminLayout>

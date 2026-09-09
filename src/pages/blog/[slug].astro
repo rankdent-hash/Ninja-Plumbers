@@ -1,0 +1,170 @@
+---
+// One page per blog post. Server-rendered (see /blog/index.astro for why),
+// reading the single published row matching the requested slug at request
+// time — instant once published, unlike the build-time cross-link sections
+// on service/appliance/damp pages.
+export const prerender = false;
+
+import Base from '../../layouts/Base.astro';
+import site from '../../data/site.json';
+import { getSupabaseAdmin } from '../../lib/supabaseAdmin';
+import { services } from '../../data/services';
+import { appliances } from '../../data/appliances';
+import { dampPages } from '../../data/damp';
+import ServiceIcon from '../../components/ServiceIcon.astro';
+import PhoneIcon from '../../components/PhoneIcon.astro';
+import WhatsAppIcon from '../../components/WhatsAppIcon.astro';
+import HeroWithForm from '../../components/HeroWithForm.astro';
+import Schema from '../../components/Schema.astro';
+
+const slug = Astro.params.slug;
+const supabase = getSupabaseAdmin();
+
+type PostRow = {
+  slug: string; title: string; h1: string; meta_title: string; meta_description: string;
+  excerpt: string; body: string; hero_image_url: string | null; published_at: string;
+  related_services: string[]; related_appliances: string[]; related_damp: string[];
+};
+
+let post: PostRow | null = null;
+let others: { slug: string; title: string }[] = [];
+
+if (supabase && slug) {
+  const [{ data: postData }, { data: othersData }] = await Promise.all([
+    supabase
+      .from('blog_posts')
+      .select('slug, title, h1, meta_title, meta_description, excerpt, body, hero_image_url, published_at, related_services, related_appliances, related_damp')
+      .eq('status', 'published')
+      .eq('slug', slug)
+      .maybeSingle(),
+    supabase
+      .from('blog_posts')
+      .select('slug, title')
+      .eq('status', 'published')
+      .neq('slug', slug)
+      .order('published_at', { ascending: false })
+      .limit(3),
+  ]);
+  post = postData ?? null;
+  others = othersData ?? [];
+}
+
+if (!post) {
+  return new Response('Not found', { status: 404 });
+}
+
+const relatedServices = post.related_services.map((s) => services.find((x) => x.slug === s)).filter((x): x is (typeof services)[number] => !!x);
+const relatedAppliances = post.related_appliances.map((s) => appliances.find((x) => x.slug === s)).filter((x): x is (typeof appliances)[number] => !!x);
+const relatedDamp = post.related_damp.map((s) => dampPages.find((x) => x.slug === s)).filter((x): x is (typeof dampPages)[number] => !!x);
+
+const crumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Blog', href: '/blog' },
+  { label: post.title },
+];
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.title,
+  description: post.meta_description,
+  datePublished: post.published_at,
+  image: post.hero_image_url || undefined,
+  author: { '@type': 'Organization', name: site.name },
+  publisher: { '@type': 'Organization', name: site.name },
+};
+
+const fmt = (iso: string) => new Date(iso).toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' });
+---
+<Base title={post.meta_title} description={post.meta_description}>
+  <Schema slot="head" breadcrumb={crumbs} extra={articleSchema} />
+
+  <HeroWithForm
+    eyebrow="Advice"
+    h1={post.h1}
+    intro={post.excerpt}
+    breadcrumb={crumbs}
+    bullets={[
+      'Gas Safe registered and fully insured',
+      'DBS-checked engineers',
+      'Emergency callout available 24/7',
+      'Price agreed before work starts',
+    ]}
+    formHeading="Need this looked at properly?"
+  />
+
+  <section class="section">
+    <div class="container measure-wide">
+      <p class="blog-post-date">{fmt(post.published_at)}</p>
+      {post.hero_image_url && <img class="blog-hero-image" src={post.hero_image_url} alt="" width="1200" height="675" />}
+      <div class="blog-body">
+        <Fragment set:html={post.body} />
+      </div>
+    </div>
+  </section>
+
+  {(relatedServices.length > 0 || relatedAppliances.length > 0 || relatedDamp.length > 0) && (
+    <section class="section section-alt">
+      <div class="container">
+        <span class="eyebrow">Related</span>
+        <h2>Pages that cover this properly</h2>
+        <ul class="grid grid-3 card-grid">
+          {relatedServices.map((s) => (
+            <li class="card">
+              <div class="icon"><ServiceIcon name={s.icon} /></div>
+              <h3><a href={`/services/${s.slug}`} class="card-title-link" set:html={s.title} /></h3>
+              <p>{s.summary}</p>
+              <a href={`/services/${s.slug}`} class="card-link">More on {s.title.replace('&amp;', 'and')} <span aria-hidden="true">&rarr;</span></a>
+            </li>
+          ))}
+          {relatedAppliances.map((a) => (
+            <li class="card">
+              <div class="icon"><ServiceIcon name={a.icon} /></div>
+              <h3><a href={`/appliances/${a.slug}`} class="card-title-link">{a.title}</a></h3>
+              <p>{a.summary}</p>
+              <a href={`/appliances/${a.slug}`} class="card-link">More on {a.title.toLowerCase()} <span aria-hidden="true">&rarr;</span></a>
+            </li>
+          ))}
+          {relatedDamp.map((d) => (
+            <li class="card">
+              <div class="icon"><ServiceIcon name={d.icon} /></div>
+              <h3><a href={`/damp/${d.slug}`} class="card-title-link">{d.title}</a></h3>
+              <p>{d.summary}</p>
+              <a href={`/damp/${d.slug}`} class="card-link">More on {d.title.toLowerCase()} <span aria-hidden="true">&rarr;</span></a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  {others.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <span class="eyebrow">Keep reading</span>
+        <h2>More advice</h2>
+        <ul class="combo-links">
+          {others.map((p) => (
+            <li><a href={`/blog/${p.slug}`}>{p.title}</a></li>
+          ))}
+        </ul>
+        <p><a href="/blog" class="btn btn-navy">All advice</a></p>
+      </div>
+    </section>
+  )}
+
+  <section class="section section-navy">
+    <div class="container center measure-wide">
+      <h2>Prefer to have it looked at?</h2>
+      <p>Tell us what&rsquo;s happening and where you are, and we&rsquo;ll tell you what it costs before anyone starts work.</p>
+      <div class="cta-row center-row">
+        <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">
+          <PhoneIcon /> Call {site.booking.display}
+        </a>
+        <a href={site.whatsapp.url} class="btn btn-outline btn-lg">
+          <WhatsAppIcon /> WhatsApp us
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

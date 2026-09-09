@@ -1,0 +1,209 @@
+---
+import Base from '../../layouts/Base.astro';
+import site from '../../data/site.json';
+import { areas } from '../../data/areas';
+import { services } from '../../data/services';
+import { combos } from '../../data/combos';
+import { postcodes } from '../../data/postcodes';
+import { appliances } from '../../data/appliances';
+import HeroWithForm from '../../components/HeroWithForm.astro';
+import Schema from '../../components/Schema.astro';
+import ServiceIcon from '../../components/ServiceIcon.astro';
+import Tick from '../../components/Tick.astro';
+import PhoneIcon from '../../components/PhoneIcon.astro';
+import WhatsAppIcon from '../../components/WhatsAppIcon.astro';
+
+export function getStaticPaths() {
+  return areas.map((area) => ({ params: { slug: area.slug }, props: { area } }));
+}
+
+const { area } = Astro.props;
+const HEADING: Record<string, string> = {
+  'emergency-plumbing': 'Emergency plumber',
+  'boiler-repair': 'Boiler repair',
+  'boiler-service': 'Boiler service',
+  'boiler-installation': 'Boiler installation',
+  'boiler-replacement': 'Boiler replacement',
+  'bathroom-installation': 'Bathroom installation',
+  'drain-unblocking': 'Drain unblocking',
+};
+const localPages = combos
+  .filter((c) => c.area === area.slug)
+  .sort((a, b) => b.volume - a.volume);
+
+// Link a listed postcode through to its district page where one exists, so
+// the district pages are reachable from every area that sits in them.
+const districtSlugs = new Set(postcodes.map((p) => p.slug));
+const hasDistrict = (pc: string) => districtSlugs.has(pc.toLowerCase());
+
+const crumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Areas We Cover', href: '/areas-we-cover' },
+  { label: area.name },
+];
+
+const nearby = area.nearby
+  .map((s) => areas.find((a) => a.slug === s))
+  .filter(Boolean);
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Plumber',
+  name: `${site.name} — ${area.name}`,
+  url: `${site.url}/areas/${area.slug}`,
+  telephone: site.booking.tel,
+  email: site.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.address.line1,
+    addressLocality: site.address.city,
+    postalCode: site.address.postcode,
+    addressCountry: site.address.country,
+  },
+  areaServed: {
+    '@type': 'Place',
+    name: `${area.name}, London`,
+    containedInPlace: { '@type': 'AdministrativeArea', name: area.borough },
+  },
+};
+---
+<Base title={area.metaTitle} description={area.metaDescription}>
+  <Schema slot="head" breadcrumb={crumbs} extra={schema} />
+
+  <HeroWithForm
+    eyebrow={`${area.borough} · ${area.postcodes.join(', ')}`}
+    h1={`Plumber in ${area.name}`}
+    intro={area.intro}
+    breadcrumb={crumbs}
+    bullets={[
+      'Gas Safe registered and fully insured',
+      'DBS-checked engineers',
+      'Emergency callout available 24/7',
+      'Price agreed before work starts',
+    ]}
+    formHeading={`Get a plumber in ${area.name}`}
+  />
+
+  <section class="section">
+    <div class="container service-row">
+      <div class="service-copy">
+        <span class="eyebrow">Local knowledge</span>
+        <h2>Plumbing in {area.name}</h2>
+        <p class="lead">{area.character}</p>
+        {area.note && <p class="area-note">{area.note}</p>}
+      </div>
+      <aside class="service-aside">
+        <h3>What comes up locally</h3>
+        <ul class="ticks">
+          {area.common.map((c) => <li><Tick /> {c}</li>)}
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <span class="eyebrow">What we do here</span>
+      <h2>Services across {area.name}</h2>
+      <ul class="grid grid-3 card-grid">
+        {services.map((s) => (
+          <li class="card">
+            <div class="icon"><ServiceIcon name={s.icon} /></div>
+            <h3><a href={`/services/${s.slug}`} class="card-title-link" set:html={s.title} /></h3>
+            <p>{s.summary}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  {/* Appliance work has no page of its own per area — tested against the
+      same 140/month bar as the combos above and it does not clear it (see
+      rejectedApplianceAreas in rejected.ts). This is how it stays reachable
+      from {area.name} without 14 more near-duplicate URLs. */}
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Also fitted here</span>
+      <h2>Appliances &amp; fixtures in {area.name}</h2>
+      <p class="measure">Softeners, pumps, taps and the rest — each with its own page on what is involved.</p>
+      <ul class="combo-links">
+        {appliances.map((a) => (
+          <li><a href={`/appliances/${a.slug}`}>{a.title}</a></li>
+        ))}
+        <li><a href="/appliances">All appliance work</a></li>
+      </ul>
+    </div>
+  </section>
+
+  {localPages.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <span class="eyebrow">Local pages</span>
+        <h2>What we get called out for in {area.name}</h2>
+        <ul class="combo-links">
+          {localPages.map((c) => (
+            <li><a href={`/services/${c.service}/${c.area}`}>{HEADING[c.service]} in {area.name}</a></li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="coverage-split">
+        <div class="check-area">
+          <h2>Postcodes we cover here</h2>
+          <ul class="postcode-chips">
+            {area.postcodes.map((p) => (
+              <li>{hasDistrict(p) ? <a href={`/postcodes/${p.toLowerCase()}`}>{p}</a> : p}</li>
+            ))}
+          </ul>
+          <p class="small">
+            {area.name} sits in the London Borough of {area.borough}. Postcode boundaries and
+            borough boundaries do not line up neatly, so if yours is not listed, call and ask
+            &mdash; we&rsquo;ll tell you either way.
+          </p>
+          <div class="cta-row">
+            <a href={`tel:${site.booking.tel}`} class="btn btn-orange">
+              <PhoneIcon /> Call {site.booking.display}
+            </a>
+          </div>
+        </div>
+
+        {nearby.length > 0 && (
+          <div class="check-area">
+            <h2>Nearby areas</h2>
+            <p class="small">We cover the whole of Greater London. These are the areas next to {area.name}:</p>
+            <ul class="nearby-list">
+              {nearby.map((n) => (
+                <li>
+                  <a href={`/areas/${n.slug}`}>
+                    <strong>Plumber in {n.name}</strong>
+                    <span>{n.borough}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <p class="small"><a href="/areas-we-cover">See the full coverage list</a></p>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-navy">
+    <div class="container center measure-wide">
+      <h2>Need a plumber in {area.name}?</h2>
+      <p>Tell us what&rsquo;s happening and your postcode, and we&rsquo;ll tell you what it costs before anyone starts work.</p>
+      <div class="cta-row center-row">
+        <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">
+          <PhoneIcon /> Call {site.booking.display}
+        </a>
+        <a href={site.whatsapp.url} class="btn btn-outline btn-lg">
+          <WhatsAppIcon /> WhatsApp us
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

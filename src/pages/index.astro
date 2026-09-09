@@ -1,0 +1,158 @@
+---
+import Base from '../layouts/Base.astro';
+import HeroWithForm from '../components/HeroWithForm.astro';
+import TrustBar from '../components/TrustBar.astro';
+import ReviewsCarousel from '../components/ReviewsCarousel.astro';
+import ServiceIcon from '../components/ServiceIcon.astro';
+import Tick from '../components/Tick.astro';
+import PhoneIcon from '../components/PhoneIcon.astro';
+import WhatsAppIcon from '../components/WhatsAppIcon.astro';
+import site from '../data/site.json';
+import { services } from '../data/services';
+import { areas } from '../data/areas';
+
+// Six services on the homepage, from the data file rather than hand-copied,
+// so the cards cannot drift from the pages they link to. The earlier version
+// linked four of them to /services#anchor URLs that no longer exist.
+const featured = ['emergency-plumbing', 'boiler-repair', 'drain-unblocking',
+                  'leak-detection', 'bathroom-installation', 'general-plumbing']
+  .map((slug) => services.find((s) => s.slug === slug)!);
+
+const topAreas = [...areas].sort((a, b) => b.volume - a.volume).slice(0, 10);
+---
+<Base
+  title="Tamesis Plumbers | Plumbing, Heating &amp; Drainage Across London"
+  description={`Emergency plumbing, boiler repair, drain unblocking and bathroom installation across London. Gas Safe registered and fully insured. Call ${site.booking.display}.`}
+  schema
+>
+
+<HeroWithForm
+  eyebrow="Emergency callout available 24/7"
+  h1="London plumbers who turn up, price the job first, and fix it properly"
+  intro="Emergency plumbing, boiler repairs, blocked drains and full bathroom fits — for homes and commercial premises across London. On call when it can't wait until morning."
+  formHeading="Send us the job"
+/>
+
+<TrustBar />
+<ReviewsCarousel />
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">What we do</span>
+      <h2>Plumbing, heating and drainage &mdash; the whole job</h2>
+      <p class="lead measure">One team for the dripping tap and the full bathroom strip-out. Everything here is work our own engineers carry out.</p>
+    </div>
+
+    <ul class="grid grid-3 card-grid">
+      {featured.map((s) => (
+        <li class="card card-service">
+          <div class="icon"><ServiceIcon name={s.icon} /></div>
+          <h3><a href={`/services/${s.slug}`} class="card-title-link" set:html={s.title} /></h3>
+          <p>{s.summary}</p>
+          <a href={`/services/${s.slug}`} class="card-link" aria-hidden="true" tabindex="-1">Find out more <span>&rarr;</span></a>
+        </li>
+      ))}
+    </ul>
+    <p class="section-foot"><a href="/services" class="btn btn-ghost">All ten services</a></p>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Who we work for</span>
+      <h2>Homes and commercial premises</h2>
+    </div>
+    <div class="split">
+      <div class="split-panel">
+        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><path d="M9 21v-7h6v7"/></svg></div>
+        <h3>For your home</h3>
+        <p>Homeowners, tenants and landlords across London. Kitchens and bathrooms, toilets and basins, radiators and boilers, and the burst pipe at eleven at night.</p>
+        <ul class="ticks">
+          <li><Tick /> Emergency repairs, day or night</li>
+          <li><Tick /> Boiler servicing and replacement</li>
+          <li><Tick /> Bathroom and en-suite installation</li>
+          <li><Tick /> Landlord repairs and turnarounds</li>
+        </ul>
+      </div>
+      <div class="split-panel">
+        <div class="icon"><ServiceIcon name="commercial" /></div>
+        <h3>For your business</h3>
+        <p>Offices, restaurants, shops and blocks of flats. We work around opening hours and tenants, and report back to whoever needs to sign it off.</p>
+        <ul class="ticks">
+          <li><Tick /> Washroom and kitchen plumbing</li>
+          <li><Tick /> Commercial drain clearance</li>
+          <li><Tick /> Reactive repairs for managing agents</li>
+          <li><Tick /> Out-of-hours work to avoid disruption</li>
+        </ul>
+        <p class="split-foot"><a href="/services/commercial-plumbing" class="inline-link">Commercial plumbing <span aria-hidden="true">&rarr;</span></a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">How it works</span>
+      <h2>No mystery, no surprise invoice</h2>
+    </div>
+    <ol class="steps">
+      <li class="step">
+        <h3>Tell us what&rsquo;s wrong</h3>
+        <p>Call the booking line or send a photo on WhatsApp. The more we know before we set off, the more likely we arrive with the right parts.</p>
+      </li>
+      <li class="step">
+        <h3>We agree the price first</h3>
+        <p>You get a price for the work before an engineer starts. If we find something underneath it that changes the job, we stop and tell you.</p>
+      </li>
+      <li class="step">
+        <h3>We fix it and clear up</h3>
+        <p>The job gets finished, tested and tidied. Gas work is carried out by Gas Safe registered engineers and certificated where it needs to be.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container areas-band">
+    <div>
+      <span class="eyebrow">Areas we cover</span>
+      <h2>Plumbers across London</h2>
+      <p class="measure">Our engineers work across the London boroughs, from the City and Westminster out to Croydon, Harrow and Enfield. The office is in Fulham.</p>
+      <ul class="area-chips" aria-label="Popular areas">
+        {topAreas.map((a) => (
+          <li><a href={`/areas/${a.slug}`}>{a.name}</a></li>
+        ))}
+        <li><a href="/areas-we-cover" class="chip-more">All {areas.length} areas <span aria-hidden="true">&rarr;</span></a></li>
+      </ul>
+    </div>
+
+    <aside class="about-card">
+      <span class="eyebrow">About</span>
+      <h3>The plumbing arm of a London property firm</h3>
+      <p>Tamesis Plumbers is part of {site.legalName}, a London property maintenance and refurbishment company established in {site.established}. It is why we care about the things trades usually skip: turning up when we said, pricing before the work, leaving the place clean.</p>
+      <dl class="about-facts">
+        <div><dt>Office</dt><dd>{site.address.line1}, {site.address.postcode}</dd></div>
+        <div><dt>Job booking</dt><dd><a href={`tel:${site.booking.tel}`}>{site.booking.display}</a></dd></div>
+        <div><dt>Management</dt><dd><a href={`tel:${site.management.tel}`}>{site.management.display}</a></dd></div>
+        <div><dt>Hours</dt><dd>{site.hours.office} &middot; 24/7 emergency</dd></div>
+      </dl>
+      <p class="about-links"><a href="/about" class="inline-link">More about Tamesis</a> <a href="/reviews" class="inline-link">Reviews</a></p>
+    </aside>
+  </div>
+</section>
+
+<section class="section section-navy">
+  <div class="container center measure-wide">
+    <h2>Need a plumber today?</h2>
+    <p>The booking line is answered by someone who can actually get an engineer to you. For anything urgent, call &mdash; don&rsquo;t email.</p>
+    <div class="cta-row center-row">
+      <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg"><PhoneIcon /> Call {site.booking.display}</a>
+      <a href={site.whatsapp.url} class="btn btn-outline btn-lg"><WhatsAppIcon /> WhatsApp us</a>
+    </div>
+  </div>
+</section>
+
+</Base>

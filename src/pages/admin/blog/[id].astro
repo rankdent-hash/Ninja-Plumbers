@@ -1,0 +1,122 @@
+---
+// Review, edit, generate/regenerate the hero image, and publish or
+// unpublish a single post. Publishing flips status to 'published', which is
+// live immediately — /blog and /blog/[slug] read this table at request time.
+import AdminLayout from '../../../layouts/AdminLayout.astro';
+import { getSupabaseAdmin } from '../../../lib/supabaseAdmin';
+
+export const prerender = false;
+
+const admin = Astro.locals.admin!;
+const supabase = getSupabaseAdmin();
+const id = Astro.params.id;
+
+type Post = {
+  id: string; slug: string; title: string; h1: string; meta_title: string; meta_description: string;
+  excerpt: string; body: string; status: 'draft' | 'published'; hero_image_url: string | null;
+  related_services: string[]; related_appliances: string[]; related_damp: string[];
+  generated_by: string; generation_prompt: string | null;
+};
+
+let post: Post | null = null;
+let loadError = '';
+if (!supabase) {
+  loadError = 'The admin panel is not connected to Supabase yet.';
+} else if (id) {
+  const { data, error } = await supabase.from('blog_posts').select('*').eq('id', id).maybeSingle();
+  if (error) loadError = 'Could not load that post.';
+  else post = data as Post | null;
+}
+---
+<AdminLayout title={post ? post.title : 'Post'} admin={admin}>
+  {loadError && <p class="form-error-summary" role="alert">{loadError}</p>}
+  {!loadError && !post && <p class="admin-empty">That post doesn&rsquo;t exist.</p>}
+
+  {post && (
+    <Fragment>
+      <div class="admin-head">
+        <h1>{post.title}</h1>
+        <p class="admin-sub">
+          <span class:list={['admin-urgency', post.status === 'published' ? 'is-live' : 'is-draft']}>{post.status}</span>
+          {' · written by ' + post.generated_by}
+          {post.status === 'published' && <> · <a href={`/blog/${post.slug}`} target="_blank" rel="noopener">View live &#8599;</a></>}
+        </p>
+      </div>
+
+      <form id="blog-edit-form" class="admin-add-form" data-post-id={post.id}>
+        <p class="form-error-summary" id="edit-error" role="alert" hidden></p>
+        <p class="admin-note" id="edit-saved" hidden>Saved.</p>
+
+        <div class="field field-wide">
+          <label for="title">Title</label>
+          <input id="title" name="title" type="text" required maxlength="200" value={post.title}>
+        </div>
+        <div class="field field-wide">
+          <label for="h1">Page heading (H1)</label>
+          <input id="h1" name="h1" type="text" required maxlength="200" value={post.h1}>
+        </div>
+        <div class="field">
+          <label for="slug">URL slug</label>
+          <input id="slug" name="slug" type="text" required maxlength="120" value={post.slug} pattern="[a-z0-9-]+">
+        </div>
+        <div class="field">
+          <label for="meta_title">Meta title</label>
+          <input id="meta_title" name="meta_title" type="text" required maxlength="200" value={post.meta_title}>
+        </div>
+        <div class="field field-wide">
+          <label for="meta_description">Meta description</label>
+          <textarea id="meta_description" name="meta_description" rows="2" required maxlength="300">{post.meta_description}</textarea>
+        </div>
+        <div class="field field-wide">
+          <label for="excerpt">Excerpt</label>
+          <textarea id="excerpt" name="excerpt" rows="2" required maxlength="400">{post.excerpt}</textarea>
+        </div>
+        <div class="field field-wide">
+          <label for="body">Body (HTML)</label>
+          <textarea id="body" name="body" rows="16" required class="admin-code-textarea">{post.body}</textarea>
+        </div>
+        <div class="field">
+          <label for="related_services">Related services (comma-separated slugs)</label>
+          <input id="related_services" name="related_services" type="text" value={post.related_services.join(', ')}>
+        </div>
+        <div class="field">
+          <label for="related_appliances">Related appliances (comma-separated slugs)</label>
+          <input id="related_appliances" name="related_appliances" type="text" value={post.related_appliances.join(', ')}>
+        </div>
+        <div class="field">
+          <label for="related_damp">Related damp pages (comma-separated slugs)</label>
+          <input id="related_damp" name="related_damp" type="text" value={post.related_damp.join(', ')}>
+        </div>
+        <button type="submit" class="btn btn-navy">Save changes</button>
+      </form>
+
+      <div class="admin-add admin-settings-card" style="margin-top:22px;">
+        <div class="admin-add-form">
+          <div class="field field-wide">
+            <h3>Hero image</h3>
+            <p class="admin-dim" id="hero-preview-empty" hidden={!!post.hero_image_url}>No image yet.</p>
+            <img src={post.hero_image_url ?? ''} alt="" class="admin-hero-preview" id="hero-preview-img" hidden={!post.hero_image_url} />
+          </div>
+          <div class="field field-wide">
+            <label for="image-prompt">Image prompt (optional — leave blank to use the title and excerpt)</label>
+            <input id="image-prompt" name="image-prompt" type="text" maxlength="600">
+          </div>
+          <button type="button" class="btn btn-ghost" id="generate-image-btn" data-post-id={post.id}>
+            {post.hero_image_url ? 'Regenerate image' : 'Generate image'}
+          </button>
+          <p class="form-error-summary" id="image-error" role="alert" hidden></p>
+        </div>
+      </div>
+
+      <div class="cta-row" style="margin-top:22px;">
+        {post.status === 'draft'
+          ? <button type="button" class="btn btn-orange" id="publish-btn" data-post-id={post.id}>Publish</button>
+          : <button type="button" class="btn btn-ghost" id="unpublish-btn" data-post-id={post.id}>Unpublish</button>}
+        <button type="button" class="btn btn-ghost" id="delete-btn" data-post-id={post.id}>Delete</button>
+        <a href="/admin/blog" class="btn btn-ghost">Back to all posts</a>
+      </div>
+    </Fragment>
+  )}
+</AdminLayout>
+
+<script src="/admin-blog.js" is:inline></script>

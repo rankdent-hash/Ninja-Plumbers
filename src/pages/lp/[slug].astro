@@ -1,0 +1,103 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import site from '../../data/site.json';
+import { landings } from '../../data/landing';
+import { services } from '../../data/services';
+import EnquiryForm from '../../components/EnquiryForm.astro';
+import Tick from '../../components/Tick.astro';
+import PhoneIcon from '../../components/PhoneIcon.astro';
+import WhatsAppIcon from '../../components/WhatsAppIcon.astro';
+
+export function getStaticPaths() {
+  return landings.map((lp) => ({ params: { slug: lp.slug }, props: { lp } }));
+}
+
+const { lp } = Astro.props;
+const service = services.find((s) => s.slug === lp.relatedService);
+---
+<Landing title={lp.metaTitle} description={lp.metaDescription}>
+
+  <section class="lp-hero">
+    <div class="container lp-hero-grid">
+      <div>
+        <h1>{lp.h1}</h1>
+        <p class="lp-sub">{lp.sub}</p>
+
+        <div class="lp-cta">
+          <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">
+            <PhoneIcon /> Call {site.booking.display}
+          </a>
+          <a href={site.whatsapp.url} class="btn btn-outline btn-lg">
+            <WhatsAppIcon /> WhatsApp us
+          </a>
+        </div>
+
+        <ul class="lp-bullets">
+          {lp.bullets.map((b) => <li><Tick /> {b}</li>)}
+        </ul>
+
+        <p class="lp-hours">{site.hours.office} &middot; {site.hours.emergency}</p>
+      </div>
+
+      <div class="lp-form-card">
+        <h2>{lp.urgent ? 'Or send us the job' : 'Get a price'}</h2>
+        <EnquiryForm service={service?.title ?? ''} />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="center">What to expect</h2>
+      <div class="lp-reassure">
+        {lp.reassure.map((r) => (
+          <div class="lp-reassure-item">
+            <h3>{r.title}</h3>
+            <p>{r.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {service && (
+    <section class="section section-alt">
+      <div class="container measure-wide">
+        <h2>What the job covers</h2>
+        <ul class="ticks lp-covers">
+          {service.does.map((d) => <li><Tick /> {d}</li>)}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <section class="section">
+    <div class="container measure-wide">
+      <h2>Questions</h2>
+      <div class="faqs">
+        {lp.faqs.map((f) => (
+          <details class="faq">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-navy">
+    <div class="container center measure-wide">
+      <h2>Speak to someone now</h2>
+      <p>The booking line is answered by a person who can get an engineer to you.</p>
+      <div class="cta-row center-row">
+        <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">
+          <PhoneIcon /> Call {site.booking.display}
+        </a>
+        <a href={site.whatsapp.url} class="btn btn-outline btn-lg">
+          <WhatsAppIcon /> WhatsApp us
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Landing>

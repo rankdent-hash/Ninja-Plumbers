@@ -1,0 +1,223 @@
+---
+// Postcode district pages.
+//
+// These are coverage pages, not a second set of area pages. A district spans
+// several named neighbourhoods and often more than one borough, and that list
+// is what makes each one different — so the page is built around it and
+// deliberately carries no invented local prose. Where an area page exists for
+// the district's main neighbourhood, the page hands off to it prominently,
+// because that is the page written to rank.
+import Base from '../../layouts/Base.astro';
+import site from '../../data/site.json';
+import { postcodes, INDEX_POSTCODE_PAGES } from '../../data/postcodes';
+import { areas } from '../../data/areas';
+import { services } from '../../data/services';
+import { appliances } from '../../data/appliances';
+import HeroWithForm from '../../components/HeroWithForm.astro';
+import Schema from '../../components/Schema.astro';
+import PhoneIcon from '../../components/PhoneIcon.astro';
+import WhatsAppIcon from '../../components/WhatsAppIcon.astro';
+
+export function getStaticPaths() {
+  return postcodes.map((pc) => ({ params: { slug: pc.slug }, props: { pc } }));
+}
+
+const { pc } = Astro.props;
+
+const areaPage = pc.areaSlug ? areas.find((a) => a.slug === pc.areaSlug) : null;
+
+// Other districts in the same region, for a genuine internal-linking path.
+const siblings = postcodes
+  .filter((p) => p.region === pc.region && p.slug !== pc.slug)
+  .slice(0, 12);
+
+const boroughList =
+  pc.boroughs.length === 1
+    ? pc.boroughs[0]
+    : pc.boroughs.slice(0, -1).join(', ') + ' and ' + pc.boroughs[pc.boroughs.length - 1];
+
+const places = [pc.primary, ...pc.neighbourhoods];
+const placeList =
+  places.length === 1
+    ? places[0]
+    : places.slice(0, -1).join(', ') + ' and ' + places[places.length - 1];
+
+const crumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Areas We Cover', href: '/areas-we-cover' },
+  { label: `${pc.district} postcode`, href: '/postcodes' },
+  { label: pc.district },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Plumber',
+  name: `${site.name} — ${pc.district}`,
+  url: `${site.url}/postcodes/${pc.slug}`,
+  telephone: site.booking.tel,
+  email: site.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.address.line1,
+    addressLocality: site.address.city,
+    postalCode: site.address.postcode,
+    addressCountry: site.address.country,
+  },
+  areaServed: pc.boroughs.map((b) => ({ '@type': 'AdministrativeArea', name: b })),
+};
+
+const faqs = [
+  {
+    q: `Which areas does the ${pc.district} postcode cover?`,
+    a: `${pc.district} covers ${placeList}, across ${boroughList}. We work throughout the district.`,
+  },
+];
+
+// Metadata is length-budgeted rather than assembled and hoped for: Google
+// truncates titles around 65 characters and descriptions around 160, and
+// district names like "Crystal Palace and Upper Norwood" blow through both.
+const shortPrimary = pc.primary.split(' and ')[0];
+const longTitle = `Plumber in ${pc.district} | ${pc.primary} | Tamesis Plumbers`;
+const title = longTitle.length <= 65
+  ? longTitle
+  : `Plumber in ${pc.district} | ${shortPrimary} | Tamesis Plumbers`;
+
+// Fit as many neighbourhood names as the description budget allows.
+const fitPlaces = (budget: number) => {
+  const out: string[] = [];
+  let used = 0;
+  for (const name of places) {
+    const add = (out.length ? ', ' : '') + name;
+    if (used + add.length > budget) break;
+    out.push(name);
+    used += add.length;
+  }
+  return out.length ? out.join(', ') : places[0];
+};
+const description = `Plumber in ${pc.district}, covering ${fitPlaces(40)}. Emergency callout, boiler repair, blocked drains and bathrooms. Call ${site.booking.display}.`;
+---
+<Base title={title} description={description} noindex={!INDEX_POSTCODE_PAGES}>
+  <Schema slot="head" breadcrumb={crumbs} faqs={faqs} extra={schema} />
+
+  <HeroWithForm
+    eyebrow={`${pc.region} · ${pc.district}`}
+    h1={`Plumber in ${pc.district}`}
+    intro={`Plumbing, heating and drainage across the ${pc.district} postcode district, covering ${places.slice(0, 3).join(', ')}${places.length > 3 ? ' and the surrounding streets' : ''}.`}
+    breadcrumb={crumbs}
+    bullets={[
+      'Gas Safe registered and fully insured',
+      'Emergency callout available 24/7',
+      'Price agreed before work starts',
+    ]}
+    formHeading={`Get a price for ${pc.district}`}
+  />
+
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Coverage</span>
+      <h2>What {pc.district} covers</h2>
+      <p class="measure">
+        {pc.district} sits in {pc.region.toLowerCase()} and falls across {boroughList}.
+        {places.length > 1
+          ? ` It takes in ${places.length} named areas, and we cover all of them.`
+          : ' We cover the whole district.'}
+      </p>
+      <ul class="pc-places">
+        {places.map((n) => <li>{n}</li>)}
+      </ul>
+
+      {areaPage && (
+        <div class="pc-handoff">
+          <h3>Looking for {areaPage.name} specifically?</h3>
+          <p>
+            {areaPage.name} is the main area in {pc.district}, and it has a page of its own
+            covering the local building stock and the plumbing problems that come with it.
+          </p>
+          {/* btn-navy, not btn-outline: this block sits on a light section and
+              btn-outline is white-on-transparent, built for the navy sections. */}
+          <p><a href={`/areas/${areaPage.slug}`} class="btn btn-navy">Plumber in {areaPage.name}</a></p>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <span class="eyebrow">What we do</span>
+      <h2>Services across {pc.district}</h2>
+      <p class="measure">
+        The same work we do everywhere in London. Each service has its own page with what it
+        covers and what to check before calling.
+      </p>
+      <ul class="combo-links">
+        {services.map((s) => (
+          <li><a href={`/services/${s.slug}`} set:html={s.title} /></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  {/* Same reasoning as the area pages: appliance-per-postcode was tested
+      against the 140/month bar and did not clear it, so this is the link
+      down rather than a 14th URL for every district. */}
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Also fitted here</span>
+      <h2>Appliances &amp; fixtures across {pc.district}</h2>
+      <ul class="combo-links">
+        {appliances.map((a) => (
+          <li><a href={`/appliances/${a.slug}`}>{a.title}</a></li>
+        ))}
+        <li><a href="/appliances">All appliance work</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Questions</span>
+      <h2>Working in {pc.district}</h2>
+      <dl class="faq">
+        {faqs.map((f) => (
+          <div class="faq-item">
+            <dt>{f.q}</dt>
+            <dd>{f.a}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  {siblings.length > 0 && (
+    <section class="section section-alt">
+      <div class="container">
+        <span class="eyebrow">Nearby</span>
+        <h2>Other {pc.region.toLowerCase()} districts</h2>
+        <ul class="combo-links">
+          {siblings.map((s) => (
+            <li><a href={`/postcodes/${s.slug}`}>Plumber in {s.district}</a></li>
+          ))}
+          <li><a href="/postcodes">All postcode districts</a></li>
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <section class="section section-navy">
+    <div class="container center measure-wide">
+      <h2>Need a plumber in {pc.district}?</h2>
+      <p>
+        Tell us your postcode and what is happening, and we will tell you what it costs
+        before anyone starts work.
+      </p>
+      <div class="cta-row center-row">
+        <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">
+          <PhoneIcon /> Call {site.booking.display}
+        </a>
+        <a href={site.whatsapp.url} class="btn btn-outline btn-lg">
+          <WhatsAppIcon /> WhatsApp us
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

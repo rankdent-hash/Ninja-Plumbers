@@ -1,0 +1,121 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import { getSupabaseAdmin, LEAD_STATUSES, type LeadStatus } from '../../lib/supabaseAdmin';
+
+export const prerender = false;
+
+const admin = Astro.locals.admin!;
+const supabase = getSupabaseAdmin();
+
+const PAGE_SIZE = 25;
+const params = Astro.url.searchParams;
+const statusFilter = params.get('status');
+const validFilter = statusFilter && (LEAD_STATUSES as readonly string[]).includes(statusFilter) ? (statusFilter as LeadStatus) : null;
+const page = Math.max(1, parseInt(params.get('page') || '1', 10) || 1);
+const from = (page - 1) * PAGE_SIZE;
+const to = from + PAGE_SIZE - 1;
+
+type Row = {
+  id: string; created_at: string; name: string; phone: string; email: string | null;
+  postcode: string; borough: string | null; service: string | null; urgency: string | null;
+  status: LeadStatus; in_service_area: boolean | null;
+};
+
+let rows: Row[] = [];
+let total = 0;
+let counts: Record<string, number> = {};
+let loadError = '';
+
+if (!supabase) {
+  loadError = 'The admin panel is not connected to Supabase yet.';
+} else {
+  const listQuery = supabase
+    .from('enquiries')
+    .select('id, created_at, name, phone, email, postcode, borough, service, urgency, status, in_service_area', { count: 'exact' })
+    .order('created_at', { ascending: false })
+    .range(from, to);
+  if (validFilter) listQuery.eq('status', validFilter);
+
+  const [{ data, count, error }, { data: allStatuses }] = await Promise.all([
+    listQuery,
+    supabase.from('enquiries').select('status'),
+  ]);
+
+  if (error) {
+    loadError = 'Could not load leads from the database.';
+  } else {
+    rows = (data ?? []) as Row[];
+    total = count ?? 0;
+    for (const s of LEAD_STATUSES) counts[s] = 0;
+    for (const r of allStatuses ?? []) counts[r.status] = (counts[r.status] ?? 0) + 1;
+  }
+}
+
+const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+const fmt = (iso: string) =>
+  new Date(iso).toLocaleString('en-GB', { day: '2-digit', month: 'short', timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit' });
+const tabHref = (s: LeadStatus | null) => (s ? `/admin?status=${s}` : '/admin');
+const allCount = Object.values(counts).reduce((a, b) => a + b, 0);
+---
+<AdminLayout title="Leads" admin={admin}>
+  <div class="admin-head">
+    <h1>Leads</h1>
+    <p class="admin-sub">{total} {validFilter ? LEAD_STATUSES.find((s) => s === validFilter) : 'total'}{total === 1 ? ' enquiry' : ' enquiries'}</p>
+  </div>
+
+  <nav class="admin-tabs" aria-label="Filter by status">
+    <a href={tabHref(null)} class:list={{ 'is-active': !validFilter }}>All <span>{allCount}</span></a>
+    {LEAD_STATUSES.map((s) => (
+      <a href={tabHref(s)} class:list={{ 'is-active': validFilter === s }}>{s} <span>{counts[s] ?? 0}</span></a>
+    ))}
+  </nav>
+
+  {loadError && <p class="form-error-summary" role="alert">{loadError}</p>}
+
+  {!loadError && rows.length === 0 && (
+    <p class="admin-empty">No enquiries {validFilter ? `with status "${validFilter}"` : ''} yet.</p>
+  )}
+
+  {rows.length > 0 && (
+    <div class="admin-table-scroll" tabindex="0">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Received</th><th>Name</th><th>Phone</th><th>Area</th><th>Service</th><th>Urgency</th><th>Status</th><th class="admin-col-view"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr class:list={{ 'is-out-of-area': r.in_service_area === false }}>
+              <td class="admin-nowrap">{fmt(r.created_at)}</td>
+              <td>{r.name}</td>
+              <td class="admin-nowrap"><a href={`tel:${r.phone}`}>{r.phone}</a></td>
+              <td>{r.borough || r.postcode}</td>
+              <td>{r.service || <span class="admin-dim">—</span>}</td>
+              <td><span class:list={['admin-urgency', `is-${(r.urgency || '').toLowerCase().replace(/\s+/g, '-')}`]}>{r.urgency || '—'}</span></td>
+              <td>
+                <form class="admin-status-form" data-lead-id={r.id}>
+                  <select name="status" class:list={['admin-status-select', `is-${r.status}`]}>
+                    {LEAD_STATUSES.map((s) => <option value={s} selected={s === r.status}>{s}</option>)}
+                  </select>
+                  <span class="admin-status-saved" hidden>Saved</span>
+                </form>
+              </td>
+              <td class="admin-col-view"><a href={`/admin/leads/${r.id}`}>View →</a></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )}
+
+  {totalPages > 1 && (
+    <nav class="admin-pager" aria-label="Pagination">
+      {page > 1 && <a href={`/admin?${validFilter ? `status=${validFilter}&` : ''}page=${page - 1}`}>&larr; Newer</a>}
+      <span>Page {page} of {totalPages}</span>
+      {page < totalPages && <a href={`/admin?${validFilter ? `status=${validFilter}&` : ''}page=${page + 1}`}>Older &rarr;</a>}
+    </nav>
+  )}
+</AdminLayout>
+
+<script src="/admin.js" is:inline></script>

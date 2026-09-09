@@ -1,0 +1,98 @@
+---
+import site from '../data/site.json';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MobileBar from '../components/MobileBar.astro';
+import SiteSearch from '../components/SiteSearch.astro';
+import BookPopup from '../components/BookPopup.astro';
+import PhoneQrPopup from '../components/PhoneQrPopup.astro';
+// Self-hosted so the page makes no third-party request at all: faster first
+// paint, and nothing about a visitor is disclosed to Google to render text.
+import '@fontsource-variable/inter';
+import '@fontsource/poppins/600.css';
+import '@fontsource/poppins/700.css';
+import '../styles/global.css';
+
+const {
+  title,
+  description,
+  schema = false,
+  noindex = false,
+  image = '/images/og-default.png',
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href.replace(/\/$/, '') || site.url;
+const ogImage = new URL(image, Astro.site).href;
+
+const localBusiness = {
+  '@context': 'https://schema.org',
+  '@type': 'Plumber',
+  name: site.name,
+  legalName: site.legalName,
+  url: site.url,
+  telephone: site.booking.tel,
+  email: site.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.address.line1,
+    addressLocality: site.address.city,
+    postalCode: site.address.postcode,
+    addressCountry: site.address.country,
+  },
+  areaServed: 'London, UK',
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: site.hours.days,
+      opens: site.hours.opens,
+      closes: site.hours.closes,
+    },
+  ],
+};
+---
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{title}</title>
+<meta name="description" content={description}>
+<meta name="google-site-verification" content="cR-PivC0_1-zovfFw_6teSvNQpn_Lu8ezDM7NmlRrzk" />
+<link rel="canonical" href={canonical}>
+{noindex && <meta name="robots" content="noindex, nofollow">}
+<meta property="og:title" content={title}>
+<meta property="og:description" content={description}>
+<meta property="og:type" content="website">
+<meta property="og:url" content={canonical}>
+<meta property="og:image" content={ogImage}>
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content={ogImage}>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+{schema && <script type="application/ld+json" set:html={JSON.stringify(localBusiness)} />}
+<slot name="head" />
+</head>
+<body>
+
+<Header />
+
+<main id="main">
+  <slot />
+</main>
+
+<Footer />
+<MobileBar />
+<SiteSearch />
+<BookPopup />
+<PhoneQrPopup />
+
+<script src="/script.js" is:inline></script>
+<script src="/book.js" is:inline></script>
+<script src="/phone-qr.js" is:inline></script>
+</body>
+</html>

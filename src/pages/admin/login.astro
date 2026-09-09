@@ -1,0 +1,90 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import { verifySession, SESSION_COOKIE } from '../../lib/adminAuth';
+
+export const prerender = false;
+
+// Already logged in: skip straight past the form. Middleware does not run on
+// this path (it is the one page that must stay reachable), so the check
+// happens here instead.
+const secret = import.meta.env.ADMIN_SESSION_SECRET;
+if (secret && verifySession(Astro.cookies.get(SESSION_COOKIE)?.value, secret)) {
+  return Astro.redirect('/admin');
+}
+
+const next = Astro.url.searchParams.get('next') || '/admin';
+---
+<AdminLayout title="Log in">
+  <div class="admin-login">
+    <form class="admin-login-card" id="admin-login-form" novalidate>
+      <h1>Tamesis Admin</h1>
+      <p class="admin-login-sub">Leads and enquiries from the website.</p>
+
+      <p class="form-error-summary" id="admin-login-error" role="alert" hidden></p>
+
+      <div class="field">
+        <label for="f-email">Email</label>
+        <div class="input-wrap">
+          <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></svg>
+          <input id="f-email" name="email" type="email" autocomplete="username" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="f-password">Password</label>
+        <div class="input-wrap">
+          <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <input id="f-password" name="password" type="password" autocomplete="current-password" required>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-orange btn-block btn-lg" id="admin-login-submit">Log in</button>
+    </form>
+  </div>
+</AdminLayout>
+
+<script is:inline define:vars={{ next }}>
+  (function () {
+    var form = document.getElementById('admin-login-form');
+    var errorBox = document.getElementById('admin-login-error');
+    var submit = document.getElementById('admin-login-submit');
+    var ERRORS = { invalid: 'Incorrect email or password.', not_configured: 'The admin panel is not connected yet.' };
+
+    // A plain HTML form POST hits Astro's own CSRF guard on some browsers,
+    // which do not send an Origin header on a top-level form navigation —
+    // indistinguishable, to that check, from a cross-site attempt. A JSON
+    // fetch is never subject to it, so the login happens like this instead.
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      errorBox.hidden = true;
+      submit.disabled = true;
+      var original = submit.textContent;
+      submit.textContent = 'Logging in…';
+
+      fetch('/api/admin/login', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          email: document.getElementById('f-email').value,
+          password: document.getElementById('f-password').value,
+        }),
+      })
+        .then(function (res) {
+          return res.json().catch(function () { return {}; }).then(function (body) { return { ok: res.ok, body: body }; });
+        })
+        .then(function (r) {
+          if (r.ok && r.body.ok) { location.href = next; return; }
+          errorBox.textContent = ERRORS[r.body.error] || 'Something went wrong. Please try again.';
+          errorBox.hidden = false;
+          submit.disabled = false;
+          submit.textContent = original;
+        })
+        .catch(function () {
+          errorBox.textContent = 'Could not reach the server — you may be offline.';
+          errorBox.hidden = false;
+          submit.disabled = false;
+          submit.textContent = original;
+        });
+    });
+  })();
+</script>

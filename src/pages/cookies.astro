@@ -1,0 +1,57 @@
+---
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+
+const updated = '4 September 2026';
+---
+<Base
+  title="Cookie Policy | Tamesis Plumbers"
+  description="This website sets no cookies and uses no analytics or advertising trackers. Here is exactly what it does and does not do."
+>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="/">Home</a> / Cookie Policy</div>
+    <span class="eyebrow">Legal</span>
+    <h1>Cookie Policy</h1>
+    <p>Short version: this site doesn&rsquo;t set any cookies, so there&rsquo;s nothing for you to accept or reject.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container legal">
+    <p class="legal-meta">Last updated {updated}</p>
+
+    <div class="legal-callout">
+      <h2>We don&rsquo;t use cookies</h2>
+      <p>This website sets no cookies. It uses no analytics, no advertising or remarketing tags, no social media pixels, and no session tracking. Nothing is written to your browser&rsquo;s local storage.</p>
+      <p>That is why you have not been shown a cookie banner. Under the Privacy and Electronic Communications Regulations, consent is only needed for storing or accessing information on your device, and we do neither.</p>
+    </div>
+
+    <h2>What the site does do</h2>
+    <p>One thing happens when you load a page here, and it does not involve storing anything on your device.</p>
+
+    <h3>Server logs</h3>
+    <p>Our hosting provider records standard technical information for every request — IP address, page requested, time, and browser type. This is how the site is kept running and protected from abuse. It is not tied to a cookie and is not used to build a profile of you.</p>
+
+    <h3>No third-party requests at all</h3>
+    <p>Everything this site needs &mdash; its typefaces, styles and scripts &mdash; is served from this domain. Your browser contacts no other company to display these pages, so nothing about your visit is disclosed to anyone else.</p>
+    <p>That was not always true. The site previously loaded its typefaces from Google Fonts, which meant your IP address reached Google&rsquo;s servers on every page view. We now host those font files ourselves.</p>
+
+    <h2>If that changes</h2>
+    <p>We may add website analytics in future to understand which pages are useful. If we do, anything that requires your consent will ask for it first, and this page will be updated to say what is set, what it does and how long it lasts.</p>
+
+    <h2>Controlling cookies yourself</h2>
+    <p>There is nothing here to control, but every browser lets you block or delete cookies across all sites through its settings. The Information Commissioner&rsquo;s Office publishes plain-English guidance on cookies at <a href="https://ico.org.uk/for-the-public/online/cookies/" rel="noopener">ico.org.uk</a>.</p>
+
+    <h2>More on how we handle information</h2>
+    <p>How we deal with personal information you give us — your name, phone number, address and job details — is covered in our <a href="/privacy">Privacy Policy</a>.</p>
+
+    <div class="legal-contact">
+      <h3>Questions</h3>
+      <p>Email <a href={`mailto:${site.email}`}>{site.email}</a> or call <a href={`tel:${site.management.tel}`}>{site.management.display}</a>.</p>
+    </div>
+  </div>
+</section>
+
+</Base>

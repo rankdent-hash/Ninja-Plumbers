@@ -1,0 +1,188 @@
+---
+// Boiler brand pages.
+//
+// One page per brand rather than the workbook's four-per-brand (repair,
+// service, installation, replacement). Ninety-six brand-and-intent URLs would
+// be near-identical to each other and the measured demand does not support
+// them: outside Vaillant, every brand-plus-London term tested returned 20
+// monthly searches or fewer. The workbook's own rules say not to multiply
+// dimensions without demand behind them.
+//
+// So each brand gets one page covering all four intents for that brand, and
+// the four service pages carry the intent-level content.
+import Base from '../../layouts/Base.astro';
+import site from '../../data/site.json';
+import { brands } from '../../data/brands';
+import HeroWithForm from '../../components/HeroWithForm.astro';
+import Schema from '../../components/Schema.astro';
+import PhoneIcon from '../../components/PhoneIcon.astro';
+import WhatsAppIcon from '../../components/WhatsAppIcon.astro';
+import Tick from '../../components/Tick.astro';
+
+export function getStaticPaths() {
+  return brands.map((brand) => ({ params: { slug: brand.slug }, props: { brand } }));
+}
+
+const { brand } = Astro.props;
+
+const others = brands.filter((b) => b.slug !== brand.slug && b.tier === brand.tier).slice(0, 6);
+
+const crumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Boilers', href: '/boilers' },
+  { label: brand.name },
+];
+
+// Services we offer on this brand. Installation is dropped for legacy and
+// transitioning brands so no page implies a new unit can be bought.
+const offered = [
+  { slug: 'boiler-repair', label: `${brand.name} boiler repair`, note: 'Breakdowns diagnosed before anything is quoted.' },
+  { slug: 'boiler-service', label: `${brand.name} boiler service`, note: 'The annual check that keeps a warranty valid.' },
+  ...(brand.installs
+    ? [{ slug: 'boiler-installation', label: `${brand.name} boiler installation`, note: 'Sized for the property, with the price agreed first.' }]
+    : []),
+  { slug: 'boiler-replacement', label: `Replacing a ${brand.name} boiler`, note: 'Both figures — repair and replace — before you decide.' },
+];
+
+const faqs = [
+  brand.faq,
+  {
+    q: `Do you repair and service ${brand.name} boilers?`,
+    a: `Yes. Gas work is carried out by Gas Safe registered engineers, which is the legal requirement for working on any gas boiler regardless of make.`,
+  },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: `${brand.name} boiler repair and servicing`,
+  provider: { '@type': 'Plumber', name: site.legalName, telephone: site.booking.tel, url: site.url },
+  areaServed: { '@type': 'City', name: 'London' },
+};
+
+// The long form runs past 65 characters for brands with long names — "Alpha
+// Heating Innovation" alone is 24 — so it drops "& Service" only when it has
+// to, rather than shortening every brand for the sake of one.
+const longBrandTitle = `${brand.name} Boiler Repair & Service London | Tamesis Plumbers`;
+const brandTitle = longBrandTitle.length <= 65
+  ? longBrandTitle
+  : `${brand.name} Boiler Repair London | Tamesis Plumbers`;
+
+const statusLine =
+  brand.status === 'legacy'
+    ? `${brand.name} is a legacy brand. We service and repair the installed base and advise on replacement — we do not offer new ${brand.name} installations.`
+    : brand.status === 'transitioning'
+      ? `${brand.name} products now sit within a larger group rather than as a fully separate current range. We repair, service and replace them.`
+      : null;
+---
+<Base
+  title={brandTitle}
+  description={`${brand.name} boiler repair, servicing${brand.installs ? ', installation' : ''} and replacement across London by Gas Safe registered engineers. Call ${site.booking.display}.`}
+>
+  <Schema slot="head" breadcrumb={crumbs} faqs={faqs} extra={schema} />
+
+  <HeroWithForm
+    eyebrow={`${brand.tier} · ${brand.fuel}`}
+    h1={`${brand.name} boiler repair and servicing in London`}
+    intro={brand.summary}
+    breadcrumb={crumbs}
+    bullets={[
+      'Gas Safe registered and fully insured',
+      'Diagnosed before it is quoted',
+      'Price agreed before work starts',
+    ]}
+    formHeading={`Get a price for your ${brand.name}`}
+  />
+
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">About the brand</span>
+      <h2>{brand.name} boilers</h2>
+      <p class="measure">{brand.character}</p>
+
+      {statusLine && (
+        <div class="brand-status">
+          <p>{statusLine}</p>
+        </div>
+      )}
+
+      <h3>What we see on {brand.name} boilers</h3>
+      <ul class="tick-list">
+        {brand.common.map((c) => <li><Tick /> {c}</li>)}
+      </ul>
+      <p class="small">
+        These are the patterns we see across the installed base, not a diagnosis of your boiler.
+        Faults are identified on site before anything is quoted.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <span class="eyebrow">What we do</span>
+      <h2>{brand.name} boiler work</h2>
+      <ul class="grid grid-2 card-grid">
+        {offered.map((o) => (
+          <li class="card">
+            <h3><a href={`/services/${o.slug}`} class="card-title-link">{o.label}</a></h3>
+            <p>{o.note}</p>
+          </li>
+        ))}
+      </ul>
+      {!brand.installs && (
+        <p class="small">
+          New {brand.name} installation is not offered. Where a replacement is needed we will
+          talk you through current alternatives that suit the property.
+        </p>
+      )}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Questions</span>
+      <h2>{brand.name} questions</h2>
+      <dl class="faq">
+        {faqs.map((f) => (
+          <div class="faq-item">
+            <dt>{f.q}</dt>
+            <dd>{f.a}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  {others.length > 0 && (
+    <section class="section section-alt">
+      <div class="container">
+        <span class="eyebrow">Other brands</span>
+        <h2>We work on every make</h2>
+        <ul class="combo-links">
+          {others.map((b) => (
+            <li><a href={`/boilers/${b.slug}`}>{b.name} boilers</a></li>
+          ))}
+          <li><a href="/boilers">All boiler brands</a></li>
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <section class="section section-navy">
+    <div class="container center measure-wide">
+      <h2>Something wrong with your {brand.name}?</h2>
+      <p>
+        Send us the make, model and any fault code on the display and we can often tell you
+        what is likely before an engineer sets off.
+      </p>
+      <div class="cta-row center-row">
+        <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">
+          <PhoneIcon /> Call {site.booking.display}
+        </a>
+        <a href={site.whatsapp.url} class="btn btn-outline btn-lg">
+          <WhatsAppIcon /> WhatsApp us
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

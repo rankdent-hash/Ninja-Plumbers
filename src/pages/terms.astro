@@ -1,0 +1,78 @@
+---
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+
+const updated = '4 September 2026';
+---
+<Base
+  title="Website Terms of Use | Tamesis Plumbers"
+  description={`The terms on which you may use the ${site.name} website, operated by ${site.legalName}.`}
+>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="/">Home</a> / Terms of Use</div>
+    <span class="eyebrow">Legal</span>
+    <h1>Website Terms of Use</h1>
+    <p>The terms on which you may use this website. These are not the terms for plumbing work &mdash; those are agreed with you before a job starts.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container legal">
+    <p class="legal-meta">Last updated {updated}</p>
+
+    <div class="legal-callout">
+      <h2>What these terms cover</h2>
+      <p>These terms govern your use of this website only. They do not set out the terms on which we carry out plumbing work.</p>
+      <p>The terms for a job &mdash; the price, what is included, payment, cancellation and any guarantee &mdash; are agreed with you directly before work begins. If you are booking work, ask us for those terms and we will confirm them in writing.</p>
+    </div>
+
+    <h2>Who operates this site</h2>
+    <p>This site is operated by {site.legalName}, a company registered in England and Wales under company number {site.companyNumber}, whose registered office is {site.address.line1}, {site.address.city}, {site.address.postcode}. {site.name} is a trading name of {site.legalName}.</p>
+    <p>You can reach us at <a href={`mailto:${site.email}`}>{site.email}</a> or on <a href={`tel:${site.booking.tel}`}>{site.booking.display}</a>.</p>
+
+    <h2>Using the site</h2>
+    <p>You may use this site for your own personal or business purposes to find out about our services and get in touch with us. You agree not to:</p>
+    <ul>
+      <li>use it in any way that breaks the law or could damage or disrupt it</li>
+      <li>attempt to gain unauthorised access to it or any server it sits on</li>
+      <li>copy or republish substantial parts of it for commercial purposes without our permission</li>
+      <li>scrape or harvest content from it by automated means</li>
+    </ul>
+    <p>We may withdraw or suspend access to the site at any time, and we do not guarantee it will always be available or uninterrupted.</p>
+
+    <h2>Information on this site</h2>
+    <p>We take care to keep the content here accurate and current, but it is provided for general information. Nothing on this site is advice you should rely on for a specific situation, and nothing on it is a quotation or a binding offer.</p>
+    <p>Descriptions of our services, coverage areas and working hours are indicative. Prices are always confirmed with you directly before work starts, never taken from this website.</p>
+    <p>In particular, if you have a plumbing emergency, please call rather than relying on anything written here.</p>
+
+    <h2>Our content</h2>
+    <p>The text, design, layout, graphics and code on this site belong to us or are used with permission, and are protected by copyright and other intellectual property rights. You may print or download extracts for your own use, but you may not reuse them commercially without asking us first.</p>
+
+    <h2>Links to other sites</h2>
+    <p>Where we link to another website, we do so for information only. We have no control over those sites and are not responsible for their content or their handling of your information.</p>
+
+    <h2>Our responsibility to you</h2>
+    <p>Nothing in these terms limits or excludes our liability for death or personal injury caused by our negligence, for fraud, or for anything else that cannot lawfully be limited or excluded.</p>
+    <p>Subject to that, we are not liable for loss or damage arising from your use of this website, or from reliance on any content on it. If you are a business user, we are not liable for loss of profit, business, goodwill or any indirect loss.</p>
+    <p>If you are a consumer, nothing in these terms affects your statutory rights. For work we carry out, the Consumer Rights Act 2015 requires us to provide services with reasonable care and skill, and that right cannot be signed away.</p>
+
+    <h2>Your information</h2>
+    <p>How we handle personal information is set out in our <a href="/privacy">Privacy Policy</a>. What this site does and does not store on your device is set out in our <a href="/cookies">Cookie Policy</a>.</p>
+
+    <h2>Changes</h2>
+    <p>We may update these terms from time to time. The version published here is the one that applies, and the date at the top shows when it last changed.</p>
+
+    <h2>Governing law</h2>
+    <p>These terms are governed by the law of England and Wales, and the courts of England and Wales have jurisdiction over any dispute arising from them. If you live in Scotland or Northern Ireland, you may also bring proceedings in your own country.</p>
+
+    <div class="legal-contact">
+      <h3>Contact</h3>
+      <p>{site.legalName}<br>{site.address.line1}<br>{site.address.city}, {site.address.postcode}</p>
+      <p><a href={`mailto:${site.email}`}>{site.email}</a><br><a href={`tel:${site.booking.tel}`}>{site.booking.display}</a></p>
+    </div>
+  </div>
+</section>
+
+</Base>

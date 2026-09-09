@@ -1,0 +1,379 @@
+---
+// Internal site explorer. Noindexed, unlinked from the site, and generated
+// from the same data files that build the pages — so it cannot drift out of
+// date the way a hand-maintained inventory would.
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+import { services } from '../data/services';
+import { areas } from '../data/areas';
+import { combos } from '../data/combos';
+import { landings } from '../data/landing';
+import { rejected, rejectedTerms, blocked } from '../data/rejected';
+import { postcodes, INDEX_POSTCODE_PAGES } from '../data/postcodes';
+import { brands } from '../data/brands';
+
+const HEADING: Record<string, string> = {
+  'emergency-plumbing': 'Emergency plumber',
+  'boiler-repair': 'Boiler repair',
+  'boiler-service': 'Boiler service',
+  'boiler-installation': 'Boiler installation',
+  'boiler-replacement': 'Boiler replacement',
+  'bathroom-installation': 'Bathroom installation',
+  'drain-unblocking': 'Drain unblocking',
+};
+
+const core = [
+  { url: '/', label: 'Homepage', target: 'plumber london', volume: 3600 },
+  { url: '/services', label: 'Services hub', target: '—', volume: null },
+  { url: '/areas-we-cover', label: 'Areas hub', target: '—', volume: null },
+  { url: '/about', label: 'About', target: '—', volume: null },
+  { url: '/reviews', label: 'Reviews', target: '—', volume: null },
+  { url: '/contact', label: 'Contact', target: '—', volume: null },
+  { url: '/site-map', label: 'Site map', target: '—', volume: null },
+];
+const legal = [
+  { url: '/privacy', label: 'Privacy Policy' },
+  { url: '/cookies', label: 'Cookie Policy' },
+  { url: '/terms', label: 'Website Terms of Use' },
+];
+const utility = [
+  { url: '/404', label: '404 page', note: 'noindex' },
+  { url: '/explorer', label: 'This page', note: 'noindex, unlinked' },
+];
+
+const boilerHub = 1;
+const postcodeIndex = 1;
+const indexable =
+  core.length + legal.length + services.length + areas.length + combos.length +
+  brands.length + boilerHub + postcodeIndex +
+  (INDEX_POSTCODE_PAGES ? postcodes.length : 0);
+const noindexed = landings.length + utility.length + (INDEX_POSTCODE_PAGES ? 0 : postcodes.length);
+const total = indexable + noindexed;
+
+// Pages carrying the enquiry form. Everything except the three legal pages,
+// this page, and the two hub index pages (/postcodes and /boilers), which are
+// navigation rather than conversion pages. Counted from the data so it tracks
+// the site; a check in the test suite compares this figure against the built
+// output, because a hand-maintained version of it drifted twice.
+const formPages =
+  5 +                   // home, areas-we-cover, about, reviews, contact
+  1 +                   // /services hub
+  services.length +
+  combos.length +
+  areas.length +
+  postcodes.length +    // not /postcodes itself
+  brands.length +       // not /boilers itself
+  landings.length;
+
+const comboVolume = combos.reduce((a, c) => a + c.volume, 0);
+const matrixPossible = services.length * areas.length;
+
+const byService = services.map((s) => ({
+  service: s,
+  built: combos.filter((c) => c.service === s.slug),
+  skipped: rejected.filter((r) => r.service === s.slug),
+}));
+
+const areaFor = (slug: string) => areas.find((a) => a.slug === slug)!;
+const serviceFor = (slug: string) => services.find((s) => s.slug === slug)!;
+
+const fmt = (n: number | null) => (n === null ? '—' : n.toLocaleString('en-GB'));
+---
+<Base
+  title="Site explorer | Tamesis Plumbers"
+  description="Internal page inventory for tamesisplumbers.co.uk."
+  noindex
+>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Internal · not indexed</span>
+      <h1>Site explorer</h1>
+      <p>Every page on {site.url.replace('https://', '')}, what it targets, and what was deliberately left unbuilt. Generated at build time from the same data that produces the pages, so it is always current.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <ul class="xp-stats">
+        <li><span class="xp-num">{total}</span><span class="xp-lab">pages total</span></li>
+        <li><span class="xp-num">{indexable}</span><span class="xp-lab">indexable</span></li>
+        <li><span class="xp-num">{noindexed}</span><span class="xp-lab">noindex</span></li>
+        <li><span class="xp-num">{fmt(comboVolume)}</span><span class="xp-lab">monthly searches targeted by local pages</span></li>
+      </ul>
+    </div>
+  </section>
+
+  {blocked.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <h2 class="xp-h2">Waiting on a decision</h2>
+        <p class="measure">Real demand, measured. Not built because it needs an answer from the business, not from SEO.</p>
+        <div class="xp-scroll" tabindex="0" role="region" aria-label="Terms waiting on a business decision">
+        <table class="xp-table">
+          <thead><tr><th>Term</th><th class="n">Volume</th><th>Blocked on</th></tr></thead>
+          <tbody>
+            {blocked.map((b) => (
+              <tr class="xp-blocked">
+                <td class="xp-kw">{b.term}</td>
+                <td class="n">{fmt(b.volume)}</td>
+                <td>{b.reason}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="xp-h2">Core pages</h2>
+      <div class="xp-scroll" tabindex="0" role="region" aria-label="Core pages">
+        <table class="xp-table">
+        <thead><tr><th>URL</th><th>Page</th><th>Target</th><th class="n">Volume</th></tr></thead>
+        <tbody>
+          {core.map((p) => (
+            <tr><td class="xp-url"><a href={p.url}>{p.url}</a></td><td>{p.label}</td><td class="xp-kw">{p.target}</td><td class="n">{fmt(p.volume)}</td></tr>
+          ))}
+          {legal.map((p) => (
+            <tr><td class="xp-url"><a href={p.url}>{p.url}</a></td><td>{p.label}</td><td class="xp-kw">—</td><td class="n">—</td></tr>
+          ))}
+          {utility.map((p) => (
+            <tr class="xp-dim"><td class="xp-url">{p.url}</td><td>{p.label}</td><td colspan="2"><span class="xp-tag xp-tag-noindex">{p.note}</span></td></tr>
+          ))}
+        </tbody>
+      </table>
+        </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="xp-h2">Service pages</h2>
+      <div class="xp-scroll" tabindex="0" role="region" aria-label="Service pages">
+        <table class="xp-table">
+        <thead><tr><th>URL</th><th>Targets</th><th class="n">Local pages</th></tr></thead>
+        <tbody>
+          {services.map((s) => {
+            const built = combos.filter((c) => c.service === s.slug).length;
+            return (
+              <tr>
+                <td class="xp-url"><a href={`/services/${s.slug}`}>/services/{s.slug}</a></td>
+                <td class="xp-kw">{s.target}</td>
+                <td class="n">{built > 0 ? built : <span class="xp-dim">none</span>}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+        </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="xp-h2">Area pages</h2>
+      <div class="xp-scroll" tabindex="0" role="region" aria-label="Area pages">
+        <table class="xp-table">
+        <thead><tr><th>URL</th><th>Borough</th><th>Postcodes</th><th class="n">Vol</th><th class="n">KD</th><th class="n">Local pages</th></tr></thead>
+        <tbody>
+          {areas.map((a) => {
+            const built = combos.filter((c) => c.area === a.slug).length;
+            return (
+              <tr>
+                <td class="xp-url"><a href={`/areas/${a.slug}`}>/areas/{a.slug}</a></td>
+                <td>{a.borough}</td>
+                <td class="xp-kw">{a.postcodes.join(' ')}</td>
+                <td class="n">{fmt(a.volume)}</td>
+                <td class="n">{a.kd}</td>
+                <td class="n">{built}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+        </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="xp-h2">Boiler brands</h2>
+      <p class="measure">
+        One page per brand, not the workbook's four-per-brand. Outside Vaillant, every
+        brand-plus-London term measured returns 20 monthly searches or fewer, so 96
+        brand-and-intent URLs would be near-identical pages with nothing behind them.
+      </p>
+      <div class="xp-scroll" tabindex="0" role="region" aria-label="Boiler brand pages">
+        <table class="xp-table">
+          <thead><tr><th>URL</th><th>Tier</th><th>Status</th><th>Installs</th></tr></thead>
+          <tbody>
+            {brands.map((b) => (
+              <tr class={b.status === 'active' ? undefined : 'xp-dim'}>
+                <td class="xp-url"><a href={`/boilers/${b.slug}`}>/boilers/{b.slug}</a></td>
+                <td>{b.tier}</td>
+                <td>{b.status}</td>
+                <td>{b.installs ? 'yes' : <span class="xp-tag xp-tag-skip">no</span>}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="small">
+        Grant UK, Firebird and Warmflow are not built. All three are oil specialists; oil work
+        needs OFTEC registration rather than Gas Safe and that has not been confirmed.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="xp-h2">Postcode districts</h2>
+      <p class="measure">
+        {postcodes.length} district pages, {INDEX_POSTCODE_PAGES ? 'indexed' : 'noindex'}.
+        Built at the client's direction after the measurements below were reported. The switch
+        is <code>INDEX_POSTCODE_PAGES</code> in <code>src/data/postcodes.ts</code>.
+      </p>
+      <ul class="xp-gaps">
+        <li>
+          <strong>Demand is low.</strong>
+          Every postcode term tested returned 30 monthly searches or fewer — boiler repair E1 0,
+          SW11 30, N1 30, SE1 10, plumber E1 20 — against 90&ndash;390 for the equivalent area name.
+        </li>
+        <li>
+          <strong>Duplication is high.</strong>
+          Each page is 40.9% its own writing on average against its closest sibling, lowest 33.0%.
+          The service &times; location pages run 56&ndash;61%. A district carries roughly 25 words of
+          genuinely unique data, so no further trimming closes that gap without inventing local detail.
+        </li>
+      </ul>
+      <div class="xp-scroll" tabindex="0" role="region" aria-label="Postcode district pages by region">
+        <table class="xp-table">
+          <thead><tr><th>Region</th><th class="n">Districts</th><th>Example</th></tr></thead>
+          <tbody>
+            {[...new Set(postcodes.map((p) => p.region))].map((region) => {
+              const items = postcodes.filter((p) => p.region === region);
+              return (
+                <tr>
+                  <td>{region}</td>
+                  <td class="n">{items.length}</td>
+                  <td class="xp-url"><a href={`/postcodes/${items[0].slug}`}>/postcodes/{items[0].slug}</a></td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="xp-h2">Service &times; location</h2>
+      <p class="measure">
+        {combos.length} built of {matrixPossible} possible. The bar is 140 monthly searches;
+        everything under it is covered by the service page and the area page between them.
+      </p>
+
+      {byService.filter((g) => g.built.length > 0).map((g) => (
+        <div class="xp-group">
+          <h3>{HEADING[g.service.slug] ?? g.service.title} <span class="xp-count">{g.built.length} built</span></h3>
+          <div class="xp-scroll" tabindex="0" role="region" aria-label={`${HEADING[g.service.slug] ?? g.service.title} local pages`}>
+        <table class="xp-table">
+            <thead><tr><th>URL</th><th class="n">Volume</th><th class="n">CPC</th><th class="n">KD</th></tr></thead>
+            <tbody>
+              {g.built.map((c) => (
+                <tr>
+                  <td class="xp-url"><a href={`/services/${c.service}/${c.area}`}>/services/{c.service}/{c.area}</a></td>
+                  <td class="n">{fmt(c.volume)}</td>
+                  <td class="n">{c.cpc}</td>
+                  <td class="n">{c.kd}</td>
+                </tr>
+              ))}
+              {g.skipped.map((r) => (
+                <tr class="xp-dim">
+                  <td class="xp-url">/services/{r.service}/{r.area} <span class="xp-tag xp-tag-skip">not built</span></td>
+                  <td class="n">{fmt(r.volume)}</td>
+                  <td class="n">—</td>
+                  <td class="n">—</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="xp-h2">Paid landing pages</h2>
+      <p class="measure">Separate from the organic site: no nav, one conversion goal, noindex and excluded from the sitemap so they never compete with the service pages.</p>
+      <div class="xp-scroll" tabindex="0" role="region" aria-label="Paid landing pages">
+        <table class="xp-table">
+        <thead><tr><th>URL</th><th>Campaign</th><th>Head term</th><th class="n">CPC</th><th>Status</th></tr></thead>
+        <tbody>
+          {landings.map((l) => (
+            <tr>
+              <td class="xp-url"><a href={`/lp/${l.slug}`}>/lp/{l.slug}</a></td>
+              <td>{l.campaign}</td>
+              <td class="xp-kw">{l.headTerm}</td>
+              <td class="n">{l.cpc}</td>
+              <td><span class="xp-tag xp-tag-noindex">noindex</span> <span class="xp-tag xp-tag-live">built</span></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+        </div>
+      <p class="small">Not yet running: conversion tracking and call tracking are not configured, so ad spend cannot currently be attributed to booked jobs.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="xp-h2">Considered and rejected</h2>
+      <p class="measure">Terms that look like obvious pages but have no demand behind them. Recorded so the same ground is not covered twice.</p>
+      <div class="xp-scroll" tabindex="0" role="region" aria-label="Considered and rejected terms">
+        <table class="xp-table">
+        <thead><tr><th>Term</th><th class="n">Volume</th><th>Why not</th></tr></thead>
+        <tbody>
+          {rejectedTerms.map((t) => (
+            <tr class="xp-dim"><td class="xp-kw">{t.term}</td><td class="n">{fmt(t.volume)}</td><td>{t.note}</td></tr>
+          ))}
+        </tbody>
+      </table>
+        </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="xp-h2">Known gaps</h2>
+      <ul class="xp-gaps">
+        <li>
+          <strong>Enquiry form is not connected.</strong>
+          It appears on {formPages} pages and returns 503 on all of them
+          until <code>SUPABASE_URL</code>, <code>SUPABASE_SERVICE_ROLE_KEY</code> and <code>IP_SALT</code> are set in Vercel.
+        </li>
+        <li>
+          <strong>No enquiry notifications.</strong>
+          Submissions will save to the database but nobody is alerted until <code>RESEND_API_KEY</code> is set.
+        </li>
+        <li>
+          <strong>No analytics or Search Console.</strong>
+          Nothing is being measured, so none of the targeting above can yet be checked against reality.
+        </li>
+        <li>
+          <strong>Reviews page has no reviews.</strong>
+          It states honestly that a verified record is being built. It stays that way until there are real ones.
+        </li>
+        <li>
+          <strong>Area page copy is unverified.</strong>
+          The housing-stock descriptions come from general knowledge of London building types, not from job history.
+        </li>
+      </ul>
+    </div>
+  </section>
+</Base>

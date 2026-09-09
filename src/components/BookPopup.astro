@@ -1,0 +1,20 @@
+---
+// Full-screen popup for the enquiry form on phones. It starts empty:
+// public/book.js moves the page's own form in here when Book now is tapped
+// and back where it came from on close, so there is one form, one set of
+// ids and one script wherever the form is shown.
+---
+<div class="book-overlay" id="book-popup" hidden>
+  <div class="book-panel" role="dialog" aria-modal="true" aria-labelledby="book-title" aria-describedby="book-sub">
+    <div class="book-head">
+      <div class="book-head-text">
+        <h2 id="book-title">Book a plumber</h2>
+        <p id="book-sub">Three details get an engineer moving. The rest is optional.</p>
+      </div>
+      <button type="button" class="book-close" data-book-close aria-label="Close">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="book-body" id="book-body"></div>
+  </div>
+</div>

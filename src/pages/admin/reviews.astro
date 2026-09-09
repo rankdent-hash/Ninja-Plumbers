@@ -1,0 +1,106 @@
+---
+// Reviews queue. A row lands here from a manual entry now, or a Firecrawl
+// scrape later — either way nothing reaches the public homepage carousel
+// until someone checks it against the real listing and approves it here.
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import { getSupabaseAdmin } from '../../lib/supabaseAdmin';
+
+export const prerender = false;
+
+const admin = Astro.locals.admin!;
+const supabase = getSupabaseAdmin();
+
+type Row = {
+  id: string; created_at: string; name: string; rating: number;
+  text: string; source: string; approved: boolean;
+};
+
+let rows: Row[] = [];
+let loadError = '';
+
+if (!supabase) {
+  loadError = 'The admin panel is not connected to Supabase yet.';
+} else {
+  const { data, error } = await supabase
+    .from('testimonials')
+    .select('id, created_at, name, rating, text, source, approved')
+    .order('created_at', { ascending: false });
+  if (error) loadError = 'Could not load reviews from the database.';
+  else rows = (data ?? []) as Row[];
+}
+
+const approvedCount = rows.filter((r) => r.approved).length;
+const fmt = (iso: string) =>
+  new Date(iso).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'Europe/London' });
+---
+<AdminLayout title="Reviews" admin={admin}>
+  <div class="admin-head">
+    <h1>Reviews</h1>
+    <p class="admin-sub">{approvedCount} live on the homepage · {rows.length} total</p>
+  </div>
+
+  <p class="admin-note">
+    Nothing here reaches the site until it's approved. Add one by hand below, or land rows
+    here from a Firecrawl scrape of the Google listing later — either way, check it against
+    the real review before switching it on.
+  </p>
+
+  <details class="admin-add">
+    <summary>Add a review</summary>
+    <form id="review-add-form" class="admin-add-form">
+      <p class="form-error-summary" id="review-add-error" role="alert" hidden></p>
+      <div class="field">
+        <label for="r-name">Reviewer name</label>
+        <input id="r-name" name="name" type="text" required maxlength="120">
+      </div>
+      <div class="field">
+        <label for="r-rating">Rating</label>
+        <select id="r-rating" name="rating" required>
+          <option value="5">5 stars</option>
+          <option value="4">4 stars</option>
+          <option value="3">3 stars</option>
+          <option value="2">2 stars</option>
+          <option value="1">1 star</option>
+        </select>
+      </div>
+      <div class="field field-wide">
+        <label for="r-text">Review text</label>
+        <textarea id="r-text" name="text" rows="3" required maxlength="2000"></textarea>
+      </div>
+      <button type="submit" class="btn btn-navy">Save review</button>
+    </form>
+  </details>
+
+  {loadError && <p class="form-error-summary" role="alert">{loadError}</p>}
+  {!loadError && rows.length === 0 && <p class="admin-empty">No reviews yet.</p>}
+
+  {rows.length > 0 && (
+    <div class="admin-table-scroll" tabindex="0">
+      <table class="admin-table admin-reviews-table">
+        <thead>
+          <tr><th>Added</th><th>Name</th><th>Rating</th><th>Review</th><th>Source</th><th>Live</th><th class="admin-col-view"></th></tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr data-review-row={r.id}>
+              <td class="admin-nowrap">{fmt(r.created_at)}</td>
+              <td>{r.name}</td>
+              <td class="admin-nowrap">{'★'.repeat(r.rating)}{'☆'.repeat(5 - r.rating)}</td>
+              <td class="admin-review-text">{r.text}</td>
+              <td>{r.source}</td>
+              <td>
+                <label class="admin-toggle">
+                  <input type="checkbox" data-review-approve={r.id} checked={r.approved}>
+                  <span>{r.approved ? 'Live' : 'Hidden'}</span>
+                </label>
+              </td>
+              <td class="admin-col-view"><button type="button" class="admin-link-btn" data-review-delete={r.id}>Delete</button></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )}
+</AdminLayout>
+
+<script src="/admin-reviews.js" is:inline></script>

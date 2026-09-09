@@ -1,0 +1,78 @@
+---
+// Shared hero: copy on the left, compact enquiry form on the right.
+// Used on every commercial page — home, services, areas, combinations,
+// postcodes, brands — so the form is always above the fold.
+import site from '../data/site.json';
+import EnquiryForm from './EnquiryForm.astro';
+import PhoneIcon from './PhoneIcon.astro';
+import WhatsAppIcon from './WhatsAppIcon.astro';
+import Tick from './Tick.astro';
+
+const {
+  eyebrow,
+  h1,
+  intro,
+  breadcrumb = [],       // [{ label, href? }]
+  bullets = [],
+  formHeading = 'Send us the job',
+  formSub = 'Three details get an engineer moving. The rest is optional.',
+  service = '',          // preselects "What do you need?" — see EnquiryForm
+  tel = site.booking,
+} = Astro.props;
+
+// `tel` is the whole booking object, not the number string. Passing
+// site.booking.tel here silently produced href="tel:undefined" and a CTA
+// reading "Call " with no number on 143 pages, which only showed in the built
+// output. Fail the build instead.
+if (!tel || typeof tel.tel !== 'string' || typeof tel.display !== 'string') {
+  throw new Error(
+    `HeroWithForm: \`tel\` must be an object with .tel and .display (got ${JSON.stringify(tel)}). ` +
+    'Pass site.booking or site.management, not site.booking.tel.'
+  );
+}
+---
+<section class="hero-split">
+  <div class="container hero-split-grid">
+    <div class="hero-split-copy">
+      {breadcrumb.length > 0 && (
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          {breadcrumb.map((c, i) => (
+            <>
+              {c.href ? <a href={c.href}>{c.label}</a> : <span>{c.label}</span>}
+              {i < breadcrumb.length - 1 && <span aria-hidden="true"> / </span>}
+            </>
+          ))}
+        </nav>
+      )}
+
+      {eyebrow && <span class="eyebrow eyebrow-hero">{eyebrow}</span>}
+      <h1>{h1}</h1>
+      <p class="hero-split-lead">{intro}</p>
+
+      <div class="hero-split-cta">
+        <a href={`tel:${tel.tel}`} class="btn btn-orange btn-lg">
+          <PhoneIcon /> Call {tel.display}
+        </a>
+        <a href={site.whatsapp.url} class="btn btn-outline btn-lg">
+          <WhatsAppIcon /> WhatsApp us
+        </a>
+      </div>
+
+      {bullets.length > 0 && (
+        <ul class="hero-split-bullets">
+          {bullets.map((b) => <li><Tick /> {b}</li>)}
+        </ul>
+      )}
+
+      <p class="hero-split-hours">{site.hours.office} &middot; {site.hours.emergency}</p>
+    </div>
+
+    <div class="hero-split-form">
+      <div class="hero-form-head">
+        <h2>{formHeading}</h2>
+        <p>{formSub}</p>
+      </div>
+      <EnquiryForm service={service} />
+    </div>
+  </div>
+</section>

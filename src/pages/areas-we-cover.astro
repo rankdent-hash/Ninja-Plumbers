@@ -1,0 +1,180 @@
+---
+import Base from '../layouts/Base.astro';
+import HeroWithForm from '../components/HeroWithForm.astro';
+import { areas } from '../data/areas';
+import { postcodes } from '../data/postcodes';
+import site from '../data/site.json';
+---
+<Base
+  title="Areas We Cover | Plumbers Across London | Tamesis Plumbers"
+  description={`Tamesis Plumbers covers all 32 London boroughs and the City of London. SG and NG postcodes are outside our service area. Check your postcode on ${site.booking.display}.`}
+>
+
+<HeroWithForm
+  eyebrow="Coverage area"
+  h1="Where we work"
+  intro="We cover Greater London — all 32 boroughs plus the City of London. Our office is in Fulham, and our engineers work out across the capital from there."
+  breadcrumb={[{ label: 'Home', href: '/' }, { label: 'Areas We Cover' }]}
+  bullets={[
+    'Gas Safe registered and fully insured',
+    'DBS-checked engineers',
+    'Emergency callout available 24/7',
+    'Price agreed before work starts',
+  ]}
+  formHeading="Check we cover you"
+/>
+
+<section class="section">
+  <div class="container">
+    <span class="eyebrow">Full list</span>
+    <h2>London boroughs we serve</h2>
+    <p class="measure">All 33 local authority areas of Greater London, listed in full so you can check rather than guess.</p>
+    <ul class="borough-list">
+      <li>Barking and Dagenham</li>
+      <li>Barnet</li>
+      <li>Bexley</li>
+      <li>Brent</li>
+      <li>Bromley</li>
+      <li>Camden</li>
+      <li>City of London</li>
+      <li>Croydon</li>
+      <li>Ealing</li>
+      <li>Enfield</li>
+      <li>Greenwich</li>
+      <li>Hackney</li>
+      <li>Hammersmith and Fulham</li>
+      <li>Haringey</li>
+      <li>Harrow</li>
+      <li>Havering</li>
+      <li>Hillingdon</li>
+      <li>Hounslow</li>
+      <li>Islington</li>
+      <li>Kensington and Chelsea</li>
+      <li>Kingston upon Thames</li>
+      <li>Lambeth</li>
+      <li>Lewisham</li>
+      <li>Merton</li>
+      <li>Newham</li>
+      <li>Redbridge</li>
+      <li>Richmond upon Thames</li>
+      <li>Southwark</li>
+      <li>Sutton</li>
+      <li>Tower Hamlets</li>
+      <li>Waltham Forest</li>
+      <li>Wandsworth</li>
+      <li>Westminster</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <span class="eyebrow">Local pages</span>
+    <h2>Plumbers by area</h2>
+    <p class="measure">Detailed pages for the areas we work in most, including the housing stock and what tends to go wrong there.</p>
+    <ul class="grid grid-3 card-grid area-cards">
+      {areas.map((a) => (
+        <li class="card">
+          <h3><a href={`/areas/${a.slug}`} class="card-title-link">Plumber in {a.name}</a></h3>
+          <p>{a.borough} &middot; {a.postcodes.join(', ')}</p>
+          <a href={`/areas/${a.slug}`} class="card-link">Read more <span aria-hidden="true">&rarr;</span></a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <span class="eyebrow">By region</span>
+    <h2>Grouped by part of London</h2>
+    <ul class="grid grid-3 card-grid">
+      <li class="card">
+        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <h3>Central London</h3>
+        <p>City of London, Westminster, Camden, Islington, Kensington and Chelsea.</p>
+      </li>
+      <li class="card">
+        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <h3>North London</h3>
+        <p>Barnet, Brent, Enfield, Haringey, Harrow.</p>
+      </li>
+      <li class="card">
+        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <h3>East London</h3>
+        <p>Barking and Dagenham, Hackney, Havering, Newham, Redbridge, Tower Hamlets, Waltham Forest.</p>
+      </li>
+      <li class="card">
+        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <h3>South East London</h3>
+        <p>Bexley, Bromley, Greenwich, Lewisham, Southwark.</p>
+      </li>
+      <li class="card">
+        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <h3>South West London</h3>
+        <p>Croydon, Kingston upon Thames, Lambeth, Merton, Richmond upon Thames, Sutton, Wandsworth.</p>
+      </li>
+      <li class="card">
+        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <h3>West London</h3>
+        <p>Ealing, Hammersmith and Fulham, Hillingdon, Hounslow.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <span class="eyebrow">By postcode</span>
+    <h2>Find your postcode district</h2>
+    <p class="measure">
+      If you know your postcode but not what your part of town is called, start there.
+      Each district page lists the areas it covers.
+    </p>
+    <ul class="combo-links">
+      {['E1', 'EC1', 'N1', 'NW1', 'SE1', 'SW1', 'W1', 'WC1'].map((d) => (
+        <li><a href={`/postcodes/${d.toLowerCase()}`}>Plumber in {d}</a></li>
+      ))}
+      <li><a href="/postcodes">All {postcodes.length} postcode districts</a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="coverage-split">
+      <div class="out-of-area">
+        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="5.6" y1="5.6" x2="18.4" y2="18.4"/></svg></div>
+        <h2>Outside our area</h2>
+        <p>We work in Greater London only. Two postcode areas come up often enough in enquiries to be worth stating plainly:</p>
+        <ul class="excluded">
+          <li><span class="pc">SG</span> Stevenage and the surrounding Hertfordshire area</li>
+          <li><span class="pc">NG</span> Nottingham and Nottinghamshire</li>
+        </ul>
+        <p class="small">Neither is within our service area, and we won&rsquo;t take a booking we can&rsquo;t attend. If you&rsquo;re in one of those areas you&rsquo;ll be better served by a local firm, and we&rsquo;d rather say so now than waste your time.</p>
+      </div>
+      <div class="check-area">
+        <h2>Not sure if we cover you?</h2>
+        <p>Borough boundaries and postcodes don&rsquo;t always line up neatly, particularly around the edges of Greater London. Call or message with your postcode and we&rsquo;ll tell you straight away, one way or the other.</p>
+        <div class="cta-row">
+          <a href={`tel:${site.booking.tel}`} class="btn btn-orange">Call {site.booking.display}</a>
+          <a href={site.whatsapp.url} class="btn btn-ghost"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.13h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.36c0-4.54 3.7-8.23 8.25-8.23a8.2 8.2 0 0 1 8.23 8.24c0 4.54-3.69 8.21-8.23 8.21zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.09-.16.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.03s.87 2.35.99 2.51c.12.16 1.71 2.61 4.14 3.66.58.25 1.03.4 1.38.51.58.19 1.11.16 1.53.1.47-.07 1.44-.59 1.64-1.16.2-.57.2-1.05.14-1.16-.06-.1-.22-.16-.47-.28z"/></svg> WhatsApp us</a>
+        </div>
+        <p class="small">Office {site.hours.office}. Emergency callout available 24/7.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-navy">
+  <div class="container center measure-wide">
+    <h2>In London and need a plumber?</h2>
+    <p>Call the booking line and tell us where you are and what&rsquo;s happening. For anything urgent, call rather than email.</p>
+    <div class="cta-row center-row">
+      <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">Call {site.booking.display}</a>
+      <a href={site.whatsapp.url} class="btn btn-outline btn-lg"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.13h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.36c0-4.54 3.7-8.23 8.25-8.23a8.2 8.2 0 0 1 8.23 8.24c0 4.54-3.69 8.21-8.23 8.21zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.09-.16.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.03s.87 2.35.99 2.51c.12.16 1.71 2.61 4.14 3.66.58.25 1.03.4 1.38.51.58.19 1.11.16 1.53.1.47-.07 1.44-.59 1.64-1.16.2-.57.2-1.05.14-1.16-.06-.1-.22-.16-.47-.28z"/></svg> WhatsApp us</a>
+    </div>
+  </div>
+</section>
+
+</Base>

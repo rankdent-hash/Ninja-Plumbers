@@ -1,0 +1,44 @@
+---
+// The four claims the business has confirmed, in a strip under the hero.
+// Replaces the separate emergency banner and the bullet list that used to sit
+// inside the hero copy on the homepage — one row, not three places.
+const items = [
+  {
+    label: 'Gas Safe registered',
+    note: 'Gas work done legally and signed off',
+    icon: '<path d="M12 2l7 4v6c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-4z"/><polyline points="9 12 11 14 15 10"/>',
+  },
+  {
+    label: 'Fully insured',
+    note: 'Public liability cover on every job',
+    icon: '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/>',
+  },
+  {
+    label: 'DBS-checked engineers',
+    note: 'Who you let into your home matters',
+    icon: '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+  },
+  {
+    label: 'Price agreed first',
+    note: 'You know the figure before we start',
+    icon: '<path d="M4 4h16v16H4z"/><path d="M8 12h8M8 8h8M8 16h5"/>',
+  },
+];
+---
+<section class="trust" aria-label="Why choose Tamesis">
+  <div class="container">
+    <ul class="trust-grid">
+      {items.map((it) => (
+        <li>
+          <span class="trust-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={it.icon} />
+          </span>
+          <span class="trust-text">
+            <strong>{it.label}</strong>
+            <small>{it.note}</small>
+          </span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

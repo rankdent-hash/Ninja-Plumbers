@@ -1,0 +1,154 @@
+---
+// Public site map: every indexable page, grouped the way the navigation is,
+// generated from the same data that builds the pages so it cannot go stale.
+// The internal /explorer page is deliberately not listed: it carries working
+// notes rather than pages for customers.
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+import { groupedServices } from '../data/nav';
+import { services } from '../data/services';
+import { appliances, applianceGroups } from '../data/appliances';
+import { blogPosts } from '../data/blog';
+import { areas } from '../data/areas';
+import { combos } from '../data/combos';
+import { brands } from '../data/brands';
+import { postcodes, INDEX_POSTCODE_PAGES } from '../data/postcodes';
+
+const byName = (a: { name: string }, b: { name: string }) => a.name.localeCompare(b.name);
+const sortedAreas = [...areas].sort(byName);
+const sortedBrands = [...brands].sort(byName);
+const areaOf = (slug: string) => {
+  const a = areas.find((x) => x.slug === slug);
+  if (!a) throw new Error(`site-map: combo names unknown area "${slug}"`);
+  return a;
+};
+
+// Service-in-area pages, under the service they belong to.
+const localPages = services
+  .map((s) => ({
+    service: s,
+    areas: combos.filter((c) => c.service === s.slug).map((c) => areaOf(c.area)).sort(byName),
+  }))
+  .filter((g) => g.areas.length > 0);
+
+// Postcode districts by region, in the order the data lists them.
+const regions = [...new Set(postcodes.map((p) => p.region))].map((region) => ({
+  region,
+  items: postcodes.filter((p) => p.region === region),
+}));
+
+const company = [
+  { href: '/', label: 'Home' },
+  { href: '/services', label: 'All services' },
+  { href: '/appliances', label: 'Appliances & fixtures' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/areas-we-cover', label: 'Areas we cover' },
+  { href: '/postcodes', label: 'Postcode districts' },
+  { href: '/boilers', label: 'Boiler brands' },
+  { href: '/about', label: 'About us' },
+  { href: '/reviews', label: 'Reviews' },
+  { href: '/contact', label: 'Contact' },
+];
+const legal = [
+  { href: '/privacy', label: 'Privacy Policy' },
+  { href: '/cookies', label: 'Cookie Policy' },
+  { href: '/terms', label: 'Terms of Use' },
+];
+const total =
+  company.length + legal.length + services.length + appliances.length + blogPosts.length +
+  sortedBrands.length + areas.length + combos.length + (INDEX_POSTCODE_PAGES ? postcodes.length : 0);
+---
+<Base
+  title="Site map | Tamesis Plumbers"
+  description="Every page on tamesisplumbers.co.uk: services, boiler brands, the London areas and postcode districts we cover, and company information."
+>
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="/">Home</a> / Site map</div>
+      <span class="eyebrow">Site map</span>
+      <h1>Every page on this site</h1>
+      <p>{total} pages, grouped the way the menu is. If you need a plumber, the quickest route is still the phone: <a href={`tel:${site.booking.tel}`}>{site.booking.display}</a>.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="sm-grid">
+        <div class="sm-group">
+          <h2>Company</h2>
+          <ul class="sm-list">
+            {company.map((p) => <li><a href={p.href}>{p.label}</a></li>)}
+          </ul>
+        </div>
+
+        {groupedServices.map((g) => (
+          <div class="sm-group">
+            <h2>{g.label}</h2>
+            <ul class="sm-list">
+              {g.items.map((s) => <li><a href={`/services/${s.slug}`} set:html={s.title} /></li>)}
+              {g.extra?.map((x) => <li><a href={x.href}>{x.label}</a></li>)}
+            </ul>
+          </div>
+        ))}
+
+        <div class="sm-group">
+          <h2>Legal</h2>
+          <ul class="sm-list">
+            {legal.map((p) => <li><a href={p.href}>{p.label}</a></li>)}
+          </ul>
+        </div>
+      </div>
+
+      <h2 class="sm-h2">Appliances &amp; fixtures</h2>
+      {applianceGroups.map((g) => (
+        <>
+          <h3 class="sm-h3">{g.label}</h3>
+          <ul class="sm-list sm-cols">
+            {appliances.filter((a) => a.group === g.slug).map((a) => (
+              <li><a href={`/appliances/${a.slug}`}>{a.title}</a></li>
+            ))}
+          </ul>
+        </>
+      ))}
+
+      <h2 class="sm-h2">Blog</h2>
+      <ul class="sm-list sm-cols">
+        {[...blogPosts].sort((a, b) => b.date.localeCompare(a.date)).map((p) => <li><a href={`/blog/${p.slug}`}>{p.title}</a></li>)}
+      </ul>
+
+      <h2 class="sm-h2">Boiler brands</h2>
+      <ul class="sm-list sm-cols">
+        {sortedBrands.map((b) => <li><a href={`/boilers/${b.slug}`}>{b.name} boilers</a></li>)}
+      </ul>
+
+      <h2 class="sm-h2">Areas we cover</h2>
+      <ul class="sm-list sm-cols">
+        {sortedAreas.map((a) => <li><a href={`/areas/${a.slug}`}>Plumber in {a.name}</a></li>)}
+      </ul>
+
+      <h2 class="sm-h2">Services by area</h2>
+      {localPages.map((g) => (
+        <>
+          <h3 class="sm-h3" set:html={g.service.title} />
+          <ul class="sm-list sm-cols">
+            {g.areas.map((a) => <li><a href={`/services/${g.service.slug}/${a.slug}`}>{a.name}</a></li>)}
+          </ul>
+        </>
+      ))}
+
+      {INDEX_POSTCODE_PAGES && (
+        <>
+          <h2 class="sm-h2">Postcode districts</h2>
+          {regions.map((r) => (
+            <>
+              <h3 class="sm-h3">{r.region}</h3>
+              <ul class="sm-list sm-chips">
+                {r.items.map((p) => <li><a href={`/postcodes/${p.slug}`}>{p.district}</a></li>)}
+              </ul>
+            </>
+          ))}
+        </>
+      )}
+    </div>
+  </section>
+</Base>

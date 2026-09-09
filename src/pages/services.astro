@@ -1,0 +1,105 @@
+---
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+import { services } from '../data/services';
+import ServiceIcon from '../components/ServiceIcon.astro';
+import Tick from '../components/Tick.astro';
+import PhoneIcon from '../components/PhoneIcon.astro';
+import WhatsAppIcon from '../components/WhatsAppIcon.astro';
+import HeroWithForm from '../components/HeroWithForm.astro';
+---
+<Base
+  title="Plumbing Services in London | Tamesis Plumbers"
+  description={`Emergency plumbing, boiler repair, servicing and installation, drain unblocking, leak detection and bathrooms across London. Call ${site.booking.display}.`}
+>
+
+<HeroWithForm
+  eyebrow="Our services"
+  h1="Plumbing, heating and drainage across London"
+  intro="Everything here is work our own engineers carry out, for homes and commercial premises alike. If what you need isn't listed, call and ask — it's quicker than guessing."
+  breadcrumb={[{ label: 'Home', href: '/' }, { label: 'Services' }]}
+  bullets={[
+    'Gas Safe registered and fully insured',
+    'DBS-checked engineers',
+    'Emergency callout available 24/7',
+    'Price agreed before work starts',
+  ]}
+/>
+
+<section class="section">
+  <div class="container">
+    <span class="eyebrow">What we do</span>
+    <h2>Choose the job</h2>
+    <p class="measure">Each page covers what&rsquo;s included, what to check before you call, and the questions we get asked most.</p>
+
+    <ul class="grid grid-3 card-grid">
+      {services.map((s) => (
+        <li class="card" id={s.slug}>
+          <div class="icon"><ServiceIcon name={s.icon} /></div>
+          <h3><a href={`/services/${s.slug}`} class="card-title-link" set:html={s.title} /></h3>
+          <p>{s.summary}</p>
+          <a href={`/services/${s.slug}`} class="card-link" aria-label={`More on ${s.title.replace('&amp;', 'and')}`}>
+            Read more <span aria-hidden="true">&rarr;</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="split">
+      <div class="split-panel">
+        <h3>For your home</h3>
+        <p>Homeowners, tenants and landlords across London. The burst pipe at eleven at night, and the bathroom you&rsquo;ve been meaning to replace for three years.</p>
+        <ul class="ticks">
+          <li><Tick /> Emergency repairs, day or night</li>
+          <li><Tick /> Boiler servicing and replacement</li>
+          <li><Tick /> Bathroom and en-suite installation</li>
+          <li><Tick /> Landlord repairs and tenancy turnarounds</li>
+        </ul>
+      </div>
+      <div class="split-panel">
+        <h3>For your business</h3>
+        <p>Offices, restaurants, shops and blocks of flats. We work around opening hours and tenants, and report back to whoever signs it off.</p>
+        <ul class="ticks">
+          <li><Tick /> Washroom and commercial kitchen plumbing</li>
+          <li><Tick /> Commercial drain clearance and CCTV survey</li>
+          <li><Tick /> Reactive repairs for managing agents</li>
+          <li><Tick /> Out-of-hours work to avoid disrupting trade</li>
+        </ul>
+        <div class="cta-row">
+          <a href="/services/commercial-plumbing" class="btn btn-navy">Commercial plumbing</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <span class="eyebrow">Boilers</span>
+    <h2>Boiler work by brand</h2>
+    <p class="measure">
+      Boiler repair, servicing, installation and replacement each have their own page above.
+      If you want to know what is characteristic of your make, there is a page per brand.
+    </p>
+    <p><a href="/boilers" class="btn btn-navy">All boiler brands</a></p>
+  </div>
+</section>
+
+<section class="section section-navy">
+  <div class="container center measure-wide">
+    <h2>Not sure what you need?</h2>
+    <p>Describe the problem and we&rsquo;ll tell you what&rsquo;s involved and what it will cost. For anything urgent, call rather than email &mdash; the booking line is answered by someone who can get an engineer to you.</p>
+    <div class="cta-row center-row">
+      <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">
+        <PhoneIcon /> Call {site.booking.display}
+      </a>
+      <a href="/contact#enquiry" class="btn btn-outline btn-lg">Send us the job</a>
+    </div>
+  </div>
+</section>
+
+</Base>

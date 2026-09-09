@@ -1,0 +1,61 @@
+---
+// API keys for the AI blog generation flow. Stored in Supabase rather than as
+// Vercel env vars, so a rotated key takes effect immediately with no
+// redeploy. Real values are never sent back to the browser — each field
+// shows only whether a key is set and its last 4 characters.
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import { getSupabaseAdmin } from '../../lib/supabaseAdmin';
+import { getMaskedSettings } from '../../lib/adminSettings';
+
+export const prerender = false;
+
+const admin = Astro.locals.admin!;
+const supabase = getSupabaseAdmin();
+
+let masked: Record<string, string | null> = { openai_api_key: null, anthropic_api_key: null, gemini_api_key: null };
+let loadError = '';
+if (!supabase) {
+  loadError = 'The admin panel is not connected to Supabase yet.';
+} else {
+  masked = await getMaskedSettings(supabase);
+}
+
+const fields = [
+  { key: 'openai_api_key', label: 'OpenAI API key', hint: 'Used for ChatGPT text generation and the hero image generator.' },
+  { key: 'anthropic_api_key', label: 'Anthropic (Claude) API key', hint: 'Used for Claude text generation.' },
+  { key: 'gemini_api_key', label: 'Google Gemini API key', hint: 'Used for Gemini text generation.' },
+] as const;
+---
+<AdminLayout title="Settings" admin={admin}>
+  <div class="admin-head">
+    <h1>Settings</h1>
+    <p class="admin-sub">API keys for AI-assisted blog post generation</p>
+  </div>
+
+  {loadError && <p class="form-error-summary" role="alert">{loadError}</p>}
+
+  {!loadError && (
+    <div class="admin-add admin-settings-card">
+      <form id="settings-form" class="admin-add-form">
+        <p class="form-error-summary" id="settings-error" role="alert" hidden></p>
+        <p class="admin-note" id="settings-saved" hidden>Saved.</p>
+        {fields.map((f) => (
+          <div class="field field-wide">
+            <label for={f.key}>{f.label}</label>
+            <input
+              id={f.key}
+              name={f.key}
+              type="password"
+              autocomplete="off"
+              placeholder={masked[f.key] ? `Currently set (ends ${masked[f.key]})` : 'Not set'}
+            />
+            <p class="admin-field-hint">{f.hint}</p>
+          </div>
+        ))}
+        <button type="submit" class="btn btn-navy">Save settings</button>
+      </form>
+    </div>
+  )}
+</AdminLayout>
+
+<script src="/admin-settings.js" is:inline></script>

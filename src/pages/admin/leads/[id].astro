@@ -1,0 +1,68 @@
+---
+import AdminLayout from '../../../layouts/AdminLayout.astro';
+import { getSupabaseAdmin, LEAD_STATUSES } from '../../../lib/supabaseAdmin';
+
+export const prerender = false;
+
+const admin = Astro.locals.admin!;
+const supabase = getSupabaseAdmin();
+const { id } = Astro.params;
+
+let lead: any = null;
+let loadError = '';
+if (!supabase) {
+  loadError = 'The admin panel is not connected to Supabase yet.';
+} else {
+  const { data, error } = await supabase.from('enquiries').select('*').eq('id', id).maybeSingle();
+  if (error) loadError = 'Could not load that lead.';
+  else lead = data;
+}
+
+const fmt = (iso: string) =>
+  new Date(iso).toLocaleString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit' });
+---
+<AdminLayout title={lead ? lead.name : 'Lead'} admin={admin}>
+  <p class="admin-back"><a href="/admin">&larr; All leads</a></p>
+
+  {loadError && <p class="form-error-summary" role="alert">{loadError}</p>}
+  {!loadError && !lead && <p class="admin-empty">That lead does not exist, or has been removed.</p>}
+
+  {lead && (
+    <div class="admin-detail">
+      <div class="admin-detail-head">
+        <div>
+          <h1>{lead.name}</h1>
+          <p class="admin-sub">Received {fmt(lead.created_at)}</p>
+        </div>
+        <form class="admin-status-form admin-status-form-lg" data-lead-id={lead.id}>
+          <select name="status" class:list={['admin-status-select', `is-${lead.status}`]}>
+            {LEAD_STATUSES.map((s) => <option value={s} selected={s === lead.status}>{s}</option>)}
+          </select>
+          <span class="admin-status-saved" hidden>Saved</span>
+        </form>
+      </div>
+
+      {lead.in_service_area === false && (
+        <p class="form-error-summary" role="alert">This postcode was flagged outside the Greater London service area when it was submitted.</p>
+      )}
+
+      <div class="admin-detail-grid">
+        <div class="admin-field"><span>Phone</span><a href={`tel:${lead.phone}`}>{lead.phone}</a></div>
+        <div class="admin-field"><span>Email</span>{lead.email ? <a href={`mailto:${lead.email}`}>{lead.email}</a> : <span class="admin-dim">Not given</span>}</div>
+        <div class="admin-field"><span>Postcode</span>{lead.postcode}{lead.postcode_district ? ` (${lead.postcode_district})` : ''}</div>
+        <div class="admin-field"><span>Borough</span>{lead.borough || <span class="admin-dim">Unknown</span>}</div>
+        <div class="admin-field"><span>Address</span>{lead.address_line || <span class="admin-dim">Not given</span>}</div>
+        <div class="admin-field"><span>Service</span>{lead.service || <span class="admin-dim">Not specified</span>}</div>
+        <div class="admin-field"><span>Urgency</span>{lead.urgency || <span class="admin-dim">Not specified</span>}</div>
+        <div class="admin-field"><span>Came from</span>{lead.source_page || <span class="admin-dim">Unknown</span>}</div>
+      </div>
+
+      <div class="admin-field admin-field-block">
+        <span>What they said</span>
+        <p class="admin-description">{lead.description || <span class="admin-dim">No description given.</span>}</p>
+      </div>
+    </div>
+  )}
+</AdminLayout>
+
+<script src="/admin.js" is:inline></script>
