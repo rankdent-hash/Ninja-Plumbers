@@ -4,14 +4,14 @@ import site from '../data/site.json';
 import HeroWithForm from '../components/HeroWithForm.astro';
 ---
 <Base
-  title="Contact Ninja Plumbers | Book a Plumber in London"
-  description={`Book a plumber in London. Call ${site.booking.display}, WhatsApp ${site.whatsapp.display} or email us. Office in Fulham, emergency callout 24/7.`}
+  title="Contact Us | Book a London Plumber | Ninja Plumbers"
+  description={`Get in touch with Ninja Plumbers, London — call ${site.booking.display}, WhatsApp ${site.whatsapp.display}, or email. Fulham office, 24/7 emergency callout.`}
 >
 
 <HeroWithForm
   eyebrow="Contact us"
   h1="Book a plumber"
-  intro="The booking line is answered by someone who can actually get an engineer to you. For anything urgent, call — don't email and wait."
+  intro="Ring Ninja Plumbers and you'll speak to someone who can actually get an engineer moving. If it's urgent, don't sit waiting on an email — call."
   breadcrumb={[{ label: 'Home', href: '/' }, { label: 'Contact' }]}
   bullets={[
     'Gas Safe registered and fully insured',
@@ -26,7 +26,7 @@ import HeroWithForm from '../components/HeroWithForm.astro';
   <div class="container contact-layout">
     <div>
       <h2>How to reach us</h2>
-      <p class="measure">Pick whichever suits — they all reach the same Fulham office.</p>
+      <p class="measure">However you'd rather get in touch, it lands with the same Fulham office — pick whichever's easiest.</p>
 
       <a href={`tel:${site.booking.tel}`} class="route route-call route-lg">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -61,14 +61,14 @@ import HeroWithForm from '../components/HeroWithForm.astro';
         <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg></div>
         <div>
           <h3>What to tell us</h3>
-          <p>Four things get you a useful answer on the first call rather than the third:</p>
+          <p>Have these four things ready and you should get a proper answer on the first call, not the third:</p>
           <ul class="ticks">
             <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Your postcode</li>
             <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> What&rsquo;s happening, and roughly when it started</li>
             <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Whether the water is still running or you&rsquo;ve shut it off</li>
             <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> How we get in, and when you&rsquo;re there</li>
           </ul>
-          <p class="small">A photo on WhatsApp is worth a long description &mdash; it often means the engineer arrives with the right part rather than coming back a second time.</p>
+          <p class="small">Don't bother typing out a long description &mdash; a photo on WhatsApp usually tells us more, and means the engineer is more likely to turn up with the right part first time.</p>
         </div>
       </div>
     </div>

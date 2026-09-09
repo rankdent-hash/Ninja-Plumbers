@@ -35,14 +35,14 @@ export const dampPages: DampPage[] = [
     h1: 'Damp survey and diagnosis in London',
     metaTitle: 'Damp Survey London | Diagnosis & Written Report | Ninja Plumbers',
     metaDescription:
-      'Damp surveys across London, with the actual cause identified and a written report — before/instead of a treatment. Call 020 3488 3737.',
+      'Ninja Plumbers surveys damp across London, identifies the real cause and gives you a written report before any treatment is proposed. Call 020 3576 5825.',
     eyebrow: 'Diagnosis first',
     icon: 'water',
     target: 'damp survey (2,900/mo)',
     summary:
-      'Finding out what kind of damp it actually is, and what caused it, before anyone proposes treating it.',
+      'Before Ninja Plumbers proposes any treatment, we work out exactly what kind of damp it is and what’s causing it.',
     intro:
-      'Rising damp, penetrating damp and condensation look similar on a wall and need completely different fixes — treating the wrong one wastes money and leaves the actual problem untouched. A survey finds the cause with a moisture meter, a visual inspection and, where it matters, checking outside for the source, and gives you a written report before any treatment is proposed.',
+      'On a wall, rising damp, penetrating damp and condensation can look almost identical, yet each needs a completely different fix — get it wrong and you’ve wasted money without touching the real problem. Our survey uses a moisture meter, a visual inspection and, where it’s relevant, a look outside for the source, and it ends with a written report before anyone talks about treatment.',
     does: [
       'Moisture meter readings and visual inspection',
       'Identifying rising, penetrating or condensation damp',
@@ -71,7 +71,7 @@ export const dampPages: DampPage[] = [
     ],
     aside: {
       title: 'We separate the survey from the treatment',
-      body: 'The survey tells you what is actually wrong. What to do about it — and whether to use us for that — is a decision made afterwards, not bundled into the same visit.',
+      body: 'The survey establishes what is actually wrong with the wall. Deciding what to do about it — and whether Ninja Plumbers carries out that work — comes afterwards, as a separate decision rather than something bundled into the same visit.',
     },
     faqs: [
       {
@@ -100,14 +100,14 @@ export const dampPages: DampPage[] = [
     h1: 'Damp proofing and penetrating damp treatment in London',
     metaTitle: 'Damp Proofing London | Penetrating Damp Treatment | Ninja Plumbers',
     metaDescription:
-      'Damp proofing and penetrating damp treatment across London: the actual cause fixed at source, not just masked with a coating. Call 020 3488 3737.',
+      'Damp proofing and penetrating damp treatment across London from Ninja Plumbers: the cause fixed at source, not masked with a coating. Call 020 3576 5825.',
     eyebrow: 'Treatment',
     icon: 'water',
     target: 'damp proofing (5,400/mo) · penetrating damp (1,600/mo)',
     summary:
-      'Penetrating damp fixed at its source — a defect letting water in from outside — rather than papered over from within.',
+      'Rather than papering over the symptom from inside, we trace penetrating damp back to the outside defect that is letting the water in.',
     intro:
-      'Penetrating damp comes in horizontally, through a specific defect: a cracked render, a blocked gutter overflowing down a wall, a perished pointing joint, ground built up above the damp-proof course. Treating it means finding and fixing that defect, not just applying a waterproof coating to the inside of the wall and hoping.',
+      'Water gets into a wall horizontally with penetrating damp, and there is always a specific defect behind it — cracked render, a gutter overflowing down the brickwork, a perished pointing joint, or ground built up over the damp-proof course. Fixing it means finding that defect and dealing with it, rather than slapping a waterproof coating on the inside and hoping for the best.',
     does: [
       'Tracing and fixing the external entry point',
       'Damp-proof course installation and repair',
@@ -136,7 +136,7 @@ export const dampPages: DampPage[] = [
     ],
     aside: {
       title: 'A defect fixed outside is cheaper than internal work repeated',
-      body: 'External repairs — pointing, render, guttering — are usually the smaller cost. Internal replastering done before the cause is fixed is money spent twice.',
+      body: 'Pointing, render and guttering repairs on the outside usually cost less than the alternative. Replaster inside before the actual cause is dealt with, and you are paying for the same job twice.',
     },
     faqs: [
       {
@@ -165,14 +165,14 @@ export const dampPages: DampPage[] = [
     h1: 'Condensation and ventilation control in London',
     metaTitle: 'Condensation Control London | Ventilation Solutions | Ninja Plumbers',
     metaDescription:
-      'Condensation and mould control across London: extractor fans, ventilation and the cause of black mould fixed, not just cleaned off. Call 020 3488 3737.',
+      'Ninja Plumbers tackles condensation and mould across London: extractor fans and ventilation fixed at the cause, not just cleaned off the surface. Call 020 3576 5825.',
     eyebrow: 'Ventilation',
     icon: 'water',
     target: 'condensation control (480/mo)',
     summary:
-      'Black mould and steamed-up windows are a ventilation problem, not a cleaning problem — dealt with at the cause.',
+      'Steamed-up windows and black mould are usually a ventilation fault, not a cleaning job, and Ninja Plumbers deals with the cause rather than the symptom.',
     intro:
-      'Condensation forms when warm, moist air meets a cold surface — a cold bathroom wall, a window, a cold bedroom corner with poor airflow. Bleaching off the black mould that follows treats what you can see, not what is causing it. The fix is getting the moisture out of the building before it condenses, and stopping the cold spots that give it somewhere to land.',
+      'Warm, moist air meeting a cold surface — a bathroom wall, a window, a poorly ventilated bedroom corner — is what produces condensation. Scrubbing the black mould that follows only ever treats what you can see, never what caused it. The actual fix is two-fold: get the moisture out of the building before it condenses, and remove the cold spots giving it somewhere to settle.',
     does: [
       'Extractor fan installation and repair, bathrooms and kitchens',
       'Humidity-triggered and timer-run fan upgrades',
@@ -201,7 +201,7 @@ export const dampPages: DampPage[] = [
     ],
     aside: {
       title: 'Fix the ventilation before you redecorate',
-      body: 'Repainting over a mould patch without dealing with the cause means doing it again within a year. Sort the airflow first.',
+      body: 'Paint over a mould patch without addressing the cause and you will likely be doing it again inside a year. Get the airflow sorted first, then decorate.',
     },
     faqs: [
       {

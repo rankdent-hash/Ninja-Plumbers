@@ -34,16 +34,16 @@ export const services: Service[] = [
     slug: 'emergency-plumbing',
     title: 'Emergency Plumbing',
     h1: 'Emergency plumber in London',
-    metaTitle: 'Emergency Plumber London | 24/7 Callout | Ninja Plumbers',
+    metaTitle: '24-Hour Emergency Plumber London | Ninja Plumbers',
     metaDescription:
-      'Emergency plumber covering London, 24 hours a day. Burst pipes, major leaks, no water and overflowing toilets. Gas Safe registered. Call 020 3488 3737.',
+      'Round-the-clock emergency plumber for London. Burst pipes, major leaks, no water, overflowing toilets. Gas Safe registered. Call 020 3576 5825.',
     eyebrow: '24/7 callout',
     icon: 'emergency',
     target: 'emergency plumber london (2,400/mo) · emergency plumber (12,100/mo)',
     summary:
       'Burst pipes, major leaks and no water. We take calls around the clock and get an engineer moving.',
     intro:
-      'A burst pipe, water coming through a ceiling, or no water at all. Plumbing emergencies do not wait for office hours, so neither does the booking line. Call and we will tell you what to do while an engineer is on the way.',
+      'Water coming through a ceiling. A pipe that has let go somewhere behind a wall. No water anywhere in the house at all. None of these wait politely until nine o\'clock on a Monday, which is why the Ninja Plumbers booking line doesn\'t either. Ring us and we will talk you through what to do first, while an engineer is already on the way.',
     does: [
       'Burst and leaking pipes',
       'Water shut-off and damage limitation',
@@ -55,7 +55,7 @@ export const services: Service[] = [
     guidance: [
       {
         title: 'Water is pouring in',
-        body: 'Turn off the stopcock. In most London homes it is under the kitchen sink, in a downstairs cupboard, or near the front door in a flat. Turn it clockwise until it stops. Then open the cold taps to drain the pipes. This is the single thing that most limits the damage.',
+        body: 'Find the stopcock and turn it off first, clockwise, until it stops moving. In most London homes that is under the kitchen sink, in a cupboard under the stairs, or just inside the front door if you are in a flat. Once it is off, open the cold taps around the house to drain what is left in the pipes. Nothing else you do in the next five minutes limits the damage as much as this one step.',
       },
       {
         title: 'Water is coming through a ceiling',
@@ -81,7 +81,7 @@ export const services: Service[] = [
       },
       {
         q: 'What counts as an emergency?',
-        a: 'Anything where water is actively causing damage, or where you have no water or no heating and cannot wait. A dripping tap is not an emergency, and we would rather book that in normally than charge you emergency rates for it.',
+        a: 'If water is actively doing damage right now, or you have no water or no heating and it genuinely cannot wait, that is an emergency. A dripping tap is not — we would rather fit that in as an ordinary job than charge you emergency rates for something that can hold until tomorrow.',
       },
       {
         q: 'How much does an emergency callout cost?',
@@ -100,14 +100,14 @@ export const services: Service[] = [
     h1: 'Boiler repair in London',
     metaTitle: 'Boiler Repair London | Gas Safe Engineers | Ninja Plumbers',
     metaDescription:
-      'Gas Safe registered boiler repair across London. Breakdowns diagnosed properly and honest advice on repair versus replacement. Call 020 3488 3737.',
+      'Boiler breakdowns fixed across London by Gas Safe registered engineers. Proper diagnosis first, then a straight answer on repair vs replace. 020 3576 5825.',
     eyebrow: 'Heating and hot water',
     icon: 'boiler',
     target: 'boiler repair london (1,600/mo)',
     summary:
       'No heat, no hot water, or a boiler locked out on a fault code. Diagnosed first, then fixed.',
     intro:
-      'No heating, no hot water, or a boiler that has locked out and is showing a fault code. We diagnose the fault before quoting, then tell you straight whether a repair or a replacement is the better spend — with both numbers, so you decide rather than being steered.',
+      'The heating has stopped, the hot water has stopped, or the boiler has locked out and is flashing a code at you. Ninja Plumbers diagnoses the actual fault before quoting anything — no guesswork, no swapping parts to see what sticks — then gives you both numbers, repair and replacement, and lets you make the call.',
     does: [
       'Breakdown diagnosis and fault finding',
       'Boilers locked out on a fault code',
@@ -119,7 +119,7 @@ export const services: Service[] = [
     guidance: [
       {
         title: 'Before you call, check three things',
-        body: 'Is the pressure gauge between roughly 1 and 1.5 bar? Is the thermostat calling for heat? Has the gas gone off elsewhere in the house, for example the hob? Two of the three most common callouts are low pressure and a thermostat problem, and both are worth ruling out first.',
+        body: 'Three quick checks save a lot of callouts. Look at the pressure gauge — is it roughly between 1 and 1.5 bar? Is the thermostat actually asking for heat? And has the gas cut out elsewhere too, say on the hob? Low pressure and a stuck thermostat between them explain most of the breakdowns we get called out to, so it is worth ruling both out before you pick up the phone.',
       },
       {
         title: 'Fault codes are worth photographing',
@@ -149,7 +149,7 @@ export const services: Service[] = [
       },
       {
         q: 'Why does my boiler keep losing pressure?',
-        a: 'Usually a leak somewhere on the system or a failed expansion vessel. Repeatedly topping it up masks the problem rather than fixing it, and a slow leak in a ceiling void gets expensive.',
+        a: 'Most often there is a leak on the system somewhere, or the expansion vessel has failed. Topping it up again and again just hides the symptom — it does not fix anything, and a slow leak sitting in a ceiling void turns into a much bigger bill the longer it runs.',
       },
       {
         q: 'Are your engineers Gas Safe registered?',
@@ -161,16 +161,16 @@ export const services: Service[] = [
     slug: 'boiler-service',
     title: 'Boiler Service',
     h1: 'Boiler service in London',
-    metaTitle: 'Boiler Service London | Annual Servicing | Ninja Plumbers',
+    metaTitle: 'Annual Boiler Service London | Gas Safe | Ninja Plumbers',
     metaDescription:
-      'Annual boiler service across London by Gas Safe registered engineers. Safety checks, cleaning and maintenance to keep your warranty valid. Call 020 3488 3737.',
+      'Book an annual boiler service in London with Gas Safe registered engineers — safety checks, cleaning and the paperwork your warranty needs. 020 3576 5825.',
     eyebrow: 'Heating and hot water',
     icon: 'boiler',
     target: 'boiler service london (1,900/mo)',
     summary:
       'The annual check that keeps a boiler safe, efficient and inside its warranty terms.',
     intro:
-      'An annual service is the cheapest thing you can do for a boiler. It catches the parts that are on their way out before they strand you in January, and most manufacturer warranties require it — a skipped service is one of the commonest reasons a warranty claim gets refused.',
+      'Of everything you can spend on a boiler, an annual service is the cheapest and does the most good. It picks up the parts that are wearing out before they leave you without heating in January, and most manufacturers make it a condition of the warranty — a service that gets skipped is one of the most common reasons a warranty claim ends up refused.',
     does: [
       'Annual boiler service and safety check',
       'Combustion analysis and flue check',
@@ -182,7 +182,7 @@ export const services: Service[] = [
     guidance: [
       {
         title: 'Book it before the cold, not during it',
-        body: 'Everyone discovers their boiler has a problem on the first genuinely cold week of the year, which is exactly when engineers are hardest to get. A service in late summer or early autumn costs the same and is far easier to book.',
+        body: 'Boiler problems have a habit of showing up on the first properly cold week of the year — which, unhelpfully, is exactly when engineers across London are hardest to get hold of. Book with Ninja Plumbers in late summer or early autumn instead. It costs the same and you will get an appointment far more easily than in the middle of a cold snap.',
       },
       {
         title: 'A service is not the same as a repair',
@@ -208,7 +208,7 @@ export const services: Service[] = [
       },
       {
         q: 'How long does a boiler service take?',
-        a: 'Usually under an hour for a straightforward domestic boiler, longer if the engineer finds something that needs investigating. We would rather take the extra time than sign off something that is not right.',
+        a: 'For a straightforward domestic boiler, budget under an hour. It can run longer if something needs a closer look — we would rather spend the extra twenty minutes than sign off a boiler that is not actually right.',
       },
       {
         q: 'What is the difference between a service and a repair?',
@@ -224,16 +224,16 @@ export const services: Service[] = [
     slug: 'boiler-installation',
     title: 'Boiler Installation',
     h1: 'Boiler installation in London',
-    metaTitle: 'Boiler Installation London | New Boilers | Ninja Plumbers',
+    metaTitle: 'New Boiler Installation London | Ninja Plumbers',
     metaDescription:
-      'New boiler installation across London by Gas Safe registered engineers. System sizing, a clear quote and the old unit removed. Call 020 3488 3737.',
+      'Gas Safe registered new boiler installation in London — correctly sized, a clear price up front, old unit removed. Call Ninja Plumbers, 020 3576 5825.',
     eyebrow: 'Heating and hot water',
     icon: 'boiler',
     target: 'boiler installation london (1,600/mo) · combi boiler installation london (170)',
     summary:
       'A new boiler sized for the property, fitted properly, with the price agreed first.',
     intro:
-      'Putting a new boiler into a property — whether that is a first installation, a change of system type, or moving the boiler somewhere more sensible. The important decisions happen before anything is fitted: what size, what type, and where it goes.',
+      'A first boiler installation, a switch from one system type to another, or simply moving the unit to a more sensible spot in the house — Ninja Plumbers handles all three the same way. Fitting the boiler is the easy part. Getting the size, the type and the position right beforehand is what actually decides whether you are happy with it in five years.',
     does: [
       'New boiler supply and installation',
       'Combi, system and heat-only boilers',
@@ -249,7 +249,7 @@ export const services: Service[] = [
       },
       {
         title: 'Combi is not automatically the answer',
-        body: 'A combi suits most flats and smaller houses. A house with two or more bathrooms in simultaneous use is usually better on a system boiler with a cylinder, because a combi cannot serve two showers at once without both suffering.',
+        body: 'For most flats and smaller terraced houses across London, a combi is the right call. It changes once there are two or more bathrooms likely to be used at the same time — try running two showers off one combi and both of them suffer for it. A system boiler with a cylinder handles that situation properly, which a combi simply was not designed to do.',
       },
       {
         title: 'Where it goes is a real decision',
@@ -275,7 +275,7 @@ export const services: Service[] = [
       },
       {
         q: 'Can you move the boiler somewhere else?',
-        a: 'Usually yes. It adds pipework and flue routing to the job, but it is often worth it — particularly to get a boiler out of a bedroom wall or out from behind fitted kitchen units.',
+        a: 'In most properties, yes. It means more pipework and a longer flue run, so the job costs more — but getting a boiler off a bedroom wall or out from behind fitted kitchen cupboards is usually worth that extra spend for the years you live with it afterwards.',
       },
       {
         q: 'Do you take the old boiler away?',
@@ -287,16 +287,16 @@ export const services: Service[] = [
     slug: 'boiler-replacement',
     title: 'Boiler Replacement',
     h1: 'Boiler replacement in London',
-    metaTitle: 'Boiler Replacement London | New Boiler Quotes | Ninja Plumbers',
+    metaTitle: 'Boiler Replacement London | Honest Quotes | Ninja Plumbers',
     metaDescription:
-      'Boiler replacement across London. Honest advice on whether yours is worth replacing, a clear quote, and the old unit removed. Call 020 3488 3737.',
+      'Thinking about a new boiler? Ninja Plumbers gives London homeowners a straight repair-vs-replace answer, a clear quote and old unit removal. 020 3576 5825.',
     eyebrow: 'Heating and hot water',
     icon: 'boiler',
     target: 'boiler replacement london (480/mo) · new boiler london (260)',
     summary:
       'Replacing a boiler that has reached the end, with a straight answer on whether it has.',
     intro:
-      'Replacing a boiler that is past economic repair, unreliable, or expensive to run. The first question is whether it actually needs replacing — plenty of boilers get condemned by whoever wants to sell a new one. We will tell you if yours has years left in it.',
+      'A boiler that keeps breaking down, costs more to run than it should, or is simply beyond sensible repair — that is when replacement makes sense. It does not always make sense sooner than that, though, and plenty of boilers get written off early by whoever is trying to sell a new one. Ask us and, if yours has years left in it, we will say so.',
     does: [
       'Replacing an old or failed boiler',
       'Repair-versus-replace assessment, with both figures',
@@ -316,7 +316,7 @@ export const services: Service[] = [
       },
       {
         title: 'Do not just replace like for like',
-        body: 'A replacement is the one chance to correct a boiler that was the wrong size, the wrong type, or in the wrong place. If the old one never quite kept up, or was buried somewhere awkward, fitting the same thing again repeats the problem.',
+        body: 'Fitting the exact same boiler again is the easy option, but it is not always the right one. A replacement is your one real chance to fix a boiler that was undersized, the wrong type for the property, or crammed into an awkward spot in the first place. If the old one never quite kept the house warm, putting an identical one back in just repeats the mistake — talk to Ninja Plumbers about what would actually suit the property before ordering the same thing again.',
       },
       {
         title: 'Parts availability is a real factor',
@@ -342,7 +342,7 @@ export const services: Service[] = [
       },
       {
         q: 'Do I need the same type of boiler I have now?',
-        a: 'No. A replacement is a good point to reconsider — a house that has grown a second bathroom since the last boiler went in may be better on a system boiler and cylinder than on another combi.',
+        a: 'Not necessarily — a replacement is exactly the point to reconsider that. If the house has gained a second bathroom since the current boiler was fitted, a system boiler with a cylinder may now suit it better than another combi.',
       },
     ],
   },
@@ -350,16 +350,16 @@ export const services: Service[] = [
     slug: 'drain-unblocking',
     title: 'Drain Unblocking',
     h1: 'Drain unblocking in London',
-    metaTitle: 'Drain Unblocking London | Blocked Drains | Ninja Plumbers',
+    metaTitle: 'Blocked Drain Unblocking London | Ninja Plumbers',
     metaDescription:
-      'Blocked drains, toilets, sinks and showers cleared across London using rods, jetting and CCTV. We tell you what caused it. Call 020 3488 3737.',
+      'Fast, proper drain unblocking across London: rods, jetting and CCTV for sinks, toilets and outside drains. We explain what caused it. Call 020 3576 5825.',
     eyebrow: 'Drainage',
     icon: 'drain',
     target: 'drain unblocking london (1,000) · blocked drain london (590) · blocked toilet london (480)',
     summary:
       'Sinks, toilets and outside drains cleared with proper equipment, not a bottle of chemicals.',
     intro:
-      'Slow sinks, a toilet that will not clear, or a drain backing up outside. We clear it with rods and jetting equipment, and where the cause is not obvious a drain camera finds it before we start guessing.',
+      'A sink that drains slowly. A toilet that will not clear no matter how many times you flush it. A drain outside that has started backing up onto the patio. Ninja Plumbers clears all three with rods and jetting equipment rather than a bottle from the supermarket, and if the cause is not obvious, a drain camera finds it rather than us taking a guess.',
     does: [
       'Blocked sinks, baths and showers',
       'Blocked toilets and soil stacks',
@@ -371,7 +371,7 @@ export const services: Service[] = [
     guidance: [
       {
         title: 'Please do not use caustic drain cleaner',
-        body: 'It rarely clears a real blockage, it damages older pipework, and it means an engineer is reaching into a trap full of caustic liquid. If you have already poured some in, say so when you call so we come prepared.',
+        body: 'It rarely does much against a proper blockage, it is hard on older pipework, and it leaves whoever comes next reaching into a trap full of caustic liquid. That is a real problem in London’s older housing stock, where the pipework is more delicate than people assume. If you have already tipped some down, just tell us when you call so we turn up prepared for it.',
       },
       {
         title: 'A blocked toilet, first move',
@@ -401,7 +401,7 @@ export const services: Service[] = [
       },
       {
         q: 'Can you clear a blocked toilet the same day?',
-        a: 'Usually. Call the booking line and describe what is happening and we will tell you honestly when we can get to you.',
+        a: 'In most cases, yes. Ring the booking line, describe what is going on, and we will give you an honest answer on timing rather than a hopeful one.',
       },
       {
         q: 'What about drains in a block of flats?',
@@ -414,16 +414,16 @@ export const services: Service[] = [
     slug: 'leak-detection',
     title: 'Leak Detection',
     h1: 'Leak detection in London',
-    metaTitle: 'Leak Detection London | Hidden Water Leaks | Ninja Plumbers',
+    metaTitle: 'Hidden Water Leak Detection London | Ninja Plumbers',
     metaDescription:
-      'Non-invasive leak detection across London. Damp patches, rising water bills and hidden pipe leaks traced before anything is opened up. Call 020 3488 3737.',
+      'Cannot find a leak? Ninja Plumbers traces hidden pipe leaks, damp patches and rising water bills across London without lifting floors. Call 020 3576 5825.',
     eyebrow: 'Detection',
     icon: 'leak',
     target: 'leak detection london (1,000, low competition) · water leak detection (2,900)',
     summary:
       'Hidden leaks traced with acoustic and thermal equipment, before floors come up.',
     intro:
-      'A damp patch that keeps returning, a stain creeping across a ceiling, or a water bill that has climbed with no explanation. We find the source first, so the repair is targeted rather than exploratory.',
+      'A damp patch that will not stay gone no matter how many times it is painted over. A stain slowly spreading across a ceiling. A water bill that has crept up for no reason anyone can point to. In all three cases the source has to be found before anything gets repaired, otherwise you are paying to fix a symptom rather than the actual leak.',
     does: [
       'Hidden pipe leaks under floors and behind walls',
       'Damp and water-damage investigation',
@@ -443,7 +443,7 @@ export const services: Service[] = [
       },
       {
         title: 'A damp patch is rarely above the leak',
-        body: 'Water travels along joists and under floors before it appears. The stain on your ceiling is often nowhere near the failed pipe, which is exactly why guessing and cutting is such an expensive way to find it.',
+        body: 'Before it ever shows itself, water tends to run some distance along a joist or under a floor. That means the stain on your ceiling can be well away from the actual failed pipe — which is exactly why the Ninja Plumbers approach is to locate the leak first, rather than start cutting holes on a hunch and hoping one of them is right.',
       },
       {
         title: 'Talk to your insurer first',
@@ -465,7 +465,7 @@ export const services: Service[] = [
       },
       {
         q: 'My water bill has doubled. Is that a leak?',
-        a: 'Very often, yes, particularly if usage has not changed. Do the meter test above and tell us the result when you call.',
+        a: 'Often it is, especially if nothing about how you use water has actually changed. Run the meter test described above first, then tell us what it showed when you call — it saves time on the visit.',
       },
       {
         q: 'Can you give me a report for my insurer?',
@@ -478,16 +478,16 @@ export const services: Service[] = [
     slug: 'bathroom-installation',
     title: 'Bathroom Installation',
     h1: 'Bathroom installation in London',
-    metaTitle: 'Bathroom Fitters London | Installation | Ninja Plumbers',
+    metaTitle: 'Bathroom Fitters London | Full Installation | Ninja Plumbers',
     metaDescription:
-      'Bathroom installation across London, from swapping a single toilet to a full refit, en-suite or wet room. Priced before work starts. Call 020 3488 3737.',
+      'London bathroom installation, from one tired toilet to a full strip-out refit or en-suite. Ninja Plumbers prices the job before starting. 020 3576 5825.',
     eyebrow: 'Installation',
     icon: 'bathroom',
     target: 'bathroom fitters london (1,000) · bathroom installation london (720)',
     summary:
       'A single fixture swap through to a full strip-out and refit, priced up front.',
     intro:
-      'Swapping a tired toilet or basin, or stripping a bathroom back to brick and starting again. We handle the plumbing and coordinate the trades that follow, so you are not project managing it yourself.',
+      'Maybe it is one tired basin that needs swapping out. Maybe it is the whole bathroom, stripped back to brick and started again from nothing. Either way, we handle the plumbing side and coordinate whichever other trades the job needs, so you are dealing with one point of contact instead of project-managing three separate tradespeople yourself.',
     does: [
       'Full bathroom and en-suite refits',
       'Bath, shower and toilet installation',
@@ -512,7 +512,7 @@ export const services: Service[] = [
       },
       {
         title: 'Flats have extra rules',
-        body: 'If you are in a leasehold flat, check your lease before committing. Many require freeholder consent for bathroom work, and some restrict working hours or ban moving wet areas over habitable rooms below.',
+        body: 'Leasehold flats — common across a lot of London — often come with conditions worth checking before you commit to a design. The lease may require freeholder consent for bathroom work, and some buildings restrict working hours or will not allow a wet area to be moved over a habitable room on the floor below. Better to find that out early than after the old bathroom is already stripped out.',
       },
     ],
     aside: {
@@ -526,7 +526,7 @@ export const services: Service[] = [
       },
       {
         q: 'Do you supply the bathroom, or do I?',
-        a: 'Either. Many customers prefer to choose and buy their own suite and have us fit it, and that is completely fine.',
+        a: 'Whichever suits you. Plenty of customers like choosing and buying their own suite and simply having Ninja Plumbers fit it, and that works just as well as us sourcing everything.',
       },
       {
         q: 'Do you tile as well?',
@@ -543,16 +543,16 @@ export const services: Service[] = [
     slug: 'toilet-installation',
     title: 'Toilet Installation',
     h1: 'Toilet installation in London',
-    metaTitle: 'Toilet Installation London | New & Replacement WCs | Ninja Plumbers',
+    metaTitle: 'Toilet Installation & Replacement London | Ninja Plumbers',
     metaDescription:
-      'Toilet installation and replacement across London: close-coupled, back-to-wall, wall-hung and concealed cisterns. Call 020 3488 3737.',
+      'New and replacement toilets fitted across London — close-coupled, back-to-wall, wall-hung and concealed cistern WCs. Book Ninja Plumbers on 020 3576 5825.',
     eyebrow: 'New and replacement WCs',
     icon: 'bathroom',
     target: 'toilet plumber (480/mo) · new toilet installation (110/mo) · toilet installation london (90/mo)',
     summary:
       'A new toilet fitted, an old one swapped, or a WC moved to somewhere it has never been.',
     intro:
-      'Replacing a toilet is usually a morning’s work. Moving one, fitting a wall-hung pan on a frame, or putting a WC where there has never been a soil connection is a different job with different questions — and it is worth asking them before the suite is bought rather than after it arrives.',
+      'A straight swap of an old toilet for a new one is a morning’s work, no more complicated than that. Moving a WC to a new spot, fitting a wall-hung pan on a frame, or putting one where there has never been a soil connection before — that is a different job with a different set of questions, and they are worth asking before the suite is bought, not once it has already arrived.',
     does: [
       'New and replacement toilets, supplied or your own',
       'Close-coupled, back-to-wall and wall-hung pans',
@@ -569,7 +569,7 @@ export const services: Service[] = [
       },
       {
         title: 'Wall-hung means a frame and a wall that can take it',
-        body: 'The pan hangs off a steel frame carrying the weight, not off the plasterboard. It looks better and cleans more easily, and it takes up more space behind than people expect. In a small cloakroom that is the deciding factor.',
+        body: 'A wall-hung pan does not hang off the plasterboard — it hangs off a steel frame that carries the actual weight, hidden behind the wall. Cleaner look, easier to keep clean underneath, but the frame eats up more space behind the wall than most people expect. In a tight London cloakroom, that space is often what decides whether wall-hung is even possible.',
       },
       {
         title: 'Concealed cisterns still need access',
@@ -587,7 +587,7 @@ export const services: Service[] = [
     faqs: [
       {
         q: 'Can you fit a toilet I have already bought?',
-        a: 'Yes, and most people do. Send us the model beforehand so we can check the waste position and whether any adaptors are needed.',
+        a: 'Yes — Ninja Plumbers fits customer-supplied toilets all the time. Send over the model before the visit so we can check the waste position matches and confirm whether any adaptors will be needed.',
       },
       {
         q: 'How long does a straight swap take?',
@@ -608,16 +608,16 @@ export const services: Service[] = [
     slug: 'general-plumbing',
     title: 'General Plumbing',
     h1: 'General plumbing in London',
-    metaTitle: 'Plumber in London | Taps, Toilets & Repairs | Ninja Plumbers',
+    metaTitle: 'General Plumber London | Taps, Toilets, Radiators | Ninja Plumbers',
     metaDescription:
-      'Everyday plumbing across London: taps, toilets, radiators, stopcocks and pipework. For homeowners, landlords and agents. Call 020 3488 3737.',
+      'Everyday plumbing repairs across London for homeowners, landlords and agents — taps, toilets, radiators, stopcocks, pipework. Call 020 3576 5825.',
     eyebrow: 'Everyday plumbing',
     icon: 'general',
     target: 'plumber london (3,600) · leaking tap repair (1,300) · radiator repair (1,000)',
     summary:
       'Taps, toilets, radiators and pipework. The jobs that never quite get done.',
     intro:
-      'The dripping tap, the toilet that runs all night, the radiator that never gets warm. Small jobs are quoted the same way as large ones, and are often done on the first visit.',
+      'The tap that has been dripping for months. The toilet that runs half the night. The one radiator in the flat that never quite gets warm. These are the jobs that sit on a list for years because none of them feel urgent enough on their own — Ninja Plumbers quotes them the same way as a bigger job and, more often than not, sorts them on the first visit.',
     does: [
       'Taps, mixers and washer replacement',
       'Toilets, cisterns and running overflows',
@@ -630,7 +630,7 @@ export const services: Service[] = [
     guidance: [
       {
         title: 'Low pressure is usually one of three things',
-        body: 'A scaled shower head or tap aerator, a partly closed valve somewhere on the run, or — in older London stock — an undersized supply pipe from the street that was never a problem until modern appliances asked more of it. We check in that order, cheapest first.',
+        body: 'Limescale sitting in a shower head or tap aerator is the first suspect, and often the whole answer. Next is a valve somewhere on the run that has been left partly closed. Third, and more common in older London stock, is a supply pipe from the street that was never a problem until a power shower or a modern washing machine started asking more of it than it was ever built to give. We check them in that order — cheapest and quickest first.',
       },
       {
         title: 'A running toilet is not harmless',
@@ -646,7 +646,7 @@ export const services: Service[] = [
       },
       {
         title: 'Old taps in old flats',
-        body: 'In a lot of London housing stock the tap is fine and the isolation valve behind it has seized. Worth knowing that the small job occasionally uncovers a slightly larger one, and we will tell you before doing it, not after.',
+        body: 'Plenty of London flats have a tap that is perfectly fine sitting behind an isolation valve that has completely seized up. It is worth knowing going in that what looks like a ten-minute job occasionally turns into something slightly bigger — and if that happens, we tell you before we go ahead with it, not once it is already done.',
       },
     ],
     aside: {
@@ -668,7 +668,7 @@ export const services: Service[] = [
       },
       {
         q: 'Do you charge a callout fee on top?',
-        a: 'You get a price for the work before an engineer starts. Whatever that price includes or excludes will be clear to you at the point you agree it.',
+        a: 'You will have a price for the work itself before anyone starts. Exactly what is and is not included in that figure is spelled out at the point you agree to it, so there is nothing sprung on you afterwards.',
       },
     ],
   },
@@ -677,16 +677,16 @@ export const services: Service[] = [
     slug: 'commercial-plumbing',
     title: 'Commercial Plumbing',
     h1: 'Commercial plumbing in London',
-    metaTitle: 'Commercial Plumber London | Offices & Shops | Ninja Plumbers',
+    metaTitle: 'Commercial Plumber London | Offices, Shops & Blocks | Ninja Plumbers',
     metaDescription:
-      'Commercial plumbing and drainage across London for offices, restaurants, retail and blocks of flats. Out-of-hours work available. Call 020 3592 0042.',
+      'London commercial plumbing for offices, restaurants, retail units and blocks of flats. Out-of-hours slots available. Call 020 3576 5825.',
     eyebrow: 'Commercial',
     icon: 'commercial',
     target: 'commercial plumber london (260, low competition)',
     summary:
       'Offices, restaurants, retail and blocks of flats, worked around your opening hours.',
     intro:
-      'Commercial premises cannot simply stop trading while a plumber works. We schedule around opening hours and tenants, and report back to whoever has to sign the work off.',
+      'A shop, an office floor or a restaurant cannot simply close its doors while a plumber gets on with the job. We build the schedule around your opening hours and your tenants instead, and report back to whichever manager, agent or freeholder has to sign the work off at the end of it.',
     does: [
       'Washroom installation, repair and maintenance',
       'Office kitchens, tea points and boiling taps',
@@ -722,7 +722,7 @@ export const services: Service[] = [
       },
       {
         title: 'Shared stacks in blocks',
-        body: 'A blockage reported by one flat is frequently a problem in the shared stack affecting several. Getting access to the right flats first time is usually the difference between fixing it and returning twice.',
+        body: 'When one flat reports a blockage, quite often the real problem sits in the shared stack and is affecting several flats at once, not just the one that called it in. The whole job usually comes down to getting access to the right flats on the first visit — miss one and you are booking a second trip for what should have been sorted the first time.',
       },
       {
         title: 'Backed by a property firm',
@@ -748,7 +748,7 @@ export const services: Service[] = [
       },
       {
         q: 'Which number should I use?',
-        a: 'For a one-off repair, the booking line is fastest. For anything ongoing, commercial or account-related, use the management line.',
+        a: 'The booking line is quickest for a one-off repair. Anything ongoing, commercial or tied to an account is better routed through the management line, where it reaches someone who can actually agree terms.',
       },
     ],
   },
@@ -757,16 +757,16 @@ export const services: Service[] = [
     slug: 'gas-safety-certificate',
     title: 'Gas Safety Certificates',
     h1: 'Gas safety certificates (CP12) in London',
-    metaTitle: 'Gas Safety Certificate London | CP12 | Ninja Plumbers',
+    metaTitle: 'Landlord Gas Safety Certificate (CP12) London | Ninja Plumbers',
     metaDescription:
-      'Gas safety certificates (CP12) for landlords and homeowners across London, issued by Gas Safe registered engineers. Same-week appointments. Call 020 3488 3737.',
+      'CP12 gas safety certificates for London landlords and homeowners, issued by Gas Safe registered engineers with same-week appointments. Call 020 3576 5825.',
     eyebrow: 'CP12',
     icon: 'general',
     target: 'gas safety certificate (9,900/mo) · landlord gas safety certificate (varies by area)',
     summary:
       'Landlord gas safety certificates issued by a Gas Safe registered engineer, with the paperwork sent the same day.',
     intro:
-      'A gas safety certificate — still widely called a CP12, though that is the old form number — is a legal requirement for landlords in England and Wales, renewed every twelve months. Our Gas Safe registered engineers check every gas appliance, flue and piece of pipework in the property and issue the certificate on the spot.',
+      'Most people still call it a CP12, going back to the old form number, but the correct name now is simply a gas safety certificate. Whatever you call it, landlords in England and Wales are legally required to renew one every twelve months. Ninja Plumbers sends a Gas Safe registered engineer to check every appliance, flue and section of pipework in the property, and the certificate is issued there and then, on the day.',
     does: [
       'Landlord gas safety certificates (CP12), annual renewal',
       'Checks on boilers, gas fires, hobs and any other gas appliance',
@@ -790,7 +790,7 @@ export const services: Service[] = [
       },
       {
         title: 'Tenants must get a copy within 28 days',
-        body: 'Landlords are required to give tenants a copy of the current certificate within 28 days of the check, and to new tenants before they move in. We email it the same day specifically so this is never the thing that slips.',
+        body: 'The rule is 28 days from the check for an existing tenant, and before move-in day for a new one — landlords are required to hand over a copy of the current certificate either way. Emailing it out the same day, as standard, is exactly why this is not the thing that slips through the cracks at renewal time.',
       },
     ],
     aside: {
@@ -808,7 +808,7 @@ export const services: Service[] = [
       },
       {
         q: 'Do I need one as a homeowner, not a landlord?',
-        a: 'It is a legal requirement for landlords specifically. As a homeowner it is not mandatory, but an annual check is still a sound idea, particularly before winter.',
+        a: 'The legal requirement applies specifically to landlords. It is not compulsory if you own and live in the property yourself, though an annual check is still a sensible habit, especially going into winter when the boiler is working hardest.',
       },
       {
         q: 'Can you do several properties in a portfolio on the same visit?',
@@ -821,16 +821,16 @@ export const services: Service[] = [
     slug: 'cctv-drain-survey',
     title: 'CCTV Drain Surveys',
     h1: 'CCTV drain surveys in London',
-    metaTitle: 'CCTV Drain Survey London | Drain Camera Inspection | Ninja Plumbers',
+    metaTitle: 'CCTV Drain Survey London | Camera Inspection | Ninja Plumbers',
     metaDescription:
-      'CCTV drain surveys across London: camera inspection, recorded footage and a written report for house purchases, insurance claims and recurring blockages. Call 020 3488 3737.',
+      'London CCTV drain surveys with recorded footage and a written report — for house purchases, insurance claims and drains that keep blocking. 020 3576 5825.',
     eyebrow: 'Diagnostics',
     icon: 'drain',
     target: 'cctv drain survey (2,900/mo)',
     summary:
       'A camera down the drain shows what is actually wrong, rather than guessing from what keeps happening above ground.',
     intro:
-      'A drain that blocks repeatedly, a smell that will not go away, or a survey requirement before buying a house — all the same answer. A waterproof camera goes down the line and shows the actual condition of the pipe: a collapse, root ingress, a misaligned joint, or nothing at all. You get the footage and a written report either way.',
+      'A drain that blocks over and over. A smell around the garden that will not shift. A solicitor asking for a survey before a house purchase completes. Three different reasons for the same answer: a waterproof camera goes down the line and shows exactly what state the pipe is in — a collapse, roots growing in, a joint that has shifted out of line, or nothing at all. Either way, Ninja Plumbers hands you the footage and a written report to go with it.',
     does: [
       'CCTV camera inspection of drains and sewers',
       'Recorded footage and a written report',
@@ -850,7 +850,7 @@ export const services: Service[] = [
       },
       {
         title: 'Pre-purchase surveys are worth commissioning yourself',
-        body: 'A seller’s own drain survey is not always independent. Commissioning your own, particularly on a period property with clay drains, is a small cost against the risk of a collapsed run discovered after completion.',
+        body: 'A survey the seller commissioned is not necessarily one you can rely on as independent. Getting your own done, particularly on a period property with old clay drains, is a small outlay next to the risk of finding a collapsed run only after you have already completed on the purchase.',
       },
       {
         title: 'The report is what an insurer or solicitor actually wants',
@@ -872,7 +872,7 @@ export const services: Service[] = [
       },
       {
         q: 'Will I get to see the footage?',
-        a: 'Yes, the recording and the written report both come with the survey, not as a paid extra.',
+        a: 'You will — the recording and the written report are both part of the survey itself, not something billed separately afterwards.',
       },
       {
         q: 'What if the survey finds a serious problem?',
@@ -887,14 +887,14 @@ export const services: Service[] = [
     h1: 'Drain repairs in London',
     metaTitle: 'Drain Repairs London | Excavation & No-Dig Relining | Ninja Plumbers',
     metaDescription:
-      'Drain repairs across London: collapsed pipes, root damage and cracked joints fixed by excavation or no-dig relining. Call 020 3488 3737.',
+      'Collapsed, cracked or root-damaged drains repaired across London by excavation or no-dig relining, confirmed by camera first. Ninja Plumbers 020 3576 5825.',
     eyebrow: 'Repairs',
     icon: 'drain',
     target: 'drain repair (1,900/mo)',
     summary:
       'A drain that is actually broken, not just blocked — repaired by digging it up or, where the run allows, without digging at all.',
     intro:
-      'Unblocking clears what is stuck in a drain that still works. A drain repair is for one that is physically damaged — collapsed, cracked, root-split or badly misaligned — found and confirmed by a camera survey first. Depending on the fault and the run, that means excavation or a no-dig lining that goes in through the existing pipe.',
+      'There is a real difference between a drain that is blocked and a drain that is broken. Unblocking clears whatever is stuck inside a pipe that still works fine. A repair is for a pipe that is physically damaged — collapsed, cracked, split by roots, or knocked out of alignment — and we confirm which one we are dealing with using a camera survey before quoting anything. From there it is either excavation, or, where the run allows for it, a no-dig lining fed in through the existing pipe.',
     does: [
       'Excavation and replacement of collapsed or badly damaged drains',
       'No-dig relining for cracks and root damage where the run allows it',
@@ -914,7 +914,7 @@ export const services: Service[] = [
       },
       {
         title: 'A shared drain may not be entirely your responsibility',
-        body: 'For a drain shared with a neighbouring property, the water company is often responsible for the shared section under the Water Industry Act. We will tell you where that boundary sits before you pay for a repair that was never yours to fund.',
+        body: 'If a drain is shared with next door, responsibility for the shared section often sits with the water company under the Water Industry Act — not with either homeowner. Ninja Plumbers works out where that boundary actually falls before you end up paying for a repair that was never yours to fund in the first place.',
       },
       {
         title: 'Reinstatement is part of the job, not an afterthought',
@@ -932,7 +932,7 @@ export const services: Service[] = [
       },
       {
         q: 'Will you need to dig up my garden or driveway?',
-        a: 'Only if the damage cannot be relined. Where relining is possible, nothing above ground needs to be disturbed at all.',
+        a: 'Only where the damage rules out relining as an option. If relining will work, nothing above ground gets touched at all.',
       },
       {
         q: 'Is a shared drain the water company’s responsibility?',
@@ -949,16 +949,16 @@ export const services: Service[] = [
     slug: 'wet-rooms-and-walk-in-showers',
     title: 'Wet Rooms & Walk-In Showers',
     h1: 'Wet room and walk-in shower installation in London',
-    metaTitle: 'Wet Room & Walk-In Shower Installation London | Ninja Plumbers',
+    metaTitle: 'Wet Room & Walk-In Shower Fitters London | Ninja Plumbers',
     metaDescription:
-      'Wet rooms and walk-in showers installed across London: tanking, level-access floors and drainage done properly. Call 020 3488 3737.',
+      'Level-access wet rooms and walk-in showers built across London, with the tanking and floor falls done properly. Book Ninja Plumbers on 020 3576 5825.',
     eyebrow: 'Level access',
     icon: 'bathroom',
     target: 'wet room installation (720/mo) · walk in shower installation (480/mo)',
     summary:
       'Level-access showers and full wet rooms, with the tanking and falls that decide whether it leaks in five years or never.',
     intro:
-      'A wet room or a walk-in shower looks like a simple job from the outside — no tray, no enclosure, just a floor that drains. What actually makes it work is underneath: waterproof tanking taken up the walls, a floor built to a fall towards the drain, and a gully sized for the flow. Get that wrong and the leak shows up two floors down, long after the tiler has gone.',
+      'From the outside a wet room looks deceptively simple — no tray, no enclosure, just a floor that happens to drain. Everything that actually matters is hidden underneath: tanking membrane taken up the walls, a floor formed with a proper fall to the drain, and a gully big enough for the water hitting it. Skip any of that and the leak does not show up in the room itself — it shows up two floors down, well after the tiler has packed up and left.',
     does: [
       'Full wet room conversions, tanked and floor-formed',
       'Walk-in and level-access showers without a full wet room',
@@ -978,7 +978,7 @@ export const services: Service[] = [
       },
       {
         title: 'Flats need the freeholder involved',
-        body: 'A wet room floor build-up and drainage change in a leasehold flat often needs the freeholder’s consent, and sometimes affects the flat below’s ceiling void. Worth raising early rather than after the floor is already open.',
+        body: 'Changing the floor build-up and drainage of a flat for a wet room often needs sign-off from the freeholder, and can affect the ceiling void of the flat below too. Ninja Plumbers raises this with you before the floor is opened up, not once it already has been.',
       },
       {
         title: 'A walk-in shower is not automatically a wet room',
@@ -1000,7 +1000,7 @@ export const services: Service[] = [
       },
       {
         q: 'How long does a full wet room take?',
-        a: 'Typically one to two weeks depending on the extent of floor forming and finishing, longer than a standard bathroom refit because of the drying time tanking needs at each stage.',
+        a: 'Somewhere between one and two weeks as a rule, depending on how much floor forming and finishing is needed. It runs longer than a standard bathroom refit because the tanking needs proper drying time between stages, and rushing that is exactly how you get a leak later.',
       },
       {
         q: 'Will it smell or let damp through eventually?',
@@ -1013,16 +1013,16 @@ export const services: Service[] = [
     slug: 'air-conditioning-repair',
     title: 'Air Conditioning Repair',
     h1: 'Air conditioning repair in London',
-    metaTitle: 'Air Conditioning Repair London | F-Gas Registered | Ninja Plumbers',
+    metaTitle: 'Air Conditioning Repair London | F-Gas Engineers | Ninja Plumbers',
     metaDescription:
-      'Air conditioning repair across London: units not cooling, leaking indoors, tripping breakers or showing a fault code. Diagnosed by F-Gas registered engineers. Call 020 3488 3737.',
+      'London air conditioning repairs for units not cooling, leaking indoors or tripping the breaker — diagnosed by F-Gas engineers. Call 020 3576 5825.',
     eyebrow: 'Cooling',
     icon: 'ac',
     target: 'air conditioning repair london (480/mo) · air conditioning repair (6,600/mo)',
     summary:
       'A system that has stopped cooling, is leaking indoors, or is tripping the breaker — diagnosed before anything is quoted.',
     intro:
-      'An air conditioning unit that has stopped cooling, is dripping water indoors, or trips the electrics as soon as it starts is rarely obvious from the outside. We diagnose the actual fault — refrigerant, drainage, electrics or the unit itself — before pricing the repair, so you are not paying for a guess.',
+      'A unit that has simply stopped cooling. One that is dripping water onto the carpet. One that trips the electrics the moment it switches on. Whatever the symptom, the actual cause is rarely obvious just by looking at the box on the wall — it could be the refrigerant, the drainage, the electrics or the unit itself. Ninja Plumbers finds the real fault first, then prices the repair, so you are never paying for a guess.',
     does: [
       'Units not cooling, or barely cooling',
       'Indoor unit leaking or dripping water',
@@ -1038,7 +1038,7 @@ export const services: Service[] = [
       },
       {
         title: 'Water indoors is usually drainage, not a leak',
-        body: 'Water dripping from an indoor unit is almost always a blocked or poorly fallen condensate drain rather than the refrigerant system itself. It is a straightforward fix once found, but left alone it can mark a ceiling or a wall the same way a plumbing leak would.',
+        body: 'When an indoor unit is dripping, the refrigerant system is rarely to blame — nine times out of ten it is a condensate drain that has blocked or was never given enough fall. Once we find it, the fix is straightforward, but ignored for long enough it will mark a ceiling or a wall just as badly as any ordinary plumbing leak would.',
       },
       {
         title: 'A unit that trips the breaker should not be reset repeatedly',
@@ -1060,7 +1060,7 @@ export const services: Service[] = [
       },
       {
         q: 'Why is my indoor unit leaking water?',
-        a: 'Almost always a blocked or badly fallen condensate drain rather than the refrigerant system. It is usually a quick fix once we can see the actual drain run.',
+        a: 'Nearly always the condensate drain — either blocked or not falling correctly — rather than anything to do with the refrigerant. Once we can actually see the drain run, it is usually a quick job to put right.',
       },
       {
         q: 'Can you repair a system you did not install?',
@@ -1076,16 +1076,16 @@ export const services: Service[] = [
     slug: 'air-conditioning-maintenance',
     title: 'Air Conditioning Maintenance',
     h1: 'Air conditioning maintenance in London',
-    metaTitle: 'Air Conditioning Maintenance London | Annual Servicing | Ninja Plumbers',
+    metaTitle: 'Air Conditioning Maintenance London | F-Gas Checks | Ninja Plumbers',
     metaDescription:
-      'Annual air conditioning maintenance across London: filters, refrigerant and F-Gas leak checks by F-Gas registered engineers. Call 020 3488 3737.',
+      'Keep your London air conditioning running efficiently — annual filter, refrigerant and F-Gas leak checks by F-Gas registered engineers. 020 3576 5825.',
     eyebrow: 'Cooling',
     icon: 'ac',
     target: 'air conditioning maintenance london (480/mo) · air conditioning servicing london (210/mo)',
     summary:
       'Annual maintenance that keeps a system cooling efficiently and catches a refrigerant leak before it becomes a breakdown.',
     intro:
-      'A system that is never serviced runs harder than it needs to and fails sooner than it should. Annual maintenance covers the filters, the drainage, the electrics and — because it is a legal requirement above a certain refrigerant charge — an F-Gas leak check, carried out by F-Gas registered engineers.',
+      'Skip servicing altogether and a system works harder than it should to do the same job, and fails sooner than it needs to. An annual visit from Ninja Plumbers covers the filters, the drainage and the electrics, plus the F-Gas leak check that the law requires above a certain refrigerant charge — carried out, as it must be, by F-Gas registered engineers.',
     does: [
       'Filters cleaned or replaced',
       'Condensate drain checked and cleared',
@@ -1101,7 +1101,7 @@ export const services: Service[] = [
       },
       {
         title: 'A dirty filter is the most common reason for weak cooling',
-        body: 'A filter clogged with dust makes the whole system work harder for less cooling, and is the single easiest thing maintenance catches. Simple to fix, and it is usually why a system that used to cool a room properly no longer quite manages it.',
+        body: 'A filter that has quietly clogged up with dust forces the whole system to work harder for a worse result — it is the single most common thing a maintenance visit catches, and the easiest to put right. Nine times out of ten, it explains why a system that used to cool a room properly no longer seems to manage it.',
       },
       {
         title: 'Once a year, before the weather asks anything of it',
@@ -1127,7 +1127,7 @@ export const services: Service[] = [
       },
       {
         q: 'Will maintenance stop my system from breaking down?',
-        a: 'It catches most of the common causes — a clogged filter, a slow refrigerant leak, a blocked drain — before they become a breakdown, though it cannot guarantee against every fault.',
+        a: 'It picks up the usual suspects before they turn into a full breakdown — a clogged filter, a slow refrigerant leak, a drain that has started to block — though no amount of servicing can promise a system will never develop a fault.',
       },
       {
         q: 'Can you maintain a system installed by someone else?',
@@ -1139,16 +1139,16 @@ export const services: Service[] = [
     slug: 'air-conditioning-installation',
     title: 'Air Conditioning Installation',
     h1: 'Air conditioning installation in London',
-    metaTitle: 'Air Conditioning Installation London | F-Gas Registered | Ninja Plumbers',
+    metaTitle: 'Air Conditioning Installation London | Split Systems | Ninja Plumbers',
     metaDescription:
-      'Air conditioning installation across London: split and multi-split systems, fitted by F-Gas registered engineers. Call 020 3488 3737.',
+      'Split and multi-split air conditioning installed across London, sized and sited properly by F-Gas registered engineers. Call Ninja Plumbers 020 3576 5825.',
     eyebrow: 'Cooling',
     icon: 'ac',
     target: 'air conditioning installation london (1,300/mo) · air con installation (1,900/mo)',
     summary:
       'Split and multi-split air conditioning, sized and sited properly, fitted by F-Gas registered engineers.',
     intro:
-      'A split system cools one room, a multi-split runs several indoor units off one outdoor condenser — the right choice depends on how many rooms, where the outdoor unit can go, and what the walls and cabling will allow. Refrigerant work is handled by F-Gas registered engineers, as the law requires, not left as an assumption.',
+      'One room needs a split system; several rooms can often share a multi-split running off a single outdoor condenser. Which one suits a property depends on how many rooms need cooling, where the outdoor unit can realistically sit, and what the walls and existing cabling will allow. And because refrigerant work is legally restricted, it is always F-Gas registered engineers handling that part — never left to chance.',
     does: [
       'Split system installation, room by room',
       'Multi-split systems for several rooms off one outdoor unit',
@@ -1164,7 +1164,7 @@ export const services: Service[] = [
       },
       {
         title: 'Where the outdoor unit goes is usually the real decision',
-        body: 'It needs airflow around it, a sensible route for the pipework and drain back inside, and in a flat or a conservation area it may need the freeholder’s or the council’s consent. Worth checking before the indoor unit is chosen.',
+        body: 'The outdoor unit needs clear airflow around it and a sensible route for the pipework and drain to get back inside. In a flat or a conservation area, that spot may also need consent from the freeholder or the council before Ninja Plumbers can fit anything — worth confirming before you have even chosen the indoor unit.',
       },
       {
         title: 'Condensate has to go somewhere planned',
@@ -1186,7 +1186,7 @@ export const services: Service[] = [
       },
       {
         q: 'How many rooms can one outdoor unit cool?',
-        a: 'A multi-split typically runs two to five indoor units off one outdoor condenser, depending on the make and the combined capacity needed. We size it to the rooms rather than fit whatever is on the van.',
+        a: 'As a rule of thumb, a multi-split runs anywhere from two to five indoor units off a single outdoor condenser, depending on the make and how much combined capacity the rooms need. We size the system to match the rooms, not to whatever happens to be sitting on the van that day.',
       },
       {
         q: 'Is the installation certified?',
@@ -1202,16 +1202,16 @@ export const services: Service[] = [
     slug: 'air-conditioning-replacement',
     title: 'Air Conditioning Replacement',
     h1: 'Air conditioning replacement in London',
-    metaTitle: 'Air Conditioning Replacement London | F-Gas Registered | Ninja Plumbers',
+    metaTitle: 'Air Conditioning Replacement London | Ninja Plumbers',
     metaDescription:
-      'Replacing an old or failing air conditioning system across London. Honest advice on repair versus replacement, old refrigerant systems assessed. Call 020 3488 3737.',
+      'Old or unreliable air conditioning replaced across London by F-Gas registered engineers, with honest repair-or-replace advice on every job. 020 3576 5825.',
     eyebrow: 'Cooling',
     icon: 'ac',
     target: 'air conditioning replacement (1,000/mo) · air conditioning unit replacement (210/mo)',
     summary:
       'Replacing a system that has reached the end — including old units still running a refrigerant that can no longer be topped up.',
     intro:
-      'Replacing an air conditioning system that is old, unreliable, or running a refrigerant that is no longer supported. The first question is the same one we ask about a boiler: does it actually need replacing, or would a repair do the job for less. We will tell you which, even when replacement is the bigger job.',
+      'A system that is old, unreliable, or running a refrigerant nobody supplies any more eventually needs replacing. Before that, though, comes the same question Ninja Plumbers asks about a failing boiler: does it genuinely need replacing, or would a repair do the job for a lot less money? We will give you a straight answer either way, even on the occasions that means talking you out of the bigger job.',
     does: [
       'Replacing an old or failed system',
       'Repair-versus-replace assessment, with both figures',
@@ -1231,7 +1231,7 @@ export const services: Service[] = [
       },
       {
         title: 'A replacement is the chance to correct the original sizing',
-        body: 'If a system has never quite cooled the room properly, or a single split has become inadequate as the space changed, a replacement is the point to size it properly or move to a multi-split — not to fit the same undersized unit again.',
+        body: 'A system that has never quite kept a room cool, or a single split that stopped being enough once the space changed, does not have to be replaced with the same mistake. This is the point to size it properly, or move up to a multi-split, rather than fitting another undersized unit and living with the same problem for another decade.',
       },
       {
         title: 'The outdoor unit and pipework may not need full replacement',
@@ -1253,7 +1253,7 @@ export const services: Service[] = [
       },
       {
         q: 'Can I upgrade to a bigger or multi-split system when I replace?',
-        a: 'Yes, and replacement is the natural point to do it — particularly if the existing system has never quite kept up with the room, or you want to add more rooms onto one outdoor unit.',
+        a: 'You can, and replacement is the sensible moment to do it — especially where the existing system has never really kept up with the room, or you want extra rooms brought onto one outdoor unit. Ask Ninja Plumbers to size it properly rather than matching what was there before.',
       },
       {
         q: 'Do you remove the old unit?',

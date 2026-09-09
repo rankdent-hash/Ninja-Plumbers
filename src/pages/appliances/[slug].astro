@@ -83,7 +83,7 @@ const serviceSchema = {
     <div class="container service-row">
       <div class="service-copy">
         <span class="eyebrow">What we cover</span>
-        <h2>What this includes</h2>
+        <h2>What's included</h2>
         <ul class="ticks">
           {appliance.does.map((d) => <li><Tick /> {d}</li>)}
         </ul>
@@ -103,7 +103,7 @@ const serviceSchema = {
     <div class="container">
       <span class="eyebrow">Before you call</span>
       <h2>Worth knowing first</h2>
-      <p class="measure">Some of this may save you a callout entirely. We would rather tell you than not.</p>
+      <p class="measure">A bit of this might save you from needing a callout at all — we'd rather you knew it upfront.</p>
       <div class="guidance">
         {appliance.guidance.map((g) => (
           <div class="guidance-item">
@@ -135,7 +135,7 @@ const serviceSchema = {
       <span class="eyebrow">Related work</span>
       <h2>Part of our {group.label.toLowerCase()} work</h2>
       <p class="measure">
-        If the job turns out to be a repair rather than an installation, these are the pages that cover it.
+        If it turns out to be a repair job rather than a new install, this is where that's covered.
       </p>
       <ul class="grid grid-3 card-grid">
         {related.map((s) => (
@@ -182,7 +182,7 @@ const serviceSchema = {
   <section class="section section-navy">
     <div class="container center measure-wide">
       <h2>Need {appliance.title.toLowerCase()} in London?</h2>
-      <p>Tell us what&rsquo;s happening and where you are, and we&rsquo;ll tell you what it costs before anyone starts work.</p>
+      <p>Let us know what&rsquo;s going on and whereabouts you are, and we&rsquo;ll give you a price before any work starts.</p>
       <div class="cta-row center-row">
         <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">
           <PhoneIcon /> Call {site.booking.display}

@@ -46,10 +46,10 @@ const crumbs = [
 // Matches the visible FAQ on the page, in the same order.
 const pageFaqs = [
   { q: `Do you cover ${area.name}?`,
-    a: `Yes. We cover ${area.name} and the ${area.postcodes.join(', ')} postcodes, as part of ${area.borough}. Our office is in Fulham and our engineers work out across Greater London from there.` },
+    a: `We do. ${area.name} falls within ${area.borough}, covering the ${area.postcodes.join(', ')} postcodes, and our engineers are out across Greater London from our Fulham office every day.` },
   ...(detail ? [detail.faq] : []),
   { q: 'What does it cost?',
-    a: 'You get a price for the work before an engineer starts. If something behind the wall changes the job, we stop and talk to you rather than press on and bill for it afterwards.' },
+    a: 'You will have a price for the work before an engineer starts. If something behind the wall changes the scope, we pause and talk it through with you rather than carrying on and billing you afterwards.' },
 ];
 const h1 = `${label} in ${area.name}`;
 
@@ -109,7 +109,7 @@ const schema = {
   <section class="section">
     <div class="container measure-wide">
       <div class="service-copy">
-        <span class="eyebrow">What we see here</span>
+        <span class="eyebrow">Locally, this is what comes up</span>
         <h2>{label} in {area.name}</h2>
         {detail && (
           <ul class="ticks">
@@ -132,7 +132,7 @@ const schema = {
         <p>
           <strong>{area.name === area.borough
             ? `We cover ${area.name},`
-            : `${area.name} is in the London Borough of ${area.borough},`}</strong> across {area.postcodes.join(', ')}. The housing stock here shapes what goes wrong:
+            : `${area.name} is in the London Borough of ${area.borough},`}</strong> across {area.postcodes.join(', ')}. What kind of buildings are around here tends to decide what goes wrong:
           <a href={`/areas/${area.slug}`} class="inline-link">read more about plumbing in {area.name} &rarr;</a>
         </p>
       </div>
@@ -146,7 +146,7 @@ const schema = {
       <div class="faqs">
         <details class="faq">
           <summary>Do you cover {area.name}?</summary>
-          <p>Yes. We cover {area.name} and the {area.postcodes.join(', ')} postcodes, as part of {area.borough}. Our office is in Fulham and our engineers work out across Greater London from there.</p>
+          <p>We do. {area.name} falls within {area.borough}, covering the {area.postcodes.join(', ')} postcodes, and our engineers are out across Greater London from our Fulham office every day.</p>
         </details>
         {detail && (
           <details class="faq">
@@ -156,7 +156,7 @@ const schema = {
         )}
         <details class="faq">
           <summary>What does it cost?</summary>
-          <p>You get a price for the work before an engineer starts. If something behind the wall changes the job, we stop and talk to you rather than press on and bill for it afterwards.</p>
+          <p>You will have a price for the work before an engineer starts. If something behind the wall changes the scope, we pause and talk it through with you rather than carrying on and billing you afterwards.</p>
         </details>
         <p class="faq-more">
           <a href={`/services/${service.slug}`} class="inline-link">More questions about {service.title.replace('&amp;', 'and').toLowerCase()} &rarr;</a>
@@ -170,7 +170,7 @@ const schema = {
       {sameArea.length > 0 && (
         <>
           <span class="eyebrow">Also in {area.name}</span>
-          <h2>Other work we do here</h2>
+          <h2>Other jobs we cover nearby</h2>
           <ul class="grid grid-3 card-grid">
             {sameArea.map((c) => {
               const s = services.find((x) => x.slug === c.service)!;
@@ -205,7 +205,7 @@ const schema = {
   <section class="section section-navy">
     <div class="container center measure-wide">
       <h2>{label} in {area.name}</h2>
-      <p>Tell us your postcode and what&rsquo;s happening, and we&rsquo;ll tell you what it costs before anyone starts work.</p>
+      <p>Give us your postcode and a quick description of the problem, and we&rsquo;ll tell you what it costs before anyone sets foot on site.</p>
       <div class="cta-row center-row">
         <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">
           <PhoneIcon /> Call {site.booking.display}

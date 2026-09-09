@@ -76,10 +76,10 @@ const schema = {
     intro={area.intro}
     breadcrumb={crumbs}
     bullets={[
-      'Gas Safe registered and fully insured',
-      'DBS-checked engineers',
-      'Emergency callout available 24/7',
-      'Price agreed before work starts',
+      'Gas Safe registered, fully insured',
+      'Engineers are DBS-checked',
+      'Emergency callouts, day or night',
+      'You get a price before we start',
     ]}
     formHeading={`Get a plumber in ${area.name}`}
   />
@@ -87,13 +87,13 @@ const schema = {
   <section class="section">
     <div class="container service-row">
       <div class="service-copy">
-        <span class="eyebrow">Local knowledge</span>
+        <span class="eyebrow">Know the area</span>
         <h2>Plumbing in {area.name}</h2>
         <p class="lead">{area.character}</p>
         {area.note && <p class="area-note">{area.note}</p>}
       </div>
       <aside class="service-aside">
-        <h3>What comes up locally</h3>
+        <h3>Common local jobs</h3>
         <ul class="ticks">
           {area.common.map((c) => <li><Tick /> {c}</li>)}
         </ul>
@@ -103,8 +103,8 @@ const schema = {
 
   <section class="section section-alt">
     <div class="container">
-      <span class="eyebrow">What we do here</span>
-      <h2>Services across {area.name}</h2>
+      <span class="eyebrow">Our services</span>
+      <h2>What we cover in {area.name}</h2>
       <ul class="grid grid-3 card-grid">
         {services.map((s) => (
           <li class="card">
@@ -123,9 +123,9 @@ const schema = {
       from {area.name} without 14 more near-duplicate URLs. */}
   <section class="section">
     <div class="container">
-      <span class="eyebrow">Also fitted here</span>
+      <span class="eyebrow">Fitting and replacement</span>
       <h2>Appliances &amp; fixtures in {area.name}</h2>
-      <p class="measure">Softeners, pumps, taps and the rest — each with its own page on what is involved.</p>
+      <p class="measure">We also fit softeners, pumps, taps and similar — each one has its own page explaining what the job involves.</p>
       <ul class="combo-links">
         {appliances.map((a) => (
           <li><a href={`/appliances/${a.slug}`}>{a.title}</a></li>
@@ -138,8 +138,8 @@ const schema = {
   {localPages.length > 0 && (
     <section class="section">
       <div class="container">
-        <span class="eyebrow">Local pages</span>
-        <h2>What we get called out for in {area.name}</h2>
+        <span class="eyebrow">By the job</span>
+        <h2>Common callouts in {area.name}</h2>
         <ul class="combo-links">
           {localPages.map((c) => (
             <li><a href={`/services/${c.service}/${c.area}`}>{HEADING[c.service]} in {area.name}</a></li>
@@ -153,16 +153,16 @@ const schema = {
     <div class="container">
       <div class="coverage-split">
         <div class="check-area">
-          <h2>Postcodes we cover here</h2>
+          <h2>Postcodes covered</h2>
           <ul class="postcode-chips">
             {area.postcodes.map((p) => (
               <li>{hasDistrict(p) ? <a href={`/postcodes/${p.toLowerCase()}`}>{p}</a> : p}</li>
             ))}
           </ul>
           <p class="small">
-            {area.name} sits in the London Borough of {area.borough}. Postcode boundaries and
-            borough boundaries do not line up neatly, so if yours is not listed, call and ask
-            &mdash; we&rsquo;ll tell you either way.
+            {area.name} falls within the London Borough of {area.borough}. Postcode lines and
+            borough lines rarely match up exactly, so if your postcode is not shown, give us a
+            call and we&rsquo;ll confirm whether we cover it.
           </p>
           <div class="cta-row">
             <a href={`tel:${site.booking.tel}`} class="btn btn-orange">
@@ -173,8 +173,8 @@ const schema = {
 
         {nearby.length > 0 && (
           <div class="check-area">
-            <h2>Nearby areas</h2>
-            <p class="small">We cover the whole of Greater London. These are the areas next to {area.name}:</p>
+            <h2>Areas close by</h2>
+            <p class="small">We work right across Greater London. Here is what borders {area.name}:</p>
             <ul class="nearby-list">
               {nearby.map((n) => (
                 <li>
@@ -194,8 +194,8 @@ const schema = {
 
   <section class="section section-navy">
     <div class="container center measure-wide">
-      <h2>Need a plumber in {area.name}?</h2>
-      <p>Tell us what&rsquo;s happening and your postcode, and we&rsquo;ll tell you what it costs before anyone starts work.</p>
+      <h2>Looking for a plumber in {area.name}?</h2>
+      <p>Let us know what&rsquo;s wrong and your postcode. We&rsquo;ll give you a price before anyone picks up a tool.</p>
       <div class="cta-row center-row">
         <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">
           <PhoneIcon /> Call {site.booking.display}

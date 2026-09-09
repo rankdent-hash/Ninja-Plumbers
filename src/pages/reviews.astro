@@ -5,14 +5,14 @@ import ReviewsCarousel from '../components/ReviewsCarousel.astro';
 import site from '../data/site.json';
 ---
 <Base
-  title="Reviews | Ninja Plumbers London"
-  description="Customer reviews for Ninja Plumbers, London, from Google — each one tied to a real completed job."
+  title="Customer Reviews | Ninja Plumbers London"
+  description="Read what London customers say about Ninja Plumbers on Google — every review is tied to a real, completed job."
 >
 
 <HeroWithForm
   eyebrow="Reviews"
   h1="Customer reviews"
-  intro="Pulled from Google, each one tied to a job we actually did. The record is still growing — this is what's been added so far, not the whole of it."
+  intro="These come straight from Google, and every one is tied to a job Ninja Plumbers actually did. It's a growing list rather than the finished picture, so treat it as what's been added so far."
   breadcrumb={[{ label: 'Home', href: '/' }, { label: 'Reviews' }]}
   bullets={[
     'Gas Safe registered and fully insured',
@@ -28,11 +28,11 @@ import site from '../data/site.json';
 <section class="section">
   <div class="container narrow">
     <h2>About these reviews</h2>
-    <p>Every review here is copied across from our own Google listing, unedited beyond the reviewer's own text and star rating. Nothing is written or invented for this page &mdash; if it isn&rsquo;t a real review we can point back to, it doesn&rsquo;t go up.</p>
-    <p>The record is added to by hand as new reviews come in, so what you see above is a growing selection rather than the complete history &mdash; the full picture is on our Google listing directly.</p>
+    <p>Nothing on this page is written for it. Each review comes straight across from our Google listing, with only the reviewer's own words and star rating shown &mdash; if we can't point back to a real one, it stays off the page.</p>
+    <p>New reviews get added by hand as they arrive, which is why this is a growing selection rather than a finished archive. For the complete history, our Google listing is the place to look.</p>
 
     <h2 style="margin-top:44px;">Had a job done by us?</h2>
-    <p>Feedback is useful either way. If something wasn&rsquo;t right, we&rsquo;d far rather hear it from you directly and put it straight.</p>
+    <p>Good or bad, we want to hear it. Something wasn&rsquo;t right? We&rsquo;d much rather you told Ninja Plumbers directly so we can put it straight.</p>
     <ul class="plain-list">
       <li><strong>Call the office</strong> &mdash; <a href={`tel:${site.booking.tel}`}>{site.booking.display}</a>, {site.hours.office}</li>
       <li><strong>WhatsApp</strong> &mdash; <a href={site.whatsapp.url}>{site.whatsapp.display}</a></li>

@@ -21,15 +21,15 @@ const featured = ['emergency-plumbing', 'boiler-repair', 'drain-unblocking',
 const topAreas = [...areas].sort((a, b) => b.volume - a.volume).slice(0, 10);
 ---
 <Base
-  title="Ninja Plumbers | Plumbing, Heating &amp; Drainage Across London"
-  description={`Emergency plumbing, boiler repair, drain unblocking and bathroom installation across London. Gas Safe registered and fully insured. Call ${site.booking.display}.`}
+  title="London Plumbers | Ninja Plumbers — Plumbing, Heating &amp; Drainage"
+  description={`London plumbers for emergencies, boiler repair, blocked drains and bathroom fits. Gas Safe registered, fully insured. Call ${site.booking.display}.`}
   schema
 >
 
 <HeroWithForm
   eyebrow="Emergency callout available 24/7"
   h1="London plumbers who turn up, price the job first, and fix it properly"
-  intro="Emergency plumbing, boiler repairs, blocked drains and full bathroom fits — for homes and commercial premises across London. On call when it can't wait until morning."
+  intro="From a boiler that's died overnight to a full bathroom refit — Ninja Plumbers handles it for homes and businesses across London. If it can't wait until morning, neither do we."
   formHeading="Send us the job"
 />
 
@@ -41,7 +41,7 @@ const topAreas = [...areas].sort((a, b) => b.volume - a.volume).slice(0, 10);
     <div class="section-head">
       <span class="eyebrow">What we do</span>
       <h2>Plumbing, heating and drainage &mdash; the whole job</h2>
-      <p class="lead measure">One team for the dripping tap and the full bathroom strip-out. Everything here is work our own engineers carry out.</p>
+      <p class="lead measure">A dripping tap or a full bathroom strip-out — it's the same team either way, and every job listed here is carried out by our own engineers, not a sub-contractor.</p>
     </div>
 
     <ul class="grid grid-3 card-grid">
@@ -68,7 +68,7 @@ const topAreas = [...areas].sort((a, b) => b.volume - a.volume).slice(0, 10);
       <div class="split-panel">
         <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><path d="M9 21v-7h6v7"/></svg></div>
         <h3>For your home</h3>
-        <p>Homeowners, tenants and landlords across London. Kitchens and bathrooms, toilets and basins, radiators and boilers, and the burst pipe at eleven at night.</p>
+        <p>We work for homeowners, tenants and landlords right across London — kitchens, bathrooms, toilets and basins, radiators and boilers, and yes, the burst pipe at eleven at night.</p>
         <ul class="ticks">
           <li><Tick /> Emergency repairs, day or night</li>
           <li><Tick /> Boiler servicing and replacement</li>
@@ -101,11 +101,11 @@ const topAreas = [...areas].sort((a, b) => b.volume - a.volume).slice(0, 10);
     <ol class="steps">
       <li class="step">
         <h3>Tell us what&rsquo;s wrong</h3>
-        <p>Call the booking line or send a photo on WhatsApp. The more we know before we set off, the more likely we arrive with the right parts.</p>
+        <p>Ring the booking line or send a photo over WhatsApp. Knowing what we're dealing with before the van sets off means a better chance of showing up with the right parts first time.</p>
       </li>
       <li class="step">
         <h3>We agree the price first</h3>
-        <p>You get a price for the work before an engineer starts. If we find something underneath it that changes the job, we stop and tell you.</p>
+        <p>Before an engineer picks up a tool, you'll know what it costs. And if something turns up underneath that changes the job, we stop and talk it through with you rather than carry on.</p>
       </li>
       <li class="step">
         <h3>We fix it and clear up</h3>
@@ -120,7 +120,7 @@ const topAreas = [...areas].sort((a, b) => b.volume - a.volume).slice(0, 10);
     <div>
       <span class="eyebrow">Areas we cover</span>
       <h2>Plumbers across London</h2>
-      <p class="measure">Our engineers work across the London boroughs, from the City and Westminster out to Croydon, Harrow and Enfield. The office is in Fulham.</p>
+      <p class="measure">From the City and Westminster out to Croydon, Harrow and Enfield, our engineers are on the road across the London boroughs — dispatched from the office in Fulham.</p>
       <ul class="area-chips" aria-label="Popular areas">
         {topAreas.map((a) => (
           <li><a href={`/areas/${a.slug}`}>{a.name}</a></li>
@@ -147,7 +147,7 @@ const topAreas = [...areas].sort((a, b) => b.volume - a.volume).slice(0, 10);
 <section class="section section-navy">
   <div class="container center measure-wide">
     <h2>Need a plumber today?</h2>
-    <p>The booking line is answered by someone who can actually get an engineer to you. For anything urgent, call &mdash; don&rsquo;t email.</p>
+    <p>A real person answers the booking line, and they can actually get an engineer moving toward you. Something urgent? Ring rather than email.</p>
     <div class="cta-row center-row">
       <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg"><PhoneIcon /> Call {site.booking.display}</a>
       <a href={site.whatsapp.url} class="btn btn-outline btn-lg"><WhatsAppIcon /> WhatsApp us</a>

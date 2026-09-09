@@ -28,10 +28,10 @@ export const landings: Landing[] = [
     campaign: 'Emergency Plumber — London',
     headTerm: '24 hour plumber london',
     cpc: '£43.86',
-    metaTitle: 'Emergency Plumber London | 24 Hour Callout',
-    metaDescription: 'Emergency plumber covering London 24 hours a day. Burst pipes, major leaks and no water. Gas Safe registered and fully insured.',
+    metaTitle: 'Emergency Plumber London | Ninja Plumbers 24 Hour Callout',
+    metaDescription: 'Ninja Plumbers covers London 24 hours a day for burst pipes, major leaks and no water. Gas Safe registered and fully insured.',
     h1: 'Emergency plumber in London, 24 hours a day',
-    sub: 'Burst pipe, water coming through a ceiling, or no water at all. Call the booking line and we will tell you what to do while an engineer is on the way.',
+    sub: 'Water through the ceiling, no water at all, or a pipe that has burst — call Ninja Plumbers and we will tell you what to do while an engineer is already on the way.',
     urgent: true,
     bullets: [
       'Callout available 24 hours, including weekends',
@@ -42,7 +42,7 @@ export const landings: Landing[] = [
     reassure: [
       {
         title: 'Turn your stopcock off first',
-        body: 'Usually under the kitchen sink or near the front door. Turn it clockwise until it stops, then open the cold taps. It limits the damage more than anything else you can do before we arrive.',
+        body: 'Look under the kitchen sink or near the front door. Turn it clockwise as far as it goes, then open the cold taps — nothing else you can do before we arrive limits the damage as much.',
       },
       {
         title: 'You speak to someone who can dispatch',
@@ -66,10 +66,10 @@ export const landings: Landing[] = [
     campaign: 'Boiler Repair — London',
     headTerm: 'boiler repair london',
     cpc: '£17.46',
-    metaTitle: 'Boiler Repair London | Gas Safe Engineers',
-    metaDescription: 'Boiler repair, servicing and replacement across London by Gas Safe registered engineers. Honest advice on repair versus replacement.',
+    metaTitle: 'Boiler Repair London | Ninja Plumbers Gas Safe Engineers',
+    metaDescription: 'Ninja Plumbers repairs, services and replaces boilers across London with Gas Safe registered engineers. Honest advice, repair vs replace.',
     h1: 'Boiler repair in London by Gas Safe engineers',
-    sub: 'No heating, no hot water, or a boiler locking out with a fault code. We diagnose it first, then tell you honestly whether repairing or replacing is the better spend.',
+    sub: 'No heating, no hot water, or a boiler locked out on a fault code — Ninja Plumbers diagnoses it first, then gives you an honest answer on whether repairing or replacing is the better spend.',
     urgent: true,
     bullets: [
       'Gas Safe registered engineers',
@@ -84,7 +84,7 @@ export const landings: Landing[] = [
       },
       {
         title: 'We will not push you at a new boiler',
-        body: 'We quote for the repair and the replacement and let you compare the two. Under about twelve years old, a repair usually wins, and we will say so.',
+        body: 'You get a quote for both the repair and the replacement, side by side. If the boiler is under about twelve years old, repair usually wins on cost, and we will tell you that straight.',
       },
       {
         title: 'Ask to see the Gas Safe card',
@@ -104,10 +104,10 @@ export const landings: Landing[] = [
     campaign: 'Blocked Drains — London',
     headTerm: 'drain unblocking london',
     cpc: '£18.40',
-    metaTitle: 'Blocked Drain London | Same Day Drain Unblocking',
-    metaDescription: 'Blocked drains, toilets and sinks cleared across London with rods, jetting and CCTV. We tell you what caused it.',
+    metaTitle: 'Blocked Drain London | Ninja Plumbers Same-Day Unblocking',
+    metaDescription: 'Ninja Plumbers clears blocked drains, toilets and sinks across London with rods, jetting and CCTV, and tells you what caused it.',
     h1: 'Blocked drains cleared across London',
-    sub: 'Blocked toilets, slow sinks and drains backing up outside. Cleared with rods and jetting equipment, and a camera where the cause is not obvious.',
+    sub: 'A blocked toilet, a slow sink, a drain backing up outside — Ninja Plumbers clears it with rods and jetting equipment, and brings a camera along when the cause is not obvious.',
     urgent: true,
     bullets: [
       'Toilets, sinks, showers and outside drains',
@@ -118,7 +118,7 @@ export const landings: Landing[] = [
     reassure: [
       {
         title: 'Stop flushing',
-        body: 'Every flush into a blocked pan adds water that cannot drain, and is how a blockage becomes a flood. If the level is dropping slowly it is partial and can usually wait for a normal appointment.',
+        body: 'Each flush into a blocked pan adds more water with nowhere to go — that is exactly how a blockage turns into a flood. A level that is dropping slowly means it is only partial, and can usually wait for a normal appointment.',
       },
       {
         title: 'Please skip the caustic cleaner',
@@ -142,10 +142,10 @@ export const landings: Landing[] = [
     campaign: 'Bathroom Installation — London',
     headTerm: 'bathroom fitters london',
     cpc: '£6.29',
-    metaTitle: 'Bathroom Fitters London | Installation & Refits',
-    metaDescription: 'Bathroom installation across London, from a single fixture swap to a full refit, en-suite or wet room. Scope and price agreed before work starts.',
+    metaTitle: 'Bathroom Fitters London | Ninja Plumbers Installation &amp; Refits',
+    metaDescription: 'Ninja Plumbers fits bathrooms across London — a single fixture swap or a full refit, en-suite or wet room. Scope and price agreed upfront.',
     h1: 'Bathroom installation across London',
-    sub: 'From swapping a tired toilet to stripping a bathroom back and starting again. We handle the plumbing and coordinate the trades that follow.',
+    sub: 'Whether it is one tired toilet or a full strip-out and start again, Ninja Plumbers handles the plumbing and coordinates whichever trades come in after us.',
     urgent: false,
     bullets: [
       'Full refits, en-suites and wet rooms',

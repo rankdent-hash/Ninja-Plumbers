@@ -20,8 +20,8 @@ const backTo = ['general-plumbing', 'leak-detection']
   .map((slug) => services.find((s) => s.slug === slug)!);
 ---
 <Base
-  title="Damp & Condensation London | Survey, Proofing & Ventilation | Ninja Plumbers"
-  description={`Damp surveys, damp proofing and condensation control across London, from diagnosis through to the fix. Call ${site.booking.display}.`}
+  title="Damp &amp; Condensation London | Ninja Plumbers"
+  description={`Ninja Plumbers handles damp surveys, damp proofing and condensation control across London, from diagnosis through to the fix. Call ${site.booking.display}.`}
   noindex
 >
   <Schema slot="head" breadcrumb={crumbs} />
@@ -29,7 +29,7 @@ const backTo = ['general-plumbing', 'leak-detection']
   <HeroWithForm
     eyebrow="Damp & condensation"
     h1="Damp and condensation in London"
-    intro="A survey first, so the treatment matches what is actually wrong — rising, penetrating or condensation damp all need different fixes, and treating the wrong one wastes money without solving anything."
+    intro="Ninja Plumbers always surveys first, so the treatment matches what's actually wrong. Rising, penetrating and condensation damp each need a different fix, and getting that wrong just wastes money without solving anything."
     breadcrumb={crumbs}
     bullets={[
       'Gas Safe registered and fully insured',
@@ -44,7 +44,7 @@ const backTo = ['general-plumbing', 'leak-detection']
     <div class="container">
       <span class="eyebrow">Where to start</span>
       <h2>Diagnose, then treat</h2>
-      <p class="measure">Each page covers a different stage or cause, and what to check before booking anything.</p>
+      <p class="measure">Each page below covers a different stage or cause, plus what's worth checking before you book anything.</p>
       <ul class="grid grid-3 card-grid">
         {dampPages.map((d) => (
           <li class="card" id={d.slug}>
@@ -83,7 +83,7 @@ const backTo = ['general-plumbing', 'leak-detection']
   <section class="section section-navy">
     <div class="container center measure-wide">
       <h2>Not sure what you're looking at?</h2>
-      <p>Describe where it is, when it appears, and what it looks like — we will tell you which of these it is likely to be before booking anything.</p>
+      <p>Tell us the location, when it shows up, and what it looks like, and Ninja Plumbers will tell you which of these it's likely to be before you book a thing.</p>
       <div class="cta-row center-row">
         <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">
           <PhoneIcon /> Call {site.booking.display}

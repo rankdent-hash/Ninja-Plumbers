@@ -38,8 +38,8 @@ const crumbs = [
 ];
 ---
 <Base
-  title="London Postcode Districts We Cover | Ninja Plumbers"
-  description={`Plumbing, heating and drainage across ${postcodes.length} London postcode districts. Find yours and get a price before work starts. Call ${site.booking.display}.`}
+  title="London Postcode Districts | Ninja Plumbers"
+  description={`Ninja Plumbers covers ${postcodes.length} London postcode districts for plumbing, heating and drainage. Find yours, get a price. Call ${site.booking.display}.`}
 >
   <Schema slot="head" breadcrumb={crumbs} />
 
@@ -49,9 +49,9 @@ const crumbs = [
       <span class="eyebrow">Coverage</span>
       <h1>London postcode districts</h1>
       <p>
-        {postcodes.length} districts across the eight London postal areas. Find yours for the
-        neighbourhoods it covers, or go straight to the area page if you know the name of your
-        part of town.
+        Ninja Plumbers covers {postcodes.length} districts spread across the eight London postal
+        areas. Look up yours for the neighbourhoods it takes in, or skip ahead to the area page
+        if you already know what your part of town is called.
       </p>
     </div>
   </section>
@@ -73,8 +73,8 @@ const crumbs = [
     <div class="container center measure-wide">
       <h2>Not sure which district you are in?</h2>
       <p>
-        Tell us your full postcode and we will confirm whether we cover you. We work across
-        Greater London.
+        Give us your full postcode and we'll confirm on the spot whether it's within our patch —
+        we cover the whole of Greater London.
       </p>
       <div class="cta-row center-row">
         <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">

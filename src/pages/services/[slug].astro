@@ -19,7 +19,7 @@ export function getStaticPaths() {
 }
 
 const { service } = Astro.props;
-// "We also handle" is site-wide for every group except air conditioning: a
+// "Other work we take on" is site-wide for every group except air conditioning: a
 // plumbing or boiler page linking to every other trade on the site is the
 // established pattern, but an air con visitor is not looking for a drain
 // survey — so that group narrows the section to its own sibling pages
@@ -113,7 +113,7 @@ const serviceSchema = {
           {service.does.map((d) => <li><Tick /> {d}</li>)}
         </ul>
         <div class="cta-row">
-          <a href="/contact#enquiry" class="btn btn-navy">Send us the job</a>
+          <a href="/contact#enquiry" class="btn btn-navy">Send us the details</a>
         </div>
       </div>
       <aside class="service-aside">
@@ -220,7 +220,7 @@ const serviceSchema = {
     <div class="container">
       <span class="eyebrow">Before you call</span>
       <h2>Worth knowing first</h2>
-      <p class="measure">Some of this may save you a callout entirely. We would rather tell you than not.</p>
+      <p class="measure">A little of this might mean you do not need to call us at all — we would still rather you knew it.</p>
       <div class="guidance">
         {service.guidance.map((g) => (
           <div class="guidance-item">
@@ -269,7 +269,7 @@ const serviceSchema = {
         <span class="eyebrow">Fitted and serviced</span>
         <h2>Related appliance work</h2>
         <p class="measure">
-          Installations that come under this, each with its own page on what is involved.
+          These installations sit under this service, and each has its own page covering what is involved.
         </p>
         <ul class="grid grid-3 card-grid">
           {relatedAppliances.map((a) => (
@@ -290,7 +290,7 @@ const serviceSchema = {
   <section class="section">
     <div class="container">
       <span class="eyebrow">Other services</span>
-      <h2>We also handle</h2>
+      <h2>Other work we take on</h2>
       <ul class="grid grid-3 card-grid">
         {others.map((s) => (
           <li class="card">
@@ -326,8 +326,8 @@ const serviceSchema = {
         <span class="eyebrow">By brand</span>
         <h2>Looking for a specific make?</h2>
         <p class="measure">
-          Each brand has a page covering what is characteristic of it and what tends to come
-          up on that make.
+          Every brand gets its own page on what is typical of it and the faults that tend to
+          come up on that make.
         </p>
         <p><a href="/boilers" class="btn btn-navy">All boiler brands</a></p>
       </div>
@@ -337,7 +337,7 @@ const serviceSchema = {
   <section class="section section-navy">
     <div class="container center measure-wide">
       <h2>Need {service.title.toLowerCase()} in London?</h2>
-      <p>Tell us what&rsquo;s happening and where you are, and we&rsquo;ll tell you what it costs before anyone starts work.</p>
+      <p>Describe the problem and give us your area, and we&rsquo;ll tell you the price before anyone starts work.</p>
       <div class="cta-row center-row">
         <a href={`tel:${primaryTel.tel}`} class="btn btn-orange btn-lg">
           <PhoneIcon /> Call {primaryTel.display}

@@ -10,15 +10,15 @@ import WhatsAppIcon from '../components/WhatsAppIcon.astro';
 const topAreas = areas.slice(0, 6);
 ---
 <Base
-  title="Page not found | Ninja Plumbers"
-  description="That page doesn't exist. Find the service you need, or call 020 3488 3737."
+  title="Page Not Found | Ninja Plumbers"
+  description="That page doesn't exist on the Ninja Plumbers site. Find the London plumbing service you need, or call 020 3576 5825."
   noindex
 >
   <section class="page-hero">
     <div class="container">
       <span class="eyebrow">404</span>
       <h1>That page doesn&rsquo;t exist</h1>
-      <p>The link may be old, or there may be a typo in the address. If you have a plumbing emergency, don&rsquo;t hunt around &mdash; just call.</p>
+      <p>Either the link's out of date or there's a typo somewhere in the address. Got a plumbing emergency right now? Skip the hunting around and just call Ninja Plumbers.</p>
       <div class="cta-row">
         <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">
           <PhoneIcon /> Call {site.booking.display}
@@ -55,7 +55,7 @@ const topAreas = areas.slice(0, 6);
           <li><a href={`/areas/${a.slug}`}>Plumber in {a.name}</a></li>
         ))}
         <li><a href="/areas-we-cover">All areas we cover</a></li>
-        <li><a href="/">Back to the homepage</a></li>
+        <li><a href="/">Back to the Ninja Plumbers homepage</a></li>
       </ul>
     </div>
   </section>

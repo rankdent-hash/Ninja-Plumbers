@@ -64,9 +64,9 @@ export const appliances: Appliance[] = [
     slug: 'water-softener-installation',
     title: 'Water Softener Installation',
     h1: 'Water softener installation in London',
-    metaTitle: 'Water Softener Installation London | Fitted & Serviced | Ninja Plumbers',
+    metaTitle: 'Water Softener Installation London | Sized, Fitted & Serviced | Ninja Plumbers',
     metaDescription:
-      'Water softener installation and servicing across London. Sizing, siting, bypass valves and salt. Hard water is a London problem. Call 020 3488 3737.',
+      'Water softener installation across London, sized to your household with bypass valves, drainage and salt sorted. Call Ninja Plumbers on 020 3576 5825.',
     eyebrow: 'Hard water',
     icon: 'water',
     group: 'water',
@@ -74,7 +74,7 @@ export const appliances: Appliance[] = [
     summary:
       'London water is hard, and it costs you slowly. Softeners sized, fitted and serviced.',
     intro:
-      'Most of London sits on chalk, and the water that comes out of the tap is hard enough to shorten the life of a boiler, fur up a shower and leave scale on everything it touches. A softener deals with the cause rather than the symptoms. We size them, fit them and service the ones already in place.',
+      'London sits on a bed of chalk, which is why the water reaching most taps is hard enough to shorten a boiler\'s life, fur up a shower head and leave a white crust on anything it dries on. A water softener tackles that at the source instead of just wiping away the mess it leaves behind. The Ninja Plumbers team sizes softeners correctly, fits them, and keeps servicing the units already sitting under people\'s sinks.',
     does: [
       'Water softener installation, sized to the household',
       'Bypass valve so the house still has water during servicing',
@@ -90,7 +90,7 @@ export const appliances: Appliance[] = [
       },
       {
         title: 'Where it goes decides how easy the job is',
-        body: 'A softener has to go on the rising main, after the stopcock and before everything else, and it needs a drain within reach. Under the kitchen sink is the usual spot; a garage or utility room is easier if the main passes through it. Tell us where your stopcock is and we can usually tell you the answer on the phone.',
+        body: 'The unit needs to sit on the rising main, positioned after the stopcock but before anything else takes water, and it has to be within reach of a drain. Most houses end up with it under the kitchen sink; a garage or utility room works out simpler wherever the main pipe already runs through one. Let us know roughly where your stopcock sits and we can normally give you an answer over the phone.',
       },
       {
         title: 'You should keep one tap unsoftened',
@@ -103,12 +103,12 @@ export const appliances: Appliance[] = [
     ],
     aside: {
       title: 'We will tell you if you do not need one',
-      body: 'If your problem is a single furred shower head or one scaled tap, that is a much smaller job than a softener. We would rather do the small one and be asked back.',
+      body: 'Sometimes the whole problem is one furred-up shower head or a single scaled tap, and that is a far smaller job than fitting a softener. Ninja Plumbers would rather sort the small thing cheaply and get asked back than sell you more than the problem needs.',
     },
     faqs: [
       {
         q: 'Will a softener protect my boiler?',
-        a: 'It stops new scale forming in the heat exchanger, which is the part hard water damages most expensively. It cannot remove scale that has already built up — that is a separate job.',
+        a: 'Yes, in the sense that it stops fresh scale building up inside the heat exchanger, which is the component hard water damages most expensively to replace. What it cannot do is strip out scale that is already there — that needs a separate descale.',
       },
       {
         q: 'Does it need a drain?',
@@ -130,9 +130,9 @@ export const appliances: Appliance[] = [
     slug: 'underfloor-heating-installation',
     title: 'Underfloor Heating',
     h1: 'Underfloor heating installation in London',
-    metaTitle: 'Underfloor Heating Installation London | Wet Systems | Ninja Plumbers',
+    metaTitle: 'Underfloor Heating Installation London | Wet Systems Fitted | Ninja Plumbers',
     metaDescription:
-      'Wet underfloor heating installed across London: manifolds, zones, screed and low-profile systems, and repairs to existing loops. Call 020 3488 3737.',
+      'Wet underfloor heating fitted across London: manifolds, zoning, screed and low-profile boards, plus repairs to loops gone cold. Call 020 3576 5825.',
     eyebrow: 'Wet systems',
     icon: 'heating',
     group: 'heating',
@@ -140,7 +140,7 @@ export const appliances: Appliance[] = [
     summary:
       'Wet underfloor heating for extensions and refurbishments, plus repairs to loops that have stopped working.',
     intro:
-      'Underfloor heating run off the boiler rather than off electricity — pipe loops in or under the floor, a manifold, and controls that let each room have its own temperature. It suits an extension or a full refurbishment far better than it suits a room-by-room retrofit, and we will say which one you have.',
+      'This kind of underfloor heating is powered off the boiler rather than the mains electricity supply: loops of pipe run in or under the floor, feeding into a manifold, with controls that let every room sit at its own temperature. It is a far better fit for an extension or a full refurbishment than for topping up heat in a single existing room, and the Ninja Plumbers team will tell you honestly which situation yours is before any pipe goes down.',
     does: [
       'Wet underfloor heating in extensions and refurbishments',
       'Manifold installation, flow setting and balancing',
@@ -156,7 +156,7 @@ export const appliances: Appliance[] = [
       },
       {
         title: 'Floor height is usually the real constraint',
-        body: 'A traditional screed system adds a meaningful amount of build-up. Low-profile boards add far less but cost more per square metre. In a London flat with existing door heights and a fixed floor level, that decision is often made for you before anything else is.',
+        body: 'A traditional screed floor raises the level by a fair amount, whereas low-profile boards add much less height but cost more for every square metre they cover. In a London flat, where the door heights and the floor level are already fixed, that height difference often ends up deciding which system is realistic before any other factor gets a look-in.',
       },
       {
         title: 'It wants a low flow temperature',
@@ -169,12 +169,12 @@ export const appliances: Appliance[] = [
     ],
     aside: {
       title: 'Best decided before the floor goes down',
-      body: 'If you are planning an extension or a refit, ask us at the drawing stage rather than after the screed. It is the cheapest hour of advice in the job.',
+      body: 'Bring Ninja Plumbers in at the drawing stage of an extension or refit rather than once the screed is already poured. It genuinely is the cheapest hour of advice in the whole job.',
     },
     faqs: [
       {
         q: 'Can I have it under wood or engineered flooring?',
-        a: 'Engineered wood and most tiles are fine. Solid timber moves and needs care over the choice of board and the flow temperature. Deep carpet and thick underlay work against you, though a thin underlay is usually workable.',
+        a: 'Engineered wood and most tile finishes cope with it well. Solid timber moves as it warms, so it needs a careful choice of board and a flow temperature kept on the lower side. Deep carpet and thick underlay both trap the heat before it reaches the room, although a thin underlay usually still works fine.',
       },
       {
         q: 'Will my boiler cope with it?',
@@ -196,9 +196,9 @@ export const appliances: Appliance[] = [
     slug: 'radiator-installation-and-power-flushing',
     title: 'Radiators & Power Flushing',
     h1: 'Radiator installation and power flushing in London',
-    metaTitle: 'Power Flush & Radiator Installation London | Ninja Plumbers',
+    metaTitle: 'Power Flush London | Radiator Installation & System Cleaning | Ninja Plumbers',
     metaDescription:
-      'Central heating power flushing, system cleansing and radiator installation across London. Cold radiators, sludge and uneven heating. Call 020 3488 3737.',
+      'Power flushing and radiator installation across London: sludge cleared properly, new radiators fitted, systems balanced. Call Ninja Plumbers 020 3576 5825.',
     eyebrow: 'System cleaning',
     icon: 'heating',
     group: 'heating',
@@ -206,7 +206,7 @@ export const appliances: Appliance[] = [
     summary:
       'Radiators fitted and moved, and sludged systems flushed properly rather than topped up with chemicals.',
     intro:
-      'Radiators cold at the bottom, a system that heats some rooms and not others, black water when you bleed it. That is sludge — corrosion debris circulating through the system and settling where the flow is slowest. A power flush shifts it. Fitting a new radiator, or moving one for a decorator, is the other half of this page.',
+      'A radiator that stays cold near the bottom, a house where some rooms heat up and others never quite do, black water spitting out when you bleed a valve — these are all signs of sludge, which is just corrosion debris drifting around the system and settling wherever the flow is weakest. A power flush is how you get rid of it. The other job we cover here is more straightforward: fitting a new radiator, or unbolting and refitting one so a decorator can get behind it.',
     does: [
       'Power flushing a sludged central heating system',
       'Chemical cleanse and fresh inhibitor',
@@ -226,7 +226,7 @@ export const appliances: Appliance[] = [
       },
       {
         title: 'A filter is worth more than a second flush',
-        body: 'A magnetic filter on the return catches the debris that forms after the flush, and emptying it once a year keeps the system clean. Without one, a flushed system starts filling up again immediately.',
+        body: 'Fitting a magnetic filter on the return pipe catches new debris as it forms after the flush, and simply emptying it out once a year is enough to keep the system clean going forward. Skip the filter and a freshly flushed system starts collecting sludge again almost straight away.',
       },
       {
         title: 'Be careful flushing an old system with a tired boiler',
@@ -235,12 +235,12 @@ export const appliances: Appliance[] = [
     ],
     aside: {
       title: 'Black water is the tell',
-      body: 'Bleed a radiator into a white container. If what comes out is black rather than clear, the system has sludge in it and no amount of bleeding will fix the cold patches.',
+      body: 'Try bleeding a radiator into a white cup or jug. Clear water is fine, but if what comes out is black, the system is carrying sludge and no amount of bleeding is ever going to fix those stubborn cold patches — Ninja Plumbers would be flushing rather than bleeding at that point.',
     },
     faqs: [
       {
         q: 'How do I know if I need a power flush?',
-        a: 'Radiators cold at the bottom, rooms that never get warm, black water when bleeding, or a boiler that keeps cutting out on overheat. One of those on its own may be something else; three of them together is usually sludge.',
+        a: 'Watch out for radiators that stay cold near the bottom, rooms that never quite warm up, black water when you bleed a valve, or a boiler that keeps tripping out on overheat. Any one of those alone could be something else entirely, but three of them showing up together usually points straight to sludge.',
       },
       {
         q: 'How long does a power flush take?',
@@ -264,7 +264,7 @@ export const appliances: Appliance[] = [
     h1: 'Boiling water tap installation in London',
     metaTitle: 'Boiling Water Tap Installation London | Instant Hot Taps | Ninja Plumbers',
     metaDescription:
-      'Boiling and instant hot water taps installed across London. Tank siting, filters, isolation and servicing of existing taps. Call 020 3488 3737.',
+      'Boiling and instant hot water taps fitted across London: tank siting, power, filters and servicing sorted. Call Ninja Plumbers on 020 3576 5825.',
     eyebrow: 'Kitchen taps',
     icon: 'tap',
     group: 'kitchen',
@@ -272,7 +272,7 @@ export const appliances: Appliance[] = [
     summary:
       'Instant boiling taps fitted, plumbed and filtered — including the bits the brochure does not mention.',
     intro:
-      'A boiling water tap is a straightforward install with two things people are not told when they buy one: it needs a power socket under the sink, and the tank takes up cupboard space you were probably using. Neither is a problem if you know before the kitchen goes in. We fit new ones, replace old ones and service what is already there.',
+      'Fitting a boiling water tap is a simple enough job, but two things rarely make it onto the brochure before people buy one: there has to be a power socket under the sink, and the storage tank eats into cupboard space you were probably already using for something else. Neither is a real problem provided you know about it before the kitchen goes in, which is where Ninja Plumbers comes in early. We fit new taps, swap out old ones, and keep servicing whatever is already installed.',
     does: [
       'Boiling water tap installation, most makes',
       'Tank siting and cupboard planning under the sink',
@@ -292,7 +292,7 @@ export const appliances: Appliance[] = [
       },
       {
         title: 'Filters are a running cost, not an optional extra',
-        body: 'In London’s hard water the filter is what keeps scale out of the tank. Skipping cartridge changes is the most common reason these fail early, and a replacement tank costs far more than years of filters.',
+        body: 'Because London\'s water is hard, the filter cartridge is doing the real work of keeping scale out of the tank. Letting cartridge changes slide is by far the most common reason these units fail early, and a replacement tank ends up costing more than years\' worth of the filters that would have prevented it.',
       },
       {
         title: 'They are safe with children, with a caveat',
@@ -301,12 +301,12 @@ export const appliances: Appliance[] = [
     ],
     aside: {
       title: 'Ask us before you buy the tap',
-      body: 'Five minutes on the phone about your sink, your cupboard and your socket will tell you whether the tap you are looking at will actually fit. It is free, and it saves returns.',
+      body: 'A quick phone call about your sink, your cupboard space and your socket situation is usually enough for Ninja Plumbers to tell you whether the tap you have your eye on will actually fit. It costs nothing and it saves you an awkward return.',
     },
     faqs: [
       {
         q: 'Do I need an electrician as well?',
-        a: 'Only if there is no socket or fused spur under the sink already. If there is, we can do the whole job. If there is not, the electrical work needs an electrician and we will tell you that up front.',
+        a: 'Only if there is not already a socket or fused spur under the sink. Where one exists, we can handle the whole job ourselves; where it does not, that part is electrical work for an electrician, and we will flag that clearly before any work starts rather than after.',
       },
       {
         q: 'How much space does the tank need?',
@@ -328,9 +328,9 @@ export const appliances: Appliance[] = [
     slug: 'washing-machine-plumbing',
     title: 'Washing Machine Plumbing',
     h1: 'Washing machine plumbing in London',
-    metaTitle: 'Washing Machine Plumbing London | Plumbed In & Moved | Ninja Plumbers',
+    metaTitle: 'Washing Machine Plumbing London | Plumbed In, Moved & Fixed | Ninja Plumbers',
     metaDescription:
-      'Washing machines plumbed in, moved and repaired across London. Valves, standpipes, waste connections and leaks. Call 020 3488 3737.',
+      'Washing machines plumbed in, relocated and repaired across London: valves, standpipes and waste leaks sorted properly. Call 020 3576 5825.',
     eyebrow: 'Appliances',
     icon: 'appliance',
     group: 'kitchen',
@@ -338,7 +338,7 @@ export const appliances: Appliance[] = [
     summary:
       'Machines plumbed in properly, moved to a new room, or stopped from leaking where they stand.',
     intro:
-      'Plumbing in a washing machine is a small job that goes wrong in expensive ways: a waste hose pushed into a pipe with no trap, a valve that was already weeping, a machine on a floor that is not level. We do it properly, and we will also move one to another room if the pipework can be got there.',
+      'It looks like a small job, but plumbing in a washing machine can go wrong in surprisingly expensive ways: a waste hose forced into a pipe with no trap behind it, a valve that was already dripping before anyone noticed, a machine sitting on a floor that is not quite level. Ninja Plumbers does this properly rather than quickly, and we can also relocate a machine to another room wherever the pipework can realistically reach it.',
     does: [
       'New washing machine plumbed in and tested',
       'Hot and cold valves fitted where there are none',
@@ -354,7 +354,7 @@ export const appliances: Appliance[] = [
       },
       {
         title: 'A washing machine needs a proper standpipe',
-        body: 'The waste hose should go into a standpipe with a trap, with an air gap above the water line. Pushing it straight into a sink waste or a bare pipe lets smells back into the room and can siphon the drum empty mid-cycle.',
+        body: 'The waste hose belongs in a standpipe fitted with a trap, sitting with a gap of air above the water line inside it. Push it straight into a sink waste or a bare length of pipe instead, and you risk drain smells drifting back into the kitchen, or the drum siphoning itself empty partway through a cycle.',
       },
       {
         title: 'Moving it to the garage is not always simple',
@@ -367,7 +367,7 @@ export const appliances: Appliance[] = [
     ],
     aside: {
       title: 'The small jobs are still jobs',
-      body: 'Plumbing in one machine is a perfectly normal thing to call us for. It is priced the same way as everything else, and agreed before we start.',
+      body: 'Calling Ninja Plumbers out to plumb in just the one machine is entirely normal — it is priced the same straightforward way as anything larger, and we agree the figure with you before any work begins.',
     },
     faqs: [
       {
@@ -380,7 +380,7 @@ export const appliances: Appliance[] = [
       },
       {
         q: 'Why does my machine leak only on a spin cycle?',
-        a: 'That is usually the waste rather than the supply — a hose pushed too far into the standpipe, or a blockage that only overflows at full flow. It is a quick thing to diagnose.',
+        a: 'That points to the waste side rather than the water supply feeding it — most often a hose pushed too far down the standpipe, or a partial blockage that only overflows once the drain is under full flow. Either way it is a quick fault to track down.',
       },
       {
         q: 'Do you take the old machine away?',
@@ -394,9 +394,9 @@ export const appliances: Appliance[] = [
     slug: 'water-meter-installation',
     title: 'Water Meter Installation',
     h1: 'Water meter installation and relocation in London',
-    metaTitle: 'Water Meter Installation & Relocation London | Ninja Plumbers',
+    metaTitle: 'Water Meter Installation London | Pipework & Relocation | Ninja Plumbers',
     metaDescription:
-      'Water meter pipework, relocation and shared-supply separation across London. Honest advice on what your water company does free. Call 020 3488 3737.',
+      'Water meter pipework, relocation and shared-supply separation across London, plus honest advice on what your supplier fits free. Call 020 3576 5825.',
     eyebrow: 'Supply',
     icon: 'water',
     group: 'water',
@@ -404,7 +404,7 @@ export const appliances: Appliance[] = [
     summary:
       'The pipework side of going metered — including the shared supplies that stop it happening.',
     intro:
-      'Start here with the thing nobody selling this tells you: your water company will fit a meter free of charge if it can. What they will not do is alter your pipework, separate a shared supply or move a meter for a kitchen refit. That is the part we do, and if the free option covers you we will send you to it.',
+      'Here is the thing most people selling meter installation will not lead with: your water company will fit the meter itself free of charge, provided your supply allows it. What they will not do is alter your internal pipework, split a shared supply between flats, or move a meter to suit a kitchen refit. That is the work Ninja Plumbers actually handles, and where the free option would cover you, we will point you straight there instead of quoting for it.',
     does: [
       'Pipework alterations so a meter can be fitted',
       'Moving an existing internal meter',
@@ -421,7 +421,7 @@ export const appliances: Appliance[] = [
       },
       {
         title: 'Shared supplies are the usual blocker',
-        body: 'Victorian houses split into flats very often share one supply pipe between several homes. A meter cannot be fitted per flat until that is separated, and that is the real job — worth understanding before deciding whether metering is worth it for you.',
+        body: 'A Victorian house carved up into flats very often has just one supply pipe feeding every home in the building. Nobody can get an individual meter until that shared pipe is separated into one run per flat, and that separation work is the real job here — worth understanding upfront before you decide whether metering is even worth pursuing.',
       },
       {
         title: 'It is the right moment to replace the stopcock',
@@ -434,7 +434,7 @@ export const appliances: Appliance[] = [
     ],
     aside: {
       title: 'We will send you to the free option',
-      body: 'If your water company can do what you need at no cost, that is what we will tell you. We would rather be the people you call back for the job they cannot do.',
+      body: 'Where your water company can do the job at no charge, that is exactly what Ninja Plumbers will tell you to do first. We would much rather be the people you come back to for the parts of the job they cannot touch.',
     },
     faqs: [
       {
@@ -447,7 +447,7 @@ export const appliances: Appliance[] = [
       },
       {
         q: 'My flat shares a supply with the rest of the building. What now?',
-        a: 'The supply needs separating into individual runs before anyone can be metered individually. It is a real job and usually needs the freeholder’s agreement, so it is worth pricing before promising anything to the other flats.',
+        a: 'The shared pipe has to be split into separate runs before individual metering becomes possible. It is a genuine piece of work, and it usually needs sign-off from the freeholder too, so get it priced before making promises to the other flats in the building.',
       },
       {
         q: 'Can you move the meter for a kitchen refit?',
@@ -463,7 +463,7 @@ export const appliances: Appliance[] = [
     h1: 'Sump pump installation in London',
     metaTitle: 'Sump Pump Installation London | Basements & Cellars | Ninja Plumbers',
     metaDescription:
-      'Sump pump installation, replacement and servicing for London basements and cellars. Backup pumps, alarms and discharge pipework. Call 020 3488 3737.',
+      'Sump pump installation, replacement and servicing for London basements and cellars, with backup pumps and alarms. Call Ninja Plumbers 020 3576 5825.',
     eyebrow: 'Groundwater',
     icon: 'pump',
     group: 'bathroom',
@@ -471,7 +471,7 @@ export const appliances: Appliance[] = [
     summary:
       'Basements and cellars kept dry — pumps, backups, alarms and somewhere legal for the water to go.',
     intro:
-      'London clay holds water, and a basement below the water table will take some in whatever the walls are made of. A sump and pump gives that water a controlled place to arrive and a controlled way out. We install them, replace failed ones and service the ones already sitting under a cover you have never lifted.',
+      'London clay holds onto water, so a basement sitting below the water table is going to take some in no matter what the walls are built from. A sump chamber with a pump gives that water somewhere controlled to collect and a controlled route back out again, rather than letting it find its own way across the floor. Ninja Plumbers installs these systems, replaces the ones that have failed, and services units already sitting quietly under a cover most homeowners have never once lifted.',
     does: [
       'Sump chamber and pump installation',
       'Replacing failed or undersized pumps',
@@ -487,7 +487,7 @@ export const appliances: Appliance[] = [
       },
       {
         title: 'One pump is one point of failure',
-        body: 'A single pump in an unattended basement means the first thing you learn about a failure is the water. Either a second pump on a higher float, or at the very least a high-water alarm, is worth far more than the difference in cost.',
+        body: 'Rely on a single pump in a basement nobody checks daily, and the water itself is usually how you find out it has stopped working. Adding a second pump set on a higher float switch, or at the very least a high-water alarm, is a small extra cost against the damage it prevents.',
       },
       {
         title: 'Where the water goes matters legally',
@@ -500,7 +500,7 @@ export const appliances: Appliance[] = [
     ],
     aside: {
       title: 'Battery backup earns its keep',
-      body: 'Heavy rain and a power cut arrive together more often than the odds suggest. A backup that runs the pump for a few hours is the cheapest insurance on this page.',
+      body: 'Heavy rain and a power cut have an unfortunate habit of arriving on the same night. A battery backup that keeps the pump running for a few hours afterwards is, page for page, about the cheapest insurance Ninja Plumbers can fit for you.',
     },
     faqs: [
       {
@@ -517,7 +517,7 @@ export const appliances: Appliance[] = [
       },
       {
         q: 'My basement floods in heavy rain. Is a pump enough?',
-        a: 'Sometimes, and sometimes the answer is that water is arriving somewhere it should not and the pump is treating a symptom. We will tell you which, even where that means a bigger job than a pump.',
+        a: 'Sometimes yes, but sometimes water is getting in somewhere it genuinely should not, and a pump would only be masking that rather than fixing it. We will tell you honestly which situation you are in, even when the honest answer means a bigger job than just fitting a pump.',
       },
     ],
     related: ['drain-unblocking', 'emergency-plumbing'],
@@ -527,9 +527,9 @@ export const appliances: Appliance[] = [
     slug: 'shower-pumps',
     title: 'Shower Pumps',
     h1: 'Shower pump installation in London',
-    metaTitle: 'Shower Pump Installation London | Fitted & Replaced | Ninja Plumbers',
+    metaTitle: 'Shower Pump Installation London | Fitted, Matched & Replaced | Ninja Plumbers',
     metaDescription:
-      'Shower pump installation and replacement across London. Positive and negative head pumps, whole-house pressure and noise problems. Call 020 3488 3737.',
+      'Shower pump installation across London: correctly matched positive/negative head pumps, plus honest advice on whether a pump helps. Call 020 3576 5825.',
     eyebrow: 'Pressure',
     icon: 'pump',
     group: 'bathroom',
@@ -537,7 +537,7 @@ export const appliances: Appliance[] = [
     summary:
       'Weak gravity-fed showers pumped properly — with an honest answer about whether a pump is the fix at all.',
     intro:
-      'A shower fed from a tank in the loft can be pumped up to something worth standing under. A shower fed straight off a combi boiler cannot be pumped at all, and anyone who says otherwise is about to sell you the wrong thing. The first job on this page is telling you which system you have.',
+      'A shower running off a cold water tank up in the loft can be boosted with a pump into something genuinely worth standing under. A shower running straight off a combi boiler cannot be pumped at all, full stop, and anyone telling you otherwise is about to sell you the wrong product. So the first thing Ninja Plumbers does on this page is work out which of the two systems your house actually has.',
     does: [
       'Shower pump installation on gravity-fed systems',
       'Replacing failed and noisy pumps',
@@ -553,7 +553,7 @@ export const appliances: Appliance[] = [
       },
       {
         title: 'Positive or negative head is not a detail',
-        body: 'It depends on how far the cold tank sits above the shower outlet. Fit the wrong type and the pump either never starts or never stops. It is the single most common reason a replacement pump fails within months.',
+        body: 'Which type you need comes down to exactly how far above the shower outlet the cold tank is sitting. Get that wrong and the pump either refuses to start or never switches off — and it is the single most common reason a replacement pump packs in within a few months.',
       },
       {
         title: 'Pumps are noisy, so where it goes matters',
@@ -566,7 +566,7 @@ export const appliances: Appliance[] = [
     ],
     aside: {
       title: 'We will tell you if a pump will not help',
-      body: 'On a mains-fed system it will not, and we would rather say that on the phone than fit something that cannot work.',
+      body: 'On a mains-fed system, no pump will help, and Ninja Plumbers would rather say so on the phone up front than turn up and fit something we already know cannot work.',
     },
     faqs: [
       {
@@ -579,7 +579,7 @@ export const appliances: Appliance[] = [
       },
       {
         q: 'How long should a shower pump last?',
-        a: 'Years rather than decades, and how it was installed matters more than what was paid for it — the feed, the mounting and the head type do most of the deciding.',
+        a: 'Think years rather than decades. How well it was installed matters more than how much you spent on it — the feed pipework, the mounting and getting the head type right do most of the work in deciding how long it survives.',
       },
       {
         q: 'Can you make an existing one quieter?',
@@ -593,9 +593,9 @@ export const appliances: Appliance[] = [
     slug: 'electric-shower-installation',
     title: 'Electric Shower Installation',
     h1: 'Electric shower installation in London',
-    metaTitle: 'Electric Shower Installation London | Fitted Properly | Ninja Plumbers',
+    metaTitle: 'Electric Shower Installation London | Fitted Properly First Time | Ninja Plumbers',
     metaDescription:
-      'Electric shower installation across London: new units fitted, old ones replaced, kW and cable requirements checked first. Call 020 3488 3737.',
+      'Electric shower installation across London: new units fitted, old ones swapped, cable and kW load checked before the shower goes up. Call 020 3576 5825.',
     eyebrow: 'Self-contained showers',
     icon: 'tap',
     group: 'bathroom',
@@ -603,7 +603,7 @@ export const appliances: Appliance[] = [
     summary:
       'A different thing from a shower pump — a self-contained unit that heats mains water on demand, fitted properly first time.',
     intro:
-      'An electric shower heats water as it passes through, using mains cold water and its own heating element — nothing to do with a shower pump, which boosts pressure on a system that is already hot. It suits a flat with poor pressure precisely because it needs no hot supply and no boost. We fit new units and replace old ones, and we check the electrics can actually take the load before anything goes on the wall.',
+      'An electric shower heats the water itself as it flows through, using cold water straight off the mains and its own built-in heating element — it has nothing to do with a shower pump, which only boosts the pressure of water that is already hot. That is exactly why it suits a flat with weak water pressure: there is no hot supply and no boost required at all. Ninja Plumbers fits new units, replaces old ones, and always checks the electrics can genuinely carry the load before anything goes near the wall.',
     does: [
       'New electric shower installation, most makes',
       'Replacing an existing unit, same spec or a higher kW',
@@ -619,7 +619,7 @@ export const appliances: Appliance[] = [
       },
       {
         title: 'A higher kW rating needs the cable checked, not just the shower',
-        body: 'Stepping up from an 8.5kW to a 10.5kW-plus unit increases the current draw, and the existing cable and breaker may not be rated for it. We check that before you buy the higher-power unit, not after it is on the wall.',
+        body: 'Moving up from something like an 8.5kW unit to a 10.5kW or above pulls significantly more current, and the cable and breaker already in place might not be rated to handle it. Ninja Plumbers checks that before you spend money on the higher-power unit, not after it has already gone up on the wall.',
       },
       {
         title: 'The circuit is an electrician’s job, the shower is ours',
@@ -632,7 +632,7 @@ export const appliances: Appliance[] = [
     ],
     aside: {
       title: 'We check the electrics before we quote',
-      body: 'The cable and breaker are looked at against the unit you actually want, not assumed adequate. It is a five-minute check that avoids buying the wrong shower.',
+      body: 'We look at the existing cable and breaker against the specific unit you want rather than just assuming it will cope. It takes about five minutes and it stops you buying the wrong shower for your circuit.',
     },
     faqs: [
       {
@@ -645,7 +645,7 @@ export const appliances: Appliance[] = [
       },
       {
         q: 'Can you supply the shower as well as fit it?',
-        a: 'We can, or fit one you have already bought — either way works, and buying it yourself often costs less than a trade-supplied unit.',
+        a: 'We can supply one, or simply fit a unit you have already bought — both routes work fine, and buying the shower yourself tends to end up cheaper than one supplied through a trade markup.',
       },
       {
         q: 'Can you fit one where there has never been a shower before?',
@@ -659,9 +659,9 @@ export const appliances: Appliance[] = [
     slug: 'saniflo-macerator-pumps',
     title: 'Saniflo & Macerator Pumps',
     h1: 'Saniflo and macerator pump installation in London',
-    metaTitle: 'Saniflo & Macerator Installation London | Fitted & Repaired | Ninja Plumbers',
+    metaTitle: 'Saniflo & Macerator Installation London | Fitted & Serviced | Ninja Plumbers',
     metaDescription:
-      'Macerator and Saniflo installation, servicing and repairs across London. Basement and loft WCs, blockages and descaling. Call 020 3488 3737.',
+      'Macerator and Saniflo installation, servicing and unblocking across London: basement and loft WCs, blockages and descaling. Call 020 3576 5825.',
     eyebrow: 'Pumped waste',
     icon: 'pump',
     group: 'bathroom',
@@ -669,7 +669,7 @@ export const appliances: Appliance[] = [
     summary:
       'A WC where there is no gravity waste — fitted, serviced and unblocked, with honest advice on whether you need one.',
     intro:
-      'A macerator lets you put a toilet somewhere the soil pipe does not reach: a basement, a loft conversion, under the stairs. It works well when it is the only option and badly when it was chosen to avoid a slightly harder job. We fit them, service them and unblock them, and we will tell you which of those two situations you are in.',
+      'A macerator (a small grinding pump built into or behind the WC) lets you site a toilet somewhere ordinary gravity waste pipework simply cannot reach — a basement, a loft conversion, the space under a staircase. It is a genuinely good solution when there is no other option, and a poor one when it gets chosen just to dodge a slightly harder plumbing job. Ninja Plumbers fits, services and unblocks these units, and we will tell you honestly which of those two situations describes your project.',
     does: [
       'Macerator installation with a new WC',
       'Replacing failed units, most makes',
@@ -685,7 +685,7 @@ export const appliances: Appliance[] = [
       },
       {
         title: 'A macerator is a last resort, not a first choice',
-        body: 'Gravity waste to a soil stack has nothing to break, needs no power and makes no noise. If a conventional run is possible at reasonable cost, take it. We will tell you when it is, even though it is the smaller job for us.',
+        body: 'A conventional gravity waste running down to the soil stack has nothing mechanical to break, needs no electricity and makes no noise at all. Wherever that kind of ordinary run is achievable at a sensible cost, take it — and we will tell you when it is, even though it means less work for us.',
       },
       {
         title: 'It needs power, access and a warm room',
@@ -698,7 +698,7 @@ export const appliances: Appliance[] = [
     ],
     aside: {
       title: 'A humming unit is a warning',
-      body: 'A macerator that hums without running, or runs longer each time, is telling you it is partly blocked. Dealt with then, it is a service. Left alone, it is a replacement.',
+      body: 'A macerator that hums instead of properly running, or that seems to run a little longer on each use, is telling you it is starting to clog. Call Ninja Plumbers at that point and it is a service; leave it running like that and it usually ends up a replacement.',
     },
     faqs: [
       {
@@ -711,7 +711,7 @@ export const appliances: Appliance[] = [
       },
       {
         q: 'How long do they last?',
-        a: 'Well-treated and descaled, a good many years. Fed with wipes, sometimes months. What goes into it matters far more than which make it is.',
+        a: 'Treated well and descaled regularly, a decent number of years. Fed a diet of wipes, sometimes only months. What goes down the toilet matters far more to its lifespan than which make you bought.',
       },
       {
         q: 'Can I put a toilet in a loft conversion with one?',
@@ -725,9 +725,9 @@ export const appliances: Appliance[] = [
     slug: 'whole-house-water-filtration',
     title: 'Water Filtration & Limescale',
     h1: 'Water filtration and limescale systems in London',
-    metaTitle: 'Water Filtration & Limescale Systems London | Ninja Plumbers',
+    metaTitle: 'Water Filtration Systems London | Filters & Limescale | Ninja Plumbers',
     metaDescription:
-      'Whole-house filtration, under-sink drinking water filters and scale reducers installed across London. Straight answers on what each one does. Call 020 3488 3737.',
+      'Whole-house filtration, under-sink drinking filters and scale reducers fitted across London, with a straight answer on which one you need. 020 3576 5825.',
     eyebrow: 'Water quality',
     icon: 'water',
     group: 'water',
@@ -735,7 +735,7 @@ export const appliances: Appliance[] = [
     summary:
       'Filters, scale reducers and drinking water taps — and a straight answer about which one solves your problem.',
     intro:
-      'Filtration, softening and scale reduction are three different things that get sold as if they were one. A filter improves what you drink. A softener changes the water chemistry throughout the house. A scale reducer does something more modest than either. This page is the first two and the honest version of the third.',
+      'Filtration, softening and scale reduction get marketed as though they were basically the same product, but they are three genuinely different things. A filter improves the taste and quality of what comes out of the tap for drinking. A softener changes the mineral makeup of the water flowing through the whole house. A scale reducer does something more limited than either of them claims. Ninja Plumbers covers the first two properly here, and gives you the honest version of the third rather than the sales pitch.',
     does: [
       'Whole-house filtration on the incoming main',
       'Under-sink drinking water filters and dedicated taps',
@@ -751,7 +751,7 @@ export const appliances: Appliance[] = [
       },
       {
         title: 'A scale reducer is not a softener',
-        body: 'Magnetic and electronic conditioners are sold hard and claim a lot. They do not remove hardness. Some people find they help downstream of the unit; nobody should buy one expecting softener results. That is the honest position and it costs us the bigger sale.',
+        body: 'Magnetic and electronic conditioners get marketed with big claims attached, but the plain fact is they do not actually remove hardness from the water. Some households find them mildly useful further down the pipework, but nobody should buy one expecting the results a proper softener would give — that is the honest answer even though it costs us the bigger sale.',
       },
       {
         title: 'Cartridges are the running cost',
@@ -764,7 +764,7 @@ export const appliances: Appliance[] = [
     ],
     aside: {
       title: 'The cheapest fix is often the right one',
-      body: 'A single under-sink filter and a dedicated drinking tap solves most people’s actual complaint for a fraction of a whole-house system.',
+      body: 'For most households, a single under-sink filter feeding a dedicated drinking tap solves the actual complaint for a fraction of what a whole-house system would cost — and Ninja Plumbers will say so rather than push the bigger job.',
     },
     faqs: [
       {
@@ -773,7 +773,7 @@ export const appliances: Appliance[] = [
       },
       {
         q: 'Do I need filtration in London?',
-        a: 'The water is safe to drink as supplied. Filtration is about taste, chlorine and sediment rather than safety, and in an older building with old internal pipework a sediment filter can make a visible difference.',
+        a: 'The tap water is already safe to drink exactly as supplied. Filtering it is about improving taste, chlorine smell and sediment rather than making it safer, though in an older building with ageing internal pipework a sediment filter can genuinely make a visible difference to what comes out of the tap.',
       },
       {
         q: 'How often do cartridges need changing?',
@@ -793,7 +793,7 @@ export const appliances: Appliance[] = [
     h1: 'Outside tap installation in London',
     metaTitle: 'Outside Tap Installation London | Garden Taps Fitted | Ninja Plumbers',
     metaDescription:
-      'Outside taps installed across London with the required check valve and isolation. Frost-proof taps, standpipes and winterising. Call 020 3488 3737.',
+      'Outside taps fitted across London with the required check valve, an isolation valve inside, and a neat run through the wall. Call 020 3576 5825.',
     eyebrow: 'Garden',
     icon: 'tap',
     group: 'water',
@@ -801,7 +801,7 @@ export const appliances: Appliance[] = [
     summary:
       'A garden tap fitted properly: isolated inside, check valve fitted, and able to survive a winter.',
     intro:
-      'An outside tap is a couple of hours’ work and one of the most useful things you can add to a house. It does need doing properly: a check valve to stop garden water being drawn back into the drinking supply, an isolation valve inside so it can be shut off and drained each winter, and a neat run through the wall.',
+      'An outside tap only takes a couple of hours to fit, and it is one of the more genuinely useful additions you can make to a house. Doing it properly means three things: a check valve so garden water can never get drawn back into the drinking supply, an isolation valve inside the house so it can be shut off and drained every winter, and a tidy run of pipe through the wall. Ninja Plumbers fits all three as standard, not as extras.',
     does: [
       'New outside tap fitted, front or rear',
       'Double check valve to meet water regulations',
@@ -817,7 +817,7 @@ export const appliances: Appliance[] = [
       },
       {
         title: 'Turn it off and drain it every winter',
-        body: 'Close the inside isolation valve and leave the outside tap open over winter. Water left in the exposed section freezes, expands and splits the pipe — and you find out in spring, usually behind the wall.',
+        body: 'Shut the isolation valve indoors and leave the outside tap itself open through the cold months. Any water left standing in the exposed section will freeze, expand and split the pipe — and that damage usually only shows up behind the wall come spring.',
       },
       {
         title: 'Getting through the wall is the job',
@@ -830,7 +830,7 @@ export const appliances: Appliance[] = [
     ],
     aside: {
       title: 'Ask for the isolation valve inside',
-      body: 'It is a small part and it is what makes winterising possible. A tap fitted without one cannot be drained down properly, and that is what splits pipes.',
+      body: 'It is a small, cheap part, and it is the one thing that makes proper winterising possible at all. A tap fitted without it cannot be drained down properly beforehand, which is exactly what leaves pipes split by spring.',
     },
     faqs: [
       {
@@ -847,7 +847,7 @@ export const appliances: Appliance[] = [
       },
       {
         q: 'Can the tap go at the far end of the garden?',
-        a: 'Yes, as a standpipe with a buried run. It is a bigger job than a tap on the house wall because of the trench and the frost depth, but it is a common one.',
+        a: 'Yes, fitted as a standpipe fed by a buried pipe run. It works out a bigger job than a tap mounted straight on the house wall, mainly because of the trenching and getting the pipe below frost depth, but it is a common request and one Ninja Plumbers handles regularly.',
       },
     ],
     related: ['general-plumbing', 'emergency-plumbing'],
@@ -859,7 +859,7 @@ export const appliances: Appliance[] = [
     h1: 'Dishwasher plumbing in London',
     metaTitle: 'Dishwasher Plumbing London | Plumbed In & Repaired | Ninja Plumbers',
     metaDescription:
-      'Dishwashers plumbed in, moved and fixed across London. Integrated units, waste connections, leaks and drainage faults. Call 020 3488 3737.',
+      'Dishwashers plumbed in, relocated and repaired across London: integrated units, waste connections and leaks sorted. Call Ninja Plumbers 020 3576 5825.',
     eyebrow: 'Appliances',
     icon: 'appliance',
     group: 'kitchen',
@@ -867,7 +867,7 @@ export const appliances: Appliance[] = [
     summary:
       'Dishwashers connected properly — including the integrated ones that have to go in before the door does.',
     intro:
-      'A dishwasher needs a cold feed, an isolating valve and a waste connection with an air break. Most of the callouts we get are about the last one: a waste hose fitted without a high loop, which lets sink water back into the machine or lets the machine empty itself as it fills.',
+      'Every dishwasher needs three things: a cold water feed, its own isolating valve, and a waste connection with an air break built in. Most of the callouts Ninja Plumbers gets on this front come down to that last one — a waste hose fitted without the required high loop, which lets sink water siphon back into the machine or lets the machine drain itself empty partway through filling.',
     does: [
       'New dishwasher plumbed in and tested',
       'Isolating valve fitted where there is none',
@@ -879,7 +879,7 @@ export const appliances: Appliance[] = [
     guidance: [
       {
         title: 'The waste is where they go wrong',
-        body: 'The drain hose needs a high loop above the machine before it drops to the trap. Without it, dirty water from the sink can run back into the dishwasher, or the machine siphons itself empty and never washes properly.',
+        body: 'The drain hose has to rise into a loop above the machine before it drops away down to the trap. Skip that loop and dirty water from the sink can travel back into the dishwasher, or the machine ends up siphoning itself empty and never actually washing anything properly.',
       },
       {
         title: 'Integrated units need the opening right',
@@ -896,7 +896,7 @@ export const appliances: Appliance[] = [
     ],
     aside: {
       title: 'Best done before the kitchen goes in',
-      body: 'If a kitchen is being fitted, the ten minutes spent placing the valve and the waste in the right void saves an afternoon later.',
+      body: 'While a kitchen is still being fitted, spending ten minutes with Ninja Plumbers getting the valve and waste positioned in the right void saves a whole afternoon of remedial work later.',
     },
     faqs: [
       {
@@ -905,7 +905,7 @@ export const appliances: Appliance[] = [
       },
       {
         q: 'Why will my dishwasher not drain?',
-        a: 'Most often the filter or the waste hose rather than the machine. If the sink also drains slowly, the problem is the shared waste and that is a drain job rather than an appliance one.',
+        a: 'Nine times out of ten it is a blocked filter or the waste hose at fault rather than the machine itself. If the kitchen sink is also draining slowly at the same time, the shared waste pipe is the real culprit, which makes it a drainage job rather than an appliance repair.',
       },
       {
         q: 'Can it share a waste with the sink?',
@@ -925,7 +925,7 @@ export const appliances: Appliance[] = [
     h1: 'Hot water cylinder installation in London',
     metaTitle: 'Hot Water Cylinder Installation London | Vented & Unvented | Ninja Plumbers',
     metaDescription:
-      'Hot water cylinder replacement and servicing across London. Vented and unvented, immersion heaters, expansion vessels and controls. Call 020 3488 3737.',
+      'Hot water cylinder replacement and servicing across London, vented and unvented, with immersion heaters and controls sorted. Call 020 3576 5825.',
     eyebrow: 'Hot water',
     icon: 'heating',
     group: 'heating',
@@ -933,7 +933,7 @@ export const appliances: Appliance[] = [
     summary:
       'Cylinders replaced, sized and serviced — the tank in the airing cupboard that everyone forgets until it fails.',
     intro:
-      'The cylinder is the part of the hot water system nobody thinks about until there is no hot water. Vented cylinders fed from a loft tank, unvented cylinders running at mains pressure, and the controls and immersion heaters attached to both. We replace them, size them properly and service the ones still working.',
+      'The cylinder is the one part of a hot water system nobody gives a moment\'s thought to until there suddenly is no hot water. Some are vented, fed from a tank up in the loft; others are unvented, running straight at mains pressure; and both types come with their own controls and immersion heaters attached. Ninja Plumbers replaces them, sizes new ones correctly for the household, and services the cylinders that are still doing their job.',
     does: [
       'Vented and unvented cylinder replacement',
       'Cylinder sizing based on bathrooms and usage',
@@ -953,7 +953,7 @@ export const appliances: Appliance[] = [
       },
       {
         title: 'No hot water is often not the cylinder',
-        body: 'On a vented system it is very often the immersion heater or its thermostat, both of which are cheap. Before replacing a cylinder, those should be ruled out — and we will rule them out first.',
+        body: 'On a vented system, the culprit is very often the immersion heater or its thermostat rather than the cylinder itself, and both of those are inexpensive to sort. Before anyone replaces a whole cylinder, those two should be ruled out first, and that is exactly the order Ninja Plumbers works through them in.',
       },
       {
         title: 'The airing cupboard is not always the best place now',
@@ -962,7 +962,7 @@ export const appliances: Appliance[] = [
     ],
     aside: {
       title: 'Serviced yearly, unvented systems last',
-      body: 'The expansion vessel and the relief valves are the parts that fail, and both are checked in a service that takes under an hour.',
+      body: 'It is the expansion vessel and the relief valves that tend to fail on an unvented cylinder, and Ninja Plumbers checks both in a service visit that generally takes under an hour.',
     },
     faqs: [
       {
@@ -975,7 +975,7 @@ export const appliances: Appliance[] = [
       },
       {
         q: 'Why is my hot water only lukewarm?',
-        a: 'Commonly a failed cylinder thermostat, a failing immersion element, or a heating coil that is scaled up. All three are diagnosable without replacing the cylinder.',
+        a: 'The usual suspects are a failed cylinder thermostat, an immersion element on its way out, or a heating coil that has scaled up over time. All three can be diagnosed without needing to replace the cylinder itself.',
       },
       {
         q: 'How often should a cylinder be serviced?',

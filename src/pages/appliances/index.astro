@@ -28,15 +28,15 @@ const backTo = ['general-plumbing', 'boiler-service', 'bathroom-installation']
   .map((slug) => services.find((s) => s.slug === slug)!);
 ---
 <Base
-  title="Appliance & Fixture Plumbing London | Ninja Plumbers"
-  description={`Water softeners, underfloor heating, power flushing, boiling taps, pumps and appliance plumbing across London. Call ${site.booking.display}.`}
+  title="Appliance &amp; Fixture Plumbing | Ninja Plumbers London"
+  description={`Ninja Plumbers fits and repairs water softeners, underfloor heating, power flushing, boiling taps and pumps across London. Call ${site.booking.display}.`}
 >
   <Schema slot="head" breadcrumb={crumbs} />
 
   <HeroWithForm
     eyebrow="Appliances & fixtures"
     h1="Appliance and fixture plumbing in London"
-    intro="The jobs people look for by the thing itself rather than by the trade: a softener, a power flush, a boiling tap, a pump that has stopped. Each one has its own page covering what is involved and what to check first."
+    intro="These are the jobs people search for by naming the thing, not the trade — a softener, a power flush, a boiling tap, a pump that's given up. Ninja Plumbers has given each one its own page covering what's involved and what's worth checking first."
     breadcrumb={crumbs}
     bullets={[
       'Gas Safe registered and fully insured',
@@ -74,7 +74,7 @@ const backTo = ['general-plumbing', 'boiler-service', 'bathroom-installation']
       <span class="eyebrow">Looking for something else</span>
       <h2>The main services</h2>
       <p class="measure">
-        If the job is a repair rather than an installation, it is probably covered on one of these.
+        Looking for a repair rather than a new fitting? It's probably one of the pages below.
       </p>
       <ul class="grid grid-3 card-grid">
         {backTo.map((s) => (
@@ -95,7 +95,7 @@ const backTo = ['general-plumbing', 'boiler-service', 'bathroom-installation']
   <section class="section section-navy">
     <div class="container center measure-wide">
       <h2>Not sure which one you need?</h2>
-      <p>Describe what the problem actually is &mdash; scale, pressure, a leak, a machine that will not drain &mdash; and we will tell you which of these does something about it. Sometimes the answer is none of them, and we will say so.</p>
+      <p>Tell us what's actually wrong &mdash; scale, pressure, a leak, a machine refusing to drain &mdash; and Ninja Plumbers will point you to whichever of these fixes it. Sometimes none of them are the answer, and we'll tell you that too rather than sell you the wrong job.</p>
       <div class="cta-row center-row">
         <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">
           <PhoneIcon /> Call {site.booking.display}

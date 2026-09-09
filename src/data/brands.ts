@@ -47,7 +47,7 @@ export const brands: Brand[] = [
     installs: true,
     summary: 'The most widely fitted domestic boiler brand in the UK, and the one we see most often in London homes.',
     character:
-      'Worcester Bosch is the brand most London households already have, which makes it the one we are called to most. The Greenstar range covers combi, system and heat-only in most domestic sizes. Its ubiquity is a practical advantage when something fails: parts are stocked more widely than for most brands, so a repair is less likely to mean waiting on an order.',
+      'Worcester Bosch is one of the most widely installed boiler brands in the UK, and in London it is the one Ninja Plumbers engineers get called out to most. The Greenstar range covers combi, system and heat-only in most domestic sizes. Because so many households already own one, parts sit on the shelf far more often than they need ordering in, so a repair is less likely to mean a wait.',
     common: [
       'Diverter valve faults showing as hot water but no heating, or the reverse',
       'Low pressure and repeated refilling on older Greenstar units',
@@ -67,7 +67,7 @@ export const brands: Brand[] = [
     installs: true,
     summary: 'The brand Londoners search for by name more than any other, and a common choice in flats and conversions.',
     character:
-      'Vaillant is a German manufacturer with a long UK presence, and its ecoTEC range turns up constantly in London flats and converted properties — partly because the units are compact enough for the cupboard installations that conversions force. Of every boiler brand, this is the one people in London search for by name most often, which usually means they already have one and want someone who knows it.',
+      'Vaillant is a German manufacturer with a long history in the UK, and its ecoTEC range shows up constantly in London flats and converted properties, partly because the units are compact enough to fit the cupboard installations a conversion often forces. It is also the brand Londoners search for by name more than any other — usually because they already own one and want an engineer who actually knows it. Ninja Plumbers engineers see enough of them across the city that most faults are familiar before the cover even comes off.',
     common: [
       'Expansion vessel failures presenting as pressure that will not hold',
       'Ignition and flame-sensing faults on higher-hour ecoTEC units',
@@ -87,7 +87,7 @@ export const brands: Brand[] = [
     installs: true,
     summary: 'UK-manufactured combi, system and heat-only boilers, widely fitted in rentals and new installations.',
     character:
-      'Ideal manufactures in the UK and its Logic range is one of the most commonly specified boilers for rental property and volume installations, largely on price and simplicity. That makes it a brand we see a lot of in converted flats and landlord-owned property across London. Parts are straightforward and generally available.',
+      'Ideal is a UK manufacturer, and its Logic range is one of the most commonly specified boilers for rental property and volume installations — mostly down to price and simplicity rather than any particular feature. It is a brand Ninja Plumbers engineers see constantly in converted flats and landlord-owned property across London. Parts are straightforward and generally available, which keeps most repairs quick.',
     common: [
       'Condensate blockages and freezing on external runs',
       'Pressure sensor and PCB faults on higher-hour Logic units',
@@ -107,7 +107,7 @@ export const brands: Brand[] = [
     installs: true,
     summary: 'A long-established UK brand with a large installed base, and parent to Potterton and Main.',
     character:
-      'Baxi has been fitted in British homes for decades and the group now also covers Potterton and Main, so a great many London properties have a Baxi-group boiler under one name or another. The installed base is old and varied, which means we see everything from current combis to units well past twenty years old still running.',
+      'Baxi has been a fixture in British homes for decades, and the group now also owns Potterton and Main, so a large share of London properties run a Baxi-group boiler under one name or another. The installed base spans decades: Ninja Plumbers engineers work on everything from current combis to units well past twenty years old that are still going.',
     common: [
       'Fan and pressure-switch faults on older units',
       'Heat exchanger scaling in hard-water parts of London',
@@ -127,7 +127,7 @@ export const brands: Brand[] = [
     installs: true,
     summary: 'German-engineered boilers at the premium end, often specified in higher-value refurbishments.',
     character:
-      'Viessmann sits at the premium end of the market and its Vitodens range is a common specification in higher-value London refurbishments, where the stainless steel heat exchanger and the longer expected life justify the cost. Because they are specified rather than defaulted to, we tend to see them in properties where the whole system was designed rather than inherited.',
+      'Viessmann sits at the premium end of the market, and its Vitodens range turns up often in higher-value London refurbishments, where the stainless steel heat exchanger and longer expected lifespan justify the extra cost. Because someone chose it deliberately rather than defaulting to it, Ninja Plumbers usually finds these boilers in properties where the whole heating system was properly designed rather than simply inherited from whatever was there before.',
     common: [
       'Control and sensor faults rather than mechanical failures',
       'Units specified for a system that was later altered',
@@ -147,7 +147,7 @@ export const brands: Brand[] = [
     installs: true,
     summary: 'A long-established value brand within the Vaillant group, with a large older installed base.',
     character:
-      'Glow-worm sits within the Vaillant group as its value range, and has been fitted in British homes long enough that the installed base spans several decades of product. In London we see them most in properties where the boiler was replaced on a budget rather than specified, and in landlord-owned flats.',
+      'Glow-worm is the value range within the Vaillant group, and it has been fitted in British homes for long enough that the installed base now spans several decades of product. Ninja Plumbers most often meets Glow-worm boilers in properties where the replacement was chosen on budget rather than specified, and in landlord-owned flats across London.',
     common: [
       'Older units at the end of their economic life',
       'Diverter and pressure faults typical of the age of the installed base',
@@ -167,7 +167,7 @@ export const brands: Brand[] = [
     installs: true,
     summary: 'An active UK range covering boilers alongside heat pumps and hybrid heating.',
     character:
-      'Alpha supplies gas boilers alongside heat pumps and hybrid systems, which puts it among the brands positioned for the shift away from gas-only heating. Its boilers are commonly specified on price in newer installations. The hybrid side is more likely to come up in properties looking at what replaces a gas boiler eventually rather than now.',
+      'Alpha makes gas boilers alongside heat pumps and hybrid systems, positioning it among the brands preparing for a slower move away from gas-only heating. Newer installations often choose an Alpha boiler on price. Ninja Plumbers tends to get asked about the hybrid side by people thinking about what eventually replaces a gas boiler, rather than by anyone ready to act on it now.',
     common: [
       'Standard combi faults — diverter, pressure, ignition',
       'Newer installations still inside their original warranty terms',
@@ -187,7 +187,7 @@ export const brands: Brand[] = [
     installs: true,
     summary: 'An active domestic gas range under Vokèra by Riello, with a substantial older installed base.',
     character:
-      'Vokèra, now Vokèra by Riello, has supplied UK domestic boilers for long enough to leave a sizeable installed base, and we see them across London in properties whose boiler was replaced in the 2000s and 2010s. The current range is active and supported.',
+      'Vokèra, now trading as Vokèra by Riello, has supplied UK domestic boilers for long enough to leave a sizeable installed base behind it. Ninja Plumbers sees them across London in properties where the boiler was replaced sometime in the 2000s or 2010s, and the current range is still active and supported.',
     common: [
       'Ageing units from the 2000s reaching the end of economic repair',
       'Pressure and sensor faults typical of higher-hour combis',
@@ -207,7 +207,7 @@ export const brands: Brand[] = [
     installs: true,
     summary: 'Dutch-made boilers built around a design with markedly fewer moving parts than most.',
     character:
-      'Intergas is genuinely different in engineering terms rather than just in branding: the design does away with the diverter valve and the plate heat exchanger that account for a large share of failures on conventional combis. Fewer moving parts means fewer of the faults we spend most of our time on. They are less common in London than the volume brands, but the people who have them tend to know why.',
+      'Intergas is genuinely different from most combis, not just differently branded: its design removes the diverter valve and plate heat exchanger that account for a large share of failures on conventional units. Fewer moving parts means fewer of the faults Ninja Plumbers spends most of its time on elsewhere. They are less common across London than the volume brands, but the people who own one usually chose it on purpose and know exactly why.',
     common: [
       'Far fewer mechanical failures than a conventional combi of the same age',
       'Faults more likely to be controls, sensors or the system rather than the boiler',
@@ -227,7 +227,7 @@ export const brands: Brand[] = [
     installs: true,
     summary: 'A specialist premium brand, usually chosen deliberately rather than fitted by default.',
     character:
-      'ATAG is a premium specialist brand known for long heat exchanger warranties, and it is almost always a deliberate choice rather than the default option an installer reached for. In London that means we usually find them in properties where the heating was properly specified. Verify current model details before relying on anything model-specific, as the range changes.',
+      'ATAG is a premium specialist brand known for long heat exchanger warranties, and it is almost always chosen deliberately rather than being whatever an installer happened to have on the van. Across London, Ninja Plumbers usually finds ATAG boilers in properties where the whole heating system was properly specified rather than an afterthought. The range changes over time, so it is worth checking current model details rather than relying on anything model-specific.',
     common: [
       'Controls and sensor faults rather than heat exchanger failures',
       'Units still within long manufacturer warranty terms',
@@ -247,7 +247,7 @@ export const brands: Brand[] = [
     installs: true,
     summary: 'An active Italian range of combi, system and regular gas boilers.',
     character:
-      'Ariston supplies an active UK range across combi, system and regular boilers, and is more commonly seen in flats and smaller properties than in large houses. The brand also has a long history in water heating, so we occasionally meet Ariston unvented cylinders alongside the boilers.',
+      'Ariston runs an active UK range spanning combi, system and regular boilers, and it turns up more often in flats and smaller properties than in large houses. The brand also has a long history in water heating, so Ninja Plumbers engineers occasionally come across Ariston unvented cylinders working alongside the boilers.',
     common: [
       'Combi faults typical of the type — diverter, pressure, ignition',
       'Units fitted in compact flat installations with limited access',
@@ -267,7 +267,7 @@ export const brands: Brand[] = [
     installs: true,
     summary: 'Italian-made domestic and light commercial boilers, useful where a job spans both.',
     character:
-      'Ferroli covers domestic and light commercial products, which makes it a brand that comes up on the commercial side of our work as well as in homes — small offices, shops and premises above them. The domestic installed base in London is older on average than the volume brands.',
+      'Ferroli covers both domestic and light commercial products, so it is a brand Ninja Plumbers meets on the commercial side of the work as well as in ordinary homes — small offices, shops and the flats above them. Across London the domestic installed base is, on average, older than the volume brands.',
     common: [
       'Older domestic units at the end of economic repair',
       'Light commercial installations in shops and premises above them',
@@ -287,7 +287,7 @@ export const brands: Brand[] = [
     installs: true,
     summary: 'A Korean manufacturer with an active UK gas range, known for high hot water flow rates.',
     character:
-      'Navien is best known for combis with unusually high hot water flow rates, which makes them a sensible answer in a property that wants combi simplicity but has more demand than a typical combi handles. Navien also produce oil boilers; we cover the gas range only.',
+      'Navien is best known for combis that deliver unusually high hot water flow rates, making it a sensible option for a property that wants combi simplicity but places more demand on hot water than a typical combi can handle. Navien also makes oil boilers, though Ninja Plumbers covers the gas range only.',
     common: [
       'High-output combis specified for properties with heavy hot water demand',
       'Controls and sensor faults rather than mechanical wear',
@@ -307,7 +307,7 @@ export const brands: Brand[] = [
     installs: false,
     summary: 'A very large older installed base across London, now within the Baxi group.',
     character:
-      'Potterton sits within the Baxi group and has one of the largest older installed bases in the country — a great many London properties still run one. Most of our Potterton work is therefore repair, servicing and replacement of ageing units rather than new installation, and we would rather be straight about that than imply a full current range.',
+      'Potterton is part of the Baxi group now, and it has one of the largest older installed bases in the country — plenty of London properties still run one. Most Potterton call-outs Ninja Plumbers attends are repair, servicing and replacement of ageing units rather than anything new, and we would rather say that plainly than imply a full current range exists.',
     common: [
       'Ageing units well beyond their efficient life still in service',
       'Older heat-only boilers with separate cylinders and controls',
@@ -327,7 +327,7 @@ export const brands: Brand[] = [
     installs: true,
     summary: 'Twin-flue boilers that solve flue routing problems ordinary boilers cannot — particularly in London flats.',
     character:
-      'Keston is the brand that matters most for a specifically London problem. Its twin-flue design allows very long flue runs, which makes installation possible in flats and buildings where the boiler cannot go near an external wall and a conventional flue simply will not reach. In high-rise and deep-plan conversions that is sometimes the difference between a workable installation and none.',
+      'Keston solves a problem that is particularly common in London. Its twin-flue design allows much longer flue runs than usual, which makes installation possible in flats and buildings where the boiler sits nowhere near an external wall and a conventional flue could never reach it. In high-rise and deep-plan conversions, that is sometimes the difference between Ninja Plumbers finding a workable installation and having none at all.',
     common: [
       'Long flue runs in flats where the boiler sits far from any external wall',
       'High-rise and deep-plan properties with constrained flue routing',
@@ -347,7 +347,7 @@ export const brands: Brand[] = [
     installs: true,
     summary: 'An Italian brand with active products and a significant repair and replacement installed base.',
     character:
-      'Biasi has an active UK range and, more relevantly for the work we actually see, a significant installed base of older units across London flats and terraces. Most Biasi calls are repair and replacement rather than new installation.',
+      'Biasi has an active UK range, though what Ninja Plumbers sees far more of is its installed base of older units across London flats and terraces. Most Biasi work is repair and replacement rather than new installation.',
     common: [
       'Older units where the economics favour replacement',
       'Standard combi failures — diverter, pressure, ignition',
@@ -367,7 +367,7 @@ export const brands: Brand[] = [
     installs: false,
     summary: 'A UK manufacturer with a longstanding installed base; mostly repair and replacement work.',
     character:
-      'Ravenheat is a UK manufacturer with a long history and a substantial installed base, particularly in property where boilers were replaced on a budget. We prioritise repair and replacement here: current availability for new installation is worth confirming case by case rather than assumed, so we do not offer it as a standing option.',
+      'Ravenheat is a UK manufacturer with a long history and a substantial installed base, particularly in property where the boiler was replaced on a budget. Ninja Plumbers focuses on repair and replacement here — current availability for new installation is worth confirming case by case rather than assumed, so it is not offered as a standing option.',
     common: [
       'Older units in rental and previously rented property',
       'Repairs where the deciding question is parts availability',
@@ -387,7 +387,7 @@ export const brands: Brand[] = [
     installs: false,
     summary: 'A brand whose products now sit within Baxi, with a large installed base still in service.',
     character:
-      'Main was a widely fitted value brand and its content and products now sit within Baxi rather than standing separately. That matters practically: there is a large installed base of Main boilers in London property, but treating it as a fully independent current range would be misleading. We handle repair, servicing and replacement, and would discuss current Baxi-group options rather than implying a like-for-like new Main.',
+      'Main was once a widely fitted value brand, and its products now sit within Baxi rather than standing on their own. That matters in practice: London still has a large installed base of Main boilers, but calling it a fully independent current range would be misleading. Ninja Plumbers handles repair, servicing and replacement, and would talk through current Baxi-group options rather than pretend a like-for-like new Main still exists.',
     common: [
       'Large installed base of budget-fitted units now ageing',
       'Repairs where the part is a Baxi-group component',
@@ -407,7 +407,7 @@ export const brands: Brand[] = [
     installs: false,
     summary: 'A legacy brand: repair, servicing and replacement of an installed base, not new installation.',
     character:
-      'Heatline is a legacy brand as far as new supply is concerned, and we treat it that way rather than implying you can buy a new one. There is still a real installed base in London property, and those boilers can be serviced and in many cases repaired. When a Heatline reaches the end, the conversation is about what replaces it.',
+      'Heatline is a legacy brand for new supply, and Ninja Plumbers treats it that way rather than pretending you can still buy one. A real installed base remains in London property, and those boilers can be serviced and, in many cases, repaired. When a Heatline finally reaches the end of its life, the conversation shifts to what replaces it.',
     common: [
       'Installed-base units being kept going rather than replaced on schedule',
       'Repairs where obtainable parts decide whether it is worth doing',
@@ -427,7 +427,7 @@ export const brands: Brand[] = [
     installs: false,
     summary: 'A legacy UK installed base: servicing, repair where practical, and replacement advice.',
     character:
-      'Saunier Duval comes up regularly as a search but not as a current UK purchase, and the distinction matters. The installed base is genuine and some of those boilers are still working. We service and repair them where parts allow, and are straight about the point at which replacement is the better spend rather than stringing out repairs.',
+      'Saunier Duval comes up regularly as a search term but not as something you can currently buy in the UK, and that distinction matters. The installed base is real, and plenty of those boilers are still working. Ninja Plumbers services and repairs them where parts allow, and says plainly when replacement is the better spend rather than stringing out repairs that no longer make sense.',
     common: [
       'Ageing installed-base units still in daily service',
       'Repairs constrained by what parts remain obtainable',
@@ -447,7 +447,7 @@ export const brands: Brand[] = [
     installs: false,
     summary: 'A legacy brand with ongoing repair and replacement demand from its installed base.',
     character:
-      'Halstead is legacy for new supply, with an installed base that still generates real repair and replacement work. We do not imply routine new availability. What we can do is service what is there, repair it where parts exist, and give you an honest read on when the money is better spent on a replacement.',
+      'Halstead is legacy for new supply, though its installed base still generates real repair and replacement work. Ninja Plumbers does not imply routine new availability that is not there. What we can do is service the boiler you have, repair it where parts still exist, and give an honest read on when the money is better spent on a replacement.',
     common: [
       'Installed-base units past their efficient life',
       'Repairs decided by parts availability more than by cost',
