@@ -1,4 +1,4 @@
-// Tamesis Plumbers — site search. Loaded by script.js on first use.
+// Ninja Plumbers — site search. Loaded by script.js on first use.
 //
 // Everything runs in the browser against /search-index.json, a list of every
 // page built from the site's data files. Ranking: the query is split into
@@ -231,5 +231,5 @@
     }
   });
 
-  window.TamesisSearch = { open: open, close: close };
+  window.NinjaSearch = { open: open, close: close };
 })();

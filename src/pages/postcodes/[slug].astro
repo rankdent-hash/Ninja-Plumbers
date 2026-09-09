@@ -77,10 +77,10 @@ const faqs = [
 // truncates titles around 65 characters and descriptions around 160, and
 // district names like "Crystal Palace and Upper Norwood" blow through both.
 const shortPrimary = pc.primary.split(' and ')[0];
-const longTitle = `Plumber in ${pc.district} | ${pc.primary} | Tamesis Plumbers`;
+const longTitle = `Plumber in ${pc.district} | ${pc.primary} | Ninja Plumbers`;
 const title = longTitle.length <= 65
   ? longTitle
-  : `Plumber in ${pc.district} | ${shortPrimary} | Tamesis Plumbers`;
+  : `Plumber in ${pc.district} | ${shortPrimary} | Ninja Plumbers`;
 
 // Fit as many neighbourhood names as the description budget allows.
 const fitPlaces = (budget: number) => {

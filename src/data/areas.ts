@@ -32,7 +32,7 @@ export const areas: Area[] = [
     postcodes: ['SW6', 'SW10', 'W6', 'W14'],
     volume: 720,
     kd: 18,
-    metaTitle: 'Plumber in Fulham | Local SW6 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Fulham | Local SW6 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Fulham, SW6. Our office is on Fulham High Street. Emergency callout, boiler repair, blocked drains and bathroom installation. Call 020 3488 3737.',
     intro:
@@ -55,7 +55,7 @@ export const areas: Area[] = [
     postcodes: ['CR0', 'CR2', 'SE25', 'SW16'],
     volume: 880,
     kd: 16,
-    metaTitle: 'Plumber in Croydon | Emergency & Boiler Repair | Tamesis Plumbers',
+    metaTitle: 'Plumber in Croydon | Emergency & Boiler Repair | Ninja Plumbers',
     metaDescription:
       'Plumber covering Croydon and CR postcodes. Emergency callout, boiler repair and installation, blocked drains and bathrooms. Call 020 3488 3737.',
     intro:
@@ -77,7 +77,7 @@ export const areas: Area[] = [
     postcodes: ['BR1', 'BR2', 'SE20', 'SE26'],
     volume: 880,
     kd: 19,
-    metaTitle: 'Plumber in Bromley | BR1 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Bromley | BR1 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber covering Bromley and BR postcodes. Emergency plumbing, boiler repair, drain unblocking and bathroom fitting. Call 020 3488 3737.',
     intro:
@@ -99,7 +99,7 @@ export const areas: Area[] = [
     postcodes: ['SW18', 'SW11', 'SW17', 'SW12'],
     volume: 720,
     kd: 11,
-    metaTitle: 'Plumber in Wandsworth | SW18 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Wandsworth | SW18 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Wandsworth and the SW postcodes. Emergency callout, boiler repair, leak detection and bathroom installation. Call 020 3488 3737.',
     intro:
@@ -121,7 +121,7 @@ export const areas: Area[] = [
     postcodes: ['HA1', 'HA2', 'HA3', 'HA5'],
     volume: 720,
     kd: 20,
-    metaTitle: 'Plumber in Harrow | Boiler & Heating Engineers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Harrow | Boiler & Heating Engineers | Ninja Plumbers',
     metaDescription:
       'Plumber covering Harrow and HA postcodes. Boiler repair and installation, emergency plumbing, drains and bathrooms. Call 020 3488 3737.',
     intro:
@@ -143,7 +143,7 @@ export const areas: Area[] = [
     postcodes: ['SW12', 'SW17'],
     volume: 590,
     kd: 11,
-    metaTitle: 'Plumber in Balham | SW12 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Balham | SW12 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Balham, SW12. Emergency callout, boiler repair, blocked drains, leak detection and bathroom installation. Call 020 3488 3737.',
     intro:
@@ -165,7 +165,7 @@ export const areas: Area[] = [
     postcodes: ['N1', 'N5', 'N7', 'EC1'],
     volume: 590,
     kd: 20,
-    metaTitle: 'Plumber in Islington | N1 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Islington | N1 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Islington and N1. Emergency plumbing, boiler repair, leak detection and bathrooms in period and listed property. Call 020 3488 3737.',
     intro:
@@ -187,7 +187,7 @@ export const areas: Area[] = [
     postcodes: ['E5', 'E8', 'E9', 'N16'],
     volume: 590,
     kd: 21,
-    metaTitle: 'Plumber in Hackney | E8 & E9 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Hackney | E8 & E9 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber covering Hackney, E8, E9 and N16. Emergency callout, boiler repair, blocked drains and bathroom installation. Call 020 3488 3737.',
     intro:
@@ -209,7 +209,7 @@ export const areas: Area[] = [
     postcodes: ['W5', 'W13', 'W3', 'UB1'],
     volume: 590,
     kd: 11,
-    metaTitle: 'Plumber in Ealing | W5 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Ealing | W5 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Ealing and the W5 postcodes. Emergency plumbing, boiler repair and installation, drains and bathrooms. Call 020 3488 3737.',
     intro:
@@ -231,7 +231,7 @@ export const areas: Area[] = [
     postcodes: ['SW4', 'SW11', 'SW9'],
     volume: 480,
     kd: 10,
-    metaTitle: 'Plumber in Clapham | SW4 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Clapham | SW4 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Clapham, SW4. Emergency callout, boiler repair, leak detection, drains and bathroom installation. Call 020 3488 3737.',
     intro:
@@ -253,7 +253,7 @@ export const areas: Area[] = [
     postcodes: ['SW19', 'SW20'],
     volume: 480,
     kd: 22,
-    metaTitle: 'Plumber in Wimbledon | SW19 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Wimbledon | SW19 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Wimbledon, SW19 and SW20. Emergency plumbing, boiler repair, bathroom installation and drainage. Call 020 3488 3737.',
     intro:
@@ -275,7 +275,7 @@ export const areas: Area[] = [
     postcodes: ['SW2', 'SW9'],
     volume: 480,
     kd: 10,
-    metaTitle: 'Plumber in Brixton | SW9 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Brixton | SW9 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Brixton, SW2 and SW9. Emergency callout, boiler repair, blocked drains and commercial plumbing. Call 020 3488 3737.',
     intro:
@@ -301,7 +301,7 @@ export const areas: Area[] = [
     postcodes: ['SW17', 'SW16', 'SW12'],
     volume: 480,
     kd: 9,
-    metaTitle: 'Plumber in Tooting | SW17 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Tooting | SW17 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Tooting, SW17. Emergency callout, boiler repair, blocked drains and bathrooms across Tooting Bec and Tooting Broadway. Call 020 3488 3737.',
     intro:
@@ -323,7 +323,7 @@ export const areas: Area[] = [
     postcodes: ['SE13', 'SE4', 'SE6'],
     volume: 480,
     kd: 7,
-    metaTitle: 'Plumber in Lewisham | SE13 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Lewisham | SE13 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Lewisham, SE13. Emergency callout, boiler repair, blocked drains and bathroom installation across Hither Green and Ladywell. Call 020 3488 3737.',
     intro:
@@ -345,7 +345,7 @@ export const areas: Area[] = [
     postcodes: ['SW16', 'SW2'],
     volume: 390,
     kd: 13,
-    metaTitle: 'Plumber in Streatham | SW16 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Streatham | SW16 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Streatham, SW16. Emergency callout, boiler repair, blocked drains and bathroom installation across Streatham Common and Norbury. Call 020 3488 3737.',
     intro:
@@ -367,7 +367,7 @@ export const areas: Area[] = [
     postcodes: ['N10', 'N8', 'N2'],
     volume: 390,
     kd: 8,
-    metaTitle: 'Plumber in Muswell Hill | N10 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Muswell Hill | N10 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Muswell Hill, N10. Emergency callout, boiler repair, blocked drains and bathroom installation. Call 020 3488 3737.',
     intro:
@@ -389,7 +389,7 @@ export const areas: Area[] = [
     postcodes: ['W6', 'W12', 'W14'],
     volume: 390,
     kd: 8,
-    metaTitle: 'Plumber in Hammersmith | W6 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Hammersmith | W6 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Hammersmith, W6. Emergency callout, boiler repair, blocked drains, bathrooms and commercial plumbing. Call 020 3488 3737.',
     intro:
@@ -411,7 +411,7 @@ export const areas: Area[] = [
     postcodes: ['SE10', 'SE3', 'SE7'],
     volume: 390,
     kd: 12,
-    metaTitle: 'Plumber in Greenwich | SE10 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Greenwich | SE10 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Greenwich, SE10. Emergency callout, boiler repair, blocked drains and bathrooms across the town centre and the Peninsula. Call 020 3488 3737.',
     intro:
@@ -433,7 +433,7 @@ export const areas: Area[] = [
     postcodes: ['SW11', 'SW8'],
     volume: 390,
     kd: 8,
-    metaTitle: 'Plumber in Battersea | SW11 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Battersea | SW11 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Battersea, SW11. Emergency callout, boiler repair, blocked drains and bathroom installation across Battersea and Nine Elms. Call 020 3488 3737.',
     intro:
@@ -455,7 +455,7 @@ export const areas: Area[] = [
     postcodes: ['E17', 'E10'],
     volume: 320,
     kd: 10,
-    metaTitle: 'Plumber in Walthamstow | E17 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Walthamstow | E17 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Walthamstow, E17. Emergency callout, boiler repair, blocked drains and bathroom installation. Call 020 3488 3737.',
     intro:
@@ -477,7 +477,7 @@ export const areas: Area[] = [
     postcodes: ['SW15', 'SW18'],
     volume: 320,
     kd: 8,
-    metaTitle: 'Plumber in Putney | SW15 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Putney | SW15 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Putney, SW15. Emergency callout, boiler repair, blocked drains and bathroom installation across Putney and Roehampton. Call 020 3488 3737.',
     intro:
@@ -499,7 +499,7 @@ export const areas: Area[] = [
     postcodes: ['SE15', 'SE22', 'SE5'],
     volume: 320,
     kd: 9,
-    metaTitle: 'Plumber in Peckham | SE15 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Peckham | SE15 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Peckham, SE15. Emergency callout, boiler repair, blocked drains and commercial plumbing across Peckham and Nunhead. Call 020 3488 3737.',
     intro:
@@ -521,7 +521,7 @@ export const areas: Area[] = [
     postcodes: ['W8', 'W11', 'SW7'],
     volume: 320,
     kd: 9,
-    metaTitle: 'Plumber in Kensington | W8 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Kensington | W8 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Kensington, W8. Emergency callout, boiler repair, blocked drains and bathroom installation across Kensington and Holland Park. Call 020 3488 3737.',
     intro:
@@ -543,7 +543,7 @@ export const areas: Area[] = [
     postcodes: ['SE21', 'SE22', 'SE24'],
     volume: 320,
     kd: 10,
-    metaTitle: 'Plumber in Dulwich | SE21 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Dulwich | SE21 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Dulwich, SE21. Emergency callout, boiler repair, blocked drains and bathrooms across Dulwich Village and West Dulwich. Call 020 3488 3737.',
     intro:
@@ -565,7 +565,7 @@ export const areas: Area[] = [
     postcodes: ['SW3', 'SW10', 'SW1'],
     volume: 320,
     kd: 6,
-    metaTitle: 'Plumber in Chelsea | SW3 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Chelsea | SW3 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Chelsea, SW3. Emergency callout, boiler repair, blocked drains and bathrooms across Chelsea, Brompton and Knightsbridge. Call 020 3488 3737.',
     intro:
@@ -587,7 +587,7 @@ export const areas: Area[] = [
     postcodes: ['W3', 'NW10', 'W4'],
     volume: 210,
     kd: 13,
-    metaTitle: 'Plumber in Acton | W3 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Acton | W3 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Acton, W3. Emergency callout, boiler repair, servicing, blocked drains and bathrooms across North, South and East Acton. Call 020 3488 3737.',
     intro:
@@ -612,7 +612,7 @@ export const areas: Area[] = [
     postcodes: ['EN1', 'EN2', 'EN3', 'N9'],
     volume: 480,
     kd: 22,
-    metaTitle: 'Plumber in Enfield | EN1 & EN2 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Enfield | EN1 & EN2 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Enfield, EN1 to EN3. Emergency callout, boiler repair, servicing, blocked drains and bathroom installation. Call 020 3488 3737.',
     intro:
@@ -634,7 +634,7 @@ export const areas: Area[] = [
     postcodes: ['EN5', 'EN4', 'N20'],
     volume: 480,
     kd: 31,
-    metaTitle: 'Plumber in Barnet | EN5 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Barnet | EN5 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Barnet and EN5. Emergency callout, boiler repair, servicing, blocked drains and bathroom installation. Call 020 3488 3737.',
     intro:
@@ -656,7 +656,7 @@ export const areas: Area[] = [
     postcodes: ['SE18', 'SE28', 'SE2'],
     volume: 260,
     kd: 12,
-    metaTitle: 'Plumber in Woolwich | SE18 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Woolwich | SE18 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Woolwich, SE18. Emergency callout, boiler repair, blocked drains and bathroom installation across Woolwich and Royal Arsenal. Call 020 3488 3737.',
     intro:
@@ -678,7 +678,7 @@ export const areas: Area[] = [
     postcodes: ['SE23', 'SE26', 'SE4'],
     volume: 260,
     kd: 7,
-    metaTitle: 'Plumber in Forest Hill | SE23 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Forest Hill | SE23 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Forest Hill, SE23. Emergency callout, boiler repair, blocked drains and bathroom installation. Call 020 3488 3737.',
     intro:
@@ -700,7 +700,7 @@ export const areas: Area[] = [
     postcodes: ['W4', 'W3'],
     volume: 260,
     kd: 20,
-    metaTitle: 'Plumber in Chiswick | W4 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Chiswick | W4 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Chiswick, W4. Emergency callout, boiler repair, servicing, blocked drains and bathroom installation. Call 020 3488 3737.',
     intro:
@@ -722,7 +722,7 @@ export const areas: Area[] = [
     postcodes: ['SE5', 'SE15', 'SE17'],
     volume: 260,
     kd: 6,
-    metaTitle: 'Plumber in Camberwell | SE5 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Camberwell | SE5 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Camberwell, SE5. Emergency callout, boiler repair, blocked drains and bathroom installation. Call 020 3488 3737.',
     intro:
@@ -744,7 +744,7 @@ export const areas: Area[] = [
     postcodes: ['SW1', 'W1', 'WC2'],
     volume: 210,
     kd: 11,
-    metaTitle: 'Plumber in Westminster | SW1 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Westminster | SW1 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Westminster, SW1 and W1. Emergency callout, boiler repair, blocked drains and commercial plumbing. Call 020 3488 3737.',
     intro:
@@ -766,7 +766,7 @@ export const areas: Area[] = [
     postcodes: ['SE26', 'SE23', 'SE20'],
     volume: 210,
     kd: 14,
-    metaTitle: 'Plumber in Sydenham | SE26 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Sydenham | SE26 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Sydenham, SE26. Emergency callout, boiler repair, blocked drains and bathroom installation. Call 020 3488 3737.',
     intro:
@@ -788,7 +788,7 @@ export const areas: Area[] = [
     postcodes: ['W11', 'W10', 'W2'],
     volume: 210,
     kd: 1,
-    metaTitle: 'Plumber in Notting Hill | W11 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Notting Hill | W11 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Notting Hill, W11. Emergency callout, boiler repair, blocked drains and bathroom installation. Call 020 3488 3737.',
     intro:
@@ -810,7 +810,7 @@ export const areas: Area[] = [
     postcodes: ['SE9', 'SE12', 'SE18'],
     volume: 210,
     kd: 9,
-    metaTitle: 'Plumber in Eltham | SE9 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Eltham | SE9 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Eltham, SE9. Emergency callout, boiler repair, servicing, blocked drains and bathroom installation. Call 020 3488 3737.',
     intro:
@@ -832,7 +832,7 @@ export const areas: Area[] = [
     postcodes: ['SE22', 'SE15', 'SE21'],
     volume: 210,
     kd: 9,
-    metaTitle: 'Plumber in East Dulwich | SE22 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in East Dulwich | SE22 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in East Dulwich, SE22. Emergency callout, boiler repair, blocked drains and bathroom installation. Call 020 3488 3737.',
     intro:
@@ -854,7 +854,7 @@ export const areas: Area[] = [
     postcodes: ['E11', 'E10', 'E7'],
     volume: 170,
     kd: 10,
-    metaTitle: 'Plumber in Leytonstone | E11 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Leytonstone | E11 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Leytonstone, E11. Emergency callout, boiler repair, blocked drains and bathroom installation. Call 020 3488 3737.',
     intro:
@@ -876,7 +876,7 @@ export const areas: Area[] = [
     postcodes: ['E10', 'E11', 'E15'],
     volume: 170,
     kd: 12,
-    metaTitle: 'Plumber in Leyton | E10 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Leyton | E10 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Leyton, E10. Emergency callout, boiler repair, blocked drains and bathroom installation. Call 020 3488 3737.',
     intro:
@@ -898,7 +898,7 @@ export const areas: Area[] = [
     postcodes: ['NW3', 'NW6', 'N6'],
     volume: 170,
     kd: 4,
-    metaTitle: 'Plumber in Hampstead | NW3 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Hampstead | NW3 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Hampstead, NW3. Emergency callout, boiler repair, servicing, blocked drains and bathroom installation. Call 020 3488 3737.',
     intro:
@@ -920,7 +920,7 @@ export const areas: Area[] = [
     postcodes: ['SE19', 'SE26', 'SE20'],
     volume: 170,
     kd: 8,
-    metaTitle: 'Plumber in Crystal Palace | SE19 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Crystal Palace | SE19 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Crystal Palace, SE19. Emergency callout, boiler repair, blocked drains and bathroom installation. Call 020 3488 3737.',
     intro:
@@ -942,7 +942,7 @@ export const areas: Area[] = [
     postcodes: ['SE6', 'SE13', 'SE12'],
     volume: 170,
     kd: 13,
-    metaTitle: 'Plumber in Catford | SE6 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Catford | SE6 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Catford, SE6. Emergency callout, boiler repair, blocked drains and bathroom installation. Call 020 3488 3737.',
     intro:
@@ -964,7 +964,7 @@ export const areas: Area[] = [
     postcodes: ['E14', 'E16', 'E3'],
     volume: 170,
     kd: 9,
-    metaTitle: 'Plumber in Canary Wharf | E14 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Canary Wharf | E14 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Canary Wharf, E14. Emergency callout, boiler repair, blocked drains and commercial plumbing. Call 020 3488 3737.',
     intro:
@@ -986,7 +986,7 @@ export const areas: Area[] = [
     postcodes: ['SE3', 'SE10', 'SE13'],
     volume: 170,
     kd: 8,
-    metaTitle: 'Plumber in Blackheath | SE3 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Blackheath | SE3 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Blackheath, SE3. Emergency callout, boiler repair, servicing, blocked drains and bathroom installation. Call 020 3488 3737.',
     intro:
@@ -1008,7 +1008,7 @@ export const areas: Area[] = [
     postcodes: ['N17', 'N15', 'N22'],
     volume: 140,
     kd: 9,
-    metaTitle: 'Plumber in Tottenham | N17 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Tottenham | N17 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Tottenham, N17. Emergency callout, boiler repair, blocked drains and bathroom installation. Call 020 3488 3737.',
     intro:
@@ -1030,7 +1030,7 @@ export const areas: Area[] = [
     postcodes: ['E15', 'E20', 'E16'],
     volume: 140,
     kd: 15,
-    metaTitle: 'Plumber in Stratford | E15 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Stratford | E15 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Stratford, E15 and E20. Emergency callout, boiler repair, blocked drains and bathroom installation. Call 020 3488 3737.',
     intro:
@@ -1052,7 +1052,7 @@ export const areas: Area[] = [
     postcodes: ['SE1', 'SE16', 'SE17'],
     volume: 140,
     kd: 11,
-    metaTitle: 'Plumber in Southwark | SE1 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Southwark | SE1 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Southwark, SE1. Emergency callout, boiler repair, blocked drains and commercial plumbing. Call 020 3488 3737.',
     intro:
@@ -1074,7 +1074,7 @@ export const areas: Area[] = [
     postcodes: ['NW6', 'NW2', 'W9'],
     volume: 140,
     kd: 8,
-    metaTitle: 'Plumber in Kilburn | NW6 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Kilburn | NW6 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Kilburn, NW6. Emergency callout, boiler repair, blocked drains and bathroom installation. Call 020 3488 3737.',
     intro:
@@ -1096,7 +1096,7 @@ export const areas: Area[] = [
     postcodes: ['N6', 'N19', 'NW5'],
     volume: 140,
     kd: 15,
-    metaTitle: 'Plumber in Highgate | N6 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Highgate | N6 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Highgate, N6. Emergency callout, boiler repair, servicing, blocked drains and bathroom installation. Call 020 3488 3737.',
     intro:
@@ -1118,7 +1118,7 @@ export const areas: Area[] = [
     postcodes: ['N3', 'N12', 'N2'],
     volume: 140,
     kd: 7,
-    metaTitle: 'Plumber in Finchley | N3 & N12 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Finchley | N3 & N12 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Finchley, N3 and N12. Emergency callout, boiler repair, servicing, blocked drains and bathroom installation. Call 020 3488 3737.',
     intro:
@@ -1140,7 +1140,7 @@ export const areas: Area[] = [
     postcodes: ['E4', 'E17', 'IG8'],
     volume: 140,
     kd: 16,
-    metaTitle: 'Plumber in Chingford | E4 Plumbers | Tamesis Plumbers',
+    metaTitle: 'Plumber in Chingford | E4 Plumbers | Ninja Plumbers',
     metaDescription:
       'Plumber in Chingford, E4. Emergency callout, boiler repair, servicing, blocked drains and bathroom installation. Call 020 3488 3737.',
     intro:

@@ -1,4 +1,4 @@
-// Tamesis Plumbers — admin panel. Changing a lead's status saves immediately
+// Ninja Plumbers — admin panel. Changing a lead's status saves immediately
 // via the API; no separate save button, no page reload.
 (function () {
   document.querySelectorAll('.admin-status-form').forEach(function (form) {

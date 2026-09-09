@@ -1,5 +1,5 @@
 {
-  "name": "tamesis-plumbers",
+  "name": "ninja-plumbers",
   "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rankdent-hash/tamesis-plumbers.git"
+    "url": "git+https://github.com/rankdent-hash/ninja-plumbers.git"
   },
   "bugs": {
-    "url": "https://github.com/rankdent-hash/tamesis-plumbers/issues"
+    "url": "https://github.com/rankdent-hash/ninja-plumbers/issues"
   },
-  "homepage": "https://github.com/rankdent-hash/tamesis-plumbers#readme",
+  "homepage": "https://github.com/rankdent-hash/ninja-plumbers#readme",
   "dependencies": {
     "@anthropic-ai/sdk": "0.124.0",
     "@astrojs/sitemap": "3.7.4",

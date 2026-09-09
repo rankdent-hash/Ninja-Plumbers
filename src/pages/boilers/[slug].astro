@@ -63,10 +63,10 @@ const schema = {
 // The long form runs past 65 characters for brands with long names — "Alpha
 // Heating Innovation" alone is 24 — so it drops "& Service" only when it has
 // to, rather than shortening every brand for the sake of one.
-const longBrandTitle = `${brand.name} Boiler Repair & Service London | Tamesis Plumbers`;
+const longBrandTitle = `${brand.name} Boiler Repair & Service London | Ninja Plumbers`;
 const brandTitle = longBrandTitle.length <= 65
   ? longBrandTitle
-  : `${brand.name} Boiler Repair London | Tamesis Plumbers`;
+  : `${brand.name} Boiler Repair London | Ninja Plumbers`;
 
 const statusLine =
   brand.status === 'legacy'

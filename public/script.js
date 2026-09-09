@@ -1,4 +1,4 @@
-// Tamesis Plumbers — shared site behaviour
+// Ninja Plumbers — shared site behaviour
 
 document.addEventListener('DOMContentLoaded', function () {
   var body = document.body;
@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var searchTriggers = Array.prototype.slice.call(document.querySelectorAll('[data-search-open]'));
   var searchLoading = null;
   function openSearch(trigger) {
-    if (window.TamesisSearch) { window.TamesisSearch.open(trigger); return; }
+    if (window.NinjaSearch) { window.NinjaSearch.open(trigger); return; }
     if (!searchLoading) {
       searchLoading = new Promise(function (resolve, reject) {
         var s = document.createElement('script');
@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
     searchLoading.then(
-      function () { if (window.TamesisSearch) window.TamesisSearch.open(trigger); },
+      function () { if (window.NinjaSearch) window.NinjaSearch.open(trigger); },
       function () { location.href = '/site-map'; }
     );
   }

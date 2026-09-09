@@ -64,7 +64,7 @@ export const appliances: Appliance[] = [
     slug: 'water-softener-installation',
     title: 'Water Softener Installation',
     h1: 'Water softener installation in London',
-    metaTitle: 'Water Softener Installation London | Fitted & Serviced | Tamesis Plumbers',
+    metaTitle: 'Water Softener Installation London | Fitted & Serviced | Ninja Plumbers',
     metaDescription:
       'Water softener installation and servicing across London. Sizing, siting, bypass valves and salt. Hard water is a London problem. Call 020 3488 3737.',
     eyebrow: 'Hard water',
@@ -130,7 +130,7 @@ export const appliances: Appliance[] = [
     slug: 'underfloor-heating-installation',
     title: 'Underfloor Heating',
     h1: 'Underfloor heating installation in London',
-    metaTitle: 'Underfloor Heating Installation London | Wet Systems | Tamesis Plumbers',
+    metaTitle: 'Underfloor Heating Installation London | Wet Systems | Ninja Plumbers',
     metaDescription:
       'Wet underfloor heating installed across London: manifolds, zones, screed and low-profile systems, and repairs to existing loops. Call 020 3488 3737.',
     eyebrow: 'Wet systems',
@@ -196,7 +196,7 @@ export const appliances: Appliance[] = [
     slug: 'radiator-installation-and-power-flushing',
     title: 'Radiators & Power Flushing',
     h1: 'Radiator installation and power flushing in London',
-    metaTitle: 'Power Flush & Radiator Installation London | Tamesis Plumbers',
+    metaTitle: 'Power Flush & Radiator Installation London | Ninja Plumbers',
     metaDescription:
       'Central heating power flushing, system cleansing and radiator installation across London. Cold radiators, sludge and uneven heating. Call 020 3488 3737.',
     eyebrow: 'System cleaning',
@@ -262,7 +262,7 @@ export const appliances: Appliance[] = [
     slug: 'boiling-water-taps',
     title: 'Boiling Water Taps',
     h1: 'Boiling water tap installation in London',
-    metaTitle: 'Boiling Water Tap Installation London | Instant Hot Taps | Tamesis Plumbers',
+    metaTitle: 'Boiling Water Tap Installation London | Instant Hot Taps | Ninja Plumbers',
     metaDescription:
       'Boiling and instant hot water taps installed across London. Tank siting, filters, isolation and servicing of existing taps. Call 020 3488 3737.',
     eyebrow: 'Kitchen taps',
@@ -328,7 +328,7 @@ export const appliances: Appliance[] = [
     slug: 'washing-machine-plumbing',
     title: 'Washing Machine Plumbing',
     h1: 'Washing machine plumbing in London',
-    metaTitle: 'Washing Machine Plumbing London | Plumbed In & Moved | Tamesis Plumbers',
+    metaTitle: 'Washing Machine Plumbing London | Plumbed In & Moved | Ninja Plumbers',
     metaDescription:
       'Washing machines plumbed in, moved and repaired across London. Valves, standpipes, waste connections and leaks. Call 020 3488 3737.',
     eyebrow: 'Appliances',
@@ -394,7 +394,7 @@ export const appliances: Appliance[] = [
     slug: 'water-meter-installation',
     title: 'Water Meter Installation',
     h1: 'Water meter installation and relocation in London',
-    metaTitle: 'Water Meter Installation & Relocation London | Tamesis Plumbers',
+    metaTitle: 'Water Meter Installation & Relocation London | Ninja Plumbers',
     metaDescription:
       'Water meter pipework, relocation and shared-supply separation across London. Honest advice on what your water company does free. Call 020 3488 3737.',
     eyebrow: 'Supply',
@@ -461,7 +461,7 @@ export const appliances: Appliance[] = [
     slug: 'sump-pumps',
     title: 'Sump Pumps',
     h1: 'Sump pump installation in London',
-    metaTitle: 'Sump Pump Installation London | Basements & Cellars | Tamesis Plumbers',
+    metaTitle: 'Sump Pump Installation London | Basements & Cellars | Ninja Plumbers',
     metaDescription:
       'Sump pump installation, replacement and servicing for London basements and cellars. Backup pumps, alarms and discharge pipework. Call 020 3488 3737.',
     eyebrow: 'Groundwater',
@@ -527,7 +527,7 @@ export const appliances: Appliance[] = [
     slug: 'shower-pumps',
     title: 'Shower Pumps',
     h1: 'Shower pump installation in London',
-    metaTitle: 'Shower Pump Installation London | Fitted & Replaced | Tamesis Plumbers',
+    metaTitle: 'Shower Pump Installation London | Fitted & Replaced | Ninja Plumbers',
     metaDescription:
       'Shower pump installation and replacement across London. Positive and negative head pumps, whole-house pressure and noise problems. Call 020 3488 3737.',
     eyebrow: 'Pressure',
@@ -593,7 +593,7 @@ export const appliances: Appliance[] = [
     slug: 'electric-shower-installation',
     title: 'Electric Shower Installation',
     h1: 'Electric shower installation in London',
-    metaTitle: 'Electric Shower Installation London | Fitted Properly | Tamesis Plumbers',
+    metaTitle: 'Electric Shower Installation London | Fitted Properly | Ninja Plumbers',
     metaDescription:
       'Electric shower installation across London: new units fitted, old ones replaced, kW and cable requirements checked first. Call 020 3488 3737.',
     eyebrow: 'Self-contained showers',
@@ -659,7 +659,7 @@ export const appliances: Appliance[] = [
     slug: 'saniflo-macerator-pumps',
     title: 'Saniflo & Macerator Pumps',
     h1: 'Saniflo and macerator pump installation in London',
-    metaTitle: 'Saniflo & Macerator Installation London | Fitted & Repaired | Tamesis Plumbers',
+    metaTitle: 'Saniflo & Macerator Installation London | Fitted & Repaired | Ninja Plumbers',
     metaDescription:
       'Macerator and Saniflo installation, servicing and repairs across London. Basement and loft WCs, blockages and descaling. Call 020 3488 3737.',
     eyebrow: 'Pumped waste',
@@ -725,7 +725,7 @@ export const appliances: Appliance[] = [
     slug: 'whole-house-water-filtration',
     title: 'Water Filtration & Limescale',
     h1: 'Water filtration and limescale systems in London',
-    metaTitle: 'Water Filtration & Limescale Systems London | Tamesis Plumbers',
+    metaTitle: 'Water Filtration & Limescale Systems London | Ninja Plumbers',
     metaDescription:
       'Whole-house filtration, under-sink drinking water filters and scale reducers installed across London. Straight answers on what each one does. Call 020 3488 3737.',
     eyebrow: 'Water quality',
@@ -791,7 +791,7 @@ export const appliances: Appliance[] = [
     slug: 'outside-tap-installation',
     title: 'Outside Tap Installation',
     h1: 'Outside tap installation in London',
-    metaTitle: 'Outside Tap Installation London | Garden Taps Fitted | Tamesis Plumbers',
+    metaTitle: 'Outside Tap Installation London | Garden Taps Fitted | Ninja Plumbers',
     metaDescription:
       'Outside taps installed across London with the required check valve and isolation. Frost-proof taps, standpipes and winterising. Call 020 3488 3737.',
     eyebrow: 'Garden',
@@ -857,7 +857,7 @@ export const appliances: Appliance[] = [
     slug: 'dishwasher-plumbing',
     title: 'Dishwasher Plumbing',
     h1: 'Dishwasher plumbing in London',
-    metaTitle: 'Dishwasher Plumbing London | Plumbed In & Repaired | Tamesis Plumbers',
+    metaTitle: 'Dishwasher Plumbing London | Plumbed In & Repaired | Ninja Plumbers',
     metaDescription:
       'Dishwashers plumbed in, moved and fixed across London. Integrated units, waste connections, leaks and drainage faults. Call 020 3488 3737.',
     eyebrow: 'Appliances',
@@ -923,7 +923,7 @@ export const appliances: Appliance[] = [
     slug: 'hot-water-cylinder-installation',
     title: 'Hot Water Cylinders',
     h1: 'Hot water cylinder installation in London',
-    metaTitle: 'Hot Water Cylinder Installation London | Vented & Unvented | Tamesis Plumbers',
+    metaTitle: 'Hot Water Cylinder Installation London | Vented & Unvented | Ninja Plumbers',
     metaDescription:
       'Hot water cylinder replacement and servicing across London. Vented and unvented, immersion heaters, expansion vessels and controls. Call 020 3488 3737.',
     eyebrow: 'Hot water',

@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin
 
-Sitemap: https://www.tamesisplumbers.co.uk/sitemap-index.xml
+Sitemap: https://www.ninjaplumbers.co.uk/sitemap-index.xml

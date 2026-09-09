@@ -2,7 +2,7 @@
 // cover at all until this was measured against a competitor's sitemap:
 // damp proofing (5,400/mo), damp survey (2,900/mo), penetrating damp
 // (1,600/mo) and condensation control (480/mo) — real, substantial demand,
-// confirmed as work Tamesis carries out before any page was written.
+// confirmed as work Ninja carries out before any page was written.
 //
 // Three pages rather than the competitor's five: "damp proofing" and
 // "penetrating damp" are the same job from two different search angles
@@ -33,7 +33,7 @@ export const dampPages: DampPage[] = [
     slug: 'damp-survey-and-diagnosis',
     title: 'Damp Survey & Diagnosis',
     h1: 'Damp survey and diagnosis in London',
-    metaTitle: 'Damp Survey London | Diagnosis & Written Report | Tamesis Plumbers',
+    metaTitle: 'Damp Survey London | Diagnosis & Written Report | Ninja Plumbers',
     metaDescription:
       'Damp surveys across London, with the actual cause identified and a written report — before/instead of a treatment. Call 020 3488 3737.',
     eyebrow: 'Diagnosis first',
@@ -98,7 +98,7 @@ export const dampPages: DampPage[] = [
     slug: 'damp-proofing-and-penetrating-damp',
     title: 'Damp Proofing & Penetrating Damp',
     h1: 'Damp proofing and penetrating damp treatment in London',
-    metaTitle: 'Damp Proofing London | Penetrating Damp Treatment | Tamesis Plumbers',
+    metaTitle: 'Damp Proofing London | Penetrating Damp Treatment | Ninja Plumbers',
     metaDescription:
       'Damp proofing and penetrating damp treatment across London: the actual cause fixed at source, not just masked with a coating. Call 020 3488 3737.',
     eyebrow: 'Treatment',
@@ -163,7 +163,7 @@ export const dampPages: DampPage[] = [
     slug: 'condensation-and-ventilation-control',
     title: 'Condensation & Ventilation Control',
     h1: 'Condensation and ventilation control in London',
-    metaTitle: 'Condensation Control London | Ventilation Solutions | Tamesis Plumbers',
+    metaTitle: 'Condensation Control London | Ventilation Solutions | Ninja Plumbers',
     metaDescription:
       'Condensation and mould control across London: extractor fans, ventilation and the cause of black mould fixed, not just cleaned off. Call 020 3488 3737.',
     eyebrow: 'Ventilation',

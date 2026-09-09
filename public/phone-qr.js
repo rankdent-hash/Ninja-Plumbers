@@ -1,4 +1,4 @@
-// Tamesis Plumbers — "scan instead of dialling" popup.
+// Ninja Plumbers — "scan instead of dialling" popup.
 //
 // A phone number is only worth a QR code on a device that cannot just place
 // the call itself. On phones this script gets out of the way entirely and
@@ -65,5 +65,5 @@
   // Crossing from tablet down to phone with the popup open would strand it.
   desktop.addEventListener('change', function (e) { if (!e.matches) close(); });
 
-  window.TamesisPhoneQr = { open: open, close: close };
+  window.NinjaPhoneQr = { open: open, close: close };
 })();

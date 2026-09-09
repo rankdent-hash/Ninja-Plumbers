@@ -1,4 +1,4 @@
-// Tamesis Plumbers — "Book now" popup on phones.
+// Ninja Plumbers — "Book now" popup on phones.
 //
 // Tapping the sticky Book now button moves the page's own enquiry form into
 // a full-screen panel, and closing moves it back where it came from. One
@@ -23,7 +23,7 @@
     // Anything else covering the page goes away first.
     var navToggle = document.querySelector('.nav-toggle');
     if (document.body.classList.contains('nav-open') && navToggle) navToggle.click();
-    if (window.TamesisSearch) window.TamesisSearch.close();
+    if (window.NinjaSearch) window.NinjaSearch.close();
 
     form.parentNode.insertBefore(home, form);
     body.appendChild(form);
@@ -66,5 +66,5 @@
   // Growing past the phone breakpoint with the popup open would strand the form in it.
   phone.addEventListener('change', function (e) { if (!e.matches) close(); });
 
-  window.TamesisBook = { open: open, close: close };
+  window.NinjaBook = { open: open, close: close };
 })();

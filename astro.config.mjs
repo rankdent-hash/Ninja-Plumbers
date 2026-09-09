@@ -5,7 +5,7 @@ import { createClient } from '@supabase/supabase-js';
 import { INDEX_POSTCODE_PAGES } from './src/data/postcodes.ts';
 import vercel from '@astrojs/vercel';
 
-const SITE_URL = 'https://www.tamesisplumbers.co.uk';
+const SITE_URL = 'https://www.ninjaplumbers.co.uk';
 
 // Published blog posts live in Supabase, not a build-time literal (see
 // src/data/blog.ts), so the sitemap integration's own page-crawl can't see
@@ -26,7 +26,7 @@ async function publishedBlogUrls() {
 const blogUrls = await publishedBlogUrls();
 
 export default defineConfig({
-  site: 'https://www.tamesisplumbers.co.uk',
+  site: 'https://www.ninjaplumbers.co.uk',
   // Vercel serves these with cleanUrls, so pages resolve at /services rather
   // than /services.html. Previously every internal link and every canonical
   // pointed at a .html path that 308-redirected.

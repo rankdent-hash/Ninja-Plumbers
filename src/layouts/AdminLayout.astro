@@ -18,7 +18,7 @@ const sections = [
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{title} · Tamesis Admin</title>
+<title>{title} · Ninja Admin</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -28,7 +28,7 @@ const sections = [
 {admin && (
   <header class="admin-bar">
     <div class="container admin-bar-inner">
-      <a href="/admin" class="admin-brand"><span class="brand-mark">Tamesis</span> Admin</a>
+      <a href="/admin" class="admin-brand"><span class="brand-mark">Ninja</span> Admin</a>
       <nav class="admin-sections" aria-label="Admin sections">
         {sections.map((s) => (
           <a href={s.href} aria-current={path === s.href ? 'page' : undefined}>{s.label}</a>

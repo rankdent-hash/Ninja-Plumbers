@@ -34,7 +34,7 @@ export const services: Service[] = [
     slug: 'emergency-plumbing',
     title: 'Emergency Plumbing',
     h1: 'Emergency plumber in London',
-    metaTitle: 'Emergency Plumber London | 24/7 Callout | Tamesis Plumbers',
+    metaTitle: 'Emergency Plumber London | 24/7 Callout | Ninja Plumbers',
     metaDescription:
       'Emergency plumber covering London, 24 hours a day. Burst pipes, major leaks, no water and overflowing toilets. Gas Safe registered. Call 020 3488 3737.',
     eyebrow: '24/7 callout',
@@ -98,7 +98,7 @@ export const services: Service[] = [
     slug: 'boiler-repair',
     title: 'Boiler Repair',
     h1: 'Boiler repair in London',
-    metaTitle: 'Boiler Repair London | Gas Safe Engineers | Tamesis Plumbers',
+    metaTitle: 'Boiler Repair London | Gas Safe Engineers | Ninja Plumbers',
     metaDescription:
       'Gas Safe registered boiler repair across London. Breakdowns diagnosed properly and honest advice on repair versus replacement. Call 020 3488 3737.',
     eyebrow: 'Heating and hot water',
@@ -161,7 +161,7 @@ export const services: Service[] = [
     slug: 'boiler-service',
     title: 'Boiler Service',
     h1: 'Boiler service in London',
-    metaTitle: 'Boiler Service London | Annual Servicing | Tamesis Plumbers',
+    metaTitle: 'Boiler Service London | Annual Servicing | Ninja Plumbers',
     metaDescription:
       'Annual boiler service across London by Gas Safe registered engineers. Safety checks, cleaning and maintenance to keep your warranty valid. Call 020 3488 3737.',
     eyebrow: 'Heating and hot water',
@@ -224,7 +224,7 @@ export const services: Service[] = [
     slug: 'boiler-installation',
     title: 'Boiler Installation',
     h1: 'Boiler installation in London',
-    metaTitle: 'Boiler Installation London | New Boilers | Tamesis Plumbers',
+    metaTitle: 'Boiler Installation London | New Boilers | Ninja Plumbers',
     metaDescription:
       'New boiler installation across London by Gas Safe registered engineers. System sizing, a clear quote and the old unit removed. Call 020 3488 3737.',
     eyebrow: 'Heating and hot water',
@@ -287,7 +287,7 @@ export const services: Service[] = [
     slug: 'boiler-replacement',
     title: 'Boiler Replacement',
     h1: 'Boiler replacement in London',
-    metaTitle: 'Boiler Replacement London | New Boiler Quotes | Tamesis Plumbers',
+    metaTitle: 'Boiler Replacement London | New Boiler Quotes | Ninja Plumbers',
     metaDescription:
       'Boiler replacement across London. Honest advice on whether yours is worth replacing, a clear quote, and the old unit removed. Call 020 3488 3737.',
     eyebrow: 'Heating and hot water',
@@ -350,7 +350,7 @@ export const services: Service[] = [
     slug: 'drain-unblocking',
     title: 'Drain Unblocking',
     h1: 'Drain unblocking in London',
-    metaTitle: 'Drain Unblocking London | Blocked Drains | Tamesis Plumbers',
+    metaTitle: 'Drain Unblocking London | Blocked Drains | Ninja Plumbers',
     metaDescription:
       'Blocked drains, toilets, sinks and showers cleared across London using rods, jetting and CCTV. We tell you what caused it. Call 020 3488 3737.',
     eyebrow: 'Drainage',
@@ -414,7 +414,7 @@ export const services: Service[] = [
     slug: 'leak-detection',
     title: 'Leak Detection',
     h1: 'Leak detection in London',
-    metaTitle: 'Leak Detection London | Hidden Water Leaks | Tamesis Plumbers',
+    metaTitle: 'Leak Detection London | Hidden Water Leaks | Ninja Plumbers',
     metaDescription:
       'Non-invasive leak detection across London. Damp patches, rising water bills and hidden pipe leaks traced before anything is opened up. Call 020 3488 3737.',
     eyebrow: 'Detection',
@@ -478,7 +478,7 @@ export const services: Service[] = [
     slug: 'bathroom-installation',
     title: 'Bathroom Installation',
     h1: 'Bathroom installation in London',
-    metaTitle: 'Bathroom Fitters London | Installation | Tamesis Plumbers',
+    metaTitle: 'Bathroom Fitters London | Installation | Ninja Plumbers',
     metaDescription:
       'Bathroom installation across London, from swapping a single toilet to a full refit, en-suite or wet room. Priced before work starts. Call 020 3488 3737.',
     eyebrow: 'Installation',
@@ -543,7 +543,7 @@ export const services: Service[] = [
     slug: 'toilet-installation',
     title: 'Toilet Installation',
     h1: 'Toilet installation in London',
-    metaTitle: 'Toilet Installation London | New & Replacement WCs | Tamesis Plumbers',
+    metaTitle: 'Toilet Installation London | New & Replacement WCs | Ninja Plumbers',
     metaDescription:
       'Toilet installation and replacement across London: close-coupled, back-to-wall, wall-hung and concealed cisterns. Call 020 3488 3737.',
     eyebrow: 'New and replacement WCs',
@@ -608,7 +608,7 @@ export const services: Service[] = [
     slug: 'general-plumbing',
     title: 'General Plumbing',
     h1: 'General plumbing in London',
-    metaTitle: 'Plumber in London | Taps, Toilets & Repairs | Tamesis Plumbers',
+    metaTitle: 'Plumber in London | Taps, Toilets & Repairs | Ninja Plumbers',
     metaDescription:
       'Everyday plumbing across London: taps, toilets, radiators, stopcocks and pipework. For homeowners, landlords and agents. Call 020 3488 3737.',
     eyebrow: 'Everyday plumbing',
@@ -677,7 +677,7 @@ export const services: Service[] = [
     slug: 'commercial-plumbing',
     title: 'Commercial Plumbing',
     h1: 'Commercial plumbing in London',
-    metaTitle: 'Commercial Plumber London | Offices & Shops | Tamesis Plumbers',
+    metaTitle: 'Commercial Plumber London | Offices & Shops | Ninja Plumbers',
     metaDescription:
       'Commercial plumbing and drainage across London for offices, restaurants, retail and blocks of flats. Out-of-hours work available. Call 020 3592 0042.',
     eyebrow: 'Commercial',
@@ -726,7 +726,7 @@ export const services: Service[] = [
       },
       {
         title: 'Backed by a property firm',
-        body: 'Tamesis Plumbers is the plumbing arm of Tamesis Development Ltd, a London property maintenance and refurbishment company established in 2019. Commercial buildings are familiar ground rather than an occasional job.',
+        body: 'Ninja Plumbers is the plumbing arm of Tamesis Development Ltd, a London property maintenance and refurbishment company established in 2019. Commercial buildings are familiar ground rather than an occasional job.',
       },
     ],
     aside: {
@@ -757,7 +757,7 @@ export const services: Service[] = [
     slug: 'gas-safety-certificate',
     title: 'Gas Safety Certificates',
     h1: 'Gas safety certificates (CP12) in London',
-    metaTitle: 'Gas Safety Certificate London | CP12 | Tamesis Plumbers',
+    metaTitle: 'Gas Safety Certificate London | CP12 | Ninja Plumbers',
     metaDescription:
       'Gas safety certificates (CP12) for landlords and homeowners across London, issued by Gas Safe registered engineers. Same-week appointments. Call 020 3488 3737.',
     eyebrow: 'CP12',
@@ -821,7 +821,7 @@ export const services: Service[] = [
     slug: 'cctv-drain-survey',
     title: 'CCTV Drain Surveys',
     h1: 'CCTV drain surveys in London',
-    metaTitle: 'CCTV Drain Survey London | Drain Camera Inspection | Tamesis Plumbers',
+    metaTitle: 'CCTV Drain Survey London | Drain Camera Inspection | Ninja Plumbers',
     metaDescription:
       'CCTV drain surveys across London: camera inspection, recorded footage and a written report for house purchases, insurance claims and recurring blockages. Call 020 3488 3737.',
     eyebrow: 'Diagnostics',
@@ -885,7 +885,7 @@ export const services: Service[] = [
     slug: 'drain-repairs',
     title: 'Drain Repairs',
     h1: 'Drain repairs in London',
-    metaTitle: 'Drain Repairs London | Excavation & No-Dig Relining | Tamesis Plumbers',
+    metaTitle: 'Drain Repairs London | Excavation & No-Dig Relining | Ninja Plumbers',
     metaDescription:
       'Drain repairs across London: collapsed pipes, root damage and cracked joints fixed by excavation or no-dig relining. Call 020 3488 3737.',
     eyebrow: 'Repairs',
@@ -949,7 +949,7 @@ export const services: Service[] = [
     slug: 'wet-rooms-and-walk-in-showers',
     title: 'Wet Rooms & Walk-In Showers',
     h1: 'Wet room and walk-in shower installation in London',
-    metaTitle: 'Wet Room & Walk-In Shower Installation London | Tamesis Plumbers',
+    metaTitle: 'Wet Room & Walk-In Shower Installation London | Ninja Plumbers',
     metaDescription:
       'Wet rooms and walk-in showers installed across London: tanking, level-access floors and drainage done properly. Call 020 3488 3737.',
     eyebrow: 'Level access',
@@ -1013,7 +1013,7 @@ export const services: Service[] = [
     slug: 'air-conditioning-repair',
     title: 'Air Conditioning Repair',
     h1: 'Air conditioning repair in London',
-    metaTitle: 'Air Conditioning Repair London | F-Gas Registered | Tamesis Plumbers',
+    metaTitle: 'Air Conditioning Repair London | F-Gas Registered | Ninja Plumbers',
     metaDescription:
       'Air conditioning repair across London: units not cooling, leaking indoors, tripping breakers or showing a fault code. Diagnosed by F-Gas registered engineers. Call 020 3488 3737.',
     eyebrow: 'Cooling',
@@ -1076,7 +1076,7 @@ export const services: Service[] = [
     slug: 'air-conditioning-maintenance',
     title: 'Air Conditioning Maintenance',
     h1: 'Air conditioning maintenance in London',
-    metaTitle: 'Air Conditioning Maintenance London | Annual Servicing | Tamesis Plumbers',
+    metaTitle: 'Air Conditioning Maintenance London | Annual Servicing | Ninja Plumbers',
     metaDescription:
       'Annual air conditioning maintenance across London: filters, refrigerant and F-Gas leak checks by F-Gas registered engineers. Call 020 3488 3737.',
     eyebrow: 'Cooling',
@@ -1139,7 +1139,7 @@ export const services: Service[] = [
     slug: 'air-conditioning-installation',
     title: 'Air Conditioning Installation',
     h1: 'Air conditioning installation in London',
-    metaTitle: 'Air Conditioning Installation London | F-Gas Registered | Tamesis Plumbers',
+    metaTitle: 'Air Conditioning Installation London | F-Gas Registered | Ninja Plumbers',
     metaDescription:
       'Air conditioning installation across London: split and multi-split systems, fitted by F-Gas registered engineers. Call 020 3488 3737.',
     eyebrow: 'Cooling',
@@ -1202,7 +1202,7 @@ export const services: Service[] = [
     slug: 'air-conditioning-replacement',
     title: 'Air Conditioning Replacement',
     h1: 'Air conditioning replacement in London',
-    metaTitle: 'Air Conditioning Replacement London | F-Gas Registered | Tamesis Plumbers',
+    metaTitle: 'Air Conditioning Replacement London | F-Gas Registered | Ninja Plumbers',
     metaDescription:
       'Replacing an old or failing air conditioning system across London. Honest advice on repair versus replacement, old refrigerant systems assessed. Call 020 3488 3737.',
     eyebrow: 'Cooling',

@@ -103,7 +103,7 @@ async function notify(enquiry: Record<string, any>) {
       method: 'POST',
       headers: { authorization: `Bearer ${key}`, 'content-type': 'application/json' },
       body: JSON.stringify({
-        from: import.meta.env.NOTIFY_FROM || 'Tamesis Website <onboarding@resend.dev>',
+        from: import.meta.env.NOTIFY_FROM || 'Ninja Website <onboarding@resend.dev>',
         to,
         reply_to: enquiry.email || undefined,
         subject: `New enquiry — ${enquiry.name}, ${enquiry.postcode} (${enquiry.urgency || 'no urgency given'})`,
@@ -147,7 +147,7 @@ async function notifyGHL(enquiry: Record<string, any>) {
         lastName,
         email: enquiry.email || '',
         phone: enquiry.phone,
-        source: 'Tamesis Plumbers Website',
+        source: 'Ninja Plumbers Website',
         formType: 'website-enquiry',
         service: enquiry.service || '',
         message: enquiry.description || '',
@@ -226,7 +226,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
   const ipHash = await hashIp(
     clientAddress || request.headers.get('x-forwarded-for') || 'unknown',
-    import.meta.env.IP_SALT || 'tamesis-fallback-salt'
+    import.meta.env.IP_SALT || 'ninja-fallback-salt'
   );
 
   const since = new Date(Date.now() - 60 * 60 * 1000).toISOString();
