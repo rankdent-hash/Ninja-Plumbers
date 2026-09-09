@@ -5,6 +5,7 @@
 // does not exist, so a renamed service cannot leave a dead link in the
 // navigation.
 import { services } from './services';
+import { dampPages } from './damp';
 
 export type ServiceGroup = {
   slug: string;
@@ -91,6 +92,11 @@ export const mainNav: NavItem[] = [
   { group: 'bathrooms' },
   { label: 'Appliances', href: '/appliances', mega: 'appliances' },
   { group: 'air-conditioning' },
+  {
+    label: 'Damp',
+    href: '/damp',
+    children: dampPages.map((d) => ({ label: d.title, href: `/damp/${d.slug}` })),
+  },
   { label: 'Contact', href: '/contact' },
 ];
 

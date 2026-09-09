@@ -51,7 +51,7 @@ const serviceSchema = {
   areaServed: { '@type': 'City', name: 'London' },
 };
 ---
-<Base title={page.metaTitle} description={page.metaDescription} noindex>
+<Base title={page.metaTitle} description={page.metaDescription}>
   <Schema slot="head" breadcrumb={crumbs} faqs={page.faqs} extra={serviceSchema} />
 
   <HeroWithForm

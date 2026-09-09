@@ -84,10 +84,6 @@ export default defineConfig({
         !page.includes('/explorer') &&
         !page.includes('search-index') &&
         !page.includes('/admin') &&
-        // Damp & condensation is paused: pages stay live and reachable by
-        // direct URL, but kept out of the sitemap and noindexed (see their
-        // own page files) so they stop drawing search traffic.
-        !page.includes('/damp') &&
         // Postcode district pages come out of the sitemap together with their
         // noindex, controlled by the one flag in src/data/postcodes.ts.
         (INDEX_POSTCODE_PAGES || !/\/postcodes\//.test(page)),

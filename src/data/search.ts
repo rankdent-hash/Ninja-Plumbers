@@ -5,6 +5,7 @@
 // the problem. They are never shown and are not claims about the business.
 import { services } from './services';
 import { appliances } from './appliances';
+import { dampPages } from './damp';
 import { blogPosts } from './blog';
 import { serviceGroups } from './nav';
 import { areas } from './areas';
@@ -13,7 +14,7 @@ import { postcodes } from './postcodes';
 import { brands } from './brands';
 
 export type SearchEntry = {
-  t: 'group' | 'service' | 'appliance' | 'blog' | 'combo' | 'area' | 'postcode' | 'brand' | 'page';
+  t: 'group' | 'service' | 'appliance' | 'damp' | 'blog' | 'combo' | 'area' | 'postcode' | 'brand' | 'page';
   title: string;
   sub: string;       // one line under the title
   url: string;
@@ -64,6 +65,12 @@ const APPLIANCE_TERMS: Record<string, string> = {
   'electric-shower-installation': 'electric shower installation fit fitted new shower kw rating cable breaker isolation valve replace existing unit',
 };
 
+const DAMP_TERMS: Record<string, string> = {
+  'damp-survey-and-diagnosis': 'damp survey diagnosis moisture meter report rising damp penetrating damp condensation inspection pre purchase second opinion',
+  'damp-proofing-and-penetrating-damp': 'damp proofing penetrating damp treatment damp proof course dpc render pointing guttering ground level defect wall',
+  'condensation-and-ventilation-control': 'condensation ventilation mould mold black mould extractor fan trickle vent humidity window damp air',
+};
+
 const GROUP_TERMS: Record<string, string> = {
   plumbing: 'plumber plumbers plumbing pipes water leak tap toilet',
   heating: 'boiler boilers heating central heating gas hot water radiators cylinders engineer',
@@ -93,6 +100,7 @@ const PAGES: SearchEntry[] = [
   { t: 'page', title: 'Postcode districts', sub: 'Coverage by postcode district', url: '/postcodes', k: 'postcode postcodes district districts coverage' },
   { t: 'page', title: 'All services', sub: 'Everything we do, in one place', url: '/services', k: 'services service what we do' },
   { t: 'page', title: 'Appliances & fixtures', sub: 'Softeners, pumps, taps and appliance plumbing', url: '/appliances', k: 'appliance appliances fixtures fittings install installation fitted machine pump tap filter' },
+  { t: 'page', title: 'Damp & condensation', sub: 'Survey, proofing and ventilation across London', url: '/damp', k: 'damp condensation mould mold moisture rising penetrating survey proofing ventilation' },
   { t: 'page', title: 'Boiler brands we work on', sub: 'Repairs and servicing by manufacturer', url: '/boilers', k: 'brands brand manufacturer make makes' },
   { t: 'page', title: 'About us', sub: 'Who we are and how we work', url: '/about', k: 'about company who team gas safe insured tamesis development' },
   { t: 'page', title: 'Reviews', sub: 'What customers say', url: '/reviews', k: 'reviews review testimonials feedback rating' },
@@ -137,6 +145,16 @@ export function buildSearchIndex(): SearchEntry[] {
       sub: a.summary.split(/(?<=\.)\s/)[0],
       url: `/appliances/${a.slug}`,
       k: words(a.title, a.h1, APPLIANCE_TERMS[a.slug], a.guidance.map((x) => x.title)),
+    });
+  }
+
+  for (const d of dampPages) {
+    out.push({
+      t: 'damp',
+      title: d.title,
+      sub: d.summary.split(/(?<=\.)\s/)[0],
+      url: `/damp/${d.slug}`,
+      k: words(d.title, d.h1, DAMP_TERMS[d.slug], d.guidance.map((x) => x.title)),
     });
   }
 
