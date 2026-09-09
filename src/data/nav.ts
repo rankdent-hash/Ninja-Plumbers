@@ -84,6 +84,7 @@ export const mainNav: NavItem[] = [
     children: [
       { label: 'About us', href: '/about' },
       { label: 'Reviews', href: '/reviews' },
+      { label: 'Blog', href: '/blog' },
     ],
   },
   { group: 'plumbing' },
