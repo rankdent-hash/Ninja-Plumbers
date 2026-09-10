@@ -131,8 +131,8 @@ const topAreas = [...areas].sort((a, b) => b.volume - a.volume).slice(0, 10);
 
     <aside class="about-card">
       <span class="eyebrow">About</span>
-      <h3>The plumbing arm of a London property firm</h3>
-      <p>Ninja Plumbers is part of {site.legalName}, a London property maintenance and refurbishment company established in {site.established}. It is why we care about the things trades usually skip: turning up when we said, pricing before the work, leaving the place clean.</p>
+      <h3>A dedicated London plumbing company</h3>
+      <p>Ninja Plumbers is {site.legalName}, established {site.established} and based in Fulham. Being focused on plumbing, heating and drainage — and nothing else — is why we care about the things trades usually skip: turning up when we said, pricing before the work, leaving the place clean.</p>
       <dl class="about-facts">
         <div><dt>Office</dt><dd>{site.address.line1}, {site.address.postcode}</dd></div>
         <div><dt>Job booking</dt><dd><a href={`tel:${site.booking.tel}`}>{site.booking.display}</a></dd></div>

@@ -6,7 +6,7 @@ const updated = '4 September 2026';
 ---
 <Base
   title="Privacy Policy | Ninja Plumbers"
-  description={`How Tamesis Development Ltd collects, uses and protects personal information from customers and visitors to ${site.name}.`}
+  description={`How ${site.legalName} collects, uses and protects personal information from customers and visitors to ${site.name}.`}
 >
 
 <section class="page-hero">
@@ -23,7 +23,7 @@ const updated = '4 September 2026';
     <p class="legal-meta">Last updated {updated}</p>
 
     <h2>Who we are</h2>
-    <p>{site.name} is a trading name of {site.legalName}, a company registered in England and Wales under company number {site.companyNumber}. Our registered office is {site.address.line1}, {site.address.city}, {site.address.postcode}.</p>
+    <p>{site.name} is {site.legalName}, a company registered in England and Wales under company number {site.companyNumber}. Our registered office is {site.address.line1}, {site.address.city}, {site.address.postcode}.</p>
     <p>{site.legalName} is the data controller for the information described in this policy. That means we are responsible for deciding how and why your personal information is used.</p>
     <p>If you have any question about this policy, or about how we handle your information, email <a href={`mailto:${site.email}`}>{site.email}</a> or call <a href={`tel:${site.management.tel}`}>{site.management.display}</a>.</p>
 

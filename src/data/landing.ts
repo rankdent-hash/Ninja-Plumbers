@@ -322,7 +322,7 @@ export const landings: Landing[] = [
     trustExtra: [
       `${site.name} rated 5.0 stars on Google`,
       'Directly employed engineers, never subcontracted',
-      `Part of ${site.legalName}, established ${site.established}`,
+      `${site.legalName}, established ${site.established}`,
     ],
   },
 
@@ -419,7 +419,7 @@ export const landings: Landing[] = [
     trustExtra: [
       `${site.name} rated 5.0 stars on Google`,
       'Directly employed engineers, never subcontracted',
-      `Part of ${site.legalName}, established ${site.established}`,
+      `${site.legalName}, established ${site.established}`,
     ],
   },
 
@@ -517,7 +517,7 @@ export const landings: Landing[] = [
     trustExtra: [
       `${site.name} rated 5.0 stars on Google`,
       'Directly employed engineers, never subcontracted',
-      `Part of ${site.legalName}, established ${site.established}`,
+      `${site.legalName}, established ${site.established}`,
     ],
     crossLink: {
       href: '/services/toilet-installation',
@@ -619,7 +619,7 @@ export const landings: Landing[] = [
     trustExtra: [
       `${site.name} rated 5.0 stars on Google`,
       'Directly employed engineers, never subcontracted',
-      `Part of ${site.legalName}, established ${site.established}`,
+      `${site.legalName}, established ${site.established}`,
     ],
     crossLink: {
       href: '/services/gas-safety-certificate',

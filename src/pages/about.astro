@@ -5,13 +5,13 @@ import site from '../data/site.json';
 ---
 <Base
   title="About Us | Ninja Plumbers, London"
-  description="Meet Ninja Plumbers, a Fulham-based London plumbing team set up in 2019 by property firm Tamesis Development Ltd. Gas Safe registered and insured."
+  description="Meet Ninja Plumbers, a Fulham-based London plumbing company established in 2024. Gas Safe registered and insured, covering homes and businesses across the capital."
 >
 
 <HeroWithForm
   eyebrow="About us"
-  h1="The plumbing arm of a London property firm"
-  intro="Tamesis Development Ltd has been doing London property maintenance and refurbishment since 2019 — Ninja Plumbers grew out of the plumbing work we were already handling on our own sites, and we now do the same job for other people's homes."
+  h1="A London plumbing company, built to do the basics properly"
+  intro="Ninja Plumbers is a dedicated London plumbing company based in Fulham. We built the business around the things a lot of trades treat as optional — turning up when we said we would, pricing before the work rather than after, and leaving the place clean enough that you'd struggle to prove we'd been there."
   breadcrumb={[{ label: 'Home', href: '/' }, { label: 'About' }]}
   bullets={[
     'Gas Safe registered and fully insured',
@@ -26,16 +26,15 @@ import site from '../data/site.json';
   <div class="container service-row">
     <div class="service-copy">
       <span class="eyebrow">Who we are</span>
-      <h2>Property people who do plumbing properly</h2>
-      <p class="lead">Maintenance, repairs and refurbishment on London property is what Tamesis Development Ltd does. Plumbing touches nearly every job on that list, which is why we built our own dedicated team, Ninja Plumbers, rather than handing that part to a sub-contractor.</p>
-      <p>It's also why we bother with the things a lot of trades treat as optional — turning up on time, quoting before the work rather than after, and clearing up so thoroughly you'd struggle to prove we'd been there at all.</p>
+      <h2>A dedicated plumbing team, not a side job</h2>
+      <p class="lead">Ninja Plumbers exists to do one thing well: plumbing, heating and drainage across London, carried out by our own engineers rather than passed to a sub-contractor. Being focused on that one job is what lets us hold the standard we set for ourselves.</p>
+      <p>That means the things a lot of trades treat as optional — turning up on time, quoting before the work rather than after, and clearing up so thoroughly you'd struggle to prove we'd been there at all.</p>
       <p>Our base is the Fulham office, and engineers work out across Greater London from there — for homeowners, tenants, landlords, managing agents and commercial premises alike.</p>
     </div>
     <aside class="service-aside">
       <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/><path d="M9 8h1"/><path d="M9 12h1"/><path d="M9 16h1"/><path d="M14 8h1"/><path d="M14 12h1"/><path d="M14 16h1"/></svg></div>
-      <h3>Tamesis Development Ltd</h3>
-      <p>Established 2019. Registered in England and Wales, company number {site.companyNumber}.</p>
-      <p>Ninja Plumbers is a trading name of Tamesis Development Ltd.</p>
+      <h3>{site.legalName}</h3>
+      <p>Registered in England and Wales, company number {site.companyNumber}.</p>
     </aside>
   </div>
 </section>
@@ -77,7 +76,7 @@ import site from '../data/site.json';
         <h2>Company details</h2>
         <dl class="detail-list">
           <dt>Registered company</dt>
-          <dd>Tamesis Development Ltd</dd>
+          <dd>{site.legalName}</dd>
           <dt>Company number</dt>
           <dd>{site.companyNumber}</dd>
           <dt>Office</dt>

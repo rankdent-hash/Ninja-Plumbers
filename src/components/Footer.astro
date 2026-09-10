@@ -30,7 +30,7 @@ const topAreas = [...areas].sort((a, b) => b.volume - a.volume).slice(0, 12);
         <a href="/" class="footer-logo" aria-label="Ninja Plumbers — home">
           <img src="/images/logo-light.png" width="400" height="158" alt="Ninja Plumbers" />
         </a>
-        <p>Plumbing, heating and drainage across London. Part of {site.legalName}, established {site.established}. Gas Safe registered and fully insured.</p>
+        <p>Plumbing, heating and drainage across London. {site.legalName}, established {site.established}. Gas Safe registered and fully insured.</p>
         <div class="footer-cta">
           <a href={`tel:${site.booking.tel}`} class="btn btn-orange"><PhoneIcon /> {site.booking.display}</a>
           <a href={site.whatsapp.url} class="btn btn-outline"><WhatsAppIcon /> WhatsApp</a>
@@ -112,7 +112,7 @@ const topAreas = [...areas].sort((a, b) => b.volume - a.volume).slice(0, 12);
         <li><a href="/site-map">Site map</a></li>
         <li><a href="/sitemap-index.xml">XML sitemap</a></li>
       </ul>
-      <p>© {year} {site.legalName}. All rights reserved. Company No. {site.companyNumber}. Ninja Plumbers is a trading name of {site.legalName}.</p>
+      <p>© {year} {site.legalName}. All rights reserved. Company No. {site.companyNumber}.</p>
     </div>
   </div>
 </footer>

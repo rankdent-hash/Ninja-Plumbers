@@ -102,7 +102,7 @@ const PAGES: SearchEntry[] = [
   { t: 'page', title: 'Appliances & fixtures', sub: 'Softeners, pumps, taps and appliance plumbing', url: '/appliances', k: 'appliance appliances fixtures fittings install installation fitted machine pump tap filter' },
   { t: 'page', title: 'Damp & condensation', sub: 'Survey, proofing and ventilation across London', url: '/damp', k: 'damp condensation mould mold moisture rising penetrating survey proofing ventilation' },
   { t: 'page', title: 'Boiler brands we work on', sub: 'Repairs and servicing by manufacturer', url: '/boilers', k: 'brands brand manufacturer make makes' },
-  { t: 'page', title: 'About us', sub: 'Who we are and how we work', url: '/about', k: 'about company who team gas safe insured tamesis development' },
+  { t: 'page', title: 'About us', sub: 'Who we are and how we work', url: '/about', k: 'about company who team gas safe insured ninja plumbers limited' },
   { t: 'page', title: 'Reviews', sub: 'What customers say', url: '/reviews', k: 'reviews review testimonials feedback rating' },
   { t: 'page', title: 'Site map', sub: 'Every page on the site', url: '/site-map', k: 'site map sitemap index all pages' },
 ];

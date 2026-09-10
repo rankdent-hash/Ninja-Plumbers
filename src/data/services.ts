@@ -725,8 +725,8 @@ export const services: Service[] = [
         body: 'When one flat reports a blockage, quite often the real problem sits in the shared stack and is affecting several flats at once, not just the one that called it in. The whole job usually comes down to getting access to the right flats on the first visit — miss one and you are booking a second trip for what should have been sorted the first time.',
       },
       {
-        title: 'Backed by a property firm',
-        body: 'Ninja Plumbers is the plumbing arm of Tamesis Development Ltd, a London property maintenance and refurbishment company established in 2019. Commercial buildings are familiar ground rather than an occasional job.',
+        title: 'Commercial work is routine for us, not an exception',
+        body: 'Ninja Plumbers takes on offices, restaurants, shops and blocks of flats alongside residential jobs every week, so working around opening hours, tenants and managing agents is familiar ground rather than something we figure out on the day.',
       },
     ],
     aside: {
