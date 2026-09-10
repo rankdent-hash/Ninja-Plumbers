@@ -26,7 +26,7 @@ export type SearchEntry = {
 
 const SERVICE_TERMS: Record<string, string> = {
   'emergency-plumbing': 'emergency urgent burst pipe flood flooding leak leaking water pouring no water stopcock 24 hour out of hours tonight now plumber',
-  'general-plumbing': 'tap taps toilet wc cistern flush radiator radiators valve ballcock overflow pipe pipework dripping sink basin shower washing machine dishwasher outside tap stopcock water pressure low pressure plumber repair repairs',
+  'general-plumbing': 'tap taps mixer mixers monobloc pillar tap bath filler cartridge washer o-ring seized stiff tap dripping tap leaking tap toilet wc cistern flush radiator radiators valve ballcock overflow pipe pipework dripping sink basin shower shower mixer washing machine dishwasher outside tap stopcock water pressure low pressure plumber repair repairs',
   'leak-detection': 'leak leaks hidden leak damp ceiling stain water bill trace tracing thermal acoustic under floor underfloor pipe',
   'commercial-plumbing': 'commercial office restaurant shop retail landlord block of flats business premises pub cafe hotel school',
   'boiler-repair': 'boiler broken no heating no hot water fault code lockout locked out pressure dropping losing pressure pilot light ignition banging kettling combi not working repair repairs engineer gas',

@@ -142,6 +142,13 @@
     var order = res.serviceHit
       ? ['group', 'service', 'appliance', 'damp', 'related', 'combo', 'area', 'postcode', 'brand', 'blog', 'page']
       : ['area', 'postcode', 'combo', 'brand', 'page', 'group', 'service', 'appliance', 'damp', 'related', 'blog'];
+    // One letter in, almost everything matches something. Show only what we
+    // actually do, so the first suggestion is a service rather than a wall of
+    // postcode districts and boiler brands. Two letters is left alone: "se"
+    // and "sw" are how someone starts typing a postcode.
+    if (q.trim().length === 1 && res.serviceHit) {
+      order = ['group', 'service', 'appliance', 'damp', 'related'];
+    }
     order.forEach(function (t) {
       var list = (byType[t] || []).slice(0, LIMIT[t]);
       total += list.length;
