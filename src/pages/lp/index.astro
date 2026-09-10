@@ -1,0 +1,53 @@
+---
+// Internal directory of the paid-search landing pages — not itself a landing
+// page, so it uses the normal site layout (header, nav, footer) rather than
+// Landing.astro. Noindex, and already excluded from the sitemap along with
+// every /lp/* URL (see astro.config.mjs). A card here is added automatically
+// the moment a new entry lands in landing.ts — nothing to remember to wire up.
+import Base from '../../layouts/Base.astro';
+import { landings } from '../../data/landing';
+
+const sorted = [...landings].sort((a, b) => a.campaign.localeCompare(b.campaign));
+---
+<Base
+  title="Landing pages | Ninja Plumbers"
+  description="Internal directory of paid-search landing pages."
+  noindex
+>
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="/">Home</a> / Landing pages</div>
+      <span class="eyebrow">Internal &middot; not linked from the site</span>
+      <h1>Landing pages</h1>
+      <p>
+        {landings.length} paid-search landing pages, one per Google Ads campaign or ad group.
+        Every one is noindex and kept out of the sitemap so they never compete with the organic
+        service pages &mdash; this page is purely so the pages themselves are easy to find and
+        share for review.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <ul class="lp-hub-grid">
+        {sorted.map((l) => (
+          <li class="lp-hub-card">
+            <div class="lp-hub-card-top">
+              <span class="lp-hub-campaign">{l.campaign}</span>
+              {l.premium && <span class="lp-hub-badge lp-hub-badge-premium">Premium</span>}
+            </div>
+            <h2><a href={`/lp/${l.slug}`}>{l.h1}</a></h2>
+            <p>{l.sub}</p>
+            <ul class="lp-hub-meta">
+              <li><strong>Target term:</strong> {l.headTerm}</li>
+              <li><strong>CPC:</strong> {l.cpc}</li>
+              {l.offer && <li><strong>Offer:</strong> £25 off first call-out</li>}
+            </ul>
+            <a href={`/lp/${l.slug}`} class="card-link">View page &rarr;</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</Base>

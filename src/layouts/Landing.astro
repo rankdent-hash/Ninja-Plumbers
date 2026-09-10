@@ -31,17 +31,25 @@ const year = new Date().getFullYear();
 
 <header class="lp-header">
   <div class="container lp-header-bar">
-    <span class="logo lp-logo">
-      <span><span class="brand-mark">Ninja</span> Plumbers</span>
-      <span class="sub">{site.tagline}</span>
+    <span class="logo lp-logo" role="img" aria-label="Ninja Plumbers">
+      <img class="logo-img" src="/images/logo.png" width="400" height="158" alt="" />
     </span>
-    <a href={`tel:${site.booking.tel}`} class="header-cta">
-      <PhoneIcon />
-      <span class="header-cta-text">
-        <span class="header-cta-label">Call now</span>
-        <span class="header-cta-number">{site.booking.display}</span>
-      </span>
-    </a>
+    <div class="lp-header-actions">
+      {/* Jumps to the page's own booking form (same page, so no exit link);
+          the small script below adds the smooth slide and lands focus on the
+          first field so the keyboard opens straight away on a phone. */}
+      <a href="#enquiry" class="lp-form-jump" data-lp-form-jump aria-label="Go to the booking form">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+        <span class="lp-form-jump-text">Book online</span>
+      </a>
+      <a href={`tel:${site.booking.tel}`} class="header-cta">
+        <PhoneIcon />
+        <span class="header-cta-text">
+          <span class="header-cta-label">Call now</span>
+          <span class="header-cta-number">{site.booking.display}</span>
+        </span>
+      </a>
+    </div>
   </div>
 </header>
 
@@ -54,7 +62,7 @@ const year = new Date().getFullYear();
     <p class="lp-footer-contact">
       <a href={`tel:${site.booking.tel}`}>{site.booking.display}</a>
       <span aria-hidden="true">&middot;</span>
-      <a href={site.whatsapp.url}>WhatsApp {site.whatsapp.display}</a>
+      <a href={site.whatsapp.url} target="_blank" rel="noopener">WhatsApp {site.whatsapp.display}</a>
       <span aria-hidden="true">&middot;</span>
       <a href={`mailto:${site.email}`}>{site.email}</a>
     </p>
@@ -78,6 +86,24 @@ const year = new Date().getFullYear();
 <MobileBar />
 <BookPopup />
 <script src="/book.js" is:inline></script>
+<script is:inline>
+  // "Book online" in the header: slide to the form and put the cursor in the
+  // first field. Plain anchor behaviour is the fallback if this never runs.
+  (function () {
+    var jump = document.querySelector('[data-lp-form-jump]');
+    var form = document.getElementById('enquiry');
+    if (!jump || !form) return;
+    // Scroll the whole card (offer ticket and title included) into view,
+    // not just the form, so the reader sees what they are filling in.
+    var target = form.closest('.lp-form-card') || form;
+    jump.addEventListener('click', function (e) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      var first = form.querySelector('input:not([type="hidden"]):not([tabindex="-1"])');
+      if (first) setTimeout(function () { first.focus({ preventScroll: true }); }, 600);
+    });
+  })();
+</script>
 
 </body>
 </html>

@@ -80,6 +80,7 @@ export default defineConfig({
       xslURL: '/sitemap.xsl',
       filter: (page) =>
         !page.includes('/lp/') &&
+        !/\/lp\/?$/.test(page) &&
         !page.includes('/404') &&
         !page.includes('/explorer') &&
         !page.includes('search-index') &&

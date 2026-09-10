@@ -12,7 +12,20 @@ import { appliances } from '../data/appliances';
 // `service` preselects "What do you need?", so someone on the boiler repair
 // page is not asked to choose boiler repair again. Anything unknown falls
 // through to "Choose one…".
-const { service = '' } = Astro.props;
+//
+// `extraOption` is for a page whose topic has no matching entry in
+// services/appliances at all (a PPC landing page for a repair-only campaign,
+// say) — it injects and preselects one extra option rather than forcing a
+// mismatch onto the closest existing service.
+// `submitLabel` lets a landing page word the button for its own job
+// ("Get my price") instead of the generic "Send enquiry".
+//
+// `ctaVariants` turns the button into a simple rotation test: on page load,
+// client-side JS picks one at random and swaps it in over `submitLabel`,
+// which stays as the button's no-JS/pre-hydration text. The variant shown is
+// recorded in the enquiry's `source_page` so leads can be compared by which
+// wording brought them in — see the submit handler below.
+const { service = '', extraOption = '', submitLabel = 'Send enquiry', ctaVariants = [] as string[] } = Astro.props;
 
 const ICON = {
   user:    '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
@@ -76,12 +89,13 @@ const icon = (k: keyof typeof ICON) =>
           <Fragment set:html={icon('wrench')} />
           <select id="f-service" name="service">
             <option value="">Choose one&hellip;</option>
-            {services.map((s) => <option value={s.title} selected={s.title === service} set:html={s.title} />)}
+            {extraOption && <option value={extraOption} selected>{extraOption}</option>}
+            {services.map((s) => <option value={s.title} selected={!extraOption && s.title === service} set:html={s.title} />)}
             {/* Grouped separately so the list of ten core services still reads
                 first — an appliance page passes its own title in and it
                 preselects from here. */}
             <optgroup label="Appliances & fixtures">
-              {appliances.map((a) => <option value={a.title} selected={a.title === service}>{a.title}</option>)}
+              {appliances.map((a) => <option value={a.title} selected={!extraOption && a.title === service}>{a.title}</option>)}
             </optgroup>
             <option value="Something else">Something else</option>
           </select>
@@ -137,12 +151,12 @@ const icon = (k: keyof typeof ICON) =>
     </div>
 
     <button type="submit" class="btn btn-orange btn-block btn-lg" id="enquiry-submit">
-      Send enquiry
+      {submitLabel}
     </button>
     <p class="enquiry-foot">
       <span>Or call <a href={`tel:${site.booking.tel}`}>{site.booking.display}</a></span>
       <span class="foot-sep" aria-hidden="true">&middot;</span>
-      <span>WhatsApp <a href={site.whatsapp.url}>{site.whatsapp.display}</a></span>
+      <span>WhatsApp <a href={site.whatsapp.url} target="_blank" rel="noopener">{site.whatsapp.display}</a></span>
     </p>
     <p class="enquiry-privacy">We only use these details to deal with your enquiry. <a href="/privacy">Privacy policy</a></p>
   </form>
@@ -156,7 +170,7 @@ const icon = (k: keyof typeof ICON) =>
   </div>
 </div>
 
-<script is:inline define:vars={{ bookingTel: site.booking.tel, bookingDisplay: site.booking.display, waUrl: site.whatsapp.url }}>
+<script is:inline define:vars={{ bookingTel: site.booking.tel, bookingDisplay: site.booking.display, waUrl: site.whatsapp.url, ctaVariants }}>
   (function () {
     var form = document.getElementById('enquiry-form');
     if (!form) return;
@@ -167,6 +181,14 @@ const icon = (k: keyof typeof ICON) =>
     var pcStatus = document.getElementById('postcode-status');
     var done = document.getElementById('enquiry-done');
     var outOfArea = false;
+
+    // Button-text rotation: one random pick per page load, shown from the
+    // start rather than flickering in after a delay.
+    var ctaVariant = null;
+    if (ctaVariants && ctaVariants.length) {
+      ctaVariant = ctaVariants[Math.floor(Math.random() * ctaVariants.length)];
+      submit.textContent = ctaVariant;
+    }
 
     var EXCLUDED = { SG: 'Stevenage and Hertfordshire', NG: 'Nottingham and Nottinghamshire' };
 
@@ -266,7 +288,10 @@ const icon = (k: keyof typeof ICON) =>
         urgency: fd.get('urgency') || '',
         description: fd.get('description') || '',
         company: fd.get('company') || '',
-        source_page: location.pathname,
+        // The chosen button-text variant rides along on source_page rather
+        // than needing its own database column — visible on the lead's
+        // "Came from" line in /admin/leads.
+        source_page: location.pathname + (ctaVariant ? ('?cta=' + encodeURIComponent(ctaVariant)) : ''),
       };
 
       submit.disabled = true;
@@ -296,7 +321,7 @@ const icon = (k: keyof typeof ICON) =>
           setSummary(
             '<strong>The form isn&rsquo;t connected yet.</strong> Please call ' +
             '<a href="tel:' + bookingTel + '">' + bookingDisplay + '</a> or ' +
-            '<a href="' + waUrl + '">message us on WhatsApp</a> and we&rsquo;ll pick it up straight away.'
+            '<a href="' + waUrl + '" target="_blank" rel="noopener">message us on WhatsApp</a> and we&rsquo;ll pick it up straight away.'
           );
         } else {
           setSummary(body.message || 'Something went wrong. Please call <a href="tel:' + bookingTel + '">' + bookingDisplay + '</a>.');

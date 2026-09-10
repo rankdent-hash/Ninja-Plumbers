@@ -3,10 +3,15 @@ import Landing from '../../layouts/Landing.astro';
 import site from '../../data/site.json';
 import { landings } from '../../data/landing';
 import { services } from '../../data/services';
+import { areas } from '../../data/areas';
 import EnquiryForm from '../../components/EnquiryForm.astro';
+import TrustBar from '../../components/TrustBar.astro';
 import Tick from '../../components/Tick.astro';
 import PhoneIcon from '../../components/PhoneIcon.astro';
 import WhatsAppIcon from '../../components/WhatsAppIcon.astro';
+import Schema from '../../components/Schema.astro';
+import ReviewsCarousel from '../../components/ReviewsCarousel.astro';
+import LandingPremium from '../../components/LandingPremium.astro';
 
 export function getStaticPaths() {
   return landings.map((lp) => ({ params: { slug: lp.slug }, props: { lp } }));
@@ -14,8 +19,52 @@ export function getStaticPaths() {
 
 const { lp } = Astro.props;
 const service = services.find((s) => s.slug === lp.relatedService);
+// A page with its own `covers` list (a campaign with no single matching
+// service page) uses that; otherwise it falls back to the related service's
+// own "what this includes" list, as the original 4 landing pages do.
+const covers = lp.covers ?? service?.does ?? [];
+const topAreas = [...areas].sort((a, b) => b.volume - a.volume).slice(0, 10);
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: lp.h1,
+  description: lp.metaDescription,
+  provider: {
+    '@type': 'Plumber',
+    name: site.name,
+    telephone: site.booking.tel,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: site.address.line1,
+      addressLocality: site.address.city,
+      postalCode: site.address.postcode,
+      addressCountry: site.address.country,
+    },
+  },
+  areaServed: { '@type': 'City', name: 'London' },
+};
 ---
 <Landing title={lp.metaTitle} description={lp.metaDescription}>
+  <Schema faqs={lp.faqs} extra={serviceSchema} />
+
+  {/* A page with `premium` data gets the higher-end body and nothing below
+      this block; the rest of the template is the standard layout. */}
+  {lp.premium ? (
+    <LandingPremium lp={lp} serviceTitle={service?.title ?? ''}>
+      <ReviewsCarousel slot="reviews" />
+    </LandingPremium>
+  ) : (
+  <Fragment>
+
+  {lp.offer && (
+    <div class="emergency-banner">
+      <div class="container">
+        <strong>£25 off your first call-out</strong>
+        <p>{lp.offer.disclaimer}</p>
+      </div>
+    </div>
+  )}
 
   <section class="lp-hero">
     <div class="container lp-hero-grid">
@@ -27,7 +76,7 @@ const service = services.find((s) => s.slug === lp.relatedService);
           <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">
             <PhoneIcon /> Call {site.booking.display}
           </a>
-          <a href={site.whatsapp.url} class="btn btn-outline btn-lg">
+          <a href={site.whatsapp.url} target="_blank" rel="noopener" class="btn btn-outline btn-lg">
             <WhatsAppIcon /> WhatsApp us
           </a>
         </div>
@@ -41,10 +90,24 @@ const service = services.find((s) => s.slug === lp.relatedService);
 
       <div class="lp-form-card">
         <h2>{lp.urgent ? 'Or send us the job' : 'Get a price'}</h2>
-        <EnquiryForm service={service?.title ?? ''} />
+        <EnquiryForm service={service?.title ?? ''} extraOption={lp.formLabel ?? ''} />
       </div>
     </div>
   </section>
+
+  {lp.trustExtra && (
+    <section class="section section-alt">
+      <div class="container">
+        <h2 class="center">Why choose us</h2>
+        <TrustBar />
+        <ul class="lp-trust-extra">
+          {lp.trustExtra.map((t) => <li><Tick /> {t}</li>)}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <ReviewsCarousel />
 
   <section class="section">
     <div class="container">
@@ -60,16 +123,58 @@ const service = services.find((s) => s.slug === lp.relatedService);
     </div>
   </section>
 
-  {service && (
+  {covers.length > 0 && (
     <section class="section section-alt">
       <div class="container measure-wide">
         <h2>What the job covers</h2>
         <ul class="ticks lp-covers">
-          {service.does.map((d) => <li><Tick /> {d}</li>)}
+          {covers.map((d) => <li><Tick /> {d}</li>)}
         </ul>
+        {lp.crossLink && (
+          <p class="lp-crosslink">
+            <strong>{lp.crossLink.label}</strong> {lp.crossLink.body}{' '}
+            <a href={lp.crossLink.href}>See {lp.crossLink.href.split('/').pop()?.replace(/-/g, ' ')} &rarr;</a>
+          </p>
+        )}
       </div>
     </section>
   )}
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">How it works</span>
+        <h2>No mystery, no surprise invoice</h2>
+      </div>
+      <ol class="steps">
+        <li class="step">
+          <h3>Tell us what&rsquo;s wrong</h3>
+          <p>Call the booking line or send a photo on WhatsApp. The more we know before we set off, the more likely we arrive with the right parts.</p>
+        </li>
+        <li class="step">
+          <h3>We agree the price first</h3>
+          <p>You get a price for the work before an engineer starts. If we find something underneath it that changes the job, we stop and tell you.</p>
+        </li>
+        <li class="step">
+          <h3>We fix it and clear up</h3>
+          <p>The job gets finished, tested and tidied. Gas work is carried out by Gas Safe registered engineers and certificated where it needs to be.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container areas-band">
+      <div>
+        <span class="eyebrow">Areas we cover</span>
+        <h2>Plumbers across London</h2>
+        <p class="measure">Our engineers work across the London boroughs, from the City and Westminster out to Croydon, Harrow and Enfield. The office is in Fulham.</p>
+        <p class="lp-areas-text">
+          {topAreas.map((a) => a.name).join(', ')}, and {areas.length - topAreas.length} more areas across London.
+        </p>
+      </div>
+    </div>
+  </section>
 
   <section class="section">
     <div class="container measure-wide">
@@ -85,6 +190,15 @@ const service = services.find((s) => s.slug === lp.relatedService);
     </div>
   </section>
 
+  {lp.offer && (
+    <div class="emergency-banner">
+      <div class="container">
+        <strong>£25 off your first call-out</strong>
+        <p>{lp.offer.disclaimer}</p>
+      </div>
+    </div>
+  )}
+
   <section class="section section-navy">
     <div class="container center measure-wide">
       <h2>Speak to someone now</h2>
@@ -93,11 +207,14 @@ const service = services.find((s) => s.slug === lp.relatedService);
         <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">
           <PhoneIcon /> Call {site.booking.display}
         </a>
-        <a href={site.whatsapp.url} class="btn btn-outline btn-lg">
+        <a href={site.whatsapp.url} target="_blank" rel="noopener" class="btn btn-outline btn-lg">
           <WhatsAppIcon /> WhatsApp us
         </a>
       </div>
     </div>
   </section>
+
+  </Fragment>
+  )}
 
 </Landing>
