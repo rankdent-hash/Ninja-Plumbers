@@ -18,6 +18,9 @@ const {
   formSub = 'Three details get an engineer moving. The rest is optional.',
   service = '',          // preselects "What do you need?" — see EnquiryForm
   tel = site.booking,
+  // Faint plumbing line-art behind the copy. Masked to fade out under the
+  // form and CTAs so it never competes with them — see .hero-split--pattern.
+  pattern = false,
 } = Astro.props;
 
 // `tel` is the whole booking object, not the number string. Passing
@@ -31,7 +34,7 @@ if (!tel || typeof tel.tel !== 'string' || typeof tel.display !== 'string') {
   );
 }
 ---
-<section class="hero-split">
+<section class:list={['hero-split', { 'hero-split--pattern': pattern }]}>
   <div class="container hero-split-grid">
     <div class="hero-split-copy">
       {breadcrumb.length > 0 && (
