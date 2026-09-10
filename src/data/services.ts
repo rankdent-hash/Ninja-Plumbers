@@ -1261,6 +1261,717 @@ export const services: Service[] = [
       },
     ],
   },
+
+  // ---- Added after keyword research: fixture- and job-level pages that
+  // ---- measured above the 140/mo bar. Room-based pages stay rejected;
+  // ---- see rejected.ts for those figures.
+  {
+    slug: 'blocked-toilet',
+    title: 'Blocked Toilet',
+    h1: 'Blocked toilets cleared in London',
+    metaTitle: 'Blocked Toilet London | Cleared Properly | Ninja Plumbers',
+    metaDescription:
+      'Blocked toilet in London cleared properly — not flushing, water rising, or blocking again and again. We find the cause too. Call 020 3576 5825.',
+    eyebrow: 'Blockages',
+    icon: 'drain',
+    target: 'blocked toilet (4,400/mo) · blocked toilet london (480/mo) · toilet not flushing (1,600/mo)',
+    summary:
+      'A toilet that will not flush away, or one that keeps blocking. Cleared, with the cause explained.',
+    intro:
+      'A toilet that will not flush away stops a household in its tracks. Sometimes it is one obstruction sitting in the pan and it clears in minutes. Sometimes the pan is only where the problem shows, and the real fault is further along the waste — a part-blocked branch, a shared soil stack, or a damaged drain outside. Ninja Plumbers clears the toilet first and then tells you which of those you have, because the second sort comes back and the first sort does not.',
+    does: [
+      'Toilets that will not flush away',
+      'Water rising in the pan, or draining away slowly',
+      'Wipes, sanitary products and other obstructions removed',
+      'Blocked macerator and Saniflo toilets',
+      'Blockages traced back to the soil stack or the drain outside',
+      'Repeat blockages investigated by camera',
+      'Same visit advice on what caused it',
+    ],
+    guidance: [
+      {
+        title: 'Stop flushing, then give it an hour',
+        body: 'Every extra flush adds water to a pan that cannot drain, and that is how a blockage becomes a flood across the bathroom floor. Walk away and leave it alone. If the level drops on its own over the next hour, it is a partial blockage and can wait for an ordinary appointment. If it sits exactly where it is, it is a full one. Either way, bail the pan down into a bucket before anyone starts work — it makes the whole job considerably less unpleasant.',
+      },
+      {
+        title: 'Most of what we pull out was never meant to go down there',
+        body: 'Wipes — including the ones sold as flushable — kitchen roll, cotton wool pads, sanitary products and nappies do not break apart in water the way toilet paper does. They snag on anything rough inside the pipe and then catch everything that follows them. In older London housing with clay or cast-iron waste pipes there is plenty inside the pipe to snag on. The rule that keeps a toilet working is a dull one: pee, poo and paper, nothing else.',
+      },
+      {
+        title: 'A macerator toilet is a different machine',
+        body: 'If your WC sits in a basement, a loft conversion or under the stairs, and it hums for a few seconds after you flush, it is a macerator — a small grinding pump built into or behind the toilet that pushes waste along a narrow pipe. They block far more readily than an ordinary WC, they are particularly intolerant of wipes, and limescale from London’s hard water builds up inside them over the years. They also should not be plunged or rodded like a standard pan. Say it is a macerator when you call and we will turn up with the right kit.',
+      },
+      {
+        title: 'If it keeps blocking, the toilet is probably not the problem',
+        body: 'A WC that blocks every few weeks, or clears and then backs up again a fortnight later, is usually reporting a fault further down the line: roots growing into the drain, a joint that has dropped out of line, or a section of pipe that has partly collapsed. Clearing the same blockage four times in a year costs more than putting a camera down once — that is our CCTV drain survey. If the survey finds broken pipe rather than debris, drain repairs is the page that covers putting it right.',
+      },
+    ],
+    aside: {
+      title: 'A plunger beats a bottle of chemicals',
+      body: 'A proper flanged plunger, worked slowly with enough water in the pan to cover the cup, shifts a good number of everyday blockages. Caustic drain cleaner mostly does not, and it leaves whoever comes next reaching into a pan full of it. If you have already poured some in, just tell us when you call.',
+    },
+    faqs: [
+      {
+        q: 'The water rises to the rim when I flush. What should I do?',
+        a: 'Stop flushing, and shut the small isolating valve on the pipe feeding the cistern so nobody can flush it again by mistake. Then bail the pan down to about half full with a jug. That leaves you with a toilet that will not overflow while you wait.',
+      },
+      {
+        q: 'Can you clear a blocked toilet without taking it off?',
+        a: 'Nearly always. A plunger, then a closet auger — a flexible rod made to go round the trap without chipping the pan — deals with the great majority. Lifting the WC off is a last resort for something solid that will not come back up or go forwards, like a toy or a bottle top.',
+      },
+      {
+        q: 'Every sink and toilet in the flat is slow, not just the WC.',
+        a: 'Then the blockage is not under any one fixture — it is in the soil stack the whole flat drains into, or in the drain outside. That is a different job and it is covered on our drain unblocking page. Worth mentioning when you call, because it changes what we bring with us.',
+      },
+      {
+        q: 'Are flushable wipes really a problem?',
+        a: 'Yes. They flush out of the pan happily enough and then sit in the pipe, because they do not disintegrate in water. They are among the most common things we pull out of blocked toilets and shared stacks in London flats.',
+      },
+    ],
+  },
+
+  {
+    slug: 'shower-installation',
+    title: 'Shower Installation',
+    h1: 'Shower installation in London',
+    metaTitle: 'Shower Installation London | Mixer & Thermostatic | Ninja Plumbers',
+    metaDescription:
+      'Shower installation in London — mixer, thermostatic and digital showers matched to your water system before you buy. Call 020 3576 5825.',
+    eyebrow: 'Installation',
+    icon: 'bathroom',
+    target: 'shower installation (1,900/mo) · shower installation london (170/mo) · mixer shower installation (140/mo) · thermostatic shower installation (110/mo)',
+    summary:
+      'Mixer, thermostatic and digital showers fitted — matched to the water system you actually have.',
+    intro:
+      'Fitting a shower is usually simpler than people expect, and the complications almost never come from the fitting. They come from the shower having been bought before anyone asked what water system the house runs on. A mixer, a thermostatic bar valve and a digital shower all behave differently on a combi boiler than they do on a gravity-fed tank, and Ninja Plumbers would far rather have that conversation with you before the box arrives than after it has been opened.',
+    does: [
+      'Mixer and thermostatic shower installation',
+      'Digital and concealed-valve showers',
+      'Showers fitted over a bath, with a screen',
+      'Like-for-like replacement of a failed shower',
+      'Moving a shower to a new position',
+      'Rainfall and dual-outlet heads, where the flow supports them',
+      'Enclosures, trays and waste connections',
+    ],
+    guidance: [
+      {
+        title: 'Your water system decides which showers will work',
+        body: 'There are three common setups in London homes. A combi boiler heats water on demand and runs everything at mains pressure. A gravity-fed system has a cold tank in the loft and a hot cylinder in a cupboard, and its pressure comes from the height between the two, which is usually modest. An unvented cylinder is a sealed hot cylinder running at mains pressure. A shower that is excellent on one of those can be a disappointment on another — a large rainfall head on a gravity system is the classic example. If you are not sure which you have, photograph the boiler or the cylinder and send it over before you buy anything.',
+      },
+      {
+        title: 'Mixer, thermostatic or digital',
+        body: 'A mixer shower blends hot and cold, and that is all it does: run a tap elsewhere in the house and the balance shifts, so the temperature shifts with it. A thermostatic shower holds the temperature you set and shuts down rather than running hot if the cold supply drops away, which is why it is the sensible default and why it matters if there are children or older people in the house. A digital shower does the same job through an electronic control, with a separate processor box usually hidden in a loft or cupboard — that box needs somewhere sensible to live and a power supply near it.',
+      },
+      {
+        title: 'Like-for-like is a small job, moving it is not',
+        body: 'Swapping a failed valve and head for new ones on the same wall is straightforward, and it is often the only work needed. Moving the shower to a different wall means new pipe runs and, more to the point, a new waste run with enough fall to drain properly. That is the part that decides whether the move is simple or awkward — particularly over a solid floor, or in a flat where you cannot drop the pipe below the joists.',
+      },
+      {
+        title: 'Over a bath, and over a neighbour',
+        body: 'A shower over the bath is the most space-efficient answer in a small London bathroom, and it needs no tray or enclosure, just a screen and well-sealed edges. What it does need is care where the bath meets the tiles, because a bath flexes very slightly as somebody stands in it and a rigid seal there eventually splits. In a converted flat with a neighbour below, that seal and the waste connection are the two things that end up showing on their ceiling if they are rushed.',
+      },
+    ],
+    aside: {
+      title: 'Send a photo before you buy',
+      body: 'A picture of your boiler or hot water cylinder, plus one of the existing shower valve, is usually enough for us to say whether the shower you are looking at will perform in your house. It takes a minute and it saves posting one back.',
+    },
+    faqs: [
+      {
+        q: 'Can you fit a shower I have already bought?',
+        a: 'Yes, and plenty of people do it that way. Send the model over before the visit so we can check it suits your water system and see whether the new valve will cover the existing fixing holes.',
+      },
+      {
+        q: 'Will a new shower fix weak pressure?',
+        a: 'Usually not by itself. A new valve cannot create pressure that was never there. On a gravity-fed system the answer is often a pump, which is covered on the shower pumps page, and where the incoming mains supply is the weak link, our low water pressure page explains what actually helps.',
+      },
+      {
+        q: 'What about an electric shower?',
+        a: 'Different thing, and it has its own page. An electric shower heats cold mains water itself and needs a dedicated electrical circuit, which makes it the usual choice where there is no useful hot supply to work with. See electric shower installation for that.',
+      },
+      {
+        q: 'Can you take the bath out and put in a walk-in shower?',
+        a: 'Yes. A tray and glass panel where the bath used to be sits within this job. If you want a level floor with no tray at all, that is a wet room — it needs tanking and a formed floor fall, and it is covered on the wet rooms and walk-in showers page.',
+      },
+    ],
+  },
+
+  {
+    slug: 'shower-repair',
+    title: 'Shower Repair',
+    h1: 'Shower repair in London',
+    metaTitle: 'Shower Repair London | Leaks & Pressure | Ninja Plumbers',
+    metaDescription:
+      'Shower repair across London: no hot water, weak flow, swinging temperature, leaking valves and trays. Book Ninja Plumbers on 020 3576 5825.',
+    eyebrow: 'Repairs',
+    icon: 'bathroom',
+    target: 'shower repair (590/mo) · shower repair london (70/mo)',
+    summary:
+      'Weak flow, wandering temperature, no hot water or a leak — diagnosed and repaired, usually without a new shower.',
+    intro:
+      'Showers tend to fail slowly. The temperature starts wandering, or the flow drops off a little each year, and it is easy to put up with for a long time before doing anything about it. Most of these faults turn out to be one part rather than a whole shower — a cartridge, a scaled-up head, a perished seal — and Ninja Plumbers would rather change the part than sell you a replacement you did not need.',
+    does: [
+      'No hot water at the shower when the rest of the house is fine',
+      'Weak flow and pressure that has faded over time',
+      'Temperature swinging when a tap is run elsewhere',
+      'Leaking and dripping shower valves',
+      'Dripping heads, perished hoses and worn seals',
+      'Leaking trays, wastes and sealed edges',
+      'Water showing on the ceiling of the room below',
+    ],
+    guidance: [
+      {
+        title: 'Hot everywhere else, cold at the shower',
+        body: 'If the taps around the house run hot and only the shower does not, the fault is at the shower rather than at the boiler. On a thermostatic valve it is usually the cartridge — the part inside that does the blending — which either seizes up with limescale or fails closed on the hot side, which is how it is designed to fail. The other common cause costs nothing to put right: an isolating valve behind the panel that has been knocked shut at some point.',
+      },
+      {
+        title: 'Pressure that has faded rather than failed',
+        body: 'A shower that has slowly got weaker over the years in London is very often limescale rather than anything mechanical. Hard water furs up the holes in the head, the flexible hose and the internals of the valve, and it happens gradually enough that nobody notices until it is bad. Where descaling makes no difference, the restriction is further back: a part-closed isolating valve, a scaled cartridge, or a supply that never delivered much to begin with. On a gravity-fed system with a tank in the loft, boosting it is a separate job covered on the shower pumps page, and where the mains itself is poor, our low water pressure page is the better read.',
+      },
+      {
+        title: 'Temperature that jumps when someone runs a tap',
+        body: 'On a plain mixer shower that is normal behaviour, not a fault, and the cure is a thermostatic valve rather than a repair. On a shower that already is thermostatic it is a genuine fault: the cartridge has stopped regulating, usually because of scale. That is worth dealing with rather than living with, because the same failure that lets it run cold can let it run hot.',
+      },
+      {
+        title: 'A leak that shows up downstairs',
+        body: 'A stain spreading across the ceiling below a bathroom has three usual sources: the shower waste or trap, the seal where the tray or bath meets the tiles, or the valve itself leaking behind the wall. They need telling apart before anything is opened up, because the repair and the mess involved are different in each case. In a converted flat where the ceiling belongs to a neighbour, that is worth reporting early rather than once it has spread across their room.',
+      },
+    ],
+    aside: {
+      title: 'Descale the head before you call',
+      body: 'Unscrew the shower head, leave it overnight in a limescale remover or plain white vinegar, and rinse it through. In a hard water area like London that alone brings the flow back on a fair number of showers, and it costs you nothing to try first.',
+    },
+    faqs: [
+      {
+        q: 'Is it worth repairing, or should I replace the shower?',
+        a: 'It depends what has failed and whether parts are still made for it. A cartridge, a head or a hose is a repair every time. An obsolete valve with nothing available for it is a replacement. We will tell you which one you have rather than defaulting to the bigger job.',
+      },
+      {
+        q: 'My shower runs hot then cold when the kitchen tap is used.',
+        a: 'On a plain mixer shower, that is how it works and a thermostatic valve is the fix. On a thermostatic shower it is a fault, and it is normally the cartridge scaled up and no longer regulating.',
+      },
+      {
+        q: 'There is water on the ceiling under the bathroom. Is it definitely the shower?',
+        a: 'Not necessarily. It could be the shower waste, the seal around the tray, or a pipe with nothing to do with the shower at all. Stop using the shower while you wait for us — if the stain carries on growing anyway, something else is leaking, and that points at leak detection rather than a shower repair.',
+      },
+      {
+        q: 'Can you get parts for an old shower?',
+        a: 'Often, yes, including for units well out of production. Send a photo of the valve and any model number on it and we can usually tell you before the visit whether the part still exists.',
+      },
+    ],
+  },
+
+  {
+    slug: 'bath-installation',
+    title: 'Bath Installation',
+    h1: 'Bath installation in London',
+    metaTitle: 'Bath Installation & Replacement London | Ninja Plumbers',
+    metaDescription:
+      'Bath installation and replacement in London — like-for-like swaps, bath-to-shower conversions and freestanding baths. Call 020 3576 5825.',
+    eyebrow: 'Installation',
+    icon: 'bathroom',
+    target: 'bath installation (320/mo) · bath replacement (170/mo)',
+    summary:
+      'One bath out, another one in — or the bath out and a shower in its place.',
+    intro:
+      'On paper, replacing a bath is a small job: disconnect two taps and a waste, lift the old one out, level the new one, connect it back up. What decides whether it stays small is everything around it — whether the new bath is the same size as the old one, whether the taps fit the holes, whether the waste lands where the pipe already runs, and, in an older London house, whether the old bath can physically get down the stairs in one piece.',
+    does: [
+      'Like-for-like bath replacement',
+      'Baths supplied, or fitted if you have bought your own',
+      'Bath-to-shower conversions',
+      'Freestanding and roll-top baths',
+      'Taps, wastes, overflows and trap connections',
+      'A shower fitted over the bath, with a screen',
+      'Old cast-iron baths broken out and taken away',
+    ],
+    guidance: [
+      {
+        title: 'A like-for-like swap is the version to aim for',
+        body: 'If the new bath is close to the same size and the taps and waste stay at the same end, most of the work is disconnecting, lifting out and rebuilding. Where it grows is at the edges. A bath even slightly shorter than the old one leaves a gap that has to be tiled or panelled, and tiles behind an old bath rarely come away cleanly. Ninja Plumbers will tell you at the quote stage which of those apply, so the making-good is priced in rather than raised with you halfway through.',
+      },
+      {
+        title: 'Bath out, shower in',
+        body: 'Losing the bath buys real space in a small bathroom, and a tray with a glass panel where the bath sat is a straightforward conversion. Two things are worth thinking about first. If it is the only bathroom in the property, having no bath at all can count against you when you sell, and it certainly counts with small children. And if what you really want is a level floor with no tray, that is a wet room — a bigger job involving tanking and a formed floor fall, covered on the wet rooms and walk-in showers page.',
+      },
+      {
+        title: 'Freestanding baths ask more of the floor and the waste',
+        body: 'A freestanding bath, full of water with somebody in it, is a serious weight concentrated in one spot. On the timber floor of a Victorian terrace that is worth checking rather than assuming. The waste is the other difference: on most freestanding baths it drops straight through the floor instead of running to the wall, so the pipework underneath has to be reached — lifting floorboards, or in a flat, working over the neighbour’s ceiling. Both are perfectly doable. Both are much easier settled before the bath is delivered.',
+      },
+      {
+        title: 'Getting the old one out',
+        body: 'Cast-iron baths are extraordinarily heavy and do not bend around a half-landing. In a narrow Victorian terrace or a converted flat with a tight stair, the practical answer is usually to break the bath up in the bathroom and carry it out in pieces — noisy and dusty, but a great deal safer than three people reversing down a staircase with it. We work the removal route out as part of the job rather than discovering it on the morning.',
+      },
+    ],
+    aside: {
+      title: 'Order the taps and waste with the bath',
+      body: 'Taps, waste and trap are usually bought separately from the bath itself, and a job stalling because the taps have not turned up is a common and avoidable annoyance. Have the lot on site before day one, and check the tap holes on the new bath match the taps you have chosen — some baths arrive with none drilled at all.',
+    },
+    faqs: [
+      {
+        q: 'How long does a bath replacement take?',
+        a: 'A straight swap for a bath of similar size is usually a day. Moving the waste, tiling a new section of wall, or getting a cast-iron bath out of a tight stairwell all add to that, and we will say so when we quote rather than afterwards.',
+      },
+      {
+        q: 'Can you fit a bath I have bought myself?',
+        a: 'Yes. Send the model and dimensions over beforehand so we can check it against the space and the existing waste position, and confirm whether it comes with tap holes drilled.',
+      },
+      {
+        q: 'Do I need a whole new bathroom to change the bath?',
+        a: 'No. Changing the bath on its own is an ordinary standalone job. If the tiles, floor, basin and toilet are all going as well, that is a refit, and the bathroom installation page covers what that involves.',
+      },
+      {
+        q: 'Do you take the old bath away?',
+        a: 'Yes, removal and disposal are part of the job. Cast iron goes for scrap rather than into a skip where we can manage it.',
+      },
+    ],
+  },
+
+  {
+    slug: 'tap-repair-and-replacement',
+    title: 'Tap Repair and Replacement',
+    h1: 'Tap repair and replacement in London',
+    metaTitle: 'Tap Repair & Replacement London | Ninja Plumbers',
+    metaDescription:
+      'Kitchen tap replacement and tap repair across London — drips, stiff handles, leaks at the base, new taps fitted. Call 020 3576 5825.',
+    eyebrow: 'Taps and fittings',
+    icon: 'tap',
+    target: 'kitchen tap replacement (480/mo) · tap replacement (390/mo) · tap installation (110/mo)',
+    summary:
+      'Dripping, stiff and leaking taps repaired, and tired ones swapped for new.',
+    intro:
+      'A tap that drips all night. A kitchen mixer that has gone so stiff you need two hands to turn it. A puddle that keeps appearing round the base of a basin tap and never quite explains itself. Most of these come down to one small part inside the tap rather than the tap itself, which makes them a short visit — and where a tap really has come to the end of its life, we say so and put the two prices side by side.',
+    does: [
+      'Dripping kitchen, basin and bath taps',
+      'Washers, O-rings and ceramic cartridges replaced',
+      'Stiff, squeaking and seized handles',
+      'Leaks from the base of a tap or underneath it',
+      'Mixer, monobloc and pillar taps fitted',
+      'Poor flow from one tap when the rest are fine',
+    ],
+    guidance: [
+      {
+        title: 'Most drips are one small part',
+        body: 'On an older tap with a handle you turn several times, the drip is nearly always a perished rubber washer. On a modern lever or quarter-turn mixer it is a ceramic cartridge instead. If the water is escaping where the spout swivels rather than out of the end, that is an O-ring. All three are inexpensive parts and none of them means the tap is finished.',
+      },
+      {
+        title: 'Hard water is why cartridges give up here',
+        body: 'London water is hard, and the scale it leaves behind ends up on exactly the surfaces a tap relies on to seal. It furs up cartridges, roughens seats and blocks the little aerator screwed into the end of the spout. That is why a tap in a London kitchen tends to stiffen up or start dripping again sooner than the same tap would somewhere soft — and why a scaled aerator is worth ruling out before anyone assumes the tap is at fault.',
+      },
+      {
+        title: 'When replacing beats repairing',
+        body: 'Sometimes the fault is in the body of the tap: the seat it closes against is worn away, the threads have corroded, or nobody has made parts for that model in twenty years. Ninja Plumbers will tell you when that is the case, price the repair and the replacement against each other, and let you pick. What we will not do is fit a washer we already know will be dripping again by spring.',
+      },
+      {
+        title: 'Leaking at the base is a different fault',
+        body: 'Water round the bottom of a tap has not come from the spout. It is usually the seal between the tap and the worktop or basin, or the flexible tails and isolation valves underneath. Open the cupboard and feel the pipework down there — if it is wet, the problem is below the sink, not above it.',
+      },
+    ],
+    aside: {
+      title: 'Send a photo of the tap',
+      body: 'A photo of the tap and its handles, plus a shot of the pipework underneath, often tells the engineer which cartridge or washer to bring. That can be the difference between one visit and two.',
+    },
+    faqs: [
+      {
+        q: 'Can a dripping tap be repaired, or does it need replacing?',
+        a: 'Usually repaired. A washer, an O-ring or a ceramic cartridge fixes the large majority of drips. Replacement comes into it when the tap body itself is worn or corroded, and in that case you get both prices before anything is decided.',
+      },
+      {
+        q: 'Can you fit a tap I have bought myself?',
+        a: 'Yes. It helps to check before buying that it matches the holes you have — a monobloc mixer needs one hole, separate pillar taps need two — and that there is room behind the sink for the handles to turn.',
+      },
+      {
+        q: 'How long does a tap replacement take?',
+        a: 'A straightforward swap is normally a single visit. What slows it down is what is under the sink rather than the tap: a seized backnut, a corroded isolation valve or a cramped cupboard can all add time, and if that is what we find we tell you before carrying on.',
+      },
+      {
+        q: 'My tap started dripping again a few months after it was fixed. Why?',
+        a: 'Either the wrong part went in, or scale has built up again on a seat that was already worn. Hard water shortens the life of a repair on a tired tap, which is one of the honest arguments for replacing rather than repairing an old one.',
+      },
+    ],
+  },
+
+  {
+    slug: 'lead-pipe-and-water-main-replacement',
+    title: 'Lead Pipe Replacement',
+    h1: 'Lead pipe and water main replacement in London',
+    metaTitle: 'Lead Pipe Replacement London | Ninja Plumbers',
+    metaDescription:
+      'Lead pipe replacement in London — supply pipe replaced from boundary to house, by mole or trench, ground reinstated. Call 020 3576 5825.',
+    eyebrow: 'Supply pipework',
+    icon: 'water',
+    target: 'lead pipe replacement (590/mo) · water main replacement (170/mo) · lead pipe replacement london (90/mo)',
+    summary:
+      'Old lead supply pipes replaced with new, from the boundary into the house.',
+    intro:
+      'A great many Victorian and Edwardian houses in London are still fed by the pipe they were built with, and in that era that pipe was lead. Lead is no longer used for drinking water supply, and where a property still has it, replacing it is the recommended fix. It is also the moment people usually discover that the pipe bringing water into their house is narrow, old and the reason the pressure has never been much good.',
+    does: [
+      'Lead supply pipes identified and confirmed',
+      'Private supply pipe replaced from boundary to house',
+      'Moling to avoid opening up a whole front garden',
+      'Trenching where moling is not possible',
+      'New internal stopcock and connection',
+      'Ground, paths and surfaces reinstated afterwards',
+    ],
+    guidance: [
+      {
+        title: 'How to tell whether yours is lead',
+        body: 'Find where the supply pipe comes up through the floor at your inside stopcock, usually under the kitchen sink or just inside the front door. Lead is a dull grey, soft enough to mark with a coin, and has no thread or sharp edges — the joints look rounded and swollen rather than machined. The giveaway is that a gentle scrape with a key leaves a bright silver line. Copper is the colour of a penny, and modern plastic supply pipe is blue.',
+      },
+      {
+        title: 'Where your responsibility starts',
+        body: 'The pipe from the water main in the street up to your boundary belongs to the water company. From the boundary into the house, the private supply pipe is the property owner’s. That line matters because it decides who pays, and it is worth establishing before anyone books work. In a converted flat the private supply is often shared with the other flats in the building, which makes it a decision for everyone with a stake in it rather than one household.',
+      },
+      {
+        title: 'Moling or digging',
+        body: 'Moling means sinking a small pit at each end and driving the new pipe through underground between them, leaving the ground in between untouched. It saves a front garden, a path or a drive from being opened up end to end. It is not always possible: other services in the way, tree roots, made-up ground or an awkward run can all mean a trench instead. Ninja Plumbers looks at the route before quoting and tells you which of the two it is going to be, rather than finding out on the day.',
+      },
+      {
+        title: 'What the work involves',
+        body: 'The new pipe is modern blue plastic, run at a sensible depth so it is well clear of frost and the surface above it, and brought into the house to a new stopcock. The old lead is disconnected and left in the ground where taking it out would mean digging up more than the job is worth. Then the ground goes back: soil, turf, paving or tarmac reinstated over the route.',
+      },
+    ],
+    aside: {
+      title: 'If you are not sure what you have',
+      body: 'Take a photo of the pipe where it comes into the house, next to your stopcock, and send it over. It is usually obvious from a picture whether you are looking at lead, copper or plastic.',
+    },
+    faqs: [
+      {
+        q: 'How do I know if my supply pipe is lead?',
+        a: 'Look at the pipe at your internal stopcock. Lead is dull grey, soft, unthreaded, with rounded joints, and scrapes bright silver. Houses built before the war are the usual candidates, though plenty have been changed at some point along the way.',
+      },
+      {
+        q: 'Who replaces the section in the street?',
+        a: 'That part is the water company’s, up to the boundary of your property. The private supply pipe from the boundary into the house is the owner’s, and that is the section we replace. If yours is lead, it is worth telling the water company what you are doing.',
+      },
+      {
+        q: 'Will my garden be dug up?',
+        a: 'Not necessarily. Moling lets the new pipe be drawn through underground between two small pits, which leaves most of the route undisturbed. Where the ground or what is buried in it rules that out, a trench is dug and reinstated. You will be told which before the work starts.',
+      },
+      {
+        q: 'I live in a converted flat. Can this still be done?',
+        a: 'Often, but the supply pipe from the boundary into the building is usually shared between the flats, so it is not a decision one household can make alone. It normally needs the freeholder and the other leaseholders on board first. We are happy to explain the work to them.',
+      },
+    ],
+  },
+
+  {
+    slug: 'pipe-repair',
+    title: 'Pipe Repair',
+    h1: 'Pipe repair in London',
+    metaTitle: 'Pipe Repair London | Burst & Frozen Pipes | Ninja Plumbers',
+    metaDescription:
+      'Pipe repair across London — burst, split, frozen and corroded pipework repaired properly rather than patched over. Call 020 3576 5825.',
+    eyebrow: 'Pipework',
+    icon: 'general',
+    target: 'pipe repair (590/mo) · burst pipe repair (260/mo) · frozen pipe (260/mo)',
+    summary:
+      'Burst, split, frozen and corroded pipework repaired — or replaced where patching it would be pointless.',
+    intro:
+      'Pipework fails in three broad ways: it freezes and splits, it corrodes quietly until it pinholes, or a joint that was never quite right gives up years later. If water is coming in right now, that is a job for the 24/7 callout covered on our emergency plumbing page. If you know there is a leak somewhere but not where, start with our leak detection page. This page is the repair itself, once you know what has gone and where it is.',
+    does: [
+      'Burst and split pipes repaired',
+      'Frozen pipes thawed and checked for damage',
+      'Pipework under floors and inside walls',
+      'Corroded and pinholed copper',
+      'Failed joints, compression fittings and old solder',
+      'Whole runs replaced where a patch would not last',
+    ],
+    guidance: [
+      {
+        title: 'A frozen pipe often only shows itself when it thaws',
+        body: 'Water expands as it freezes, and that is what splits the pipe. While the ice is still in there, the split is plugged and nothing leaks — so a pipe can look entirely fine right up until the moment it warms up and lets go. If pipework in your loft or an unheated space has frozen, it is worth having looked at even though nothing has come out of it yet.',
+      },
+      {
+        title: 'Lofts, basements and the cold parts of a London house',
+        body: 'The pipes that freeze are the ones running through spaces nobody heats: a loft, an unheated basement, the back of a garage, an outside wall. Loft conversions are a common culprit, because pipework that used to sit under a thick blanket of insulation can end up above it once the roof space is reworked. Lagging is the cheap answer, rerouting the pipe is the permanent one, and it is worth doing before winter rather than during it.',
+      },
+      {
+        title: 'Patching a bad run just moves the problem',
+        body: 'A pipe that has pinholed because it is corroded along its whole length will pinhole again, usually within a metre or two of the last repair. Ninja Plumbers will tell you honestly when a run is at that stage, because replacing a section properly once tends to cost less than three separate repairs and three separate holes in a ceiling.',
+      },
+      {
+        title: 'Hidden pipework and old alterations',
+        body: 'Older London houses and converted flats often carry the marks of several decades of alterations: copper joined to whatever came before it, runs buried in walls, pipes chased under a floor by somebody who never expected anyone to look for them again. That is normal, and it is why access is planned rather than improvised. Where the failed pipe is not visible at all, finding it comes first — that part is covered on our leak detection page.',
+      },
+    ],
+    aside: {
+      title: 'Turn it off before it thaws',
+      body: 'If you find a frozen pipe, shut the stopcock off before you warm anything up. If the pipe has split, you would far rather discover that with the water already off.',
+    },
+    faqs: [
+      {
+        q: 'A pipe has burst and water is coming in. What should I do?',
+        a: 'Turn the stopcock off, open the cold taps to drain what is left in the pipes, and keep away from anything electrical the water has reached. Then call — a burst that is actively causing damage is an emergency callout, covered on our emergency plumbing page.',
+      },
+      {
+        q: 'Can a burst pipe be repaired, or does the whole run need replacing?',
+        a: 'A single clean split in otherwise sound pipe is a straightforward repair. Pipework that is corroded along its length is a different conversation, and we would rather have it with you honestly than patch something that will fail again in the same room.',
+      },
+      {
+        q: 'I think there is a leak but I cannot see any pipework. Can you help?',
+        a: 'Yes, but the first job is locating it rather than repairing it, and that is a different visit with different equipment. Our leak detection page covers how a hidden leak is traced before anything is opened up.',
+      },
+      {
+        q: 'How do I stop pipes freezing in the first place?',
+        a: 'Lag the pipework in lofts, garages and anywhere else that never gets heated, and in a genuinely cold spell leave the heating ticking over rather than off entirely, even in an empty property. And know where your stopcock is before you need it.',
+      },
+    ],
+  },
+
+  {
+    slug: 'low-water-pressure',
+    title: 'Low Water Pressure',
+    h1: 'Low water pressure in London',
+    metaTitle: 'Low Water Pressure London | Tested & Fixed | Ninja Plumbers',
+    metaDescription:
+      'Low water pressure in London diagnosed properly — valves, limescale, stopcocks and pumps tested rather than guessed at. Call 020 3576 5825.',
+    eyebrow: 'Pressure',
+    icon: 'general',
+    target: 'low water pressure (1,600/mo) · low water pressure london (140/mo)',
+    summary:
+      'Weak taps and showers diagnosed by testing, not by swapping parts and hoping.',
+    intro:
+      'Low pressure is a symptom, not a fault, and it has half a dozen possible causes that look identical from the tap. A valve somewhere that is not fully open. Scale narrowing the inside of old pipework. A pressure-reducing valve that has quietly drifted out of adjustment. Or a system that was never going to deliver a strong shower without help. The way to tell them apart is to test, which is cheaper than working through the parts one at a time.',
+    does: [
+      'Whole-house and single-fixture pressure problems',
+      'Pressure and flow measured at the incoming supply',
+      'Pressure-reducing valves checked and adjusted',
+      'Limescale-furred pipework, aerators and shower heads',
+      'Part-closed and seized stopcocks and valves',
+      'Pumps and accumulators where they are genuinely the answer',
+    ],
+    guidance: [
+      {
+        title: 'Whole house, or just one tap?',
+        body: 'This is the first question, and you can answer it before anyone visits. Run every cold tap in turn. If one fixture is weak and the rest are fine, the problem is local to it — a scaled aerator or shower head, a seized isolation valve underneath, a kinked flexible tail, a worn cartridge. If everything in the house is weak, the problem is on the incoming supply or the system as a whole, and that is a completely different set of checks.',
+      },
+      {
+        title: 'Pressure and flow are not the same thing',
+        body: 'Pressure is how hard the water pushes. Flow is how much of it actually arrives per minute. A house can have perfectly respectable pressure at the boundary and still deliver a disappointing shower, because the water is being squeezed through pipework that limescale has narrowed over the decades, or through a supply pipe that was sized for a Victorian household rather than a power shower and a washing machine running at once. Measuring both is what separates the two, and London’s hard water makes the second one common here.',
+      },
+      {
+        title: 'Valves drift, and stopcocks seize',
+        body: 'Two of the most common causes are also the least dramatic. A pressure-reducing valve set correctly years ago can drift out of spec as it ages. A stopcock left three-quarters closed after somebody else’s work throttles the whole house, and nobody thinks to look at it. Ninja Plumbers tests the supply before touching anything, because it is the only way to tell an adjustment from a replacement — and swapping parts speculatively is how people end up paying for a new valve that was never the problem.',
+      },
+      {
+        title: 'What system you have decides what can be done',
+        body: 'If your hot water comes from a combi boiler, everything in the house runs off the mains and the answer lies in the supply, the pipework or a valve — the mains cannot be pumped. If you have a cold tank in the loft and a hot cylinder in a cupboard, the system is gravity-fed, the pressure comes from how high the tank sits, and a correctly matched pump is often the right fix. That is covered in detail on our shower pumps page.',
+      },
+    ],
+    aside: {
+      title: 'Test first, buy parts second',
+      body: 'A sequence of tests costs less than a sequence of parts. Measuring pressure and flow at the incoming supply usually narrows the cause down before anything is taken apart.',
+    },
+    faqs: [
+      {
+        q: 'Only my shower is weak. Everything else is fine.',
+        a: 'Then it is almost certainly local to that shower. A scaled shower head, a part-closed isolation valve, a worn mixer cartridge or a crushed flexible hose account for most of these, and all of them are small jobs.',
+      },
+      {
+        q: 'Is low pressure the water company’s problem or mine?',
+        a: 'It can be either. Testing at the incoming supply, before and after your stopcock, shows whether the water is arriving weak or being lost inside the property. If the whole street is affected it is one for the water company, and we will say so rather than charge you to find that out twice.',
+      },
+      {
+        q: 'Will a pump fix it?',
+        a: 'Only on a gravity-fed system with a tank in the loft. If your water comes from a combi or a mains-pressure unvented cylinder, pumping the mains supply is not permitted, and anyone offering to do it is selling you the wrong thing.',
+      },
+      {
+        q: 'My pressure dropped suddenly. What changed?',
+        a: 'A sudden drop usually means something specific: a valve left part-closed after other work, a failed pressure-reducing valve, a leak on the supply pipe, or a problem out in the street. Sudden is useful information, so mention it when you call.',
+      },
+    ],
+  },
+
+  {
+    slug: 'central-heating-installation',
+    title: 'Central Heating Installation',
+    h1: 'Central heating installation in London',
+    metaTitle: 'Central Heating Installation London | Ninja Plumbers',
+    metaDescription:
+      'Central heating installation across London: full systems, pipework, radiators and controls fitted by Gas Safe engineers. Call 020 3576 5825.',
+    eyebrow: 'Heating and hot water',
+    icon: 'heating',
+    target: 'central heating installation (1,900/mo) · central heating installation london (210/mo)',
+    summary:
+      'The whole system — boiler, pipework, radiators and controls — rather than a new boiler on its own.',
+    intro:
+      'A central heating installation is the whole system: the boiler, the pipework running through the house, every radiator, and the controls that decide when any of it comes on. That is a different job from swapping a boiler, and it is worth being clear which one you actually need. Ninja Plumbers fits first-time heating in properties that have never had it, and replaces ageing systems where the boiler is only the most visible part of the problem.',
+    does: [
+      'Complete new central heating systems',
+      'First-time central heating in a property with none',
+      'Pipework, radiators and controls, not just the boiler',
+      'Replacing an ageing system rather than only the boiler',
+      'Thermostats, zone valves and programmers',
+      'Sizing and system design for the property',
+    ],
+    guidance: [
+      {
+        title: 'A new boiler on an old system keeps the old faults',
+        body: 'This is the one that catches people out. If the radiators were cold at the bottom, the upstairs never warmed up and the water ran black when you bled a valve, a new boiler changes none of that — the debris and the undersized pipework are still there, and now they are circulating through a brand new heat exchanger. Sometimes the answer is a clean rather than a new system, which is covered on our radiators and power flushing page. Sometimes the pipework has genuinely reached the end. Either way it is a decision to make before ordering a boiler, not after.',
+      },
+      {
+        title: 'First-time heating in a property that has none',
+        body: 'Plenty of London flats and converted houses still run on electric storage heaters or nothing at all. Putting central heating in means finding routes for the pipework, and in a Victorian or Edwardian terrace that usually means lifting floorboards, running pipes in the voids, and agreeing beforehand where anything has to be boxed in. We would rather walk you round the house and point at it than surprise you on the day.',
+      },
+      {
+        title: 'Radiators are sized for the room, not the wall',
+        body: 'How much heat a radiator needs to put out depends on the size of the room, the outside walls, the windows and the ceiling height. A radiator chosen because it fits the gap under the window is a room that never quite gets warm. This gets worked out room by room before anything is ordered.',
+      },
+      {
+        title: 'Controls are the cheap part that makes the difference',
+        body: 'Thermostatic valves on the radiators, a programmable room thermostat, and zoning upstairs separately from downstairs cost very little against the rest of the job. They are also what stops you heating four empty bedrooms every evening. If the system is coming out anyway, this is the moment to sort it.',
+      },
+    ],
+    aside: {
+      title: 'Gas Safe registered',
+      body: 'The boiler and gas pipework on a heating installation is carried out by Gas Safe registered engineers. Ask to see the card on the doorstep — on any gas job, you are entitled to.',
+    },
+    faqs: [
+      {
+        q: 'What is the difference between this and a new boiler?',
+        a: 'A boiler job replaces the boiler and leaves the rest of the system where it is — that is covered on our boiler installation and boiler replacement pages. A central heating installation covers the pipework, the radiators and the controls as well. If the existing system is sound, you only need the boiler, and we will say so.',
+      },
+      {
+        q: 'Can you put central heating into a house that has never had it?',
+        a: 'Yes. It is a larger job than a boiler swap because the pipework and radiators all have to go in, and access to floor voids drives a lot of it, so we look at the property before quoting rather than pricing it over the phone.',
+      },
+      {
+        q: 'Do all the radiators have to be replaced?',
+        a: 'Not automatically. Radiators in good condition and of the right output can often stay. We will tell you which ones are worth keeping instead of assuming the whole lot goes.',
+      },
+      {
+        q: 'Will the floors have to come up?',
+        a: 'Usually in part. Pipework has to get from the boiler to each radiator, and in most London houses that means floorboards up in some rooms. We agree the routes with you first, along with anything that will need boxing in afterwards.',
+      },
+    ],
+  },
+
+  {
+    slug: 'surface-water-drainage',
+    title: 'Surface Water Drainage',
+    h1: 'Surface water drainage in London',
+    metaTitle: 'Surface Water Drainage & Soakaways London | Ninja Plumbers',
+    metaDescription:
+      'Surface water drainage in London: soakaways, channel drains and downpipe connections for standing water and flooded patios. Call 020 3576 5825.',
+    eyebrow: 'Drainage',
+    icon: 'drain',
+    target: 'surface water drainage (1,600/mo) · soakaway installation (720/mo)',
+    summary:
+      'Rainwater with nowhere to go — standing water on patios, paths and gardens, given somewhere to drain.',
+    intro:
+      'Every roof, patio and paved garden sheds a surprising amount of water in heavy rain, and all of it has to go somewhere. When it has nowhere to go it sits — puddles across the patio that last for days, a lawn that turns to mud each winter, or water creeping towards a wall it should never reach. Ninja Plumbers deals with that end of drainage: working out where the water is coming from, where it can legitimately go, and putting in the drainage to get it there.',
+    does: [
+      'Standing water on patios, paths and gardens',
+      'Soakaway design and installation',
+      'Channel and linear drainage across driveways and patios',
+      'New gullies and downpipe connections',
+      'Water pooling against a wall or draining into a lightwell',
+      'Existing surface drainage that has stopped coping',
+    ],
+    guidance: [
+      {
+        title: 'What a soakaway actually is',
+        body: 'A soakaway is a hole in the ground, dug well away from the building, filled with something that holds a lot of empty space — traditionally stone, now more often a plastic crate arrangement — and wrapped in a membrane before being buried. Water is piped into it, sits in that space instead of on your patio, and soaks away into the surrounding ground over the following hours. There is nothing clever about it. It is simply somewhere for the water to wait.',
+      },
+      {
+        title: 'Soakaways do not suit every site',
+        body: 'They only work if the ground around them will actually take water. Heavy clay drains very slowly, a high water table leaves nowhere for it to go, and a soakaway too close to a building is a way of putting water into your own foundations. Where the ground rules one out, the water has to be piped to an existing drain instead — so this gets tested and worked out first rather than assumed.',
+      },
+      {
+        title: 'Paving over the garden without drainage is the usual cause',
+        body: 'Front gardens across London have been paved over for parking, and back gardens for terraces and patios. Grass and soil absorb rain; a slab does not. Pave a garden with no drainage and no fall, and the water that used to soak in now runs to the lowest point, which is very often the back door or the base of a wall. Channel drainage across the paving, or a soakaway behind it, is the part that gets left out.',
+      },
+      {
+        title: 'Water pooling against a wall is a damp problem in waiting',
+        body: 'Ground that holds water against brickwork, especially where a patio or path has been built up above the damp-proof course, is one of the routine causes of damp inside. Our damp survey and damp proofing pages go into what that does to a wall. Fixing the drainage outside is frequently the actual repair, rather than anything done to the wall itself.',
+      },
+    ],
+    aside: {
+      title: 'Go and look during the rain',
+      body: 'Nothing tells you more than standing outside in a proper downpour and watching where the water runs, where it stops, and which downpipe is overshooting. Five wet minutes will tell you more than an hour of looking at a dry patio.',
+    },
+    faqs: [
+      {
+        q: 'What is a soakaway, in plain terms?',
+        a: 'A buried void — stone or plastic crates in a membrane — set away from the building, that rainwater is piped into so it can soak gradually into the surrounding ground instead of standing on the surface.',
+      },
+      {
+        q: 'My patio floods every time it rains. What can be done?',
+        a: 'Usually a linear or channel drain set into the paving at the low point, taken to a soakaway or an existing surface water drain. Sometimes the paving itself has been laid falling towards the house, in which case that needs correcting too.',
+      },
+      {
+        q: 'Can rainwater just be connected into the foul drain?',
+        a: 'Rainwater and foul water are normally kept separate, and whether a connection is permitted depends on the drainage arrangement in your street. We check what is there before connecting anything into it.',
+      },
+      {
+        q: 'The drain is there but the water still stands. Why?',
+        a: 'Either it is blocked, or the underground run is damaged — collapsed, cracked or knocked out of line — and the water is not getting away. A camera survey settles which, and our drain repairs page covers the repair side of it.',
+      },
+    ],
+  },
+
+  {
+    slug: 'gutter-repair',
+    title: 'Gutter Repair',
+    h1: 'Gutter repair in London',
+    metaTitle: 'Gutter Repair & Cleaning London | Ninja Plumbers',
+    metaDescription:
+      'Gutter repair and cleaning across London: blocked, leaking and sagging gutters fixed before they stain the wall below. Call 020 3576 5825.',
+    eyebrow: 'Rainwater',
+    icon: 'drain',
+    target: 'gutter repair (2,900/mo) · gutter repair london (390/mo) · gutter cleaning (9,900/mo)',
+    summary:
+      'Blocked, leaking, sagging and overflowing gutters cleared and repaired, along with the downpipes below them.',
+    intro:
+      'A gutter has one job, which is to catch what comes off the roof and take it to a downpipe. When it stops doing that, the water goes down the wall instead — and a wall that has had water running down it all winter is where a lot of damp problems start. Ninja Plumbers clears blocked gutters, repairs leaking joints and sagging runs, and deals with the downpipes and the gullies they empty into.',
+    does: [
+      'Blocked and overflowing gutters cleared',
+      'Leaking joints and split sections repaired',
+      'Sagging, dropped or detached lengths refixed',
+      'Downpipe blockages and broken downpipe sections',
+      'Cast-iron guttering on Victorian and Edwardian properties',
+      'Guttering checked where damp has appeared on the wall below',
+    ],
+    guidance: [
+      {
+        title: 'An overflowing gutter looks exactly like rising damp',
+        body: 'This is the important one. A gutter that has been spilling down an external wall for a few months produces a wide patch of dark, stained, often mouldy brickwork and a matching damp patch inside — and it gets diagnosed as rising damp again and again. Our damp proofing page puts faulty guttering at the top of the list of causes of penetrating damp, and that matches what we actually find on site. Before anyone quotes you for a damp-proof course, go outside and look up at the gutter above the patch.',
+      },
+      {
+        title: 'Clearing a gutter is not the same as repairing one',
+        body: 'Scooping the leaves out fixes a gutter that is blocked. It does nothing for a gutter that has dropped at one end, has a split in a joint, or has come away from its brackets — that one will overflow again in the next heavy rain, leaves or no leaves. Whoever goes up should tell you which of the two you have got.',
+      },
+      {
+        title: 'Cast iron can usually be repaired',
+        body: 'Original cast-iron guttering on London terraces is often written off when it does not need to be. Joints can be taken apart, cleaned and re-sealed, brackets replaced, and lengths swapped section by section. It is heavier work and the fixings behind it need checking properly, but replacing the whole run in plastic is not the only option, and on a period frontage it is rarely the one people want.',
+      },
+      {
+        title: 'The downpipe and what it empties into',
+        body: 'Half of the gutters we get called to are not really the gutter at all. The downpipe is blocked, or the gully at the bottom is full, so the water backs up and comes over the top. That means checking the whole route down to the ground, not just the length of gutter you can see spilling.',
+      },
+    ],
+    aside: {
+      title: 'Access is part of the job',
+      body: 'This is work at height, usually on the front or rear of a terrace, sometimes over an extension roof or a basement lightwell. Getting safe access for the height involved takes time and it is priced into the quote — so you get one figure before anyone starts, not a surcharge afterwards.',
+    },
+    faqs: [
+      {
+        q: 'Can a damp patch on my wall really be caused by a gutter?',
+        a: 'Very commonly, yes. Water running down brickwork for weeks soaks in and shows up inside, and it produces the stained patch people take for rising damp. It is the first thing worth ruling out, and our damp survey page covers how the cause is confirmed.',
+      },
+      {
+        q: 'How often should gutters be cleared?',
+        a: 'Once a year suits most houses, and late autumn is the sensible time — after the leaves have come down. Properties under London plane trees, or with a flat roof collecting debris, often need looking at more than that.',
+      },
+      {
+        q: 'Do cast-iron gutters have to be replaced?',
+        a: 'Not usually. Joints can be re-sealed, brackets renewed and individual sections swapped. Replacement makes sense where the metal itself has corroded through along the run, and we will tell you which of those you are looking at.',
+      },
+      {
+        q: 'How do you reach the gutter on a terraced house?',
+        a: 'With the right access for the height and the position — that varies with the property, the number of storeys and whether the run is at the front or over the back. We look at access when we quote, because it is part of what the job takes.',
+      },
+    ],
+  },
 ];
 
 export default services;

@@ -984,6 +984,138 @@ export const appliances: Appliance[] = [
     ],
     related: ['boiler-installation', 'boiler-service'],
   },
+
+  {
+    slug: 'kitchen-sink-installation',
+    title: 'Kitchen Sink Installation',
+    h1: 'Kitchen sink installation in London',
+    metaTitle: 'Kitchen Sink Installation London | Ninja Plumbers',
+    metaDescription:
+      'Kitchen sink installation across London: inset, undermount and Belfast sinks fitted, wastes and traps done properly. Call Ninja Plumbers 020 3576 5825.',
+    eyebrow: 'Sinks & wastes',
+    icon: 'tap',
+    group: 'kitchen',
+    target: 'kitchen sink installation (210/mo)',
+    summary:
+      'New sinks fitted and old ones swapped, with the waste and trap sorted out underneath rather than bodged.',
+    intro:
+      'Fitting a kitchen sink is two jobs, and only one of them is the sink. Above the worktop it is a matter of the right cut-out, the right seal and taps that reach. Below it is the waste, the trap and whatever else has been fed into them over the years. Ninja Plumbers does both ends of it, whether that is dropping a new sink into an existing worktop or rebuilding the whole arrangement underneath during a refit.',
+    does: [
+      'New kitchen sink fitted, sealed and connected',
+      'Like-for-like swaps into an existing worktop',
+      'Inset, undermount and Belfast sink installation',
+      'Waste, trap and overflow reworked to suit the new sink',
+      'Washing machine or dishwasher connected into the same waste',
+      'Slow-draining and leaking sinks put right',
+    ],
+    guidance: [
+      {
+        title: 'Inset, undermount or Belfast',
+        body: 'An inset sink drops into a hole in the worktop and sits on a rim, which is the simplest and most forgiving option. An undermount is fixed beneath the worktop, so the cut edge is on show and the material has to be able to take it — granite and quartz can, most laminate cannot. A Belfast or butler sink sits exposed at the front with the worktop built around it, and the tap goes into the worktop rather than the sink.',
+      },
+      {
+        title: 'The worktop decides more than the sink does',
+        body: 'A cut-out cannot be moved once it is made, and a new sink is rarely the same size as the old one. A ceramic Belfast sink is heavy before you put any water in it, so it needs a proper supporting base underneath rather than the sides of a standard cabinet. Worth settling all of that before the sink is bought.',
+      },
+      {
+        title: 'Appliances can share the waste, within limits',
+        body: 'A washing machine or dishwasher normally connects into a spigot on the sink trap, with the hose looped up high before it drops away. Two appliances plus a sink on one small trap is where it starts to gurgle and back up, and at that point the honest answer is a second trap or a standpipe rather than another adaptor.',
+      },
+      {
+        title: 'A slow new sink is almost never the sink',
+        body: 'If a brand new sink drains slowly, the sink is not the problem. It is usually the trap — the wrong depth, the wrong type, or a flexible pipe left sagging so water sits in it. Beyond that it is the waste run itself: not enough fall, or an old blockage that the previous sink was quietly living with.',
+      },
+    ],
+    aside: {
+      title: 'Measure the cut-out before you buy',
+      body: 'Most of the awkward sink jobs start in a shop. Sink dimensions, worktop material and the position of the existing waste all interact, and five minutes checking them beforehand avoids a worktop that has to be replaced.',
+    },
+    faqs: [
+      {
+        q: 'Can I put a Belfast sink in my existing kitchen?',
+        a: 'Often, but not always. The cabinet has to be modified or replaced to carry the weight, the worktop has to be cut back around it, and the tap moves into the worktop. It is a bigger job than a straight swap and worth pricing as one.',
+      },
+      {
+        q: 'Why is my new sink draining slowly?',
+        a: 'Look at the trap and the pipe run before blaming the sink. A trap of the wrong depth, a sagging flexible waste or a pipe with too little fall will all hold water back. If the washing machine or dishwasher is also on that waste, it may simply be carrying more than it can take.',
+      },
+      {
+        q: 'Can a washing machine and a dishwasher share the sink waste?',
+        a: 'Two appliances on one sink waste is possible but it is the point where problems start. If both run at once and the sink is in use, a standpipe for one of them is the more reliable arrangement.',
+      },
+      {
+        q: 'Do you supply the sink?',
+        a: 'No. Buy the sink and tap you actually want and we will fit them. Send us the model and a photo of what is under the current sink and we can tell you what the job involves before anyone commits to anything.',
+      },
+    ],
+    related: ['general-plumbing', 'bathroom-installation'],
+  },
+
+  {
+    slug: 'immersion-heater-replacement',
+    title: 'Immersion Heater Replacement',
+    h1: 'Immersion heater replacement in London',
+    metaTitle: 'Immersion Heater Replacement London | Ninja Plumbers',
+    metaDescription:
+      'Immersion heater replacement across London: failed elements, faulty thermostats and scaled-up cylinders diagnosed and sorted. Call 020 3576 5825.',
+    eyebrow: 'Hot water',
+    icon: 'heating',
+    group: 'heating',
+    target: 'immersion heater replacement (260/mo)',
+    summary:
+      'The electric element in the hot water cylinder — replaced when it fails, and checked before anyone talks about a new cylinder.',
+    intro:
+      'An immersion heater is an electric element that screws into the side or the top of a hot water cylinder and heats the water directly, much like a very large kettle element. In some homes it is the backup for when the boiler is off or broken. In others, usually converted flats with no gas, it is the only thing heating the water at all. Ninja Plumbers replaces failed elements and thermostats, and checks both before anybody starts discussing a new cylinder.',
+    does: [
+      'Failed immersion heater elements replaced',
+      'Immersion thermostats tested and replaced',
+      'No hot water on a cylinder diagnosed',
+      'Scaled and seized elements removed',
+      'Cylinder drained down and refilled',
+      'Honest view on whether the cylinder itself is worth keeping',
+    ],
+    guidance: [
+      {
+        title: 'What it is, in plain terms',
+        body: 'It is an electric heating element sitting inside the cylinder, with its own switch on the wall and its own thermostat. It is wired independently of the boiler, which is why it still works when the heating does not, and why it can fail while everything else in the house is fine.',
+      },
+      {
+        title: 'How to tell it has failed',
+        body: 'The clearest sign is no hot water from the immersion while the heating still runs perfectly well. Lukewarm water that never gets properly hot points the same way, as does an immersion switch that trips the electrics as soon as it is turned on. A tripping circuit means the element has broken down internally and should be left switched off until it is looked at.',
+      },
+      {
+        title: 'London water is what usually kills them',
+        body: 'Hard water leaves limescale, and an element sitting in it gets caked in the stuff. The scale acts as insulation, so the element works harder, runs hotter and eventually fails. It also makes an old element awkward to remove, because scale and corrosion effectively weld it into the cylinder boss.',
+      },
+      {
+        title: 'Thermostat or element, and a drain-down either way',
+        body: 'A failed thermostat and a failed element look identical from the tap, so both get tested rather than guessed at. Replacing the element means draining the cylinder down first and refilling it afterwards, which is the bulk of the time on the job. The connection at the element is electrical work, and it must be done by someone competent to do it — we will say plainly if what you have needs an electrician rather than us.',
+      },
+    ],
+    aside: {
+      title: 'Check this before replacing a cylinder',
+      body: 'No hot water often turns out to be a failed element or thermostat rather than a failed cylinder, and those are far smaller jobs. If the cylinder really is at the end of its life, our hot water cylinder installation page covers what replacing it involves.',
+    },
+    faqs: [
+      {
+        q: 'My heating works but there is no hot water from the immersion. Why?',
+        a: 'That combination usually points at the immersion itself rather than the boiler or the cylinder, because the two run on separate circuits. It is most often the element or its thermostat, and both are tested before anything is replaced.',
+      },
+      {
+        q: 'Why does my immersion heater trip the electrics?',
+        a: 'An element that trips the circuit when switched on has broken down inside and is letting current where it should not go. Leave it switched off and have it replaced. Do not keep resetting the trip to get one more tank of hot water out of it.',
+      },
+      {
+        q: 'Is it the thermostat or the element?',
+        a: 'You cannot tell from the tap — both give you cold or lukewarm water. A thermostat is the cheaper part, so it gets tested first, but on an old scaled element in a hard water area it is frequently both.',
+      },
+      {
+        q: 'Do you do the electrical side of it?',
+        a: 'The connection at the element is electrical work and has to be done by someone competent to carry it out. We are Gas Safe registered and fully insured, our engineers are DBS-checked and directly employed rather than subcontracted, and we will tell you straight if your job needs an electrician instead. Either way the price is agreed before any work starts.',
+      },
+    ],
+    related: ['boiler-repair', 'general-plumbing'],
+  },
 ];
 
 // Every appliance page must point back at core services that exist, or the

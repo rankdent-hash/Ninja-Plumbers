@@ -44,6 +44,17 @@ const SERVICE_TERMS: Record<string, string> = {
   'air-conditioning-maintenance': 'air conditioning aircon air con maintenance service servicing annual filter clean refrigerant check f-gas f gas leak check engineer',
   'air-conditioning-installation': 'air conditioning aircon air con installation install fitting split system multi split outdoor unit condenser cooling f-gas f gas engineer new system',
   'air-conditioning-replacement': 'air conditioning aircon air con replace replacement swap old unit upgrade end of life obsolete refrigerant r22 new system outdoor condenser engineer',
+  'blocked-toilet': 'blocked toilet blocked loo wc clogged toilet not flushing wont flush water rising overflowing toilet plunger wipes macerator saniflo blocked pan soil pipe',
+  'shower-installation': 'shower installation install fitted new shower mixer shower thermostatic shower digital shower shower over bath shower valve replace shower combi gravity fed unvented',
+  'shower-repair': 'shower repair broken shower not working no hot water shower cold shower weak shower dripping shower leaking shower valve temperature changing shower tray leak',
+  'bath-installation': 'bath installation install new bath replace bath bath replacement freestanding bath bath taps bath waste bath to shower cast iron bath removal',
+  'tap-repair-and-replacement': 'tap repair tap replacement replace tap new tap kitchen tap bathroom tap mixer tap monobloc pillar tap dripping tap leaking tap stiff tap seized tap washer cartridge o-ring',
+  'central-heating-installation': 'central heating installation install new central heating system full system heating system replacement radiators pipework controls first time central heating',
+  'lead-pipe-and-water-main-replacement': 'lead pipe replacement lead pipes water main replacement mains water supply pipe communication pipe rising main old lead pipework moling trenching',
+  'pipe-repair': 'pipe repair burst pipe split pipe frozen pipe leaking pipe pipework repair copper pipe corroded pipe repipe under floor pipe in wall',
+  'low-water-pressure': 'low water pressure weak pressure poor pressure no pressure pressure drop prv pressure reducing valve stopcock limescale flow rate weak shower',
+  'surface-water-drainage': 'surface water drainage rainwater drainage soakaway standing water flooding garden patio driveway channel drain linear drain gully downpipe pooling water',
+  'gutter-repair': 'gutter repair guttering leaking gutter blocked gutter overflowing gutter gutter cleaning downpipe cast iron gutter sagging gutter fascia rainwater goods',
 };
 
 // What people type when they want the thing rather than the trade. Matching
@@ -62,6 +73,8 @@ const APPLIANCE_TERMS: Record<string, string> = {
   'outside-tap-installation': 'outside tap outdoor tap garden tap hose bib tap standpipe check valve frost proof winterise',
   'dishwasher-plumbing': 'dishwasher plumb in installation integrated built in waste hose isolating valve not draining standing water leak',
   'hot-water-cylinder-installation': 'hot water cylinder tank unvented vented megaflo immersion heater thermostat expansion vessel airing cupboard no hot water lukewarm',
+  'kitchen-sink-installation': 'kitchen sink installation new sink replace sink inset sink undermount sink belfast sink butler sink sink waste trap plughole worktop cut out',
+  'immersion-heater-replacement': 'immersion heater replacement replace immersion element thermostat electric water heating no hot water tripping cylinder scaled element backup heating',
   'electric-shower-installation': 'electric shower installation fit fitted new shower kw rating cable breaker isolation valve replace existing unit',
 };
 

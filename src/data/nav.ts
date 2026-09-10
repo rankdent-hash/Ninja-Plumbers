@@ -21,31 +21,39 @@ export const serviceGroups: ServiceGroup[] = [
     slug: 'plumbing',
     label: 'Plumbing',
     blurb: 'Leaks, bursts, taps, toilets and pipework, from an emergency callout to a planned repair.',
-    services: ['emergency-plumbing', 'general-plumbing', 'leak-detection', 'commercial-plumbing', 'gas-safety-certificate'],
+    services: [
+      'emergency-plumbing', 'general-plumbing', 'tap-repair-and-replacement', 'leak-detection',
+      'pipe-repair', 'low-water-pressure', 'lead-pipe-and-water-main-replacement',
+      'commercial-plumbing', 'gas-safety-certificate',
+    ],
   },
   {
     slug: 'heating',
     label: 'Heating',
     blurb: 'Boilers, radiators, cylinders and hot water — installed, serviced and kept running by Gas Safe engineers.',
-    services: ['boiler-repair', 'boiler-service', 'boiler-installation', 'boiler-replacement'],
+    services: ['boiler-repair', 'boiler-service', 'boiler-installation', 'boiler-replacement', 'central-heating-installation'],
     extra: [
       { label: 'Boiler brands we work on', href: '/boilers' },
       { label: 'Radiators & power flushing', href: '/appliances/radiator-installation-and-power-flushing' },
       { label: 'Underfloor heating', href: '/appliances/underfloor-heating-installation' },
       { label: 'Hot water cylinders', href: '/appliances/hot-water-cylinder-installation' },
+      { label: 'Immersion heaters', href: '/appliances/immersion-heater-replacement' },
     ],
   },
   {
     slug: 'drainage',
     label: 'Drainage',
     blurb: 'Blockages cleared with proper equipment, CCTV surveys and repairs to the run itself.',
-    services: ['drain-unblocking', 'cctv-drain-survey', 'drain-repairs'],
+    services: ['drain-unblocking', 'blocked-toilet', 'cctv-drain-survey', 'drain-repairs', 'surface-water-drainage', 'gutter-repair'],
   },
   {
     slug: 'bathrooms',
     label: 'Bathrooms',
     blurb: 'Full bathrooms, WCs and wet rooms fitted with the price agreed before anyone starts.',
-    services: ['bathroom-installation', 'toilet-installation', 'wet-rooms-and-walk-in-showers'],
+    services: [
+      'bathroom-installation', 'shower-installation', 'shower-repair',
+      'bath-installation', 'toilet-installation', 'wet-rooms-and-walk-in-showers',
+    ],
     extra: [
       { label: 'Shower pumps', href: '/appliances/shower-pumps' },
       { label: 'Saniflo & macerator pumps', href: '/appliances/saniflo-macerator-pumps' },
