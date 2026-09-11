@@ -230,7 +230,7 @@ strong { font-weight: 600; }
   gap: 3px;
   flex: none;
 }
-.logo-img { display: block; height: 40px; width: auto; }
+.logo-img { display: block; height: 50px; width: auto; }
 .logo .sub {
   font-family: var(--font-body);
   font-weight: 600;
@@ -716,7 +716,7 @@ body.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-6px) rotate
 .site-footer p { color: #9fb2c4; font-size: 0.92rem; }
 .footer-brand { padding-right: 24px; }
 .footer-logo { display: inline-block; margin-bottom: 14px; }
-.footer-logo img { display: block; height: 44px; width: auto; }
+.footer-logo img { display: block; height: 55px; width: auto; }
 .footer-cta { display: flex; flex-wrap: wrap; gap: 10px; margin: 6px 0 20px; }
 .footer-cta .btn { padding: 11px 18px; font-size: 0.92rem; }
 .footer-contact { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; font-size: 0.88rem; color: #9fb2c4; }
@@ -809,7 +809,7 @@ body.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-6px) rotate
    full size out to about 1500px. */
 @media (min-width: 1101px) and (max-width: 1500px) {
   .header-bar { gap: 14px; }
-  .logo-img { height: 34px; }
+  .logo-img { height: 43px; }
   .logo .sub { display: none; }
   .nav-link { font-size: 0.86rem; padding: 10px 7px; }
   .nav-link[aria-current="page"]::after { left: 7px; right: 7px; }
@@ -824,7 +824,7 @@ body.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-6px) rotate
    and the call button have the least room to work with. */
 @media (min-width: 1101px) and (max-width: 1360px) {
   .header-bar { gap: 10px; }
-  .logo-img { height: 30px; }
+  .logo-img { height: 38px; }
   .nav-link { font-size: 0.8rem; padding: 10px 5px; }
   .nav-link[aria-current="page"]::after { left: 5px; right: 5px; }
   .header-cta { padding: 9px 11px; }
@@ -985,7 +985,7 @@ body.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-6px) rotate
   .borough-list { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px 20px; }
   .footer-brand { grid-column: 1 / -1; padding-right: 0; }
-  .footer-logo img { height: 36px; }
+  .footer-logo img { height: 45px; }
   .section { padding: 52px 0; }
 }
 
@@ -996,7 +996,7 @@ body.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-6px) rotate
   .header-cta-number { display: none; }
   .header-actions .search-toggle { display: none; }
   .header-cta-label { font-size: 0.92rem; font-weight: 600; letter-spacing: 0; text-transform: none; }
-  .logo-img { height: 28px; }
+  .logo-img { height: 35px; }
   .logo .sub { display: none; }
 }
 
@@ -1881,7 +1881,7 @@ body.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-6px) rotate
    so the header can sit lighter than the main site's — a smaller logo and
    a smaller call button, with more air between them than two flex items at
    the edges of a narrow bar otherwise get. */
-.lp-logo .logo-img { height: 48px; }
+.lp-logo .logo-img { height: 60px; }
 /* Same-page jumps to the form land below the sticky header, not under it. */
 .lp-form-card, #enquiry { scroll-margin-top: 80px; }
 .lp-header-actions { display: flex; align-items: center; gap: 10px; flex: none; }
@@ -1905,7 +1905,7 @@ body.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-6px) rotate
 @media (max-width: 600px) {
   .lp-header-bar { gap: 12px; padding: 10px 0; }
   .lp-logo { margin-left: 25px; }
-  .lp-logo .logo-img { height: 30px; }
+  .lp-logo .logo-img { height: 38px; }
   .lp-header-actions { gap: 8px; margin-right: 25px; }
   .lp-form-jump { width: 40px; min-height: 40px; padding: 0; justify-content: center; border-radius: 50%; }
   .lp-form-jump-text { display: none; }
@@ -1917,7 +1917,7 @@ body.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-6px) rotate
 }
 @media (max-width: 380px) {
   .lp-header-bar { gap: 8px; }
-  .lp-logo .logo-img { height: 26px; }
+  .lp-logo .logo-img { height: 33px; }
   .lp-header .header-cta { padding: 7px 10px; }
   .lp-header .header-cta-number { font-size: 0.84rem; }
 }
