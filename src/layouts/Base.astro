@@ -6,6 +6,7 @@ import MobileBar from '../components/MobileBar.astro';
 import SiteSearch from '../components/SiteSearch.astro';
 import BookPopup from '../components/BookPopup.astro';
 import PhoneQrPopup from '../components/PhoneQrPopup.astro';
+import Analytics from '../components/Analytics.astro';
 // Self-hosted so the page makes no third-party request at all: faster first
 // paint, and nothing about a visitor is disclosed to Google to render text.
 import '@fontsource-variable/inter';
@@ -75,6 +76,7 @@ const localBusiness = {
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 {schema && <script type="application/ld+json" set:html={JSON.stringify(localBusiness)} />}
+<Analytics />
 <slot name="head" />
 </head>
 <body>

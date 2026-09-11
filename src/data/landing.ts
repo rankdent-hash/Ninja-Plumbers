@@ -42,6 +42,8 @@ export type Landing = {
   // ad's search intent overlaps a real service/appliance page without being
   // the same job (e.g. repair vs. installation).
   crossLink?: { href: string; label: string; body: string };
+  // Icon shown on this page's card in the /lp directory.
+  cardIcon?: PremiumIcon;
 
   // ---- Premium layout (opt-in per page) ----
   // A page that sets `premium` renders the higher-end template: rating badge
@@ -65,18 +67,20 @@ export type Landing = {
   };
 };
 
-export type PremiumArt = 'tap' | 'gauge' | 'toilet' | 'certificate';
+export type PremiumArt = 'tap' | 'gauge' | 'toilet' | 'certificate' | 'leak' | 'pipes';
 
 export type PremiumIcon =
   | 'calendar' | 'price' | 'visit' | 'shield'
   | 'kitchen' | 'bath' | 'mixer' | 'shower' | 'garden' | 'swap'
   | 'gauge' | 'home' | 'boiler' | 'pipe' | 'valve' | 'drop'
   | 'toilet' | 'cistern' | 'flush' | 'plunger' | 'pump' | 'seal'
-  | 'certificate' | 'key' | 'building' | 'clipboard' | 'phone' | 'wrench';
+  | 'certificate' | 'key' | 'building' | 'clipboard' | 'phone' | 'wrench'
+  | 'floor' | 'thermal' | 'acoustic' | 'radiator' | 'appliance' | 'ceiling';
 
 export const landings: Landing[] = [
   {
     slug: 'emergency-plumber',
+    cardIcon: 'drop',
     campaign: 'Emergency Plumber — London',
     headTerm: '24 hour plumber london',
     cpc: '£43.86',
@@ -115,6 +119,7 @@ export const landings: Landing[] = [
 
   {
     slug: 'boiler-repair',
+    cardIcon: 'boiler',
     campaign: 'Boiler Repair — London',
     headTerm: 'boiler repair london',
     cpc: '£17.46',
@@ -153,6 +158,7 @@ export const landings: Landing[] = [
 
   {
     slug: 'blocked-drains',
+    cardIcon: 'plunger',
     campaign: 'Blocked Drains — London',
     headTerm: 'drain unblocking london',
     cpc: '£18.40',
@@ -191,6 +197,7 @@ export const landings: Landing[] = [
 
   {
     slug: 'bathroom-installation',
+    cardIcon: 'bath',
     campaign: 'Bathroom Installation — London',
     headTerm: 'bathroom fitters london',
     cpc: '£6.29',
@@ -230,6 +237,7 @@ export const landings: Landing[] = [
   // ---- Plumbing - East campaign (Google Ads), built from the agency brief ----
   {
     slug: 'tap-repair',
+    cardIcon: 'mixer',
     formLabel: 'Tap Repair',
     campaign: 'Plumbing - East / Dripping & Leaking Taps',
     headTerm: 'leaking tap repair london',
@@ -328,6 +336,7 @@ export const landings: Landing[] = [
 
   {
     slug: 'low-water-pressure',
+    cardIcon: 'gauge',
     formLabel: 'Low Water Pressure',
     campaign: 'Plumbing - East / Low Water Pressure',
     headTerm: 'low water pressure london',
@@ -425,6 +434,7 @@ export const landings: Landing[] = [
 
   {
     slug: 'toilet-repair',
+    cardIcon: 'toilet',
     formLabel: 'Toilet Repair',
     campaign: 'Plumbing - East / Toilet Repairs',
     headTerm: 'toilet repair london',
@@ -528,6 +538,7 @@ export const landings: Landing[] = [
 
   {
     slug: 'landlord-plumbing',
+    cardIcon: 'certificate',
     formLabel: 'Landlord & Compliance Plumbing',
     campaign: 'Plumbing - East / Landlord & Compliance Plumbing',
     headTerm: 'landlord plumber london',
@@ -626,6 +637,189 @@ export const landings: Landing[] = [
       label: 'Just need the certificate?',
       body: 'If it’s only the annual CP12 you need and not the wider repairs relationship, see gas safety certificates.',
     },
+  },
+
+  // ---- Plumbing, Drainage & Leak Detection campaign (Google Ads) ----
+  {
+    slug: 'leak-detection',
+    cardIcon: 'acoustic',
+    campaign: 'Plumbing, Drainage & Leak Detection / Leak Detection',
+    headTerm: 'leak detection london',
+    cpc: '—',
+    metaTitle: 'Leak Detection London | Hidden Leaks Traced Fast',
+    metaDescription: `Non-invasive leak detection across London — damp patches, climbing bills and hidden pipe leaks traced before anything is opened up. Call ${site.booking.display}.`,
+    h1: 'Got a hidden leak? We track it down before anything is opened up',
+    sub: 'A damp patch you cannot shift, a stain spreading across the ceiling, or a bill that keeps climbing with no obvious reason. We locate the source with acoustic and thermal equipment first, so the repair stays precise instead of turning into guesswork.',
+    urgent: false,
+    premium: {
+      eyebrow: 'Leak detection across London',
+      rating: { score: '5.0', count: '8' },
+      proof: [
+        { label: 'Non-invasive detection', note: 'Acoustic and thermal equipment, not a hammer', icon: 'acoustic' },
+        { label: 'Located before any floor comes up', note: 'A precise repair, not exploratory digging', icon: 'floor' },
+        { label: 'Price agreed before we start', note: 'No surprise invoice, ever', icon: 'price' },
+        { label: 'Insured, DBS-checked engineers', note: 'Directly employed, not subcontracted', icon: 'shield' },
+      ],
+      form: {
+        title: 'Book your leak survey',
+        sub: 'Tell us what’s showing up — a damp patch, a stain, or a bill that has jumped — and we’ll come back with a price for the visit.',
+        submit: 'Get Booked In',
+        note: 'No obligation. Nothing is booked until you’ve agreed the price.',
+      },
+      fixes: {
+        eyebrow: 'What we trace',
+        title: 'The leaks you can’t see for yourself',
+        lead: 'When water is showing up somewhere and the cause isn’t obvious, finding it properly costs less than guessing at it.',
+        items: [
+          { title: 'Under-floor leaks', note: 'Solid and tiled floors included', icon: 'floor' },
+          { title: 'Leaks hidden behind walls', note: 'Located without opening up the whole run', icon: 'thermal' },
+          { title: 'Ceiling & wall staining', note: 'Damp and water-damage investigated properly', icon: 'ceiling' },
+          { title: 'Climbing water bills', note: 'Usage that has risen with no clear explanation', icon: 'gauge' },
+          { title: 'Heating losing pressure', note: 'When a system needs regular topping up', icon: 'boiler' },
+          { title: 'Pre-purchase surveys', note: 'Before you buy, or before a refurbishment starts', icon: 'clipboard' },
+        ],
+      },
+      diagnosis: {
+        eyebrow: 'Locate first, repair second',
+        title: 'Nothing gets opened up until we know exactly where it is',
+        intro: 'Lifting a floor on a hunch is how a small job turns into a big one. Using acoustic and thermal equipment, we pinpoint the source, show you where it is, and price the repair from there.',
+        tag: 'Pinpointed, not guessed at — so the repair stays targeted rather than exploratory',
+        art: 'leak',
+      },
+      steps: [
+        { title: 'Describe what you’re noticing', body: 'A damp patch, a stain on the ceiling, a climbing bill, or a boiler that keeps losing pressure — a few photos help us more than anything else.' },
+        { title: 'We locate it, then agree the price', body: 'Using non-invasive equipment, the engineer finds the source, shows you exactly what’s been found, and prices the repair before touching anything.' },
+        { title: 'Repaired and made good again', body: 'The leak is repaired and tested. Because we know exactly where it is, only the section that needs opening gets opened.' },
+      ],
+      close: {
+        title: '£25 off your first call-out',
+        body: 'Book your leak survey today and the £25 comes straight off the first visit.',
+      },
+    },
+    bullets: [
+      'Gas Safe registered and fully insured',
+      'DBS-checked engineers',
+      'Price agreed before work starts',
+      'Directly employed engineers, not subcontracted',
+    ],
+    reassure: [
+      {
+        title: 'A damp patch rarely sits above the leak',
+        body: 'Water often travels along a joist or under a floor for some distance before it ever shows itself, so the stain on your ceiling can be well away from the actual failed pipe. That is why we locate the leak first, rather than cutting into the wrong spot on a hunch.',
+      },
+      {
+        title: 'Try the meter test before you call',
+        body: 'Turn off every tap and appliance, then leave the meter an hour with nothing running before reading it again. If it has moved, there is a leak somewhere on your supply — tell us that when you call and it helps narrow things down straight away.',
+      },
+      {
+        title: 'A boiler losing pressure can mean a leak too',
+        body: 'A boiler that needs topping up every few weeks is often leaking somewhere in the heating circuit, sometimes a pinhole under a floor. Worth tracing early, since it corrodes the system from the inside as it keeps refilling.',
+      },
+    ],
+    faqs: [
+      { q: 'Do you need to lift my floors to find it?', a: 'No, not to locate it. We use acoustic and thermal equipment to find the source first, so only the point that actually needs opening for the repair gets touched.' },
+      { q: 'What does a leak detection visit cost?', a: 'Call the booking line and tell us what you are seeing — you get a price for the investigation upfront, and a separate one for the repair once the cause is confirmed.' },
+      { q: 'My bill has jumped but I can’t see anything leaking. Is that normal?', a: 'It is one of the most common reasons people call us. A rise in usage with no obvious cause is often a supply-side leak, and it can usually be traced without any digging.' },
+      { q: 'Will the same team do the repair once it’s found?', a: 'Yes. We find the leak and carry out the repair ourselves, so there is no second contractor to bring in afterward.' },
+    ],
+    offer: { disclaimer: 'New customers only. Cannot be combined with other offers.' },
+    trustExtra: [
+      `${site.name} rated 5.0 stars on Google`,
+      'Directly employed engineers, never subcontracted',
+      `${site.legalName}, established ${site.established}`,
+    ],
+    relatedService: 'leak-detection',
+  },
+
+  {
+    slug: 'general-plumbing',
+    cardIcon: 'pipe',
+    campaign: 'Plumbing, Drainage & Leak Detection / General Plumbing Repairs',
+    headTerm: 'plumber london',
+    cpc: '—',
+    metaTitle: 'London Plumber | Taps, Toilets & Everyday Repairs',
+    metaDescription: `Everyday London plumbing — taps, toilets, radiators, stopcocks and pipework, quoted before we start and often done in one visit. Call ${site.booking.display}.`,
+    h1: 'Looking for a plumber in London? We price the job first',
+    sub: 'The tap that keeps dripping, the toilet running half the night, the radiator that stays cold. Small jobs get the same proper quote as big ones, and most are sorted in a single visit.',
+    urgent: false,
+    premium: {
+      eyebrow: 'General plumbing across London',
+      rating: { score: '5.0', count: '8' },
+      proof: [
+        { label: 'Same-week appointments', note: 'Usually booked within days', icon: 'calendar' },
+        { label: 'Most jobs finished in one visit', note: 'Small repairs done there and then', icon: 'visit' },
+        { label: 'Price agreed before we start', note: 'Small jobs priced the same as big ones', icon: 'price' },
+        { label: 'Insured, DBS-checked engineers', note: 'Directly employed, not subcontracted', icon: 'shield' },
+      ],
+      form: {
+        title: 'Book a plumber',
+        sub: 'Tell us what needs sorting and we’ll come back with a price, not a sales call.',
+        submit: 'Get Booked In',
+        note: 'No obligation. Nothing is booked until you’ve agreed the price.',
+      },
+      fixes: {
+        eyebrow: 'What we do',
+        title: 'The jobs that never quite get done',
+        lead: 'Taps, toilets, radiators and pipework — for homeowners, landlords and managing agents across London.',
+        items: [
+          { title: 'Taps & mixers', note: 'Drips, stiff handles, worn washers', icon: 'mixer' },
+          { title: 'Toilets & cisterns', note: 'Running overflows, weak or failed flushes', icon: 'toilet' },
+          { title: 'Radiators', note: 'Fitting, moving, bleeding and balancing', icon: 'radiator' },
+          { title: 'Stopcocks & valves', note: 'Seized shut-offs and isolation valves freed up', icon: 'valve' },
+          { title: 'Appliance connections', note: 'Washing machines and dishwashers plumbed in', icon: 'appliance' },
+          { title: 'Pipework', note: 'Repairs, alterations and full repiping', icon: 'pipe' },
+        ],
+      },
+      diagnosis: {
+        eyebrow: 'No job is too small',
+        title: 'A quick visit, quoted just as properly',
+        intro: 'Plenty of firms won’t turn out for a single dripping tap — we will, and you get the same written price and the same engineer you’d get for a full bathroom refit.',
+        tag: 'Tightened, tested and left tidy, exactly as we found it',
+        art: 'pipes',
+      },
+      steps: [
+        { title: 'Tell us what’s on the list', body: 'Call, use the form, or WhatsApp a photo. Most people save up three or four small jobs, and one visit usually clears the lot.' },
+        { title: 'We agree a price up front', body: 'You get a price before the engineer starts. If something underneath changes the scope, we stop and talk to you first.' },
+        { title: 'Finished, tested and cleared up', body: 'The work is completed, tested, and the area left tidy. Any gas work is carried out and certificated by Gas Safe registered engineers.' },
+      ],
+      close: {
+        title: '£25 off your first call-out',
+        body: 'Book your plumber today and the £25 comes off your first visit.',
+      },
+    },
+    bullets: [
+      'Gas Safe registered and fully insured',
+      'DBS-checked engineers',
+      'Price agreed before work starts',
+      'Directly employed engineers, not subcontracted',
+    ],
+    reassure: [
+      {
+        title: 'Bundle your small jobs into one visit',
+        body: 'A dripping tap, a wobbly toilet seat and a radiator that never warms up are three separate call-outs if you book them one at a time. Give us the whole list and a single visit usually clears it.',
+      },
+      {
+        title: 'Weak pressure is usually one of three causes',
+        body: 'A limescaled shower head or tap aerator, a valve left part-closed somewhere on the run, or an undersized supply pipe common in older London stock. We check them in that order, cheapest first.',
+      },
+      {
+        title: 'Find your stopcock before you need it',
+        body: 'Usually under the kitchen sink or by the front door. Plenty have seized solid over the years — worth freeing up on a planned visit rather than discovering it mid-emergency.',
+      },
+    ],
+    faqs: [
+      { q: 'Is my job too small to bother with?', a: 'No such thing. We quote small jobs exactly like large ones and often finish them on the first visit — there’s no minimum job size.' },
+      { q: 'How soon can someone come out?', a: 'Same-week appointments are the norm. If it’s actively leaking, call the booking line and we’ll give you an honest answer on timing.' },
+      { q: 'Do you take on landlord or agent instructions?', a: 'Yes. Pass on the tenant’s number alongside your own and we’ll arrange access and keep them updated directly.' },
+      { q: 'What will a plumber visit cost me?', a: 'It depends on the job — call or use the form to describe it, and you’ll have a price before anything gets booked.' },
+    ],
+    offer: { disclaimer: 'New customers only. Cannot be combined with other offers.' },
+    trustExtra: [
+      `${site.name} rated 5.0 stars on Google`,
+      'Directly employed engineers, never subcontracted',
+      `${site.legalName}, established ${site.established}`,
+    ],
+    relatedService: 'general-plumbing',
   },
 ];
 

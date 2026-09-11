@@ -307,9 +307,19 @@ const icon = (k: keyof typeof ICON) =>
         var body = await res.json().catch(function () { return {}; });
 
         if (res.ok && body.ok) {
+          // Show the inline confirmation first, then move to /thank-you. The
+          // redirect is what gives Google Ads a page load to fire a
+          // conversion on; the inline state is the fallback if navigation is
+          // blocked for any reason, so the customer always sees confirmation.
           form.hidden = true;
           done.hidden = false;
           done.focus();
+
+          var params = new URLSearchParams();
+          params.set('from', location.pathname);
+          if (payload.service) params.set('job', payload.service);
+          if (ctaVariant) params.set('cta', ctaVariant);
+          location.assign('/thank-you?' + params.toString());
           return;
         }
 

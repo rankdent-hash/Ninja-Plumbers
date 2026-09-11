@@ -1,0 +1,34 @@
+---
+// Google Ads global site tag (gtag.js).
+//
+// Renders NOTHING unless PUBLIC_GOOGLE_ADS_ID is set as an environment
+// variable (e.g. "AW-123456789"), so the site ships with no tracking at all
+// until someone deliberately switches it on. That is on purpose:
+//
+//   1. /cookies currently tells visitors this site sets no cookies and uses
+//      no advertising or remarketing tags. Turning this on makes that page
+//      untrue, so the policy has to be updated in the same change.
+//   2. In the UK, advertising and remarketing cookies need prior consent
+//      (PECR + UK GDPR). A consent banner is required before this may fire
+//      for visitors in the UK/EU.
+//
+// Once both of those are handled, set PUBLIC_GOOGLE_ADS_ID in Vercel and this
+// starts rendering. The matching conversion event lives on /thank-you.
+const adsId = import.meta.env.PUBLIC_GOOGLE_ADS_ID;
+---
+{adsId && (
+  <>
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${adsId}`}></script>
+    <script is:inline define:vars={{ adsId }}>
+      // Assigned onto window deliberately. Astro's define:vars wraps this
+      // script in an IIFE, so the usual `function gtag(){}` from Google's
+      // snippet would be scoped to that closure and invisible to the
+      // conversion event on /thank-you — the tag would load and nothing
+      // would ever be recorded.
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+      gtag('js', new Date());
+      gtag('config', adsId);
+    </script>
+  </>
+)}

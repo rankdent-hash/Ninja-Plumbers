@@ -1,0 +1,94 @@
+---
+// Confirmation page the enquiry form lands on after a successful save. It
+// exists so Google Ads has a real page load to hang a conversion on, rather
+// than only the AJAX callback the form used to rely on.
+//
+// noindex, and kept out of the XML sitemap (see astro.config.mjs) — this is
+// where someone who has already converted ends up, not a search result.
+//
+// The conversion event below renders only when BOTH env vars are set, so no
+// tracking fires until the account IDs are deliberately configured. See
+// src/components/Analytics.astro for why that is switched off by default.
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+import PhoneIcon from '../components/PhoneIcon.astro';
+import WhatsAppIcon from '../components/WhatsAppIcon.astro';
+
+const adsId = import.meta.env.PUBLIC_GOOGLE_ADS_ID;
+const conversionLabel = import.meta.env.PUBLIC_GOOGLE_ADS_CONVERSION_LABEL;
+const sendTo = adsId && conversionLabel ? `${adsId}/${conversionLabel}` : null;
+
+// The page is prerendered, so there is no request to read the `job` query
+// param from at build time. What ships in the static HTML is the generic
+// line below; a small script at the bottom swaps in the job name client-side
+// once one has been passed. Staying static matters more here than the
+// personalisation — this is the page a paid click has to land on reliably.
+---
+<Base
+  title="Thank you | Ninja Plumbers"
+  description="Your enquiry is in — a Ninja Plumbers coordinator will call you back shortly."
+  noindex
+>
+  {sendTo && (
+    <script is:inline slot="head" define:vars={{ sendTo }}>
+      // Google Ads conversion event. window.gtag is set by the global tag in
+      // Analytics.astro, which only loads when PUBLIC_GOOGLE_ADS_ID is set.
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'conversion', { send_to: sendTo });
+      }
+    </script>
+  )}
+
+  <section class="section ty-wrap">
+    <div class="container ty-inner">
+      <div class="ty-mark" aria-hidden="true">
+        <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+
+      <h1>Enquiry received &mdash; thanks for getting in touch</h1>
+      <p class="lead" data-ty-lead>
+        Your message has landed with the Ninja Plumbers team, and we&rsquo;ll ring you back on the number you left us.
+      </p>
+
+      <div class="ty-next">
+        <h2>Here&rsquo;s what happens from here</h2>
+        <ol class="ty-steps">
+          <li><strong>A real person calls you back.</strong> Whoever answers our booking line can actually get a plumber out to you &mdash; it&rsquo;s not an answering service.</li>
+          <li><strong>You get a price before we lift a tool.</strong> We confirm the cost up front, so nothing unexpected shows up on the invoice later.</li>
+          <li><strong>We fit a slot around you.</strong> Most jobs get seen the same week, and emergency callouts run round the clock.</li>
+        </ol>
+        <p class="ty-hours">{site.hours.office} &middot; {site.hours.emergency}</p>
+      </div>
+
+      <div class="ty-urgent">
+        <h2>Water still coming in?</h2>
+        <p>Don&rsquo;t sit and wait for the callback &mdash; ring us straight away if you can&rsquo;t get it under control.</p>
+        <div class="cta-row center-row">
+          <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">
+            <PhoneIcon /> Call {site.booking.display}
+          </a>
+          <a href={site.whatsapp.url} target="_blank" rel="noopener" class="btn btn-ghost btn-lg">
+            <WhatsAppIcon /> Message us on WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <p class="ty-back"><a href="/" class="inline-link">Return to the homepage</a></p>
+    </div>
+  </section>
+
+  <script is:inline>
+    // Personalise the confirmation with the job name when the form passed
+    // one. Matched against a strict allowlist first and written with
+    // textContent (never innerHTML), so a crafted query string cannot inject
+    // markup into the page.
+    (function () {
+      var lead = document.querySelector('[data-ty-lead]');
+      if (!lead) return;
+      var job = new URLSearchParams(location.search).get('job') || '';
+      if (!/^[A-Za-z0-9 &,'’()\/-]{2,80}$/.test(job)) return;
+      lead.textContent = 'Your ' + job.toLowerCase() +
+        ' enquiry has landed with the Ninja Plumbers team, and we’ll ring you back on the number you left us.';
+    })();
+  </script>
+</Base>

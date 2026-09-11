@@ -59,6 +59,43 @@ const topAreas = [...areas].sort((a, b) => b.volume - a.volume).slice(0, 10);
   </div>
 </section>
 
+{/* A visual break between the service cards and the text-heavy sections below
+    — the one spot on the page showing the work rather than describing it.
+    Each tile links through to the page it illustrates. Captions stick to
+    claims made elsewhere on the site (directly employed engineers, Gas Safe
+    registration) and describe the type of work rather than one specific job. */}
+<section class="section work-band">
+  <div class="container">
+    <div class="section-head center-head">
+      <span class="eyebrow">See us at work</span>
+      <h2>Ninja engineers, on the tools</h2>
+      <p class="lead measure">No subcontractors — every booking goes to one of our own directly employed engineers, out on jobs across the London boroughs from our Fulham base.</p>
+    </div>
+
+    <div class="work-grid">
+      <a class="work-tile" href="/services/general-plumbing">
+        <img src="/images/home/kitchen-sink-plumbing.webp" width="900" height="675"
+             alt="An engineer working on the waste pipe under a kitchen sink, with a protective mat and tool bag laid out on the floor"
+             loading="lazy" decoding="async" />
+        <span class="work-caption">
+          <strong>General plumbing repairs</strong>
+          <small>Leaks, taps, sinks and pipework sorted</small>
+        </span>
+      </a>
+
+      <a class="work-tile" href="/services/boiler-repair">
+        <img src="/images/home/boiler-service-gas-safe.webp" width="900" height="675"
+             alt="An engineer testing the inside of a wall-mounted boiler with a multimeter"
+             loading="lazy" decoding="async" />
+        <span class="work-caption">
+          <strong>Gas boiler repairs</strong>
+          <small>Every job handled by a Gas Safe registered engineer</small>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
 <section class="section section-alt">
   <div class="container">
     <div class="section-head">

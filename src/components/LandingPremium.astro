@@ -5,6 +5,7 @@
 // pulled from site.json — the layout is different, the claims are not.
 import site from '../data/site.json';
 import type { Landing, PremiumIcon } from '../data/landing';
+import { iconSvg as icon } from '../data/premium-icons';
 import { areas } from '../data/areas';
 import EnquiryForm from './EnquiryForm.astro';
 import Tick from './Tick.astro';
@@ -23,39 +24,6 @@ const ratingPct = Math.round((parseFloat(p.rating.score) / 5) * 100);
 const ctaVariants = lp.offer
   ? ['Get Booked In', 'Get a Call Back', 'Claim My £25 Off']
   : ['Get Booked In', 'Get a Call Back'];
-
-const ICON: Record<PremiumIcon, string> = {
-  calendar: '<rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="9 16 11 18 15 14"/>',
-  price:    '<path d="M4 4h16v16H4z"/><path d="M8 12h8M8 8h8M8 16h5"/>',
-  visit:    '<circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/>',
-  shield:   '<path d="M12 2l7 4v6c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-4z"/><polyline points="9 12 11 14 15 10"/>',
-  kitchen:  '<path d="M4 20h16"/><path d="M6 20v-6h12v6"/><path d="M10 14V9a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v1"/><path d="M12 7V4"/><path d="M9 4h6"/>',
-  bath:     '<path d="M4 12h16v3a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5v-3z"/><path d="M6 12V6a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2"/><path d="M5 22l1-2M19 22l-1-2"/>',
-  mixer:    '<path d="M12 21v-9"/><path d="M8 12h8a2 2 0 0 0 2-2V8H6v2a2 2 0 0 0 2 2z"/><path d="M12 8V4"/><path d="M8 4h8"/><path d="M18 8h3v3"/>',
-  shower:   '<path d="M4 4h4a4 4 0 0 1 4 4v2"/><path d="M8 10h8"/><path d="M9 14v1M12 14v1M15 14v1M10 18v1M14 18v1"/>',
-  garden:   '<path d="M4 8h9a3 3 0 0 1 3 3v2"/><path d="M4 6v4"/><path d="M8 8V5h3"/><path d="M16 13c0 3-2 5-2 5s-2-2-2-5"/><path d="M14 18v3"/>',
-  swap:     '<polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>',
-  gauge:    '<path d="M4 15a8 8 0 0 1 16 0"/><path d="M12 15l3.5-4.5"/><circle cx="12" cy="15" r="1.5"/><path d="M2 19h20"/>',
-  home:     '<path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/>',
-  boiler:   '<rect x="6" y="3" width="12" height="18" rx="2"/><circle cx="12" cy="9" r="2.5"/><path d="M9 15h6M9 18h6"/>',
-  pipe:     '<path d="M3 8h8a3 3 0 0 1 3 3v10"/><path d="M3 5v6"/><path d="M11 21h6"/><path d="M3 8H1"/>',
-  valve:    '<circle cx="12" cy="13" r="4"/><path d="M12 9V4"/><path d="M8 4h8"/><path d="M2 13h6M16 13h6"/>',
-  drop:     '<path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/>',
-  toilet:   '<path d="M7 3h10v8H7z"/><path d="M5 11h14a7 7 0 0 1-7 7 7 7 0 0 1-7-7z"/><path d="M9 18l-1 3h8l-1-3"/>',
-  cistern:  '<rect x="5" y="4" width="14" height="11" rx="2"/><path d="M5 9h14"/><path d="M9 4V2M12 15v6"/>',
-  flush:    '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
-  plunger:  '<path d="M12 2v10"/><path d="M6 12h12a2 2 0 0 1 2 2v1H4v-1a2 2 0 0 1 2-2z"/><path d="M5 15l-1 6h16l-1-6"/>',
-  pump:     '<circle cx="12" cy="12" r="8"/><path d="M12 8a4 4 0 1 0 4 4"/><path d="M12 12l3-3"/>',
-  seal:     '<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/>',
-  certificate: '<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h4"/><circle cx="16" cy="17" r="2"/>',
-  key:      '<circle cx="8" cy="15" r="4"/><path d="M11 12l9-9"/><path d="M16 4l3 3M14 7l2 2"/>',
-  building: '<rect x="4" y="3" width="16" height="18" rx="1"/><path d="M8 7h2M14 7h2M8 11h2M14 11h2M8 15h2M14 15h2"/><path d="M10 21v-3h4v3"/>',
-  clipboard:'<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V2h6v2"/><path d="M9 11l2 2 4-4"/><path d="M9 17h6"/>',
-  phone:    '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>',
-  wrench:   '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>',
-};
-const icon = (k: PremiumIcon, size = 22) =>
-  `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON[k]}</svg>`;
 
 const googleG = `<svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18A13.99 13.99 0 0 1 10.94 24c0-1.45.25-2.86.7-4.18v-5.7H4.34A21.99 21.99 0 0 0 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>`;
 const star = '<svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>';
@@ -287,6 +255,64 @@ const starsRow = star.repeat(5);
           <circle cx="240" cy="200" r="22" fill="none" stroke="#fff" stroke-width="2.5" stroke-dasharray="3 3"/>
           <polyline points="227,201 236,210 254,190" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
         </g>
+      </svg>
+      )}
+      {p.diagnosis.art === 'leak' && (
+      <svg class="lp-art lp-leak" viewBox="0 0 320 260">
+        <defs>
+          <linearGradient id="leakWall" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#EAF1F7"/><stop offset="1" stop-color="#C3D2DF"/>
+          </linearGradient>
+        </defs>
+        {/* wall section with a pipe buried behind it */}
+        <rect x="30" y="30" width="260" height="150" rx="6" fill="url(#leakWall)"/>
+        <g stroke="#AFC2D2" stroke-width="2" opacity="0.75">
+          <line x1="30" y1="80" x2="290" y2="80"/><line x1="30" y1="130" x2="290" y2="130"/>
+          <line x1="100" y1="30" x2="100" y2="80"/><line x1="190" y1="30" x2="190" y2="80"/>
+          <line x1="145" y1="80" x2="145" y2="130"/><line x1="235" y1="80" x2="235" y2="130"/>
+          <line x1="100" y1="130" x2="100" y2="180"/><line x1="200" y1="130" x2="200" y2="180"/>
+        </g>
+        {/* the hidden pipe and its leak point */}
+        <path d="M55 155 h90 a10 10 0 0 0 10-10 V95" fill="none" stroke="#7F97AC" stroke-width="11" stroke-linecap="round"/>
+        <circle class="lp-leak-source" cx="155" cy="120" r="7" fill="#2E86C1"/>
+        {/* damp patch spreading from it */}
+        <ellipse class="lp-damp" cx="155" cy="130" rx="40" ry="30" fill="#2E86C1" opacity="0.2"/>
+        {/* detector sweeping the wall */}
+        <circle class="lp-scan lp-scan-1" cx="155" cy="120" r="22" fill="none" stroke="#F26419" stroke-width="3"/>
+        <circle class="lp-scan lp-scan-2" cx="155" cy="120" r="22" fill="none" stroke="#F26419" stroke-width="3"/>
+        <g class="lp-detector">
+          <rect x="228" y="196" width="54" height="36" rx="7" fill="#0F4A72" stroke="#CFE0EC" stroke-width="3"/>
+          <rect x="236" y="204" width="38" height="14" rx="3" fill="#8FD3FF"/>
+          <circle cx="247" cy="226" r="3" fill="#CFE0EC"/><circle cx="263" cy="226" r="3" fill="#CFE0EC"/>
+        </g>
+        <text x="60" y="222" fill="#CFE0EC" font-family="Inter, sans-serif" font-size="12" font-weight="700">FOUND, NOT GUESSED</text>
+      </svg>
+      )}
+      {p.diagnosis.art === 'pipes' && (
+      <svg class="lp-art lp-pipes" viewBox="0 0 320 260">
+        <defs>
+          <linearGradient id="pipeMetal" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#EAF1F7"/><stop offset="0.55" stop-color="#B9C9D8"/><stop offset="1" stop-color="#7F97AC"/>
+          </linearGradient>
+        </defs>
+        {/* a run of pipework with joints */}
+        <path d="M30 70 h110 a18 18 0 0 1 18 18 v54 a18 18 0 0 0 18 18 h114" fill="none" stroke="url(#pipeMetal)" stroke-width="20" stroke-linecap="round"/>
+        <rect x="120" y="58" width="18" height="24" rx="3" fill="#7F97AC"/>
+        <rect x="148" y="150" width="24" height="18" rx="3" fill="#7F97AC"/>
+        <rect x="246" y="148" width="18" height="24" rx="3" fill="#7F97AC"/>
+        {/* isolation valve with a handle that turns */}
+        <g class="lp-valve-turn">
+          <rect x="70" y="46" width="10" height="18" rx="3" fill="#C2500F"/>
+          <rect x="56" y="36" width="38" height="12" rx="6" fill="#F26419"/>
+        </g>
+        {/* the drip that stops once it is tightened */}
+        <g class="lp-pipe-drop"><path d="M160 172 c-6 9 -6 16 0 16 c6 0 6 -7 0 -16z" fill="#8FD3FF"/></g>
+        {/* tick that lands when the job is done */}
+        <g class="lp-pipe-ok">
+          <circle cx="252" cy="212" r="24" fill="#2E8B57"/>
+          <polyline points="240,213 249,222 265,204" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <text x="34" y="218" fill="#CFE0EC" font-family="Inter, sans-serif" font-size="12" font-weight="700">TIGHTENED, TESTED, TIDIED</text>
       </svg>
       )}
       {p.diagnosis.art === 'tap' && (

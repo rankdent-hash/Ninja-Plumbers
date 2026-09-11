@@ -82,6 +82,8 @@ export default defineConfig({
         !page.includes('/lp/') &&
         !/\/lp\/?$/.test(page) &&
         !page.includes('/404') &&
+        // Post-conversion confirmation page — noindex, not a search result.
+        !page.includes('/thank-you') &&
         !page.includes('/explorer') &&
         !page.includes('search-index') &&
         !page.includes('/admin') &&

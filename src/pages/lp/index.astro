@@ -6,6 +6,7 @@
 // the moment a new entry lands in landing.ts — nothing to remember to wire up.
 import Base from '../../layouts/Base.astro';
 import { landings } from '../../data/landing';
+import { iconSvg } from '../../data/premium-icons';
 
 const sorted = [...landings].sort((a, b) => a.campaign.localeCompare(b.campaign));
 ---
@@ -37,11 +38,15 @@ const sorted = [...landings].sort((a, b) => a.campaign.localeCompare(b.campaign)
               <span class="lp-hub-campaign">{l.campaign}</span>
               {l.premium && <span class="lp-hub-badge lp-hub-badge-premium">Premium</span>}
             </div>
-            <h2><a href={`/lp/${l.slug}`}>{l.h1}</a></h2>
+            <div class="lp-hub-card-head">
+              {l.cardIcon && <span class="lp-hub-icon" set:html={iconSvg(l.cardIcon, 24)} />}
+              <span class="lp-hub-head-text">
+                <h2><a href={`/lp/${l.slug}`}>{l.h1}</a></h2>
+              </span>
+            </div>
             <p>{l.sub}</p>
             <ul class="lp-hub-meta">
               <li><strong>Target term:</strong> {l.headTerm}</li>
-              <li><strong>CPC:</strong> {l.cpc}</li>
               {l.offer && <li><strong>Offer:</strong> £25 off first call-out</li>}
             </ul>
             <a href={`/lp/${l.slug}`} class="card-link">View page &rarr;</a>
