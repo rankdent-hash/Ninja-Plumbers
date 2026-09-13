@@ -137,4 +137,54 @@
     },
     true
   );
+
+  /* ---- Page views ----------------------------------------------------
+     One beacon per page load. Same rules as above: no cookies, no storage,
+     nothing that follows a visitor between days. */
+  var viewSent = false;
+
+  function sendView() {
+    if (viewSent) return;
+    /* A page being pre-rendered in the background is not a visit. Counting it
+       would inflate views for whatever the browser guessed the visitor might
+       open next. */
+    if (document.prerendering) return;
+    if (document.visibilityState === 'hidden') return;
+    viewSent = true;
+
+    var paid = false;
+    try {
+      paid = !!new URLSearchParams(location.search).get('gclid');
+    } catch (e) { /* older browser */ }
+
+    var payload = JSON.stringify({
+      path: location.pathname,
+      referrer: document.referrer || '',
+      paid: paid
+    });
+
+    try {
+      navigator.sendBeacon('/api/view', new Blob([payload], { type: 'application/json' }));
+    } catch (e) { /* never let counting break the page */ }
+  }
+
+  if (document.prerendering) {
+    /* Fires if and when the speculative render is actually shown to someone. */
+    document.addEventListener('prerenderingchange', sendView, { once: true });
+  } else if (document.visibilityState === 'hidden') {
+    document.addEventListener('visibilitychange', function onShow() {
+      if (document.visibilityState !== 'hidden') {
+        document.removeEventListener('visibilitychange', onShow);
+        sendView();
+      }
+    });
+  } else {
+    sendView();
+  }
+
+  /* Back/forward cache: the browser restores the page without re-running this
+     script, so a genuine second view would otherwise go uncounted. */
+  window.addEventListener('pageshow', function (e) {
+    if (e.persisted) { viewSent = false; sendView(); }
+  });
 })();

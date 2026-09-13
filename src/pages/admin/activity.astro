@@ -17,11 +17,25 @@ const RANGES = [
   { days: 7, label: '7 days' },
   { days: 30, label: '30 days' },
   { days: 90, label: '90 days' },
+  { days: 365, label: '12 months' },
 ] as const;
+const BUCKETS = [
+  { key: 'day', tab: 'Daily', head: 'Day' },
+  { key: 'week', tab: 'Weekly', head: 'Week' },
+  { key: 'month', tab: 'Monthly', head: 'Month' },
+] as const;
+type Bucket = (typeof BUCKETS)[number]['key'];
+const BUCKET_KEYS: readonly string[] = BUCKETS.map((b) => b.key);
 
 const params = Astro.url.searchParams;
 const requestedDays = parseInt(params.get('days') || '30', 10);
 const days = RANGES.some((r) => r.days === requestedDays) ? requestedDays : 30;
+const requestedBucket = params.get('by');
+let bucket: Bucket = 'day';
+if (BUCKET_KEYS.includes(requestedBucket || '')) bucket = requestedBucket as Bucket;
+else if (days > 90) bucket = 'month';
+else if (days > 14) bucket = 'week';
+const bucketMeta = BUCKETS.find((b) => b.key === bucket)!;
 const kindFilter = ['phone', 'whatsapp', 'sms'].includes(params.get('kind') || '')
   ? params.get('kind')!
   : null;
@@ -35,12 +49,14 @@ type ClickRow = {
   id: string; created_at: string; kind: string; source_page: string | null;
   zone: string | null; label: string | null; device: string | null; gclid: string | null;
 };
-type Source = { page: string; phone: number; whatsapp: number; sms: number; forms: number };
+type Source = { page: string; views: number; phone: number; whatsapp: number; sms: number; forms: number };
 type Zone = { zone: string; phone: number; whatsapp: number; sms: number; total: number };
+type Period = { period: string; views: number; visitors: number };
 
 let rows: ClickRow[] = [];
 let sources: Source[] = [];
 let zones: Zone[] = [];
+let periods: Period[] = [];
 let total = 0;
 let loadError = '';
 
@@ -55,10 +71,11 @@ if (!supabase) {
     .range(from, to);
   if (kindFilter) listQuery.eq('kind', kindFilter);
 
-  const [list, sourcesRes, zonesRes] = await Promise.all([
+  const [list, sourcesRes, zonesRes, periodsRes] = await Promise.all([
     listQuery,
     supabase.rpc('contact_sources', { since }),
     supabase.rpc('click_zones', { since }),
+    supabase.rpc('traffic_over_time', { since, bucket }),
   ]);
 
   if (list.error) {
@@ -68,10 +85,16 @@ if (!supabase) {
     total = list.count ?? 0;
     sources = ((sourcesRes.data ?? []) as Source[]).map((s) => ({
       page: s.page,
+      views: Number(s.views),
       phone: Number(s.phone),
       whatsapp: Number(s.whatsapp),
       sms: Number(s.sms),
       forms: Number(s.forms),
+    }));
+    periods = ((periodsRes.data ?? []) as Period[]).map((p) => ({
+      period: p.period,
+      views: Number(p.views),
+      visitors: Number(p.visitors),
     }));
     zones = ((zonesRes.data ?? []) as Zone[]).map((z) => ({
       zone: z.zone,
@@ -90,13 +113,21 @@ const smsTotal = sum('sms');
 const formTotal = sum('forms');
 const clickTotal = phoneTotal + whatsappTotal + smsTotal;
 
+const viewTotal = periods.reduce((n, p) => n + p.views, 0);
+const visitorTotal = periods.reduce((n, p) => n + p.visitors, 0);
+// Everyone who reached out, over everyone who looked. The single number that
+// says whether a page is doing its job.
+const contactRate = viewTotal ? ((clickTotal + formTotal) / viewTotal) * 100 : null;
+
 // Ranked by every way a visitor made contact, so a page that earns calls and a
 // page that earns form fills are compared on the same footing.
+// Pages with traffic but no contact are kept deliberately: a page with plenty
+// of views and nothing to show for them is the one worth fixing.
 const topPages = sources
   .map((s) => ({ ...s, all: s.phone + s.whatsapp + s.sms + s.forms }))
-  .filter((s) => s.all > 0)
-  .sort((a, b) => b.all - a.all)
-  .slice(0, 20);
+  .filter((s) => s.all > 0 || s.views > 0)
+  .sort((a, b) => b.all - a.all || b.views - a.views)
+  .slice(0, 25);
 
 const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
 const fmt = (iso: string) =>
@@ -104,13 +135,34 @@ const fmt = (iso: string) =>
     day: '2-digit', month: 'short', timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit',
   });
 const KIND_LABEL: Record<string, string> = { phone: 'Phone', whatsapp: 'WhatsApp', sms: 'Text' };
-const href = (o: { days?: number; kind?: string | null; page?: number }) => {
+const href = (o: { days?: number; kind?: string | null; page?: number; by?: Bucket }) => {
   const q = new URLSearchParams();
   q.set('days', String(o.days ?? days));
+  // Only pin the bucket once it has been chosen by hand; otherwise let each
+  // range pick the one that suits it.
+  const b = o.by ?? (requestedBucket ? bucket : null);
+  if (b) q.set('by', b);
   const k = o.kind === undefined ? kindFilter : o.kind;
   if (k) q.set('kind', k);
   if (o.page && o.page > 1) q.set('page', String(o.page));
   return `/admin/activity?${q}`;
+};
+
+const PERIOD_FMT: Record<Bucket, Intl.DateTimeFormatOptions> = {
+  day: { day: '2-digit', month: 'short', weekday: 'short' },
+  week: { day: '2-digit', month: 'short' },
+  month: { month: 'long', year: 'numeric' },
+};
+// Rendered straight into a ternary's other branch. Astro's template parser
+// does not reliably re-enter JSX mode after a non-JSX branch, so these cells
+// use a plain character rather than a <span> with an entity in it.
+const DASH = '—';
+const fmtPeriod = (iso: string) => {
+  const label = new Date(iso + 'T00:00:00Z').toLocaleDateString('en-GB', {
+    ...PERIOD_FMT[bucket],
+    timeZone: 'UTC',
+  });
+  return bucket === 'week' ? `Week of ${label}` : label;
 };
 ---
 <AdminLayout title="Activity" admin={admin}>
@@ -130,6 +182,8 @@ const href = (o: { days?: number; kind?: string | null; page?: number }) => {
   {!loadError && (
     <>
       <ul class="admin-stats">
+        <li class="admin-stat"><span class="admin-stat-n">{viewTotal.toLocaleString('en-GB')}</span><span class="admin-stat-l">Page views</span></li>
+        <li class="admin-stat"><span class="admin-stat-n">{visitorTotal.toLocaleString('en-GB')}</span><span class="admin-stat-l">Visitors</span></li>
         <li class="admin-stat"><span class="admin-stat-n">{phoneTotal}</span><span class="admin-stat-l">Phone clicks</span></li>
         <li class="admin-stat"><span class="admin-stat-n">{whatsappTotal}</span><span class="admin-stat-l">WhatsApp clicks</span></li>
         {smsTotal > 0 && <li class="admin-stat"><span class="admin-stat-n">{smsTotal}</span><span class="admin-stat-l">Text clicks</span></li>}
@@ -139,40 +193,88 @@ const href = (o: { days?: number; kind?: string | null; page?: number }) => {
         A click means someone tapped a call, WhatsApp or text button &mdash; it is intent to make contact,
         not a confirmed conversation. Form submissions exclude anything marked spam and are listed in full
         under <a href="/admin">Leads</a>.
+        {contactRate !== null && (
+          <span> <strong>{contactRate.toFixed(1)}%</strong> of page views led to someone making contact.</span>
+        )}
       </p>
 
-      {clickTotal === 0 && formTotal === 0 && (
-        <p class="admin-empty">No contact activity recorded in this period yet.</p>
+      {clickTotal === 0 && formTotal === 0 && viewTotal === 0 && (
+        <p class="admin-empty">No activity recorded in this period yet.</p>
+      )}
+
+      {periods.length > 0 && (
+        <section class="admin-section">
+          <h2>Traffic over time</h2>
+          <nav class="admin-tabs admin-tabs-sub" aria-label="Group traffic by">
+            {BUCKETS.map((b) => (
+              <a href={href({ by: b.key, page: 1 })} class:list={{ 'is-active': bucket === b.key }}>{b.tab}</a>
+            ))}
+          </nav>
+          <div class="admin-table-scroll" tabindex="0">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>{bucketMeta.head}</th>
+                  <th class="admin-num">Page views</th>
+                  <th class="admin-num">Visitors</th>
+                  <th class="admin-num">Views each</th>
+                </tr>
+              </thead>
+              <tbody>
+                {periods.map((p) => (
+                  <tr>
+                    <td class="admin-nowrap">{fmtPeriod(p.period)}</td>
+                    <td class="admin-num">{p.views.toLocaleString('en-GB')}</td>
+                    <td class="admin-num">{p.visitors.toLocaleString('en-GB')}</td>
+                    <td class="admin-num admin-dim">{p.visitors ? (p.views / p.visitors).toFixed(1) : DASH}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p class="admin-note">
+            Counted without cookies: a visitor is recognised by a hash that is deliberately rebuilt each
+            night, so nobody is followed from one day to the next. That makes the daily visitor count
+            accurate, and means a weekly or monthly figure is the sum of daily ones &mdash; someone who
+            comes back on three days counts three times. Page views are unaffected. Known crawlers and
+            preview bots are filtered out.
+          </p>
+        </section>
       )}
 
       {topPages.length > 0 && (
         <section class="admin-section">
           <h2>Where contact comes from</h2>
           <p class="admin-note">
-            The page someone was on when they called, messaged or sent the form. Ranked by every kind of
-            contact together, so a page that earns calls is compared fairly with one that earns form fills.
+            The page someone was on when they called, messaged or sent the form, against how many views
+            that page had. Ranked by contacts first, so a page with plenty of traffic and a low rate sits
+            near the bottom &mdash; that is usually the one worth fixing.
           </p>
           <div class="admin-table-scroll" tabindex="0">
             <table class="admin-table">
               <thead>
                 <tr>
                   <th>Page</th>
+                  <th class="admin-num">Views</th>
                   <th class="admin-num">Phone</th>
                   <th class="admin-num">WhatsApp</th>
                   {smsTotal > 0 && <th class="admin-num">Text</th>}
                   <th class="admin-num">Forms</th>
-                  <th class="admin-num">Total</th>
+                  <th class="admin-num">Contacts</th>
+                  <th class="admin-num">Rate</th>
                 </tr>
               </thead>
               <tbody>
                 {topPages.map((p) => (
                   <tr>
                     <td>{p.page === '(unknown)' ? <span class="admin-dim">(unknown)</span> : <a href={p.page}>{p.page}</a>}</td>
+                    <td class="admin-num">{p.views ? p.views.toLocaleString('en-GB') : DASH}</td>
                     <td class="admin-num">{p.phone || <span class="admin-dim">&mdash;</span>}</td>
                     <td class="admin-num">{p.whatsapp || <span class="admin-dim">&mdash;</span>}</td>
                     {smsTotal > 0 && <td class="admin-num">{p.sms || <span class="admin-dim">&mdash;</span>}</td>}
                     <td class="admin-num">{p.forms || <span class="admin-dim">&mdash;</span>}</td>
                     <td class="admin-num"><strong>{p.all}</strong></td>
+                    <td class="admin-num admin-dim">{p.views ? ((p.all / p.views) * 100).toFixed(1) + '%' : DASH}</td>
                   </tr>
                 ))}
               </tbody>
@@ -243,8 +345,8 @@ const href = (o: { days?: number; kind?: string | null; page?: number }) => {
                       <td><span class:list={['admin-chan', `is-${r.kind}`]}>{KIND_LABEL[r.kind] ?? r.kind}</span></td>
                       <td>{r.source_page ? <a href={r.source_page}>{r.source_page}</a> : <span class="admin-dim">&mdash;</span>}</td>
                       <td>{r.zone || <span class="admin-dim">&mdash;</span>}</td>
-                      <td class="admin-dim">{r.label || <span>&mdash;</span>}</td>
-                      <td class="admin-dim">{r.device || <span>&mdash;</span>}</td>
+                      <td class="admin-dim">{r.label || DASH}</td>
+                      <td class="admin-dim">{r.device || DASH}</td>
                       <td>{r.gclid ? <span class="admin-chan is-ad">Google Ads</span> : <span class="admin-dim">&mdash;</span>}</td>
                     </tr>
                   ))}
