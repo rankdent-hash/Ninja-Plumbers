@@ -4,6 +4,8 @@ import { slugify } from './slugify';
 import { services } from '../data/services';
 import { appliances } from '../data/appliances';
 import { dampPages } from '../data/damp';
+import { landings } from '../data/landing';
+import { REAL_RATING, REAL_TRUST_EXTRA, PREMIUM_ART_VALUES, PREMIUM_ICON_VALUES, isPremiumArt, isPremiumIcon } from './landingPages';
 
 // Tools exposed to the remote MCP server (api/mcp.ts) — what an external AI
 // chat client (Claude, ChatGPT, etc.) can actually do to this site's blog.
@@ -17,6 +19,19 @@ import { dampPages } from '../data/damp';
 // same rule the existing AI-generation flow already follows (see
 // api/admin/blog/generate.ts), just extended to a caller outside the panel.
 const MAX_MCP_POSTS_PER_HOUR = 20;
+
+// Landing pages (the /lp/* paid-search pages) follow the identical rule:
+// MCP creates and edits DRAFT rows in a Supabase table kept separate from the
+// 10 hand-written campaigns in src/data/landing.ts, which this never touches.
+// A draft is only ever built into a real /lp/<slug> URL once a human
+// publishes it in /admin/landing-pages. rating and trustExtra are never
+// accepted from a caller — every existing page carries the same confirmed,
+// live figures (see REAL_RATING/REAL_TRUST_EXTRA), so new ones reuse them
+// rather than risk an invented review count or rating ever reaching a page.
+// A discount (`offer`) is likewise never set by MCP — like the original
+// pages, it only ever goes on with an explicit human go-ahead, added in the
+// admin edit screen.
+const MAX_MCP_LANDING_PAGES_PER_HOUR = 10;
 
 const STATUS_VALUES = ['draft', 'published', 'all'] as const;
 
@@ -44,6 +59,23 @@ async function uniqueSlug(supabase: SupabaseClient, title: string): Promise<stri
   for (let i = 2; i < 50; i++) {
     const { data: existing } = await supabase.from('blog_posts').select('id').eq('slug', slug).maybeSingle();
     if (!existing) break;
+    slug = `${base}-${i}`;
+  }
+  return slug;
+}
+
+/** Same idea, but must also dodge the 10 hand-written slugs in landing.ts —
+ * getStaticPaths merges both sets, and a collision there is a build error,
+ * not a soft failure. */
+async function uniqueLandingSlug(supabase: SupabaseClient, title: string): Promise<string> {
+  const base = slugify(title);
+  const staticSlugs = new Set(landings.map((l) => l.slug));
+  let slug = base;
+  for (let i = 2; i < 50; i++) {
+    if (!staticSlugs.has(slug)) {
+      const { data: existing } = await supabase.from('landing_pages').select('id').eq('slug', slug).maybeSingle();
+      if (!existing) break;
+    }
     slug = `${base}-${i}`;
   }
   return slug;
@@ -117,6 +149,186 @@ export const TOOLS = [
       },
     },
   },
+  {
+    name: 'list_landing_pages',
+    description:
+      'List paid-search landing pages (the /lp/* pages) created via MCP. Returns id, slug, h1, status and dates — use get_landing_page for full content. Does not include the 10 original hand-written campaigns in landing.ts.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        status: { type: 'string', enum: STATUS_VALUES, description: 'Filter by status. Defaults to "all".' },
+        limit: { type: 'integer', minimum: 1, maximum: 100, description: 'Max pages to return. Defaults to 25.' },
+      },
+    },
+  },
+  {
+    name: 'get_landing_page',
+    description: 'Get the full content of one MCP-created landing page by id or slug.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        id: { type: 'string' },
+        slug: { type: 'string' },
+      },
+    },
+  },
+  {
+    name: 'create_landing_page',
+    description:
+      'Create a new paid-search landing page (the same premium /lp/* template as every existing campaign page) as a DRAFT. It is never published by this tool, never linked from the site, and never in the sitemap — a human reviews it in /admin/landing-pages and publishes it before any ad points at it. Exactly one of related_service or covers is required, to populate the "what the job covers" list. Every icon and the diagnosis illustration must be one of the fixed values listed in their schema — these select an existing pre-built icon/illustration, they do not create a new one.',
+    inputSchema: {
+      type: 'object',
+      required: ['h1', 'sub', 'meta_title', 'meta_description', 'eyebrow', 'proof', 'form', 'fixes', 'diagnosis', 'steps', 'close', 'bullets', 'reassure', 'faqs'],
+      properties: {
+        h1: { type: 'string', description: 'On-page heading. Also used as the slug source.' },
+        sub: { type: 'string', description: 'Hero subheading, one or two sentences.' },
+        meta_title: { type: 'string' },
+        meta_description: { type: 'string' },
+        campaign: { type: 'string', description: 'Internal label only (shown on the /lp directory hub, never on the public page), e.g. the ad group it is built for.' },
+        head_term: { type: 'string', description: 'Internal note of the target search term. Not published.' },
+        urgent: { type: 'boolean', description: 'Leads with the phone number rather than the enquiry form. Defaults to false.' },
+        form_label: { type: 'string', description: 'Preselects the enquiry form dropdown with a label not in services.ts/appliances.ts.' },
+        related_service: { type: 'string', description: 'A real service slug (e.g. "boiler-repair") whose "what this includes" list becomes this page\'s "what the job covers" section. Provide this or covers, not neither.' },
+        covers: { type: 'array', items: { type: 'string' }, description: 'Freeform "what the job covers" bullet list, for a topic with no matching service page. Provide this or related_service, not neither.' },
+        card_icon: { type: 'string', enum: PREMIUM_ICON_VALUES, description: 'Icon shown on this page\'s card in the internal /lp directory.' },
+        eyebrow: { type: 'string', description: 'Small label above the hero heading, e.g. "Boiler repair · London".' },
+        proof: {
+          type: 'array', minItems: 3, maxItems: 4,
+          items: {
+            type: 'object', required: ['label', 'note', 'icon'],
+            properties: { label: { type: 'string' }, note: { type: 'string' }, icon: { type: 'string', enum: PREMIUM_ICON_VALUES } },
+          },
+          description: '3-4 proof tiles in the hero.',
+        },
+        form: {
+          type: 'object', required: ['title', 'sub', 'submit', 'note'],
+          properties: { title: { type: 'string' }, sub: { type: 'string' }, submit: { type: 'string', description: 'Button text, e.g. "Get Booked In".' }, note: { type: 'string' } },
+        },
+        fixes: {
+          type: 'object', required: ['eyebrow', 'title', 'lead', 'items'],
+          properties: {
+            eyebrow: { type: 'string' }, title: { type: 'string' }, lead: { type: 'string' },
+            items: {
+              type: 'array', minItems: 4, maxItems: 6,
+              items: {
+                type: 'object', required: ['title', 'note', 'icon'],
+                properties: { title: { type: 'string' }, note: { type: 'string' }, icon: { type: 'string', enum: PREMIUM_ICON_VALUES } },
+              },
+            },
+          },
+          description: '"What we fix" icon grid, 4-6 items.',
+        },
+        diagnosis: {
+          type: 'object', required: ['eyebrow', 'title', 'intro', 'tag', 'art'],
+          properties: {
+            eyebrow: { type: 'string' }, title: { type: 'string' }, intro: { type: 'string' }, tag: { type: 'string', description: 'Short caption under the illustration.' },
+            art: { type: 'string', enum: PREMIUM_ART_VALUES, description: 'Selects the animated illustration. Pick the closest match to the page\'s topic — this cannot be a new picture.' },
+          },
+        },
+        steps: {
+          type: 'array', minItems: 3, maxItems: 3,
+          items: { type: 'object', required: ['title', 'body'], properties: { title: { type: 'string' }, body: { type: 'string' } } },
+          description: 'Exactly 3 "how it works" steps.',
+        },
+        close: {
+          type: 'object', required: ['title', 'body'],
+          properties: { title: { type: 'string' }, body: { type: 'string' } },
+          description: 'Final call-to-action panel. This page has no discount (offer is never set by MCP — a human adds one deliberately) so this must not claim one.',
+        },
+        bullets: { type: 'array', items: { type: 'string' }, minItems: 3, maxItems: 5, description: 'Hero bullet list.' },
+        reassure: {
+          type: 'array', minItems: 3, maxItems: 3,
+          items: { type: 'object', required: ['title', 'body'], properties: { title: { type: 'string' }, body: { type: 'string' } } },
+          description: 'Exactly 3 "what to expect" reassurance panels.',
+        },
+        faqs: {
+          type: 'array', minItems: 3,
+          items: { type: 'object', required: ['q', 'a'], properties: { q: { type: 'string' }, a: { type: 'string' } } },
+        },
+        cross_link: {
+          type: 'object', required: ['href', 'label', 'body'],
+          properties: { href: { type: 'string', description: 'A real path on this site, e.g. "/services/toilet-installation".' }, label: { type: 'string' }, body: { type: 'string' } },
+          description: 'Optional single callout to a related page for a nearby but different job.',
+        },
+      },
+    },
+  },
+  {
+    name: 'update_landing_page',
+    description:
+      'Edit an existing DRAFT landing page created via MCP. Refuses to edit one that is already published — publish/unpublish and edits to a live page are human-only, done in /admin/landing-pages. Accepts the same fields as create_landing_page; send only the ones changing.',
+    inputSchema: {
+      type: 'object',
+      required: ['id'],
+      properties: {
+        id: { type: 'string' },
+        h1: { type: 'string' },
+        sub: { type: 'string' },
+        meta_title: { type: 'string' },
+        meta_description: { type: 'string' },
+        campaign: { type: 'string' },
+        head_term: { type: 'string' },
+        urgent: { type: 'boolean' },
+        form_label: { type: 'string' },
+        related_service: { type: 'string' },
+        covers: { type: 'array', items: { type: 'string' } },
+        card_icon: { type: 'string', enum: PREMIUM_ICON_VALUES },
+        eyebrow: { type: 'string' },
+        proof: {
+          type: 'array',
+          items: {
+            type: 'object', required: ['label', 'note', 'icon'],
+            properties: { label: { type: 'string' }, note: { type: 'string' }, icon: { type: 'string', enum: PREMIUM_ICON_VALUES } },
+          },
+        },
+        form: {
+          type: 'object',
+          properties: { title: { type: 'string' }, sub: { type: 'string' }, submit: { type: 'string' }, note: { type: 'string' } },
+        },
+        fixes: {
+          type: 'object',
+          properties: {
+            eyebrow: { type: 'string' }, title: { type: 'string' }, lead: { type: 'string' },
+            items: {
+              type: 'array',
+              items: {
+                type: 'object', required: ['title', 'note', 'icon'],
+                properties: { title: { type: 'string' }, note: { type: 'string' }, icon: { type: 'string', enum: PREMIUM_ICON_VALUES } },
+              },
+            },
+          },
+        },
+        diagnosis: {
+          type: 'object',
+          properties: {
+            eyebrow: { type: 'string' }, title: { type: 'string' }, intro: { type: 'string' }, tag: { type: 'string' },
+            art: { type: 'string', enum: PREMIUM_ART_VALUES },
+          },
+        },
+        steps: {
+          type: 'array',
+          items: { type: 'object', required: ['title', 'body'], properties: { title: { type: 'string' }, body: { type: 'string' } } },
+        },
+        close: {
+          type: 'object',
+          properties: { title: { type: 'string' }, body: { type: 'string' } },
+        },
+        bullets: { type: 'array', items: { type: 'string' } },
+        reassure: {
+          type: 'array',
+          items: { type: 'object', required: ['title', 'body'], properties: { title: { type: 'string' }, body: { type: 'string' } } },
+        },
+        faqs: {
+          type: 'array',
+          items: { type: 'object', required: ['q', 'a'], properties: { q: { type: 'string' }, a: { type: 'string' } } },
+        },
+        cross_link: {
+          type: 'object',
+          properties: { href: { type: 'string' }, label: { type: 'string' }, body: { type: 'string' } },
+        },
+      },
+    },
+  },
 ] as const;
 
 export async function callTool(supabase: SupabaseClient, name: string, args: Record<string, unknown>) {
@@ -129,6 +341,14 @@ export async function callTool(supabase: SupabaseClient, name: string, args: Rec
       return createBlogPost(supabase, args);
     case 'update_blog_post':
       return updateBlogPost(supabase, args);
+    case 'list_landing_pages':
+      return listLandingPages(supabase, args);
+    case 'get_landing_page':
+      return getLandingPage(supabase, args);
+    case 'create_landing_page':
+      return createLandingPage(supabase, args);
+    case 'update_landing_page':
+      return updateLandingPage(supabase, args);
     default:
       return errorText(`Unknown tool "${name}".`);
   }
@@ -249,4 +469,328 @@ async function updateBlogPost(supabase: SupabaseClient, args: Record<string, unk
   const { error } = await supabase.from('blog_posts').update(update).eq('id', id);
   if (error) return errorText('Could not save the changes.');
   return text(`Saved. Still a draft — review and publish at /admin/blog/${id}`);
+}
+
+/** Validates the hero proof-tile array: {label, note, icon}. Pushes onto
+ * `errors` and returns null on any problem, rather than silently dropping a
+ * bad entry — this is core page content, not a decorative cross-link. */
+function validateProof(v: unknown, min: number, max: number, errors: string[]): { label: string; note: string; icon: string }[] | null {
+  if (!Array.isArray(v) || v.length < min || v.length > max) {
+    errors.push(`proof must have ${min}-${max} items.`);
+    return null;
+  }
+  const clean: { label: string; note: string; icon: string }[] = [];
+  v.forEach((item, i) => {
+    const it = item as Record<string, unknown>;
+    if (!it || typeof it.label !== 'string' || typeof it.note !== 'string' || !isPremiumIcon(it.icon)) {
+      errors.push(`proof[${i}] needs label, note and a valid icon (got icon: ${JSON.stringify(it?.icon)}).`);
+    } else {
+      clean.push({ label: it.label, note: it.note, icon: it.icon as string });
+    }
+  });
+  return clean.length === v.length ? clean : null;
+}
+
+/** Validates a "what we fix" item array: {title, note, icon}. Same rule as
+ * validateProof — every icon must be one of the fixed pre-built values. */
+function validateFixItems(v: unknown, min: number, max: number, errors: string[]): { title: string; note: string; icon: string }[] | null {
+  if (!Array.isArray(v) || v.length < min || v.length > max) {
+    errors.push(`fixes.items must have ${min}-${max} items.`);
+    return null;
+  }
+  const clean: { title: string; note: string; icon: string }[] = [];
+  v.forEach((item, i) => {
+    const it = item as Record<string, unknown>;
+    if (!it || typeof it.title !== 'string' || typeof it.note !== 'string' || !isPremiumIcon(it.icon)) {
+      errors.push(`fixes.items[${i}] needs title, note and a valid icon (got icon: ${JSON.stringify(it?.icon)}).`);
+    } else {
+      clean.push({ title: it.title, note: it.note, icon: it.icon as string });
+    }
+  });
+  return clean.length === v.length ? clean : null;
+}
+
+function validateTitleBodyList(v: unknown, path: string, exact: number | null, errors: string[]): { title: string; body: string }[] | null {
+  if (!Array.isArray(v) || (exact !== null && v.length !== exact) || v.length < 1) {
+    errors.push(exact !== null ? `${path} must have exactly ${exact} items.` : `${path} must be a non-empty array.`);
+    return null;
+  }
+  const clean = v.map((item, i) => {
+    const it = item as Record<string, unknown>;
+    if (!it || typeof it.title !== 'string' || typeof it.body !== 'string') {
+      errors.push(`${path}[${i}] needs title and body.`);
+      return null;
+    }
+    return { title: it.title, body: it.body };
+  });
+  return clean.some((c) => c === null) ? null : (clean as { title: string; body: string }[]);
+}
+
+function validateFixes(v: unknown, errors: string[]) {
+  const fixes = v as Record<string, unknown> | undefined;
+  if (!fixes || typeof fixes.eyebrow !== 'string' || typeof fixes.title !== 'string' || typeof fixes.lead !== 'string') {
+    errors.push('fixes needs eyebrow, title, lead and items.');
+    return null;
+  }
+  const items = validateFixItems(fixes.items, 4, 6, errors);
+  if (!items) return null;
+  return { eyebrow: fixes.eyebrow, title: fixes.title, lead: fixes.lead, items };
+}
+
+function validateDiagnosis(v: unknown, errors: string[]) {
+  const d = v as Record<string, unknown> | undefined;
+  if (!d || typeof d.eyebrow !== 'string' || typeof d.title !== 'string' || typeof d.intro !== 'string' || typeof d.tag !== 'string' || !isPremiumArt(d.art)) {
+    errors.push(`diagnosis needs eyebrow, title, intro, tag and a valid art value (got art: ${JSON.stringify(d?.art)}).`);
+    return null;
+  }
+  return { eyebrow: d.eyebrow, title: d.title, intro: d.intro, tag: d.tag, art: d.art as string };
+}
+
+function validateForm(v: unknown, errors: string[]) {
+  const f = v as Record<string, unknown> | undefined;
+  if (!f || typeof f.title !== 'string' || typeof f.sub !== 'string' || typeof f.submit !== 'string' || typeof f.note !== 'string') {
+    errors.push('form needs title, sub, submit and note.');
+    return null;
+  }
+  return { title: f.title, sub: f.sub, submit: f.submit, note: f.note };
+}
+
+function validateClose(v: unknown, errors: string[]) {
+  const c = v as Record<string, unknown> | undefined;
+  if (!c || typeof c.title !== 'string' || typeof c.body !== 'string') {
+    errors.push('close needs title and body.');
+    return null;
+  }
+  return { title: c.title, body: c.body };
+}
+
+function validateCrossLink(v: unknown, errors: string[]) {
+  if (v === undefined) return { value: undefined, ok: true };
+  const c = v as Record<string, unknown>;
+  if (!c || typeof c.href !== 'string' || typeof c.label !== 'string' || typeof c.body !== 'string') {
+    errors.push('cross_link needs href, label and body.');
+    return { value: undefined, ok: false };
+  }
+  return { value: { href: c.href, label: c.label, body: c.body }, ok: true };
+}
+
+async function listLandingPages(supabase: SupabaseClient, args: Record<string, unknown>) {
+  const status = STATUS_VALUES.includes(args.status as any) ? (args.status as (typeof STATUS_VALUES)[number]) : 'all';
+  const limit = Number.isInteger(args.limit) ? Math.min(100, Math.max(1, args.limit as number)) : 25;
+
+  let query = supabase
+    .from('landing_pages')
+    .select('id, slug, h1, status, campaign, published_at, created_at')
+    .order('created_at', { ascending: false })
+    .limit(limit);
+  if (status !== 'all') query = query.eq('status', status);
+
+  const { data, error } = await query;
+  if (error) return errorText('Could not list landing pages.');
+  return text(JSON.stringify(data ?? [], null, 2));
+}
+
+async function getLandingPage(supabase: SupabaseClient, args: Record<string, unknown>) {
+  const id = str(args.id, 100);
+  const slug = str(args.slug, 120);
+  if (!id && !slug) return errorText('Provide either id or slug.');
+
+  const query = supabase.from('landing_pages').select('*');
+  const { data, error } = await (id ? query.eq('id', id) : query.eq('slug', slug!)).maybeSingle();
+  if (error) return errorText('Could not load that landing page.');
+  if (!data) return errorText('No landing page found with that id/slug.');
+  return text(JSON.stringify(data, null, 2));
+}
+
+async function createLandingPage(supabase: SupabaseClient, args: Record<string, unknown>) {
+  const h1 = str(args.h1, 200);
+  const sub = str(args.sub, 400);
+  const metaTitle = str(args.meta_title, 200);
+  const metaDescription = str(args.meta_description, 300);
+  const eyebrow = str(args.eyebrow, 120);
+  if (!h1 || !sub || !metaTitle || !metaDescription || !eyebrow) {
+    return errorText('h1, sub, meta_title, meta_description and eyebrow are all required.');
+  }
+
+  const relatedService = str(args.related_service, 100);
+  const covers = strArray(args.covers);
+  if (relatedService && !services.some((s) => s.slug === relatedService)) {
+    return errorText(`related_service "${relatedService}" is not a real service slug.`);
+  }
+  if (!relatedService && (!covers || covers.length === 0)) {
+    return errorText('Provide either related_service (a real service slug) or covers (what the job covers) — not neither.');
+  }
+
+  const errors: string[] = [];
+  const cardIconRaw = args.card_icon;
+  if (cardIconRaw !== undefined && !isPremiumIcon(cardIconRaw)) errors.push(`card_icon: "${cardIconRaw}" is not a valid icon.`);
+  const proof = validateProof(args.proof, 3, 4, errors);
+  const form = validateForm(args.form, errors);
+  const fixes = validateFixes(args.fixes, errors);
+  const diagnosis = validateDiagnosis(args.diagnosis, errors);
+  const steps = validateTitleBodyList(args.steps, 'steps', 3, errors);
+  const close = validateClose(args.close, errors);
+  const bullets = strArray(args.bullets);
+  if (!bullets || bullets.length < 3 || bullets.length > 5) errors.push('bullets must have 3-5 items.');
+  const reassure = validateTitleBodyList(args.reassure, 'reassure', 3, errors);
+  const faqs = validateTitleBodyList(args.faqs ? (args.faqs as any[]).map((f: any) => ({ title: f?.q, body: f?.a })) : args.faqs, 'faqs', null, errors)
+    ?.map((f) => ({ q: f.title, a: f.body })) ?? null;
+  const crossLink = validateCrossLink(args.cross_link, errors);
+
+  if (errors.length > 0 || !proof || !form || !fixes || !diagnosis || !steps || !close || !reassure || !faqs || !crossLink.ok) {
+    return errorText(errors.join(' ') || 'Invalid input.');
+  }
+
+  const since = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+  const { count } = await supabase
+    .from('landing_pages')
+    .select('id', { count: 'exact', head: true })
+    .eq('generated_by', 'mcp')
+    .gte('created_at', since);
+  if ((count ?? 0) >= MAX_MCP_LANDING_PAGES_PER_HOUR) {
+    return errorText(`Rate limit: at most ${MAX_MCP_LANDING_PAGES_PER_HOUR} landing pages per hour via MCP. Try again later.`);
+  }
+
+  const slug = await uniqueLandingSlug(supabase, h1);
+
+  const { data, error } = await supabase
+    .from('landing_pages')
+    .insert({
+      slug,
+      status: 'draft',
+      campaign: str(args.campaign, 200),
+      head_term: str(args.head_term, 200),
+      meta_title: metaTitle,
+      meta_description: metaDescription,
+      h1,
+      sub,
+      urgent: args.urgent === true,
+      form_label: str(args.form_label, 100),
+      related_service: relatedService ?? null,
+      covers: relatedService ? null : covers,
+      card_icon: isPremiumIcon(cardIconRaw) ? cardIconRaw : null,
+      eyebrow,
+      proof,
+      form,
+      fixes,
+      diagnosis,
+      steps,
+      close,
+      bullets,
+      reassure,
+      faqs,
+      cross_link: crossLink.value ?? null,
+      rating: REAL_RATING,
+      trust_extra: REAL_TRUST_EXTRA,
+      offer: null,
+      generated_by: 'mcp',
+    })
+    .select('id, slug')
+    .single();
+
+  if (error || !data) return errorText('Could not save the landing page.');
+  return text(
+    `Created as a draft — not published, not linked from the site, not in the sitemap. Review and publish at /admin/landing-pages/${data.id}\nid: ${data.id}\nslug: ${data.slug}`
+  );
+}
+
+async function updateLandingPage(supabase: SupabaseClient, args: Record<string, unknown>) {
+  const id = str(args.id, 100);
+  if (!id) return errorText('id is required.');
+
+  const { data: existing, error: loadError } = await supabase
+    .from('landing_pages')
+    .select('id, status')
+    .eq('id', id)
+    .maybeSingle();
+  if (loadError) return errorText('Could not load that landing page.');
+  if (!existing) return errorText('No landing page found with that id.');
+  if (existing.status === 'published') {
+    return errorText('This landing page is already published. MCP can only edit drafts — publish/unpublish and edits to a live page are done by a person in /admin/landing-pages.');
+  }
+
+  const errors: string[] = [];
+  const update: Record<string, unknown> = { updated_at: new Date().toISOString() };
+
+  const h1 = str(args.h1, 200);
+  const sub = str(args.sub, 400);
+  const metaTitle = str(args.meta_title, 200);
+  const metaDescription = str(args.meta_description, 300);
+  const eyebrow = str(args.eyebrow, 120);
+  if (h1) update.h1 = h1;
+  if (sub) update.sub = sub;
+  if (metaTitle) update.meta_title = metaTitle;
+  if (metaDescription) update.meta_description = metaDescription;
+  if (eyebrow) update.eyebrow = eyebrow;
+  if (args.campaign !== undefined) update.campaign = str(args.campaign, 200);
+  if (args.head_term !== undefined) update.head_term = str(args.head_term, 200);
+  if (typeof args.urgent === 'boolean') update.urgent = args.urgent;
+  if (args.form_label !== undefined) update.form_label = str(args.form_label, 100);
+
+  if (args.related_service !== undefined || args.covers !== undefined) {
+    const relatedService = str(args.related_service, 100);
+    const covers = strArray(args.covers);
+    if (relatedService && !services.some((s) => s.slug === relatedService)) {
+      errors.push(`related_service "${relatedService}" is not a real service slug.`);
+    } else if (!relatedService && (!covers || covers.length === 0)) {
+      errors.push('Provide either related_service (a real service slug) or covers, not neither.');
+    } else {
+      update.related_service = relatedService ?? null;
+      update.covers = relatedService ? null : covers;
+    }
+  }
+
+  if (args.card_icon !== undefined) {
+    if (!isPremiumIcon(args.card_icon)) errors.push(`card_icon: "${args.card_icon}" is not a valid icon.`);
+    else update.card_icon = args.card_icon;
+  }
+  if (args.proof !== undefined) {
+    const proof = validateProof(args.proof, 3, 4, errors);
+    if (proof) update.proof = proof;
+  }
+  if (args.form !== undefined) {
+    const form = validateForm(args.form, errors);
+    if (form) update.form = form;
+  }
+  if (args.fixes !== undefined) {
+    const fixes = validateFixes(args.fixes, errors);
+    if (fixes) update.fixes = fixes;
+  }
+  if (args.diagnosis !== undefined) {
+    const diagnosis = validateDiagnosis(args.diagnosis, errors);
+    if (diagnosis) update.diagnosis = diagnosis;
+  }
+  if (args.steps !== undefined) {
+    const steps = validateTitleBodyList(args.steps, 'steps', 3, errors);
+    if (steps) update.steps = steps;
+  }
+  if (args.close !== undefined) {
+    const close = validateClose(args.close, errors);
+    if (close) update.close = close;
+  }
+  if (args.bullets !== undefined) {
+    const bullets = strArray(args.bullets);
+    if (!bullets || bullets.length < 3 || bullets.length > 5) errors.push('bullets must have 3-5 items.');
+    else update.bullets = bullets;
+  }
+  if (args.reassure !== undefined) {
+    const reassure = validateTitleBodyList(args.reassure, 'reassure', 3, errors);
+    if (reassure) update.reassure = reassure;
+  }
+  if (args.faqs !== undefined) {
+    const faqsInput = Array.isArray(args.faqs) ? (args.faqs as any[]).map((f) => ({ title: f?.q, body: f?.a })) : args.faqs;
+    const faqs = validateTitleBodyList(faqsInput, 'faqs', null, errors)?.map((f) => ({ q: f.title, a: f.body }));
+    if (faqs) update.faqs = faqs;
+  }
+  if (args.cross_link !== undefined) {
+    const crossLink = validateCrossLink(args.cross_link, errors);
+    if (crossLink.ok) update.cross_link = crossLink.value ?? null;
+  }
+
+  if (errors.length > 0) return errorText(errors.join(' '));
+  if (Object.keys(update).length === 1) return errorText('Nothing to update — pass at least one field.');
+
+  const { error } = await supabase.from('landing_pages').update(update).eq('id', id);
+  if (error) return errorText('Could not save the changes.');
+  return text(`Saved. Still a draft — review and publish at /admin/landing-pages/${id}`);
 }

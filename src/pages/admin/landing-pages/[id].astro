@@ -1,0 +1,128 @@
+---
+// Edit screen for one landing_pages row. Scalar fields are plain inputs;
+// the structured groups (proof tiles, fixes, diagnosis, steps, FAQs, etc.)
+// are edited as raw JSON in a textarea — faster to ship than a fully
+// interactive repeating-row builder for six different nested shapes, and
+// every field is validated server-side in mcpTools.ts before an MCP client
+// can ever write one, so a human editing raw JSON here is the lower-risk
+// side of this feature anyway.
+import AdminLayout from '../../../layouts/AdminLayout.astro';
+import { getSupabaseAdmin } from '../../../lib/supabaseAdmin';
+import { PREMIUM_ICON_VALUES, PREMIUM_ART_VALUES } from '../../../lib/landingPages';
+
+export const prerender = false;
+
+const admin = Astro.locals.admin!;
+const supabase = getSupabaseAdmin();
+const { id } = Astro.params;
+
+let page: any = null;
+let loadError = '';
+if (!supabase) {
+  loadError = 'The admin panel is not connected to Supabase yet.';
+} else {
+  const { data, error } = await supabase.from('landing_pages').select('*').eq('id', id).maybeSingle();
+  if (error) loadError = 'Could not load that landing page.';
+  else if (!data) loadError = 'No landing page found with that id.';
+  else page = data;
+}
+
+const j = (v: unknown) => JSON.stringify(v ?? null, null, 2);
+---
+<AdminLayout title={page ? page.h1 : 'Landing page'} admin={admin}>
+  {loadError && <p class="form-error-summary" role="alert">{loadError}</p>}
+
+  {page && (
+    <>
+      <div class="admin-head">
+        <h1>{page.h1}</h1>
+        <p class="admin-sub">
+          <span class:list={['admin-urgency', page.status === 'published' ? 'is-live' : 'is-draft']}>{page.status}</span>
+          {' '}&middot; /lp/{page.slug} &middot; created by {page.generated_by ?? 'a person'}
+        </p>
+      </div>
+
+      <p class="cta-row">
+        <a href={`/admin/landing-pages/preview/${page.id}`} class="btn btn-ghost" target="_blank" rel="noopener">Preview &rarr;</a>
+        {page.status === 'draft'
+          ? <button type="button" class="btn btn-navy" id="lp-publish-btn" data-page-id={page.id}>Publish</button>
+          : <button type="button" class="btn btn-ghost" id="lp-unpublish-btn" data-page-id={page.id}>Unpublish</button>}
+        <button type="button" class="btn btn-ghost" id="lp-delete-btn" data-page-id={page.id} style="color:#a33;">Delete</button>
+      </p>
+
+      {page.status === 'published' && (
+        <p class="admin-note">This page is live. Saving here edits the real, published page — the same rule as the blog editor.</p>
+      )}
+      {page.status === 'draft' && (
+        <p class="admin-note">Draft — not built into a real URL yet. Publishing needs a deploy afterwards before /lp/{page.slug} exists on the live site.</p>
+      )}
+
+      <p class="form-error-summary" id="lp-error" role="alert" hidden></p>
+      <p class="admin-note" id="lp-saved" hidden>Saved.</p>
+
+      <form id="lp-form" class="admin-add-form admin-settings-card" data-page-id={page.id}>
+        <div class="field field-wide"><label for="h1">Heading (h1)</label><input id="h1" value={page.h1}></div>
+        <div class="field field-wide"><label for="sub">Hero subheading</label><textarea id="sub" rows="2">{page.sub}</textarea></div>
+        <div class="field field-wide"><label for="meta_title">Meta title</label><input id="meta_title" value={page.meta_title}></div>
+        <div class="field field-wide"><label for="meta_description">Meta description</label><textarea id="meta_description" rows="2">{page.meta_description}</textarea></div>
+        <div class="field field-wide"><label for="eyebrow">Eyebrow</label><input id="eyebrow" value={page.eyebrow}></div>
+
+        <div class="field"><label for="campaign">Campaign (internal label)</label><input id="campaign" value={page.campaign ?? ''}></div>
+        <div class="field"><label for="head_term">Target term (internal)</label><input id="head_term" value={page.head_term ?? ''}></div>
+        <div class="field"><label for="form_label">Form dropdown label</label><input id="form_label" value={page.form_label ?? ''}></div>
+        <div class="field">
+          <label for="urgent"><input type="checkbox" id="urgent" checked={page.urgent} /> Urgent (leads with phone)</label>
+        </div>
+
+        <div class="field field-wide">
+          <label for="related_service">Related service slug</label>
+          <input id="related_service" value={page.related_service ?? ''} placeholder="e.g. boiler-repair">
+          <p class="admin-field-hint">Leave blank and use "covers" below instead if there's no matching service page.</p>
+        </div>
+        <div class="field field-wide"><label for="covers">Covers (JSON array of strings, used only if related service is blank)</label><textarea id="covers" rows="4">{j(page.covers)}</textarea></div>
+        <div class="field field-wide">
+          <label for="card_icon">Card icon</label>
+          <input id="card_icon" value={page.card_icon ?? ''} list="icon-list">
+          <datalist id="icon-list">{PREMIUM_ICON_VALUES.map((v) => <option value={v} />)}</datalist>
+        </div>
+
+        <div class="field field-wide"><label for="proof">Proof tiles (JSON array of {'{'}label, note, icon{'}'})</label><textarea id="proof" rows="8">{j(page.proof)}</textarea></div>
+        <div class="field field-wide"><label for="form">Form panel (JSON: title, sub, submit, note)</label><textarea id="form" rows="6">{j(page.form)}</textarea></div>
+        <div class="field field-wide">
+          <label for="fixes">"What we fix" grid (JSON: eyebrow, title, lead, items[])</label>
+          <textarea id="fixes" rows="10">{j(page.fixes)}</textarea>
+          <p class="admin-field-hint">Valid icons: {PREMIUM_ICON_VALUES.join(', ')}</p>
+        </div>
+        <div class="field field-wide">
+          <label for="diagnosis">Diagnosis panel (JSON: eyebrow, title, intro, tag, art)</label>
+          <textarea id="diagnosis" rows="6">{j(page.diagnosis)}</textarea>
+          <p class="admin-field-hint">Valid art values: {PREMIUM_ART_VALUES.join(', ')}</p>
+        </div>
+        <div class="field field-wide"><label for="steps">Steps (JSON array of {'{'}title, body{'}'}, exactly 3)</label><textarea id="steps" rows="8">{j(page.steps)}</textarea></div>
+        <div class="field field-wide"><label for="close">Closing panel (JSON: title, body)</label><textarea id="close" rows="4">{j(page.close)}</textarea></div>
+
+        <div class="field field-wide"><label for="bullets">Hero bullets (JSON array of strings)</label><textarea id="bullets" rows="5">{j(page.bullets)}</textarea></div>
+        <div class="field field-wide"><label for="reassure">Reassure panels (JSON array of {'{'}title, body{'}'}, exactly 3)</label><textarea id="reassure" rows="8">{j(page.reassure)}</textarea></div>
+        <div class="field field-wide"><label for="faqs">FAQs (JSON array of {'{'}q, a{'}'})</label><textarea id="faqs" rows="8">{j(page.faqs)}</textarea></div>
+        <div class="field field-wide"><label for="cross_link">Cross-link (JSON: href, label, body — or null)</label><textarea id="cross_link" rows="4">{j(page.cross_link)}</textarea></div>
+
+        <div class="field field-wide">
+          <label for="rating">Rating (JSON: score, count) &mdash; must be a real, currently-confirmed figure</label>
+          <textarea id="rating" rows="3">{j(page.rating)}</textarea>
+        </div>
+        <div class="field field-wide">
+          <label for="trust_extra">Trust bullets (JSON array of strings) &mdash; every line must be separately confirmed, not assumed</label>
+          <textarea id="trust_extra" rows="4">{j(page.trust_extra)}</textarea>
+        </div>
+        <div class="field field-wide">
+          <label for="offer">Offer (JSON: disclaimer &mdash; or null) &mdash; only set this for a real, live, confirmed promotion</label>
+          <textarea id="offer" rows="3">{j(page.offer)}</textarea>
+        </div>
+
+        <button type="submit" class="btn btn-navy">Save changes</button>
+      </form>
+    </>
+  )}
+</AdminLayout>
+
+<script src="/admin-landing-pages.js" is:inline></script>

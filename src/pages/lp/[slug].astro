@@ -12,9 +12,16 @@ import WhatsAppIcon from '../../components/WhatsAppIcon.astro';
 import Schema from '../../components/Schema.astro';
 import ReviewsCarousel from '../../components/ReviewsCarousel.astro';
 import LandingPremium from '../../components/LandingPremium.astro';
+import { getSupabaseAdmin } from '../../lib/supabaseAdmin';
+import { publishedLandingPages } from '../../lib/landingPages';
 
-export function getStaticPaths() {
-  return landings.map((lp) => ({ params: { slug: lp.slug }, props: { lp } }));
+// The 10 campaigns in landing.ts are hand-written and untouched here.
+// Published AI/MCP-created pages (see /admin/landing-pages) live in Supabase
+// and are merged in at build time — same static generation, same template,
+// no runtime dependency added to a page ads actually point traffic at.
+export async function getStaticPaths() {
+  const aiLandings = await publishedLandingPages(getSupabaseAdmin());
+  return [...landings, ...aiLandings].map((lp) => ({ params: { slug: lp.slug }, props: { lp } }));
 }
 
 const { lp } = Astro.props;

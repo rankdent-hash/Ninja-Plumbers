@@ -7,8 +7,11 @@
 import Base from '../../layouts/Base.astro';
 import { landings } from '../../data/landing';
 import { iconSvg } from '../../data/premium-icons';
+import { getSupabaseAdmin } from '../../lib/supabaseAdmin';
+import { publishedLandingPages } from '../../lib/landingPages';
 
-const sorted = [...landings].sort((a, b) => a.campaign.localeCompare(b.campaign));
+const aiLandings = await publishedLandingPages(getSupabaseAdmin());
+const sorted = [...landings, ...aiLandings].sort((a, b) => a.campaign.localeCompare(b.campaign));
 ---
 <Base
   title="Landing pages | Ninja Plumbers"

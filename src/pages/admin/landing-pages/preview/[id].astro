@@ -1,0 +1,74 @@
+---
+// Live preview of one landing_pages row, rendered through the exact same
+// components the real /lp/[slug] page uses — so what a reviewer sees here
+// is what publishing (then deploying) actually produces. Admin-gated by
+// middleware (matches any /admin/* path), and works for a draft: this reads
+// Supabase directly rather than relying on getStaticPaths, which only ever
+// sees published rows.
+//
+// Only the premium body is handled: create_landing_page always writes the
+// full premium object, so an MCP-created row is never missing it.
+import Landing from '../../../../layouts/Landing.astro';
+import site from '../../../../data/site.json';
+import { services } from '../../../../data/services';
+import Schema from '../../../../components/Schema.astro';
+import ReviewsCarousel from '../../../../components/ReviewsCarousel.astro';
+import LandingPremium from '../../../../components/LandingPremium.astro';
+import { getSupabaseAdmin } from '../../../../lib/supabaseAdmin';
+import { rowToLanding } from '../../../../lib/landingPages';
+
+export const prerender = false;
+
+const supabase = getSupabaseAdmin();
+const { id } = Astro.params;
+
+let lp = null;
+let loadError = '';
+if (!supabase) {
+  loadError = 'Not connected to Supabase.';
+} else {
+  const { data, error } = await supabase.from('landing_pages').select('*').eq('id', id).maybeSingle();
+  if (error) loadError = 'Could not load that landing page.';
+  else if (!data) loadError = 'No landing page found with that id.';
+  else lp = rowToLanding(data as any);
+}
+
+const service = lp ? services.find((s) => s.slug === lp.relatedService) : undefined;
+
+const serviceSchema = lp && {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: lp.h1,
+  description: lp.metaDescription,
+  provider: {
+    '@type': 'Plumber',
+    name: site.name,
+    telephone: site.booking.tel,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: site.address.line1,
+      addressLocality: site.address.city,
+      postalCode: site.address.postcode,
+      addressCountry: site.address.country,
+    },
+  },
+  areaServed: { '@type': 'City', name: 'London' },
+};
+---
+{loadError && <p style="padding:40px; font:16px system-ui;">{loadError}</p>}
+
+{lp && (
+  <Landing title={`Preview: ${lp.metaTitle}`} description={lp.metaDescription}>
+    <Schema faqs={lp.faqs} extra={serviceSchema} />
+    <div style="background:#fffbe6; border-bottom:2px solid #e6b800; padding:8px 16px; text-align:center; font:14px system-ui; position:sticky; top:0; z-index:999;">
+      Preview only &mdash; not the live page. <a href="javascript:history.back()">&larr; Back to editor</a>
+    </div>
+    {lp.premium ? (
+      <LandingPremium lp={lp} serviceTitle={service?.title ?? ''}>
+        <ReviewsCarousel slot="reviews" />
+      </LandingPremium>
+    ) : (
+      <p style="padding:40px; font:16px system-ui;">This page has no premium layout data — nothing to preview.</p>
+    )}
+  </Landing>
+)}

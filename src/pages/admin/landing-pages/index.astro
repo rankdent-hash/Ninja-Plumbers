@@ -1,0 +1,70 @@
+---
+// Landing pages created via MCP (the /lp/* paid-search pages an AI chat
+// client can draft — see /admin/settings). The 10 hand-written campaigns in
+// src/data/landing.ts don't appear here at all; this list is only rows in
+// the landing_pages table. Publishing here is NOT instant, unlike blog: /lp
+// pages are static, built at deploy time, so a newly published row needs a
+// redeploy before it has a real URL — same accepted limit as the blog
+// cross-links, and the reason the Preview link exists below.
+import AdminLayout from '../../../layouts/AdminLayout.astro';
+import { getSupabaseAdmin } from '../../../lib/supabaseAdmin';
+
+export const prerender = false;
+
+const admin = Astro.locals.admin!;
+const supabase = getSupabaseAdmin();
+
+type Row = { id: string; slug: string; h1: string; status: 'draft' | 'published'; generated_by: string | null; updated_at: string; published_at: string | null };
+
+let rows: Row[] = [];
+let loadError = '';
+if (!supabase) {
+  loadError = 'The admin panel is not connected to Supabase yet.';
+} else {
+  const { data, error } = await supabase
+    .from('landing_pages')
+    .select('id, slug, h1, status, generated_by, updated_at, published_at')
+    .order('updated_at', { ascending: false });
+  if (error) loadError = 'Could not load landing pages from the database.';
+  else rows = (data ?? []) as Row[];
+}
+
+const publishedCount = rows.filter((r) => r.status === 'published').length;
+const fmt = (iso: string) => new Date(iso).toLocaleString('en-GB', { day: '2-digit', month: 'short', timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit' });
+---
+<AdminLayout title="Landing pages" admin={admin}>
+  <div class="admin-head">
+    <h1>Landing pages</h1>
+    <p class="admin-sub">{publishedCount} published · {rows.length} total &mdash; created via MCP. The 10 original campaigns live in code and aren&rsquo;t listed here.</p>
+  </div>
+
+  <p class="admin-note">
+    Publishing a page here does not put it online immediately &mdash; these pages are built at
+    deploy time, same as the rest of the site. Publish, then trigger a deploy (or wait for the
+    next one) before pointing an ad at it. Use Preview to see a page before that.
+  </p>
+
+  {loadError && <p class="form-error-summary" role="alert">{loadError}</p>}
+  {!loadError && rows.length === 0 && <p class="admin-empty">No landing pages yet. Create one via an MCP-connected chat client — see /admin/settings.</p>}
+
+  {rows.length > 0 && (
+    <div class="admin-table-scroll" tabindex="0">
+      <table class="admin-table">
+        <thead>
+          <tr><th>Heading</th><th>Status</th><th>Created by</th><th>Updated</th><th class="admin-col-view"><span class="sr-only">Edit</span></th></tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr>
+              <td>{r.h1}</td>
+              <td><span class:list={['admin-urgency', r.status === 'published' ? 'is-live' : 'is-draft']}>{r.status}</span></td>
+              <td>{r.generated_by ?? '—'}</td>
+              <td class="admin-nowrap">{fmt(r.updated_at)}</td>
+              <td class="admin-col-view"><a href={`/admin/landing-pages/${r.id}`}>Edit &rarr;</a></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )}
+</AdminLayout>
