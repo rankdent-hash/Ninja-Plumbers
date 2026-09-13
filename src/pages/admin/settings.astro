@@ -14,11 +14,22 @@ const supabase = getSupabaseAdmin();
 
 let masked: Record<string, string | null> = { openai_api_key: null, anthropic_api_key: null, gemini_api_key: null };
 let loadError = '';
+type McpTokenRow = { id: string; name: string; created_at: string; last_used_at: string | null; revoked_at: string | null };
+let mcpTokens: McpTokenRow[] = [];
 if (!supabase) {
   loadError = 'The admin panel is not connected to Supabase yet.';
 } else {
   masked = await getMaskedSettings(supabase);
+  const { data } = await supabase
+    .from('mcp_tokens')
+    .select('id, name, created_at, last_used_at, revoked_at')
+    .order('created_at', { ascending: false });
+  mcpTokens = data ?? [];
 }
+
+const mcpUrl = new URL('/api/mcp', Astro.url.origin).toString();
+const fmtDate = (iso: string | null) =>
+  iso ? new Date(iso).toLocaleString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/London' }) : null;
 
 const fields = [
   { key: 'openai_api_key', label: 'OpenAI API key', hint: 'Used for ChatGPT text generation and the hero image generator.' },
@@ -56,6 +67,71 @@ const fields = [
       </form>
     </div>
   )}
+
+  {!loadError && (
+    <section class="admin-section">
+      <h2>MCP access</h2>
+      <p class="admin-note">
+        Lets an AI chat client (Claude, ChatGPT, or anything that speaks MCP) create and edit blog
+        posts through a conversation. It can only ever save posts as drafts — nothing it writes or
+        edits goes live until you open it in <a href="/admin/blog">/admin/blog</a> and click Publish,
+        and it cannot touch a post that's already published.
+      </p>
+
+      <div class="field field-wide" style="margin-bottom:18px;">
+        <label for="mcp-url">Server URL &mdash; paste this into the connector's URL field</label>
+        <input id="mcp-url" type="text" readonly value={mcpUrl} onfocus="this.select()">
+      </div>
+
+      <div id="mcp-reveal" class="admin-note" role="alert" hidden style="border:1px solid var(--border); border-radius:var(--radius); padding:14px 16px; background:var(--bg);">
+        <p style="margin:0 0 8px;"><strong>Copy this token now &mdash; it will not be shown again.</strong> Paste it into the connector as a bearer token / API key.</p>
+        <div class="field field-wide" style="margin:0;">
+          <label for="mcp-reveal-value">Your new token</label>
+          <input id="mcp-reveal-value" type="text" readonly onfocus="this.select()">
+        </div>
+        <button type="button" class="btn btn-ghost" id="mcp-copy-btn" style="margin-top:8px;">Copy</button>
+      </div>
+
+      {mcpTokens.length === 0 ? (
+        <p class="admin-empty">No tokens yet.</p>
+      ) : (
+        <div class="admin-table-scroll" tabindex="0">
+          <table class="admin-table">
+            <thead>
+              <tr><th>Name</th><th>Created</th><th>Last used</th><th>Status</th><th>Actions</th></tr>
+            </thead>
+            <tbody>
+              {mcpTokens.map((t) => (
+                <tr>
+                  <td>{t.name}</td>
+                  <td class="admin-nowrap">{fmtDate(t.created_at)}</td>
+                  <td class="admin-dim">{fmtDate(t.last_used_at) ?? 'Never'}</td>
+                  <td><span class:list={['admin-urgency', t.revoked_at ? 'is-draft' : 'is-live']}>{t.revoked_at ? 'Revoked' : 'Active'}</span></td>
+                  <td>
+                    {!t.revoked_at && (
+                      <button type="button" class="btn btn-ghost mcp-revoke-btn" data-token-id={t.id}>Revoke</button>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+
+      <div class="admin-add admin-settings-card" style="margin-top:18px;">
+        <form id="mcp-create-form" class="admin-add-form">
+          <p class="form-error-summary" id="mcp-error" role="alert" hidden></p>
+          <div class="field field-wide">
+            <label for="mcp-name">New token name</label>
+            <input id="mcp-name" name="name" type="text" required maxlength="80" placeholder="e.g. Claude connector">
+          </div>
+          <button type="submit" class="btn btn-navy">Create token</button>
+        </form>
+      </div>
+    </section>
+  )}
 </AdminLayout>
 
 <script src="/admin-settings.js" is:inline></script>
+<script src="/admin-mcp.js" is:inline></script>

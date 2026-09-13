@@ -3,6 +3,7 @@ import { getSupabaseAdmin } from '../../../../lib/supabaseAdmin';
 import { getSetting } from '../../../../lib/adminSettings';
 import { generateBlogDraft, type Provider } from '../../../../lib/aiProviders';
 import { sanitizeBlogBody } from '../../../../lib/sanitizeBlogHtml';
+import { slugify } from '../../../../lib/slugify';
 import { services } from '../../../../data/services';
 import { appliances } from '../../../../data/appliances';
 import { dampPages } from '../../../../data/damp';
@@ -19,14 +20,6 @@ const PROVIDER_SETTING: Record<Provider, 'openai_api_key' | 'anthropic_api_key' 
 };
 
 const PROVIDER_LABEL: Record<Provider, string> = { openai: 'OpenAI (ChatGPT)', claude: 'Anthropic (Claude)', gemini: 'Google Gemini' };
-
-function slugify(title: string): string {
-  return title
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
-    .slice(0, 80) || 'post';
-}
 
 export const POST: APIRoute = async ({ request }) => {
   const supabase = getSupabaseAdmin();
