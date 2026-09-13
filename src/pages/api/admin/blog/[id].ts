@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { getSupabaseAdmin } from '../../../../lib/supabaseAdmin';
+import { sanitizeBlogBody } from '../../../../lib/sanitizeBlogHtml';
 
 export const prerender = false;
 
@@ -29,6 +30,11 @@ export const PATCH: APIRoute = async ({ params, request }) => {
   for (const field of EDITABLE_FIELDS) {
     if (field in body) update[field] = body[field];
   }
+  // The one place this body HTML is trusted before it is rendered unescaped
+  // to every site visitor — see sanitizeBlogHtml.ts. Runs regardless of
+  // whether it came from the rich-text editor, a hand-edit, or anything else
+  // that ever calls this endpoint.
+  if (typeof update.body === 'string') update.body = sanitizeBlogBody(update.body);
 
   if (typeof body.status === 'string') {
     if (!['draft', 'published'].includes(body.status)) {

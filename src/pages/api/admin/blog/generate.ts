@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import { getSupabaseAdmin } from '../../../../lib/supabaseAdmin';
 import { getSetting } from '../../../../lib/adminSettings';
 import { generateBlogDraft, type Provider } from '../../../../lib/aiProviders';
+import { sanitizeBlogBody } from '../../../../lib/sanitizeBlogHtml';
 import { services } from '../../../../data/services';
 import { appliances } from '../../../../data/appliances';
 import { dampPages } from '../../../../data/damp';
@@ -92,7 +93,9 @@ export const POST: APIRoute = async ({ request }) => {
       meta_title: draft.metaTitle || draft.title,
       meta_description: draft.metaDescription || draft.excerpt,
       excerpt: draft.excerpt,
-      body: draft.body,
+      // Same trust boundary as a manual edit (see sanitizeBlogHtml.ts) — an AI
+      // provider's own output is not exempt from it.
+      body: sanitizeBlogBody(draft.body),
       status: 'draft',
       related_services: draft.relatedServices.filter((s) => serviceSlugs.has(s)),
       related_appliances: draft.relatedAppliances.filter((s) => applianceSlugs.has(s)),

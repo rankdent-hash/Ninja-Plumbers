@@ -4,6 +4,7 @@
 // live immediately — /blog and /blog/[slug] read this table at request time.
 import AdminLayout from '../../../layouts/AdminLayout.astro';
 import { getSupabaseAdmin } from '../../../lib/supabaseAdmin';
+import 'quill/dist/quill.snow.css';
 
 export const prerender = false;
 
@@ -72,8 +73,13 @@ if (!supabase) {
           <textarea id="excerpt" name="excerpt" rows="2" required maxlength="400">{post.excerpt}</textarea>
         </div>
         <div class="field field-wide">
-          <label for="body">Body (HTML)</label>
-          <textarea id="body" name="body" rows="16" required class="admin-code-textarea">{post.body}</textarea>
+          <label id="body-label">Body</label>
+          <div id="body-editor-mount" aria-labelledby="body-label"></div>
+          <textarea id="body" name="body" required class="admin-code-textarea" hidden>{post.body}</textarea>
+          <p class="admin-dim admin-editor-hint">
+            Formatting only — headings, bold/italic, lists and links. No images here;
+            use the hero image below for a picture on the post.
+          </p>
         </div>
         <div class="field">
           <label for="related_services">Related services (comma-separated slugs)</label>
@@ -93,7 +99,7 @@ if (!supabase) {
       <div class="admin-add admin-settings-card" style="margin-top:22px;">
         <div class="admin-add-form">
           <div class="field field-wide">
-            <h3>Hero image</h3>
+            <h2 class="admin-card-heading">Hero image</h2>
             <p class="admin-dim" id="hero-preview-empty" hidden={!!post.hero_image_url}>No image yet.</p>
             <img src={post.hero_image_url ?? ''} alt="" class="admin-hero-preview" id="hero-preview-img" hidden={!post.hero_image_url} />
           </div>
@@ -120,3 +126,61 @@ if (!supabase) {
 </AdminLayout>
 
 <script src="/admin-blog.js" is:inline></script>
+
+<script>
+  // Rich-text editor for the body field. Bundled (not is:inline) so it can
+  // import the npm package. The hidden #body textarea stays the source of
+  // truth admin-blog.js's existing submit handler already reads — this only
+  // adds a nicer way to fill it in, and never talks to the server itself.
+  //
+  // Whatever this produces is still untrusted on the way in: the real
+  // sanitization happens server-side on save (see src/lib/sanitizeBlogHtml.ts)
+  // and is what actually protects site visitors, not this editor.
+  import Quill from 'quill';
+
+  const mount = document.getElementById('body-editor-mount');
+  const hidden = document.getElementById('body') as HTMLTextAreaElement | null;
+  if (mount && hidden) {
+    const quill = new Quill(mount, {
+      theme: 'snow',
+      placeholder: 'Write the post…',
+      modules: {
+        toolbar: [
+          [{ header: [2, false] }],
+          ['bold', 'italic'],
+          [{ list: 'ordered' }, { list: 'bullet' }],
+          ['link'],
+          ['clean'],
+        ],
+      },
+    });
+
+    // The plain-<button> toolbar controls (bold, italic, lists, link, clean)
+    // get an aria-label from Quill itself. Its heading picker does not — a
+    // <span role="button"> with only an SVG inside, so it reads as nothing to
+    // a screen reader (axe: aria-command-name). Quill builds this DOM itself
+    // from the toolbar config, so it's labelled after the fact rather than
+    // through config. The toolbar is a sibling Quill inserts before `mount`,
+    // not a child of it, so it's found via the toolbar module, not mount.querySelector.
+    const toolbarEl = (quill.getModule('toolbar') as any)?.container as HTMLElement | undefined;
+    const headerPicker = toolbarEl?.querySelector('.ql-header.ql-picker');
+    if (headerPicker) {
+      headerPicker.querySelector('.ql-picker-label')?.setAttribute('aria-label', 'Heading style');
+      headerPicker.querySelector('.ql-picker-item[data-value="2"]')?.setAttribute('aria-label', 'Heading');
+      headerPicker.querySelector('.ql-picker-item:not([data-value])')?.setAttribute('aria-label', 'Normal text');
+    }
+
+    if (hidden.value.trim()) {
+      quill.clipboard.dangerouslyPasteHTML(hidden.value);
+    }
+    // Loading existing HTML through Quill's own parser can reformat it
+    // slightly (attribute order, whitespace) — sync once immediately so the
+    // hidden field reflects what the editor actually holds, not the raw
+    // database value, even before anyone types anything.
+    hidden.value = quill.root.innerHTML;
+
+    quill.on('text-change', () => {
+      hidden.value = quill.root.innerHTML;
+    });
+  }
+</script>

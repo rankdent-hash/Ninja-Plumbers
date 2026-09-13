@@ -3137,3 +3137,31 @@ body.qr-open { overflow: hidden; }
 .admin-chan.is-whatsapp { color: var(--green-ink); }
 .admin-chan.is-sms { color: var(--navy); }
 .admin-chan.is-ad { color: var(--navy); background: var(--bg); border: 1px solid var(--border); border-radius: 100px; padding: 2px 9px; font-size: 0.74rem; }
+
+/* ---- Admin: rich-text body editor (Quill) --------------------------- */
+#body-editor-mount {
+  background: var(--surface);
+  border-radius: var(--radius);
+  overflow: hidden; /* clip Quill's own toolbar/container corners to ours */
+}
+#body-editor-mount .ql-toolbar.ql-snow {
+  border: 1px solid var(--border);
+  border-bottom: none;
+  border-radius: var(--radius) var(--radius) 0 0;
+  background: var(--bg);
+  font-family: inherit;
+}
+#body-editor-mount .ql-container.ql-snow {
+  border: 1px solid var(--border);
+  border-radius: 0 0 var(--radius) var(--radius);
+  font-family: inherit;
+  font-size: 1rem;
+}
+#body-editor-mount .ql-editor { min-height: 340px; line-height: 1.7; color: var(--navy); }
+#body-editor-mount .ql-editor h2 { font-size: 1.3rem; margin: 1.2em 0 0.4em; }
+#body-editor-mount .ql-editor p { margin: 0 0 0.9em; }
+#body-editor-mount .ql-editor.ql-blank::before { color: var(--muted); font-style: normal; }
+.admin-editor-hint { margin: 6px 0 0; font-size: 0.82rem; color: var(--muted); }
+/* h2 used here for correct document outline (was h3, skipping a level after
+   the page's own h1) — sized back down to what it looked like as an h3. */
+.admin-card-heading { font-size: 1.15rem; letter-spacing: -0.01em; }
