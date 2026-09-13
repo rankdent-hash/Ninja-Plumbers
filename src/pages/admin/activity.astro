@@ -35,12 +35,11 @@ type ClickRow = {
   id: string; created_at: string; kind: string; source_page: string | null;
   label: string | null; device: string | null; gclid: string | null;
 };
-type Stat = { kind: string; source_page: string; clicks: number };
+type Source = { page: string; phone: number; whatsapp: number; sms: number; forms: number };
 
 let rows: ClickRow[] = [];
-let stats: Stat[] = [];
+let sources: Source[] = [];
 let total = 0;
-let enquiryCount = 0;
 let loadError = '';
 
 if (!supabase) {
@@ -54,13 +53,9 @@ if (!supabase) {
     .range(from, to);
   if (kindFilter) listQuery.eq('kind', kindFilter);
 
-  const [list, statsRes, enquiries] = await Promise.all([
+  const [list, sourcesRes] = await Promise.all([
     listQuery,
-    supabase.rpc('click_stats', { since }),
-    supabase
-      .from('enquiries')
-      .select('id', { count: 'exact', head: true })
-      .gte('created_at', since),
+    supabase.rpc('contact_sources', { since }),
   ]);
 
   if (list.error) {
@@ -68,32 +63,30 @@ if (!supabase) {
   } else {
     rows = (list.data ?? []) as ClickRow[];
     total = list.count ?? 0;
-    stats = (statsRes.data ?? []) as Stat[];
-    enquiryCount = enquiries.count ?? 0;
+    sources = ((sourcesRes.data ?? []) as Source[]).map((s) => ({
+      page: s.page,
+      phone: Number(s.phone),
+      whatsapp: Number(s.whatsapp),
+      sms: Number(s.sms),
+      forms: Number(s.forms),
+    }));
   }
 }
 
-const totalFor = (kind: string) =>
-  stats.filter((s) => s.kind === kind).reduce((sum, s) => sum + Number(s.clicks), 0);
-
-const phoneTotal = totalFor('phone');
-const whatsappTotal = totalFor('whatsapp');
-const smsTotal = totalFor('sms');
+const sum = (key: keyof Omit<Source, 'page'>) => sources.reduce((n, s) => n + s[key], 0);
+const phoneTotal = sum('phone');
+const whatsappTotal = sum('whatsapp');
+const smsTotal = sum('sms');
+const formTotal = sum('forms');
 const clickTotal = phoneTotal + whatsappTotal + smsTotal;
 
-// Pages ranked by all contact clicks, not by one channel, so a page that gets
-// calls and a page that gets WhatsApps are compared on the same footing.
-const byPage = new Map<string, { page: string; phone: number; whatsapp: number; sms: number; all: number }>();
-for (const s of stats) {
-  const entry = byPage.get(s.source_page) ?? { page: s.source_page, phone: 0, whatsapp: 0, sms: 0, all: 0 };
-  const n = Number(s.clicks);
-  if (s.kind === 'phone') entry.phone += n;
-  else if (s.kind === 'whatsapp') entry.whatsapp += n;
-  else if (s.kind === 'sms') entry.sms += n;
-  entry.all += n;
-  byPage.set(s.source_page, entry);
-}
-const topPages = [...byPage.values()].sort((a, b) => b.all - a.all).slice(0, 15);
+// Ranked by every way a visitor made contact, so a page that earns calls and a
+// page that earns form fills are compared on the same footing.
+const topPages = sources
+  .map((s) => ({ ...s, all: s.phone + s.whatsapp + s.sms + s.forms }))
+  .filter((s) => s.all > 0)
+  .sort((a, b) => b.all - a.all)
+  .slice(0, 20);
 
 const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
 const fmt = (iso: string) =>
@@ -130,25 +123,36 @@ const href = (o: { days?: number; kind?: string | null; page?: number }) => {
         <li class="admin-stat"><span class="admin-stat-n">{phoneTotal}</span><span class="admin-stat-l">Phone clicks</span></li>
         <li class="admin-stat"><span class="admin-stat-n">{whatsappTotal}</span><span class="admin-stat-l">WhatsApp clicks</span></li>
         {smsTotal > 0 && <li class="admin-stat"><span class="admin-stat-n">{smsTotal}</span><span class="admin-stat-l">Text clicks</span></li>}
-        <li class="admin-stat is-primary"><span class="admin-stat-n">{enquiryCount}</span><span class="admin-stat-l">Form submissions</span></li>
+        <li class="admin-stat is-primary"><span class="admin-stat-n">{formTotal}</span><span class="admin-stat-l">Form submissions</span></li>
       </ul>
       <p class="admin-note">
         A click means someone tapped a call, WhatsApp or text button &mdash; it is intent to make contact,
-        not a confirmed conversation. Form submissions are counted from the same period and are listed in
-        full under <a href="/admin">Leads</a>.
+        not a confirmed conversation. Form submissions exclude anything marked spam and are listed in full
+        under <a href="/admin">Leads</a>.
       </p>
 
-      {clickTotal === 0 && (
-        <p class="admin-empty">No contact clicks recorded in this period yet.</p>
+      {clickTotal === 0 && formTotal === 0 && (
+        <p class="admin-empty">No contact activity recorded in this period yet.</p>
       )}
 
       {topPages.length > 0 && (
         <section class="admin-section">
-          <h2>Pages driving contact</h2>
+          <h2>Where contact comes from</h2>
+          <p class="admin-note">
+            The page someone was on when they called, messaged or sent the form. Ranked by every kind of
+            contact together, so a page that earns calls is compared fairly with one that earns form fills.
+          </p>
           <div class="admin-table-scroll" tabindex="0">
             <table class="admin-table">
               <thead>
-                <tr><th>Page</th><th class="admin-num">Phone</th><th class="admin-num">WhatsApp</th>{smsTotal > 0 && <th class="admin-num">Text</th>}<th class="admin-num">Total</th></tr>
+                <tr>
+                  <th>Page</th>
+                  <th class="admin-num">Phone</th>
+                  <th class="admin-num">WhatsApp</th>
+                  {smsTotal > 0 && <th class="admin-num">Text</th>}
+                  <th class="admin-num">Forms</th>
+                  <th class="admin-num">Total</th>
+                </tr>
               </thead>
               <tbody>
                 {topPages.map((p) => (
@@ -157,6 +161,7 @@ const href = (o: { days?: number; kind?: string | null; page?: number }) => {
                     <td class="admin-num">{p.phone || <span class="admin-dim">&mdash;</span>}</td>
                     <td class="admin-num">{p.whatsapp || <span class="admin-dim">&mdash;</span>}</td>
                     {smsTotal > 0 && <td class="admin-num">{p.sms || <span class="admin-dim">&mdash;</span>}</td>}
+                    <td class="admin-num">{p.forms || <span class="admin-dim">&mdash;</span>}</td>
                     <td class="admin-num"><strong>{p.all}</strong></td>
                   </tr>
                 ))}
