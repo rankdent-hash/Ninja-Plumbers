@@ -27,7 +27,11 @@ if (!supabase) {
   mcpTokens = data ?? [];
 }
 
-const mcpUrl = new URL('/api/mcp', Astro.url.origin).toString();
+// Hardcoded rather than derived from Astro.url.origin: this page can be
+// reached via a Vercel preview alias as well as the real domain, and an MCP
+// client needs the one stable, canonical URL regardless of which hostname
+// whoever generated the token happened to be looking at.
+const mcpUrl = 'https://www.tamesisplumbers.co.uk/api/mcp';
 const fmtDate = (iso: string | null) =>
   iso ? new Date(iso).toLocaleString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/London' }) : null;
 
