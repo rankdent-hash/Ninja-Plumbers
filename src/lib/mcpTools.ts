@@ -6,6 +6,7 @@ import { appliances } from '../data/appliances';
 import { dampPages } from '../data/damp';
 import { landings } from '../data/landing';
 import { REAL_RATING, REAL_TRUST_EXTRA, PREMIUM_ART_VALUES, PREMIUM_ICON_VALUES, isPremiumArt, isPremiumIcon } from './landingPages';
+import { SERVICE_ICON_VALUES, isServiceIcon } from './servicePages';
 
 // Tools exposed to the remote MCP server (api/mcp.ts) — what an external AI
 // chat client (Claude, ChatGPT, etc.) can actually do to this site's blog.
@@ -32,6 +33,14 @@ const MAX_MCP_POSTS_PER_HOUR = 20;
 // pages, it only ever goes on with an explicit human go-ahead, added in the
 // admin edit screen.
 const MAX_MCP_LANDING_PAGES_PER_HOUR = 10;
+
+// Service pages follow the same draft-only, publish-is-human-only rule, but
+// publishing one is a bigger claim than a landing page: it's a real,
+// Google-indexed statement that this is a service Tamesis now offers, listed
+// on /services and cross-linked from every other service page. It is never
+// wired into the header mega menu or footer by any of this — those are
+// hand-curated (src/data/nav.ts) and stay a deliberate human edit.
+const MAX_MCP_SERVICE_PAGES_PER_HOUR = 5;
 
 const STATUS_VALUES = ['draft', 'published', 'all'] as const;
 
@@ -74,6 +83,21 @@ async function uniqueLandingSlug(supabase: SupabaseClient, title: string): Promi
   for (let i = 2; i < 50; i++) {
     if (!staticSlugs.has(slug)) {
       const { data: existing } = await supabase.from('landing_pages').select('id').eq('slug', slug).maybeSingle();
+      if (!existing) break;
+    }
+    slug = `${base}-${i}`;
+  }
+  return slug;
+}
+
+/** Same idea again, dodging the 19 real trade services in services.ts. */
+async function uniqueServiceSlug(supabase: SupabaseClient, title: string): Promise<string> {
+  const base = slugify(title);
+  const staticSlugs = new Set(services.map((s) => s.slug));
+  let slug = base;
+  for (let i = 2; i < 50; i++) {
+    if (!staticSlugs.has(slug)) {
+      const { data: existing } = await supabase.from('service_pages').select('id').eq('slug', slug).maybeSingle();
       if (!existing) break;
     }
     slug = `${base}-${i}`;
@@ -329,6 +353,107 @@ export const TOOLS = [
       },
     },
   },
+  {
+    name: 'list_service_pages',
+    description:
+      'List service pages created via MCP. Returns id, slug, title, status and dates — use get_service_page for full content. Does not include the 19 real trade services in services.ts.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        status: { type: 'string', enum: STATUS_VALUES, description: 'Filter by status. Defaults to "all".' },
+        limit: { type: 'integer', minimum: 1, maximum: 100, description: 'Max pages to return. Defaults to 25.' },
+      },
+    },
+  },
+  {
+    name: 'get_service_page',
+    description: 'Get the full content of one MCP-created service page by id or slug.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        id: { type: 'string' },
+        slug: { type: 'string' },
+      },
+    },
+  },
+  {
+    name: 'create_service_page',
+    description:
+      'Create a new service page (the same /services/[slug] template as every real service) as a DRAFT. It is never published by this tool. Publishing this is a bigger step than a blog post or landing page: it puts the page on the public /services hub, in the sitemap, and cross-linked from every other service page as something Tamesis now offers — a human must review and deliberately decide that before publishing. It is also never wired into the header navigation or footer, whatever its status; that stays a separate, deliberate human edit.',
+    inputSchema: {
+      type: 'object',
+      required: ['title', 'h1', 'meta_title', 'meta_description', 'eyebrow', 'icon', 'summary', 'intro', 'does', 'guidance', 'aside', 'faqs'],
+      properties: {
+        title: { type: 'string', description: 'Short label used in cards, cross-links and the slug source.' },
+        h1: { type: 'string', description: 'Page heading.' },
+        meta_title: { type: 'string' },
+        meta_description: { type: 'string' },
+        eyebrow: { type: 'string', description: 'Small label above the h1, e.g. "24/7 callout".' },
+        icon: { type: 'string', enum: SERVICE_ICON_VALUES, description: 'Selects an existing pre-built icon — this cannot be a new one.' },
+        summary: { type: 'string', description: 'One or two sentences, shown on the /services hub card.' },
+        intro: { type: 'string', description: 'Lead paragraph on the page itself.' },
+        does: { type: 'array', items: { type: 'string' }, minItems: 3, description: '"What this includes" bullet list.' },
+        guidance: {
+          type: 'array', minItems: 2,
+          items: { type: 'object', required: ['title', 'body'], properties: { title: { type: 'string' }, body: { type: 'string' } } },
+          description: '"Worth knowing first" panels.',
+        },
+        aside: {
+          type: 'object', required: ['title', 'body'],
+          properties: { title: { type: 'string' }, body: { type: 'string' } },
+          description: 'Short panel next to "what this includes".',
+        },
+        faqs: {
+          type: 'array', minItems: 3,
+          items: { type: 'object', required: ['q', 'a'], properties: { q: { type: 'string' }, a: { type: 'string' } } },
+        },
+        spaces: {
+          type: 'array',
+          items: { type: 'object', required: ['title', 'body'], properties: { title: { type: 'string' }, body: { type: 'string' } } },
+          description: 'Optional "types of premises this covers" panels — most services omit this.',
+        },
+        internal_note: { type: 'string', description: 'Internal-only note (e.g. why this page exists). Never published.' },
+      },
+    },
+  },
+  {
+    name: 'update_service_page',
+    description:
+      'Edit an existing DRAFT service page created via MCP. Refuses to edit one that is already published — publish/unpublish and edits to a live page are human-only, done in /admin/service-pages. Accepts the same fields as create_service_page; send only the ones changing.',
+    inputSchema: {
+      type: 'object',
+      required: ['id'],
+      properties: {
+        id: { type: 'string' },
+        title: { type: 'string' },
+        h1: { type: 'string' },
+        meta_title: { type: 'string' },
+        meta_description: { type: 'string' },
+        eyebrow: { type: 'string' },
+        icon: { type: 'string', enum: SERVICE_ICON_VALUES },
+        summary: { type: 'string' },
+        intro: { type: 'string' },
+        does: { type: 'array', items: { type: 'string' } },
+        guidance: {
+          type: 'array',
+          items: { type: 'object', required: ['title', 'body'], properties: { title: { type: 'string' }, body: { type: 'string' } } },
+        },
+        aside: {
+          type: 'object',
+          properties: { title: { type: 'string' }, body: { type: 'string' } },
+        },
+        faqs: {
+          type: 'array',
+          items: { type: 'object', required: ['q', 'a'], properties: { q: { type: 'string' }, a: { type: 'string' } } },
+        },
+        spaces: {
+          type: 'array',
+          items: { type: 'object', required: ['title', 'body'], properties: { title: { type: 'string' }, body: { type: 'string' } } },
+        },
+        internal_note: { type: 'string' },
+      },
+    },
+  },
 ] as const;
 
 export async function callTool(supabase: SupabaseClient, name: string, args: Record<string, unknown>) {
@@ -349,6 +474,14 @@ export async function callTool(supabase: SupabaseClient, name: string, args: Rec
       return createLandingPage(supabase, args);
     case 'update_landing_page':
       return updateLandingPage(supabase, args);
+    case 'list_service_pages':
+      return listServicePages(supabase, args);
+    case 'get_service_page':
+      return getServicePage(supabase, args);
+    case 'create_service_page':
+      return createServicePage(supabase, args);
+    case 'update_service_page':
+      return updateServicePage(supabase, args);
     default:
       return errorText(`Unknown tool "${name}".`);
   }
@@ -793,4 +926,190 @@ async function updateLandingPage(supabase: SupabaseClient, args: Record<string, 
   const { error } = await supabase.from('landing_pages').update(update).eq('id', id);
   if (error) return errorText('Could not save the changes.');
   return text(`Saved. Still a draft — review and publish at /admin/landing-pages/${id}`);
+}
+
+function validateAside(v: unknown, errors: string[]) {
+  const a = v as Record<string, unknown> | undefined;
+  if (!a || typeof a.title !== 'string' || typeof a.body !== 'string') {
+    errors.push('aside needs title and body.');
+    return null;
+  }
+  return { title: a.title, body: a.body };
+}
+
+async function listServicePages(supabase: SupabaseClient, args: Record<string, unknown>) {
+  const status = STATUS_VALUES.includes(args.status as any) ? (args.status as (typeof STATUS_VALUES)[number]) : 'all';
+  const limit = Number.isInteger(args.limit) ? Math.min(100, Math.max(1, args.limit as number)) : 25;
+
+  let query = supabase
+    .from('service_pages')
+    .select('id, slug, title, status, published_at, created_at')
+    .order('created_at', { ascending: false })
+    .limit(limit);
+  if (status !== 'all') query = query.eq('status', status);
+
+  const { data, error } = await query;
+  if (error) return errorText('Could not list service pages.');
+  return text(JSON.stringify(data ?? [], null, 2));
+}
+
+async function getServicePage(supabase: SupabaseClient, args: Record<string, unknown>) {
+  const id = str(args.id, 100);
+  const slug = str(args.slug, 120);
+  if (!id && !slug) return errorText('Provide either id or slug.');
+
+  const query = supabase.from('service_pages').select('*');
+  const { data, error } = await (id ? query.eq('id', id) : query.eq('slug', slug!)).maybeSingle();
+  if (error) return errorText('Could not load that service page.');
+  if (!data) return errorText('No service page found with that id/slug.');
+  return text(JSON.stringify(data, null, 2));
+}
+
+async function createServicePage(supabase: SupabaseClient, args: Record<string, unknown>) {
+  const title = str(args.title, 200);
+  const h1 = str(args.h1, 200);
+  const metaTitle = str(args.meta_title, 200);
+  const metaDescription = str(args.meta_description, 300);
+  const eyebrow = str(args.eyebrow, 120);
+  const summary = str(args.summary, 300);
+  const intro = str(args.intro, 1000);
+  if (!title || !h1 || !metaTitle || !metaDescription || !eyebrow || !summary || !intro) {
+    return errorText('title, h1, meta_title, meta_description, eyebrow, summary and intro are all required.');
+  }
+
+  const errors: string[] = [];
+  if (!isServiceIcon(args.icon)) errors.push(`icon: "${args.icon}" is not a valid icon. Valid values: ${SERVICE_ICON_VALUES.join(', ')}.`);
+
+  const does = strArray(args.does);
+  if (!does || does.length < 3) errors.push('does must have at least 3 items.');
+
+  const guidance = validateTitleBodyList(args.guidance, 'guidance', null, errors);
+  if (guidance && guidance.length < 2) errors.push('guidance must have at least 2 items.');
+
+  const aside = validateAside(args.aside, errors);
+
+  const faqs = validateTitleBodyList(args.faqs ? (args.faqs as any[]).map((f: any) => ({ title: f?.q, body: f?.a })) : args.faqs, 'faqs', null, errors)
+    ?.map((f) => ({ q: f.title, a: f.body })) ?? null;
+  if (faqs && faqs.length < 3) errors.push('faqs must have at least 3 items.');
+
+  let spaces: { title: string; body: string }[] | null = null;
+  if (args.spaces !== undefined) {
+    spaces = validateTitleBodyList(args.spaces, 'spaces', null, errors);
+  }
+
+  if (errors.length > 0 || !does || !guidance || guidance.length < 2 || !aside || !faqs || faqs.length < 3) {
+    return errorText(errors.join(' ') || 'Invalid input.');
+  }
+
+  const since = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+  const { count } = await supabase
+    .from('service_pages')
+    .select('id', { count: 'exact', head: true })
+    .eq('generated_by', 'mcp')
+    .gte('created_at', since);
+  if ((count ?? 0) >= MAX_MCP_SERVICE_PAGES_PER_HOUR) {
+    return errorText(`Rate limit: at most ${MAX_MCP_SERVICE_PAGES_PER_HOUR} service pages per hour via MCP. Try again later.`);
+  }
+
+  const slug = await uniqueServiceSlug(supabase, title);
+
+  const { data, error } = await supabase
+    .from('service_pages')
+    .insert({
+      slug,
+      status: 'draft',
+      title,
+      h1,
+      meta_title: metaTitle,
+      meta_description: metaDescription,
+      eyebrow,
+      icon: args.icon,
+      summary,
+      intro,
+      does,
+      guidance,
+      aside,
+      faqs,
+      spaces,
+      internal_note: str(args.internal_note, 300),
+      generated_by: 'mcp',
+    })
+    .select('id, slug')
+    .single();
+
+  if (error || !data) return errorText('Could not save the service page.');
+  return text(
+    `Created as a draft — not published, not on /services, not cross-linked, not in the sitemap. Review and publish at /admin/service-pages/${data.id}\nid: ${data.id}\nslug: ${data.slug}`
+  );
+}
+
+async function updateServicePage(supabase: SupabaseClient, args: Record<string, unknown>) {
+  const id = str(args.id, 100);
+  if (!id) return errorText('id is required.');
+
+  const { data: existing, error: loadError } = await supabase
+    .from('service_pages')
+    .select('id, status')
+    .eq('id', id)
+    .maybeSingle();
+  if (loadError) return errorText('Could not load that service page.');
+  if (!existing) return errorText('No service page found with that id.');
+  if (existing.status === 'published') {
+    return errorText('This service page is already published. MCP can only edit drafts — publish/unpublish and edits to a live page are done by a person in /admin/service-pages.');
+  }
+
+  const errors: string[] = [];
+  const update: Record<string, unknown> = { updated_at: new Date().toISOString() };
+
+  const title = str(args.title, 200);
+  const h1 = str(args.h1, 200);
+  const metaTitle = str(args.meta_title, 200);
+  const metaDescription = str(args.meta_description, 300);
+  const eyebrow = str(args.eyebrow, 120);
+  const summary = str(args.summary, 300);
+  const intro = str(args.intro, 1000);
+  if (title) update.title = title;
+  if (h1) update.h1 = h1;
+  if (metaTitle) update.meta_title = metaTitle;
+  if (metaDescription) update.meta_description = metaDescription;
+  if (eyebrow) update.eyebrow = eyebrow;
+  if (summary) update.summary = summary;
+  if (intro) update.intro = intro;
+  if (args.internal_note !== undefined) update.internal_note = str(args.internal_note, 300);
+
+  if (args.icon !== undefined) {
+    if (!isServiceIcon(args.icon)) errors.push(`icon: "${args.icon}" is not a valid icon.`);
+    else update.icon = args.icon;
+  }
+  if (args.does !== undefined) {
+    const does = strArray(args.does);
+    if (!does || does.length < 3) errors.push('does must have at least 3 items.');
+    else update.does = does;
+  }
+  if (args.guidance !== undefined) {
+    const guidance = validateTitleBodyList(args.guidance, 'guidance', null, errors);
+    if (guidance && guidance.length < 2) errors.push('guidance must have at least 2 items.');
+    else if (guidance) update.guidance = guidance;
+  }
+  if (args.aside !== undefined) {
+    const aside = validateAside(args.aside, errors);
+    if (aside) update.aside = aside;
+  }
+  if (args.faqs !== undefined) {
+    const faqsInput = Array.isArray(args.faqs) ? (args.faqs as any[]).map((f) => ({ title: f?.q, body: f?.a })) : args.faqs;
+    const faqs = validateTitleBodyList(faqsInput, 'faqs', null, errors)?.map((f) => ({ q: f.title, a: f.body }));
+    if (faqs && faqs.length < 3) errors.push('faqs must have at least 3 items.');
+    else if (faqs) update.faqs = faqs;
+  }
+  if (args.spaces !== undefined) {
+    const spaces = validateTitleBodyList(args.spaces, 'spaces', null, errors);
+    if (spaces) update.spaces = spaces;
+  }
+
+  if (errors.length > 0) return errorText(errors.join(' '));
+  if (Object.keys(update).length === 1) return errorText('Nothing to update — pass at least one field.');
+
+  const { error } = await supabase.from('service_pages').update(update).eq('id', id);
+  if (error) return errorText('Could not save the changes.');
+  return text(`Saved. Still a draft — review and publish at /admin/service-pages/${id}`);
 }

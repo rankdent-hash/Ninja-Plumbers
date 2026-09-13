@@ -1,0 +1,91 @@
+---
+// Edit screen for one service_pages row. Scalar fields are plain inputs;
+// the structured groups (does, guidance, aside, faqs, spaces) are edited as
+// raw JSON in a textarea — same tradeoff as /admin/landing-pages, and every
+// value here is still validated server-side in mcpTools.ts before an MCP
+// client can ever write one.
+import AdminLayout from '../../../layouts/AdminLayout.astro';
+import { getSupabaseAdmin } from '../../../lib/supabaseAdmin';
+import { SERVICE_ICON_VALUES } from '../../../lib/servicePages';
+
+export const prerender = false;
+
+const admin = Astro.locals.admin!;
+const supabase = getSupabaseAdmin();
+const { id } = Astro.params;
+
+let page: any = null;
+let loadError = '';
+if (!supabase) {
+  loadError = 'The admin panel is not connected to Supabase yet.';
+} else {
+  const { data, error } = await supabase.from('service_pages').select('*').eq('id', id).maybeSingle();
+  if (error) loadError = 'Could not load that service page.';
+  else if (!data) loadError = 'No service page found with that id.';
+  else page = data;
+}
+
+const j = (v: unknown) => JSON.stringify(v ?? null, null, 2);
+---
+<AdminLayout title={page ? page.title : 'Service page'} admin={admin}>
+  {loadError && <p class="form-error-summary" role="alert">{loadError}</p>}
+
+  {page && (
+    <>
+      <div class="admin-head">
+        <h1>{page.title}</h1>
+        <p class="admin-sub">
+          <span class:list={['admin-urgency', page.status === 'published' ? 'is-live' : 'is-draft']}>{page.status}</span>
+          {' '}&middot; /services/{page.slug} &middot; created by {page.generated_by ?? 'a person'}
+        </p>
+      </div>
+
+      <p class="cta-row">
+        <a href={`/admin/service-pages/preview/${page.id}`} class="btn btn-ghost" target="_blank" rel="noopener">Preview &rarr;</a>
+        {page.status === 'draft'
+          ? <button type="button" class="btn btn-navy" id="sp-publish-btn" data-page-id={page.id}>Publish</button>
+          : <button type="button" class="btn btn-ghost" id="sp-unpublish-btn" data-page-id={page.id}>Unpublish</button>}
+        <button type="button" class="btn btn-ghost" id="sp-delete-btn" data-page-id={page.id} style="color:#a33;">Delete</button>
+      </p>
+
+      {page.status === 'published' && (
+        <p class="admin-note">
+          This page is live: on the /services hub, in the sitemap, and cross-linked from every
+          other service page. Saving here edits the real, published page.
+        </p>
+      )}
+      {page.status === 'draft' && (
+        <p class="admin-note">Draft — not built into a real URL yet. Publishing needs a deploy afterwards before /services/{page.slug} exists on the live site.</p>
+      )}
+
+      <p class="form-error-summary" id="sp-error" role="alert" hidden></p>
+      <p class="admin-note" id="sp-saved" hidden>Saved.</p>
+
+      <form id="sp-form" class="admin-add-form admin-settings-card" data-page-id={page.id}>
+        <div class="field field-wide"><label for="title">Title (short label)</label><input id="title" value={page.title}></div>
+        <div class="field field-wide"><label for="h1">Heading (h1)</label><input id="h1" value={page.h1}></div>
+        <div class="field field-wide"><label for="meta_title">Meta title</label><input id="meta_title" value={page.meta_title}></div>
+        <div class="field field-wide"><label for="meta_description">Meta description</label><textarea id="meta_description" rows="2">{page.meta_description}</textarea></div>
+        <div class="field field-wide"><label for="eyebrow">Eyebrow</label><input id="eyebrow" value={page.eyebrow}></div>
+        <div class="field field-wide">
+          <label for="icon">Icon</label>
+          <input id="icon" value={page.icon} list="icon-list">
+          <datalist id="icon-list">{SERVICE_ICON_VALUES.map((v) => <option value={v} />)}</datalist>
+        </div>
+        <div class="field field-wide"><label for="summary">Summary (shown on the /services hub card)</label><textarea id="summary" rows="2">{page.summary}</textarea></div>
+        <div class="field field-wide"><label for="intro">Intro paragraph</label><textarea id="intro" rows="3">{page.intro}</textarea></div>
+        <div class="field field-wide"><label for="internal_note">Internal note (never published)</label><input id="internal_note" value={page.internal_note ?? ''}></div>
+
+        <div class="field field-wide"><label for="does">"What this includes" (JSON array of strings)</label><textarea id="does" rows="6">{j(page.does)}</textarea></div>
+        <div class="field field-wide"><label for="guidance">"Worth knowing first" (JSON array of {'{'}title, body{'}'}, at least 2)</label><textarea id="guidance" rows="8">{j(page.guidance)}</textarea></div>
+        <div class="field field-wide"><label for="aside">Aside panel (JSON: title, body)</label><textarea id="aside" rows="4">{j(page.aside)}</textarea></div>
+        <div class="field field-wide"><label for="faqs">FAQs (JSON array of {'{'}q, a{'}'}, at least 3)</label><textarea id="faqs" rows="8">{j(page.faqs)}</textarea></div>
+        <div class="field field-wide"><label for="spaces">"Types of premises" (JSON array of {'{'}title, body{'}'} &mdash; or null, most pages omit this)</label><textarea id="spaces" rows="4">{j(page.spaces)}</textarea></div>
+
+        <button type="submit" class="btn btn-navy">Save changes</button>
+      </form>
+    </>
+  )}
+</AdminLayout>
+
+<script src="/admin-service-pages.js" is:inline></script>

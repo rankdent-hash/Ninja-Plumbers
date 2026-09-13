@@ -1,0 +1,75 @@
+---
+// Service pages created via MCP (a page at /services/[slug], using the
+// same template as every real trade service). The 19 real services in
+// src/data/services.ts don't appear here at all; this list is only rows in
+// the service_pages table.
+//
+// Publishing one is a bigger step than a blog post or landing page: it puts
+// the page on the public /services hub, in the sitemap, and cross-linked
+// from every other service page as something Tamesis now offers. It is
+// never wired into the header mega menu or footer by any of this — those
+// are hand-curated (src/data/nav.ts) and stay a separate, deliberate edit.
+import AdminLayout from '../../../layouts/AdminLayout.astro';
+import { getSupabaseAdmin } from '../../../lib/supabaseAdmin';
+
+export const prerender = false;
+
+const admin = Astro.locals.admin!;
+const supabase = getSupabaseAdmin();
+
+type Row = { id: string; slug: string; title: string; status: 'draft' | 'published'; generated_by: string | null; updated_at: string; published_at: string | null };
+
+let rows: Row[] = [];
+let loadError = '';
+if (!supabase) {
+  loadError = 'The admin panel is not connected to Supabase yet.';
+} else {
+  const { data, error } = await supabase
+    .from('service_pages')
+    .select('id, slug, title, status, generated_by, updated_at, published_at')
+    .order('updated_at', { ascending: false });
+  if (error) loadError = 'Could not load service pages from the database.';
+  else rows = (data ?? []) as Row[];
+}
+
+const publishedCount = rows.filter((r) => r.status === 'published').length;
+const fmt = (iso: string) => new Date(iso).toLocaleString('en-GB', { day: '2-digit', month: 'short', timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit' });
+---
+<AdminLayout title="Service pages" admin={admin}>
+  <div class="admin-head">
+    <h1>Service pages</h1>
+    <p class="admin-sub">{publishedCount} published · {rows.length} total &mdash; created via MCP. The 19 real trade services live in code and aren&rsquo;t listed here.</p>
+  </div>
+
+  <p class="admin-note">
+    Publishing here is a bigger step than a blog post or landing page: it puts the page on the
+    public /services hub, in the sitemap, and cross-linked from every other service page &mdash;
+    a real, indexed statement that this is a service Tamesis now offers. It does not add it to the
+    header menu or footer; that's a separate edit if you want it navigable from there. Like the
+    rest of the site, it also needs a deploy after publishing before it's actually live.
+  </p>
+
+  {loadError && <p class="form-error-summary" role="alert">{loadError}</p>}
+  {!loadError && rows.length === 0 && <p class="admin-empty">No service pages yet. Create one via an MCP-connected chat client — see /admin/settings.</p>}
+
+  {rows.length > 0 && (
+    <div class="admin-table-scroll" tabindex="0">
+      <table class="admin-table">
+        <thead>
+          <tr><th>Title</th><th>Status</th><th>Created by</th><th>Updated</th><th class="admin-col-view"><span class="sr-only">Edit</span></th></tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr>
+              <td>{r.title}</td>
+              <td><span class:list={['admin-urgency', r.status === 'published' ? 'is-live' : 'is-draft']}>{r.status}</span></td>
+              <td>{r.generated_by ?? '—'}</td>
+              <td class="admin-nowrap">{fmt(r.updated_at)}</td>
+              <td class="admin-col-view"><a href={`/admin/service-pages/${r.id}`}>Edit &rarr;</a></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )}
+</AdminLayout>

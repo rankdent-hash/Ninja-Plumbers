@@ -1,12 +1,16 @@
 ---
 import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
-import { services } from '../data/services';
+import { services as staticServices } from '../data/services';
 import ServiceIcon from '../components/ServiceIcon.astro';
 import Tick from '../components/Tick.astro';
 import PhoneIcon from '../components/PhoneIcon.astro';
 import WhatsAppIcon from '../components/WhatsAppIcon.astro';
 import HeroWithForm from '../components/HeroWithForm.astro';
+import { getSupabaseAdmin } from '../lib/supabaseAdmin';
+import { publishedServicePages } from '../lib/servicePages';
+
+const services = [...staticServices, ...(await publishedServicePages(getSupabaseAdmin()))];
 ---
 <Base
   title="London Plumbing Services | Ninja Plumbers"

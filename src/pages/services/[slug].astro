@@ -13,12 +13,23 @@ import PhoneIcon from '../../components/PhoneIcon.astro';
 import WhatsAppIcon from '../../components/WhatsAppIcon.astro';
 import HeroWithForm from '../../components/HeroWithForm.astro';
 import Schema from '../../components/Schema.astro';
+import { getSupabaseAdmin } from '../../lib/supabaseAdmin';
+import { publishedServicePages } from '../../lib/servicePages';
 
-export function getStaticPaths() {
-  return services.map((service) => ({ params: { slug: service.slug }, props: { service } }));
+// The 19 real trade services in services.ts are hand-written and untouched
+// here. Published AI/MCP-created pages (see /admin/service-pages) live in
+// Supabase and are merged in at build time — same static generation, same
+// template, so a new service page reads identically to every existing one.
+export async function getStaticPaths() {
+  const aiServices = await publishedServicePages(getSupabaseAdmin());
+  return [...services, ...aiServices].map((service) => ({ params: { slug: service.slug }, props: { service } }));
 }
 
 const { service } = Astro.props;
+// Re-fetched here (not just passed down from getStaticPaths) so "we also
+// handle" below can include a published AI-created service too — the same
+// small extra build-time cost the sitemap's own blog fetch already accepts.
+const allServices = [...services, ...(await publishedServicePages(getSupabaseAdmin()))];
 // "Other work we take on" is site-wide for every group except air conditioning: a
 // plumbing or boiler page linking to every other trade on the site is the
 // established pattern, but an air con visitor is not looking for a drain
@@ -26,8 +37,8 @@ const { service } = Astro.props;
 // (repair/maintenance/installation/replacement) instead.
 const currentGroup = serviceGroups.find((g) => g.services.includes(service.slug));
 const others = currentGroup?.slug === 'air-conditioning'
-  ? services.filter((s) => s.slug !== service.slug && currentGroup.services.includes(s.slug))
-  : services.filter((s) => s.slug !== service.slug);
+  ? allServices.filter((s) => s.slug !== service.slug && currentGroup.services.includes(s.slug))
+  : allServices.filter((s) => s.slug !== service.slug);
 
 const HEADING: Record<string, string> = {
   'emergency-plumbing': 'Emergency plumber',
