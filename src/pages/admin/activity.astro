@@ -1,0 +1,214 @@
+---
+// Contact activity: phone, WhatsApp and SMS clicks recorded by /api/track,
+// shown alongside the form submissions for the same period so the two can be
+// read together — a page with many calls and no form fills is doing its job,
+// and a page with neither is not.
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import { getSupabaseAdmin } from '../../lib/supabaseAdmin';
+
+export const prerender = false;
+
+const admin = Astro.locals.admin!;
+const supabase = getSupabaseAdmin();
+
+const PAGE_SIZE = 50;
+const RANGES = [
+  { days: 1, label: 'Today' },
+  { days: 7, label: '7 days' },
+  { days: 30, label: '30 days' },
+  { days: 90, label: '90 days' },
+] as const;
+
+const params = Astro.url.searchParams;
+const requestedDays = parseInt(params.get('days') || '30', 10);
+const days = RANGES.some((r) => r.days === requestedDays) ? requestedDays : 30;
+const kindFilter = ['phone', 'whatsapp', 'sms'].includes(params.get('kind') || '')
+  ? params.get('kind')!
+  : null;
+const page = Math.max(1, parseInt(params.get('page') || '1', 10) || 1);
+const from = (page - 1) * PAGE_SIZE;
+const to = from + PAGE_SIZE - 1;
+
+const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString();
+
+type ClickRow = {
+  id: string; created_at: string; kind: string; source_page: string | null;
+  label: string | null; device: string | null; gclid: string | null;
+};
+type Stat = { kind: string; source_page: string; clicks: number };
+
+let rows: ClickRow[] = [];
+let stats: Stat[] = [];
+let total = 0;
+let enquiryCount = 0;
+let loadError = '';
+
+if (!supabase) {
+  loadError = 'The admin panel is not connected to Supabase yet.';
+} else {
+  const listQuery = supabase
+    .from('click_events')
+    .select('id, created_at, kind, source_page, label, device, gclid', { count: 'exact' })
+    .gte('created_at', since)
+    .order('created_at', { ascending: false })
+    .range(from, to);
+  if (kindFilter) listQuery.eq('kind', kindFilter);
+
+  const [list, statsRes, enquiries] = await Promise.all([
+    listQuery,
+    supabase.rpc('click_stats', { since }),
+    supabase
+      .from('enquiries')
+      .select('id', { count: 'exact', head: true })
+      .gte('created_at', since),
+  ]);
+
+  if (list.error) {
+    loadError = 'Could not load contact activity from the database.';
+  } else {
+    rows = (list.data ?? []) as ClickRow[];
+    total = list.count ?? 0;
+    stats = (statsRes.data ?? []) as Stat[];
+    enquiryCount = enquiries.count ?? 0;
+  }
+}
+
+const totalFor = (kind: string) =>
+  stats.filter((s) => s.kind === kind).reduce((sum, s) => sum + Number(s.clicks), 0);
+
+const phoneTotal = totalFor('phone');
+const whatsappTotal = totalFor('whatsapp');
+const smsTotal = totalFor('sms');
+const clickTotal = phoneTotal + whatsappTotal + smsTotal;
+
+// Pages ranked by all contact clicks, not by one channel, so a page that gets
+// calls and a page that gets WhatsApps are compared on the same footing.
+const byPage = new Map<string, { page: string; phone: number; whatsapp: number; sms: number; all: number }>();
+for (const s of stats) {
+  const entry = byPage.get(s.source_page) ?? { page: s.source_page, phone: 0, whatsapp: 0, sms: 0, all: 0 };
+  const n = Number(s.clicks);
+  if (s.kind === 'phone') entry.phone += n;
+  else if (s.kind === 'whatsapp') entry.whatsapp += n;
+  else if (s.kind === 'sms') entry.sms += n;
+  entry.all += n;
+  byPage.set(s.source_page, entry);
+}
+const topPages = [...byPage.values()].sort((a, b) => b.all - a.all).slice(0, 15);
+
+const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+const fmt = (iso: string) =>
+  new Date(iso).toLocaleString('en-GB', {
+    day: '2-digit', month: 'short', timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit',
+  });
+const KIND_LABEL: Record<string, string> = { phone: 'Phone', whatsapp: 'WhatsApp', sms: 'Text' };
+const href = (o: { days?: number; kind?: string | null; page?: number }) => {
+  const q = new URLSearchParams();
+  q.set('days', String(o.days ?? days));
+  const k = o.kind === undefined ? kindFilter : o.kind;
+  if (k) q.set('kind', k);
+  if (o.page && o.page > 1) q.set('page', String(o.page));
+  return `/admin/activity?${q}`;
+};
+---
+<AdminLayout title="Activity" admin={admin}>
+  <div class="admin-head">
+    <h1>Contact activity</h1>
+    <p class="admin-sub">Calls, WhatsApps and form submissions over the last {days === 1 ? 'day' : `${days} days`}</p>
+  </div>
+
+  <nav class="admin-tabs" aria-label="Time range">
+    {RANGES.map((r) => (
+      <a href={href({ days: r.days, page: 1 })} class:list={{ 'is-active': days === r.days }}>{r.label}</a>
+    ))}
+  </nav>
+
+  {loadError && <p class="form-error-summary" role="alert">{loadError}</p>}
+
+  {!loadError && (
+    <>
+      <ul class="admin-stats">
+        <li class="admin-stat"><span class="admin-stat-n">{phoneTotal}</span><span class="admin-stat-l">Phone clicks</span></li>
+        <li class="admin-stat"><span class="admin-stat-n">{whatsappTotal}</span><span class="admin-stat-l">WhatsApp clicks</span></li>
+        {smsTotal > 0 && <li class="admin-stat"><span class="admin-stat-n">{smsTotal}</span><span class="admin-stat-l">Text clicks</span></li>}
+        <li class="admin-stat is-primary"><span class="admin-stat-n">{enquiryCount}</span><span class="admin-stat-l">Form submissions</span></li>
+      </ul>
+      <p class="admin-note">
+        A click means someone tapped a call, WhatsApp or text button &mdash; it is intent to make contact,
+        not a confirmed conversation. Form submissions are counted from the same period and are listed in
+        full under <a href="/admin">Leads</a>.
+      </p>
+
+      {clickTotal === 0 && (
+        <p class="admin-empty">No contact clicks recorded in this period yet.</p>
+      )}
+
+      {topPages.length > 0 && (
+        <section class="admin-section">
+          <h2>Pages driving contact</h2>
+          <div class="admin-table-scroll" tabindex="0">
+            <table class="admin-table">
+              <thead>
+                <tr><th>Page</th><th class="admin-num">Phone</th><th class="admin-num">WhatsApp</th>{smsTotal > 0 && <th class="admin-num">Text</th>}<th class="admin-num">Total</th></tr>
+              </thead>
+              <tbody>
+                {topPages.map((p) => (
+                  <tr>
+                    <td>{p.page === '(unknown)' ? <span class="admin-dim">(unknown)</span> : <a href={p.page}>{p.page}</a>}</td>
+                    <td class="admin-num">{p.phone || <span class="admin-dim">&mdash;</span>}</td>
+                    <td class="admin-num">{p.whatsapp || <span class="admin-dim">&mdash;</span>}</td>
+                    {smsTotal > 0 && <td class="admin-num">{p.sms || <span class="admin-dim">&mdash;</span>}</td>}
+                    <td class="admin-num"><strong>{p.all}</strong></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      )}
+
+      {clickTotal > 0 && (
+        <section class="admin-section">
+          <h2>Every click</h2>
+          <nav class="admin-tabs admin-tabs-sub" aria-label="Filter by channel">
+            <a href={href({ kind: null, page: 1 })} class:list={{ 'is-active': !kindFilter }}>All <span>{clickTotal}</span></a>
+            <a href={href({ kind: 'phone', page: 1 })} class:list={{ 'is-active': kindFilter === 'phone' }}>Phone <span>{phoneTotal}</span></a>
+            <a href={href({ kind: 'whatsapp', page: 1 })} class:list={{ 'is-active': kindFilter === 'whatsapp' }}>WhatsApp <span>{whatsappTotal}</span></a>
+            {smsTotal > 0 && <a href={href({ kind: 'sms', page: 1 })} class:list={{ 'is-active': kindFilter === 'sms' }}>Text <span>{smsTotal}</span></a>}
+          </nav>
+
+          {rows.length === 0 ? (
+            <p class="admin-empty">No {kindFilter ? KIND_LABEL[kindFilter].toLowerCase() : ''} clicks in this period.</p>
+          ) : (
+            <div class="admin-table-scroll" tabindex="0">
+              <table class="admin-table">
+                <thead>
+                  <tr><th>When</th><th>Channel</th><th>Page</th><th>Button</th><th>Device</th><th>Source</th></tr>
+                </thead>
+                <tbody>
+                  {rows.map((r) => (
+                    <tr>
+                      <td class="admin-nowrap">{fmt(r.created_at)}</td>
+                      <td><span class:list={['admin-chan', `is-${r.kind}`]}>{KIND_LABEL[r.kind] ?? r.kind}</span></td>
+                      <td>{r.source_page ? <a href={r.source_page}>{r.source_page}</a> : <span class="admin-dim">&mdash;</span>}</td>
+                      <td>{r.label || <span class="admin-dim">&mdash;</span>}</td>
+                      <td class="admin-dim">{r.device || <span>&mdash;</span>}</td>
+                      <td>{r.gclid ? <span class="admin-chan is-ad">Google Ads</span> : <span class="admin-dim">&mdash;</span>}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+
+          {totalPages > 1 && (
+            <nav class="admin-pager" aria-label="Pagination">
+              {page > 1 && <a href={href({ page: page - 1 })}>&larr; Newer</a>}
+              <span>Page {page} of {totalPages}</span>
+              {page < totalPages && <a href={href({ page: page + 1 })}>Older &rarr;</a>}
+            </nav>
+          )}
+        </section>
+      )}
+    </>
+  )}
+</AdminLayout>

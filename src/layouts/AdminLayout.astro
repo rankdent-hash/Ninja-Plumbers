@@ -8,6 +8,7 @@ const { title, admin } = Astro.props as { title: string; admin?: { email: string
 const path = Astro.url.pathname;
 const sections = [
   { href: '/admin', label: 'Leads' },
+  { href: '/admin/activity', label: 'Activity' },
   { href: '/admin/reviews', label: 'Reviews' },
   { href: '/admin/blog', label: 'Blog' },
   { href: '/admin/settings', label: 'Settings' },

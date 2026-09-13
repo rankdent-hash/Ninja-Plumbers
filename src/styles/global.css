@@ -3111,3 +3111,29 @@ body.qr-open { overflow: hidden; }
   display: flex; align-items: center; justify-content: center;
 }
 .lp-hub-head-text { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+
+/* ---- Admin: contact activity ---------------------------------------- */
+.admin-stats {
+  list-style: none; margin: 0 0 14px; padding: 0;
+  display: grid; gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+.admin-stat {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+  padding: 16px 18px; display: flex; flex-direction: column; gap: 4px;
+}
+.admin-stat.is-primary { border-color: var(--navy); background: linear-gradient(160deg, var(--navy-deep) 0%, var(--navy) 100%); }
+.admin-stat.is-primary .admin-stat-n { color: var(--white); }
+.admin-stat.is-primary .admin-stat-l { color: rgba(255,255,255,0.78); }
+.admin-stat-n { font-size: 1.9rem; font-weight: 800; line-height: 1; color: var(--navy); font-variant-numeric: tabular-nums; }
+.admin-stat-l { font-size: 0.82rem; color: var(--muted); font-weight: 600; }
+.admin-note { font-size: 0.86rem; color: var(--muted); margin: 0 0 24px; max-width: 68ch; }
+.admin-section { margin-top: 34px; }
+.admin-section h2 { font-size: 1.08rem; margin: 0 0 12px; }
+.admin-tabs-sub { border-bottom: 0; padding-bottom: 0; margin-bottom: 12px; }
+.admin-num { text-align: right; font-variant-numeric: tabular-nums; }
+.admin-chan { font-size: 0.8rem; font-weight: 700; }
+.admin-chan.is-phone { color: var(--orange-ink); }
+.admin-chan.is-whatsapp { color: var(--green-ink); }
+.admin-chan.is-sms { color: var(--navy); }
+.admin-chan.is-ad { color: var(--navy); background: var(--bg); border: 1px solid var(--border); border-radius: 100px; padding: 2px 9px; font-size: 0.74rem; }

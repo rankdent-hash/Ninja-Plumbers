@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { createClient } from '@supabase/supabase-js';
 import site from '../../data/site.json';
+import { hashIp } from '../../lib/hashIp';
 
 export const prerender = false;
 
@@ -15,15 +16,6 @@ const json = (body: unknown, status: number) =>
     status,
     headers: { 'content-type': 'application/json' },
   });
-
-/** Salted hash, so we can rate-limit without retaining a raw IP address. */
-async function hashIp(ip: string, salt: string): Promise<string> {
-  const data = new TextEncoder().encode(`${ip}:${salt}`);
-  const digest = await crypto.subtle.digest('SHA-256', data);
-  return Array.from(new Uint8Array(digest))
-    .map((b) => b.toString(16).padStart(2, '0'))
-    .join('');
-}
 
 /** Outward code of a UK postcode: "SW6 3LQ" -> "SW6". Area: "SW6" -> "SW". */
 function splitPostcode(raw: string) {
