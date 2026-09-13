@@ -33,12 +33,14 @@ const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString();
 
 type ClickRow = {
   id: string; created_at: string; kind: string; source_page: string | null;
-  label: string | null; device: string | null; gclid: string | null;
+  zone: string | null; label: string | null; device: string | null; gclid: string | null;
 };
 type Source = { page: string; phone: number; whatsapp: number; sms: number; forms: number };
+type Zone = { zone: string; phone: number; whatsapp: number; sms: number; total: number };
 
 let rows: ClickRow[] = [];
 let sources: Source[] = [];
+let zones: Zone[] = [];
 let total = 0;
 let loadError = '';
 
@@ -47,15 +49,16 @@ if (!supabase) {
 } else {
   const listQuery = supabase
     .from('click_events')
-    .select('id, created_at, kind, source_page, label, device, gclid', { count: 'exact' })
+    .select('id, created_at, kind, source_page, zone, label, device, gclid', { count: 'exact' })
     .gte('created_at', since)
     .order('created_at', { ascending: false })
     .range(from, to);
   if (kindFilter) listQuery.eq('kind', kindFilter);
 
-  const [list, sourcesRes] = await Promise.all([
+  const [list, sourcesRes, zonesRes] = await Promise.all([
     listQuery,
     supabase.rpc('contact_sources', { since }),
+    supabase.rpc('click_zones', { since }),
   ]);
 
   if (list.error) {
@@ -69,6 +72,13 @@ if (!supabase) {
       whatsapp: Number(s.whatsapp),
       sms: Number(s.sms),
       forms: Number(s.forms),
+    }));
+    zones = ((zonesRes.data ?? []) as Zone[]).map((z) => ({
+      zone: z.zone,
+      phone: Number(z.phone),
+      whatsapp: Number(z.whatsapp),
+      sms: Number(z.sms),
+      total: Number(z.total),
     }));
   }
 }
@@ -171,6 +181,43 @@ const href = (o: { days?: number; kind?: string | null; page?: number }) => {
         </section>
       )}
 
+      {zones.length > 0 && (
+        <section class="admin-section">
+          <h2>Where on the page</h2>
+          <p class="admin-note">
+            Which part of the page the call or WhatsApp button was in. A zone earning almost nothing is
+            usually a button that is hard to see or in the wrong place &mdash; worth moving or restyling.
+            Sections not recognised by name fall back to their own heading.
+          </p>
+          <div class="admin-table-scroll" tabindex="0">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Area</th>
+                  <th class="admin-num">Phone</th>
+                  <th class="admin-num">WhatsApp</th>
+                  {smsTotal > 0 && <th class="admin-num">Text</th>}
+                  <th class="admin-num">Total</th>
+                  <th class="admin-num">Share</th>
+                </tr>
+              </thead>
+              <tbody>
+                {zones.map((z) => (
+                  <tr>
+                    <td>{z.zone}</td>
+                    <td class="admin-num">{z.phone || <span class="admin-dim">&mdash;</span>}</td>
+                    <td class="admin-num">{z.whatsapp || <span class="admin-dim">&mdash;</span>}</td>
+                    {smsTotal > 0 && <td class="admin-num">{z.sms || <span class="admin-dim">&mdash;</span>}</td>}
+                    <td class="admin-num"><strong>{z.total}</strong></td>
+                    <td class="admin-num admin-dim">{clickTotal ? Math.round((z.total / clickTotal) * 100) : 0}%</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      )}
+
       {clickTotal > 0 && (
         <section class="admin-section">
           <h2>Every click</h2>
@@ -187,7 +234,7 @@ const href = (o: { days?: number; kind?: string | null; page?: number }) => {
             <div class="admin-table-scroll" tabindex="0">
               <table class="admin-table">
                 <thead>
-                  <tr><th>When</th><th>Channel</th><th>Page</th><th>Button</th><th>Device</th><th>Source</th></tr>
+                  <tr><th>When</th><th>Channel</th><th>Page</th><th>Area</th><th>Button</th><th>Device</th><th>Source</th></tr>
                 </thead>
                 <tbody>
                   {rows.map((r) => (
@@ -195,7 +242,8 @@ const href = (o: { days?: number; kind?: string | null; page?: number }) => {
                       <td class="admin-nowrap">{fmt(r.created_at)}</td>
                       <td><span class:list={['admin-chan', `is-${r.kind}`]}>{KIND_LABEL[r.kind] ?? r.kind}</span></td>
                       <td>{r.source_page ? <a href={r.source_page}>{r.source_page}</a> : <span class="admin-dim">&mdash;</span>}</td>
-                      <td>{r.label || <span class="admin-dim">&mdash;</span>}</td>
+                      <td>{r.zone || <span class="admin-dim">&mdash;</span>}</td>
+                      <td class="admin-dim">{r.label || <span>&mdash;</span>}</td>
                       <td class="admin-dim">{r.device || <span>&mdash;</span>}</td>
                       <td>{r.gclid ? <span class="admin-chan is-ad">Google Ads</span> : <span class="admin-dim">&mdash;</span>}</td>
                     </tr>

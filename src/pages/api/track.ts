@@ -65,6 +65,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   const { error } = await supabase.from('click_events').insert({
     kind,
     source_page: str(body.page, 200),
+    zone: str(body.zone, 60),
     label: str(body.label, 120),
     device: deviceFrom(ua),
     gclid: str(body.gclid, 200),

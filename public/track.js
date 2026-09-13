@@ -34,34 +34,73 @@
     return null;
   }
 
-  /* Where on the page the link sits, so "header" and "sticky bar" can be told
-     apart in the admin panel without instrumenting each button by hand. */
-  function labelFor(a) {
-    var explicit = a.getAttribute('data-track-label');
-    if (explicit) return explicit.slice(0, 120);
+  /* Which class on an ancestor means which area of the page. Checked nearest
+     ancestor first, so the innermost match wins — a link inside the hero's
+     form reports "form", not "hero". */
+  var ZONE_CLASSES = [
+    ['mobile-cta',    'sticky bar'],
+    ['qr-overlay',    'phone QR popup'],
+    ['book-overlay',  'book popup'],
+    ['search-overlay','search panel'],
+    ['lp-header',     'header'],
+    ['top-strip',     'top strip'],
+    ['lp-form-card',  'form'],
+    ['lp-hero',       'hero'],
+    ['hero-split',    'hero'],
+    ['page-hero',     'hero'],
+    ['section-navy',  'closing CTA'],
+    ['trust',         'trust bar']
+  ];
+  /* Deliberately not listed: lp-cta. It is the hero's row of buttons, not a
+     closing band, and being the nearer ancestor it would shadow lp-hero and
+     report every landing-page hero click as a closing CTA. The real closing
+     band carries section-navy. */
 
-    var zone = '';
+  /* Where on the page the link sits, so the header CTA and the footer CTA can
+     be compared in the admin panel without instrumenting every button by hand.
+     Anything the rules above do not recognise falls back to the heading of the
+     nearest <section>, which stays descriptive as new sections are added. */
+  function zoneFor(a) {
+    var explicit = a.getAttribute('data-track-zone');
+    if (explicit) return explicit.slice(0, 60);
+
+    var section = null;
     var el = a;
     while (el && el !== document.body) {
       var tag = (el.tagName || '').toLowerCase();
       var cls = el.classList;
-      if (cls && cls.contains('mobile-cta')) { zone = 'sticky bar'; break; }
-      if (cls && cls.contains('lp-header')) { zone = 'landing header'; break; }
-      if (cls && cls.contains('book-popup')) { zone = 'book popup'; break; }
-      if (tag === 'header') { zone = 'header'; break; }
-      if (tag === 'footer') { zone = 'footer'; break; }
-      if (tag === 'form') { zone = 'form'; break; }
+
+      if (cls) {
+        for (var i = 0; i < ZONE_CLASSES.length; i++) {
+          if (cls.contains(ZONE_CLASSES[i][0])) return ZONE_CLASSES[i][1];
+        }
+      }
+      if (tag === 'header') return 'header';
+      if (tag === 'footer') return 'footer';
+      if (tag === 'form') return 'form';
+      if (tag === 'section' && !section) section = el;
+
       el = el.parentElement;
     }
 
-    var text = (a.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 80);
-    if (zone && text) return zone + ' · ' + text;
-    return (zone || text || 'link').slice(0, 120);
+    if (section) {
+      var h = section.querySelector('h1, h2');
+      var heading = h ? (h.textContent || '').replace(/\s+/g, ' ').trim() : '';
+      if (heading) return heading.slice(0, 60);
+    }
+    return 'other';
   }
 
-  function send(kind, label) {
+  function labelFor(a) {
+    var explicit = a.getAttribute('data-track-label');
+    if (explicit) return explicit.slice(0, 120);
+    var text = (a.textContent || '').replace(/\s+/g, ' ').trim();
+    return (text || a.getAttribute('href') || 'link').slice(0, 120);
+  }
+
+  function send(kind, zone, label) {
     var now = Date.now();
-    var key = kind + '|' + label;
+    var key = kind + '|' + zone + '|' + label;
     /* A double-tap, or a click that bubbles from an icon inside the link, is
        one intent to call — not two. */
     if (key === lastKey && now - lastAt < REPEAT_WINDOW_MS) return;
@@ -76,6 +115,7 @@
     var payload = JSON.stringify({
       kind: kind,
       page: location.pathname,
+      zone: zone,
       label: label,
       gclid: gclid,
       referrer: document.referrer || ''
@@ -93,7 +133,7 @@
       if (!a) return;
       var kind = kindOf(a.getAttribute('href'));
       if (!kind) return;
-      send(kind, labelFor(a));
+      send(kind, zoneFor(a), labelFor(a));
     },
     true
   );
