@@ -7,6 +7,9 @@ import { dampPages } from '../data/damp';
 import { landings } from '../data/landing';
 import { REAL_RATING, REAL_TRUST_EXTRA, PREMIUM_ART_VALUES, PREMIUM_ICON_VALUES, isPremiumArt, isPremiumIcon } from './landingPages';
 import { SERVICE_ICON_VALUES, isServiceIcon } from './servicePages';
+import { getSetting } from './adminSettings';
+import { generateAndStoreHeroImage } from './blogImages';
+import { SITE_ORIGIN } from './oauth';
 
 // Tools exposed to the remote MCP server (api/mcp.ts) — what an external AI
 // chat client (Claude, ChatGPT, etc.) can actually do to this site's blog.
@@ -20,6 +23,13 @@ import { SERVICE_ICON_VALUES, isServiceIcon } from './servicePages';
 // same rule the existing AI-generation flow already follows (see
 // api/admin/blog/generate.ts), just extended to a caller outside the panel.
 const MAX_MCP_POSTS_PER_HOUR = 20;
+
+// Hero images cost real money per call (OpenAI image generation), so they
+// get their own cap. This counts any post touched in the last hour that now
+// has a hero image, which under-counts repeated regenerations of the same
+// post rather than over-counts — good enough for a single-admin site whose
+// only caller already holds an admin-issued token.
+const MAX_MCP_IMAGES_PER_HOUR = 15;
 
 // Landing pages (the /lp/* paid-search pages) follow the identical rule:
 // MCP creates and edits DRAFT rows in a Supabase table kept separate from the
@@ -135,7 +145,7 @@ export const TOOLS = [
   {
     name: 'create_blog_post',
     description:
-      'Create a new blog post as a DRAFT. It is never published by this tool — a human has to open it in /admin/blog and click Publish before it is visible on the live site. body is HTML; only <p>, <h2>, <ul>/<ol>/<li>, <a>, <strong>/<em> survive — everything else is stripped on save.',
+      'Create a new blog post as a DRAFT. Not published by this tool — use generate_blog_post_image to add a hero image, then publish_blog_post to put it live, or leave it as a draft for a human to review in /admin/blog. body is HTML; only <p>, <h2>, <ul>/<ol>/<li>, <a>, <strong>/<em> survive — everything else is stripped on save.',
     inputSchema: {
       type: 'object',
       required: ['title', 'excerpt', 'body'],
@@ -170,6 +180,35 @@ export const TOOLS = [
         related_services: { type: 'array', items: { type: 'string' } },
         related_appliances: { type: 'array', items: { type: 'string' } },
         related_damp: { type: 'array', items: { type: 'string' } },
+      },
+    },
+  },
+  {
+    name: 'generate_blog_post_image',
+    description:
+      'Generate a hero image for a blog post from its title and excerpt (or a custom prompt), and attach it to the post. The file is stored under the post\'s slug, so its name and URL carry the post\'s actual title/keywords rather than an opaque id. Refuses to run on a post that is already published — generate the image before calling publish_blog_post. Requires an OpenAI API key to already be set in /admin/settings; costs a real API call, so it is rate-limited.',
+    inputSchema: {
+      type: 'object',
+      required: ['id'],
+      properties: {
+        id: { type: 'string', description: "The post's id, from create_blog_post or list_blog_posts." },
+        prompt: {
+          type: 'string',
+          description:
+            'Optional custom image prompt. Defaults to a realistic editorial-photo prompt built from the post\'s title and excerpt, with no text or logos.',
+        },
+      },
+    },
+  },
+  {
+    name: 'publish_blog_post',
+    description:
+      'Publish a blog post immediately — it goes live on the public site with no human review step. Works on any draft post regardless of how it was created; a post that is already published is left unchanged. There is no unpublish or delete via MCP — use /admin/blog for that.',
+    inputSchema: {
+      type: 'object',
+      required: ['id'],
+      properties: {
+        id: { type: 'string' },
       },
     },
   },
@@ -466,6 +505,10 @@ export async function callTool(supabase: SupabaseClient, name: string, args: Rec
       return createBlogPost(supabase, args);
     case 'update_blog_post':
       return updateBlogPost(supabase, args);
+    case 'generate_blog_post_image':
+      return generateBlogPostImage(supabase, args);
+    case 'publish_blog_post':
+      return publishBlogPost(supabase, args);
     case 'list_landing_pages':
       return listLandingPages(supabase, args);
     case 'get_landing_page':
@@ -602,6 +645,63 @@ async function updateBlogPost(supabase: SupabaseClient, args: Record<string, unk
   const { error } = await supabase.from('blog_posts').update(update).eq('id', id);
   if (error) return errorText('Could not save the changes.');
   return text(`Saved. Still a draft — review and publish at /admin/blog/${id}`);
+}
+
+async function generateBlogPostImage(supabase: SupabaseClient, args: Record<string, unknown>) {
+  const id = str(args.id, 100);
+  if (!id) return errorText('id is required.');
+
+  const { data: post, error: loadError } = await supabase
+    .from('blog_posts')
+    .select('id, slug, title, excerpt, status')
+    .eq('id', id)
+    .maybeSingle();
+  if (loadError) return errorText('Could not load that post.');
+  if (!post) return errorText('No post found with that id.');
+  if (post.status === 'published') {
+    return errorText('This post is already published. Generate its image before publishing it, or update the image by hand in /admin/blog.');
+  }
+
+  const apiKey = await getSetting(supabase, 'openai_api_key');
+  if (!apiKey) return errorText('No OpenAI API key set — add one in /admin/settings first.');
+
+  const since = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+  const { count } = await supabase
+    .from('blog_posts')
+    .select('id', { count: 'exact', head: true })
+    .not('hero_image_url', 'is', null)
+    .gte('updated_at', since);
+  if ((count ?? 0) >= MAX_MCP_IMAGES_PER_HOUR) {
+    return errorText(`Rate limit: at most ${MAX_MCP_IMAGES_PER_HOUR} image generations per hour via MCP. Try again later.`);
+  }
+
+  const prompt = str(args.prompt, 1000);
+  const result = await generateAndStoreHeroImage(supabase, apiKey, post, prompt);
+  if (!result.ok) return errorText(result.message);
+  return text(`Hero image generated and attached.\nurl: ${result.url}`);
+}
+
+async function publishBlogPost(supabase: SupabaseClient, args: Record<string, unknown>) {
+  const id = str(args.id, 100);
+  if (!id) return errorText('id is required.');
+
+  const { data: post, error: loadError } = await supabase
+    .from('blog_posts')
+    .select('id, slug, status, published_at')
+    .eq('id', id)
+    .maybeSingle();
+  if (loadError) return errorText('Could not load that post.');
+  if (!post) return errorText('No post found with that id.');
+  if (post.status === 'published') {
+    return text(`Already published: ${SITE_ORIGIN}/blog/${post.slug}`);
+  }
+
+  const update: Record<string, unknown> = { status: 'published', updated_at: new Date().toISOString() };
+  if (!post.published_at) update.published_at = new Date().toISOString();
+
+  const { error } = await supabase.from('blog_posts').update(update).eq('id', post.id);
+  if (error) return errorText('Could not publish that post.');
+  return text(`Published. Now live at ${SITE_ORIGIN}/blog/${post.slug}`);
 }
 
 /** Validates the hero proof-tile array: {label, note, icon}. Pushes onto

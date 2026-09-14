@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { getSupabaseAdmin } from '../../../../lib/supabaseAdmin';
 import { sanitizeBlogBody } from '../../../../lib/sanitizeBlogHtml';
+import { removeHeroImage } from '../../../../lib/blogImages';
 
 export const prerender = false;
 
@@ -62,7 +63,10 @@ export const DELETE: APIRoute = async ({ params }) => {
   const id = params.id;
   if (!id) return json({ ok: false, message: 'Missing post id.' }, 400);
 
-  await supabase.storage.from('blog-images').remove([`${id}.png`]);
+  const { data: post } = await supabase.from('blog_posts').select('slug').eq('id', id).maybeSingle();
+  if (post?.slug) await removeHeroImage(supabase, { id, slug: post.slug });
+  else await supabase.storage.from('blog-images').remove([`${id}.png`]);
+
   const { error } = await supabase.from('blog_posts').delete().eq('id', id);
   if (error) return json({ ok: false, message: 'Could not delete that.' }, 500);
 

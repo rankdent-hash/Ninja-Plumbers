@@ -77,10 +77,17 @@ const fields = [
       <h2>MCP access</h2>
       <p class="admin-note">
         Lets an AI chat client (Claude, ChatGPT, or anything that speaks MCP) create and edit blog
-        posts, landing pages and service pages through a conversation. Everything it writes is
-        always saved as a draft — nothing goes live until you review it in <a href="/admin/blog">/admin/blog</a>,
-        <a href="/admin/landing-pages">/admin/landing-pages</a> or <a href="/admin/service-pages">/admin/service-pages</a>
-        and click Publish, and it can never touch anything already published.
+        posts, landing pages and service pages through a conversation, generate a hero image for a
+        blog post, and publish a finished blog post straight to the live site.
+      </p>
+      <p class="admin-note">
+        Landing pages and service pages are always saved as a draft — nothing there goes live until
+        you review it in <a href="/admin/landing-pages">/admin/landing-pages</a> or
+        <a href="/admin/service-pages">/admin/service-pages</a> and click Publish, and MCP can never
+        touch one already published. Blog posts are different: MCP can publish a post it just wrote
+        with no review step, so a chat client with an MCP token can put a post live on its own —
+        review what it publishes the same way you'd review any other author with access to
+        <a href="/admin/blog">/admin/blog</a>.
       </p>
       <p class="admin-note">
         Most chat clients — including Claude.ai's own connector setup — can sign in on their own

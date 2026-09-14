@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { getSupabaseAdmin } from '../../../../lib/supabaseAdmin';
 import { getSetting } from '../../../../lib/adminSettings';
-import { generateHeroImage } from '../../../../lib/aiProviders';
+import { generateAndStoreHeroImage } from '../../../../lib/blogImages';
 
 export const prerender = false;
 
@@ -25,33 +25,12 @@ export const POST: APIRoute = async ({ request }) => {
   const apiKey = await getSetting(supabase, 'openai_api_key');
   if (!apiKey) return json({ ok: false, message: 'No OpenAI API key set — add one in Settings first.' }, 400);
 
-  let prompt = String(body.prompt || '').trim();
-  if (!prompt) {
-    const { data: post } = await supabase.from('blog_posts').select('title, excerpt').eq('id', id).maybeSingle();
-    if (!post) return json({ ok: false, message: 'Post not found.' }, 404);
-    prompt = `A clean, realistic editorial photo illustrating a UK home plumbing/heating blog post titled "${post.title}". ${post.excerpt} No text or logos in the image.`;
-  }
+  const { data: post } = await supabase.from('blog_posts').select('id, slug, title, excerpt').eq('id', id).maybeSingle();
+  if (!post) return json({ ok: false, message: 'Post not found.' }, 404);
 
-  let image;
-  try {
-    image = await generateHeroImage(apiKey, prompt);
-  } catch (err) {
-    return json({ ok: false, message: `Image generation failed: ${(err as Error).message}` }, 502);
-  }
+  const prompt = String(body.prompt || '').trim() || undefined;
+  const result = await generateAndStoreHeroImage(supabase, apiKey, post, prompt);
+  if (!result.ok) return json({ ok: false, message: result.message }, result.message.startsWith('Image generation failed') ? 502 : 500);
 
-  const path = `${id}.png`;
-  const bytes = Buffer.from(image.base64, 'base64');
-  const { error: uploadError } = await supabase.storage
-    .from('blog-images')
-    .upload(path, bytes, { contentType: image.mimeType, upsert: true });
-  if (uploadError) return json({ ok: false, message: 'Image generated but could not be stored.' }, 500);
-
-  const { data: publicUrl } = supabase.storage.from('blog-images').getPublicUrl(path);
-  const { error: updateError } = await supabase
-    .from('blog_posts')
-    .update({ hero_image_url: publicUrl.publicUrl, updated_at: new Date().toISOString() })
-    .eq('id', id);
-  if (updateError) return json({ ok: false, message: 'Image stored but could not be linked to the post.' }, 500);
-
-  return json({ ok: true, url: publicUrl.publicUrl }, 200);
+  return json({ ok: true, url: result.url }, 200);
 };
