@@ -216,9 +216,14 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
   const supabase = createClient(url, key, { auth: { persistSession: false } });
 
+  // Date-salted, matching /api/track and /api/view. It still rate-limits an
+  // hour's submissions, but the stored hash stops being a stable identifier
+  // after midnight — so this row's name and phone number cannot be joined to
+  // a visitor's click history from other days.
+  const today = new Date().toISOString().slice(0, 10);
   const ipHash = await hashIp(
     clientAddress || request.headers.get('x-forwarded-for') || 'unknown',
-    import.meta.env.IP_SALT || 'ninja-fallback-salt'
+    `${import.meta.env.IP_SALT || 'ninja-fallback-salt'}:${today}`
   );
 
   const since = new Date(Date.now() - 60 * 60 * 1000).toISOString();

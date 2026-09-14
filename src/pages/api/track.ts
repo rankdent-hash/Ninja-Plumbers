@@ -48,9 +48,14 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
   const ua = (request.headers.get('user-agent') || '').slice(0, 400);
 
+  // Date is part of the salt, same rule as /api/view: the hash is stable for
+  // an hour's rate limiting but not across days, so a click history cannot be
+  // stitched together over time — nor, since enquiries hash the same way,
+  // tied back to a named customer beyond the day they enquired.
+  const today = new Date().toISOString().slice(0, 10);
   const ipHash = await hashIp(
     clientAddress || request.headers.get('x-forwarded-for') || 'unknown',
-    import.meta.env.IP_SALT || 'tamesis-fallback-salt'
+    `${import.meta.env.IP_SALT || 'tamesis-fallback-salt'}:${today}`
   );
 
   const since = new Date(Date.now() - 60 * 60 * 1000).toISOString();

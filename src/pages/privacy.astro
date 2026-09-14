@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
 
-const updated = '4 September 2026';
+const updated = '14 September 2026';
 ---
 <Base
   title="Privacy Policy | Ninja Plumbers"
@@ -30,9 +30,10 @@ const updated = '4 September 2026';
     <h2>Information we collect</h2>
 
     <h3>When you visit this website</h3>
-    <p>This website does not set cookies, does not use analytics or advertising trackers, and does not store anything in your browser. See our <a href="/cookies">Cookie Policy</a> for detail.</p>
+    <p>We count how the site is used — pages viewed, and taps on our phone, WhatsApp and text-message links — so we can tell which pages bring in work. This is done in our own database, without cookies and without storing anything in your browser. Those records carry no name, no email and no phone number, only a scrambled one-way code derived from your IP address that is re-scrambled every night. We keep them for 14 months.</p>
+    <p>Google&rsquo;s advertising tag also loads on every page and sets Google&rsquo;s own advertising cookies, so we can see which adverts lead to enquiries. Our <a href="/cookies">Cookie Policy</a> sets out exactly what that is, what it lasts, and how to refuse it.</p>
     <p>Our hosting provider records standard technical information in its server logs when a page is requested, including your IP address, the page requested, the time of the request and your browser type. This happens automatically for every website and is used to run and secure the service.</p>
-    <p>Everything else this site needs is served from this domain. Your browser contacts no third party to display these pages, so no other company learns anything about your visit.</p>
+    <p>Aside from Google&rsquo;s advertising tag, the pages themselves are served from this domain. The one other third party your browser contacts is the postcode lookup on the enquiry form, described below.</p>
 
     <h3>When you contact us</h3>
     <p>If you call, message us on WhatsApp, email us, or submit the enquiry form on this site, we collect what you give us. For a plumbing enquiry that normally means:</p>
@@ -43,6 +44,7 @@ const updated = '4 September 2026';
       <li>a description of the problem, and any photographs you choose to send us</li>
     </ul>
     <p>We only ask for what we need to quote for the work and get an engineer to the right place. You do not have to give us an email address to book a job.</p>
+    <p>As you type the postcode into the enquiry form, your browser checks it against <a href="https://postcodes.io" rel="noopener">postcodes.io</a>, a free public postcode lookup, so we can confirm the area and tell you straight away whether we cover it. That means the postcode and your IP address reach that service. We check it a second time on our own servers when you submit.</p>
 
     <h2>Why we use it, and our lawful basis</h2>
     <table class="legal-table">
@@ -53,15 +55,20 @@ const updated = '4 September 2026';
         <tr><td>Keep records of work done, invoices and payments</td><td>Legal obligation (accounting and tax) and our legitimate interest in defending claims</td></tr>
         <tr><td>Keep gas safety records where the work requires it</td><td>Legal obligation</td></tr>
         <tr><td>Run and secure this website</td><td>Our legitimate interest in keeping the site available and free from abuse</td></tr>
+        <tr><td>Count which pages and adverts lead to enquiries, and which parts of London those enquiries come from, so we know where to advertise and which areas to write about</td><td>Our legitimate interest in running the business efficiently. You can object to this — see Your rights below</td></tr>
       </tbody>
     </table>
-    <p>We do not use your information for marketing unless you have asked us to, and we do not sell it to anyone.</p>
+    <p>We do not send you marketing unless you have asked us to, and we do not sell your information to anyone.</p>
+    <p>One thing is worth spelling out, because it is a use of your details beyond quoting for your job: we count how many enquiries come from each postcode district and borough, so we can see which parts of London we hear from and where it is worth advertising. That is a count of areas, not a profile of you. It is looked at as totals per area, never as a map of individual customers, and it is never used to target you with anything.</p>
 
     <h2>Who we share it with</h2>
     <p>We share personal information only where we need to:</p>
     <ul>
       <li><strong>Our engineers</strong> — the person attending your job needs your address, phone number and a description of the work.</li>
-      <li><strong>Our hosting and IT providers</strong> — the suppliers who run this website and our systems process data on our behalf under contract.</li>
+      <li><strong>Our hosting and IT providers</strong> — the suppliers who run this website and our systems process data on our behalf under contract. This includes the company that hosts the site, the company that stores our enquiry records, and Resend, which delivers the notification email that tells us you have been in touch.</li>
+      <li><strong>Our customer management system</strong> — enquiries submitted through the website are passed to GoHighLevel, the system the booking office works from, so your job reaches the person who will arrange it. It receives your name, phone number, email if you gave one, postcode and address, and what you told us about the job.</li>
+      <li><strong>Postcodes.io</strong> — the postcode you type into the enquiry form is checked against this free public postcode lookup, as described above. It receives the postcode, not your name or contact details.</li>
+      <li><strong>Google</strong> — through its advertising tag, for measuring which adverts lead to enquiries. It does not receive your name, phone number or address.</li>
       <li><strong>Gas Safe Register</strong> — where a job requires gas work to be notified or certificated.</li>
       <li><strong>Our accountants, and HMRC</strong> — for invoicing, accounts and tax.</li>
       <li><strong>Insurers or legal advisers</strong> — if there is a claim or dispute.</li>
@@ -70,13 +77,14 @@ const updated = '4 September 2026';
 
     <h2>Information sent outside the UK</h2>
     <p>Our website hosting provider is based in the United States and may process the technical server-log information described above outside the UK. Where that happens, the transfer is covered by the safeguards that provider has in place, such as the UK International Data Transfer Addendum or an adequacy decision.</p>
-    <p>Enquiries you submit through the form are stored on servers in London, so the personal details you give us &mdash; your name, phone number and address &mdash; stay in the UK.</p>
+    <p>The database holding your enquiry is in London, so the record itself stays in the UK. Two of the suppliers who handle it on our behalf are US companies and may process it outside the UK: GoHighLevel, the booking system your enquiry is passed to, and Resend, which delivers the email alerting us to it. Those transfers rely on the safeguards each provider has in place, such as the UK International Data Transfer Addendum or an adequacy decision.</p>
 
     <h2>How long we keep it</h2>
     <ul>
       <li><strong>Enquiries that do not become jobs</strong> — up to 12 months, so we can pick the conversation back up if you come back to us.</li>
       <li><strong>Records of completed work, invoices and payments</strong> — six years from the end of the relevant accounting period, which is what tax law and the usual limitation period require.</li>
       <li><strong>Gas safety records</strong> — for as long as the relevant regulations require.</li>
+      <li><strong>Website usage records</strong> — the page views and contact clicks described above — 14 months, then deleted automatically.</li>
       <li><strong>Website server logs</strong> — for the short retention period set by our hosting provider.</li>
     </ul>
 

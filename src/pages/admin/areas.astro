@@ -1,0 +1,202 @@
+---
+// Where enquiries come from, by the postcode the customer typed into the form.
+//
+// This is deliberately NOT a map and deliberately NOT "where our visitors
+// are". It counts form submissions per postcode district, because that is the
+// only location on this site that a customer actually gave us. Phone, WhatsApp
+// and SMS taps carry no location at all — /api/track records which link was
+// tapped and on which page, nothing about where the person was — so they are
+// absent here by necessity, and the page says so rather than implying a
+// complete picture.
+//
+// Aggregate only. enquiries rows carry a name, phone number, email and full
+// postcode; nothing here may render one. Counts per district, never a point
+// per customer.
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import { getSupabaseAdmin } from '../../lib/supabaseAdmin';
+import { areas } from '../../data/areas';
+import { postcodes } from '../../data/postcodes';
+
+export const prerender = false;
+
+const admin = Astro.locals.admin!;
+const supabase = getSupabaseAdmin();
+
+// All time is the default here, unlike /admin/activity: this report answers a
+// slow question (which parts of London send us work) and at current volumes a
+// 30-day window would usually be empty.
+const RANGES = [
+  { days: 0, label: 'All time' },
+  { days: 365, label: '12 months' },
+  { days: 90, label: '90 days' },
+  { days: 30, label: '30 days' },
+] as const;
+
+const params = Astro.url.searchParams;
+const requestedDays = parseInt(params.get('days') || '0', 10);
+const days = RANGES.some((r) => r.days === requestedDays) ? requestedDays : 0;
+const since = days === 0
+  ? new Date('2000-01-01T00:00:00Z').toISOString()
+  : new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString();
+
+const href = (d: number) => (d === 0 ? '/admin/areas' : `/admin/areas?days=${d}`);
+
+type AreaRow = {
+  district: string;
+  borough: string | null;
+  total: number;
+  booked: number;
+  in_service_area: boolean;
+  borough_unknown: number;
+};
+
+let rows: AreaRow[] = [];
+let loadError = '';
+if (!supabase) {
+  loadError = 'The admin panel is not connected to Supabase yet.';
+} else {
+  const { data, error } = await supabase.rpc('enquiry_areas', { since, until: undefined });
+  if (error) loadError = 'Could not load enquiry areas from the database.';
+  else rows = (data ?? []) as AreaRow[];
+}
+
+// Which page, if any, already covers this district. postcodes.ts is the
+// authoritative district -> area hand-off; areas.ts is checked as well because
+// an area lists the districts it covers and the two are maintained separately.
+const districtPage = new Map(postcodes.map((p) => [p.district.toUpperCase(), p]));
+function coverage(district: string) {
+  const pc = districtPage.get(district.toUpperCase());
+  const areaSlug = pc?.areaSlug ?? null;
+  const byArea = areas.find((a) => a.postcodes.some((p) => p.toUpperCase() === district.toUpperCase()));
+  const area = (areaSlug ? areas.find((a) => a.slug === areaSlug) : undefined) ?? byArea;
+  return { area, districtPage: pc };
+}
+
+const totalEnquiries = rows.reduce((sum, r) => sum + Number(r.total), 0);
+const totalBooked = rows.reduce((sum, r) => sum + Number(r.booked), 0);
+const uncovered = rows.filter((r) => !coverage(r.district).area);
+const unknownBoroughs = rows.reduce((sum, r) => sum + Number(r.borough_unknown), 0);
+const pct = (n: number) => (totalEnquiries ? Math.round((n / totalEnquiries) * 100) : 0);
+---
+<AdminLayout title="Areas" admin={admin}>
+  <div class="admin-head">
+    <h1>Areas</h1>
+    <p class="admin-sub">
+      {totalEnquiries} enquiries across {rows.length} postcode {rows.length === 1 ? 'district' : 'districts'}
+      {totalBooked > 0 && <> &middot; {totalBooked} booked</>}
+    </p>
+  </div>
+
+  <nav class="admin-tabs" aria-label="Date range">
+    {RANGES.map((r) => (
+      <a href={href(r.days)} class:list={{ 'is-active': days === r.days }}>{r.label}</a>
+    ))}
+  </nav>
+
+  <p class="admin-note">
+    Where the people who filled in the enquiry form told us the job was, taken from the postcode
+    they gave. <strong>Form submissions only.</strong> Taps on the phone, WhatsApp and text links
+    are not here and cannot be &mdash; the site records that a call button was tapped, never where
+    the person tapping it was. For most businesses phone is the bigger channel, so read this as
+    one channel&rsquo;s worth of evidence, not the whole picture.
+  </p>
+
+  {loadError && <p class="form-error-summary" role="alert">{loadError}</p>}
+
+  {!loadError && rows.length === 0 && (
+    <p class="admin-empty">No enquiries with a postcode in this period.</p>
+  )}
+
+  {!loadError && rows.length > 0 && totalEnquiries < 25 && (
+    <p class="admin-note">
+      <strong>Too few to act on yet.</strong> {totalEnquiries} enquiries is not a pattern &mdash; one
+      more lead would change the order of this table. Treat it as a record of what has come in so
+      far, and wait for the numbers to build before moving budget on the strength of it.
+    </p>
+  )}
+
+  {!loadError && rows.length > 0 && (
+    <div class="admin-table-scroll" tabindex="0">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>District</th>
+            <th>Borough</th>
+            <th class="admin-num">Enquiries</th>
+            <th class="admin-num">Share</th>
+            <th class="admin-num">Booked</th>
+            <th>Page covering it</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => {
+            const { area, districtPage: pc } = coverage(r.district);
+            return (
+              <tr>
+                <td>
+                  {pc
+                    ? <a href={`/postcodes/${pc.slug}`} target="_blank" rel="noopener">{r.district}</a>
+                    : r.district}
+                </td>
+                <td>
+                  {r.borough ?? <span class="admin-dim">not found</span>}
+                  {!r.in_service_area && <> <span class="admin-urgency is-draft">outside London</span></>}
+                </td>
+                <td class="admin-num">{r.total}</td>
+                <td class="admin-num">{pct(Number(r.total))}%</td>
+                <td class="admin-num">{r.booked || <span class="admin-dim">&mdash;</span>}</td>
+                <td>
+                  {area
+                    ? <a href={`/areas/${area.slug}`} target="_blank" rel="noopener">{area.name}</a>
+                    : <span class="admin-urgency is-live">No area page</span>}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  )}
+
+  {!loadError && uncovered.length > 0 && (
+    <section class="admin-section">
+      <h2>Worth a page</h2>
+      <p class="admin-note">
+        {uncovered.length === 1 ? 'This district has' : 'These districts have'} sent enquiries and
+        {uncovered.length === 1 ? ' has' : ' have'} no neighbourhood page on the site. A page
+        naming the place is what lets it rank for &ldquo;plumber &lt;place&gt;&rdquo; &mdash; the
+        search people actually make. Add one in <code>src/data/areas.ts</code>, or ask the MCP
+        connector to draft it.
+      </p>
+      <ul class="combo-links">
+        {uncovered.map((r) => (
+          <li>
+            <strong>{r.district}</strong>
+            {r.borough && <> &mdash; {r.borough}</>}
+            {' '}({r.total} {Number(r.total) === 1 ? 'enquiry' : 'enquiries'})
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  {!loadError && unknownBoroughs > 0 && (
+    <p class="admin-note">
+      {unknownBoroughs} {unknownBoroughs === 1 ? 'enquiry has' : 'enquiries have'} no borough
+      recorded. That means the postcode lookup did not answer when the form was submitted, not
+      that the postcode has no borough &mdash; the district column is still reliable.
+    </p>
+  )}
+
+  <section class="admin-section">
+    <h2>A map?</h2>
+    <p class="admin-note">
+      Not yet, and deliberately. A map needs a point per conversion, and three of the four contact
+      types have no location to plot. The one automatic source &mdash; working a location out from
+      the visitor&rsquo;s IP address &mdash; puts roughly three quarters of all London visitors on a
+      single point near Charing Cross, so it would draw something that looks precise and is not.
+      Once there are around fifty located enquiries here, this table becomes a map worth drawing,
+      plotted at district level. Until then the table says everything the map would.
+    </p>
+  </section>
+</AdminLayout>
