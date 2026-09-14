@@ -77,9 +77,15 @@ const fields = [
       <h2>MCP access</h2>
       <p class="admin-note">
         Lets an AI chat client (Claude, ChatGPT, or anything that speaks MCP) create and edit blog
-        posts through a conversation. It can only ever save posts as drafts — nothing it writes or
-        edits goes live until you open it in <a href="/admin/blog">/admin/blog</a> and click Publish,
-        and it cannot touch a post that's already published.
+        posts, landing pages and service pages through a conversation. Everything it writes is
+        always saved as a draft — nothing goes live until you review it in <a href="/admin/blog">/admin/blog</a>,
+        <a href="/admin/landing-pages">/admin/landing-pages</a> or <a href="/admin/service-pages">/admin/service-pages</a>
+        and click Publish, and it can never touch anything already published.
+      </p>
+      <p class="admin-note">
+        Most chat clients — including Claude.ai's own connector setup — can sign in on their own
+        with the server URL below: no token to copy. If a client instead asks for an API key or
+        bearer token, create one below and paste that in instead.
       </p>
 
       <div class="field field-wide" style="margin-bottom:18px;">

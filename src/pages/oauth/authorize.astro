@@ -1,0 +1,128 @@
+---
+// OAuth authorization endpoint (the human-facing half). Gates on the same
+// admin session /admin uses — this is not a separate account system, it's
+// the same person who already manages the site deciding whether to let a
+// chat client connect. Approving redirects back to the client with a code;
+// /oauth/token (server-to-server) exchanges that code for a real
+// mcp_tokens row, the same kind /admin/settings creates manually.
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import { getSupabaseAdmin } from '../../lib/supabaseAdmin';
+import { verifySession, SESSION_COOKIE } from '../../lib/adminAuth';
+
+export const prerender = false;
+
+const params = Astro.url.searchParams;
+const responseType = params.get('response_type');
+const clientId = params.get('client_id');
+const redirectUri = params.get('redirect_uri');
+const codeChallenge = params.get('code_challenge');
+const codeChallengeMethod = params.get('code_challenge_method');
+const state = params.get('state') ?? '';
+
+let fatalError = '';
+let client: { id: string; client_name: string | null; redirect_uris: string[] } | null = null;
+
+const supabase = getSupabaseAdmin();
+if (!supabase) {
+  fatalError = 'The admin panel is not connected to Supabase yet.';
+} else if (!clientId) {
+  fatalError = 'Missing client_id.';
+} else {
+  const { data } = await supabase.from('oauth_clients').select('id, client_name, redirect_uris').eq('id', clientId).maybeSingle();
+  if (!data) fatalError = 'Unknown client_id — this connector needs to register again.';
+  else if (!redirectUri || !(data.redirect_uris as string[]).includes(redirectUri)) {
+    fatalError = 'redirect_uri does not match what this client registered.';
+  } else {
+    client = data as typeof client;
+  }
+}
+
+// From here on redirect_uri is a verified, registered URI for this client —
+// safe to send error responses there instead of showing a dead-end page.
+if (!fatalError && client && redirectUri) {
+  if (responseType !== 'code') {
+    return Astro.redirect(`${redirectUri}?error=unsupported_response_type&state=${encodeURIComponent(state)}`);
+  }
+  if (!codeChallenge || codeChallengeMethod !== 'S256') {
+    return Astro.redirect(`${redirectUri}?error=invalid_request&error_description=${encodeURIComponent('PKCE (S256) is required.')}&state=${encodeURIComponent(state)}`);
+  }
+}
+
+if (!fatalError && client) {
+  const secret = import.meta.env.ADMIN_SESSION_SECRET;
+  const admin = secret ? verifySession(Astro.cookies.get(SESSION_COOKIE)?.value, secret) : null;
+  if (!admin) {
+    const next = encodeURIComponent(Astro.url.pathname + Astro.url.search);
+    return Astro.redirect(`/admin/login?next=${next}`);
+  }
+}
+---
+<AdminLayout title="Authorize connector">
+  <div class="admin-login">
+    <div class="admin-login-card">
+      <h1>Tamesis Admin</h1>
+      {fatalError ? (
+        <p class="form-error-summary" role="alert">{fatalError}</p>
+      ) : (
+        <>
+          <p class="admin-login-sub">
+            <strong>{client?.client_name || 'An application'}</strong> wants to connect to the
+            Tamesis Plumbers MCP server — it will be able to draft blog posts, landing pages and
+            service pages as drafts only. Nothing it writes goes live without you reviewing and
+            publishing it in /admin.
+          </p>
+          <p class="form-error-summary" id="authorize-error" role="alert" hidden></p>
+          <div class="cta-row">
+            <button type="button" class="btn btn-navy" id="authorize-approve">Allow</button>
+            <button type="button" class="btn btn-ghost" id="authorize-deny">Deny</button>
+          </div>
+        </>
+      )}
+    </div>
+  </div>
+</AdminLayout>
+
+{!fatalError && (
+  <script
+    is:inline
+    define:vars={{ clientId, redirectUri, codeChallenge, codeChallengeMethod, state }}
+  >
+    (function () {
+      function act(decision) {
+        var approveBtn = document.getElementById('authorize-approve');
+        var denyBtn = document.getElementById('authorize-deny');
+        var errorBox = document.getElementById('authorize-error');
+        approveBtn.disabled = true;
+        denyBtn.disabled = true;
+        fetch('/api/oauth/authorize', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({
+            decision: decision,
+            client_id: clientId,
+            redirect_uri: redirectUri,
+            code_challenge: codeChallenge,
+            code_challenge_method: codeChallengeMethod,
+            state: state,
+          }),
+        })
+          .then(function (res) { return res.json(); })
+          .then(function (body) {
+            if (body && body.redirect_url) { location.href = body.redirect_url; return; }
+            errorBox.textContent = (body && body.error_description) || 'Something went wrong. Please try again.';
+            errorBox.hidden = false;
+            approveBtn.disabled = false;
+            denyBtn.disabled = false;
+          })
+          .catch(function () {
+            errorBox.textContent = 'Could not reach the server — you may be offline.';
+            errorBox.hidden = false;
+            approveBtn.disabled = false;
+            denyBtn.disabled = false;
+          });
+      }
+      document.getElementById('authorize-approve').addEventListener('click', function () { act('approve'); });
+      document.getElementById('authorize-deny').addEventListener('click', function () { act('deny'); });
+    })();
+  </script>
+)}

@@ -31,20 +31,28 @@ const rpcError = (id: unknown, code: number, message: string) =>
     headers: { 'content-type': 'application/json' },
   });
 
-const unauthorized = () =>
+// resource_metadata (RFC 9728 §5.1) points a compliant client at
+// oauth-protected-resource, which in turn names the authorization server
+// (src/pages/oauth/*) — this is what lets a client discover and use the
+// OAuth wrapper instead of erroring out with no bearer token at all.
+const unauthorized = (origin: string) =>
   new Response(JSON.stringify({ error: 'Unauthorized. Provide a valid bearer token.' }), {
     status: 401,
-    headers: { 'content-type': 'application/json', 'www-authenticate': 'Bearer' },
+    headers: {
+      'content-type': 'application/json',
+      'www-authenticate': `Bearer resource_metadata="${origin}/.well-known/oauth-protected-resource"`,
+    },
   });
 
 export const POST: APIRoute = async ({ request }) => {
+  const origin = new URL(request.url).origin;
   const supabase = getSupabaseAdmin();
-  if (!supabase) return unauthorized(); // fail closed, same rule as every other admin surface
+  if (!supabase) return unauthorized(origin); // fail closed, same rule as every other admin surface
 
   const authHeader = request.headers.get('authorization') || '';
   const presented = authHeader.startsWith('Bearer ') ? authHeader.slice(7).trim() : null;
   const caller = await verifyMcpToken(supabase, presented);
-  if (!caller) return unauthorized();
+  if (!caller) return unauthorized(origin);
 
   let msg: JsonRpcRequest;
   try {
