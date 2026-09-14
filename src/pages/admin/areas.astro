@@ -26,12 +26,16 @@ const supabase = getSupabaseAdmin();
 
 // All time is the default here, unlike /admin/activity: this report answers a
 // slow question (which parts of London send us work) and at current volumes a
-// 30-day window would usually be empty.
+// 30-day window would usually be empty. The short windows are for the other
+// job — checking where a campaign that started last week is landing — and the
+// low-sample warning below still fires when they are too thin to read.
 const RANGES = [
   { days: 0, label: 'All time' },
   { days: 365, label: '12 months' },
   { days: 90, label: '90 days' },
   { days: 30, label: '30 days' },
+  { days: 14, label: '14 days' },
+  { days: 7, label: '7 days' },
 ] as const;
 
 const params = Astro.url.searchParams;
