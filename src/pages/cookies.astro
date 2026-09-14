@@ -38,15 +38,20 @@ const updated = '14 September 2026';
       adverts that do not work.
     </p>
     <p>
-      These are Google&rsquo;s cookies rather than ours, and Google sets and reads them under its own
-      terms. Typically that means a cookie identifying the advert click that brought you here,
-      lasting up to 90 days. We do not use them to build a profile of you, and we do not sell or
-      share your information with advertisers.
+      These are Google&rsquo;s cookies rather than ours, and Google sets and reads them under its
+      own terms. The tag sets a cookie on every visit, whether or not you arrived from an advert;
+      where you did, it records which advert it was. Google sets the lifetimes &mdash; its
+      conversion cookie is documented as lasting 90 days &mdash; and we do not control them.
+      We do not build a profile of you, and we do not sell or share your information with
+      advertisers. What Google does with its own cookies is governed by Google&rsquo;s terms and is
+      outside our control; if you would rather it did not use them for advertising, block them as
+      described below or use Google&rsquo;s own controls.
     </p>
     <p>
-      You can refuse or remove them. Every browser lets you block or delete cookies for a
-      particular site or across all sites through its settings, and Google publishes its own
-      controls at
+      This site does not ask you before the tag loads, so these cookies are set as soon as you
+      arrive. You can still remove them and block them in future. Every browser lets you block or
+      delete cookies for a particular site or across all sites through its settings, and Google
+      publishes its own controls at
       <a href="https://adssettings.google.com/" rel="noopener">adssettings.google.com</a>.
       Blocking them does not affect anything on this site — no part of it depends on them.
     </p>
@@ -58,14 +63,17 @@ const updated = '14 September 2026';
     </p>
     <ul>
       <li><strong>Page views</strong> — the page requested, the time, whether you were on a phone or a computer, which site you came from, and whether the visit came from an advert.</li>
-      <li><strong>Contact clicks</strong> — when someone taps a phone number, WhatsApp or text-message link, we record which link it was and which page it was on. We record that the tap happened. We do not, and cannot, see the call or the message itself.</li>
+      <li><strong>Contact clicks</strong> — when someone taps a phone number, WhatsApp or text-message link, we record which link it was, where on the page it sat, which page it was on, whether you were on a phone or a computer, your browser&rsquo;s identification string, the web address you came from, and the reference Google attaches to an advert click if you arrived from one of our adverts. We do not, and cannot, see the call or the message itself.</li>
       <li><strong>Enquiry form submissions</strong> — covered in the <a href="/privacy">Privacy Policy</a>, since those contain your details.</li>
     </ul>
     <p>
       To stop one machine flooding those counts, each record carries a scrambled one-way code
-      derived from your IP address. The code is re-scrambled every night, so it identifies a visitor
-      for the rest of the day and then stops meaning anything. Your IP address itself is never
-      stored in our database, and these records carry no name, no email and no phone number.
+      derived from your IP address &mdash; and, for page views, your browser details as well. The
+      recipe for that code changes at midnight each night, so the code we write today is different
+      from the one we wrote yesterday and the same visitor cannot be followed from one day to the
+      next. Records already stored keep the code they were written with until they are deleted.
+      Your IP address itself is never stored in our database, and these records carry no name, no
+      email and no phone number.
     </p>
     <p>We delete these usage records after 14 months.</p>
 
@@ -73,10 +81,11 @@ const updated = '14 September 2026';
     <p>Our hosting provider records standard technical information for every request — IP address, page requested, time, and browser type. This is how the site is kept running and protected from abuse. It is not tied to a cookie and is not used to build a profile of you.</p>
 
     <h2>Other companies your browser contacts</h2>
-    <p>The pages themselves — typefaces, styles and scripts — are served from this domain. Your browser also contacts:</p>
+    <p>The pages themselves &mdash; typefaces, styles, scripts and most images &mdash; are served from this domain. Your browser also contacts:</p>
     <ul>
-      <li><strong>googletagmanager.com</strong> — on every page, to load the advertising tag described above.</li>
-      <li><strong>api.postcodes.io</strong> — only on the enquiry form, and only once you start typing a postcode. We use it to check the postcode and fill in the area, which means that postcode and your IP address reach that service. It is a free public service run by Ideal Postcodes for looking up UK postcodes.</li>
+      <li><strong>googletagmanager.com</strong> — on every page, to load the advertising tag described above. The tag then sends information back to Google on each page you open: the address of that page, the site you came from, your IP address and your browser details.</li>
+      <li><strong>api.postcodes.io</strong> — when you use the enquiry form, which appears on most pages of this site, and only once you have typed most of a postcode into it. We use it to check the postcode and fill in the area, which means that postcode and your IP address reach that service. It is a free public service run by Ideal Postcodes for looking up UK postcodes.</li>
+      <li><strong>supabase.co</strong> — on blog pages that carry a photograph, to load that image from our database provider&rsquo;s file storage. It receives your IP address and browser details in order to send the image, and nothing else.</li>
     </ul>
     <p>That was not always true of our typefaces. The site previously loaded them from Google Fonts, which meant your IP address reached Google&rsquo;s servers on every page view. We now host those font files ourselves.</p>
 

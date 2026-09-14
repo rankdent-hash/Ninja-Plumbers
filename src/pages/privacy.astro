@@ -30,10 +30,10 @@ const updated = '14 September 2026';
     <h2>Information we collect</h2>
 
     <h3>When you visit this website</h3>
-    <p>We count how the site is used — pages viewed, and taps on our phone, WhatsApp and text-message links — so we can tell which pages bring in work. This is done in our own database, without cookies and without storing anything in your browser. Those records carry no name, no email and no phone number, only a scrambled one-way code derived from your IP address that is re-scrambled every night. We keep them for 14 months.</p>
+    <p>We count how the site is used &mdash; pages viewed, and taps on our phone, WhatsApp and text-message links &mdash; so we can tell which pages bring in work. This is done in our own database, without cookies and without storing anything in your browser. These records carry no name, no email and no phone number. A page view records a scrambled one-way code derived from your IP address and your browser details. A tap on a contact link records that code, and also your browser&rsquo;s identification string, the web address you came from, and the reference Google attaches to an advert click if you arrived from one of our adverts. The recipe for the code changes every night, so the code written today is different from yesterday&rsquo;s and the same visitor cannot be followed from one day to the next; records already stored keep the code they were written with until they are deleted. On the day you send us an enquiry, that enquiry carries the same day&rsquo;s code, so your usage records from that day can be matched to it. We keep usage records for 14 months.</p>
     <p>Google&rsquo;s advertising tag also loads on every page and sets Google&rsquo;s own advertising cookies, so we can see which adverts lead to enquiries. Our <a href="/cookies">Cookie Policy</a> sets out exactly what that is, what it lasts, and how to refuse it.</p>
     <p>Our hosting provider records standard technical information in its server logs when a page is requested, including your IP address, the page requested, the time of the request and your browser type. This happens automatically for every website and is used to run and secure the service.</p>
-    <p>Aside from Google&rsquo;s advertising tag, the pages themselves are served from this domain. The one other third party your browser contacts is the postcode lookup on the enquiry form, described below.</p>
+    <p>Aside from Google&rsquo;s advertising tag, the pages themselves are served from this domain. Two other third parties your browser may contact are the postcode lookup on the enquiry form, described below, and Supabase, our database provider, whose file storage holds the photographs on our blog articles &mdash; so opening a blog page sends your IP address and browser details to it in order to fetch the image.</p>
 
     <h3>When you contact us</h3>
     <p>If you call, message us on WhatsApp, email us, or submit the enquiry form on this site, we collect what you give us. For a plumbing enquiry that normally means:</p>
@@ -44,7 +44,11 @@ const updated = '14 September 2026';
       <li>a description of the problem, and any photographs you choose to send us</li>
     </ul>
     <p>We only ask for what we need to quote for the work and get an engineer to the right place. You do not have to give us an email address to book a job.</p>
+    <p>Alongside what you type, the record keeps which page of the site you sent it from, your browser&rsquo;s identification string, and the same scrambled one-way code derived from your IP address described above, which we use to stop one machine flooding the form. We also sometimes test different wording on the form&rsquo;s button, so two people may see it worded differently; which version you saw is recorded with your enquiry so we can tell which wording works. Nothing is stored on your device to do this.</p>
     <p>As you type the postcode into the enquiry form, your browser checks it against <a href="https://postcodes.io" rel="noopener">postcodes.io</a>, a free public postcode lookup, so we can confirm the area and tell you straight away whether we cover it. That means the postcode and your IP address reach that service. We check it a second time on our own servers when you submit.</p>
+
+    <h3>Reviews you leave elsewhere</h3>
+    <p>Where a customer has left us a public review on Google or Checkatrade, we copy the reviewer&rsquo;s name, star rating and words into our own records and republish them on our <a href="/reviews">Reviews</a> page and elsewhere on this site. We do not edit them. We do this because showing real reviews is how a trade business earns work, which is our legitimate interest. If you left us a review and would rather it did not appear on our site, email us and we will take it down.</p>
 
     <h2>Why we use it, and our lawful basis</h2>
     <table class="legal-table">
@@ -56,6 +60,7 @@ const updated = '14 September 2026';
         <tr><td>Keep gas safety records where the work requires it</td><td>Legal obligation</td></tr>
         <tr><td>Run and secure this website</td><td>Our legitimate interest in keeping the site available and free from abuse</td></tr>
         <tr><td>Count which pages and adverts lead to enquiries, and which parts of London those enquiries come from, so we know where to advertise and which areas to write about</td><td>Our legitimate interest in running the business efficiently. You can object to this — see Your rights below</td></tr>
+        <tr><td>Republish public reviews customers have left us elsewhere</td><td>Our legitimate interest in showing prospective customers genuine reviews. You can object to this — see Your rights below</td></tr>
       </tbody>
     </table>
     <p>We do not send you marketing unless you have asked us to, and we do not sell your information to anyone.</p>
@@ -65,10 +70,10 @@ const updated = '14 September 2026';
     <p>We share personal information only where we need to:</p>
     <ul>
       <li><strong>Our engineers</strong> — the person attending your job needs your address, phone number and a description of the work.</li>
-      <li><strong>Our hosting and IT providers</strong> — the suppliers who run this website and our systems process data on our behalf under contract. This includes the company that hosts the site, the company that stores our enquiry records, and Resend, which delivers the notification email that tells us you have been in touch.</li>
-      <li><strong>Our customer management system</strong> — enquiries submitted through the website are passed to GoHighLevel, the system the booking office works from, so your job reaches the person who will arrange it. It receives your name, phone number, email if you gave one, postcode and address, and what you told us about the job.</li>
+      <li><strong>Our hosting and IT providers</strong> — the suppliers who run this website and our systems process data on our behalf under contract. This includes the company that hosts the site, the company that stores our enquiry records, and Resend, which delivers the email alerting us to your enquiry. That email contains the details you sent us &mdash; your name, phone number, email if you gave one, postcode, address and what you told us about the job &mdash; so Resend handles them in transit.</li>
+      <li><strong>Our customer management system</strong> — enquiries submitted through the website are passed to GoHighLevel, the system the booking office works from, so your job reaches the person who will arrange it. It receives your name, phone number, email if you gave one, postcode and address, what you told us about the job, and which page of the site you sent it from.</li>
       <li><strong>Postcodes.io</strong> — the postcode you type into the enquiry form is checked against this free public postcode lookup, as described above. It receives the postcode, not your name or contact details.</li>
-      <li><strong>Google</strong> — through its advertising tag, for measuring which adverts lead to enquiries. It does not receive your name, phone number or address.</li>
+      <li><strong>Google</strong> — through its advertising tag, so we can measure which adverts lead to enquiries. Because the tag loads on every page, Google receives the address of each page you open, the site you came from, your IP address and your browser details, whether or not you ever contact us. When you send the enquiry form, the address of the confirmation page also tells Google which kind of job you asked about. It does not receive your name, phone number or address.</li>
       <li><strong>Gas Safe Register</strong> — where a job requires gas work to be notified or certificated.</li>
       <li><strong>Our accountants, and HMRC</strong> — for invoicing, accounts and tax.</li>
       <li><strong>Insurers or legal advisers</strong> — if there is a claim or dispute.</li>
@@ -76,8 +81,9 @@ const updated = '14 September 2026';
     <p>We may also disclose information where the law requires it.</p>
 
     <h2>Information sent outside the UK</h2>
-    <p>Our website hosting provider is based in the United States and may process the technical server-log information described above outside the UK. Where that happens, the transfer is covered by the safeguards that provider has in place, such as the UK International Data Transfer Addendum or an adequacy decision.</p>
-    <p>The database holding your enquiry is in London, so the record itself stays in the UK. Two of the suppliers who handle it on our behalf are US companies and may process it outside the UK: GoHighLevel, the booking system your enquiry is passed to, and Resend, which delivers the email alerting us to it. Those transfers rely on the safeguards each provider has in place, such as the UK International Data Transfer Addendum or an adequacy decision.</p>
+    <p>Our website hosting provider is based in the United States. It processes the technical server-log information described above, and it also handles the contents of your enquiry as that enquiry passes through the website on its way to our database &mdash; so that may happen outside the UK.</p>
+    <p>The database holding your enquiry is in London, so the record itself stays in the UK. Two of the suppliers who handle it on our behalf are US companies and may process it outside the UK: GoHighLevel, the booking system your enquiry is passed to, and Resend, which delivers the email alerting us to it.</p>
+    <p>Each of these transfers relies on the safeguards that supplier has in place. If you want to know the arrangement for a particular supplier, email us and we will tell you.</p>
 
     <h2>How long we keep it</h2>
     <ul>

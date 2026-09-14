@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { createClient } from '@supabase/supabase-js';
 import site from '../../data/site.json';
-import { hashIp } from '../../lib/hashIp';
+import { hashIp, dailySalt } from '../../lib/hashIp';
 
 export const prerender = false;
 
@@ -220,18 +220,24 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   // hour's submissions, but the stored hash stops being a stable identifier
   // after midnight — so this row's name and phone number cannot be joined to
   // a visitor's click history from other days.
-  const today = new Date().toISOString().slice(0, 10);
-  const ipHash = await hashIp(
-    clientAddress || request.headers.get('x-forwarded-for') || 'unknown',
-    `${import.meta.env.IP_SALT || 'ninja-fallback-salt'}:${today}`
-  );
+  //
+  // No salt configured means no hash and no rate limit here, which is the
+  // right way round: a misconfiguration must never cost a real lead, and a
+  // reversible hash on the one row carrying a name, phone number and home
+  // address is the worst place on this site to have one. See dailySalt().
+  const salt = dailySalt();
+  const ipHash = salt
+    ? await hashIp(clientAddress || request.headers.get('x-forwarded-for') || 'unknown', salt)
+    : null;
 
   const since = new Date(Date.now() - 60 * 60 * 1000).toISOString();
-  const { count } = await supabase
-    .from('enquiries')
-    .select('id', { count: 'exact', head: true })
-    .eq('ip_hash', ipHash)
-    .gte('created_at', since);
+  const { count } = ipHash
+    ? await supabase
+        .from('enquiries')
+        .select('id', { count: 'exact', head: true })
+        .eq('ip_hash', ipHash)
+        .gte('created_at', since)
+    : { count: 0 };
 
   if ((count ?? 0) >= MAX_PER_IP_PER_HOUR) {
     return json(

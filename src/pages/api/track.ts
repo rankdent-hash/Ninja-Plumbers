@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 import { getSupabaseAdmin } from '../../lib/supabaseAdmin';
-import { hashIp } from '../../lib/hashIp';
+import { hashIp, dailySalt } from '../../lib/hashIp';
 
 export const prerender = false;
 
@@ -52,20 +52,25 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   // an hour's rate limiting but not across days, so a click history cannot be
   // stitched together over time — nor, since enquiries hash the same way,
   // tied back to a named customer beyond the day they enquired.
-  const today = new Date().toISOString().slice(0, 10);
-  const ipHash = await hashIp(
-    clientAddress || request.headers.get('x-forwarded-for') || 'unknown',
-    `${import.meta.env.IP_SALT || 'tamesis-fallback-salt'}:${today}`
-  );
+  //
+  // No salt configured means no hash at all, and no rate limit with it. See
+  // dailySalt(): a hash built from a salt published in this repo would be
+  // reversible, and the privacy policy says these codes are not.
+  const salt = dailySalt();
+  const ipHash = salt
+    ? await hashIp(clientAddress || request.headers.get('x-forwarded-for') || 'unknown', salt)
+    : null;
 
-  const since = new Date(Date.now() - 60 * 60 * 1000).toISOString();
-  const { count } = await supabase
-    .from('click_events')
-    .select('id', { count: 'exact', head: true })
-    .eq('ip_hash', ipHash)
-    .gte('created_at', since);
+  if (ipHash) {
+    const since = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+    const { count } = await supabase
+      .from('click_events')
+      .select('id', { count: 'exact', head: true })
+      .eq('ip_hash', ipHash)
+      .gte('created_at', since);
 
-  if ((count ?? 0) >= MAX_PER_IP_PER_HOUR) return noContent();
+    if ((count ?? 0) >= MAX_PER_IP_PER_HOUR) return noContent();
+  }
 
   const { error } = await supabase.from('click_events').insert({
     kind,

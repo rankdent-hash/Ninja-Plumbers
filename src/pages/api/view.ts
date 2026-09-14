@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 import { getSupabaseAdmin } from '../../lib/supabaseAdmin';
-import { hashIp } from '../../lib/hashIp';
+import { hashIp, dailySalt } from '../../lib/hashIp';
 
 export const prerender = false;
 
@@ -67,20 +67,22 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   if (path.startsWith('/admin')) return noContent();
 
   // Date is part of the salt, so the hash is only stable within a single day.
-  const today = new Date().toISOString().slice(0, 10);
-  const visitorHash = await hashIp(
-    `${clientAddress || request.headers.get('x-forwarded-for') || 'unknown'}:${ua}`,
-    `${import.meta.env.IP_SALT || 'tamesis-fallback-salt'}:${today}`
-  );
+  // No salt configured means no hash — see dailySalt().
+  const salt = dailySalt();
+  const visitorHash = salt
+    ? await hashIp(`${clientAddress || request.headers.get('x-forwarded-for') || 'unknown'}:${ua}`, salt)
+    : null;
 
-  const since = new Date(Date.now() - 60 * 60 * 1000).toISOString();
-  const { count } = await supabase
-    .from('page_views')
-    .select('id', { count: 'exact', head: true })
-    .eq('visitor_hash', visitorHash)
-    .gte('created_at', since);
+  if (visitorHash) {
+    const since = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+    const { count } = await supabase
+      .from('page_views')
+      .select('id', { count: 'exact', head: true })
+      .eq('visitor_hash', visitorHash)
+      .gte('created_at', since);
 
-  if ((count ?? 0) >= MAX_PER_VISITOR_PER_HOUR) return noContent();
+    if ((count ?? 0) >= MAX_PER_VISITOR_PER_HOUR) return noContent();
+  }
 
   const { error } = await supabase.from('page_views').insert({
     path,
