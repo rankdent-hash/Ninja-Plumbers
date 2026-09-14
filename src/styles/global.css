@@ -3195,25 +3195,41 @@ body.qr-open { overflow: hidden; }
 .areamap.is-zoomed .areamap-svg { cursor: grab; }
 .areamap.is-dragging .areamap-svg { cursor: grabbing; }
 
+/* Two grounds, one axis: cool = we work here, warm = we do not. The two fills
+   are about 1.03:1 apart in luminance — all but identical in greyscale — so
+   fill is only ever a reminder. Border style carries the meaning, and that
+   survives greyscale and every colour-vision type. */
 .areamap-outside { fill: #f7ede4; }
-.areamap-borough { fill: #eef2f7; stroke: #94a3b8; stroke-width: 2.6; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
-.areamap-borough:hover { fill: #e2e8f2; }
 
-/* Districts around London. Covered and not-covered must not be told apart by
-   hue alone, so the border carries it too: a solid edge for somewhere we work,
-   a dashed one for somewhere we only plan to. */
-.areamap-district {
-  fill: #f2e3d5; stroke: #c9a88a; stroke-width: 1.8; stroke-dasharray: 7 5;
+/* Covered today: London's boroughs and the named districts beyond it get one
+   rule, on purpose. A borough and Guildford are the same claim, so they are
+   the same drawing.
+   The stroke was #94a3b8, which measured 2.3:1 on its own fill and 1.8:1 under
+   the corridor band — under the 3:1 floor for graphics, and invisible once the
+   band crossed it. #64758c is 4.2:1 and 3.3:1. */
+.areamap-borough,
+.areamap-district.is-covered {
+  fill: #eef2f7; stroke: #64758c; stroke-width: 2.6; stroke-dasharray: none;
   stroke-linejoin: round; vector-effect: non-scaling-stroke;
 }
-.areamap-district:hover { fill: #e9d4c0; }
-.areamap-district.is-covered {
-  fill: #eef2f7; stroke: #94a3b8; stroke-width: 2.6; stroke-dasharray: none;
+.areamap-borough:hover,
+.areamap-district.is-covered:hover { fill: #dfe7f1; }
+
+/* Not covered yet. fill:none deliberately — the uncovered ground shows
+   straight through, so the shape is named without being promoted to something
+   that looks like our patch. A tinted fill was tried and dropped: it dragged
+   this stroke to 3.0:1 and the covered stroke to 2.2:1 under the band.
+   pointer-events must be spelled out precisely BECAUSE there is no fill:
+   without it only the 2px border would answer a hover. */
+.areamap-district {
+  fill: none; pointer-events: all;
+  stroke: #8a6f52; stroke-width: 2.2; stroke-dasharray: 9 7;
+  stroke-linejoin: round; vector-effect: non-scaling-stroke;
 }
-.areamap-district.is-covered:hover { fill: #e2e8f2; }
+.areamap-district:hover { fill: rgba(138, 111, 82, 0.1); stroke: #5e4b38; }
 
 .areamap-label {
-  font-size: 26px; font-weight: 600; fill: #8a6f57;
+  font-size: 26px; font-weight: 600; fill: #6b5540;
   text-anchor: middle; dominant-baseline: middle;
   paint-order: stroke; stroke: #fdf8f3; stroke-width: 6; stroke-linejoin: round;
   pointer-events: none;
@@ -3238,8 +3254,8 @@ body.qr-open { overflow: hidden; }
 }
 .areamap.hide-corridor .areamap-corridor { display: none; }
 .areamap-key-corridor { --dot: #0f766e; }
-.areamap-key-covered { --dot: #94a3b8; }
-.areamap-key-planned { --dot: #c9a88a; }
+.areamap-key-covered { --dot: #64758c; }
+.areamap-key-planned { --dot: #8a6f52; }
 
 .areamap-dot { stroke: #fff; stroke-width: 3; opacity: 0.9; }
 .areamap-dot:hover { opacity: 1; }
@@ -3259,4 +3275,11 @@ body.qr-open { overflow: hidden; }
 @media (max-width: 640px) {
   .areamap-toolbar { flex-direction: column; }
   .areamap-zoom { align-self: flex-end; }
+
+  /* On a phone the whole map is about 350px wide, which renders a 26-unit
+     name at roughly 4px — not small text, just noise across the shapes. The
+     names come back as soon as the map is zoomed, since everything in the pan
+     group scales with it. */
+  .areamap-label { display: none; }
+  .areamap.is-zoomed .areamap-label { display: initial; }
 }
