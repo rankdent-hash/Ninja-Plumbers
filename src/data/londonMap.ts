@@ -36,6 +36,15 @@
 // a borough or an outer district is only the backdrop. Districts outside the
 // frame are absent by design - the page lists them separately rather than
 // plotting them somewhere wrong.
+//
+// PROVENANCE OF POINTS IS NOT RECORDED, and the script that produced them is
+// no longer in the repo. The Open Government Licence noted above covers the
+// boundaries, not these; do not read it as covering them. They were sanity
+// checked against an independent set of postcode-district centroids and agree
+// to a median of 0.27 miles, which says they are accurate but says nothing
+// about where they came from. Anyone extending this set should establish the
+// licence of whatever source they use and record it here, rather than
+// inheriting an assumption from the line above.
 
 export const MAP_WIDTH = 2075.7;
 export const MAP_HEIGHT = 1898.1;
