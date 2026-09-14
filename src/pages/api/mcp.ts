@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import { getSupabaseAdmin } from '../../lib/supabaseAdmin';
 import { verifyMcpToken } from '../../lib/mcpAuth';
 import { TOOLS, callTool } from '../../lib/mcpTools';
+import { SITE_ORIGIN } from '../../lib/oauth';
 
 export const prerender = false;
 
@@ -35,24 +36,23 @@ const rpcError = (id: unknown, code: number, message: string) =>
 // oauth-protected-resource, which in turn names the authorization server
 // (src/pages/oauth/*) — this is what lets a client discover and use the
 // OAuth wrapper instead of erroring out with no bearer token at all.
-const unauthorized = (origin: string) =>
+const unauthorized = () =>
   new Response(JSON.stringify({ error: 'Unauthorized. Provide a valid bearer token.' }), {
     status: 401,
     headers: {
       'content-type': 'application/json',
-      'www-authenticate': `Bearer resource_metadata="${origin}/.well-known/oauth-protected-resource"`,
+      'www-authenticate': `Bearer resource_metadata="${SITE_ORIGIN}/.well-known/oauth-protected-resource"`,
     },
   });
 
 export const POST: APIRoute = async ({ request }) => {
-  const origin = new URL(request.url).origin;
   const supabase = getSupabaseAdmin();
-  if (!supabase) return unauthorized(origin); // fail closed, same rule as every other admin surface
+  if (!supabase) return unauthorized(); // fail closed, same rule as every other admin surface
 
   const authHeader = request.headers.get('authorization') || '';
   const presented = authHeader.startsWith('Bearer ') ? authHeader.slice(7).trim() : null;
   const caller = await verifyMcpToken(supabase, presented);
-  if (!caller) return unauthorized(origin);
+  if (!caller) return unauthorized();
 
   let msg: JsonRpcRequest;
   try {
