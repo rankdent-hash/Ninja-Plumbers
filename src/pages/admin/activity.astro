@@ -27,12 +27,34 @@ const BUCKETS = [
 type Bucket = (typeof BUCKETS)[number]['key'];
 const BUCKET_KEYS: readonly string[] = BUCKETS.map((b) => b.key);
 
+// "Yesterday" is a calendar day, not a rolling window like the others — it
+// needs an upper bound as well as a lower one, so it can't be expressed as
+// just another `days` value the way "7 days" etc. can.
+function londonOffsetMinutes(date: Date): number {
+  const part = new Intl.DateTimeFormat('en-US', { timeZone: 'Europe/London', timeZoneName: 'shortOffset' })
+    .formatToParts(date)
+    .find((p) => p.type === 'timeZoneName')!.value;
+  const match = part.match(/GMT([+-]\d+)?/);
+  return match?.[1] ? parseInt(match[1], 10) * 60 : 0;
+}
+function londonMidnightUTC(daysAgo: number): Date {
+  const now = new Date();
+  const parts = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/London', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(now);
+  const y = +parts.find((p) => p.type === 'year')!.value;
+  const m = +parts.find((p) => p.type === 'month')!.value;
+  const d = +parts.find((p) => p.type === 'day')!.value;
+  const guess = new Date(Date.UTC(y, m - 1, d - daysAgo));
+  return new Date(guess.getTime() - londonOffsetMinutes(guess) * 60_000);
+}
+
 const params = Astro.url.searchParams;
+const isYesterday = params.get('range') === 'yesterday';
 const requestedDays = parseInt(params.get('days') || '30', 10);
-const days = RANGES.some((r) => r.days === requestedDays) ? requestedDays : 30;
+const days = isYesterday ? 1 : RANGES.some((r) => r.days === requestedDays) ? requestedDays : 30;
 const requestedBucket = params.get('by');
 let bucket: Bucket = 'day';
-if (BUCKET_KEYS.includes(requestedBucket || '')) bucket = requestedBucket as Bucket;
+if (isYesterday) bucket = 'day';
+else if (BUCKET_KEYS.includes(requestedBucket || '')) bucket = requestedBucket as Bucket;
 else if (days > 90) bucket = 'month';
 else if (days > 14) bucket = 'week';
 const bucketMeta = BUCKETS.find((b) => b.key === bucket)!;
@@ -43,7 +65,8 @@ const page = Math.max(1, parseInt(params.get('page') || '1', 10) || 1);
 const from = (page - 1) * PAGE_SIZE;
 const to = from + PAGE_SIZE - 1;
 
-const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString();
+const since = isYesterday ? londonMidnightUTC(1).toISOString() : new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString();
+const until = isYesterday ? londonMidnightUTC(0).toISOString() : undefined;
 
 type ClickRow = {
   id: string; created_at: string; kind: string; source_page: string | null;
@@ -69,13 +92,14 @@ if (!supabase) {
     .gte('created_at', since)
     .order('created_at', { ascending: false })
     .range(from, to);
+  if (until) listQuery.lt('created_at', until);
   if (kindFilter) listQuery.eq('kind', kindFilter);
 
   const [list, sourcesRes, zonesRes, periodsRes] = await Promise.all([
     listQuery,
-    supabase.rpc('contact_sources', { since }),
-    supabase.rpc('click_zones', { since }),
-    supabase.rpc('traffic_over_time', { since, bucket }),
+    supabase.rpc('contact_sources', { since, until }),
+    supabase.rpc('click_zones', { since, until }),
+    supabase.rpc('traffic_over_time', { since, bucket, until }),
   ]);
 
   if (list.error) {
@@ -135,13 +159,18 @@ const fmt = (iso: string) =>
     day: '2-digit', month: 'short', timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit',
   });
 const KIND_LABEL: Record<string, string> = { phone: 'Phone', whatsapp: 'WhatsApp', sms: 'Text' };
-const href = (o: { days?: number; kind?: string | null; page?: number; by?: Bucket }) => {
+const href = (o: { days?: number; yesterday?: boolean; kind?: string | null; page?: number; by?: Bucket }) => {
   const q = new URLSearchParams();
-  q.set('days', String(o.days ?? days));
+  // Yesterday is its own mode (a fixed calendar day, not a rolling window),
+  // not just another `days` value — carried forward across bucket/kind/page
+  // links the same way `days` is, unless the link is explicitly changing it.
+  const wantYesterday = o.yesterday ?? (o.days === undefined && isYesterday);
+  if (wantYesterday) q.set('range', 'yesterday');
+  else q.set('days', String(o.days ?? days));
   // Only pin the bucket once it has been chosen by hand; otherwise let each
   // range pick the one that suits it.
   const b = o.by ?? (requestedBucket ? bucket : null);
-  if (b) q.set('by', b);
+  if (b && !wantYesterday) q.set('by', b);
   const k = o.kind === undefined ? kindFilter : o.kind;
   if (k) q.set('kind', k);
   if (o.page && o.page > 1) q.set('page', String(o.page));
@@ -168,12 +197,15 @@ const fmtPeriod = (iso: string) => {
 <AdminLayout title="Activity" admin={admin}>
   <div class="admin-head">
     <h1>Contact activity</h1>
-    <p class="admin-sub">Calls, WhatsApps and form submissions over the last {days === 1 ? 'day' : `${days} days`}</p>
+    <p class="admin-sub">Calls, WhatsApps and form submissions {isYesterday ? 'from yesterday' : `over the last ${days === 1 ? 'day' : `${days} days`}`}</p>
   </div>
 
   <nav class="admin-tabs" aria-label="Time range">
     {RANGES.map((r) => (
-      <a href={href({ days: r.days, page: 1 })} class:list={{ 'is-active': days === r.days }}>{r.label}</a>
+      <>
+        <a href={href({ days: r.days, yesterday: false, page: 1 })} class:list={{ 'is-active': !isYesterday && days === r.days }}>{r.label}</a>
+        {r.days === 1 && <a href={href({ yesterday: true, page: 1 })} class:list={{ 'is-active': isYesterday }}>Yesterday</a>}
+      </>
     ))}
   </nav>
 
@@ -205,11 +237,13 @@ const fmtPeriod = (iso: string) => {
       {periods.length > 0 && (
         <section class="admin-section">
           <h2>Traffic over time</h2>
-          <nav class="admin-tabs admin-tabs-sub" aria-label="Group traffic by">
-            {BUCKETS.map((b) => (
-              <a href={href({ by: b.key, page: 1 })} class:list={{ 'is-active': bucket === b.key }}>{b.tab}</a>
-            ))}
-          </nav>
+          {!isYesterday && (
+            <nav class="admin-tabs admin-tabs-sub" aria-label="Group traffic by">
+              {BUCKETS.map((b) => (
+                <a href={href({ by: b.key, page: 1 })} class:list={{ 'is-active': bucket === b.key }}>{b.tab}</a>
+              ))}
+            </nav>
+          )}
           <div class="admin-table-scroll" tabindex="0">
             <table class="admin-table">
               <thead>
