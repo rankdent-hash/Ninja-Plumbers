@@ -14,15 +14,20 @@ import { SITE_ORIGIN } from './oauth';
 // Tools exposed to the remote MCP server (api/mcp.ts) — what an external AI
 // chat client (Claude, ChatGPT, etc.) can actually do to this site's blog.
 //
-// The one rule every handler below enforces, deliberately more conservative
-// than the human /admin/blog panel: MCP can create and edit DRAFT posts, and
-// nothing else. It cannot publish or unpublish a post, cannot touch a post
-// that is already published, and cannot delete anything. A post written or
-// edited through MCP always still needs a human to open /admin/blog and
-// click Publish before it is visible to a single site visitor — the exact
-// same rule the existing AI-generation flow already follows (see
-// api/admin/blog/generate.ts), just extended to a caller outside the panel.
+// MCP can create and edit DRAFT posts, generate a hero image for one, and
+// publish a post straight to the live site (see publish_blog_post) — but it
+// can never touch a post that is already published, and there is no
+// unpublish or delete via MCP; those stay human-only, in /admin/blog.
 const MAX_MCP_POSTS_PER_HOUR = 20;
+
+// "slug (Title)" for every real service/appliance/damp page, so a tool
+// description can tell a calling model exactly what each slug refers to —
+// it needs that to judge which are actually relevant to a post's content,
+// not just a bare list of ids it has to guess the meaning of.
+const slugTitleList = (items: { slug: string; title: string }[]): string => items.map((i) => `${i.slug} (${i.title})`).join(', ');
+const SERVICE_SLUGS = services.map((s) => s.slug);
+const APPLIANCE_SLUGS = appliances.map((a) => a.slug);
+const DAMP_SLUGS = dampPages.map((d) => d.slug);
 
 // Hero images cost real money per call (OpenAI image generation), so they
 // get their own cap. This counts any post touched in the last hour that now
@@ -156,9 +161,21 @@ export const TOOLS = [
         meta_description: { type: 'string', description: 'Defaults to excerpt if omitted.' },
         excerpt: { type: 'string', description: 'Short one/two-sentence summary shown on /blog and used as a fallback meta description.' },
         body: { type: 'string', description: 'Post content as HTML (paragraphs, h2 subheadings, lists, links).' },
-        related_services: { type: 'array', items: { type: 'string' }, description: 'Service page slugs this post should cross-link with, e.g. ["boiler-repair"]. Unknown slugs are silently dropped.' },
-        related_appliances: { type: 'array', items: { type: 'string' } },
-        related_damp: { type: 'array', items: { type: 'string' } },
+        related_services: {
+          type: 'array',
+          items: { type: 'string', enum: SERVICE_SLUGS },
+          description: `Pick the slugs of any real services this post is actually relevant to — read what the post covers and choose accordingly, don't just default to none. Valid slugs: ${slugTitleList(services)}. Unknown slugs are silently dropped.`,
+        },
+        related_appliances: {
+          type: 'array',
+          items: { type: 'string', enum: APPLIANCE_SLUGS },
+          description: `Same idea for appliance pages — pick the ones the post's content is genuinely about. Valid slugs: ${slugTitleList(appliances)}.`,
+        },
+        related_damp: {
+          type: 'array',
+          items: { type: 'string', enum: DAMP_SLUGS },
+          description: `Same idea for damp/condensation pages. Valid slugs: ${slugTitleList(dampPages)}.`,
+        },
       },
     },
   },
@@ -177,9 +194,21 @@ export const TOOLS = [
         meta_description: { type: 'string' },
         excerpt: { type: 'string' },
         body: { type: 'string' },
-        related_services: { type: 'array', items: { type: 'string' } },
-        related_appliances: { type: 'array', items: { type: 'string' } },
-        related_damp: { type: 'array', items: { type: 'string' } },
+        related_services: {
+          type: 'array',
+          items: { type: 'string', enum: SERVICE_SLUGS },
+          description: `Replaces the post's related services entirely — pick the ones actually relevant to its (possibly updated) content. Valid slugs: ${slugTitleList(services)}.`,
+        },
+        related_appliances: {
+          type: 'array',
+          items: { type: 'string', enum: APPLIANCE_SLUGS },
+          description: `Replaces the post's related appliances entirely. Valid slugs: ${slugTitleList(appliances)}.`,
+        },
+        related_damp: {
+          type: 'array',
+          items: { type: 'string', enum: DAMP_SLUGS },
+          description: `Replaces the post's related damp pages entirely. Valid slugs: ${slugTitleList(dampPages)}.`,
+        },
       },
     },
   },
