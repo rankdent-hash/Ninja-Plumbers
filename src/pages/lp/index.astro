@@ -4,6 +4,12 @@
 // Landing.astro. Noindex, and already excluded from the sitemap along with
 // every /lp/* URL (see astro.config.mjs). A card here is added automatically
 // the moment a new entry lands in landing.ts — nothing to remember to wire up.
+//
+// Server-rendered (see /lp/[slug].astro for why) so a page published or
+// unpublished via MCP/admin shows up here immediately, not after the next
+// deploy.
+export const prerender = false;
+
 import Base from '../../layouts/Base.astro';
 import { landings } from '../../data/landing';
 import { iconSvg } from '../../data/premium-icons';

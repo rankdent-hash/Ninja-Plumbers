@@ -2,12 +2,13 @@
 // Landing pages created via MCP (the /lp/* paid-search pages an AI chat
 // client can draft — see /admin/settings). The 10 hand-written campaigns in
 // src/data/landing.ts don't appear here at all; this list is only rows in
-// the landing_pages table. Publishing here is NOT instant, unlike blog: /lp
-// pages are static, built at deploy time, so a newly published row needs a
-// redeploy before it has a real URL — same accepted limit as the blog
-// cross-links, and the reason the Preview link exists below.
+// the landing_pages table. /lp/[slug].astro is server-rendered (falls back
+// to a live Supabase lookup for any slug not in landing.ts), so publishing
+// here is instant, same as blog — no redeploy needed.
 import AdminLayout from '../../../layouts/AdminLayout.astro';
+import ExternalLinkIcon from '../../../components/ExternalLinkIcon.astro';
 import { getSupabaseAdmin } from '../../../lib/supabaseAdmin';
+import { SITE_ORIGIN } from '../../../lib/oauth';
 
 export const prerender = false;
 
@@ -39,9 +40,9 @@ const fmt = (iso: string) => new Date(iso).toLocaleString('en-GB', { day: '2-dig
   </div>
 
   <p class="admin-note">
-    Publishing a page here does not put it online immediately &mdash; these pages are built at
-    deploy time, same as the rest of the site. Publish, then trigger a deploy (or wait for the
-    next one) before pointing an ad at it. Use Preview to see a page before that.
+    Publishing a page here is instant &mdash; it resolves at its live URL and joins the /lp
+    directory hub straight away, no deploy needed. It still never joins the sitemap; landing
+    pages stay noindex by design. Use Preview to see a page before that.
   </p>
 
   {loadError && <p class="form-error-summary" role="alert">{loadError}</p>}
@@ -51,7 +52,7 @@ const fmt = (iso: string) => new Date(iso).toLocaleString('en-GB', { day: '2-dig
     <div class="admin-table-scroll" tabindex="0">
       <table class="admin-table">
         <thead>
-          <tr><th>Heading</th><th>Status</th><th>Created by</th><th>Updated</th><th class="admin-col-view"><span class="sr-only">Edit</span></th></tr>
+          <tr><th>Heading</th><th>Status</th><th>Created by</th><th>Updated</th><th class="admin-col-view"><span class="sr-only">Live page</span></th><th class="admin-col-view"><span class="sr-only">Edit</span></th></tr>
         </thead>
         <tbody>
           {rows.map((r) => (
@@ -60,6 +61,15 @@ const fmt = (iso: string) => new Date(iso).toLocaleString('en-GB', { day: '2-dig
               <td><span class:list={['admin-urgency', r.status === 'published' ? 'is-live' : 'is-draft']}>{r.status}</span></td>
               <td>{r.generated_by ?? '—'}</td>
               <td class="admin-nowrap">{fmt(r.updated_at)}</td>
+              <td class="admin-col-view">
+                {r.status === 'published' ? (
+                  <a href={`${SITE_ORIGIN}/lp/${r.slug}`} target="_blank" rel="noopener" aria-label={`View live: ${r.h1}`} title="View live page">
+                    <ExternalLinkIcon />
+                  </a>
+                ) : (
+                  <span class="admin-dim" aria-hidden="true">—</span>
+                )}
+              </td>
               <td class="admin-col-view"><a href={`/admin/landing-pages/${r.id}`}>Edit &rarr;</a></td>
             </tr>
           ))}

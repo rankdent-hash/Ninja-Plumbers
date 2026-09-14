@@ -10,7 +10,9 @@
 // never wired into the header mega menu or footer by any of this — those
 // are hand-curated (src/data/nav.ts) and stay a separate, deliberate edit.
 import AdminLayout from '../../../layouts/AdminLayout.astro';
+import ExternalLinkIcon from '../../../components/ExternalLinkIcon.astro';
 import { getSupabaseAdmin } from '../../../lib/supabaseAdmin';
+import { SITE_ORIGIN } from '../../../lib/oauth';
 
 export const prerender = false;
 
@@ -56,7 +58,7 @@ const fmt = (iso: string) => new Date(iso).toLocaleString('en-GB', { day: '2-dig
     <div class="admin-table-scroll" tabindex="0">
       <table class="admin-table">
         <thead>
-          <tr><th>Title</th><th>Status</th><th>Created by</th><th>Updated</th><th class="admin-col-view"><span class="sr-only">Edit</span></th></tr>
+          <tr><th>Title</th><th>Status</th><th>Created by</th><th>Updated</th><th class="admin-col-view"><span class="sr-only">Live page</span></th><th class="admin-col-view"><span class="sr-only">Edit</span></th></tr>
         </thead>
         <tbody>
           {rows.map((r) => (
@@ -65,6 +67,15 @@ const fmt = (iso: string) => new Date(iso).toLocaleString('en-GB', { day: '2-dig
               <td><span class:list={['admin-urgency', r.status === 'published' ? 'is-live' : 'is-draft']}>{r.status}</span></td>
               <td>{r.generated_by ?? '—'}</td>
               <td class="admin-nowrap">{fmt(r.updated_at)}</td>
+              <td class="admin-col-view">
+                {r.status === 'published' ? (
+                  <a href={`${SITE_ORIGIN}/services/${r.slug}`} target="_blank" rel="noopener" aria-label={`View live: ${r.title}`} title="View live page (needs a deploy after publishing to actually resolve)">
+                    <ExternalLinkIcon />
+                  </a>
+                ) : (
+                  <span class="admin-dim" aria-hidden="true">—</span>
+                )}
+              </td>
               <td class="admin-col-view"><a href={`/admin/service-pages/${r.id}`}>Edit &rarr;</a></td>
             </tr>
           ))}

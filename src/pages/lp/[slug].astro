@@ -1,4 +1,18 @@
 ---
+// Server-rendered rather than statically generated. It used to build one
+// static page per campaign at build time (10 hand-written + whatever was
+// published in landing_pages when the build ran) — which meant a page
+// published or edited via MCP/admin didn't actually appear on the live site
+// until the next deploy, however "published" it looked in the database. See
+// the MCP publish_landing_page tool for the promise this now has to keep.
+//
+// The 10 real hand-written campaigns are matched from the in-memory array
+// first — zero database round-trip, so the pages ads actually point traffic
+// at pay no cost for this. Only a slug not found there falls through to a
+// single-row Supabase lookup. A short edge cache (see the Cache-Control
+// header below) keeps repeat hits fast either way.
+export const prerender = false;
+
 import Landing from '../../layouts/Landing.astro';
 import site from '../../data/site.json';
 import { landings } from '../../data/landing';
@@ -13,18 +27,25 @@ import Schema from '../../components/Schema.astro';
 import ReviewsCarousel from '../../components/ReviewsCarousel.astro';
 import LandingPremium from '../../components/LandingPremium.astro';
 import { getSupabaseAdmin } from '../../lib/supabaseAdmin';
-import { publishedLandingPages } from '../../lib/landingPages';
+import { rowToLanding, type LandingPageRow } from '../../lib/landingPages';
 
-// The 10 campaigns in landing.ts are hand-written and untouched here.
-// Published AI/MCP-created pages (see /admin/landing-pages) live in Supabase
-// and are merged in at build time — same static generation, same template,
-// no runtime dependency added to a page ads actually point traffic at.
-export async function getStaticPaths() {
-  const aiLandings = await publishedLandingPages(getSupabaseAdmin());
-  return [...landings, ...aiLandings].map((lp) => ({ params: { slug: lp.slug }, props: { lp } }));
+const slug = Astro.params.slug;
+let lp = landings.find((l) => l.slug === slug) ?? null;
+
+if (!lp) {
+  const supabase = getSupabaseAdmin();
+  if (supabase && slug) {
+    const { data } = await supabase.from('landing_pages').select('*').eq('status', 'published').eq('slug', slug).maybeSingle();
+    if (data) lp = rowToLanding(data as LandingPageRow);
+  }
 }
 
-const { lp } = Astro.props;
+if (!lp) {
+  return new Response('Not found', { status: 404 });
+}
+
+Astro.response.headers.set('Cache-Control', 'public, s-maxage=120, stale-while-revalidate=3600');
+
 const service = services.find((s) => s.slug === lp.relatedService);
 // A page with its own `covers` list (a campaign with no single matching
 // service page) uses that; otherwise it falls back to the related service's
