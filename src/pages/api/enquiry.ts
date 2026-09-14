@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import { createClient } from '@supabase/supabase-js';
 import site from '../../data/site.json';
 import { hashIp, dailySalt } from '../../lib/hashIp';
+import { COVERED_OUTSIDE_LONDON } from '../../data/serviceArea';
 
 export const prerender = false;
 
@@ -51,10 +52,16 @@ async function lookupPostcode(postcode: string): Promise<Lookup> {
     const body = await res.json();
     const r = body?.result;
     if (!r) return { valid: true, inServiceArea: true };
+    // Greater London, plus the districts we cover beyond it. Testing the region
+    // alone used to flag a Guildford or St Albans job as out of area and put
+    // "*** OUTSIDE SERVICE AREA ***" at the top of the notification email for a
+    // customer we do in fact serve. COVERED_OUTSIDE_LONDON is the same list the
+    // admin map draws as covered, so the two cannot disagree.
+    const district = r.admin_district ?? undefined;
     return {
       valid: true,
-      inServiceArea: r.region === 'London',
-      borough: r.admin_district ?? undefined,
+      inServiceArea: r.region === 'London' || COVERED_OUTSIDE_LONDON.includes(district ?? ''),
+      borough: district,
       region: r.region ?? undefined,
     };
   } catch {

@@ -3257,7 +3257,10 @@ body.qr-open { overflow: hidden; }
 .areamap-key-covered { --dot: #64758c; }
 .areamap-key-planned { --dot: #8a6f52; }
 
-.areamap-dot { stroke: #fff; stroke-width: 3; opacity: 0.9; }
+/* The only layer that was missing non-scaling-stroke: the white ring is what
+   separates one dot from the dot it overlaps, so it must not thin out as the
+   frame grows. 3 user units was ~1.6px and falling. */
+.areamap-dot { stroke: #fff; stroke-width: 1.8; opacity: 0.9; vector-effect: non-scaling-stroke; }
 .areamap-dot:hover { opacity: 1; }
 .areamap-dot-enquiries { fill: #1d4ed8; }
 .areamap-dot-phone { fill: #ea580c; }

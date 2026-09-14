@@ -93,17 +93,45 @@ function coverage(district: string) {
 // place's district — "this local page earned a call", which is a different
 // claim from "the caller was there", and the map's legend keeps them apart.
 const areaBySlug = new Map(areas.map((a) => [a.slug, a]));
+
+// Central London is the one place where the site and the map disagree about
+// what a district is. POINTS carries sub-districts (W1B, SW1A, EC1A, WC2A)
+// while postcodes.ts and areas.ts use the parent codes (W1, SW1, EC1, WC2), so
+// every tap on /postcodes/w1, /postcodes/sw1, /postcodes/ec1..ec4,
+// /postcodes/wc1, /postcodes/wc2 and the whole Westminster area family was
+// falling through as unplaceable — and then being reported under the words
+// "pages that are not about a particular place", which Westminster plainly is.
+//
+// A parent sits at the mean of its own sub-districts. That is derived from
+// points already committed here, not a new coordinate from somewhere else.
+//
+// The suffix must be LETTERS: "SW1" + "A" is a sub-district of SW1, but
+// "SW1" + "0" is SW10, a different district a mile and a half away. A plain
+// startsWith would silently put Pimlico taps in Battersea.
+const SUBDISTRICT_MEANS = new Map<string, [number, number]>();
+for (const parent of ['EC1', 'EC2', 'EC3', 'EC4', 'SW1', 'W1', 'WC1', 'WC2']) {
+  const kids = Object.entries(POINTS).filter(
+    ([k]) => k.length > parent.length && k.startsWith(parent) && /^[A-Z]+$/.test(k.slice(parent.length))
+  );
+  if (!kids.length) continue;
+  SUBDISTRICT_MEANS.set(parent, [
+    kids.reduce((s, [, p]) => s + p[0], 0) / kids.length,
+    kids.reduce((s, [, p]) => s + p[1], 0) / kids.length,
+  ]);
+}
+const pointFor = (d: string): [number, number] | undefined => POINTS[d] ?? SUBDISTRICT_MEANS.get(d);
+
 function districtForPage(page: string): string | null {
   const clean = (page || '').split('?')[0].replace(/\/+$/, '');
   const postcodeMatch = clean.match(/^\/postcodes\/([a-z0-9-]+)$/i);
   if (postcodeMatch) {
     const d = postcodeMatch[1].toUpperCase();
-    return POINTS[d] ? d : null;
+    return pointFor(d) ? d : null;
   }
   const areaMatch = clean.match(/^\/areas\/([a-z0-9-]+)$/i) || clean.match(/^\/services\/[a-z0-9-]+\/([a-z0-9-]+)$/i);
   if (areaMatch) {
     const area = areaBySlug.get(areaMatch[1].toLowerCase());
-    const d = area?.postcodes.find((p) => POINTS[p.toUpperCase()]);
+    const d = area?.postcodes.find((p) => pointFor(p.toUpperCase()));
     return d ? d.toUpperCase() : null;
   }
   return null;
@@ -130,15 +158,15 @@ for (const s of sources) {
 const boroughByDistrict = new Map(rows.map((r) => [r.district, r.borough]));
 const markerDistricts = new Set<string>([...rows.map((r) => r.district), ...tapsByDistrict.keys()]);
 const markers: MapMarker[] = [...markerDistricts]
-  .filter((d) => POINTS[d])
+  .filter((d) => pointFor(d))
   .map((d) => {
     const row = rows.find((r) => r.district === d);
     const taps = tapsByDistrict.get(d) ?? { phone: 0, whatsapp: 0, sms: 0 };
     return {
       district: d,
       borough: row?.borough ?? boroughByDistrict.get(d) ?? null,
-      x: POINTS[d][0],
-      y: POINTS[d][1],
+      x: pointFor(d)![0],
+      y: pointFor(d)![1],
       enquiries: Number(row?.total ?? 0),
       phone: taps.phone,
       whatsapp: taps.whatsapp,
@@ -149,7 +177,7 @@ const markers: MapMarker[] = [...markerDistricts]
 // A district with enquiries but no point on the map (outside Greater London,
 // or a code the boundary data does not carry) must be visible as a gap rather
 // than silently missing — the table lists every row regardless.
-const offMap = rows.filter((r) => !POINTS[r.district]);
+const offMap = rows.filter((r) => !pointFor(r.district));
 
 const totalEnquiries = rows.reduce((sum, r) => sum + Number(r.total), 0);
 const totalBooked = rows.reduce((sum, r) => sum + Number(r.booked), 0);
@@ -190,17 +218,20 @@ const corridorSharePct = CORRIDOR_AREA_SHARE_PCT;
   {!loadError && (
     <AreaMap
       markers={markers}
-      summary={`Map of Greater London showing ${markers.length} postcode ${markers.length === 1 ? 'district' : 'districts'} with activity. The table below this map lists the same figures.`}
+      summary={`Map of London and the M25 corridor showing ${markers.length} postcode ${markers.length === 1 ? 'district' : 'districts'} with activity. The table below this map lists the same figures.`}
     />
   )}
 
   {!loadError && offMap.length > 0 && (
     <p class="admin-note">
       {offMap.length === 1 ? 'One district is' : `${offMap.length} districts are`} not on the map
-      &mdash; {offMap.map((r) => r.district).join(', ')}. The map carries a position for the postcode
-      districts in and immediately around London, and {offMap.length === 1 ? 'this one is' : 'these are'}
+      &mdash; {offMap.map((r) => r.district).join(', ')}. The map can only draw a dot where it holds a
+      position for the postcode district, and it holds {Object.keys(POINTS).length} of them; these are
       not among them, so {offMap.length === 1 ? 'it' : 'they'} would have to be plotted somewhere
-      invented. {offMap.length === 1 ? 'It is' : 'They are'} still counted in the table below.
+      invented. {offMap.length === 1 ? 'It is' : 'They are'} still counted in the table below, and
+      {offMap.some((r) => COVERED_OUTSIDE_LONDON.some((n) => r.district.startsWith('GU') || r.district.startsWith('AL')))
+        ? 'a district being absent here says nothing about whether we cover it — Guildford and St Albans are covered and have no dot position yet.'
+        : 'being absent here says nothing about whether we cover the place.'}
     </p>
   )}
 

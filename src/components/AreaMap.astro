@@ -69,11 +69,16 @@ const { markers, summary } = Astro.props;
 // types at one district stay separable instead of stacking into one blob.
 // Offsets and radii are in viewBox units: the map is ~2075 units wide and
 // renders around 1100px, so a unit is roughly half a pixel.
-// Widening the frame to fit the M25 corridor shrank everything drawn in it to
-// about 87% on screen, so the dots and their rosette are scaled back up by the
-// same factor: the sizes below were tuned by eye against the old frame and
-// should keep the size they were tuned at.
-const SCALE = 1.14;
+// Widening the frame to fit the corridor districts shrank everything drawn in
+// it, so the dots and their rosette scale back up by the same factor and keep
+// the size they were tuned at.
+//
+// Derived, not typed in: .areamap-svg is width:100%/height:auto, so what is on
+// screen is driven by MAP_WIDTH alone and MAP_HEIGHT only sets the aspect
+// ratio. A hand-set 1.14 was wrong here — that is the HEIGHT ratio, which
+// cannot affect rendered size.
+const TUNED_WIDTH = 1918.6;
+const SCALE = MAP_WIDTH / TUNED_WIDTH;
 const OFFSETS: Record<string, [number, number]> = {
   enquiries: [0, -13 * SCALE],
   phone: [13 * SCALE, 4 * SCALE],
