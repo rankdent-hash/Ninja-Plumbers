@@ -76,18 +76,23 @@ const fields = [
     <section class="admin-section">
       <h2>MCP access</h2>
       <p class="admin-note">
-        Lets an AI chat client (Claude, ChatGPT, or anything that speaks MCP) create and edit blog
-        posts, landing pages and service pages through a conversation, generate a hero image for a
-        blog post, and publish a finished blog post straight to the live site.
+        Lets an AI chat client (Claude, ChatGPT, or anything that speaks MCP) create, edit, publish
+        and unpublish blog posts, landing pages and service pages through a conversation — including
+        generating a hero image for a blog post. A chat client with an MCP token can put any of these
+        live on its own, with no review step in between: treat it the same as any other author with
+        access to <a href="/admin/blog">/admin/blog</a>,
+        <a href="/admin/landing-pages">/admin/landing-pages</a> or
+        <a href="/admin/service-pages">/admin/service-pages</a>.
       </p>
       <p class="admin-note">
-        Landing pages and service pages are always saved as a draft — nothing there goes live until
-        you review it in <a href="/admin/landing-pages">/admin/landing-pages</a> or
-        <a href="/admin/service-pages">/admin/service-pages</a> and click Publish, and MCP can never
-        touch one already published. Blog posts are different: MCP can publish a post it just wrote
-        with no review step, so a chat client with an MCP token can put a post live on its own —
-        review what it publishes the same way you'd review any other author with access to
-        <a href="/admin/blog">/admin/blog</a>.
+        Publishing is always a separate, explicit step from writing — never automatic — and it can
+        preview what would happen first (<code>dry_run</code>) before committing. Editing a page that's
+        already live still works and takes effect immediately, but a snapshot of the page from just
+        before the edit is kept, so what changed is reconstructable afterwards. The one thing that
+        stays fully locked down: no discount or offer wording can be set while writing or editing a
+        landing page — turning the site's existing, fixed promotion on or off for a page is its own
+        separate tool, so a real discount only ever appears somewhere with a deliberate, explicit
+        instruction to put it there.
       </p>
       <p class="admin-note">
         Most chat clients — including Claude.ai's own connector setup — can sign in on their own
