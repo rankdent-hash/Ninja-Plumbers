@@ -18,6 +18,7 @@ import { getSupabaseAdmin } from '../../lib/supabaseAdmin';
 import { areas } from '../../data/areas';
 import { postcodes } from '../../data/postcodes';
 import { POINTS, OUTER_DISTRICTS } from '../../data/londonMap';
+import { COVERED_OUTSIDE_LONDON, CORRIDOR_AREA_SHARE_PCT } from '../../data/serviceArea';
 
 export const prerender = false;
 
@@ -155,6 +156,11 @@ const totalBooked = rows.reduce((sum, r) => sum + Number(r.booked), 0);
 const uncovered = rows.filter((r) => !coverage(r.district).area);
 const unknownBoroughs = rows.reduce((sum, r) => sum + Number(r.borough_unknown), 0);
 const pct = (n: number) => (totalEnquiries ? Math.round((n / totalEnquiries) * 100) : 0);
+
+// Only the districts we do NOT cover are drawn unfilled and dashed. Counting
+// all of OUTER_DISTRICTS here would be wrong by exactly the two we do cover.
+const plannedCount = OUTER_DISTRICTS.length - COVERED_OUTSIDE_LONDON.length;
+const corridorSharePct = CORRIDOR_AREA_SHARE_PCT;
 ---
 <AdminLayout title="Areas" admin={admin}>
   <div class="admin-head">
@@ -295,14 +301,25 @@ const pct = (n: number) => (totalEnquiries ? Math.round((n / totalEnquiries) * 1
   <section class="admin-section">
     <h2>What the map is and isn&rsquo;t</h2>
     <p class="admin-note">
-      <strong>The shaded areas are not all places we work.</strong> Greater London&rsquo;s 33 boroughs,
-      plus Guildford and St Albans, are drawn in blue-grey with a solid border: those are covered today.
-      The peach areas with a dashed border are the {OUTER_DISTRICTS.length} districts the planned
-      M25 corridor passes through &mdash; they are on the map so the expansion can be read against real
-      place names, and we do not work in them yet. The green band is 3 miles either side of the
-      motorway; it shows where the M25 runs, not where a van can realistically get in traffic.
-      Guildford is the odd one out: its town centre is about 7&frac12; miles from the M25, so it is
-      well outside that band and is on the map because we cover it, not because the motorway goes near it.
+      <strong>Not everything drawn here is a place we work.</strong> Greater London&rsquo;s 33 boroughs,
+      plus Guildford and St Albans, are filled blue-grey with a solid border: those are covered today.
+      The {plannedCount} unfilled shapes with a dashed border are the districts the planned M25 corridor
+      passes through &mdash; they are named so the expansion can be read against real places, and we do
+      not work in them yet. They are left unfilled on purpose: only about
+      {corridorSharePct}% of their combined area is actually within 3 miles of the motorway, so shading
+      them whole would make the corridor look roughly two and a half times bigger than it is. The green
+      band is the corridor itself, and it shows where the M25 runs, not where a van can realistically
+      get in traffic.
+    </p>
+    <p class="admin-note">
+      Two details worth knowing before you lean on this. <strong>Guildford</strong> is not near the
+      corridor at all &mdash; its town centre is about 7&frac12; miles from the motorway, roughly
+      4&frac12; miles beyond the edge of the band. It is on the map because we cover it, not because
+      of where the M25 goes. <strong>St Albans</strong> is a coin toss: the city centre is about 2.8
+      miles from the motorway, so it falls inside the band by around 250 metres, and picking a
+      slightly different point in the city puts it outside. Treat the band&rsquo;s edge as
+      approximate everywhere &mdash; East Hertfordshire and Harlow miss it by a tenth of a mile, and
+      a 3.1-mile band would have pulled them both in.
     </p>
     <p class="admin-note">
       Blue dots are real locations: the postcode the customer typed when they asked us to quote.

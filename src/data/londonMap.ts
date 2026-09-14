@@ -18,8 +18,13 @@
 // reads as "continues beyond", whereas a polygon cut to the frame would draw a
 // hard border where no border exists.
 //
-// Boundaries: ONS local authority districts, Open Government Licence v3,
-// simplified with Douglas-Peucker to roughly 55m.
+// Boundaries: ONS local authority districts (2013 edition), Open Government
+// Licence v3, simplified with Douglas-Peucker to roughly 55m. Two names in
+// OUTER_DISTRICTS are councils that no longer exist: Chiltern and South Bucks
+// were merged into Buckinghamshire Council on 1 April 2020. The ground they
+// cover is unchanged and both remain the names people use for those places,
+// which is what this map needs them for, but they are not current local
+// authorities and should not be treated as such.
 //
 // M25 - the orbital motorway, sampled from OpenStreetMap. Drawn as separate
 // runs rather than one ring because the source samples are concatenated per
