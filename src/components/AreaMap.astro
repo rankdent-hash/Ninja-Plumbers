@@ -18,7 +18,14 @@
 // Accessibility: this SVG is decorative-with-a-summary. The table beneath it on
 // the page carries the same numbers in full, which is the real non-visual
 // equivalent — per-dot <title> elements inside a role="img" are not announced.
-import { BOROUGHS, MAP_WIDTH, MAP_HEIGHT } from '../data/londonMap';
+import { BOROUGHS, M25, MAP_WIDTH, MAP_HEIGHT, UNITS_PER_MILE } from '../data/londonMap';
+
+// The planned expansion: up to 3 miles either side of the M25. Drawn as a
+// stroke that wide rather than a computed buffer polygon — a round-capped,
+// round-joined stroke IS the buffer of a line, and it closes the small gaps
+// between the motorway's separately-sampled runs for free.
+const CORRIDOR_MILES = 3;
+const CORRIDOR_WIDTH = CORRIDOR_MILES * 2 * UNITS_PER_MILE;
 
 export type MapMarker = {
   district: string;
@@ -72,9 +79,11 @@ const dots = markers.flatMap((m) =>
       <span class="areamap-key areamap-key-phone">Phone</span>
       <span class="areamap-key areamap-key-whatsapp">WhatsApp</span>
       <span class="areamap-key areamap-key-sms">Text</span>
-      <span class="areamap-legend-note">Call, WhatsApp and text dots show the page that earned the tap, not where the person was.</span>
+      <span class="areamap-key areamap-key-corridor">M25 &plusmn;{CORRIDOR_MILES} miles</span>
+      <span class="areamap-legend-note">Call, WhatsApp and text dots show the page that earned the tap, not where the person was. Shaded areas outside the boroughs are not covered today.</span>
     </div>
     <div class="areamap-zoom">
+      <button type="button" class="btn btn-ghost" data-areamap-toggle="corridor" aria-pressed="true">M25 band</button>
       <button type="button" class="btn btn-ghost" data-areamap-zoom="in" aria-label="Zoom in">+</button>
       <button type="button" class="btn btn-ghost" data-areamap-zoom="out" aria-label="Zoom out">&minus;</button>
       <button type="button" class="btn btn-ghost" data-areamap-zoom="reset">Reset</button>
@@ -93,9 +102,27 @@ const dots = markers.flatMap((m) =>
       preserveAspectRatio="xMidYMid meet"
     >
       <g data-areamap-pan>
+        {/* Everything outside the borough outlines: the counties the business
+            does not cover today, tinted so "inside Greater London" reads at a
+            glance. Boroughs are painted over the top of it. */}
+        <rect class="areamap-outside" x="0" y="0" width={MAP_WIDTH} height={MAP_HEIGHT} />
+
         <g class="areamap-boroughs">
           {BOROUGHS.map((b) => (
             <path d={b.d} class="areamap-borough" data-borough={b.name}><title>{b.name}</title></path>
+          ))}
+        </g>
+
+        {/* Over the boroughs, not under them, so the band is visible on both
+            sides of the motorway. */}
+        <g class="areamap-corridor" data-areamap-corridor>
+          {M25.map((d) => (
+            <path d={d} stroke-width={CORRIDOR_WIDTH} />
+          ))}
+        </g>
+        <g class="areamap-m25">
+          {M25.map((d) => (
+            <path d={d}><title>M25</title></path>
           ))}
         </g>
         <g class="areamap-dots">

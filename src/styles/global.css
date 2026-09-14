@@ -3195,8 +3195,25 @@ body.qr-open { overflow: hidden; }
 .areamap.is-zoomed .areamap-svg { cursor: grab; }
 .areamap.is-dragging .areamap-svg { cursor: grabbing; }
 
+.areamap-outside { fill: #f7ede4; }
 .areamap-borough { fill: #eef2f7; stroke: #94a3b8; stroke-width: 2.6; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
 .areamap-borough:hover { fill: #e2e8f2; }
+
+/* Opacity belongs on the group, not the paths: the motorway is drawn as 216
+   overlapping runs, and per-path alpha would stack at every overlap into the
+   blotchy mess that looks nothing like a 3-mile band. Group opacity flattens
+   the union first and composites it once. */
+.areamap-corridor { opacity: 0.17; }
+.areamap-corridor path {
+  fill: none; stroke: #0f766e;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.areamap-m25 path {
+  fill: none; stroke: #0f766e; stroke-width: 4; stroke-opacity: 0.85;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.areamap.hide-corridor .areamap-corridor { display: none; }
+.areamap-key-corridor { --dot: #0f766e; }
 
 .areamap-dot { stroke: #fff; stroke-width: 3; opacity: 0.9; }
 .areamap-dot:hover { opacity: 1; }

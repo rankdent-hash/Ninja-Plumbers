@@ -47,6 +47,13 @@
   }
 
   root.addEventListener('click', function (e) {
+    var toggle = e.target.closest('[data-areamap-toggle]');
+    if (toggle) {
+      var on = toggle.getAttribute('aria-pressed') !== 'true';
+      toggle.setAttribute('aria-pressed', on ? 'true' : 'false');
+      root.classList.toggle('hide-corridor', !on);
+      return;
+    }
     var btn = e.target.closest('[data-areamap-zoom]');
     if (!btn) return;
     var action = btn.getAttribute('data-areamap-zoom');
