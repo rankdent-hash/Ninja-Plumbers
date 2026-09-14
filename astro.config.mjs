@@ -27,6 +27,17 @@ const blogUrls = await publishedBlogUrls();
 
 export default defineConfig({
   site: 'https://www.ninjaplumbers.co.uk',
+  // Astro's default CSRF guard 403s any POST/PUT/PATCH/DELETE with a
+  // form-like content type (application/x-www-form-urlencoded,
+  // multipart/form-data, text/plain) whose Origin header is missing or
+  // doesn't match this site — exactly what a legitimate server-to-server
+  // OAuth token exchange looks like (RFC 6749 requires
+  // application/x-www-form-urlencoded for /oauth/token, sent with no
+  // Origin header at all). There is no per-route opt-out, and every actual
+  // form on this site already submits as JSON via fetch specifically to
+  // sidestep this guard (see e.g. admin/login.astro's own comment on it),
+  // so disabling it here removes no protection anything relies on.
+  security: { checkOrigin: false },
   // Vercel serves these with cleanUrls, so pages resolve at /services rather
   // than /services.html. Previously every internal link and every canonical
   // pointed at a .html path that 308-redirected.
