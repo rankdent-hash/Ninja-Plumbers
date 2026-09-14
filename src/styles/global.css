@@ -3199,11 +3199,35 @@ body.qr-open { overflow: hidden; }
 .areamap-borough { fill: #eef2f7; stroke: #94a3b8; stroke-width: 2.6; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
 .areamap-borough:hover { fill: #e2e8f2; }
 
+/* Districts around London. Covered and not-covered must not be told apart by
+   hue alone, so the border carries it too: a solid edge for somewhere we work,
+   a dashed one for somewhere we only plan to. */
+.areamap-district {
+  fill: #f2e3d5; stroke: #c9a88a; stroke-width: 1.8; stroke-dasharray: 7 5;
+  stroke-linejoin: round; vector-effect: non-scaling-stroke;
+}
+.areamap-district:hover { fill: #e9d4c0; }
+.areamap-district.is-covered {
+  fill: #eef2f7; stroke: #94a3b8; stroke-width: 2.6; stroke-dasharray: none;
+}
+.areamap-district.is-covered:hover { fill: #e2e8f2; }
+
+.areamap-label {
+  font-size: 26px; font-weight: 600; fill: #8a6f57;
+  text-anchor: middle; dominant-baseline: middle;
+  paint-order: stroke; stroke: #fdf8f3; stroke-width: 6; stroke-linejoin: round;
+  pointer-events: none;
+}
+.areamap-label.is-covered { fill: #3f5468; stroke: #f4f7fb; }
+
 /* Opacity belongs on the group, not the paths: the motorway is drawn as 216
    overlapping runs, and per-path alpha would stack at every overlap into the
    blotchy mess that looks nothing like a 3-mile band. Group opacity flattens
    the union first and composites it once. */
-.areamap-corridor { opacity: 0.17; }
+/* The band is a 260-unit-wide stroke laid over the boroughs and districts, so
+   without this it swallows the hover for every shape within 3 miles of the
+   motorway — the exact ring the map exists to explain. */
+.areamap-corridor { opacity: 0.17; pointer-events: none; }
 .areamap-corridor path {
   fill: none; stroke: #0f766e;
   stroke-linecap: round; stroke-linejoin: round;
@@ -3214,6 +3238,8 @@ body.qr-open { overflow: hidden; }
 }
 .areamap.hide-corridor .areamap-corridor { display: none; }
 .areamap-key-corridor { --dot: #0f766e; }
+.areamap-key-covered { --dot: #94a3b8; }
+.areamap-key-planned { --dot: #c9a88a; }
 
 .areamap-dot { stroke: #fff; stroke-width: 3; opacity: 0.9; }
 .areamap-dot:hover { opacity: 1; }

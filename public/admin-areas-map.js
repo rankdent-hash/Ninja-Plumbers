@@ -145,9 +145,17 @@
       );
       return;
     }
-    var shape = e.target.closest('.areamap-borough');
+    var shape = e.target.closest('.areamap-borough, .areamap-district');
     if (shape) {
-      showTip('<strong>' + shape.getAttribute('data-borough') + '</strong>', e);
+      // Say outright whether we work there. A shape with only a name on it
+      // invites the reader to assume the whole map is our patch, and most of
+      // what is drawn out past London is not.
+      var covered = shape.getAttribute('data-covered') !== 'no';
+      showTip(
+        '<strong>' + shape.getAttribute('data-borough') + '</strong><br>' +
+          (covered ? 'Covered' : 'Not covered yet'),
+        e
+      );
       return;
     }
     hideTip();

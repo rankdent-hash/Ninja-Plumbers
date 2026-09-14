@@ -1,6 +1,7 @@
 ---
-// Schematic map of Greater London for /admin/areas: the 33 borough outlines as
-// a backdrop, with a dot per postcode district carrying data.
+// Schematic map of London and the M25 for /admin/areas: the 33 borough
+// outlines and the surrounding districts as a backdrop, with a dot per
+// postcode district carrying data.
 //
 // Server-rendered SVG with no tile server, no map library and no API key —
 // nothing about an admin's session leaves this domain to draw it, and the
@@ -18,14 +19,34 @@
 // Accessibility: this SVG is decorative-with-a-summary. The table beneath it on
 // the page carries the same numbers in full, which is the real non-visual
 // equivalent — per-dot <title> elements inside a role="img" are not announced.
-import { BOROUGHS, M25, MAP_WIDTH, MAP_HEIGHT, UNITS_PER_MILE } from '../data/londonMap';
+import { BOROUGHS, OUTER_DISTRICTS, M25, MAP_WIDTH, MAP_HEIGHT, UNITS_PER_MILE } from '../data/londonMap';
+import { COVERED_OUTSIDE_LONDON, CORRIDOR_MILES } from '../data/serviceArea';
 
 // The planned expansion: up to 3 miles either side of the M25. Drawn as a
 // stroke that wide rather than a computed buffer polygon — a round-capped,
 // round-joined stroke IS the buffer of a line, and it closes the small gaps
 // between the motorway's separately-sampled runs for free.
-const CORRIDOR_MILES = 3;
 const CORRIDOR_WIDTH = CORRIDOR_MILES * 2 * UNITS_PER_MILE;
+
+// Three tiers, and keeping them apart is the whole point of this layer:
+//   - boroughs          covered today
+//   - covered districts covered today, outside Greater London (the client named these)
+//   - the rest          the corridor runs through them; NOT covered today
+const covered = new Set(COVERED_OUTSIDE_LONDON);
+const districts = OUTER_DISTRICTS.map((o) => ({ ...o, covered: covered.has(o.name) }));
+
+// Ampersand on the drawn label only — it buys back two characters on the
+// longest names, which is the difference between fitting and being clipped at
+// the frame edge. Hover and the table keep the full official name. The label
+// generator assumes this same shortening when it reserves space.
+const shortName = (n: string) => n.replace(' and ', ' & ');
+
+// Guard against a rename in the generated geometry silently turning a covered
+// area back into a planned one.
+const missing = COVERED_OUTSIDE_LONDON.filter((n) => !OUTER_DISTRICTS.some((o) => o.name === n));
+if (missing.length) {
+  throw new Error(`serviceArea.ts names districts that are not in the map: ${missing.join(', ')}`);
+}
 
 export type MapMarker = {
   district: string;
@@ -46,19 +67,24 @@ const { markers, summary } = Astro.props;
 
 // Dots are placed on a small rosette around the district centroid so four
 // types at one district stay separable instead of stacking into one blob.
-// Offsets and radii are in viewBox units: the map is ~1580 units wide and
-// renders around 1100px, so a unit is roughly 0.7 of a pixel.
+// Offsets and radii are in viewBox units: the map is ~2075 units wide and
+// renders around 1100px, so a unit is roughly half a pixel.
+// Widening the frame to fit the M25 corridor shrank everything drawn in it to
+// about 87% on screen, so the dots and their rosette are scaled back up by the
+// same factor: the sizes below were tuned by eye against the old frame and
+// should keep the size they were tuned at.
+const SCALE = 1.14;
 const OFFSETS: Record<string, [number, number]> = {
-  enquiries: [0, -13],
-  phone: [13, 4],
-  whatsapp: [-13, 4],
-  sms: [0, 17],
+  enquiries: [0, -13 * SCALE],
+  phone: [13 * SCALE, 4 * SCALE],
+  whatsapp: [-13 * SCALE, 4 * SCALE],
+  sms: [0, 17 * SCALE],
 };
 const KINDS = ['enquiries', 'phone', 'whatsapp', 'sms'] as const;
 
 // Area, not radius, carries the count — a circle twice as wide reads as four
 // times as much, which is exactly the misreading sqrt avoids.
-const radius = (n: number) => Math.min(30, 7 + Math.sqrt(n) * 4.5);
+const radius = (n: number) => Math.min(30 * SCALE, (7 + Math.sqrt(n) * 4.5) * SCALE);
 
 const dots = markers.flatMap((m) =>
   KINDS.filter((k) => m[k] > 0).map((k) => ({
@@ -80,7 +106,9 @@ const dots = markers.flatMap((m) =>
       <span class="areamap-key areamap-key-whatsapp">WhatsApp</span>
       <span class="areamap-key areamap-key-sms">Text</span>
       <span class="areamap-key areamap-key-corridor">M25 &plusmn;{CORRIDOR_MILES} miles</span>
-      <span class="areamap-legend-note">Call, WhatsApp and text dots show the page that earned the tap, not where the person was. Shaded areas outside the boroughs are not covered today.</span>
+      <span class="areamap-key areamap-key-covered">Covered today</span>
+      <span class="areamap-key areamap-key-planned">Not covered yet</span>
+      <span class="areamap-legend-note">Call, WhatsApp and text dots show the page that earned the tap, not where the person was. Greater London, Guildford and St Albans are covered; the named districts around the M25 are where the planned expansion would reach, not places we work today.</span>
     </div>
     <div class="areamap-zoom">
       <button type="button" class="btn btn-ghost" data-areamap-toggle="corridor" aria-pressed="true">M25 band</button>
@@ -107,9 +135,23 @@ const dots = markers.flatMap((m) =>
             glance. Boroughs are painted over the top of it. */}
         <rect class="areamap-outside" x="0" y="0" width={MAP_WIDTH} height={MAP_HEIGHT} />
 
+        {/* The counties around London. Drawn under the boroughs and under the
+            corridor band. Several run off the edge of the frame, which is
+            true — they continue beyond it. */}
+        <g class="areamap-districts">
+          {districts.map((o) => (
+            <path
+              d={o.d}
+              class:list={['areamap-district', { 'is-covered': o.covered }]}
+              data-borough={o.name}
+              data-covered={o.covered ? 'yes' : 'no'}
+            ><title>{o.covered ? `${o.name} — covered` : `${o.name} — not covered yet`}</title></path>
+          ))}
+        </g>
+
         <g class="areamap-boroughs">
           {BOROUGHS.map((b) => (
-            <path d={b.d} class="areamap-borough" data-borough={b.name}><title>{b.name}</title></path>
+            <path d={b.d} class="areamap-borough" data-borough={b.name} data-covered="yes"><title>{b.name}</title></path>
           ))}
         </g>
 
@@ -125,6 +167,22 @@ const dots = markers.flatMap((m) =>
             <path d={d}><title>M25</title></path>
           ))}
         </g>
+
+        {/* Names for the outer districts. London's boroughs stay hover-only —
+            33 labels in that space would be unreadable — but out here there is
+            room, and a shape with no name on it is no use for deciding where
+            to advertise. aria-hidden because the table below carries the same
+            ground in text. */}
+        <g class="areamap-labels" aria-hidden="true">
+          {districts.filter((o) => o.label).map((o) => (
+            <text
+              x={o.label![0]}
+              y={o.label![1]}
+              class:list={['areamap-label', { 'is-covered': o.covered }]}
+            >{shortName(o.name)}</text>
+          ))}
+        </g>
+
         <g class="areamap-dots">
           {dots.map((d) => (
             <circle

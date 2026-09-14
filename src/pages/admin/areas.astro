@@ -17,7 +17,7 @@ import AreaMap, { type MapMarker } from '../../components/AreaMap.astro';
 import { getSupabaseAdmin } from '../../lib/supabaseAdmin';
 import { areas } from '../../data/areas';
 import { postcodes } from '../../data/postcodes';
-import { POINTS } from '../../data/londonMap';
+import { POINTS, OUTER_DISTRICTS } from '../../data/londonMap';
 
 export const prerender = false;
 
@@ -191,9 +191,10 @@ const pct = (n: number) => (totalEnquiries ? Math.round((n / totalEnquiries) * 1
   {!loadError && offMap.length > 0 && (
     <p class="admin-note">
       {offMap.length === 1 ? 'One district is' : `${offMap.length} districts are`} not on the map
-      &mdash; {offMap.map((r) => r.district).join(', ')} {offMap.length === 1 ? 'falls' : 'fall'}
-      outside the Greater London boundaries it is drawn from. {offMap.length === 1 ? 'It is' : 'They are'}
-      still counted in the table below.
+      &mdash; {offMap.map((r) => r.district).join(', ')}. The map carries a position for the postcode
+      districts in and immediately around London, and {offMap.length === 1 ? 'this one is' : 'these are'}
+      not among them, so {offMap.length === 1 ? 'it' : 'they'} would have to be plotted somewhere
+      invented. {offMap.length === 1 ? 'It is' : 'They are'} still counted in the table below.
     </p>
   )}
 
@@ -293,6 +294,16 @@ const pct = (n: number) => (totalEnquiries ? Math.round((n / totalEnquiries) * 1
 
   <section class="admin-section">
     <h2>What the map is and isn&rsquo;t</h2>
+    <p class="admin-note">
+      <strong>The shaded areas are not all places we work.</strong> Greater London&rsquo;s 33 boroughs,
+      plus Guildford and St Albans, are drawn in blue-grey with a solid border: those are covered today.
+      The peach areas with a dashed border are the {OUTER_DISTRICTS.length} districts the planned
+      M25 corridor passes through &mdash; they are on the map so the expansion can be read against real
+      place names, and we do not work in them yet. The green band is 3 miles either side of the
+      motorway; it shows where the M25 runs, not where a van can realistically get in traffic.
+      Guildford is the odd one out: its town centre is about 7&frac12; miles from the M25, so it is
+      well outside that band and is on the map because we cover it, not because the motorway goes near it.
+    </p>
     <p class="admin-note">
       Blue dots are real locations: the postcode the customer typed when they asked us to quote.
       The orange, green and purple dots are not &mdash; a tap on a call, WhatsApp or text link
