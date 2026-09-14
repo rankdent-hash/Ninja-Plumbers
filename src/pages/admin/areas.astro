@@ -13,9 +13,11 @@
 // postcode; nothing here may render one. Counts per district, never a point
 // per customer.
 import AdminLayout from '../../layouts/AdminLayout.astro';
+import AreaMap, { type MapMarker } from '../../components/AreaMap.astro';
 import { getSupabaseAdmin } from '../../lib/supabaseAdmin';
 import { areas } from '../../data/areas';
 import { postcodes } from '../../data/postcodes';
+import { POINTS } from '../../data/londonMap';
 
 export const prerender = false;
 
@@ -50,14 +52,23 @@ type AreaRow = {
   borough_unknown: number;
 };
 
+type SourceRow = { page: string; views: number; phone: number; whatsapp: number; sms: number; forms: number };
+
 let rows: AreaRow[] = [];
+let sources: SourceRow[] = [];
 let loadError = '';
 if (!supabase) {
   loadError = 'The admin panel is not connected to Supabase yet.';
 } else {
-  const { data, error } = await supabase.rpc('enquiry_areas', { since, until: undefined });
-  if (error) loadError = 'Could not load enquiry areas from the database.';
-  else rows = (data ?? []) as AreaRow[];
+  const [areaRes, sourceRes] = await Promise.all([
+    supabase.rpc('enquiry_areas', { since, until: undefined }),
+    supabase.rpc('contact_sources', { since, until: undefined }),
+  ]);
+  if (areaRes.error) loadError = 'Could not load enquiry areas from the database.';
+  else rows = (areaRes.data ?? []) as AreaRow[];
+  // Clicks are supplementary: if this one fails the map simply has no tap
+  // dots, which is better than failing the whole page.
+  if (!sourceRes.error) sources = (sourceRes.data ?? []) as SourceRow[];
 }
 
 // Which page, if any, already covers this district. postcodes.ts is the
@@ -71,6 +82,69 @@ function coverage(district: string) {
   const area = (areaSlug ? areas.find((a) => a.slug === areaSlug) : undefined) ?? byArea;
   return { area, districtPage: pc };
 }
+
+// A contact click records the page it happened on, never a location. Where
+// that page is about a specific place, the tap is attributable to that
+// place's district — "this local page earned a call", which is a different
+// claim from "the caller was there", and the map's legend keeps them apart.
+const areaBySlug = new Map(areas.map((a) => [a.slug, a]));
+function districtForPage(page: string): string | null {
+  const clean = (page || '').split('?')[0].replace(/\/+$/, '');
+  const postcodeMatch = clean.match(/^\/postcodes\/([a-z0-9-]+)$/i);
+  if (postcodeMatch) {
+    const d = postcodeMatch[1].toUpperCase();
+    return POINTS[d] ? d : null;
+  }
+  const areaMatch = clean.match(/^\/areas\/([a-z0-9-]+)$/i) || clean.match(/^\/services\/[a-z0-9-]+\/([a-z0-9-]+)$/i);
+  if (areaMatch) {
+    const area = areaBySlug.get(areaMatch[1].toLowerCase());
+    const d = area?.postcodes.find((p) => POINTS[p.toUpperCase()]);
+    return d ? d.toUpperCase() : null;
+  }
+  return null;
+}
+
+type Taps = { phone: number; whatsapp: number; sms: number };
+const tapsByDistrict = new Map<string, Taps>();
+let unplaceableTaps = 0;
+for (const s of sources) {
+  const taps = Number(s.phone) + Number(s.whatsapp) + Number(s.sms);
+  if (taps === 0) continue;
+  const d = districtForPage(s.page);
+  if (!d) {
+    unplaceableTaps += taps;
+    continue;
+  }
+  const cur = tapsByDistrict.get(d) ?? { phone: 0, whatsapp: 0, sms: 0 };
+  cur.phone += Number(s.phone);
+  cur.whatsapp += Number(s.whatsapp);
+  cur.sms += Number(s.sms);
+  tapsByDistrict.set(d, cur);
+}
+
+const boroughByDistrict = new Map(rows.map((r) => [r.district, r.borough]));
+const markerDistricts = new Set<string>([...rows.map((r) => r.district), ...tapsByDistrict.keys()]);
+const markers: MapMarker[] = [...markerDistricts]
+  .filter((d) => POINTS[d])
+  .map((d) => {
+    const row = rows.find((r) => r.district === d);
+    const taps = tapsByDistrict.get(d) ?? { phone: 0, whatsapp: 0, sms: 0 };
+    return {
+      district: d,
+      borough: row?.borough ?? boroughByDistrict.get(d) ?? null,
+      x: POINTS[d][0],
+      y: POINTS[d][1],
+      enquiries: Number(row?.total ?? 0),
+      phone: taps.phone,
+      whatsapp: taps.whatsapp,
+      sms: taps.sms,
+    };
+  });
+
+// A district with enquiries but no point on the map (outside Greater London,
+// or a code the boundary data does not carry) must be visible as a gap rather
+// than silently missing — the table lists every row regardless.
+const offMap = rows.filter((r) => !POINTS[r.district]);
 
 const totalEnquiries = rows.reduce((sum, r) => sum + Number(r.total), 0);
 const totalBooked = rows.reduce((sum, r) => sum + Number(r.booked), 0);
@@ -95,13 +169,38 @@ const pct = (n: number) => (totalEnquiries ? Math.round((n / totalEnquiries) * 1
 
   <p class="admin-note">
     Where the people who filled in the enquiry form told us the job was, taken from the postcode
-    they gave. <strong>Form submissions only.</strong> Taps on the phone, WhatsApp and text links
-    are not here and cannot be &mdash; the site records that a call button was tapped, never where
-    the person tapping it was. For most businesses phone is the bigger channel, so read this as
-    one channel&rsquo;s worth of evidence, not the whole picture.
+    they gave &mdash; the one genuinely accurate location this site has. The table below counts
+    those. The map adds phone, WhatsApp and text taps on top, positioned by the page they happened
+    on rather than by where the person was; see the note under the table for why that distinction
+    matters before you move any budget on it.
   </p>
 
   {loadError && <p class="form-error-summary" role="alert">{loadError}</p>}
+
+  {!loadError && (
+    <AreaMap
+      markers={markers}
+      summary={`Map of Greater London showing ${markers.length} postcode ${markers.length === 1 ? 'district' : 'districts'} with activity. The table below this map lists the same figures.`}
+    />
+  )}
+
+  {!loadError && offMap.length > 0 && (
+    <p class="admin-note">
+      {offMap.length === 1 ? 'One district is' : `${offMap.length} districts are`} not on the map
+      &mdash; {offMap.map((r) => r.district).join(', ')} {offMap.length === 1 ? 'falls' : 'fall'}
+      outside the Greater London boundaries it is drawn from. {offMap.length === 1 ? 'It is' : 'They are'}
+      still counted in the table below.
+    </p>
+  )}
+
+  {!loadError && unplaceableTaps > 0 && (
+    <p class="admin-note">
+      {unplaceableTaps} phone, WhatsApp or text {unplaceableTaps === 1 ? 'tap' : 'taps'} happened on
+      pages that are not about a particular place &mdash; the homepage, a general service page, an
+      ad landing page &mdash; so there is nowhere honest to plot {unplaceableTaps === 1 ? 'it' : 'them'}.
+      {' '}<a href="/admin/activity">Activity</a> shows every tap by page.
+    </p>
+  )}
 
   {!loadError && rows.length === 0 && (
     <p class="admin-empty">No enquiries with a postcode in this period.</p>
@@ -189,14 +288,23 @@ const pct = (n: number) => (totalEnquiries ? Math.round((n / totalEnquiries) * 1
   )}
 
   <section class="admin-section">
-    <h2>A map?</h2>
+    <h2>What the map is and isn&rsquo;t</h2>
     <p class="admin-note">
-      Not yet, and deliberately. A map needs a point per conversion, and three of the four contact
-      types have no location to plot. The one automatic source &mdash; working a location out from
-      the visitor&rsquo;s IP address &mdash; puts roughly three quarters of all London visitors on a
-      single point near Charing Cross, so it would draw something that looks precise and is not.
-      Once there are around fifty located enquiries here, this table becomes a map worth drawing,
-      plotted at district level. Until then the table says everything the map would.
+      Blue dots are real locations: the postcode the customer typed when they asked us to quote.
+      The orange, green and purple dots are not &mdash; a tap on a call, WhatsApp or text link
+      records the page it happened on and nothing about where the person was, so those dots sit at
+      the place the <em>page</em> is about. A tap on the Wimbledon page plots in Wimbledon whether
+      the caller was in Wimbledon or Watford. It answers &ldquo;which local pages earn calls&rdquo;,
+      which is the SEO question, rather than &ldquo;where do our callers live&rdquo;, which nothing
+      on this site can answer.
+    </p>
+    <p class="admin-note">
+      We could guess a caller&rsquo;s location from their IP address and it would be worse than
+      useless: measured against two commercial geo-IP databases, roughly three quarters of all
+      London addresses resolve to a single point near Charing Cross, and that same point carries
+      about half of the entire UK. It would draw a convincing map of something that is not true, so
+      this does not do it. The honest route to phone and WhatsApp locations is the office noting
+      the job postcode when the call comes in.
     </p>
   </section>
 </AdminLayout>

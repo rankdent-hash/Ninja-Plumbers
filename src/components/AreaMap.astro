@@ -1,0 +1,126 @@
+---
+// Schematic map of Greater London for /admin/areas: the 33 borough outlines as
+// a backdrop, with a dot per postcode district carrying data.
+//
+// Server-rendered SVG with no tile server, no map library and no API key —
+// nothing about an admin's session leaves this domain to draw it, and the
+// geometry is committed (see src/data/londonMap.ts).
+//
+// Two kinds of dot, and the difference matters more than anything else here:
+//   - ENQUIRIES sit at the district of the postcode the customer typed. That
+//     is where the job is.
+//   - CLICKS sit at the district of the page the visitor was reading when they
+//     tapped call/WhatsApp/text. That is NOT where the person was — we have no
+//     idea where they were — it is which local page earned the tap.
+// The legend says so, because a dot that silently mixes the two would be a
+// map that lies.
+//
+// Accessibility: this SVG is decorative-with-a-summary. The table beneath it on
+// the page carries the same numbers in full, which is the real non-visual
+// equivalent — per-dot <title> elements inside a role="img" are not announced.
+import { BOROUGHS, MAP_WIDTH, MAP_HEIGHT } from '../data/londonMap';
+
+export type MapMarker = {
+  district: string;
+  borough: string | null;
+  x: number;
+  y: number;
+  enquiries: number;
+  phone: number;
+  whatsapp: number;
+  sms: number;
+};
+
+interface Props {
+  markers: MapMarker[];
+  summary: string;
+}
+const { markers, summary } = Astro.props;
+
+// Dots are placed on a small rosette around the district centroid so four
+// types at one district stay separable instead of stacking into one blob.
+// Offsets and radii are in viewBox units: the map is ~1580 units wide and
+// renders around 1100px, so a unit is roughly 0.7 of a pixel.
+const OFFSETS: Record<string, [number, number]> = {
+  enquiries: [0, -13],
+  phone: [13, 4],
+  whatsapp: [-13, 4],
+  sms: [0, 17],
+};
+const KINDS = ['enquiries', 'phone', 'whatsapp', 'sms'] as const;
+
+// Area, not radius, carries the count — a circle twice as wide reads as four
+// times as much, which is exactly the misreading sqrt avoids.
+const radius = (n: number) => Math.min(30, 7 + Math.sqrt(n) * 4.5);
+
+const dots = markers.flatMap((m) =>
+  KINDS.filter((k) => m[k] > 0).map((k) => ({
+    kind: k,
+    district: m.district,
+    borough: m.borough,
+    count: m[k],
+    cx: m.x + OFFSETS[k][0],
+    cy: m.y + OFFSETS[k][1],
+    r: radius(m[k]),
+  }))
+);
+---
+<div class="areamap" data-areamap>
+  <div class="areamap-toolbar">
+    <div class="areamap-legend">
+      <span class="areamap-key areamap-key-enquiries">Enquiries <small>(job postcode)</small></span>
+      <span class="areamap-key areamap-key-phone">Phone</span>
+      <span class="areamap-key areamap-key-whatsapp">WhatsApp</span>
+      <span class="areamap-key areamap-key-sms">Text</span>
+      <span class="areamap-legend-note">Call, WhatsApp and text dots show the page that earned the tap, not where the person was.</span>
+    </div>
+    <div class="areamap-zoom">
+      <button type="button" class="btn btn-ghost" data-areamap-zoom="in" aria-label="Zoom in">+</button>
+      <button type="button" class="btn btn-ghost" data-areamap-zoom="out" aria-label="Zoom out">&minus;</button>
+      <button type="button" class="btn btn-ghost" data-areamap-zoom="reset">Reset</button>
+    </div>
+  </div>
+
+  <div class="areamap-stage">
+    <svg
+      class="areamap-svg"
+      viewBox={`0 0 ${MAP_WIDTH} ${MAP_HEIGHT}`}
+      data-areamap-svg
+      data-vb-w={MAP_WIDTH}
+      data-vb-h={MAP_HEIGHT}
+      role="img"
+      aria-label={summary}
+      preserveAspectRatio="xMidYMid meet"
+    >
+      <g data-areamap-pan>
+        <g class="areamap-boroughs">
+          {BOROUGHS.map((b) => (
+            <path d={b.d} class="areamap-borough" data-borough={b.name}><title>{b.name}</title></path>
+          ))}
+        </g>
+        <g class="areamap-dots">
+          {dots.map((d) => (
+            <circle
+              class={`areamap-dot areamap-dot-${d.kind}`}
+              cx={d.cx}
+              cy={d.cy}
+              r={d.r}
+              data-district={d.district}
+              data-borough={d.borough ?? ''}
+              data-kind={d.kind}
+              data-count={d.count}
+            />
+          ))}
+        </g>
+      </g>
+    </svg>
+
+    <div class="areamap-tip" data-areamap-tip hidden aria-hidden="true"></div>
+  </div>
+
+  {markers.length === 0 && (
+    <p class="admin-empty areamap-empty">Nothing to plot for this period yet. The map fills in as enquiries and taps come in.</p>
+  )}
+</div>
+
+<script src="/admin-areas-map.js" is:inline></script>

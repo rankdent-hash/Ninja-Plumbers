@@ -3165,3 +3165,55 @@ body.qr-open { overflow: hidden; }
 /* h2 used here for correct document outline (was h3, skipping a level after
    the page's own h1) — sized back down to what it looked like as an h3. */
 .admin-card-heading { font-size: 1.15rem; letter-spacing: -0.01em; }
+
+/* --- /admin/areas: schematic Greater London map --- */
+.areamap { margin-bottom: 24px; }
+.areamap-toolbar {
+  display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-start;
+  justify-content: space-between; margin-bottom: 10px;
+}
+.areamap-legend { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+.areamap-key { display: inline-flex; align-items: center; gap: 6px; font-size: 0.82rem; color: var(--navy); }
+.areamap-key small { color: var(--muted); font-size: 0.75rem; }
+.areamap-key::before {
+  content: ''; width: 11px; height: 11px; border-radius: 999px; flex: none;
+  background: var(--dot, var(--navy));
+}
+.areamap-key-enquiries { --dot: #1d4ed8; }
+.areamap-key-phone { --dot: #ea580c; }
+.areamap-key-whatsapp { --dot: #15803d; }
+.areamap-key-sms { --dot: #7c3aed; }
+.areamap-legend-note { flex-basis: 100%; font-size: 0.78rem; color: var(--muted); }
+.areamap-zoom { display: flex; gap: 6px; flex: none; }
+.areamap-zoom .btn { padding: 4px 11px; font-size: 0.85rem; min-width: 38px; }
+
+.areamap-stage {
+  position: relative; overflow: hidden;
+  border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface);
+}
+.areamap-svg { display: block; width: 100%; height: auto; touch-action: none; }
+.areamap.is-zoomed .areamap-svg { cursor: grab; }
+.areamap.is-dragging .areamap-svg { cursor: grabbing; }
+
+.areamap-borough { fill: #eef2f7; stroke: #94a3b8; stroke-width: 2.6; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.areamap-borough:hover { fill: #e2e8f2; }
+
+.areamap-dot { stroke: #fff; stroke-width: 3; opacity: 0.9; }
+.areamap-dot:hover { opacity: 1; }
+.areamap-dot-enquiries { fill: #1d4ed8; }
+.areamap-dot-phone { fill: #ea580c; }
+.areamap-dot-whatsapp { fill: #15803d; }
+.areamap-dot-sms { fill: #7c3aed; }
+
+.areamap-tip {
+  position: absolute; z-index: 2; pointer-events: none;
+  background: var(--navy); color: var(--white);
+  padding: 7px 10px; border-radius: 8px; font-size: 0.8rem; line-height: 1.35;
+  max-width: 190px; box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+}
+.areamap-empty { margin-top: 12px; }
+
+@media (max-width: 640px) {
+  .areamap-toolbar { flex-direction: column; }
+  .areamap-zoom { align-self: flex-end; }
+}
