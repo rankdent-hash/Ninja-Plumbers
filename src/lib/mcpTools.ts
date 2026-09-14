@@ -54,8 +54,9 @@ const MAX_MCP_LANDING_PAGES_PER_HOUR = 10;
 
 // Service pages follow the same rule, but publishing one is a bigger claim
 // than a landing page: it's a real, Google-indexed statement that this is a
-// service Tamesis now offers, listed on /services, in the sitemap, and
-// cross-linked from every other service page. It is never wired into the
+// service Tamesis now offers, listed on /services, cross-linked from every
+// other service page, and in the sitemap from the next build (the page
+// itself resolves immediately). It is never wired into the
 // header mega menu or footer by any of this — those are hand-curated
 // (src/data/nav.ts) and stay a deliberate human edit regardless of status.
 const MAX_MCP_SERVICE_PAGES_PER_HOUR = 5;
@@ -581,7 +582,7 @@ export const TOOLS = [
   {
     name: 'create_service_page',
     description:
-      'Create a new service page (the same /services/[slug] template as every real service) as a DRAFT. Not published by this tool — use publish_service_page (with dry_run to preview first). Publishing this is a bigger step than a blog post or landing page: it puts the page on the public /services hub, in the sitemap, and cross-linked from every other service page as something Tamesis now offers, so publish deliberately. It is also never wired into the header navigation or footer, whatever its status; that stays a separate, deliberate human edit.',
+      'Create a new service page (the same /services/[slug] template as every real service) as a DRAFT. Not published by this tool — use publish_service_page (with dry_run to preview first). Publishing this is a bigger step than a blog post or landing page: it puts the page on the public /services hub, cross-linked from every other service page as something Tamesis now offers, and into the sitemap from the next deploy, so publish deliberately. It is also never wired into the header navigation or footer, whatever its status; that stays a separate, deliberate human edit.',
     inputSchema: {
       type: 'object',
       required: ['title', 'h1', 'meta_title', 'meta_description', 'eyebrow', 'icon', 'summary', 'intro', 'does', 'guidance', 'aside', 'faqs'],
@@ -661,7 +662,7 @@ export const TOOLS = [
   {
     name: 'publish_service_page',
     description:
-      'Publish a service page: makes /services/<slug> resolve on the live site, adds it to the /services hub and the sitemap, and cross-links it from every other service page\'s "we also handle" list. Never wired into the header/footer navigation, whatever its status. Refuses if the slug now collides with a real trade service or another published service page (change the slug with update_service_page first). Pass dry_run: true to see exactly what would happen without publishing anything — recommended given this is a bigger, Google-indexed claim than a landing page.',
+      'Publish a service page: makes /services/<slug> resolve on the live site immediately, adds it to the /services hub, and cross-links it from every other service page\'s "we also handle" list. Its sitemap.xml entry follows on the next deploy, since the sitemap is generated at build time. Never wired into the header/footer navigation, whatever its status. Refuses if the slug now collides with a real trade service or another published service page (change the slug with update_service_page first). Pass dry_run: true to see exactly what would happen without publishing anything — recommended given this is a bigger, Google-indexed claim than a landing page.',
     inputSchema: {
       type: 'object',
       required: ['id'],
@@ -673,7 +674,7 @@ export const TOOLS = [
   },
   {
     name: 'unpublish_service_page',
-    description: 'Take a published service page down — /services/<slug> stops resolving, it drops off the /services hub, the sitemap and every other service page\'s cross-link list. Content and history are kept; publish_service_page brings it back.',
+    description: 'Take a published service page down — /services/<slug> stops resolving and it drops off the /services hub and every other service page\'s cross-link list immediately; it leaves sitemap.xml on the next deploy. Content and history are kept; publish_service_page brings it back.',
     inputSchema: {
       type: 'object',
       required: ['id'],
@@ -1665,7 +1666,7 @@ async function publishServicePage(supabase: SupabaseClient, args: Record<string,
   if (!page.published_at) update.published_at = new Date().toISOString();
   const { error: updateError } = await supabase.from('service_pages').update(update).eq('id', id);
   if (updateError) return errorText('Could not publish that service page.');
-  return text(`Published. Now live at ${url}, on the /services hub, cross-linked from every other service page, and included in the sitemap. Not added to the header/footer navigation — that stays a separate, deliberate human edit.`);
+  return text(`Published. Live now at ${url}, on the /services hub and cross-linked from every other service page. Its sitemap.xml entry is added on the next deploy (the sitemap is still generated at build time). Not added to the header/footer navigation — that stays a separate, deliberate human edit.`);
 }
 
 async function unpublishServicePage(supabase: SupabaseClient, args: Record<string, unknown>) {
@@ -1679,7 +1680,7 @@ async function unpublishServicePage(supabase: SupabaseClient, args: Record<strin
 
   const { error: updateError } = await supabase.from('service_pages').update({ status: 'draft', updated_at: new Date().toISOString() }).eq('id', id);
   if (updateError) return errorText('Could not unpublish that service page.');
-  return text(`Unpublished. /services/${page.slug} no longer resolves, and it's off the /services hub, the sitemap and every cross-link list. Content and history are kept — publish_service_page brings it back.`);
+  return text(`Unpublished. /services/${page.slug} no longer resolves, and it's off the /services hub and every cross-link list; it leaves sitemap.xml on the next deploy. Content and history are kept — publish_service_page brings it back.`);
 }
 
 async function duplicateServicePage(supabase: SupabaseClient, args: Record<string, unknown>) {

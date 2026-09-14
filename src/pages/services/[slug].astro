@@ -1,4 +1,22 @@
 ---
+// Server-rendered rather than statically generated, for the same reason
+// /lp/[slug].astro is: a service page published in /admin/service-pages or
+// via MCP used to have no URL at all until the next deploy rebuilt the
+// static paths, however "published" it looked everywhere else.
+//
+// The 19 real trade services are matched from the in-memory array, so they
+// never depend on the database resolving. The one query below serves both
+// the fallback lookup for an MCP-created slug and the "we also handle" list,
+// and a short edge cache (see the Cache-Control header) keeps repeat hits
+// off the function entirely.
+//
+// One consequence worth knowing: sitemap.xml is still generated at build
+// time (see astro.config.mjs, which now lists these URLs explicitly since
+// they are no longer crawlable from the static output). A newly published
+// page is live and cross-linked immediately; its sitemap entry lands on the
+// next deploy.
+export const prerender = false;
+
 import Base from '../../layouts/Base.astro';
 import site from '../../data/site.json';
 import { services } from '../../data/services';
@@ -18,18 +36,18 @@ import { publishedServicePages } from '../../lib/servicePages';
 
 // The 19 real trade services in services.ts are hand-written and untouched
 // here. Published AI/MCP-created pages (see /admin/service-pages) live in
-// Supabase and are merged in at build time — same static generation, same
-// template, so a new service page reads identically to every existing one.
-export async function getStaticPaths() {
-  const aiServices = await publishedServicePages(getSupabaseAdmin());
-  return [...services, ...aiServices].map((service) => ({ params: { slug: service.slug }, props: { service } }));
+// Supabase and render through this same template, so a new service page
+// reads identically to every existing one.
+const slug = Astro.params.slug;
+const aiServices = await publishedServicePages(getSupabaseAdmin());
+const allServices = [...services, ...aiServices];
+const service = allServices.find((s) => s.slug === slug) ?? null;
+
+if (!service) {
+  return new Response('Not found', { status: 404 });
 }
 
-const { service } = Astro.props;
-// Re-fetched here (not just passed down from getStaticPaths) so "we also
-// handle" below can include a published AI-created service too — the same
-// small extra build-time cost the sitemap's own blog fetch already accepts.
-const allServices = [...services, ...(await publishedServicePages(getSupabaseAdmin()))];
+Astro.response.headers.set('Cache-Control', 'public, s-maxage=300, stale-while-revalidate=86400');
 // "Other work we take on" is site-wide for every group except air conditioning: a
 // plumbing or boiler page linking to every other trade on the site is the
 // established pattern, but an air con visitor is not looking for a drain

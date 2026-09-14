@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import { createClient } from '@supabase/supabase-js';
 import { INDEX_POSTCODE_PAGES } from './src/data/postcodes.ts';
+import { services } from './src/data/services.ts';
 import vercel from '@astrojs/vercel';
 
 const SITE_URL = 'https://www.ninjaplumbers.co.uk';
@@ -23,7 +24,26 @@ async function publishedBlogUrls() {
   return (data ?? []).map((p) => `${SITE_URL}/blog/${p.slug}`);
 }
 
+// /services and /services/[slug] are server-rendered too (so a page
+// published via the admin panel or MCP is live without waiting for a
+// deploy), which means the integration's page crawl can no longer see them
+// either. The 19 hand-written services come straight from services.ts; the
+// published MCP-created ones need the same Supabase fetch as the blog, with
+// the same accepted limitation — a page published after this build lands in
+// the sitemap on the next one, though it is live and cross-linked from the
+// moment it is published.
+async function serviceUrls() {
+  const staticUrls = [`${SITE_URL}/services`, ...services.map((s) => `${SITE_URL}/services/${s.slug}`)];
+  const url = process.env.SUPABASE_URL;
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!url || !key) return staticUrls;
+  const supabase = createClient(url, key, { auth: { persistSession: false } });
+  const { data } = await supabase.from('service_pages').select('slug').eq('status', 'published');
+  return [...staticUrls, ...(data ?? []).map((s) => `${SITE_URL}/services/${s.slug}`)];
+}
+
 const blogUrls = await publishedBlogUrls();
+const serviceSitemapUrls = await serviceUrls();
 
 export default defineConfig({
   site: 'https://www.ninjaplumbers.co.uk',
@@ -85,7 +105,7 @@ export default defineConfig({
     // /lp/* are paid-search landing pages: noindex, and kept out of the
     // sitemap so they never compete with the organic service pages.
     sitemap({
-      customPages: blogUrls,
+      customPages: [...blogUrls, ...serviceSitemapUrls],
       // Cosmetic only — a stylesheet so the raw XML reads as a page in a
       // browser. Crawlers ignore xml-stylesheet and parse the XML directly.
       xslURL: '/sitemap.xsl',

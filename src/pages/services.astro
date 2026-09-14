@@ -1,4 +1,9 @@
 ---
+// Server-rendered so a service page published in /admin/service-pages or via
+// MCP appears on this hub straight away, not after the next deploy — same
+// reasoning as /services/[slug].astro.
+export const prerender = false;
+
 import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
 import { services as staticServices } from '../data/services';
@@ -11,6 +16,8 @@ import { getSupabaseAdmin } from '../lib/supabaseAdmin';
 import { publishedServicePages } from '../lib/servicePages';
 
 const services = [...staticServices, ...(await publishedServicePages(getSupabaseAdmin()))];
+
+Astro.response.headers.set('Cache-Control', 'public, s-maxage=300, stale-while-revalidate=86400');
 ---
 <Base
   title="London Plumbing Services | Ninja Plumbers"

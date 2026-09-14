@@ -45,10 +45,10 @@ const fmt = (iso: string) => new Date(iso).toLocaleString('en-GB', { day: '2-dig
 
   <p class="admin-note">
     Publishing here is a bigger step than a blog post or landing page: it puts the page on the
-    public /services hub, in the sitemap, and cross-linked from every other service page &mdash;
-    a real, indexed statement that this is a service Tamesis now offers. It does not add it to the
-    header menu or footer; that's a separate edit if you want it navigable from there. Like the
-    rest of the site, it also needs a deploy after publishing before it's actually live.
+    public /services hub and cross-linked from every other service page &mdash; a real, indexed
+    statement that this is a service Tamesis now offers. It does not add it to the header menu or
+    footer; that's a separate edit if you want it navigable from there. The page itself is live
+    the moment you publish it; its sitemap.xml entry is added on the next deploy.
   </p>
 
   {loadError && <p class="form-error-summary" role="alert">{loadError}</p>}
@@ -69,7 +69,7 @@ const fmt = (iso: string) => new Date(iso).toLocaleString('en-GB', { day: '2-dig
               <td class="admin-nowrap">{fmt(r.updated_at)}</td>
               <td class="admin-col-view">
                 {r.status === 'published' ? (
-                  <a href={`${SITE_ORIGIN}/services/${r.slug}`} target="_blank" rel="noopener" aria-label={`View live: ${r.title}`} title="View live page (needs a deploy after publishing to actually resolve)">
+                  <a href={`${SITE_ORIGIN}/services/${r.slug}`} target="_blank" rel="noopener" aria-label={`View live: ${r.title}`} title="View live page">
                     <ExternalLinkIcon />
                   </a>
                 ) : (
