@@ -59,7 +59,7 @@
   // the zoom, so a dot keeps its size and four dots at one district stay a
   // tight cluster instead of drifting apart.
   var dotEls = root.querySelectorAll('.areamap-dot');
-  var hitEls = root.querySelectorAll('.areamap-code-hit');
+  var cellEls = root.querySelectorAll('.areamap-cell');
   function sizeDots() {
     for (var i = 0; i < dotEls.length; i++) {
       var d = dotEls[i];
@@ -73,8 +73,7 @@
       d.setAttribute('cy', by + oy / scale);
       d.setAttribute('r', br / scale);
     }
-    // Same reasoning for the invisible hover target around each district code.
-    for (var j = 0; j < hitEls.length; j++) hitEls[j].setAttribute('r', 26 / scale);
+
   }
 
   function zoomBy(factor) {
@@ -112,8 +111,8 @@
       all[i].classList.toggle('is-shown', on);
       if (on) codes++;
     }
-    for (var h = 0; h < hitEls.length; h++) {
-      hitEls[h].classList.toggle('is-shown', hitEls[h].getAttribute('data-parent') === name);
+    for (var h = 0; h < cellEls.length; h++) {
+      cellEls[h].classList.toggle('is-shown', cellEls[h].getAttribute('data-parent') === name);
     }
     for (var j = 0; j < shapes.length; j++) shapes[j].classList.toggle('is-open', shapes[j] === shape);
     if (readout) {
@@ -130,7 +129,7 @@
   function clearFocus() {
     focused = null;
     root.classList.remove('is-focused');
-    var all = root.querySelectorAll('.areamap-code.is-shown, .areamap-code-hit.is-shown');
+    var all = root.querySelectorAll('.areamap-code.is-shown, .areamap-cell.is-shown');
     for (var i = 0; i < all.length; i++) all[i].classList.remove('is-shown');
     for (var j = 0; j < shapes.length; j++) shapes[j].classList.remove('is-open');
     if (readout) readout.hidden = true;
@@ -170,10 +169,10 @@
     // every pan would snap the map to whatever happened to be under the
     // pointer when the mouse came up.
     if (movedDuringPress) return;
-    // The district rings sit above the shape and are hit-testable, so a click
+    // The district cells sit above the shape and are hit-testable, so a click
     // landing on one has to resolve back to the area it belongs to — otherwise
     // they punch holes in the open borough and it cannot be clicked shut.
-    var onRing = e.target.closest('.areamap-code-hit');
+    var onRing = e.target.closest('.areamap-cell');
     var shape = null;
     if (onRing) {
       var owner = onRing.getAttribute('data-parent');
@@ -296,7 +295,7 @@
     // A district marker inside the open area, checked before the shape beneath
     // it so pointing at a district gives the district rather than the borough
     // it happens to sit in.
-    var hit = e.target.closest('.areamap-code-hit');
+    var hit = e.target.closest('.areamap-cell');
     if (hit) {
       var place = hit.getAttribute('data-place');
       showTip(

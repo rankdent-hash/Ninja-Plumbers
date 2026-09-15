@@ -22,6 +22,7 @@
 import { BOROUGHS, OUTER_DISTRICTS, POINTS, M25, MAP_WIDTH, MAP_HEIGHT, UNITS_PER_MILE } from '../data/londonMap';
 import { COVERED_OUTSIDE_LONDON, CORRIDOR_MILES } from '../data/serviceArea';
 import { DISTRICT_PARENT } from '../lib/districtParents';
+import { DISTRICT_CELLS } from '../lib/districtCells';
 import { postcodes } from '../data/postcodes';
 
 // The planned expansion: up to 3 miles either side of the M25. Drawn as a
@@ -157,7 +158,7 @@ const dots = markers.flatMap((m) =>
       <span class="areamap-key areamap-key-corridor">M25 &plusmn;{CORRIDOR_MILES} miles</span>
       <span class="areamap-key areamap-key-covered">Covered today</span>
       <span class="areamap-key areamap-key-planned">Not covered yet</span>
-      <span class="areamap-legend-note">Click any area to zoom into it and see the postcode districts inside; click it again, press Escape, or use Reset to come back. Call, WhatsApp and text dots show the page that earned the tap, not where the person was. Greater London, Guildford and St Albans are covered; the named districts around the M25 are where the planned expansion would reach, not places we work today.</span>
+      <span class="areamap-legend-note">Click any area to zoom into it and see the postcode districts inside; click it again, press Escape, or use Reset to come back. Those district divisions are schematic &mdash; each district centre claims the ground nearest to it, so the middle of each one is right and the seams between them are approximate. Call, WhatsApp and text dots show the page that earned the tap, not where the person was. Greater London, Guildford and St Albans are covered; the named districts around the M25 are where the planned expansion would reach, not places we work today.</span>
     </div>
     <div class="areamap-zoom">
       <button type="button" class="btn btn-ghost" data-areamap-toggle="corridor" aria-pressed="true">M25 band</button>
@@ -236,25 +237,25 @@ const dots = markers.flatMap((m) =>
 
         {/* Postcode districts inside whichever shape is open. Hidden until
             then: 268 codes at once would bury the map. */}
+        {/* The districts inside the open area. Schematic: each district centre
+            claims the ground nearest to it, trimmed to the area outline. Not
+            surveyed postcode boundaries — the page says so. */}
+        <g class="areamap-cells" aria-hidden="true">
+          {DISTRICT_CELLS.map((c) => (
+            <path
+              d={c.d}
+              class="areamap-cell"
+              data-parent={c.parent}
+              data-code={c.code}
+              data-place={placeByDistrict.get(c.code) ?? ''}
+              data-area={boroughsByDistrict.get(c.code) || c.parent}
+            />
+          ))}
+        </g>
+
         <g class="areamap-districtcodes" aria-hidden="true">
           {districtLabels.map((d) => (
-            <>
-              {/* An invisible target around the code, so the name can be read
-                  by pointing at the district marker rather than having to hit
-                  the few pixels of the text itself. Sized by the script so it
-                  stays a constant target at any zoom. */}
-              <circle
-                class="areamap-code-hit"
-                cx={d.x}
-                cy={d.y}
-                r="26"
-                data-parent={d.parent}
-                data-code={d.code}
-                data-place={d.place}
-                data-area={d.boroughs}
-              />
-              <text x={d.x} y={d.y} class="areamap-code" data-parent={d.parent}>{d.code}</text>
-            </>
+            <text x={d.x} y={d.y} class="areamap-code" data-parent={d.parent}>{d.code}</text>
           ))}
         </g>
 

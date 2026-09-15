@@ -3265,20 +3265,19 @@ body.qr-open { overflow: hidden; }
 }
 .areamap-code.is-shown { display: initial; }
 
-/* Hover target around each district code. Invisible but hit-testable, and only
-   live for the area that is open — otherwise 329 of them would intercept every
-   hover on the full map. The warm ring is what marks the district out from the
-   borough it sits in; it is drawn around the district's CENTRE, because a
-   centre is what the map holds. There is no outline here because postcode
-   district boundaries are not in this repo. */
-.areamap-code-hit { fill: transparent; stroke: none; pointer-events: none; }
-.areamap-code-hit.is-shown {
+/* The districts inside the open area, and the hover target for each. Hidden
+   and inert otherwise — 268 of them would intercept every hover on the full
+   map. Dashed, because these divisions are schematic rather than surveyed and
+   the border should not pretend to be a boundary anyone measured. */
+.areamap-cell { display: none; pointer-events: none; }
+.areamap-cell.is-shown {
+  display: initial;
   pointer-events: all;
-  fill: rgba(250, 204, 21, 0.1);
-  stroke: #e3b341; stroke-width: 1.6; stroke-dasharray: 4 4;
-  vector-effect: non-scaling-stroke;
+  fill: rgba(250, 204, 21, 0.09);
+  stroke: #d9a521; stroke-width: 1.5; stroke-dasharray: 5 4;
+  stroke-linejoin: round; vector-effect: non-scaling-stroke;
 }
-.areamap-code-hit.is-shown:hover { fill: rgba(250, 204, 21, 0.24); stroke: #b98900; }
+.areamap-cell.is-shown:hover { fill: rgba(250, 204, 21, 0.26); stroke: #a87400; stroke-width: 2.4; }
 
 .areamap-tip-dim { color: #9fb0c0; }
 
