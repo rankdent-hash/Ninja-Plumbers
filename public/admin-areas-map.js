@@ -49,8 +49,33 @@
     var pxPerUnit = (rect.width / vbW) * scale;
     root.style.setProperty('--areamap-code-size', CODE_PX / pxPerUnit + 'px');
     root.style.setProperty('--areamap-name-size', NAME_PX / pxPerUnit + 'px');
+    sizeDots();
   }
   window.addEventListener('resize', sizeText);
+
+  // Dots are markers, not geography. Left alone they would scale with the map
+  // and a borough opened at 7x would show dots seven times too big, swamping
+  // the thing they sit on. Radius AND the rosette offset are both divided by
+  // the zoom, so a dot keeps its size and four dots at one district stay a
+  // tight cluster instead of drifting apart.
+  var dotEls = root.querySelectorAll('.areamap-dot');
+  var hitEls = root.querySelectorAll('.areamap-code-hit');
+  function sizeDots() {
+    for (var i = 0; i < dotEls.length; i++) {
+      var d = dotEls[i];
+      var bx = parseFloat(d.getAttribute('data-x'));
+      var by = parseFloat(d.getAttribute('data-y'));
+      var ox = parseFloat(d.getAttribute('data-ox'));
+      var oy = parseFloat(d.getAttribute('data-oy'));
+      var br = parseFloat(d.getAttribute('data-r'));
+      if (isNaN(bx) || isNaN(br)) continue;
+      d.setAttribute('cx', bx + ox / scale);
+      d.setAttribute('cy', by + oy / scale);
+      d.setAttribute('r', br / scale);
+    }
+    // Same reasoning for the invisible hover target around each district code.
+    for (var j = 0; j < hitEls.length; j++) hitEls[j].setAttribute('r', 26 / scale);
+  }
 
   function zoomBy(factor) {
     var next = Math.min(MAX, Math.max(MIN, scale * factor));
@@ -87,6 +112,9 @@
       all[i].classList.toggle('is-shown', on);
       if (on) codes++;
     }
+    for (var h = 0; h < hitEls.length; h++) {
+      hitEls[h].classList.toggle('is-shown', hitEls[h].getAttribute('data-parent') === name);
+    }
     for (var j = 0; j < shapes.length; j++) shapes[j].classList.toggle('is-open', shapes[j] === shape);
     if (readout) {
       readout.textContent = codes
@@ -102,7 +130,7 @@
   function clearFocus() {
     focused = null;
     root.classList.remove('is-focused');
-    var all = root.querySelectorAll('.areamap-code.is-shown');
+    var all = root.querySelectorAll('.areamap-code.is-shown, .areamap-code-hit.is-shown');
     for (var i = 0; i < all.length; i++) all[i].classList.remove('is-shown');
     for (var j = 0; j < shapes.length; j++) shapes[j].classList.remove('is-open');
     if (readout) readout.hidden = true;
@@ -142,7 +170,19 @@
     // every pan would snap the map to whatever happened to be under the
     // pointer when the mouse came up.
     if (movedDuringPress) return;
-    var shape = e.target.closest('.areamap-borough, .areamap-district');
+    // The district rings sit above the shape and are hit-testable, so a click
+    // landing on one has to resolve back to the area it belongs to — otherwise
+    // they punch holes in the open borough and it cannot be clicked shut.
+    var onRing = e.target.closest('.areamap-code-hit');
+    var shape = null;
+    if (onRing) {
+      var owner = onRing.getAttribute('data-parent');
+      for (var s = 0; s < shapes.length; s++) {
+        if (shapes[s].getAttribute('data-borough') === owner) { shape = shapes[s]; break; }
+      }
+    } else {
+      shape = e.target.closest('.areamap-borough, .areamap-district');
+    }
     if (!shape) return;
     if (shape.getAttribute('data-borough') === focused) clearFocus();
     else focusShape(shape);
@@ -253,6 +293,21 @@
       );
       return;
     }
+    // A district marker inside the open area, checked before the shape beneath
+    // it so pointing at a district gives the district rather than the borough
+    // it happens to sit in.
+    var hit = e.target.closest('.areamap-code-hit');
+    if (hit) {
+      var place = hit.getAttribute('data-place');
+      showTip(
+        '<strong>' + hit.getAttribute('data-code') + '</strong>' +
+          (place ? '<br>' + place : '') +
+          '<br><span class="areamap-tip-dim">' + hit.getAttribute('data-area') + '</span>',
+        e
+      );
+      return;
+    }
+
     var shape = e.target.closest('.areamap-borough, .areamap-district');
     if (shape) {
       // Say outright whether we work there. A shape with only a name on it

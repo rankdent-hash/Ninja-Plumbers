@@ -22,6 +22,7 @@
 import { BOROUGHS, OUTER_DISTRICTS, POINTS, M25, MAP_WIDTH, MAP_HEIGHT, UNITS_PER_MILE } from '../data/londonMap';
 import { COVERED_OUTSIDE_LONDON, CORRIDOR_MILES } from '../data/serviceArea';
 import { DISTRICT_PARENT } from '../lib/districtParents';
+import { postcodes } from '../data/postcodes';
 
 // The planned expansion: up to 3 miles either side of the M25. Drawn as a
 // stroke that wide rather than a computed buffer polygon — a round-capped,
@@ -95,16 +96,51 @@ const radius = (n: number) => Math.min(30 * SCALE, (7 + Math.sqrt(n) * 4.5) * SC
 // One label per postcode district, rendered for every shape but shown only for
 // the one the reader has opened. Rendering them all server-side keeps the
 // interaction to a class toggle — no measuring, no layout work on click.
+// The place names come from src/data/postcodes.ts, which is the workbook the
+// district pages were built from — real names for the district, not a guess
+// off the map. Districts it does not carry (the outer ones, mostly) simply
+// show their code.
+const placeByDistrict = new Map(
+  postcodes.map((p) => [
+    p.district.toUpperCase(),
+    [p.primary, ...(p.neighbourhoods ?? []).slice(0, 3)].filter(Boolean).join(', '),
+  ])
+);
+
+// The boroughs a district ACTUALLY spans, from the same workbook. This is the
+// honest answer to the straddling problem: SW8's centre falls in Wandsworth, so
+// that is the shape it is filed under here, but it really runs across Lambeth
+// and Wandsworth and the tooltip should say so rather than repeat the guess.
+const boroughsByDistrict = new Map(
+  postcodes.map((p) => [p.district.toUpperCase(), (p.boroughs ?? []).join(', ')])
+);
+
 const districtLabels = Object.entries(POINTS)
   .filter(([code]) => DISTRICT_PARENT[code])
-  .map(([code, [x, y]]) => ({ code, x, y, parent: DISTRICT_PARENT[code] }));
+  .map(([code, [x, y]]) => ({
+    code,
+    x,
+    y,
+    parent: DISTRICT_PARENT[code],
+    place: placeByDistrict.get(code) ?? '',
+    boroughs: boroughsByDistrict.get(code) || DISTRICT_PARENT[code],
+  }));
 
+// The district centre and the rosette offset are kept apart on each dot so the
+// script can rebuild cx/cy at any zoom. Both the offset and the radius are
+// divided by the zoom at runtime: a marker is a marker, not a piece of
+// geography, so it should hold its size and its cluster should stay a cluster
+// however far in the map goes.
 const dots = markers.flatMap((m) =>
   KINDS.filter((k) => m[k] > 0).map((k) => ({
     kind: k,
     district: m.district,
     borough: m.borough,
     count: m[k],
+    x: m.x,
+    y: m.y,
+    ox: OFFSETS[k][0],
+    oy: OFFSETS[k][1],
     cx: m.x + OFFSETS[k][0],
     cy: m.y + OFFSETS[k][1],
     r: radius(m[k]),
@@ -202,7 +238,23 @@ const dots = markers.flatMap((m) =>
             then: 268 codes at once would bury the map. */}
         <g class="areamap-districtcodes" aria-hidden="true">
           {districtLabels.map((d) => (
-            <text x={d.x} y={d.y} class="areamap-code" data-parent={d.parent}>{d.code}</text>
+            <>
+              {/* An invisible target around the code, so the name can be read
+                  by pointing at the district marker rather than having to hit
+                  the few pixels of the text itself. Sized by the script so it
+                  stays a constant target at any zoom. */}
+              <circle
+                class="areamap-code-hit"
+                cx={d.x}
+                cy={d.y}
+                r="26"
+                data-parent={d.parent}
+                data-code={d.code}
+                data-place={d.place}
+                data-area={d.boroughs}
+              />
+              <text x={d.x} y={d.y} class="areamap-code" data-parent={d.parent}>{d.code}</text>
+            </>
           ))}
         </g>
 
@@ -217,6 +269,11 @@ const dots = markers.flatMap((m) =>
               data-borough={d.borough ?? ''}
               data-kind={d.kind}
               data-count={d.count}
+              data-x={d.x}
+              data-y={d.y}
+              data-ox={d.ox}
+              data-oy={d.oy}
+              data-r={d.r}
             />
           ))}
         </g>

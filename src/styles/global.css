@@ -3265,6 +3265,23 @@ body.qr-open { overflow: hidden; }
 }
 .areamap-code.is-shown { display: initial; }
 
+/* Hover target around each district code. Invisible but hit-testable, and only
+   live for the area that is open — otherwise 329 of them would intercept every
+   hover on the full map. The warm ring is what marks the district out from the
+   borough it sits in; it is drawn around the district's CENTRE, because a
+   centre is what the map holds. There is no outline here because postcode
+   district boundaries are not in this repo. */
+.areamap-code-hit { fill: transparent; stroke: none; pointer-events: none; }
+.areamap-code-hit.is-shown {
+  pointer-events: all;
+  fill: rgba(250, 204, 21, 0.1);
+  stroke: #e3b341; stroke-width: 1.6; stroke-dasharray: 4 4;
+  vector-effect: non-scaling-stroke;
+}
+.areamap-code-hit.is-shown:hover { fill: rgba(250, 204, 21, 0.24); stroke: #b98900; }
+
+.areamap-tip-dim { color: #9fb0c0; }
+
 .areamap-readout {
   margin: 0 0 8px; font-size: 0.88rem; font-weight: 600; color: var(--navy);
 }
