@@ -3264,6 +3264,9 @@ body.qr-open { overflow: hidden; }
   pointer-events: none;
 }
 .areamap-code.is-shown { display: initial; }
+/* The place name under the code: smaller and lighter, so the code still reads
+   first and the name qualifies it rather than competing. */
+.areamap-code-place { font-size: 0.82em; font-weight: 600; fill: #55708a; }
 
 /* The districts inside the open area, and the hover target for each. Hidden
    and inert otherwise — 268 of them would intercept every hover on the full

@@ -24,6 +24,7 @@ import { COVERED_OUTSIDE_LONDON, CORRIDOR_MILES } from '../data/serviceArea';
 import { DISTRICT_PARENT } from '../lib/districtParents';
 import { DISTRICT_CELLS } from '../lib/districtCells';
 import { postcodes } from '../data/postcodes';
+import { districtPrimary, districtPlaceList } from '../lib/districtPlaces';
 
 // The planned expansion: up to 3 miles either side of the M25. Drawn as a
 // stroke that wide rather than a computed buffer polygon — a round-capped,
@@ -97,16 +98,10 @@ const radius = (n: number) => Math.min(30 * SCALE, (7 + Math.sqrt(n) * 4.5) * SC
 // One label per postcode district, rendered for every shape but shown only for
 // the one the reader has opened. Rendering them all server-side keeps the
 // interaction to a class toggle — no measuring, no layout work on click.
-// The place names come from src/data/postcodes.ts, which is the workbook the
-// district pages were built from — real names for the district, not a guess
-// off the map. Districts it does not carry (the outer ones, mostly) simply
-// show their code.
-const placeByDistrict = new Map(
-  postcodes.map((p) => [
-    p.district.toUpperCase(),
-    [p.primary, ...(p.neighbourhoods ?? []).slice(0, 3)].filter(Boolean).join(', '),
-  ])
-);
+// Names come from src/lib/districtPlaces.ts, which merges the client's
+// workbook with public place names for everything the workbook does not reach.
+// Asking the workbook alone left 200 of the 329 districts nameless, which is
+// why one borough looked labelled and the next looked bare.
 
 // The boroughs a district ACTUALLY spans, from the same workbook. This is the
 // honest answer to the straddling problem: SW8's centre falls in Wandsworth, so
@@ -123,7 +118,7 @@ const districtLabels = Object.entries(POINTS)
     x,
     y,
     parent: DISTRICT_PARENT[code],
-    place: placeByDistrict.get(code) ?? '',
+    primary: districtPrimary(code),
     boroughs: boroughsByDistrict.get(code) || DISTRICT_PARENT[code],
   }));
 
@@ -247,7 +242,7 @@ const dots = markers.flatMap((m) =>
               class="areamap-cell"
               data-parent={c.parent}
               data-code={c.code}
-              data-place={placeByDistrict.get(c.code) ?? ''}
+              data-place={districtPlaceList(c.code)}
               data-area={boroughsByDistrict.get(c.code) || c.parent}
             />
           ))}
@@ -255,7 +250,10 @@ const dots = markers.flatMap((m) =>
 
         <g class="areamap-districtcodes" aria-hidden="true">
           {districtLabels.map((d) => (
-            <text x={d.x} y={d.y} class="areamap-code" data-parent={d.parent}>{d.code}</text>
+            <text x={d.x} y={d.y} class="areamap-code" data-parent={d.parent}>
+              <tspan x={d.x} dy="-0.35em">{d.code}</tspan>
+              {d.primary && <tspan x={d.x} dy="1.25em" class="areamap-code-place">{d.primary}</tspan>}
+            </text>
           ))}
         </g>
 
