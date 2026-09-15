@@ -5,6 +5,7 @@
 // and a page with neither is not.
 import AdminLayout from '../../layouts/AdminLayout.astro';
 import { getSupabaseAdmin } from '../../lib/supabaseAdmin';
+import { londonMidnightUTC } from '../../lib/londonDay';
 
 export const prerender = false;
 
@@ -27,25 +28,6 @@ const BUCKETS = [
 type Bucket = (typeof BUCKETS)[number]['key'];
 const BUCKET_KEYS: readonly string[] = BUCKETS.map((b) => b.key);
 
-// "Yesterday" is a calendar day, not a rolling window like the others — it
-// needs an upper bound as well as a lower one, so it can't be expressed as
-// just another `days` value the way "7 days" etc. can.
-function londonOffsetMinutes(date: Date): number {
-  const part = new Intl.DateTimeFormat('en-US', { timeZone: 'Europe/London', timeZoneName: 'shortOffset' })
-    .formatToParts(date)
-    .find((p) => p.type === 'timeZoneName')!.value;
-  const match = part.match(/GMT([+-]\d+)?/);
-  return match?.[1] ? parseInt(match[1], 10) * 60 : 0;
-}
-function londonMidnightUTC(daysAgo: number): Date {
-  const now = new Date();
-  const parts = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/London', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(now);
-  const y = +parts.find((p) => p.type === 'year')!.value;
-  const m = +parts.find((p) => p.type === 'month')!.value;
-  const d = +parts.find((p) => p.type === 'day')!.value;
-  const guess = new Date(Date.UTC(y, m - 1, d - daysAgo));
-  return new Date(guess.getTime() - londonOffsetMinutes(guess) * 60_000);
-}
 
 const params = Astro.url.searchParams;
 const isYesterday = params.get('range') === 'yesterday';
@@ -65,7 +47,16 @@ const page = Math.max(1, parseInt(params.get('page') || '1', 10) || 1);
 const from = (page - 1) * PAGE_SIZE;
 const to = from + PAGE_SIZE - 1;
 
-const since = isYesterday ? londonMidnightUTC(1).toISOString() : new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString();
+// Today and yesterday are calendar days in London; the rest are rolling
+// windows. "Today" used to be computed as now minus 24 hours, so at 3pm it
+// reached back into yesterday afternoon and reported the same calls under both
+// tabs.
+const isToday = !isYesterday && days === 1;
+const since = isYesterday
+  ? londonMidnightUTC(1).toISOString()
+  : isToday
+    ? londonMidnightUTC(0).toISOString()
+    : new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString();
 const until = isYesterday ? londonMidnightUTC(0).toISOString() : undefined;
 
 type ClickRow = {
@@ -197,7 +188,7 @@ const fmtPeriod = (iso: string) => {
 <AdminLayout title="Activity" admin={admin}>
   <div class="admin-head">
     <h1>Contact activity</h1>
-    <p class="admin-sub">Calls, WhatsApps and form submissions {isYesterday ? 'from yesterday' : `over the last ${days === 1 ? 'day' : `${days} days`}`}</p>
+    <p class="admin-sub">Calls, WhatsApps and form submissions {isYesterday ? 'from yesterday' : isToday ? 'so far today' : `over the last ${days} days`}</p>
   </div>
 
   <nav class="admin-tabs" aria-label="Time range">

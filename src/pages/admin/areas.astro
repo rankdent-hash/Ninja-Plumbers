@@ -19,6 +19,7 @@ import { areas } from '../../data/areas';
 import { postcodes } from '../../data/postcodes';
 import { POINTS, OUTER_DISTRICTS } from '../../data/londonMap';
 import { COVERED_OUTSIDE_LONDON, CORRIDOR_AREA_SHARE_PCT } from '../../data/serviceArea';
+import { londonDayRange } from '../../lib/londonDay';
 
 export const prerender = false;
 
@@ -27,9 +28,10 @@ const supabase = getSupabaseAdmin();
 
 // All time is the default here, unlike /admin/activity: this report answers a
 // slow question (which parts of London send us work) and at current volumes a
-// 30-day window would usually be empty. The short windows are for the other
-// job — checking where a campaign that started last week is landing — and the
-// low-sample warning below still fires when they are too thin to read.
+// 30-day window would usually be empty. The short windows answer a different
+// question — where the work that just came in is landing — and the low-sample
+// warning below still fires when they are too thin to read anything into,
+// which for today and yesterday will be nearly always.
 const RANGES = [
   { days: 0, label: 'All time' },
   { days: 365, label: '12 months' },
@@ -39,14 +41,33 @@ const RANGES = [
   { days: 7, label: '7 days' },
 ] as const;
 
+// Today and yesterday are calendar days in London, not rolling windows, so
+// they need an upper bound as well as a lower one and cannot be expressed as
+// another `days` value the way "7 days" can.
+const DAY_RANGES = [
+  { range: 'today', label: 'Today' },
+  { range: 'yesterday', label: 'Yesterday' },
+] as const;
+type DayRange = (typeof DAY_RANGES)[number]['range'];
+
 const params = Astro.url.searchParams;
+const requestedRange = params.get('range');
+const dayRange = (DAY_RANGES.some((r) => r.range === requestedRange) ? requestedRange : null) as DayRange | null;
 const requestedDays = parseInt(params.get('days') || '0', 10);
-const days = RANGES.some((r) => r.days === requestedDays) ? requestedDays : 0;
-const since = days === 0
-  ? new Date('2000-01-01T00:00:00Z').toISOString()
-  : new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString();
+const days = dayRange ? 0 : RANGES.some((r) => r.days === requestedDays) ? requestedDays : 0;
+
+const activeWindow = dayRange
+  ? londonDayRange(dayRange)
+  : {
+      since: days === 0
+        ? new Date('2000-01-01T00:00:00Z').toISOString()
+        : new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString(),
+      until: undefined as string | undefined,
+    };
+const { since, until } = activeWindow;
 
 const href = (d: number) => (d === 0 ? '/admin/areas' : `/admin/areas?days=${d}`);
+const dayHref = (r: DayRange) => `/admin/areas?range=${r}`;
 
 type AreaRow = {
   district: string;
@@ -66,8 +87,8 @@ if (!supabase) {
   loadError = 'The admin panel is not connected to Supabase yet.';
 } else {
   const [areaRes, sourceRes] = await Promise.all([
-    supabase.rpc('enquiry_areas', { since, until: undefined }),
-    supabase.rpc('contact_sources', { since, until: undefined }),
+    supabase.rpc('enquiry_areas', { since, until }),
+    supabase.rpc('contact_sources', { since, until }),
   ]);
   if (areaRes.error) loadError = 'Could not load enquiry areas from the database.';
   else rows = (areaRes.data ?? []) as AreaRow[];
@@ -201,7 +222,10 @@ const corridorSharePct = CORRIDOR_AREA_SHARE_PCT;
 
   <nav class="admin-tabs" aria-label="Date range">
     {RANGES.map((r) => (
-      <a href={href(r.days)} class:list={{ 'is-active': days === r.days }}>{r.label}</a>
+      <a href={href(r.days)} class:list={{ 'is-active': !dayRange && days === r.days }}>{r.label}</a>
+    ))}
+    {DAY_RANGES.map((r) => (
+      <a href={dayHref(r.range)} class:list={{ 'is-active': dayRange === r.range }}>{r.label}</a>
     ))}
   </nav>
 
