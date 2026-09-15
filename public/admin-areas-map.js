@@ -32,7 +32,25 @@
     ty = Math.min(0, Math.max(-maxY, ty));
     pan.setAttribute('transform', 'scale(' + scale + ') translate(' + tx + ',' + ty + ')');
     root.classList.toggle('is-zoomed', scale > 1);
+    sizeText();
   }
+
+  // Everything in the pan group is scaled by the browser, text included, so a
+  // label set in user units doubles on screen every time the map doubles. The
+  // postcode codes are only ever read at high zoom, so their size is solved
+  // backwards from the pixels they should occupy: at scale s a user unit is
+  // (renderedWidth / vbW) * s pixels, so the unit size that yields a constant
+  // CODE_PX is that ratio inverted. Set once here rather than per element.
+  var CODE_PX = 11;
+  var NAME_PX = 13;
+  function sizeText() {
+    var rect = svg.getBoundingClientRect();
+    if (!rect.width) return;
+    var pxPerUnit = (rect.width / vbW) * scale;
+    root.style.setProperty('--areamap-code-size', CODE_PX / pxPerUnit + 'px');
+    root.style.setProperty('--areamap-name-size', NAME_PX / pxPerUnit + 'px');
+  }
+  window.addEventListener('resize', sizeText);
 
   function zoomBy(factor) {
     var next = Math.min(MAX, Math.max(MIN, scale * factor));
@@ -46,6 +64,57 @@
     apply();
   }
 
+  // --- open a borough: zoom to it and name the districts inside ---
+  var focused = null;
+
+  function focusShape(shape) {
+    var name = shape.getAttribute('data-borough');
+    if (!name) return;
+    // getBBox is the shape's own extent in user units, which is exactly what
+    // the transform is expressed in — no measuring against the screen needed.
+    var box = shape.getBBox();
+    var pad = 1.25;
+    var next = Math.min(MAX, Math.max(MIN, Math.min(vbW / (box.width * pad), vbH / (box.height * pad))));
+    scale = next;
+    tx = -(box.x + box.width / 2 - vbW / (2 * scale));
+    ty = -(box.y + box.height / 2 - vbH / (2 * scale));
+    focused = name;
+    root.classList.add('is-focused');
+    var codes = 0;
+    var all = root.querySelectorAll('.areamap-code');
+    for (var i = 0; i < all.length; i++) {
+      var on = all[i].getAttribute('data-parent') === name;
+      all[i].classList.toggle('is-shown', on);
+      if (on) codes++;
+    }
+    for (var j = 0; j < shapes.length; j++) shapes[j].classList.toggle('is-open', shapes[j] === shape);
+    if (readout) {
+      readout.textContent = codes
+        ? name + ' — ' + codes + ' postcode ' + (codes === 1 ? 'district' : 'districts')
+        : name + ' — no postcode districts on the map here';
+      readout.hidden = false;
+    }
+    apply();
+  }
+
+  // Closing puts the whole map back. Dropping the labels but staying zoomed
+  // would strand the reader inside a shape with nothing left to read.
+  function clearFocus() {
+    focused = null;
+    root.classList.remove('is-focused');
+    var all = root.querySelectorAll('.areamap-code.is-shown');
+    for (var i = 0; i < all.length; i++) all[i].classList.remove('is-shown');
+    for (var j = 0; j < shapes.length; j++) shapes[j].classList.remove('is-open');
+    if (readout) readout.hidden = true;
+    scale = 1;
+    tx = 0;
+    ty = 0;
+    apply();
+  }
+
+  var shapes = root.querySelectorAll('.areamap-borough, .areamap-district');
+  var readout = root.querySelector('[data-areamap-readout]');
+
   root.addEventListener('click', function (e) {
     var toggle = e.target.closest('[data-areamap-toggle]');
     if (toggle) {
@@ -55,29 +124,67 @@
       return;
     }
     var btn = e.target.closest('[data-areamap-zoom]');
-    if (!btn) return;
-    var action = btn.getAttribute('data-areamap-zoom');
-    if (action === 'in') zoomBy(1.6);
-    else if (action === 'out') zoomBy(1 / 1.6);
-    else {
-      scale = 1;
-      tx = 0;
-      ty = 0;
-      apply();
+    if (btn) {
+      var action = btn.getAttribute('data-areamap-zoom');
+      if (action === 'in') zoomBy(1.6);
+      else if (action === 'out') zoomBy(1 / 1.6);
+      else {
+        clearFocus();
+        scale = 1;
+        tx = 0;
+        ty = 0;
+        apply();
+      }
+      return;
     }
+
+    // A drag that ends over a shape is a pan, not a click on it. Without this
+    // every pan would snap the map to whatever happened to be under the
+    // pointer when the mouse came up.
+    if (movedDuringPress) return;
+    var shape = e.target.closest('.areamap-borough, .areamap-district');
+    if (!shape) return;
+    if (shape.getAttribute('data-borough') === focused) clearFocus();
+    else focusShape(shape);
+  });
+
+  // Escape backs out, which is the shortcut people try first when something
+  // has zoomed in on them.
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && focused) clearFocus();
   });
 
   // --- drag to pan ---
   var dragging = false;
   var lastX = 0;
   var lastY = 0;
+  // Tracked from the moment of press, not just while dragging, so a press that
+  // wanders a few pixels on a trackpad still counts as a click.
+  var movedDuringPress = false;
+  var pressX = 0;
+  var pressY = 0;
+  var CLICK_SLOP = 5;
 
   function pointFromEvent(e) {
     var t = e.touches && e.touches[0];
     return { x: t ? t.clientX : e.clientX, y: t ? t.clientY : e.clientY };
   }
 
+  function beginPress(e) {
+    var p = pointFromEvent(e);
+    movedDuringPress = false;
+    pressX = p.x;
+    pressY = p.y;
+  }
+
+  function trackPress(e) {
+    if (movedDuringPress) return;
+    var p = pointFromEvent(e);
+    if (Math.abs(p.x - pressX) > CLICK_SLOP || Math.abs(p.y - pressY) > CLICK_SLOP) movedDuringPress = true;
+  }
+
   function startDrag(e) {
+    beginPress(e);
     if (scale <= 1) return;
     var p = pointFromEvent(e);
     dragging = true;
@@ -87,6 +194,7 @@
   }
 
   function moveDrag(e) {
+    trackPress(e);
     if (!dragging) return;
     var p = pointFromEvent(e);
     var rect = svg.getBoundingClientRect();

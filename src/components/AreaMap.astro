@@ -19,8 +19,9 @@
 // Accessibility: this SVG is decorative-with-a-summary. The table beneath it on
 // the page carries the same numbers in full, which is the real non-visual
 // equivalent — per-dot <title> elements inside a role="img" are not announced.
-import { BOROUGHS, OUTER_DISTRICTS, M25, MAP_WIDTH, MAP_HEIGHT, UNITS_PER_MILE } from '../data/londonMap';
+import { BOROUGHS, OUTER_DISTRICTS, POINTS, M25, MAP_WIDTH, MAP_HEIGHT, UNITS_PER_MILE } from '../data/londonMap';
 import { COVERED_OUTSIDE_LONDON, CORRIDOR_MILES } from '../data/serviceArea';
+import { DISTRICT_PARENT } from '../lib/districtParents';
 
 // The planned expansion: up to 3 miles either side of the M25. Drawn as a
 // stroke that wide rather than a computed buffer polygon — a round-capped,
@@ -91,6 +92,13 @@ const KINDS = ['enquiries', 'phone', 'whatsapp', 'sms'] as const;
 // times as much, which is exactly the misreading sqrt avoids.
 const radius = (n: number) => Math.min(30 * SCALE, (7 + Math.sqrt(n) * 4.5) * SCALE);
 
+// One label per postcode district, rendered for every shape but shown only for
+// the one the reader has opened. Rendering them all server-side keeps the
+// interaction to a class toggle — no measuring, no layout work on click.
+const districtLabels = Object.entries(POINTS)
+  .filter(([code]) => DISTRICT_PARENT[code])
+  .map(([code, [x, y]]) => ({ code, x, y, parent: DISTRICT_PARENT[code] }));
+
 const dots = markers.flatMap((m) =>
   KINDS.filter((k) => m[k] > 0).map((k) => ({
     kind: k,
@@ -113,7 +121,7 @@ const dots = markers.flatMap((m) =>
       <span class="areamap-key areamap-key-corridor">M25 &plusmn;{CORRIDOR_MILES} miles</span>
       <span class="areamap-key areamap-key-covered">Covered today</span>
       <span class="areamap-key areamap-key-planned">Not covered yet</span>
-      <span class="areamap-legend-note">Call, WhatsApp and text dots show the page that earned the tap, not where the person was. Greater London, Guildford and St Albans are covered; the named districts around the M25 are where the planned expansion would reach, not places we work today.</span>
+      <span class="areamap-legend-note">Click any area to zoom into it and see the postcode districts inside; click it again, press Escape, or use Reset to come back. Call, WhatsApp and text dots show the page that earned the tap, not where the person was. Greater London, Guildford and St Albans are covered; the named districts around the M25 are where the planned expansion would reach, not places we work today.</span>
     </div>
     <div class="areamap-zoom">
       <button type="button" class="btn btn-ghost" data-areamap-toggle="corridor" aria-pressed="true">M25 band</button>
@@ -122,6 +130,8 @@ const dots = markers.flatMap((m) =>
       <button type="button" class="btn btn-ghost" data-areamap-zoom="reset">Reset</button>
     </div>
   </div>
+
+  <p class="areamap-readout" data-areamap-readout hidden aria-live="polite"></p>
 
   <div class="areamap-stage">
     <svg
@@ -185,6 +195,14 @@ const dots = markers.flatMap((m) =>
               y={o.label![1]}
               class:list={['areamap-label', { 'is-covered': o.covered }]}
             >{shortName(o.name)}</text>
+          ))}
+        </g>
+
+        {/* Postcode districts inside whichever shape is open. Hidden until
+            then: 268 codes at once would bury the map. */}
+        <g class="areamap-districtcodes" aria-hidden="true">
+          {districtLabels.map((d) => (
+            <text x={d.x} y={d.y} class="areamap-code" data-parent={d.parent}>{d.code}</text>
           ))}
         </g>
 

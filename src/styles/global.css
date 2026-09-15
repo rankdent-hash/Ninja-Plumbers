@@ -3229,12 +3229,45 @@ body.qr-open { overflow: hidden; }
 .areamap-district:hover { fill: rgba(138, 111, 82, 0.1); stroke: #5e4b38; }
 
 .areamap-label {
-  font-size: 26px; font-weight: 600; fill: #6b5540;
+  /* Sized in px-on-screen by the script, like the postcode codes: zooming in
+     on a borough used to inflate "Reigate & Banstead" to about 90px. The 26px
+     fallback is what a no-JS render gets, which is right at 1x. */
+  font-size: var(--areamap-name-size, 26px); font-weight: 600; fill: #6b5540;
   text-anchor: middle; dominant-baseline: middle;
   paint-order: stroke; stroke: #fdf8f3; stroke-width: 6; stroke-linejoin: round;
   pointer-events: none;
 }
 .areamap-label.is-covered { fill: #3f5468; stroke: #f4f7fb; }
+
+/* Every area can be opened, so say so with the pointer. */
+.areamap-borough, .areamap-district { cursor: pointer; }
+.areamap.is-dragging .areamap-borough, .areamap.is-dragging .areamap-district { cursor: grabbing; }
+
+/* While one area is open the rest step back, so the shape being read is the
+   one the eye lands on. Dots stay at full strength throughout — they are the
+   data, and dimming them would hide the thing the map is for. */
+.areamap.is-focused .areamap-borough,
+.areamap.is-focused .areamap-district { opacity: 0.4; }
+.areamap.is-focused .areamap-borough.is-open,
+.areamap.is-focused .areamap-district.is-open { opacity: 1; stroke-width: 3.4; }
+.areamap.is-focused .areamap-labels { opacity: 0.35; }
+
+/* Postcode codes inside the open area. --areamap-code-size is set by the
+   script from the live zoom, so these stay about 11px however far in the map
+   is; without it they would double in size every time the map did. */
+.areamap-code {
+  display: none;
+  font-size: var(--areamap-code-size, 14px);
+  font-weight: 700; fill: #1f3247;
+  text-anchor: middle; dominant-baseline: middle;
+  paint-order: stroke; stroke: #fff; stroke-width: 0.28em; stroke-linejoin: round;
+  pointer-events: none;
+}
+.areamap-code.is-shown { display: initial; }
+
+.areamap-readout {
+  margin: 0 0 8px; font-size: 0.88rem; font-weight: 600; color: var(--navy);
+}
 
 /* Opacity belongs on the group, not the paths: the motorway is drawn as 216
    overlapping runs, and per-path alpha would stack at every overlap into the
