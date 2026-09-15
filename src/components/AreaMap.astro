@@ -25,6 +25,7 @@ import { DISTRICT_PARENT } from '../lib/districtParents';
 import { DISTRICT_CELLS } from '../lib/districtCells';
 import { postcodes } from '../data/postcodes';
 import { districtPrimary, districtPlaceList, DISTRICT_PLACES } from '../lib/districtPlaces';
+import { districtPageGap } from '../lib/placeCoverage';
 
 // The planned expansion: up to 3 miles either side of the M25. Drawn as a
 // stroke that wide rather than a computed buffer polygon — a round-capped,
@@ -451,6 +452,24 @@ const dots = markers.flatMap((m) =>
           {d.enquiries > 0 && !d.areaPage && <> There is no neighbourhood page for this district yet, which is the cheapest thing to change.</>}
           {d.areaPage && <> Its area page is <a href={`/areas/${d.areaPage}`} target="_blank" rel="noopener">{d.areaName}</a>.</>}
         </p>
+
+        {(() => {
+          // A district is one dot but several named places, and the gap between
+          // "we have a page for this district" and "we have a page for the
+          // places in it" is where the content plan lives. Places says which.
+          const gap = districtPageGap(d.district);
+          if (gap.total === 0) return null;
+          const missing = gap.total - gap.withPage;
+          return (
+            <p class="areamap-detail-note">
+              {d.district} covers {gap.total} named {gap.total === 1 ? 'place' : 'places'}
+              {missing === 0
+                ? ', and each one has a page of its own.'
+                : ` — ${missing} of them ${missing === 1 ? 'has' : 'have'} no page of ${missing === 1 ? 'its' : 'their'} own.`}
+              {' '}<a href={`/admin/places?q=${encodeURIComponent(d.district)}&status=all`}>See them in Places</a>.
+            </p>
+          );
+        })()}
       </section>
     );
   })}

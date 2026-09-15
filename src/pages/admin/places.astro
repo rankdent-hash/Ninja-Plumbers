@@ -1,0 +1,354 @@
+---
+// Every named place inside the service area, and whether we have a page for it.
+//
+// This is the content-planning half of /admin/areas. The map answers "where is
+// the work coming from"; this answers "what could we publish about it". They
+// share one source of truth (src/lib/districtPlaces.ts) so a name can never
+// appear on the map and be missing here.
+//
+// Read the header comment in src/lib/placeCoverage.ts before adding pages off
+// the back of this: 576 names without a page is an inventory, not a backlog,
+// and the repo already measured why building all of them would hurt.
+//
+// Aggregate only, same rule as /admin/areas: enquiries rows carry a name,
+// phone number, email and full postcode, and nothing here may render one.
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import { getSupabaseAdmin } from '../../lib/supabaseAdmin';
+import { PLACE_COVERAGE, PLACE_TOTALS, type PlaceCoverage } from '../../lib/placeCoverage';
+import { DISTRICT_PARENT } from '../../lib/districtParents';
+
+export const prerender = false;
+
+const admin = Astro.locals.admin!;
+const supabase = getSupabaseAdmin();
+
+// All time, deliberately, and no range picker. "Which places deserve a page"
+// is a slow question — a 30-day window would rank places by which week it is.
+const SINCE = new Date('2000-01-01T00:00:00Z').toISOString();
+
+type AreaRow = { district: string; total: number; booked: number };
+
+let enquiriesByDistrict = new Map<string, number>();
+let bookedByDistrict = new Map<string, number>();
+let publishedPlaceWords = new Set<string>();
+let loadError = '';
+
+if (!supabase) {
+  loadError = 'The admin panel is not connected to Supabase yet.';
+} else {
+  // landing_pages has no `title` column — h1 and slug are what it carries.
+  const [areaRes, lpRes, spRes, blogRes] = await Promise.all([
+    supabase.rpc('enquiry_areas', { since: SINCE, until: undefined }),
+    supabase.from('landing_pages').select('h1, slug').eq('status', 'published'),
+    supabase.from('service_pages').select('title, h1, slug').eq('status', 'published'),
+    supabase.from('blog_posts').select('title, h1, slug').eq('status', 'published'),
+  ]);
+  if (areaRes.error) {
+    loadError = 'Could not load enquiry counts from the database. The inventory below is still complete — only the enquiry columns are missing.';
+  } else {
+    for (const r of (areaRes.data ?? []) as AreaRow[]) {
+      enquiriesByDistrict.set(r.district.toUpperCase(), Number(r.total));
+      bookedByDistrict.set(r.district.toUpperCase(), Number(r.booked));
+    }
+  }
+  // A published page "mentions" a place when its title, H1 or slug carries the
+  // name. Only those three fields, not the body: a name that appears once in a
+  // paragraph is not what anyone means by "we have a page about it".
+  const bag: string[] = [];
+  for (const res of [lpRes, spRes, blogRes]) {
+    if (res.error) continue;
+    for (const row of (res.data ?? []) as Record<string, string | null>[]) {
+      bag.push(`${row.title ?? ''} ${row.h1 ?? ''} ${(row.slug ?? '').replace(/-/g, ' ')}`);
+    }
+  }
+  publishedPlaceWords = new Set(bag.map(flatten));
+}
+
+// Apostrophes out, everything else down to single-spaced lower case, padded so
+// a whole-word test is a plain substring check on " name ".
+function flatten(s: string): string {
+  return ` ${s.toLowerCase().replace(/['’]/g, '').replace(/[^a-z0-9]+/g, ' ').trim()} `;
+}
+
+// Whole words only. "Lee" is a place in Lewisham and a substring of "Fleet",
+// "sleeve" and "Leeds"; a substring test would mark it covered by almost
+// anything and quietly drop it off the list of places with no page.
+const mentionedInPublished = (name: string) => {
+  const needle = flatten(name);
+  for (const hay of publishedPlaceWords) if (hay.includes(needle)) return true;
+  return false;
+};
+
+type Row = PlaceCoverage & { enquiries: number; booked: number; published: boolean };
+
+const allRows: Row[] = PLACE_COVERAGE.map((p) => ({
+  ...p,
+  enquiries: p.districts.reduce((s, d) => s + (enquiriesByDistrict.get(d) ?? 0), 0),
+  booked: p.districts.reduce((s, d) => s + (bookedByDistrict.get(d) ?? 0), 0),
+  published: mentionedInPublished(p.name),
+}));
+
+const params = Astro.url.searchParams;
+const STATUSES = [
+  { key: 'gap', label: 'No page of its own' },
+  { key: 'covered', label: 'Has an area page' },
+  { key: 'all', label: 'Everything' },
+] as const;
+type Status = (typeof STATUSES)[number]['key'];
+const requestedStatus = params.get('status');
+const status: Status = (STATUSES.some((s) => s.key === requestedStatus) ? requestedStatus : 'gap') as Status;
+const q = (params.get('q') ?? '').trim();
+
+const boroughs = [...new Set(Object.values(DISTRICT_PARENT))].sort((a, b) => a.localeCompare(b, 'en-GB'));
+const borough = boroughs.includes(params.get('borough') ?? '') ? params.get('borough')! : '';
+
+// An area page, and only an area page. A blog post that happens to name the
+// place is worth knowing about and is shown in the table, but it is not a page
+// about that place and must not quietly remove the name from the gap list.
+const hasPage = (r: Row) => Boolean(r.areaSlug);
+
+const needle = q.toLowerCase();
+const rows = allRows
+  .filter((r) => (status === 'all' ? true : status === 'gap' ? !hasPage(r) : hasPage(r)))
+  .filter((r) => (borough ? r.boroughs.includes(borough) : true))
+  .filter((r) =>
+    !needle
+      ? true
+      : r.name.toLowerCase().includes(needle) ||
+        r.districts.some((d) => d.toLowerCase().includes(needle)) ||
+        r.boroughs.some((b) => b.toLowerCase().includes(needle))
+  )
+  .sort(
+    (a, b) =>
+      b.enquiries - a.enquiries ||
+      b.districts.length - a.districts.length ||
+      a.name.localeCompare(b.name, 'en-GB')
+  );
+
+const gapCount = allRows.filter((r) => !hasPage(r)).length;
+const withEvidence = rows.filter((r) => r.enquiries > 0).length;
+
+const link = (next: Record<string, string>) => {
+  const u = new URLSearchParams();
+  const merged = { status, borough, q, ...next };
+  for (const [k, v] of Object.entries(merged)) if (v && !(k === 'status' && v === 'gap')) u.set(k, v);
+  const s = u.toString();
+  return s ? `/admin/places?${s}` : '/admin/places';
+};
+
+// The export exists so a shortlist can go straight into a keyword tool. The
+// column order is the reading order: what the place is, then the evidence,
+// then what we already have. `suggested_url` is a URL that does NOT exist —
+// it is what one would be called, not a page, and the header says so.
+const csv = rows.map((r) => ({
+  place: r.name,
+  keyword_to_check: `plumber ${r.name.toLowerCase()}`,
+  districts: r.districts.join(' '),
+  borough: r.boroughs.join(' / '),
+  region: r.regions.join(' / '),
+  district_enquiries: r.enquiries,
+  district_booked: r.booked,
+  area_page: r.areaSlug ? `/areas/${r.areaSlug}` : '',
+  measured_volume: r.volume ?? '',
+  district_pages: r.districtPageSlugs.map((s) => `/postcodes/${s}`).join(' '),
+  named_on_published_page: r.published ? 'yes' : '',
+  suggested_url_does_not_exist_yet: r.areaSlug ? '' : `/areas/${r.slug}`,
+}));
+---
+<AdminLayout title="Places" admin={admin}>
+  <div class="admin-head">
+    <h1>Places</h1>
+    <p class="admin-sub">
+      {PLACE_TOTALS.places} named places across {PLACE_TOTALS.districts} postcode districts &middot;
+      {gapCount} with no page of their own
+    </p>
+  </div>
+
+  <p class="admin-note">
+    A postcode district is not a place. <strong>N22</strong> is Wood Green, Turnpike Lane, Bowes Park
+    and part of Tottenham &mdash; one dot on the <a href="/admin/areas">Areas</a> map, four names people
+    actually search for. This is every one of those names, and what we publish about it today.
+  </p>
+
+  <p class="admin-note admin-note-warn">
+    <strong>{gapCount} names without a page is an inventory, not a to-do list.</strong> The bar this
+    site already uses for a new location page is 140 monthly searches
+    (<code>src/data/combos.ts</code>), and the 122 postcode pages measured only 40.9% unique against
+    their nearest sibling because a place name plus a borough is about 25 words of genuinely
+    per-page material. Publishing hundreds of near-identical pages is the doorway pattern Google
+    demotes, and it would put the pages that do rank at risk. Pick from this list on evidence; do
+    not work down it.
+  </p>
+
+  <p class="admin-note">
+    <strong>The enquiry columns are district-level, not place-level.</strong> A customer typing
+    &ldquo;N22 8HQ&rdquo; into the form tells us the district and never which of its four names they
+    would use for where they live, so every place in N22 shows the same figure. It is evidence that
+    the district sends us work, which is a reason to look at a name here &mdash; not proof that the
+    name itself has an audience. Nothing on this page is a search volume: none has been measured for
+    these names. Export the shortlist and put it through Semrush or Keyword Planner before writing
+    anything.
+  </p>
+
+  {loadError && <p class="form-error-summary" role="alert">{loadError}</p>}
+
+  <form class="admin-filters" method="get" action="/admin/places">
+    <div class="admin-filter-field">
+      <label for="place-q">Search</label>
+      <input type="search" id="place-q" name="q" value={q} placeholder="Name, district or borough" class="admin-filter-input" />
+    </div>
+    <div class="admin-filter-field">
+      <label for="place-borough">Borough</label>
+      <select id="place-borough" name="borough" class="admin-filter-input">
+        <option value="">All boroughs</option>
+        {boroughs.map((b) => <option value={b} selected={b === borough}>{b}</option>)}
+      </select>
+    </div>
+    <input type="hidden" name="status" value={status} />
+    <button type="submit" class="btn btn-primary">Filter</button>
+    {(q || borough) && <a class="btn btn-ghost" href={link({ q: '', borough: '' })}>Clear</a>}
+  </form>
+
+  <nav class="admin-tabs" aria-label="Page coverage">
+    {STATUSES.map((s) => (
+      <a href={link({ status: s.key })} class:list={{ 'is-active': status === s.key }}>{s.label}</a>
+    ))}
+  </nav>
+
+  <p class="admin-sub">
+    {rows.length} {rows.length === 1 ? 'place' : 'places'}
+    {withEvidence > 0 && <> &middot; {withEvidence} in {withEvidence === 1 ? 'a district' : 'districts'} that has sent us an enquiry</>}
+    {rows.length > 0 && <> &middot; <button type="button" class="btn btn-ghost admin-csv-btn" data-places-csv>Download CSV</button></>}
+  </p>
+
+  {rows.length === 0 && <p class="admin-empty">No places match that filter.</p>}
+
+  {rows.length > 0 && (
+    <div class="admin-table-scroll" tabindex="0">
+      <table class="admin-table">
+        <caption class="sr-only">
+          Named places, the postcode districts they sit in, enquiries recorded for those districts,
+          and the page that covers each place today.
+        </caption>
+        <thead>
+          <tr>
+            <th>Place</th>
+            <th>Districts</th>
+            <th>Borough</th>
+            <th class="admin-num">District enquiries</th>
+            <th>Page today</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr>
+              <th scope="row" class="admin-rowhead">
+                {r.name}
+                {!r.isPrimary && <span class="admin-pill admin-pill-quiet" title="One of the other names its district covers, rather than the district's headline name">secondary</span>}
+              </th>
+              <td>
+                {r.districts.map((d, i) => (
+                  <>{i > 0 && ', '}<a href={link({ q: d, status: 'all' })}>{d}</a></>
+                ))}
+              </td>
+              <td>{r.boroughs.join(' / ') || <span class="admin-dim">&mdash;</span>}</td>
+              <td class="admin-num">
+                {r.enquiries > 0 ? r.enquiries : <span class="admin-dim">0</span>}
+                {r.booked > 0 && <span class="admin-dim"> ({r.booked} booked)</span>}
+              </td>
+              <td>
+                {r.areaSlug ? (
+                  <>
+                    <a href={`/areas/${r.areaSlug}`}>/areas/{r.areaSlug}</a>
+                    {r.volume !== null && <span class="admin-dim"> &middot; {r.volume}/mo measured</span>}
+                    {r.comboCount > 0 && <span class="admin-dim"> &middot; {r.comboCount} service {r.comboCount === 1 ? 'page' : 'pages'}</span>}
+                  </>
+                ) : (
+                  <>
+                    <span class="admin-dim">no page of its own</span>
+                    {r.districtPageSlugs.length > 0 && (
+                      <span class="admin-dim">
+                        {' '}&middot; listed on{' '}
+                        {r.districtPageSlugs.map((s, i) => (
+                          <>{i > 0 && ', '}<a href={`/postcodes/${s}`}>/postcodes/{s}</a></>
+                        ))}
+                      </span>
+                    )}
+                    {r.published && <span class="admin-pill" title="A published blog, landing or service page carries this name in its heading or URL">named on a published page</span>}
+                  </>
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )}
+
+  <section class="admin-section">
+  <h2>What to do with this</h2>
+  <p class="admin-note">
+    In rough order of what tends to be worth the effort:
+  </p>
+  <ol class="admin-steps">
+    <li>
+      <strong>Service pages for places that already rank.</strong> The cheapest wins are not new
+      places at all &mdash; they are services on the 51 places that already have an area page and
+      measured demand. Switch to <a href={link({ status: 'covered' })}>Has an area page</a>: any row showing
+      a volume but few service pages is a gap the existing page has already proved an audience for.
+    </li>
+    <li>
+      <strong>Names in districts that send us work.</strong> Sort is by district enquiries already,
+      so the top of this list is where real customers are. Check the name in a keyword tool first;
+      if it clears 140/month, it is a candidate.
+    </li>
+    <li>
+      <strong>Blog posts, not location pages, for the rest.</strong> A place with no measured demand
+      will not carry a &ldquo;Plumber in X&rdquo; page, but it can be named honestly inside a post
+      that is about something real &mdash; the housing stock, a local problem, a job we actually did
+      there. That earns the local relevance without adding a thin page.
+    </li>
+    <li>
+      <strong>Leave the rest as they are.</strong> Every name here is already on
+      a <a href="/postcodes">postcode page</a> and in the site search, so nobody looking for it comes
+      up empty.
+    </li>
+  </ol>
+
+  <p class="admin-note">
+    Where these names come from: the client workbook (<code>src/data/postcodes.ts</code>) for 114
+    districts, the area pages for 15 more, and ordinary public place names
+    (<code>src/data/districtNames.ts</code>) for the remaining 200 &mdash; mostly outer London and the
+    central sub-districts. The map and this page read one shared list, so they cannot drift apart.
+  </p>
+  </section>
+
+  <script type="application/json" data-places-rows is:inline set:html={JSON.stringify(csv)}></script>
+  <script is:inline>
+    (function () {
+      var btn = document.querySelector('[data-places-csv]');
+      var data = document.querySelector('[data-places-rows]');
+      if (!btn || !data) return;
+      btn.addEventListener('click', function () {
+        var rows = JSON.parse(data.textContent);
+        if (!rows.length) return;
+        var cols = Object.keys(rows[0]);
+        var esc = function (v) {
+          var s = String(v == null ? '' : v);
+          return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+        };
+        var csv = [cols.join(',')].concat(rows.map(function (r) {
+          return cols.map(function (c) { return esc(r[c]); }).join(',');
+        })).join('\r\n');
+        var url = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'tamesis-places.csv';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      });
+    })();
+  </script>
+</AdminLayout>
