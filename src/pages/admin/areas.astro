@@ -13,13 +13,14 @@
 // postcode; nothing here may render one. Counts per district, never a point
 // per customer.
 import AdminLayout from '../../layouts/AdminLayout.astro';
-import AreaMap, { type MapMarker } from '../../components/AreaMap.astro';
+import AreaMap, { type MapMarker, type DistrictDetail } from '../../components/AreaMap.astro';
 import { getSupabaseAdmin } from '../../lib/supabaseAdmin';
 import { areas } from '../../data/areas';
 import { postcodes } from '../../data/postcodes';
 import { POINTS, OUTER_DISTRICTS } from '../../data/londonMap';
 import { COVERED_OUTSIDE_LONDON, CORRIDOR_AREA_SHARE_PCT } from '../../data/serviceArea';
 import { londonDayRange } from '../../lib/londonDay';
+import { DISTRICT_PLACES } from '../../lib/districtPlaces';
 
 export const prerender = false;
 
@@ -161,9 +162,18 @@ function districtForPage(page: string): string | null {
 type Taps = { phone: number; whatsapp: number; sms: number };
 const tapsByDistrict = new Map<string, Taps>();
 let unplaceableTaps = 0;
+
+// The pages behind each district's taps, kept rather than summed away. A count
+// on its own says a district is busy; the pages say WHICH page earned it and
+// how hard it had to work to do so, which is the question worth asking before
+// moving money.
+type PageRow = { page: string; views: number; phone: number; whatsapp: number; sms: number; forms: number };
+const pagesByDistrict = new Map<string, PageRow[]>();
+
 for (const s of sources) {
   const taps = Number(s.phone) + Number(s.whatsapp) + Number(s.sms);
-  if (taps === 0) continue;
+  const forms = Number(s.forms);
+  if (taps === 0 && forms === 0 && Number(s.views) === 0) continue;
   const d = districtForPage(s.page);
   if (!d) {
     unplaceableTaps += taps;
@@ -174,6 +184,17 @@ for (const s of sources) {
   cur.whatsapp += Number(s.whatsapp);
   cur.sms += Number(s.sms);
   tapsByDistrict.set(d, cur);
+
+  const list = pagesByDistrict.get(d) ?? [];
+  list.push({
+    page: s.page,
+    views: Number(s.views),
+    phone: Number(s.phone),
+    whatsapp: Number(s.whatsapp),
+    sms: Number(s.sms),
+    forms,
+  });
+  pagesByDistrict.set(d, list);
 }
 
 const boroughByDistrict = new Map(rows.map((r) => [r.district, r.borough]));
@@ -194,6 +215,33 @@ const markers: MapMarker[] = [...markerDistricts]
       sms: taps.sms,
     };
   });
+
+// The per-district breakdown behind each dot. Only districts with something to
+// show get one — there is no value in a panel that says nothing, and rendering
+// all 329 would bloat the page for no reader.
+const details: DistrictDetail[] = markers
+  .filter((m) => m.enquiries + m.phone + m.whatsapp + m.sms > 0)
+  .map((m) => {
+    const row = rows.find((r) => r.district === m.district);
+    const pages = (pagesByDistrict.get(m.district) ?? [])
+      .map((p) => ({ ...p, contacts: p.phone + p.whatsapp + p.sms + p.forms }))
+      .filter((p) => p.contacts > 0 || p.views > 0)
+      .sort((a, b) => b.contacts - a.contacts || b.views - a.views);
+    return {
+      district: m.district,
+      places: DISTRICT_PLACES[m.district] ?? [],
+      borough: m.borough,
+      enquiries: m.enquiries,
+      booked: Number(row?.booked ?? 0),
+      phone: m.phone,
+      whatsapp: m.whatsapp,
+      sms: m.sms,
+      pages,
+      areaPage: coverage(m.district).area?.slug ?? null,
+      areaName: coverage(m.district).area?.name ?? null,
+    };
+  })
+  .sort((a, b) => b.enquiries - a.enquiries || b.phone + b.whatsapp + b.sms - (a.phone + a.whatsapp + a.sms));
 
 // A district with enquiries but no point on the map (outside Greater London,
 // or a code the boundary data does not carry) must be visible as a gap rather
@@ -242,6 +290,7 @@ const corridorSharePct = CORRIDOR_AREA_SHARE_PCT;
   {!loadError && (
     <AreaMap
       markers={markers}
+      details={details}
       summary={`Map of London and the M25 corridor showing ${markers.length} postcode ${markers.length === 1 ? 'district' : 'districts'} with activity. The table below this map lists the same figures.`}
     />
   )}

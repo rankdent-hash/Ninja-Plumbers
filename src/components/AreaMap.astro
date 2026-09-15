@@ -63,11 +63,31 @@ export type MapMarker = {
   sms: number;
 };
 
+export type DistrictDetail = {
+  district: string;
+  places: string[];
+  borough: string | null;
+  enquiries: number;
+  booked: number;
+  phone: number;
+  whatsapp: number;
+  sms: number;
+  pages: { page: string; views: number; phone: number; whatsapp: number; sms: number; forms: number; contacts: number }[];
+  areaPage: string | null;
+  areaName: string | null;
+};
+
 interface Props {
   markers: MapMarker[];
+  details?: DistrictDetail[];
   summary: string;
 }
-const { markers, summary } = Astro.props;
+const { markers, details = [], summary } = Astro.props;
+
+// A panel per district that has something to say. Server-rendered because it
+// keeps the interaction to a class toggle, and because these numbers belong in
+// the HTML rather than being assembled by a script that might not run.
+const pct = (n: number, of: number) => (of > 0 ? Math.round((n / of) * 100) : null);
 
 // Dots are placed on a small rosette around the district centroid so four
 // types at one district stay separable instead of stacking into one blob.
@@ -153,7 +173,7 @@ const dots = markers.flatMap((m) =>
       <span class="areamap-key areamap-key-corridor">M25 &plusmn;{CORRIDOR_MILES} miles</span>
       <span class="areamap-key areamap-key-covered">Covered today</span>
       <span class="areamap-key areamap-key-planned">Not covered yet</span>
-      <span class="areamap-legend-note">Click any area to zoom into it and see the postcode districts inside; click it again, press Escape, or use Reset to come back. Those district divisions are schematic &mdash; each district centre claims the ground nearest to it, so the middle of each one is right and the seams between them are approximate. Call, WhatsApp and text dots show the page that earned the tap, not where the person was. Greater London, Guildford and St Albans are covered; the named districts around the M25 are where the planned expansion would reach, not places we work today.</span>
+      <span class="areamap-legend-note">Click any area to zoom into it and see the postcode districts inside, then click a district or one of its dots for the full breakdown &mdash; how many enquiries and taps, and which pages earned them. Escape steps back out. Those district divisions are schematic &mdash; each district centre claims the ground nearest to it, so the middle of each one is right and the seams between them are approximate. Call, WhatsApp and text dots show the page that earned the tap, not where the person was. Greater London, Guildford and St Albans are covered; the named districts around the M25 are where the planned expansion would reach, not places we work today.</span>
     </div>
     <div class="areamap-zoom">
       <button type="button" class="btn btn-ghost" data-areamap-toggle="corridor" aria-pressed="true">M25 band</button>
@@ -164,6 +184,7 @@ const dots = markers.flatMap((m) =>
   </div>
 
   <p class="areamap-readout" data-areamap-readout hidden aria-live="polite"></p>
+
 
   <div class="areamap-stage">
     <svg
@@ -268,11 +289,21 @@ const dots = markers.flatMap((m) =>
               data-borough={d.borough ?? ''}
               data-kind={d.kind}
               data-count={d.count}
+              data-summary={(() => {
+                const m = markers.find((x) => x.district === d.district)!;
+                return [
+                  m.enquiries ? `${m.enquiries} enquir${m.enquiries === 1 ? 'y' : 'ies'}` : '',
+                  m.phone ? `${m.phone} phone` : '',
+                  m.whatsapp ? `${m.whatsapp} WhatsApp` : '',
+                  m.sms ? `${m.sms} text` : '',
+                ].filter(Boolean).join(' &middot; ');
+              })()}
               data-x={d.x}
               data-y={d.y}
               data-ox={d.ox}
               data-oy={d.oy}
               data-r={d.r}
+              data-parent-shape={DISTRICT_PARENT[d.district] ?? ''}
             />
           ))}
         </g>
@@ -281,6 +312,99 @@ const dots = markers.flatMap((m) =>
 
     <div class="areamap-tip" data-areamap-tip hidden aria-hidden="true"></div>
   </div>
+
+  {details.map((d) => {
+    const taps = d.phone + d.whatsapp + d.sms;
+    const views = d.pages.reduce((s, p) => s + p.views, 0);
+    const contacts = d.pages.reduce((s, p) => s + p.contacts, 0);
+    const rate = pct(contacts, views);
+    const bookedRate = pct(d.booked, d.enquiries);
+    const thin = d.enquiries + taps < 10;
+    return (
+      <section class="areamap-detail" data-areamap-detail={d.district} hidden>
+        <div class="areamap-detail-head">
+          <h2>
+            {d.district}
+            {d.places.length > 0 && <span class="areamap-detail-places"> {d.places.slice(0, 4).join(', ')}</span>}
+          </h2>
+          {d.borough && <p class="areamap-detail-sub">{d.borough}</p>}
+        </div>
+
+        <div class="areamap-detail-stats">
+          <div class="areamap-stat">
+            <span class="areamap-stat-n">{d.enquiries}</span>
+            <span class="areamap-stat-l">{d.enquiries === 1 ? 'enquiry' : 'enquiries'}<br /><small>job postcode</small></span>
+          </div>
+          <div class="areamap-stat">
+            <span class="areamap-stat-n">{d.booked}</span>
+            <span class="areamap-stat-l">booked{bookedRate !== null && <><br /><small>{bookedRate}% of enquiries</small></>}</span>
+          </div>
+          <div class="areamap-stat"><span class="areamap-stat-n">{d.phone}</span><span class="areamap-stat-l">phone taps</span></div>
+          <div class="areamap-stat"><span class="areamap-stat-n">{d.whatsapp}</span><span class="areamap-stat-l">WhatsApp taps</span></div>
+          <div class="areamap-stat"><span class="areamap-stat-n">{d.sms}</span><span class="areamap-stat-l">text taps</span></div>
+        </div>
+
+        {d.pages.length > 0 && (
+          <>
+            <h3 class="areamap-detail-h4">
+              Pages behind this
+              {rate !== null && <span class="areamap-detail-rate"> &mdash; {contacts} contact{contacts === 1 ? '' : 's'} from {views} view{views === 1 ? '' : 's'}, {rate}%</span>}
+            </h3>
+            <div class="admin-table-scroll" tabindex="0">
+              <table class="admin-table areamap-detail-table">
+                <thead>
+                  <tr>
+                    <th>Page</th>
+                    <th class="admin-num">Views</th>
+                    <th class="admin-num">Phone</th>
+                    <th class="admin-num">WhatsApp</th>
+                    <th class="admin-num">Text</th>
+                    <th class="admin-num">Forms</th>
+                    <th class="admin-num">Rate</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {d.pages.map((p) => {
+                    const r = pct(p.contacts, p.views);
+                    return (
+                      <tr>
+                        <td><a href={p.page} target="_blank" rel="noopener">{p.page}</a></td>
+                        <td class="admin-num">{p.views}</td>
+                        <td class="admin-num">{p.phone || <span class="admin-dim">&mdash;</span>}</td>
+                        <td class="admin-num">{p.whatsapp || <span class="admin-dim">&mdash;</span>}</td>
+                        <td class="admin-num">{p.sms || <span class="admin-dim">&mdash;</span>}</td>
+                        <td class="admin-num">{p.forms || <span class="admin-dim">&mdash;</span>}</td>
+                        <td class="admin-num">{r === null ? <span class="admin-dim">&mdash;</span> : `${r}%`}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </>
+        )}
+
+        <p class="areamap-detail-note">
+          {thin ? (
+            <><strong>Too little here to act on.</strong>{` ${d.enquiries + taps} ${d.enquiries + taps === 1 ? 'record' : 'records'} is not a pattern — one more would move every percentage on this panel. Treat it as a note of what has come in, not a signal. `}</>
+          ) : (
+            <><strong>Rate is the number to watch, not the count.</strong> A page with fewer views and a higher rate is
+            working harder per visit, which is what tells you where another pound of ad spend goes furthest.{' '}</>
+          )}
+          The enquiry count is a real location — the postcode the customer typed. The phone, WhatsApp and text counts are
+          not: they record the page the tap happened on, so they say which local page earned the contact, not where the
+          person was.
+          {d.enquiries > 0 && !d.areaPage && <> There is no neighbourhood page for this district yet, which is the cheapest thing to change.</>}
+          {d.areaPage && <> Its area page is <a href={`/areas/${d.areaPage}`} target="_blank" rel="noopener">{d.areaName}</a>.</>}
+        </p>
+      </section>
+    );
+  })}
+
+  <section class="areamap-detail areamap-detail-empty" data-areamap-detail-empty hidden>
+    <p class="admin-note">Nothing recorded in this district for the period shown — no enquiries with this postcode, and no
+    taps on a page about it.</p>
+  </section>
 
   {markers.length === 0 && (
     <p class="admin-empty areamap-empty">Nothing to plot for this period yet. The map fills in as enquiries and taps come in.</p>

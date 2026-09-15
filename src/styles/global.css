@@ -3284,9 +3284,49 @@ body.qr-open { overflow: hidden; }
 
 .areamap-tip-dim { color: #9fb0c0; }
 
-.areamap-readout {
-  margin: 0 0 8px; font-size: 0.88rem; font-weight: 600; color: var(--navy);
+/* The district picked out of the open area. Both the shape and its dots get
+   marked, so it is obvious which one the panel below is describing. */
+.areamap-cell.is-shown.is-selected {
+  fill: rgba(250, 204, 21, 0.34); stroke: #8a5a00; stroke-width: 3;
 }
+.areamap-dot.is-selected { stroke: #1f3247; stroke-width: 3; opacity: 1; }
+
+/* The breakdown panel. Sits under the map rather than over it: it carries a
+   table, and an overlay that covers the thing you just clicked is a poor trade
+   on a page whose whole point is comparing places. */
+.areamap-detail {
+  margin-top: 14px; padding: 18px 20px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+}
+.areamap-detail-head h2 { margin: 0; font-size: 1.15rem; color: var(--navy); }
+.areamap-detail-places { font-weight: 600; color: var(--muted); font-size: 0.92rem; }
+.areamap-detail-sub { margin: 2px 0 0; color: var(--muted); font-size: 0.88rem; }
+.areamap-detail-stats {
+  display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0 6px;
+}
+.areamap-stat {
+  flex: 1 1 120px; min-width: 110px;
+  background: var(--bg); border: 1px solid var(--border); border-radius: 10px;
+  padding: 10px 12px; display: flex; flex-direction: column; gap: 2px;
+}
+.areamap-stat-n { font-size: 1.5rem; font-weight: 700; color: var(--navy); line-height: 1.1; }
+.areamap-stat-l { font-size: 0.8rem; color: var(--muted); font-weight: 600; }
+.areamap-stat-l small { font-weight: 500; }
+.areamap-detail-h4 { margin: 18px 0 8px; font-size: 0.95rem; color: var(--navy); }
+.areamap-detail-rate { font-weight: 600; color: var(--muted); }
+.areamap-detail-table { font-size: 0.86rem; }
+.areamap-detail-note { margin: 14px 0 0; font-size: 0.86rem; color: var(--muted); line-height: 1.55; }
+
+/* display:flex would win over the hidden attribute, leaving a stale borough
+   name on screen after the area is closed. Spell the hidden case out. */
+.areamap-readout { margin: 0 0 8px; font-size: 0.88rem; font-weight: 600; color: var(--navy); }
+.areamap-readout:not([hidden]) { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.areamap-close {
+  border: 1.5px solid var(--border-strong); background: var(--white);
+  border-radius: 999px; padding: 3px 12px;
+  font: inherit; font-size: 0.8rem; color: var(--muted); cursor: pointer;
+}
+.areamap-close:hover { color: var(--navy); border-color: var(--navy); }
 
 /* Opacity belongs on the group, not the paths: the motorway is drawn as 216
    overlapping runs, and per-path alpha would stack at every overlap into the

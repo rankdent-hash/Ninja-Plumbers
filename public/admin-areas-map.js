@@ -116,9 +116,12 @@
     }
     for (var j = 0; j < shapes.length; j++) shapes[j].classList.toggle('is-open', shapes[j] === shape);
     if (readout) {
-      readout.textContent = codes
-        ? name + ' — ' + codes + ' postcode ' + (codes === 1 ? 'district' : 'districts')
-        : name + ' — no postcode districts on the map here';
+      readout.innerHTML =
+        '<span>' +
+        (codes
+          ? name + ' — ' + codes + ' postcode ' + (codes === 1 ? 'district' : 'districts')
+          : name + ' — no postcode districts on the map here') +
+        '</span> <button type="button" class="areamap-close" data-areamap-close>Close</button>';
       readout.hidden = false;
     }
     apply();
@@ -127,6 +130,7 @@
   // Closing puts the whole map back. Dropping the labels but staying zoomed
   // would strand the reader inside a shape with nothing left to read.
   function clearFocus() {
+    clearSelection();
     focused = null;
     root.classList.remove('is-focused');
     var all = root.querySelectorAll('.areamap-code.is-shown, .areamap-cell.is-shown');
@@ -141,6 +145,38 @@
 
   var shapes = root.querySelectorAll('.areamap-borough, .areamap-district');
   var readout = root.querySelector('[data-areamap-readout]');
+  var panels = root.querySelectorAll('[data-areamap-detail]');
+  var emptyPanel = root.querySelector('[data-areamap-detail-empty]');
+  var selected = null;
+
+  // Selecting a district opens its panel. Only districts with something to
+  // report have one; the rest get the empty note, which is better than a click
+  // that appears to do nothing.
+  function selectDistrict(code) {
+    if (selected === code) return clearSelection();
+    selected = code;
+    var found = false;
+    for (var i = 0; i < panels.length; i++) {
+      var on = panels[i].getAttribute('data-areamap-detail') === code;
+      panels[i].hidden = !on;
+      if (on) found = true;
+    }
+    if (emptyPanel) emptyPanel.hidden = found;
+    for (var j = 0; j < cellEls.length; j++)
+      cellEls[j].classList.toggle('is-selected', cellEls[j].getAttribute('data-code') === code);
+    for (var k = 0; k < dotEls.length; k++)
+      dotEls[k].classList.toggle('is-selected', dotEls[k].getAttribute('data-district') === code);
+    var panel = root.querySelector('[data-areamap-detail="' + code + '"]:not([hidden])') || (found ? null : emptyPanel);
+    if (panel && panel.scrollIntoView) panel.scrollIntoView({ block: 'nearest' });
+  }
+
+  function clearSelection() {
+    selected = null;
+    for (var i = 0; i < panels.length; i++) panels[i].hidden = true;
+    if (emptyPanel) emptyPanel.hidden = true;
+    for (var j = 0; j < cellEls.length; j++) cellEls[j].classList.remove('is-selected');
+    for (var k = 0; k < dotEls.length; k++) dotEls[k].classList.remove('is-selected');
+  }
 
   root.addEventListener('click', function (e) {
     var toggle = e.target.closest('[data-areamap-toggle]');
@@ -150,6 +186,7 @@
       root.classList.toggle('hide-corridor', !on);
       return;
     }
+    if (e.target.closest('[data-areamap-close]')) { clearFocus(); return; }
     var btn = e.target.closest('[data-areamap-zoom]');
     if (btn) {
       var action = btn.getAttribute('data-areamap-zoom');
@@ -169,20 +206,30 @@
     // every pan would snap the map to whatever happened to be under the
     // pointer when the mouse came up.
     if (movedDuringPress) return;
-    // The district cells sit above the shape and are hit-testable, so a click
-    // landing on one has to resolve back to the area it belongs to — otherwise
-    // they punch holes in the open borough and it cannot be clicked shut.
-    var onRing = e.target.closest('.areamap-cell');
-    var shape = null;
-    if (onRing) {
-      var owner = onRing.getAttribute('data-parent');
-      for (var s = 0; s < shapes.length; s++) {
-        if (shapes[s].getAttribute('data-borough') === owner) { shape = shapes[s]; break; }
+    // Inside an open area a dot or a district is a thing in its own right, so
+    // clicking one opens its numbers rather than closing the area around it.
+    var onDot = e.target.closest('.areamap-dot');
+    if (onDot && focused) return selectDistrict(onDot.getAttribute('data-district'));
+    var onCell = e.target.closest('.areamap-cell.is-shown');
+    if (onCell) return selectDistrict(onCell.getAttribute('data-code'));
+
+    // A dot outside an open area still opens the area it sits in, which is the
+    // step the reader wanted anyway.
+    if (onDot) {
+      var host = onDot.getAttribute('data-parent-shape');
+      for (var h2 = 0; h2 < shapes.length; h2++) {
+        if (shapes[h2].getAttribute('data-borough') === host) { focusShape(shapes[h2]); return; }
       }
-    } else {
-      shape = e.target.closest('.areamap-borough, .areamap-district');
     }
-    if (!shape) return;
+
+    var shape = e.target.closest('.areamap-borough, .areamap-district');
+    // Clicking the open area's own outline, or the ground outside it, closes.
+    // The district cells now cover the whole interior, so without this the only
+    // ways out would be Escape and Reset.
+    if (!shape) {
+      if (focused) clearFocus();
+      return;
+    }
     if (shape.getAttribute('data-borough') === focused) clearFocus();
     else focusShape(shape);
   });
@@ -190,7 +237,10 @@
   // Escape backs out, which is the shortcut people try first when something
   // has zoomed in on them.
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && focused) clearFocus();
+    if (e.key !== 'Escape') return;
+    // Back out one step at a time: the panel first, then the area.
+    if (selected) clearSelection();
+    else if (focused) clearFocus();
   });
 
   // --- drag to pan ---
@@ -284,10 +334,15 @@
       var count = dot.getAttribute('data-count');
       var kind = dot.getAttribute('data-kind');
       var borough = dot.getAttribute('data-borough');
+      // The whole district, not just the dot under the pointer: four dots sit
+      // on top of each other here and reading them one at a time is the slow
+      // way to learn nothing.
+      var summary = dot.getAttribute('data-summary');
       showTip(
         '<strong>' + dot.getAttribute('data-district') + '</strong>' +
           (borough ? ' &middot; ' + borough : '') +
-          '<br>' + count + ' ' + (LABEL[kind] || kind),
+          '<br>' + (summary || count + ' ' + (LABEL[kind] || kind)) +
+          '<br><span class="areamap-tip-dim">Click for the full breakdown</span>',
         e
       );
       return;
