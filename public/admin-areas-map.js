@@ -129,7 +129,11 @@
 
   // Closing puts the whole map back. Dropping the labels but staying zoomed
   // would strand the reader inside a shape with nothing left to read.
+  // Set by the search box once it has wired itself up; left null otherwise.
+  var onFocusCleared = null;
+
   function clearFocus() {
+    if (onFocusCleared) onFocusCleared();
     clearSelection();
     focused = null;
     root.classList.remove('is-focused');
@@ -166,6 +170,10 @@
       cellEls[j].classList.toggle('is-selected', cellEls[j].getAttribute('data-code') === code);
     for (var k = 0; k < dotEls.length; k++)
       dotEls[k].classList.toggle('is-selected', dotEls[k].getAttribute('data-district') === code);
+    // Opening a district also spells out the other places it covers.
+    var labels = root.querySelectorAll('.areamap-code');
+    for (var L = 0; L < labels.length; L++)
+      labels[L].classList.toggle('is-selected', labels[L].getAttribute('data-code') === code);
     var panel = root.querySelector('[data-areamap-detail="' + code + '"]:not([hidden])') || (found ? null : emptyPanel);
     if (panel && panel.scrollIntoView) panel.scrollIntoView({ block: 'nearest' });
   }
@@ -176,6 +184,8 @@
     if (emptyPanel) emptyPanel.hidden = true;
     for (var j = 0; j < cellEls.length; j++) cellEls[j].classList.remove('is-selected');
     for (var k = 0; k < dotEls.length; k++) dotEls[k].classList.remove('is-selected');
+    var labels = root.querySelectorAll('.areamap-code.is-selected');
+    for (var L = 0; L < labels.length; L++) labels[L].classList.remove('is-selected');
   }
 
   root.addEventListener('click', function (e) {
@@ -379,6 +389,156 @@
   });
 
   svg.addEventListener('mouseleave', hideTip);
+
+  // --- find an area or postcode ---
+  // 329 districts is too many to hunt for by eye, which is the whole reason
+  // this exists. Matching is done here rather than by a datalist so a district
+  // can be found by its code OR by any of the several names it covers.
+  var qEl = root.querySelector('[data-areamap-search]');
+  var listEl = root.querySelector('[data-areamap-suggestions]');
+  var statusEl = root.querySelector('[data-areamap-search-status]');
+  var clearEl = root.querySelector('[data-areamap-search-clear]');
+  var indexEl = root.querySelector('[data-areamap-index]');
+  var INDEX = [];
+  try { INDEX = JSON.parse(indexEl ? indexEl.textContent : '[]'); } catch (err) { INDEX = []; }
+
+  if (qEl && listEl && INDEX.length) {
+    var active = -1;
+    var results = [];
+
+    // "sw18 2ab" and "SW 18" are both SW18. Strip everything but letters and
+    // digits, then drop a trailing inward code (digit + two letters) so a full
+    // postcode finds its district instead of finding nothing.
+    function asOutcode(q) {
+      var t = q.toUpperCase().replace(/[^A-Z0-9]/g, '');
+      var m = /^([A-Z]{1,2}\d{1,2}[A-Z]?)\d[A-Z]{2}$/.exec(t);
+      return m ? m[1] : t;
+    }
+
+    function search(q) {
+      var raw = q.trim().toLowerCase();
+      if (raw.length < 1) return [];
+      var out = asOutcode(q);
+      var hits = [];
+      for (var i = 0; i < INDEX.length; i++) {
+        var it = INDEX[i];
+        var code = it.c.toUpperCase().replace(/[^A-Z0-9]/g, '');
+        var score = -1;
+        if (it.t === 'd' && code === out) score = 0;                       // exact postcode
+        else if (it.c.toLowerCase() === raw) score = 1;                    // exact name
+        else if (it.t === 'd' && out && code.indexOf(out) === 0) score = 2; // postcode prefix
+        else if (it.c.toLowerCase().indexOf(raw) === 0) score = 3;         // name prefix
+        else if ((it.n || '').toLowerCase().indexOf(raw) === 0) score = 4; // place prefix
+        else if ((it.n || '').toLowerCase().indexOf(raw) > -1) score = 5;  // place anywhere
+        else if (it.c.toLowerCase().indexOf(raw) > -1) score = 6;
+        if (score > -1) hits.push({ it: it, s: score });
+      }
+      hits.sort(function (a, b) { return a.s - b.s || a.it.c.localeCompare(b.it.c); });
+      return hits.slice(0, 8).map(function (h) { return h.it; });
+    }
+
+    function renderList() {
+      listEl.innerHTML = '';
+      if (!results.length) { listEl.hidden = true; qEl.setAttribute('aria-expanded', 'false'); return; }
+      for (var i = 0; i < results.length; i++) {
+        var it = results[i];
+        var li = document.createElement('li');
+        li.className = 'areamap-suggestion' + (i === active ? ' is-active' : '');
+        li.id = 'areamap-sugg-' + i;
+        li.setAttribute('role', 'option');
+        li.setAttribute('aria-selected', i === active ? 'true' : 'false');
+        li.setAttribute('data-i', String(i));
+        li.innerHTML = '<strong>' + it.c + '</strong>' + (it.n ? '<span>' + it.n + '</span>' : '');
+        listEl.appendChild(li);
+      }
+      listEl.hidden = false;
+      qEl.setAttribute('aria-expanded', 'true');
+      if (active > -1) qEl.setAttribute('aria-activedescendant', 'areamap-sugg-' + active);
+      else qEl.removeAttribute('aria-activedescendant');
+    }
+
+    function shapeByName(name) {
+      for (var i = 0; i < shapes.length; i++)
+        if (shapes[i].getAttribute('data-borough') === name) return shapes[i];
+      return null;
+    }
+
+    function markFound(code) {
+      for (var i = 0; i < cellEls.length; i++)
+        cellEls[i].classList.toggle('is-found', !!code && cellEls[i].getAttribute('data-code') === code);
+      for (var j = 0; j < shapes.length; j++)
+        shapes[j].classList.toggle('is-found', !!code && shapes[j].getAttribute('data-borough') === code);
+    }
+
+    function go(it) {
+      if (!it) return;
+      var shape = shapeByName(it.t === 'd' ? it.p : it.c);
+      if (!shape) return;
+      focusShape(shape);
+      if (it.t === 'd') {
+        selectDistrict(it.c);
+        markFound(it.c);
+        statusEl.textContent = it.c + (it.n ? ' — ' + it.n : '') + ', in ' + it.p + '.';
+      } else {
+        markFound(it.c);
+        statusEl.textContent = it.c + ' opened.';
+      }
+      listEl.hidden = true;
+      qEl.setAttribute('aria-expanded', 'false');
+      if (clearEl) clearEl.hidden = false;
+    }
+
+    qEl.addEventListener('input', function () {
+      results = search(qEl.value);
+      active = results.length ? 0 : -1;
+      renderList();
+      if (clearEl) clearEl.hidden = !qEl.value;
+      if (qEl.value && !results.length) statusEl.textContent = 'Nothing matches "' + qEl.value + '".';
+      else statusEl.textContent = '';
+    });
+
+    qEl.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        if (!results.length) return;
+        e.preventDefault();
+        active = (active + (e.key === 'ArrowDown' ? 1 : -1) + results.length) % results.length;
+        renderList();
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        go(results[active > -1 ? active : 0]);
+      } else if (e.key === 'Escape') {
+        if (!listEl.hidden) { listEl.hidden = true; qEl.setAttribute('aria-expanded', 'false'); e.stopPropagation(); }
+      }
+    });
+
+    listEl.addEventListener('mousedown', function (e) {
+      var li = e.target.closest('[data-i]');
+      if (!li) return;
+      e.preventDefault();
+      go(results[+li.getAttribute('data-i')]);
+    });
+
+    if (clearEl) {
+      clearEl.addEventListener('click', function () {
+        qEl.value = '';
+        results = [];
+        active = -1;
+        renderList();
+        markFound(null);
+        statusEl.textContent = '';
+        clearEl.hidden = true;
+        qEl.focus();
+      });
+    }
+
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('.areamap-search')) { listEl.hidden = true; qEl.setAttribute('aria-expanded', 'false'); }
+    });
+
+    // Closing the area clears the highlight with it, so a stale green shape
+    // cannot outlive the search that put it there.
+    onFocusCleared = function () { markFound(null); };
+  }
 
   apply();
 })();

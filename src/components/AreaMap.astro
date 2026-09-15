@@ -24,7 +24,7 @@ import { COVERED_OUTSIDE_LONDON, CORRIDOR_MILES } from '../data/serviceArea';
 import { DISTRICT_PARENT } from '../lib/districtParents';
 import { DISTRICT_CELLS } from '../lib/districtCells';
 import { postcodes } from '../data/postcodes';
-import { districtPrimary, districtPlaceList } from '../lib/districtPlaces';
+import { districtPrimary, districtPlaceList, DISTRICT_PLACES } from '../lib/districtPlaces';
 
 // The planned expansion: up to 3 miles either side of the M25. Drawn as a
 // stroke that wide rather than a computed buffer polygon — a round-capped,
@@ -139,6 +139,9 @@ const districtLabels = Object.entries(POINTS)
     y,
     parent: DISTRICT_PARENT[code],
     primary: districtPrimary(code),
+    // The rest of the places this district covers. Shown only when the district
+    // is opened, because listing four names on every shape at once is noise.
+    extra: (DISTRICT_PLACES[code] ?? []).slice(1, 4),
     boroughs: boroughsByDistrict.get(code) || DISTRICT_PARENT[code],
   }));
 
@@ -147,6 +150,28 @@ const districtLabels = Object.entries(POINTS)
 // divided by the zoom at runtime: a marker is a marker, not a piece of
 // geography, so it should hold its size and its cluster should stay a cluster
 // however far in the map goes.
+// What the search box can find: every postcode district by code or by any of
+// its place names, and every area by name. Emitted as JSON rather than as DOM
+// so the matching can be done properly — substring across several names per
+// entry — instead of leaning on whatever a datalist happens to do.
+const searchIndex = [
+  ...Object.keys(POINTS)
+    .filter((code) => DISTRICT_PARENT[code])
+    .map((code) => ({
+      t: 'd',
+      c: code,
+      p: DISTRICT_PARENT[code],
+      n: (DISTRICT_PLACES[code] ?? []).join(', '),
+    })),
+  ...BOROUGHS.map((b) => ({ t: 's', c: b.name, p: '', n: 'Greater London borough' })),
+  ...OUTER_DISTRICTS.map((o) => ({
+    t: 's',
+    c: o.name,
+    p: '',
+    n: covered.has(o.name) ? 'Covered, outside London' : 'M25 corridor, not covered yet',
+  })),
+];
+
 const dots = markers.flatMap((m) =>
   KINDS.filter((k) => m[k] > 0).map((k) => ({
     kind: k,
@@ -164,6 +189,32 @@ const dots = markers.flatMap((m) =>
 );
 ---
 <div class="areamap" data-areamap>
+  <div class="areamap-search">
+    <label class="areamap-search-label" for="areamap-q">Find an area or postcode</label>
+    <div class="areamap-search-box">
+      <input
+        type="text"
+        id="areamap-q"
+        class="areamap-search-input"
+        placeholder="SW18, Earlsfield, Wandsworth&hellip;"
+        autocomplete="off"
+        role="combobox"
+        aria-expanded="false"
+        aria-controls="areamap-suggestions"
+        aria-autocomplete="list"
+        data-areamap-search
+      />
+      <button type="button" class="areamap-search-clear" data-areamap-search-clear hidden aria-label="Clear search">&times;</button>
+      <ul class="areamap-suggestions" id="areamap-suggestions" role="listbox" data-areamap-suggestions hidden></ul>
+    </div>
+    <p class="areamap-search-status" data-areamap-search-status role="status" aria-live="polite"></p>
+  </div>
+
+  {/* is:inline or Astro treats this as a module to bundle and it never reaches
+      the page — the search box then finds an empty index and silently does
+      nothing. */}
+  <script type="application/json" data-areamap-index is:inline set:html={JSON.stringify(searchIndex)}></script>
+
   <div class="areamap-toolbar">
     <div class="areamap-legend">
       <span class="areamap-key areamap-key-enquiries">Enquiries <small>(job postcode)</small></span>
@@ -271,9 +322,12 @@ const dots = markers.flatMap((m) =>
 
         <g class="areamap-districtcodes" aria-hidden="true">
           {districtLabels.map((d) => (
-            <text x={d.x} y={d.y} class="areamap-code" data-parent={d.parent}>
+            <text x={d.x} y={d.y} class="areamap-code" data-parent={d.parent} data-code={d.code}>
               <tspan x={d.x} dy="-0.35em">{d.code}</tspan>
               {d.primary && <tspan x={d.x} dy="1.25em" class="areamap-code-place">{d.primary}</tspan>}
+              {d.extra.map((n) => (
+                <tspan x={d.x} dy="1.15em" class="areamap-code-place areamap-code-extra">{n}</tspan>
+              ))}
             </text>
           ))}
         </g>

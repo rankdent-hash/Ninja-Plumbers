@@ -3267,6 +3267,12 @@ body.qr-open { overflow: hidden; }
 /* The place name under the code: smaller and lighter, so the code still reads
    first and the name qualifies it rather than competing. */
 .areamap-code-place { font-size: 0.82em; font-weight: 600; fill: #55708a; }
+/* The other places a district covers, listed inside its own boundary when it
+   is opened. They are NOT drawn as sub-areas: nothing in this repo records
+   where Earlsfield sits inside SW18, and a labelled shape would be a claim
+   about position that no data here supports. */
+.areamap-code-extra { font-size: 0.74em; fill: #7d90a3; }
+.areamap-code:not(.is-selected) .areamap-code-extra { display: none; }
 
 /* The districts inside the open area, and the hover target for each. Hidden
    and inert otherwise — 268 of them would intercept every hover on the full
@@ -3284,12 +3290,58 @@ body.qr-open { overflow: hidden; }
 
 .areamap-tip-dim { color: #9fb0c0; }
 
+/* --- find an area or postcode --- */
+.areamap-search { margin-bottom: 12px; }
+.areamap-search-label {
+  display: block; font-size: 0.8rem; font-weight: 700; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 5px;
+}
+.areamap-search-box { position: relative; max-width: 420px; }
+.areamap-search-input {
+  width: 100%; padding: 9px 34px 9px 14px;
+  border: 1.5px solid var(--border-strong); border-radius: 999px;
+  font: inherit; font-size: 0.92rem; color: var(--navy); background: var(--white);
+}
+.areamap-search-input:focus-visible { outline: 2px solid var(--blue-ink); outline-offset: 1px; }
+.areamap-search-clear {
+  position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+  border: none; background: none; cursor: pointer;
+  font-size: 1.3rem; line-height: 1; color: var(--muted); padding: 0 6px;
+}
+.areamap-search-clear:hover { color: var(--navy); }
+.areamap-suggestions {
+  position: absolute; z-index: 20; left: 0; right: 0; top: calc(100% + 4px);
+  margin: 0; padding: 4px; list-style: none;
+  background: var(--white); border: 1px solid var(--border); border-radius: 12px;
+  box-shadow: var(--shadow); max-height: 280px; overflow-y: auto;
+}
+.areamap-suggestion {
+  padding: 7px 10px; border-radius: 8px; cursor: pointer;
+  display: flex; flex-direction: column; gap: 1px;
+}
+.areamap-suggestion strong { font-size: 0.9rem; color: var(--navy); }
+.areamap-suggestion span { font-size: 0.78rem; color: var(--muted); }
+.areamap-suggestion:hover, .areamap-suggestion.is-active { background: var(--blue-tint); }
+.areamap-search-status { margin: 6px 0 0; font-size: 0.83rem; color: var(--muted); min-height: 1.1em; }
+
+
+
 /* The district picked out of the open area. Both the shape and its dots get
    marked, so it is obvious which one the panel below is describing. */
 .areamap-cell.is-shown.is-selected {
   fill: rgba(250, 204, 21, 0.34); stroke: #8a5a00; stroke-width: 3;
 }
 .areamap-dot.is-selected { stroke: #1f3247; stroke-width: 3; opacity: 1; }
+
+/* What the search found. Declared after the selection rules on purpose:
+   searching marks a district found AND selects it, and green — "this is the one
+   you looked for" — is the more useful of the two to see. */
+.areamap-cell.is-shown.is-found {
+  fill: rgba(74, 222, 128, 0.42); stroke: #15803d; stroke-width: 3.2;
+}
+.areamap-borough.is-found, .areamap-district.is-found { fill: #dcfce7; stroke: #15803d; stroke-width: 3.2; }
+.areamap.is-focused .areamap-borough.is-found,
+.areamap.is-focused .areamap-district.is-found { opacity: 1; }
 
 /* The breakdown panel. Sits under the map rather than over it: it carries a
    table, and an overlay that covers the thing you just clicked is a poor trade
