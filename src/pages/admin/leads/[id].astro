@@ -1,6 +1,10 @@
 ---
 import AdminLayout from '../../../layouts/AdminLayout.astro';
 import { getSupabaseAdmin, LEAD_STATUSES } from '../../../lib/supabaseAdmin';
+import {
+  MANUAL_CHANNELS, CHANNEL_LABELS, channelLabel,
+  LEAD_SOURCES, LEAD_SOURCE_LABELS, leadSourceLabel,
+} from '../../../lib/leadChannels';
 
 export const prerender = false;
 
@@ -20,8 +24,14 @@ if (!supabase) {
 
 const fmt = (iso: string) =>
   new Date(iso).toLocaleString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit' });
+
+// A website submission carries the customer's own words. Those are a record of
+// what they said, not a draft for us to tidy up, so only the postcode and the
+// source are editable on one — see src/pages/api/admin/leads/[id]/details.ts.
+const isManual = Boolean(lead) && lead.channel !== 'form';
+const title = lead ? (lead.name || `Enquiry from ${lead.phone}`) : 'Lead';
 ---
-<AdminLayout title={lead ? lead.name : 'Lead'} admin={admin}>
+<AdminLayout title={title} admin={admin}>
   <p class="admin-back"><a href="/admin">&larr; All leads</a></p>
 
   {loadError && <p class="form-error-summary" role="alert">{loadError}</p>}
@@ -31,11 +41,18 @@ const fmt = (iso: string) =>
     <div class="admin-detail">
       <div class="admin-detail-head">
         <div>
-          <h1>{lead.name}</h1>
-          <p class="admin-sub">Received {fmt(lead.created_at)}</p>
+          <h1>{lead.name || <span class="admin-dim">No name given</span>}</h1>
+          <p class="admin-sub">
+            <span class:list={['admin-channel', `is-${lead.channel}`]}>{channelLabel(lead.channel)}</span>
+            {' '}&middot; Received {fmt(lead.created_at)}
+            {lead.logged_by && <span class="admin-dim"> &middot; logged by {lead.logged_by}</span>}
+          </p>
         </div>
         <form class="admin-status-form admin-status-form-lg" data-lead-id={lead.id}>
-          <select name="status" class:list={['admin-status-select', `is-${lead.status}`]}>
+          {/* Named for screen readers. There is no visible label because the
+              selected value is the label — but "combo box" with no name at all
+              gives a screen reader user nothing to go on. */}
+          <select name="status" aria-label="Lead status" class:list={['admin-status-select', `is-${lead.status}`]}>
             {LEAD_STATUSES.map((s) => <option value={s} selected={s === lead.status}>{s}</option>)}
           </select>
           <span class="admin-status-saved" hidden>Saved</span>
@@ -46,23 +63,112 @@ const fmt = (iso: string) =>
         <p class="form-error-summary" role="alert">This postcode was flagged outside the Greater London service area when it was submitted.</p>
       )}
 
+      {!lead.postcode && (
+        <p class="admin-note-warn" role="status">
+          No postcode yet, so this enquiry sits under &ldquo;(not recorded)&rdquo; on the area map rather
+          than in a district. Add one below as soon as it is known and it moves onto the map.
+        </p>
+      )}
+
       <div class="admin-detail-grid">
         <div class="admin-field"><span>Phone</span><a href={`tel:${lead.phone}`}>{lead.phone}</a></div>
         <div class="admin-field"><span>Email</span>{lead.email ? <a href={`mailto:${lead.email}`}>{lead.email}</a> : <span class="admin-dim">Not given</span>}</div>
-        <div class="admin-field"><span>Postcode</span>{lead.postcode}{lead.postcode_district ? ` (${lead.postcode_district})` : ''}</div>
+        <div class="admin-field"><span>Postcode</span>{lead.postcode ? `${lead.postcode}${lead.postcode_district ? ` (${lead.postcode_district})` : ''}` : <span class="admin-dim">Not recorded</span>}</div>
         <div class="admin-field"><span>Borough</span>{lead.borough || <span class="admin-dim">Unknown</span>}</div>
         <div class="admin-field"><span>Address</span>{lead.address_line || <span class="admin-dim">Not given</span>}</div>
         <div class="admin-field"><span>Service</span>{lead.service || <span class="admin-dim">Not specified</span>}</div>
         <div class="admin-field"><span>Urgency</span>{lead.urgency || <span class="admin-dim">Not specified</span>}</div>
-        <div class="admin-field"><span>Came from</span>{lead.source_page || <span class="admin-dim">Unknown</span>}</div>
+        <div class="admin-field">
+          <span>How they found us</span>
+          {leadSourceLabel(lead.lead_source) || <span class="admin-dim">Not recorded</span>}
+        </div>
+        <div class="admin-field">
+          <span>Came from</span>
+          {/* A logged call never touched the site, so there is no page to name.
+              Saying "Unknown" would imply one existed and we lost it. */}
+          {lead.channel === 'form'
+            ? (lead.source_page || <span class="admin-dim">Unknown</span>)
+            : <span class="admin-dim">Not a website visit</span>}
+        </div>
       </div>
 
       <div class="admin-field admin-field-block">
         <span>What they said</span>
         <p class="admin-description">{lead.description || <span class="admin-dim">No description given.</span>}</p>
       </div>
+
+      <section class="admin-section admin-lead-edit">
+        <h2>{lead.postcode ? 'Correct the details' : 'Fill in what is missing'}</h2>
+        <p class="admin-note">
+          {isManual
+            ? 'Changing the postcode looks it up again, so the borough, the district and the in-area verdict all move with it.'
+            : 'This came in through the website form, so the name, the message and the rest are the customer’s own words and are left as they were sent. The postcode and the source can still be corrected — a postcode is looked up again when it changes.'}
+        </p>
+
+        <form id="lead-edit-form" class="admin-add-form" data-lead-id={lead.id} data-manual={isManual ? 'true' : 'false'} novalidate>
+          <p class="form-error-summary" id="lead-edit-error" role="alert" hidden></p>
+          <p class="admin-note" id="lead-edit-saved" role="status" hidden>Saved.</p>
+
+          <div class="field">
+            <label for="edit-postcode">Job postcode</label>
+            <input id="edit-postcode" name="postcode" type="text" autocomplete="off" value={lead.postcode ?? ''} />
+            <p class="field-error" id="edit-postcode-error" hidden></p>
+          </div>
+
+          <div class="field">
+            <label for="edit-lead-source">How did they find us?</label>
+            <select id="edit-lead-source" name="lead_source">
+              <option value="" selected={!lead.lead_source}>Not recorded</option>
+              {LEAD_SOURCES.map((s) => <option value={s} selected={s === lead.lead_source}>{LEAD_SOURCE_LABELS[s]}</option>)}
+            </select>
+            <p class="field-error" id="edit-lead-source-error" hidden></p>
+          </div>
+
+          {isManual && (
+            <>
+              <div class="field">
+                <label for="edit-channel">How did they get in touch?</label>
+                <select id="edit-channel" name="channel">
+                  {MANUAL_CHANNELS.map((c) => <option value={c} selected={c === lead.channel}>{CHANNEL_LABELS[c]}</option>)}
+                </select>
+                <p class="field-error" id="edit-channel-error" hidden></p>
+              </div>
+
+              <div class="field">
+                <label for="edit-name">Name</label>
+                <input id="edit-name" name="name" type="text" autocomplete="off" value={lead.name ?? ''} />
+              </div>
+
+              <div class="field">
+                <label for="edit-phone">Phone number</label>
+                <input id="edit-phone" name="phone" type="tel" autocomplete="off" value={lead.phone ?? ''} />
+                <p class="field-error" id="edit-phone-error" hidden></p>
+              </div>
+
+              <div class="field">
+                <label for="edit-email">Email</label>
+                <input id="edit-email" name="email" type="email" autocomplete="off" value={lead.email ?? ''} />
+                <p class="field-error" id="edit-email-error" hidden></p>
+              </div>
+
+              <div class="field field-wide">
+                <label for="edit-address">Address</label>
+                <input id="edit-address" name="address_line" type="text" autocomplete="off" value={lead.address_line ?? ''} />
+              </div>
+
+              <div class="field field-wide">
+                <label for="edit-description">What they said</label>
+                <textarea id="edit-description" name="description" rows="4">{lead.description ?? ''}</textarea>
+              </div>
+            </>
+          )}
+
+          <button type="submit" class="btn btn-navy">Save changes</button>
+        </form>
+      </section>
     </div>
   )}
 </AdminLayout>
 
 <script src="/admin.js" is:inline></script>
+<script src="/admin-lead-edit.js" is:inline></script>

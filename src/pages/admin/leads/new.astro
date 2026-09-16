@@ -1,0 +1,140 @@
+---
+// Logging a lead that never touched the website.
+//
+// The form is ordered the way the conversation goes, not the way the database
+// is laid out: how they got in touch, who they are, where the job is, what
+// they want, and only then how they found us. The only required field is the
+// phone number, because it is the only one a missed call from an ad reliably
+// leaves behind — everything else can be added from the lead's own page once
+// it is known.
+import AdminLayout from '../../../layouts/AdminLayout.astro';
+import { MANUAL_CHANNELS, CHANNEL_LABELS, LEAD_SOURCES, LEAD_SOURCE_LABELS } from '../../../lib/leadChannels';
+// The same two lists the public form offers, and in the same shape. If the
+// office could type a service name freehand, "Boiler repair" and "boiler
+// repairs" would become two different things in the reporting, and the split
+// would look like a change in demand.
+import { services } from '../../../data/services';
+import { appliances } from '../../../data/appliances';
+
+export const prerender = false;
+
+const URGENCY_OPTIONS = ['Emergency', 'This week', 'Planning ahead'];
+
+const admin = Astro.locals.admin!;
+// Pre-selects the channel when the button that got here said which one, so
+// "Log a WhatsApp" opens on WhatsApp rather than making the office pick twice.
+const preset = Astro.url.searchParams.get('channel') ?? '';
+const presetChannel = (MANUAL_CHANNELS as readonly string[]).includes(preset) ? preset : 'phone';
+---
+<AdminLayout title="Log an enquiry" admin={admin}>
+  <p class="admin-back"><a href="/admin">&larr; All leads</a></p>
+
+  <div class="admin-head">
+    <h1>Log an enquiry</h1>
+    <p class="admin-sub">A call, WhatsApp message or email that did not come through the website form</p>
+  </div>
+
+  <p class="admin-note">
+    Calls from Google Ads and people dialling the number straight off a listing never reach the
+    website, so nothing here records them on its own. Logging one puts it in the same list, and on
+    the same map, as a form submission &mdash; and keeps the two apart in the reporting, so a logged
+    call never counts as a form and never changes a page&rsquo;s conversion rate.
+  </p>
+
+  <div class="admin-add admin-settings-card">
+    <form id="lead-new-form" class="admin-add-form" novalidate>
+      <p class="form-error-summary" id="lead-new-error" role="alert" hidden></p>
+
+      <fieldset class="field field-wide admin-channel-set">
+        <legend>How did they get in touch?</legend>
+        <div class="admin-channel-choices">
+          {MANUAL_CHANNELS.map((c) => (
+            <label class="admin-channel-choice">
+              <input type="radio" name="channel" value={c} checked={c === presetChannel} />
+              <span>{CHANNEL_LABELS[c]}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <label for="lead-phone">Phone number <span class="admin-req">required</span></label>
+        <input id="lead-phone" name="phone" type="tel" autocomplete="off" required />
+        <p class="field-error" id="lead-phone-error" hidden></p>
+      </div>
+
+      <div class="field">
+        <label for="lead-name">Name</label>
+        <input id="lead-name" name="name" type="text" autocomplete="off" />
+        <p class="field-error" id="lead-name-error" hidden></p>
+      </div>
+
+      <div class="field">
+        <label for="lead-email">Email</label>
+        <input id="lead-email" name="email" type="email" autocomplete="off" />
+        <p class="field-error" id="lead-email-error" hidden></p>
+      </div>
+
+      <div class="field">
+        <label for="lead-postcode">Job postcode</label>
+        <input id="lead-postcode" name="postcode" type="text" autocomplete="off" inputmode="text" />
+        <p class="field-error" id="lead-postcode-error" hidden></p>
+      </div>
+
+      <p class="admin-field-hint">
+        Leave the postcode blank if it is not known yet &mdash; it can be added from the lead&rsquo;s
+        own page later, and the area map will pick it up as soon as it is. A guessed postcode puts a
+        dot somewhere no job happened, which is worse than no dot at all.
+      </p>
+
+      <div class="field field-wide">
+        <label for="lead-address">Address</label>
+        <input id="lead-address" name="address_line" type="text" autocomplete="off" />
+      </div>
+
+      <div class="field">
+        <label for="lead-service">What do they need?</label>
+        <select id="lead-service" name="service">
+          <option value="">Not recorded</option>
+          {services.map((s) => <option value={s.title} set:html={s.title} />)}
+          <optgroup label="Appliances & fixtures">
+            {appliances.map((a) => <option value={a.title}>{a.title}</option>)}
+          </optgroup>
+          <option value="Something else">Something else</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="lead-urgency">How urgent?</label>
+        <select id="lead-urgency" name="urgency">
+          <option value="">Not asked</option>
+          {URGENCY_OPTIONS.map((u) => <option value={u}>{u}</option>)}
+        </select>
+      </div>
+
+      <div class="field field-wide">
+        <label for="lead-description">What they said</label>
+        <textarea id="lead-description" name="description" rows="4"></textarea>
+      </div>
+
+      <div class="field field-wide">
+        <label for="lead-source">How did they find us?</label>
+        <select id="lead-source" name="lead_source">
+          <option value="">Not asked</option>
+          {LEAD_SOURCES.map((s) => <option value={s}>{LEAD_SOURCE_LABELS[s]}</option>)}
+        </select>
+        <p class="field-error" id="lead-source-error" hidden></p>
+      </div>
+
+      <p class="admin-field-hint">
+        This is the only record of whether the phone rings because of Google Ads, so it is worth
+        asking. &ldquo;Not asked&rdquo; and &ldquo;they didn&rsquo;t know&rdquo; are kept apart:
+        one is a gap in our records, the other is an answer.
+      </p>
+
+      <button type="submit" class="btn btn-navy">Save enquiry</button>
+    </form>
+  </div>
+</AdminLayout>
+
+<script src="/admin-lead-new.js" is:inline></script>

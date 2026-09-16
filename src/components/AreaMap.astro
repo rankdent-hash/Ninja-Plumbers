@@ -70,6 +70,11 @@ export type DistrictDetail = {
   borough: string | null;
   enquiries: number;
   booked: number;
+  // How the district's enquiries reached us. These sum to `enquiries`, and are
+  // a different thing from the phone/whatsapp/sms fields below: those count
+  // taps on a page, positioned by the page rather than by the person, while
+  // these count enquiries that genuinely came from this postcode.
+  byChannel: { form: number; phone: number; whatsapp: number; other: number };
   phone: number;
   whatsapp: number;
   sms: number;
@@ -388,7 +393,20 @@ const dots = markers.flatMap((m) =>
         <div class="areamap-detail-stats">
           <div class="areamap-stat">
             <span class="areamap-stat-n">{d.enquiries}</span>
-            <span class="areamap-stat-l">{d.enquiries === 1 ? 'enquiry' : 'enquiries'}<br /><small>job postcode</small></span>
+            <span class="areamap-stat-l">
+              {d.enquiries === 1 ? 'enquiry' : 'enquiries'}<br />
+              {/* Only worth a line once some of them came in by hand. On a
+                  district where every enquiry is a form submission, "4 by
+                  form" is the same sentence as the number above it. */}
+              <small>{d.byChannel.form < d.enquiries
+                ? [
+                    d.byChannel.form ? `${d.byChannel.form} by form` : '',
+                    d.byChannel.phone ? `${d.byChannel.phone} by phone` : '',
+                    d.byChannel.whatsapp ? `${d.byChannel.whatsapp} on WhatsApp` : '',
+                    d.byChannel.other ? `${d.byChannel.other} other` : '',
+                  ].filter(Boolean).join(', ')
+                : 'job postcode'}</small>
+            </span>
           </div>
           <div class="areamap-stat">
             <span class="areamap-stat-n">{d.booked}</span>

@@ -1,13 +1,17 @@
 ---
-// Where enquiries come from, by the postcode the customer typed into the form.
+// Where enquiries come from, by the postcode we were given for the job.
 //
-// This is deliberately NOT a map and deliberately NOT "where our visitors
-// are". It counts form submissions per postcode district, because that is the
-// only location on this site that a customer actually gave us. Phone, WhatsApp
-// and SMS taps carry no location at all — /api/track records which link was
-// tapped and on which page, nothing about where the person was — so they are
-// absent here by necessity, and the page says so rather than implying a
-// complete picture.
+// This is deliberately NOT "where our visitors are". It counts enquiries per
+// postcode district, because that postcode is the only location a customer
+// actually gave us. Two kinds of enquiry now feed it: a website form
+// submission, and a call, WhatsApp message or email the office logged by hand.
+// Both are real jobs at real addresses, so both belong on the same map, and
+// the district panel splits them so neither is mistaken for the other.
+//
+// Phone, WhatsApp and SMS *taps* are a different thing entirely and stay
+// separate: /api/track records which link was tapped and on which page,
+// nothing about where the person was, so a tap dot sits at the place the page
+// is about rather than at a location anyone gave us.
 //
 // Aggregate only. enquiries rows carry a name, phone number, email and full
 // postcode; nothing here may render one. Counts per district, never a point
@@ -15,6 +19,7 @@
 import AdminLayout from '../../layouts/AdminLayout.astro';
 import AreaMap, { type MapMarker, type DistrictDetail } from '../../components/AreaMap.astro';
 import { getSupabaseAdmin } from '../../lib/supabaseAdmin';
+import { leadSourceLabel } from '../../lib/leadChannels';
 import { areas } from '../../data/areas';
 import { postcodes } from '../../data/postcodes';
 import { POINTS, OUTER_DISTRICTS } from '../../data/londonMap';
@@ -77,25 +82,34 @@ type AreaRow = {
   booked: number;
   in_service_area: boolean;
   borough_unknown: number;
+  // How each district's enquiries arrived. These sum to `total`.
+  by_form: number;
+  by_phone: number;
+  by_whatsapp: number;
+  by_other: number;
 };
 
 type SourceRow = { page: string; views: number; phone: number; whatsapp: number; sms: number; forms: number };
+type LeadSourceRow = { lead_source: string; total: number; booked: number };
 
 let rows: AreaRow[] = [];
 let sources: SourceRow[] = [];
+let leadSources: LeadSourceRow[] = [];
 let loadError = '';
 if (!supabase) {
   loadError = 'The admin panel is not connected to Supabase yet.';
 } else {
-  const [areaRes, sourceRes] = await Promise.all([
+  const [areaRes, sourceRes, leadSourceRes] = await Promise.all([
     supabase.rpc('enquiry_areas', { since, until }),
     supabase.rpc('contact_sources', { since, until }),
+    supabase.rpc('lead_sources', { since, until }),
   ]);
   if (areaRes.error) loadError = 'Could not load enquiry areas from the database.';
   else rows = (areaRes.data ?? []) as AreaRow[];
   // Clicks are supplementary: if this one fails the map simply has no tap
   // dots, which is better than failing the whole page.
   if (!sourceRes.error) sources = (sourceRes.data ?? []) as SourceRow[];
+  if (!leadSourceRes.error) leadSources = (leadSourceRes.data ?? []) as LeadSourceRow[];
 }
 
 // Which page, if any, already covers this district. postcodes.ts is the
@@ -233,6 +247,12 @@ const details: DistrictDetail[] = markers
       borough: m.borough,
       enquiries: m.enquiries,
       booked: Number(row?.booked ?? 0),
+      byChannel: {
+        form: Number(row?.by_form ?? 0),
+        phone: Number(row?.by_phone ?? 0),
+        whatsapp: Number(row?.by_whatsapp ?? 0),
+        other: Number(row?.by_other ?? 0),
+      },
       phone: m.phone,
       whatsapp: m.whatsapp,
       sms: m.sms,
@@ -257,6 +277,17 @@ const pct = (n: number) => (totalEnquiries ? Math.round((n / totalEnquiries) * 1
 // Only the districts we do NOT cover are drawn unfilled and dashed. Counting
 // all of OUTER_DISTRICTS here would be wrong by exactly the two we do cover.
 const plannedCount = OUTER_DISTRICTS.length - COVERED_OUTSIDE_LONDON.length;
+
+// Logged leads, and how many of them are still waiting for a postcode. The
+// second number is the honest caveat on the first: a logged call with no
+// postcode is real work that this map cannot place, and saying so is better
+// than letting the districts look like the whole picture.
+const manualTotal = rows.reduce((sum, r) => sum + Number(r.by_phone) + Number(r.by_whatsapp) + Number(r.by_other), 0);
+const notRecorded = rows.find((r) => r.district === '(not recorded)');
+const manualNoPostcode = notRecorded
+  ? Number(notRecorded.by_phone) + Number(notRecorded.by_whatsapp) + Number(notRecorded.by_other)
+  : 0;
+const leadSourceTotal = leadSources.reduce((sum, r) => sum + Number(r.total), 0);
 const corridorSharePct = CORRIDOR_AREA_SHARE_PCT;
 ---
 <AdminLayout title="Areas" admin={admin}>
@@ -278,12 +309,23 @@ const corridorSharePct = CORRIDOR_AREA_SHARE_PCT;
   </nav>
 
   <p class="admin-note">
-    Where the people who filled in the enquiry form told us the job was, taken from the postcode
-    they gave &mdash; the one genuinely accurate location this site has. The table below counts
-    those. The map adds phone, WhatsApp and text taps on top, positioned by the page they happened
-    on rather than by where the person was; see the note under the table for why that distinction
+    Where the job was, taken from the postcode we were given &mdash; the one genuinely accurate
+    location we have. That covers enquiries from the website form and calls, WhatsApp messages and
+    emails the office logged by hand, which sit on the map together because a job in SW6 is in SW6
+    however it reached us. Click a district to see how its enquiries split between the two.
+    The map adds phone, WhatsApp and text taps on top, positioned by the page they happened on
+    rather than by where the person was; see the note under the table for why that distinction
     matters before you move any budget on it.
   </p>
+
+  {!loadError && manualTotal > 0 && manualNoPostcode > 0 && (
+    <p class="admin-note-warn" role="status">
+      {manualNoPostcode} of the {manualTotal} logged {manualTotal === 1 ? 'enquiry' : 'enquiries'} in
+      this period {manualNoPostcode === 1 ? 'has' : 'have'} no postcode yet, so {manualNoPostcode === 1 ? 'it sits' : 'they sit'}
+      {' '}under &ldquo;(not recorded)&rdquo; rather than in a district. Adding one from the
+      lead&rsquo;s own page puts {manualNoPostcode === 1 ? 'it' : 'them'} on the map.
+    </p>
+  )}
 
   {loadError && <p class="form-error-summary" role="alert">{loadError}</p>}
 
@@ -370,6 +412,50 @@ const corridorSharePct = CORRIDOR_AREA_SHARE_PCT;
         </tbody>
       </table>
     </div>
+  )}
+
+  {!loadError && leadSourceTotal > 0 && (
+    <section class="admin-section">
+      <h2>How the logged leads found us</h2>
+      <p class="admin-note">
+        Calls, WhatsApp messages and emails the office recorded by hand, grouped by what the
+        customer said when asked. Website form submissions are not in here: the page they came from
+        is already known exactly, and folding the two together would bury the question this
+        answers &mdash; whether the phone rings because of Google Ads.
+      </p>
+      <p class="admin-note">
+        This is what somebody remembered and reported, not a measurement. It is the only record we
+        have of a call that never touched the website, and it is worth having, but it is the
+        weakest evidence on this page: treat it as a steer, and check it against the ad account
+        before it moves money.
+      </p>
+      <div class="admin-table-scroll admin-source-table" tabindex="0">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>How they found us</th>
+              <th class="admin-num">Leads</th>
+              <th class="admin-num">Share</th>
+              <th class="admin-num">Booked</th>
+            </tr>
+          </thead>
+          <tbody>
+            {leadSources.map((r) => (
+              <tr>
+                <td>
+                  {r.lead_source === '(not recorded)'
+                    ? <span class="admin-dim">Not recorded</span>
+                    : leadSourceLabel(r.lead_source)}
+                </td>
+                <td class="admin-num">{r.total}</td>
+                <td class="admin-num">{Math.round((Number(r.total) / leadSourceTotal) * 100)}%</td>
+                <td class="admin-num">{r.booked || <span class="admin-dim">&mdash;</span>}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
   )}
 
   {!loadError && uncovered.length > 0 && (

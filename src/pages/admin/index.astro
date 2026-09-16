@@ -1,6 +1,7 @@
 ---
 import AdminLayout from '../../layouts/AdminLayout.astro';
 import { getSupabaseAdmin, LEAD_STATUSES, type LeadStatus } from '../../lib/supabaseAdmin';
+import { CHANNEL_SHORT, type Channel } from '../../lib/leadChannels';
 
 export const prerender = false;
 
@@ -11,19 +12,25 @@ const PAGE_SIZE = 25;
 const params = Astro.url.searchParams;
 const statusFilter = params.get('status');
 const validFilter = statusFilter && (LEAD_STATUSES as readonly string[]).includes(statusFilter) ? (statusFilter as LeadStatus) : null;
+// "Where did it come from" is a different question from "where has it got to",
+// so channel filters alongside status rather than replacing it: the office
+// asks for new phone calls, not for one or the other.
+const channelParam = params.get('channel');
+const channelFilter = channelParam === 'form' ? 'form' : channelParam === 'manual' ? 'manual' : null;
 const page = Math.max(1, parseInt(params.get('page') || '1', 10) || 1);
 const from = (page - 1) * PAGE_SIZE;
 const to = from + PAGE_SIZE - 1;
 
 type Row = {
-  id: string; created_at: string; name: string; phone: string; email: string | null;
-  postcode: string; borough: string | null; service: string | null; urgency: string | null;
-  status: LeadStatus; in_service_area: boolean | null;
+  id: string; created_at: string; name: string | null; phone: string; email: string | null;
+  postcode: string | null; borough: string | null; service: string | null; urgency: string | null;
+  status: LeadStatus; in_service_area: boolean | null; channel: Channel;
 };
 
 let rows: Row[] = [];
 let total = 0;
 let counts: Record<string, number> = {};
+let channelCounts = { form: 0, manual: 0 };
 let loadError = '';
 
 if (!supabase) {
@@ -31,14 +38,19 @@ if (!supabase) {
 } else {
   const listQuery = supabase
     .from('enquiries')
-    .select('id, created_at, name, phone, email, postcode, borough, service, urgency, status, in_service_area', { count: 'exact' })
+    .select('id, created_at, name, phone, email, postcode, borough, service, urgency, status, in_service_area, channel', { count: 'exact' })
     .order('created_at', { ascending: false })
     .range(from, to);
   if (validFilter) listQuery.eq('status', validFilter);
+  if (channelFilter === 'form') listQuery.eq('channel', 'form');
+  if (channelFilter === 'manual') listQuery.neq('channel', 'form');
 
   const [{ data, count, error }, { data: allStatuses }] = await Promise.all([
     listQuery,
-    supabase.from('enquiries').select('status'),
+    // The status tab counts are for the whole list, so this second read is not
+    // filtered — but it now carries the channel too, so the channel tabs can
+    // show their own totals from the same round trip.
+    supabase.from('enquiries').select('status, channel'),
   ]);
 
   if (error) {
@@ -47,27 +59,54 @@ if (!supabase) {
     rows = (data ?? []) as Row[];
     total = count ?? 0;
     for (const s of LEAD_STATUSES) counts[s] = 0;
-    for (const r of allStatuses ?? []) counts[r.status] = (counts[r.status] ?? 0) + 1;
+    for (const r of allStatuses ?? []) {
+      counts[r.status] = (counts[r.status] ?? 0) + 1;
+      if (r.channel === 'form') channelCounts.form += 1;
+      else channelCounts.manual += 1;
+    }
   }
 }
 
 const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
 const fmt = (iso: string) =>
   new Date(iso).toLocaleString('en-GB', { day: '2-digit', month: 'short', timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit' });
-const tabHref = (s: LeadStatus | null) => (s ? `/admin?status=${s}` : '/admin');
+// Both filters survive a change to the other, so narrowing to phone calls and
+// then clicking "booked" asks the question the office meant.
+const query = (over: { status?: string | null; channel?: string | null }) => {
+  const q = new URLSearchParams();
+  const s = 'status' in over ? over.status : validFilter;
+  const c = 'channel' in over ? over.channel : channelFilter;
+  if (s) q.set('status', s);
+  if (c) q.set('channel', c);
+  const str = q.toString();
+  return str ? `/admin?${str}` : '/admin';
+};
+const pageHref = (p: number) => {
+  const base = query({});
+  return `${base}${base.includes('?') ? '&' : '?'}page=${p}`;
+};
 const allCount = Object.values(counts).reduce((a, b) => a + b, 0);
 ---
 <AdminLayout title="Leads" admin={admin}>
   <div class="admin-head">
     <h1>Leads</h1>
-    <p class="admin-sub">{total} {validFilter ? LEAD_STATUSES.find((s) => s === validFilter) : 'total'}{total === 1 ? ' enquiry' : ' enquiries'}</p>
+    <p class="admin-sub">{total} {validFilter ? LEAD_STATUSES.find((s) => s === validFilter) : 'total'}{total === 1 ? ' enquiry' : ' enquiries'}{channelFilter === 'form' ? ' from the website form' : channelFilter === 'manual' ? ' logged by hand' : ''}</p>
+    <p class="admin-head-actions">
+      <a class="btn btn-navy" href="/admin/leads/new?channel=phone">Log an enquiry</a>
+    </p>
   </div>
 
   <nav class="admin-tabs" aria-label="Filter by status">
-    <a href={tabHref(null)} class:list={{ 'is-active': !validFilter }}>All <span>{allCount}</span></a>
+    <a href={query({ status: null })} class:list={{ 'is-active': !validFilter }}>All <span>{allCount}</span></a>
     {LEAD_STATUSES.map((s) => (
-      <a href={tabHref(s)} class:list={{ 'is-active': validFilter === s }}>{s} <span>{counts[s] ?? 0}</span></a>
+      <a href={query({ status: s })} class:list={{ 'is-active': validFilter === s }}>{s} <span>{counts[s] ?? 0}</span></a>
     ))}
+  </nav>
+
+  <nav class="admin-tabs admin-tabs-quiet" aria-label="Filter by how it came in">
+    <a href={query({ channel: null })} class:list={{ 'is-active': !channelFilter }}>Every channel <span>{channelCounts.form + channelCounts.manual}</span></a>
+    <a href={query({ channel: 'form' })} class:list={{ 'is-active': channelFilter === 'form' }}>Website form <span>{channelCounts.form}</span></a>
+    <a href={query({ channel: 'manual' })} class:list={{ 'is-active': channelFilter === 'manual' }}>Logged by hand <span>{channelCounts.manual}</span></a>
   </nav>
 
   {loadError && <p class="form-error-summary" role="alert">{loadError}</p>}
@@ -81,21 +120,26 @@ const allCount = Object.values(counts).reduce((a, b) => a + b, 0);
       <table class="admin-table">
         <thead>
           <tr>
-            <th>Received</th><th>Name</th><th>Phone</th><th>Area</th><th>Service</th><th>Urgency</th><th>Status</th><th class="admin-col-view"></th>
+            <th>Received</th><th>Came in by</th><th>Name</th><th>Phone</th><th>Area</th><th>Service</th><th>Urgency</th><th>Status</th>
+            {/* Empty until the ninth column was added, at which point axe began
+                classifying this as a data table and flagged the blank header.
+                The column holds the "View →" link, so that is what it is. */}
+            <th class="admin-col-view"><span class="sr-only">View the lead</span></th>
           </tr>
         </thead>
         <tbody>
           {rows.map((r) => (
             <tr class:list={{ 'is-out-of-area': r.in_service_area === false }}>
               <td class="admin-nowrap">{fmt(r.created_at)}</td>
-              <td>{r.name}</td>
+              <td><span class:list={['admin-channel', `is-${r.channel}`]}>{CHANNEL_SHORT[r.channel] ?? r.channel}</span></td>
+              <td>{r.name || <span class="admin-dim">No name given</span>}</td>
               <td class="admin-nowrap"><a href={`tel:${r.phone}`}>{r.phone}</a></td>
-              <td>{r.borough || r.postcode}</td>
+              <td>{r.borough || r.postcode || <span class="admin-dim">Not recorded</span>}</td>
               <td>{r.service || <span class="admin-dim">—</span>}</td>
               <td><span class:list={['admin-urgency', `is-${(r.urgency || '').toLowerCase().replace(/\s+/g, '-')}`]}>{r.urgency || '—'}</span></td>
               <td>
                 <form class="admin-status-form" data-lead-id={r.id}>
-                  <select name="status" class:list={['admin-status-select', `is-${r.status}`]}>
+                  <select name="status" aria-label={`Status of the enquiry from ${r.name || r.phone}`} class:list={['admin-status-select', `is-${r.status}`]}>
                     {LEAD_STATUSES.map((s) => <option value={s} selected={s === r.status}>{s}</option>)}
                   </select>
                   <span class="admin-status-saved" hidden>Saved</span>
@@ -111,9 +155,9 @@ const allCount = Object.values(counts).reduce((a, b) => a + b, 0);
 
   {totalPages > 1 && (
     <nav class="admin-pager" aria-label="Pagination">
-      {page > 1 && <a href={`/admin?${validFilter ? `status=${validFilter}&` : ''}page=${page - 1}`}>&larr; Newer</a>}
+      {page > 1 && <a href={pageHref(page - 1)}>&larr; Newer</a>}
       <span>Page {page} of {totalPages}</span>
-      {page < totalPages && <a href={`/admin?${validFilter ? `status=${validFilter}&` : ''}page=${page + 1}`}>Older &rarr;</a>}
+      {page < totalPages && <a href={pageHref(page + 1)}>Older &rarr;</a>}
     </nav>
   )}
 </AdminLayout>

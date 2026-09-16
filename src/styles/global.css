@@ -2472,7 +2472,12 @@ body.qr-open { overflow: hidden; }
 .admin-tabs a.is-active { background: var(--navy); border-color: var(--navy); color: var(--white); }
 .admin-tabs a.is-active span { color: rgba(255,255,255,0.75); }
 
-.admin-table-scroll { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+/* position:relative so this is the containing block for anything absolutely
+   positioned inside it. Without it a `.sr-only` span in a header cell resolves
+   against the page instead, taking its static position from deep inside a
+   table far wider than a phone — which pushed the whole document 511px
+   sideways on /admin while the span itself stayed invisible. */
+.admin-table-scroll { position: relative; overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
 .admin-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
 .admin-table th {
   text-align: left; padding: 11px 14px; font-size: 0.72rem; font-weight: 700;
@@ -2544,6 +2549,13 @@ body.qr-open { overflow: hidden; }
 .admin-detail-head h1 { font-size: 1.4rem; margin-bottom: 2px; }
 .admin-detail-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 18px 24px; padding: 18px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .admin-field span { display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
+/* The rule above is meant for the field's label. A `.admin-dim` span standing
+   in for a missing value is also a span, so "Not recorded" was being shouted
+   in the same caps as the label beside it and read as a second heading. */
+.admin-field .admin-dim {
+  display: inline; font-size: inherit; font-weight: inherit; letter-spacing: normal;
+  text-transform: none; margin-bottom: 0;
+}
 .admin-field a { color: var(--blue-ink); font-weight: 600; }
 .admin-field-block { padding-top: 18px; }
 .admin-description { white-space: pre-wrap; line-height: 1.55; margin: 0; }
@@ -3477,3 +3489,49 @@ body.qr-open { overflow: hidden; }
   .areamap-label { display: none; }
   .areamap.is-zoomed .areamap-label { display: initial; }
 }
+
+/* --- Leads: how an enquiry came in --------------------------------------- */
+
+/* A quiet second row of filters under the status tabs. Same pills, no second
+   rule across the page — two full-weight tab bars stacked read as two
+   competing navigations rather than one list narrowed twice. */
+.admin-tabs-quiet { border-bottom: 0; padding-bottom: 0; margin-top: -8px; margin-bottom: 18px; }
+.admin-tabs-quiet a { font-size: 0.82rem; padding: 5px 11px; text-transform: none; }
+
+/* Channel badge. Deliberately not colour-coded by channel: a phone call is
+   not better or worse than a form, and tinting them differently invites the
+   reading that one column is the good one. Only the website form is set
+   apart, because that is the one the conversion rates count. */
+.admin-channel { font-size: 0.8rem; font-weight: 600; color: var(--navy); white-space: nowrap; }
+.admin-channel.is-form { color: var(--muted); font-weight: 500; }
+
+.admin-head-actions { margin-top: 10px; }
+.admin-head-actions .btn { font-size: 0.86rem; padding: 8px 16px; }
+
+/* The required marker reads as words, not a bare asterisk that a screen
+   reader announces as "star". */
+.admin-req {
+  font-weight: 600; font-size: 0.72rem; letter-spacing: 0.04em;
+  text-transform: uppercase; color: var(--orange-ink); margin-left: 6px;
+}
+
+.admin-channel-set { border: 0; padding: 0; margin: 0; }
+.admin-channel-choices { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+.admin-channel-choice {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 8px 14px; border: 1px solid var(--border); border-radius: 999px;
+  background: var(--surface); font-size: 0.88rem; font-weight: 600; color: var(--navy);
+  cursor: pointer;
+}
+.admin-channel-choice:hover { border-color: var(--navy); }
+.admin-channel-choice:has(input:checked) { background: var(--navy); border-color: var(--navy); color: var(--white); }
+/* :has() is the styling; the focus ring must not depend on it, or keyboard
+   users on an older browser lose track of where they are. */
+.admin-channel-choice:focus-within { outline: 2px solid var(--blue-ink); outline-offset: 2px; }
+
+.admin-lead-edit { border-top: 1px solid var(--border); padding-top: 22px; }
+.admin-lead-edit .admin-add-form { padding-left: 0; padding-right: 0; padding-bottom: 0; }
+
+/* The lead-source table on the area panel: narrow, and read alongside the map
+   rather than instead of it. */
+.admin-source-table { max-width: 520px; }
