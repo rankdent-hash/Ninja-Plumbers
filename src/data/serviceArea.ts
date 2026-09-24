@@ -7,16 +7,30 @@
 // districts named below.
 
 /**
- * Local authority districts outside Greater London that are covered today.
- * Names must match OUTER_DISTRICTS in src/data/londonMap.ts exactly.
+ * Councils outside Greater London that Ninja Plumbers covers today, confirmed
+ * by the owner (Sept 2026): Guildford and the towns around it.
  *
- * Guildford: confirmed by the owner for Ninja Plumbers (Sept 2026). It is well
- * outside the M25 corridor (town centre about 7.5 miles beyond the motorway),
- * so it is here as a place already served, not as part of the planned
- * expansion. The Tamesis codebase this admin came from also lists St Albans;
- * that was Tamesis's coverage, not confirmed for Ninja, so it is not listed.
+ *   Guildford     Guildford, Burpham, Merrow, Shalford, Send, Ripley, Ash
+ *   Woking        Woking, Knaphill, Pyrford
+ *   Surrey Heath  Camberley, Frimley, Bagshot, Lightwater, Windlesham
+ *   Mole Valley   Dorking (and Leatherhead, Bookham in the same council)
+ *   Waverley      Godalming, Farnham, Cranleigh, Milford
+ *   Rushmoor      Aldershot, Farnborough
+ *
+ * Names are the council names postcodes.io returns as admin_district, which
+ * is what the enquiry form and the lead lookup test a postcode against.
+ *
+ * COVERED_OUTSIDE_LONDON are the ones drawn on the admin map (they must match
+ * OUTER_DISTRICTS in src/data/londonMap.ts exactly, and are shaded as covered).
+ * Waverley and Rushmoor are covered too but have no boundary in this repo, so
+ * they cannot be shaded; their postcode districts still have dots.
+ * The Tamesis codebase this admin came from listed St Albans; that was
+ * Tamesis's coverage, not Ninja's, so it is not here.
  */
-export const COVERED_OUTSIDE_LONDON: readonly string[] = ['Guildford'];
+export const COVERED_OUTSIDE_LONDON: readonly string[] = ['Guildford', 'Woking', 'Surrey Heath', 'Mole Valley'];
+export const COVERED_NOT_DRAWN: readonly string[] = ['Waverley', 'Rushmoor'];
+/** Every council outside Greater London that counts as in our service area. */
+export const COVERED_COUNCILS: readonly string[] = [...COVERED_OUTSIDE_LONDON, ...COVERED_NOT_DRAWN];
 
 /** Planned expansion: how far either side of the M25 the corridor band is drawn. */
 export const CORRIDOR_MILES = 3;

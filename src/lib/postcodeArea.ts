@@ -4,7 +4,7 @@
 // a lead sent through the website must land on the map in exactly the same
 // place, and two copies of this logic would eventually disagree about where
 // that is.
-import { COVERED_OUTSIDE_LONDON } from '../data/serviceArea';
+import { COVERED_COUNCILS } from '../data/serviceArea';
 
 // Postcode areas we explicitly do not serve. These come up in enquiries often
 // enough to be worth naming; see /areas-we-cover.
@@ -47,12 +47,12 @@ export async function lookupPostcode(postcode: string): Promise<Lookup> {
     // Greater London, plus the districts we cover beyond it. Testing the region
     // alone used to flag a Guildford job as out of area and put
     // "*** OUTSIDE SERVICE AREA ***" at the top of the notification email for a
-    // customer we do in fact serve. COVERED_OUTSIDE_LONDON is the same list the
-    // admin map draws as covered, so the two cannot disagree.
+    // customer we do in fact serve. COVERED_COUNCILS is the same list the admin
+    // map and the enquiry form use, so the three cannot disagree.
     const district = r.admin_district ?? undefined;
     return {
       valid: true,
-      inServiceArea: r.region === 'London' || COVERED_OUTSIDE_LONDON.includes(district ?? ''),
+      inServiceArea: r.region === 'London' || COVERED_COUNCILS.includes(district ?? ''),
       borough: district,
       region: r.region ?? undefined,
     };

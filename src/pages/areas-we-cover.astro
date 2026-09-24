@@ -4,16 +4,29 @@ import HeroWithForm from '../components/HeroWithForm.astro';
 import { areas } from '../data/areas';
 import { postcodes } from '../data/postcodes';
 import site from '../data/site.json';
+
+// Covered towns beyond London. Keep in step with COVERED_COUNCILS in
+// src/data/serviceArea.ts, which is what the enquiry form actually checks.
+const guildfordArea = [
+  { town: 'Guildford', places: 'Burpham, Merrow, Shalford, Chilworth, Worplesdon, Send, Ripley, Ash' },
+  { town: 'Woking', places: 'Knaphill, Pyrford, Sheerwater' },
+  { town: 'Godalming', places: 'Farncombe, Milford, Elstead, Witley' },
+  { town: 'Farnham', places: 'Upper Hale, Wrecclesham, Rowledge, Tongham' },
+  { town: 'Camberley', places: 'Frimley, Bagshot, Lightwater, Windlesham' },
+  { town: 'Aldershot and Farnborough', places: 'Mytchett, Ash Vale' },
+  { town: 'Cranleigh', places: 'Ewhurst, Bramley, Wonersh' },
+  { town: 'Dorking', places: 'Westcott, and the rest of Mole Valley' },
+];
 ---
 <Base
   title="Areas We Cover | Plumbers Across London | Ninja Plumbers"
-  description={`Ninja Plumbers covers all 32 London boroughs and the City of London. SG and NG postcodes are outside our service area. Check your postcode on ${site.booking.display}.`}
+  description={`Ninja Plumbers covers all of Greater London, plus Guildford, Woking, Godalming, Farnham, Camberley and nearby Surrey towns. Call ${site.booking.display}.`}
 >
 
 <HeroWithForm
   eyebrow="Coverage area"
   h1="Where we work"
-  intro="Ninja Plumbers sends engineers out across the whole of Greater London, all 32 boroughs plus the City of London, working from our base in Fulham."
+  intro="Ninja Plumbers sends engineers out across the whole of Greater London, all 32 boroughs plus the City of London, and to Guildford and the towns around it, working from our base in Fulham."
   breadcrumb={[{ label: 'Home', href: '/' }, { label: 'Areas We Cover' }]}
   bullets={[
     'Gas Safe registered, fully insured',
@@ -69,6 +82,23 @@ import site from '../data/site.json';
 
 <section class="section section-alt">
   <div class="container">
+    <span class="eyebrow">Beyond London</span>
+    <h2>Guildford and the towns around it</h2>
+    <p class="measure">
+      Outside the M25 we cover Guildford and the towns within easy reach of it: the same engineers,
+      the same price agreed before any work starts, and the same 24/7 emergency line.
+    </p>
+    <ul class="beyond-london">
+      {guildfordArea.map((t) => (
+        <li><strong>{t.town}</strong> <span>{t.places}</span></li>
+      ))}
+    </ul>
+    <p class="small">Somewhere nearby that isn&rsquo;t listed? Call {site.booking.display} with your postcode and we&rsquo;ll tell you straight away.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
     <span class="eyebrow">Local pages</span>
     <h2>Find your area</h2>
     <p class="measure">For the areas we work in most often, there's a dedicated page covering the local housing and the problems that tend to come up there.</p>
@@ -84,7 +114,7 @@ import site from '../data/site.json';
   </div>
 </section>
 
-<section class="section">
+<section class="section section-alt">
   <div class="container">
     <span class="eyebrow">By region</span>
     <h2>Coverage by part of London</h2>
@@ -146,7 +176,7 @@ import site from '../data/site.json';
       <div class="out-of-area">
         <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="5.6" y1="5.6" x2="18.4" y2="18.4"/></svg></div>
         <h2>Where we don&rsquo;t go</h2>
-        <p>Ninja Plumbers only works within Greater London, and two postcode areas crop up in enquiries often enough that they&rsquo;re worth mentioning by name:</p>
+        <p>Ninja Plumbers works across Greater London and around Guildford. Two postcode areas crop up in enquiries often enough that they&rsquo;re worth mentioning by name:</p>
         <ul class="excluded">
           <li><span class="pc">SG</span> Stevenage and the surrounding Hertfordshire area</li>
           <li><span class="pc">NG</span> Nottingham and Nottinghamshire</li>

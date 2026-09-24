@@ -83,7 +83,7 @@ export const home = {
     items: [
       {
         q: 'Which parts of London do you cover?',
-        a: 'All of Greater London, north and south of the river. Wherever you are, you book through the same office on Fulham High Street. If you\'re near the edge of London, give us your postcode when you ring and we\'ll tell you there and then whether we cover it.',
+        a: 'All of Greater London, north and south of the river, plus Guildford and the towns around it: Woking, Godalming, Farnham, Camberley, Aldershot, Farnborough and Dorking. Wherever you are, you book through the same office on Fulham High Street. Not sure if we reach you? Give us your postcode when you ring and we\'ll tell you there and then.',
       },
       {
         q: 'When are you open?',

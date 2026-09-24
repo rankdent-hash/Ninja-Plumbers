@@ -23,7 +23,7 @@ import { leadSourceLabel } from '../../lib/leadChannels';
 import { areas } from '../../data/areas';
 import { postcodes } from '../../data/postcodes';
 import { POINTS, OUTER_DISTRICTS } from '../../data/londonMap';
-import { COVERED_OUTSIDE_LONDON, CORRIDOR_AREA_SHARE_PCT } from '../../data/serviceArea';
+import { COVERED_OUTSIDE_LONDON, COVERED_NOT_DRAWN, CORRIDOR_AREA_SHARE_PCT } from '../../data/serviceArea';
 import { londonDayRange } from '../../lib/londonDay';
 import { DISTRICT_PLACES } from '../../lib/districtPlaces';
 
@@ -490,7 +490,9 @@ const corridorSharePct = CORRIDOR_AREA_SHARE_PCT;
     <h2>What the map is and isn&rsquo;t</h2>
     <p class="admin-note">
       <strong>Not everything drawn here is a place we work.</strong> Greater London&rsquo;s 33 boroughs,
-      plus Guildford, are filled blue-grey with a solid border: those are covered today.
+      plus {COVERED_OUTSIDE_LONDON.join(', ')}, are filled blue-grey with a solid border: those are covered
+      today. {COVERED_NOT_DRAWN.join(' and ')} are covered too, but their boundaries are not in this map, so
+      they show as dots without a shaded outline.
       The {plannedCount} unfilled shapes with a dashed border are the districts the planned M25 corridor
       passes through &mdash; they are named so the expansion can be read against real places, and we do
       not work in them yet. They are left unfilled on purpose: only about
@@ -503,9 +505,9 @@ const corridorSharePct = CORRIDOR_AREA_SHARE_PCT;
       One detail worth knowing before you lean on this. <strong>Guildford</strong> is not near the
       corridor at all &mdash; its town centre is about 7&frac12; miles from the motorway, roughly
       4&frac12; miles beyond the edge of the band. It is on the map because we cover it, not because
-      of where the M25 goes. Its postcode districts have their own dots, and so do the towns around it
-      &mdash; Woking, Godalming, Farnham, Aldershot, Farnborough, Camberley, Cranleigh and Dorking among
-      them &mdash; so enquiries from the Guildford side can be read on the map. Treat the band&rsquo;s edge as
+      of where the M25 goes. The towns around it are covered as well &mdash; Woking, Godalming, Farnham,
+      Aldershot, Farnborough, Camberley, Cranleigh and Dorking among them &mdash; and each of their postcode
+      districts has its own dot. Treat the band&rsquo;s edge as
       approximate everywhere &mdash; East Hertfordshire and Harlow miss it by a tenth of a mile, and
       a 3.1-mile band would have pulled them both in.
     </p>

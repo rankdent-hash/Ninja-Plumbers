@@ -6,6 +6,7 @@
 // privacy notice sits under the button, and the lawful basis for handling
 // an enquiry is the pre-contract steps the customer is asking for.
 import site from '../data/site.json';
+import { COVERED_COUNCILS } from '../data/serviceArea';
 import { services } from '../data/services';
 import { appliances } from '../data/appliances';
 
@@ -170,7 +171,7 @@ const icon = (k: keyof typeof ICON) =>
   </div>
 </div>
 
-<script is:inline define:vars={{ bookingTel: site.booking.tel, bookingDisplay: site.booking.display, waUrl: site.whatsapp.url, ctaVariants }}>
+<script is:inline define:vars={{ bookingTel: site.booking.tel, bookingDisplay: site.booking.display, waUrl: site.whatsapp.url, ctaVariants, coveredCouncils: COVERED_COUNCILS }}>
   (function () {
     var form = document.getElementById('enquiry-form');
     if (!form) return;
@@ -225,7 +226,7 @@ const icon = (k: keyof typeof ICON) =>
         outOfArea = true;
         submit.disabled = true;
         setStatus('out',
-          '<strong>Sorry &mdash; that&rsquo;s outside our area.</strong> We cover Greater London only, and ' +
+          '<strong>Sorry &mdash; that&rsquo;s outside our area.</strong> We cover Greater London and the Guildford area, and ' +
           area + ' postcodes are ' + EXCLUDED[area] + '. You&rsquo;ll be better served by a local firm.');
         return;
       }
@@ -240,15 +241,17 @@ const icon = (k: keyof typeof ICON) =>
         }
         var data = await res.json();
         var r = data.result || {};
-        if (r.region === 'London') {
+        // Greater London, plus the councils around Guildford we cover
+        // (src/data/serviceArea.ts, the same list the server checks).
+        if (r.region === 'London' || coveredCouncils.indexOf(r.admin_district) !== -1) {
           outOfArea = false; submit.disabled = false;
           setStatus('in', '<strong>' + (r.admin_district || 'London') + '</strong> &mdash; yes, we cover you.');
         } else {
           outOfArea = true; submit.disabled = true;
           setStatus('out',
-            '<strong>That&rsquo;s outside Greater London.</strong> ' +
+            '<strong>That&rsquo;s outside our area.</strong> ' +
             (r.admin_district ? r.admin_district + ' is in ' + (r.region || 'another region') + '. ' : '') +
-            'We only work across the London boroughs.');
+            'We work across Greater London and around Guildford (Woking, Godalming, Farnham, Camberley, Aldershot, Farnborough, Dorking).');
         }
       } catch (err) {
         outOfArea = false; submit.disabled = false;

@@ -20,7 +20,7 @@
 // the page carries the same numbers in full, which is the real non-visual
 // equivalent — per-dot <title> elements inside a role="img" are not announced.
 import { BOROUGHS, OUTER_DISTRICTS, POINTS, M25, MAP_WIDTH, MAP_HEIGHT, UNITS_PER_MILE } from '../data/londonMap';
-import { COVERED_OUTSIDE_LONDON, CORRIDOR_MILES } from '../data/serviceArea';
+import { COVERED_OUTSIDE_LONDON, COVERED_COUNCILS, COVERED_NOT_DRAWN, CORRIDOR_MILES } from '../data/serviceArea';
 import { DISTRICT_PARENT } from '../lib/districtParents';
 import { DISTRICT_CELLS } from '../lib/districtCells';
 import { postcodes } from '../data/postcodes';
@@ -39,8 +39,8 @@ const CORRIDOR_WIDTH = CORRIDOR_MILES * 2 * UNITS_PER_MILE;
 //   - the rest          the corridor runs through them; NOT covered today
 const covered = new Set(COVERED_OUTSIDE_LONDON);
 // Legend wording follows the list, so it cannot claim a place that is not on it.
-const coveredLabel = COVERED_OUTSIDE_LONDON.length
-  ? `Greater London and ${COVERED_OUTSIDE_LONDON.join(' and ')} are covered`
+const coveredLabel = COVERED_COUNCILS.length
+  ? `Greater London is covered, and so are ${COVERED_COUNCILS.slice(0, -1).join(', ')}${COVERED_COUNCILS.length > 1 ? ' and ' : ''}${COVERED_COUNCILS[COVERED_COUNCILS.length - 1]}${COVERED_NOT_DRAWN.length ? ` (${COVERED_NOT_DRAWN.join(' and ')} have dots but no drawn boundary)` : ''}`
   : 'Greater London is covered';
 const districts = OUTER_DISTRICTS.map((o) => ({ ...o, covered: covered.has(o.name) }));
 
