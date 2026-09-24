@@ -10,6 +10,9 @@ import WhatsAppIcon from '../components/WhatsAppIcon.astro';
 import site from '../data/site.json';
 import { services } from '../data/services';
 import { areas } from '../data/areas';
+import { home } from '../data/home';
+import { blogPosts } from '../data/blog';
+import Schema from '../components/Schema.astro';
 
 // Six services on the homepage, from the data file rather than hand-copied,
 // so the cards cannot drift from the pages they link to. The earlier version
@@ -19,12 +22,18 @@ const featured = ['emergency-plumbing', 'boiler-repair', 'drain-unblocking',
   .map((slug) => services.find((s) => s.slug === slug)!);
 
 const topAreas = [...areas].sort((a, b) => b.volume - a.volume).slice(0, 10);
+
+// Posts are scheduled ahead; only show ones whose date has arrived. The
+// homepage is built at deploy time, so this is as of the last deploy.
+const today = new Date().toISOString().slice(0, 10);
+const latestPosts = blogPosts.filter((p) => p.date && p.date <= today).slice(0, 3);
 ---
 <Base
   title="London Plumbers | Ninja Plumbers — Plumbing, Heating &amp; Drainage"
   description={`London plumbers for emergencies, boiler repair, blocked drains and bathroom fits. Gas Safe registered, fully insured. Call ${site.booking.display}.`}
   schema
 >
+<Schema slot="head" faqs={home.faq.items} />
 
 <HeroWithForm
   eyebrow="Emergency callout available 24/7"
@@ -40,9 +49,44 @@ const topAreas = [...areas].sort((a, b) => b.volume - a.volume).slice(0, 10);
 <section class="section">
   <div class="container">
     <div class="section-head">
+      <span class="eyebrow">{home.problemFinder.eyebrow}</span>
+      <h2>{home.problemFinder.heading}</h2>
+      <p class="lead measure">{home.problemFinder.intro}</p>
+    </div>
+    <ul class="problem-grid">
+      {home.problemFinder.items.map((p) => (
+        <li>
+          <a href={p.href} class="problem-link">
+            <strong>{p.label}</strong>
+            <span>{p.hint}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<section class="section section-alt safety-band" aria-labelledby="safety-heading">
+  <div class="container">
+    <h2 id="safety-heading">{home.safety.heading}</h2>
+    <div class="guidance">
+      {home.safety.items.map((it) => (
+        <div class="guidance-item">
+          <h3>{it.title}</h3>
+          <p>{it.body}</p>
+        </div>
+      ))}
+    </div>
+    <p class="safety-note"><a href={`tel:${site.booking.tel}`}>{home.safety.note}</a></p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
       <span class="eyebrow">What we do</span>
       <h2>Plumbing, heating and drainage &mdash; the whole job</h2>
-      <p class="lead measure">A dripping tap or a full bathroom strip-out — it's the same team either way, and every job listed here is carried out by our own engineers, not a sub-contractor.</p>
+      <p class="lead measure">{home.intros.services}</p>
     </div>
 
     <ul class="grid grid-3 card-grid">
@@ -55,7 +99,7 @@ const topAreas = [...areas].sort((a, b) => b.volume - a.volume).slice(0, 10);
         </li>
       ))}
     </ul>
-    <p class="section-foot"><a href="/services" class="btn btn-ghost">All ten services</a></p>
+    <p class="section-foot"><a href="/services" class="btn btn-ghost">All our services</a></p>
   </div>
 </section>
 
@@ -179,6 +223,43 @@ const topAreas = [...areas].sort((a, b) => b.volume - a.volume).slice(0, 10);
       </dl>
       <p class="about-links"><a href="/about" class="inline-link">More about Ninja</a> <a href="/reviews" class="inline-link">Reviews</a></p>
     </aside>
+  </div>
+</section>
+
+{latestPosts.length > 0 && (
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">{home.guides.eyebrow}</span>
+        <h2>{home.guides.heading}</h2>
+        <p class="lead measure">{home.guides.intro}</p>
+      </div>
+      <ul class="grid grid-3 card-grid">
+        {latestPosts.map((p) => (
+          <li class="card">
+            <h3><a href={`/blog/${p.slug}`} class="card-title-link">{p.title}</a></h3>
+            <p>{p.excerpt}</p>
+            <a href={`/blog/${p.slug}`} class="card-link" aria-hidden="true" tabindex="-1">Read the guide <span>&rarr;</span></a>
+          </li>
+        ))}
+      </ul>
+      <p class="section-foot"><a href="/blog" class="btn btn-ghost">All guides</a></p>
+    </div>
+  </section>
+)}
+
+<section class="section section-alt">
+  <div class="container measure-wide">
+    <span class="eyebrow">Questions</span>
+    <h2>{home.faq.heading}</h2>
+    <div class="faqs">
+      {home.faq.items.map((f) => (
+        <details class="faq">
+          <summary>{f.q}</summary>
+          <p>{f.a}</p>
+        </details>
+      ))}
+    </div>
   </div>
 </section>
 
