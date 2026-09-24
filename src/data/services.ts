@@ -1026,49 +1026,75 @@ export const services: Service[] = [
     does: [
       'Units not cooling, or barely cooling',
       'Indoor unit leaking or dripping water',
-      'Outdoor condenser not starting or cutting out',
+      'Ice forming on the indoor unit or its pipework',
+      'Outdoor unit not starting or cutting out',
       'Tripping breakers and electrical faults',
-      'Fault codes and error displays',
+      'Fault codes, flashing lights and unresponsive remotes',
+      'Rattling, buzzing and grinding noises',
       'F-Gas leak detection and repair',
     ],
     guidance: [
       {
         title: 'Check the basics before booking a callout',
-        body: 'Is the unit actually receiving power, and is the remote or wall control set to cool rather than fan or heat? Is the outdoor unit clear of anything blocking the airflow around it? These sound obvious and still explain a fair number of "it has stopped working" calls.',
+        body: 'Is the unit actually receiving power, and is the remote set to cool rather than fan, dry or heat? Is the outdoor unit clear of anything blocking the airflow around it? If the remote seems dead, many wall units have a small button under the front cover that starts them without it. If that works, the remote is the problem, not the system. These checks sound obvious and still explain a fair number of "it has stopped working" calls.',
       },
       {
         title: 'Water indoors is usually drainage, not a leak',
-        body: 'When an indoor unit is dripping, the refrigerant system is rarely to blame — nine times out of ten it is a condensate drain that has blocked or was never given enough fall. Once we find it, the fix is straightforward, but ignored for long enough it will mark a ceiling or a wall just as badly as any ordinary plumbing leak would.',
+        body: 'When an indoor unit is dripping, the refrigerant is rarely to blame. The unit pulls moisture out of the air as it cools, and that water has to drain away. Usually the drip is a drain pipe blocked with dust and slime, a small condensate pump that has stopped, or a pipe that runs too flat. The fix is straightforward, but ignored for long enough it will mark a ceiling just as badly as any plumbing leak.',
+      },
+      {
+        title: 'Ice on the unit means switch it off',
+        body: 'Frost or ice on the indoor unit, or on the pipes outside, usually means too little air is passing over the cooling coil or too little refrigerant is in the system — a blocked filter, a slow leak or a struggling fan. Switch it off and let it thaw on its own; chipping at the ice damages the thin fins behind it. Frost on the outdoor unit while the system is heating in winter is different: that is normal, and the unit clears it itself.',
+      },
+      {
+        title: 'Note the code before you reset anything',
+        body: 'Most modern units show a fault as a code on the display or a pattern of blinking lights. Codes differ from make to make, so note the model as well. Then switch the unit off at its isolator switch for a few minutes and try again. If the same code comes straight back, leave it off and tell us what it says when you ring.',
       },
       {
         title: 'A unit that trips the breaker should not be reset repeatedly',
         body: 'An electrical fault that keeps tripping the circuit is not solved by resetting it and hoping. Repeated tripping usually means a fault getting worse, and continuing to run it can turn a repair into a replacement.',
       },
       {
-        title: 'Refrigerant leaks are F-Gas regulated work',
-        body: 'If the fault is a loss of refrigerant, finding and repairing the leak — and handling the refrigerant itself — is legally restricted to F-Gas registered engineers. It is not a job for a general handyman regardless of what they charge.',
+        title: 'A new noise is worth a call',
+        body: 'A rattle is often something simple: a loose panel, a bracket that has worked free, or leaves caught in the outdoor fan. A scraping or whining that follows the fan can be a motor bearing starting to go. Clunks or grinding from the outdoor unit as it starts up are more serious. A fan motor replaced early is a smaller job than one left running until it seizes.',
+      },
+      {
+        title: 'A system that needs regassing has a leak',
+        body: 'Air conditioning is a sealed system. It does not use refrigerant up, so if the charge is low, some has escaped. Topping it up without finding the leak means paying for gas that will leak out again, releasing a potent greenhouse gas as it goes. The rules expect leaks to be repaired, not just refilled, and that work is legally restricted to F-Gas registered engineers — not a job for a general handyman, whatever they charge.',
+      },
+      {
+        title: 'When a repair stops being worth it',
+        body: 'Most faults on a reasonably modern system are worth fixing. The sums change with a failed compressor on an older unit, where the repair can come close to the cost of a new system, and with anything still running on R22 — an older refrigerant that can no longer legally be used to recharge a system. Either way, you get both prices and the decision stays with you. Our air conditioning replacement page covers that choice in more detail.',
       },
     ],
     aside: {
-      title: 'F-Gas registered',
-      body: 'Any fault involving refrigerant is diagnosed and repaired by F-Gas registered engineers, as UK regulations require. Ask to see it on the doorstep, the same as you would for Gas Safe.',
+      title: 'Photograph the label on the outdoor unit',
+      body: 'The rating plate on the outdoor unit gives the make, the model and the refrigerant type, including whether it runs on an older gas like R22. A photo of it on WhatsApp before the visit saves time on the day.',
     },
     faqs: [
       {
         q: 'Why has my air conditioning stopped cooling?',
-        a: 'Commonly a refrigerant leak, a fault with the outdoor unit, or in some cases just a filter so clogged it restricts airflow. We check the straightforward causes first before assuming the worst.',
+        a: 'Commonly a refrigerant leak, a fault with the outdoor unit, or in some cases just a filter so clogged it restricts airflow. A faulty temperature sensor can also make a unit ease off before the room is cool. We check the straightforward causes first before assuming the worst.',
       },
       {
         q: 'Why is my indoor unit leaking water?',
         a: 'Nearly always the condensate drain — either blocked or not falling correctly — rather than anything to do with the refrigerant. Once we can actually see the drain run, it is usually a quick job to put right.',
       },
       {
+        q: 'The outdoor unit is running but the room is not getting cooler. Why?',
+        a: 'The outdoor fan can keep turning while the compressor, the part that does the actual cooling, fails to start. Low refrigerant or a badly blocked filter can look much the same. Tell us whether the outdoor fan is spinning and whether a code is showing.',
+      },
+      {
         q: 'Can you repair a system you did not install?',
-        a: 'Yes, whoever fitted it makes no difference to us.',
+        a: 'Yes. Parts for older or less common makes can take longer to track down, and if that applies to yours we will say so when we price the repair.',
       },
       {
         q: 'Is a refrigerant leak expensive to fix?',
         a: 'It depends on where the leak is and how accessible the pipework is. We find and confirm the leak first, then quote for the repair — never the other way round.',
+      },
+      {
+        q: 'Should I keep using it until the engineer arrives?',
+        a: 'Not if it is leaking, icing up, tripping the electrics or making a new grinding noise — running it with a fault like that tends to make the repair bigger. If it is simply cooling less well than it used to, it is usually fine to use until the visit.',
       },
     ],
   },
@@ -1085,45 +1111,63 @@ export const services: Service[] = [
     summary:
       'Annual maintenance that keeps a system cooling efficiently and catches a refrigerant leak before it becomes a breakdown.',
     intro:
-      'Skip servicing altogether and a system works harder than it should to do the same job, and fails sooner than it needs to. An annual visit from Ninja Plumbers covers the filters, the drainage and the electrics, plus the F-Gas leak check that the law requires above a certain refrigerant charge — carried out, as it must be, by F-Gas registered engineers.',
+      'Skip servicing altogether and a system works harder than it should to do the same job, costs more to run, and fails sooner than it needs to. An annual visit from Ninja Plumbers covers the filters, the coils, the drainage, the electrics and the refrigerant pressures, plus the F-Gas leak check that the law requires on larger systems — carried out, as it must be, by F-Gas registered engineers.',
     does: [
       'Filters cleaned or replaced',
+      'Indoor coil, fan and drip tray cleaned',
       'Condensate drain checked and cleared',
       'Refrigerant charge and pressures checked',
       'F-Gas leak checks, where required by law',
       'Electrical connections and controls checked',
       'Outdoor condenser cleaned and inspected',
+      'More frequent visits for shops, offices and heavy-use systems',
     ],
     guidance: [
       {
         title: 'F-Gas leak checks are a legal requirement, not an upsell',
-        body: 'Systems holding a refrigerant charge above a set threshold must have periodic leak checks under F-Gas regulations. It is not something we invented to sell a service plan — it is the law, and only F-Gas registered engineers can carry it out.',
+        body: 'Systems holding more than a set amount of refrigerant must have regular leak checks under the F-Gas regulations. It is not something we invented to sell a service plan — it is the law, and only F-Gas registered engineers can carry it out.',
       },
       {
-        title: 'A dirty filter is the most common reason for weak cooling',
-        body: 'A filter that has quietly clogged up with dust forces the whole system to work harder for a worse result — it is the single most common thing a maintenance visit catches, and the easiest to put right. Nine times out of ten, it explains why a system that used to cool a room properly no longer seems to manage it.',
+        title: 'Whether the leak-check rules cover your system',
+        body: 'The threshold depends on how much refrigerant a system holds and how strong a greenhouse gas that refrigerant is, so there is no simple answer based on the size of the room. Many single-room home systems fall below it. Larger multi-splits and bigger commercial systems often do not, and the larger the system, the more often it must be checked. The legal duty, including keeping a record of each check, sits with whoever operates the system — usually the business, landlord or building owner. We will tell you where yours stands.',
+      },
+      {
+        title: 'A dirty filter is a common reason for weak cooling',
+        body: 'A filter that has quietly clogged up with dust forces the whole system to work harder for a worse result. It is one of the most common things a maintenance visit catches, and the easiest to put right. Often it is the whole explanation when a system that used to cool a room properly no longer seems to manage it.',
+      },
+      {
+        title: 'The filters are the part you can do yourself',
+        body: 'On most wall-mounted units, the filters lift out from behind the front cover without tools. Switch the unit off first, rinse them in lukewarm water, let them dry fully and slide them back in. Every few weeks while the system is in regular use is typical, and the manual for your model will give the exact interval. Keep leaves and clutter away from the outdoor unit too. The coil, the fan and anything electrical are best left to an engineer.',
+      },
+      {
+        title: 'A musty smell usually means the coil and drip tray',
+        body: 'If the air smells damp or stale for the first few minutes after the unit starts, mould and bacteria are usually growing on the indoor coil, on the fan or in the drip tray, where water sits in the dark. Washing the filter will not reach any of that. Cleaning those parts properly is part of a maintenance visit, and it is not a job for a can of household spray pushed through the grille.',
       },
       {
         title: 'Once a year, before the weather asks anything of it',
         body: 'Booking maintenance in spring, before the first warm spell, means any fault gets fixed while it is inconvenient rather than while the system is needed. Booking it in the middle of a heatwave means joining everyone else who left it too late.',
       },
       {
-        title: 'Maintenance is not the same as a repair',
-        body: 'A maintenance visit is a scheduled check and clean. If it finds a fault — a refrigerant leak, a failing part — fixing that is separate work, priced and agreed before anything is done.',
+        title: 'Busy systems need more than once a year',
+        body: 'An office, shop or restaurant that runs its air conditioning every working day puts far more hours on it than a bedroom unit used for a few weeks each summer. Kitchens add grease, traffic adds grime to outdoor units on busy London roads, and a server or comms room often cannot afford a breakdown at all. Twice a year is common for systems like these, and more often where they run around the clock.',
+      },
+      {
+        title: 'A service finds faults; fixing them is a separate job',
+        body: 'A maintenance visit is a planned check and clean. When it turns up something more — a slow refrigerant leak, a fan motor starting to wear, a condensate pump near the end of its life — you are told what it is and what it would cost to put right, and nothing is done until you have agreed to it.',
       },
     ],
     aside: {
       title: 'F-Gas registered',
-      body: 'Refrigerant checks are carried out by F-Gas registered engineers, as UK regulations require. Ask to see it on the doorstep, the same as you would for Gas Safe.',
+      body: 'Leak checks, pressure readings and anything else that means connecting to the refrigerant side of a system are carried out by F-Gas registered engineers, as UK regulations require. You are entitled to see the certificate, and we are happy to show it.',
     },
     faqs: [
       {
         q: 'How often should air conditioning be serviced?',
-        a: 'Once a year is standard. Systems above a certain refrigerant charge also need periodic F-Gas leak checks by law, which a routine maintenance visit covers.',
+        a: 'Once a year is standard for a home system. Shops, offices and systems that run long hours usually need more frequent visits. Systems above a certain refrigerant charge also need periodic F-Gas leak checks by law, which a routine maintenance visit covers.',
       },
       {
         q: 'What does a maintenance visit actually cover?',
-        a: 'Filters, the condensate drain, refrigerant pressures, electrical connections and controls, and the outdoor condenser — plus an F-Gas leak check where the system requires one.',
+        a: 'Filters, the indoor coil and drip tray, the condensate drain, refrigerant pressures, electrical connections and controls, and the outdoor condenser — plus an F-Gas leak check where the system requires one.',
       },
       {
         q: 'Will maintenance stop my system from breaking down?',
@@ -1131,7 +1175,15 @@ export const services: Service[] = [
       },
       {
         q: 'Can you maintain a system installed by someone else?',
-        a: 'Yes, including F-Gas leak checks on existing systems, whoever fitted them.',
+        a: 'Yes, including F-Gas leak checks on existing systems, whoever fitted them. If you have records from earlier visits, keep them to hand — they show how the system has been looked after.',
+      },
+      {
+        q: 'Is it worth servicing a system that seems to be working fine?',
+        a: 'Usually, yes. Filters and coils clog gradually, so a system can lose efficiency and use more electricity for months before anyone notices the room is not as cool as it was. A service also catches small leaks and worn parts while they are cheap to deal with. We will not put a figure on the saving, because it depends on how neglected the system was.',
+      },
+      {
+        q: 'Do you need access to the outdoor unit?',
+        a: 'Yes, because a good part of the work happens there. If it sits on a flat roof, a balcony or in a shared yard behind a block of flats, please arrange access with the managing agent or neighbour before the visit, so the engineer is not left looking at it from a window.',
       },
     ],
   },
@@ -1150,39 +1202,57 @@ export const services: Service[] = [
     intro:
       'One room needs a split system; several rooms can often share a multi-split running off a single outdoor condenser. Which one suits a property depends on how many rooms need cooling, where the outdoor unit can realistically sit, and what the walls and existing cabling will allow. And because refrigerant work is legally restricted, it is always F-Gas registered engineers handling that part — never left to chance.',
     does: [
-      'Split system installation, room by room',
+      'Survey and sizing, room by room',
+      'Single split systems for one room',
       'Multi-split systems for several rooms off one outdoor unit',
       'Siting the outdoor condenser and pipework runs',
       'Condensate drainage done properly, not just run to the nearest gutter',
-      'Replacing an existing system, same spec or upgraded',
       'Electrical connection and isolation for the new unit',
+      'Pipework pressure tested and checked before the system runs',
+      'Replacing an existing system, same spec or upgraded',
     ],
     guidance: [
       {
-        title: 'Split or multi-split depends on the rooms, not just the budget',
-        body: 'One room is a straightforward split system. Several rooms can often share one outdoor condenser as a multi-split, which is tidier and usually cheaper than separate systems — provided the outdoor unit has somewhere sensible to go and the pipe runs are realistic.',
+        title: 'The survey comes before the price',
+        body: 'A sensible quote needs someone standing in the rooms. At the survey we look at the size and use of each room, which way the windows face, where the outdoor unit could go, how the pipes would reach it, where the water can drain and whether the electrics can take a new circuit. The price comes from that, not from a floor area typed into a website.',
       },
       {
-        title: 'Where the outdoor unit goes is usually the real decision',
-        body: 'The outdoor unit needs clear airflow around it and a sensible route for the pipework and drain to get back inside. In a flat or a conservation area, that spot may also need consent from the freeholder or the council before Ninja Plumbers can fit anything — worth confirming before you have even chosen the indoor unit.',
+        title: 'Size it by the room, not just the square metres',
+        body: 'Floor area is only the starting point. A south- or west-facing room with a lot of glass, a top-floor London flat under a hot roof, or a loft conversion with roof windows and sloping ceilings can need much more cooling than a shaded room of the same size downstairs. Kitchens and home offices full of screens add heat of their own. An undersized unit runs flat out and never catches up. An oversized one cools in short bursts and can leave the air feeling clammy.',
+      },
+      {
+        title: 'Split or multi-split depends on the rooms, not just the budget',
+        body: 'One room is a straightforward split system. Several rooms can often share one outdoor condenser as a multi-split, which is tidier and usually cheaper than separate systems — provided the outdoor unit has somewhere sensible to go and the pipe runs are realistic. The catch: if that one outdoor unit fails, every room on it loses cooling at the same time.',
+      },
+      {
+        title: 'The outdoor unit needs a proper home',
+        body: 'It needs clear air around it, a solid wall or base, and a sensible way for the pipes and drain to get back inside. It also needs to be reachable: a unit bolted high on a back wall with no safe access costs more to look after for the rest of its life. Wall brackets, flat roofs, balconies and ground-level bases can all work, within the manufacturer’s limits on pipe length and the height between the units.',
+      },
+      {
+        title: 'Planning, leases and conservation areas',
+        body: 'Whether an outdoor unit needs planning permission depends on the building and the borough. Flats do not have the same permitted development rights as houses, and listed buildings and conservation areas, of which London has a great many, are more tightly controlled again. Leaseholders usually need the freeholder’s written consent as well, because most leases keep the outside walls and roof under the freeholder’s control. Check with the council and the managing agent before the survey, not after the unit has been chosen.',
+      },
+      {
+        title: 'Think about the neighbours before the unit goes up',
+        body: 'An outdoor unit hums and blows air whenever it runs, and in a terrace or a row of back extensions that sound lands close to somebody else’s window. Siting it away from bedrooms, on anti-vibration mounts and out of corners that bounce sound around makes a real difference. Some London councils ask for a noise assessment with a planning application.',
       },
       {
         title: 'Condensate has to go somewhere planned',
-        body: 'Every indoor unit produces water as it cools. That needs a proper drain route, not a pipe left dripping onto a flat roof or a neighbour’s wall. It is decided at installation, not fixed afterwards.',
+        body: 'Every indoor unit produces water as it cools. That needs a proper drain with enough fall to a waste pipe, not a pipe left dripping onto a flat roof or a neighbour’s wall. Where there is no natural fall, a small pump lifts the water instead, and that pump then needs looking after too. It is decided at installation, not fixed afterwards.',
       },
       {
-        title: 'F-Gas registration is not optional',
-        body: 'Installing, servicing or decommissioning a system that uses refrigerant is regulated work, and only F-Gas registered engineers are legally permitted to handle the refrigerant side of it. Ask to see the certification — it is a fair question and we are glad to show it.',
+        title: 'The part you never see is the part that matters',
+        body: 'Once the pipework is connected, it is pressure tested with nitrogen to prove it holds, then pumped down with a vacuum pump to clear out air and moisture before any refrigerant goes into it. Rushing that stage is how a new system ends up losing gas or failing early. It is also the part of the job that legally has to be done by an F-Gas registered engineer.',
       },
     ],
     aside: {
-      title: 'F-Gas registered',
-      body: 'Refrigerant work is carried out by F-Gas registered engineers, as UK regulations require. Ask to see it on the doorstep, the same as you would for Gas Safe.',
+      title: 'Send us photos first',
+      body: 'A few photos of each room, its windows, and the outside wall or roof where you picture the outdoor unit going let us spot obvious problems before anyone visits. WhatsApp is the easiest way to send them.',
     },
     faqs: [
       {
         q: 'Do I need planning permission for an outdoor unit?',
-        a: 'Usually not for a house, though flats, listed buildings and conservation areas can need consent for where the outdoor unit sits. We will tell you if that applies before booking a survey.',
+        a: 'Sometimes. It depends on the building, where the unit goes and the borough. Flats, listed buildings, conservation areas and units facing the street are the most likely to need consent, and your council’s planning department can confirm for your address.',
       },
       {
         q: 'How many rooms can one outdoor unit cool?',
@@ -1191,6 +1261,14 @@ export const services: Service[] = [
       {
         q: 'Is the installation certified?',
         a: 'Refrigerant work is carried out by F-Gas registered engineers, which is a legal requirement, not an optional extra. We can show the certification on request.',
+      },
+      {
+        q: 'Can air conditioning heat as well as cool?',
+        a: 'Most split systems sold now can, because the unit can run in reverse and move heat into the room rather than out of it. Whether it makes sense as your main heating depends on the room and what else heats the house, which we can talk through at the survey.',
+      },
+      {
+        q: 'How much mess does an installation make?',
+        a: 'For a single split, the main work is one hole through the outside wall for the pipes, cable and drain, usually hidden behind the indoor unit, and a straightforward job is often done in a day. Multi-splits take longer because pipework has to reach each room. Where every pipe will run is agreed with you before any drilling starts.',
       },
       {
         q: 'Do you also maintain the system after installation?',
@@ -1209,38 +1287,56 @@ export const services: Service[] = [
     icon: 'ac',
     target: 'air conditioning replacement (1,000/mo) · air conditioning unit replacement (210/mo)',
     summary:
-      'Replacing a system that has reached the end — including old units still running a refrigerant that can no longer be topped up.',
+      'Swapping out a system that is worn out or failing — including older units on a refrigerant that can no longer be topped up.',
     intro:
-      'A system that is old, unreliable, or running a refrigerant nobody supplies any more eventually needs replacing. Before that, though, comes the same question Ninja Plumbers asks about a failing boiler: does it genuinely need replacing, or would a repair do the job for a lot less money? We will give you a straight answer either way, even on the occasions that means talking you out of the bigger job.',
+      'A system that is old, unreliable, or running a refrigerant nobody can legally top up any more will eventually need replacing. Before that, though, comes a simpler question: does it genuinely need replacing, or would a repair do the job for a lot less money? Ninja Plumbers gives you a straight answer either way, even when that means talking you out of the bigger job.',
     does: [
-      'Replacing an old or failed system',
-      'Repair-versus-replace assessment, with both figures',
-      'Systems still running an obsolete refrigerant',
-      'Like-for-like swaps and upgrades to a larger or multi-split system',
-      'Old unit and outdoor condenser removed and taken away',
+      'Old, failing and broken-down systems replaced',
+      'An honest repair-or-replace comparison, with a price for each',
+      'Systems still running R22 or another obsolete refrigerant',
+      'Same-size swaps, bigger units and moves to multi-split',
       'Resizing a system that never quite kept up',
+      'Checking whether existing pipework can be reused',
+      'Refrigerant recovered from the old system by F-Gas registered engineers',
+      'Old indoor and outdoor units taken away for proper disposal',
     ],
     guidance: [
       {
+        title: 'Signs a system is nearing the end',
+        body: 'Repairs coming round more and more often. A compressor or main circuit board failing on a unit well past its first decade. Cooling that fades a little more every summer, even after servicing. Parts the manufacturer no longer makes. Any one of these is worth a conversation. Two or three together usually mean money spent on the old system would be better spent on a new one.',
+      },
+      {
         title: 'Old refrigerant is often the real reason to replace',
-        body: 'Older systems were charged with a refrigerant that has not been legally available to top up for years. If one of those systems develops a leak, there is no legal repair that keeps it running on the same gas — replacement is usually the only real option, whatever the rest of the unit is like.',
+        body: 'Many older systems were charged with R22, a refrigerant that has not been legally available to top up for years. If one of those systems develops a leak, there is no legal repair that keeps it running on the same gas. Converting an old unit to a substitute refrigerant is sometimes possible, but on an ageing home system it is rarely money well spent. Replacement is usually the only real option, whatever the rest of the unit is like.',
       },
       {
-        title: 'Get both numbers before deciding',
-        body: 'Any quote for a replacement should sit next to the cost of repairing what you have, where a repair is genuinely possible. If nobody has offered you the repair figure, ask for it.',
+        title: 'Ask for the repair price as well',
+        body: 'Wherever a repair is genuinely possible, its cost belongs next to the replacement quote. If you have only ever been given a price for a new system, it is fair to ask why. We price both and leave the choice with you.',
       },
       {
-        title: 'A replacement is the chance to correct the original sizing',
-        body: 'A system that has never quite kept a room cool, or a single split that stopped being enough once the space changed, does not have to be replaced with the same mistake. This is the point to size it properly, or move up to a multi-split, rather than fitting another undersized unit and living with the same problem for another decade.',
+        title: 'What a modern inverter unit changes',
+        body: 'Many older systems run the compressor at one speed: fully on until the room is cold, then off until it warms up again. Most current units use an inverter instead, which slows the compressor down and keeps it ticking over once the room is at temperature. That generally means less electricity for the same cooling, a steadier temperature and less noise. How much it saves depends on the old unit and how you use the new one, so we will not promise a figure.',
       },
       {
-        title: 'The outdoor unit and pipework may not need full replacement',
-        body: 'Depending on age and condition, some replacements can reuse existing pipework runs, which keeps the job smaller and the walls untouched. We tell you which applies before quoting, not after.',
+        title: 'Do not replace one sizing mistake with another',
+        body: 'A system that has never quite kept a room cool, or a single split that stopped being enough once a loft was converted or an extension went on, deserves better than a replacement that falls short in exactly the same way. This is the moment to size it properly, or move up to a multi-split, rather than living with the same warm room for another decade.',
+      },
+      {
+        title: 'Existing pipework can sometimes be reused',
+        body: 'Reusing the copper pipes already in the wall keeps the job smaller and the decoration untouched, and sometimes it is possible. Often it is not. The pipe sizes have to suit the new unit, and the pipes must be clean inside and hold pressure when tested. Pipework from an old R22 system was put in for lower working pressures than modern refrigerants use, and carries traces of an oil they do not mix with. The manufacturer’s requirements decide it, and we tell you which applies before quoting, not after.',
+      },
+      {
+        title: 'The old refrigerant is recovered, not released',
+        body: 'Before an old system comes off the wall, the refrigerant inside it is pumped into a recovery cylinder by an F-Gas registered engineer and sent on to be recycled or destroyed. Letting it out into the air is illegal. The units themselves count as electrical waste and go for proper disposal, not into a skip.',
+      },
+      {
+        title: 'Plan the swap before the hot weather',
+        body: 'Replacing a system means a spell without cooling between the old one coming out and the new one going in, and the hardest time to arrange that is the first heatwave of the summer. If you already know your system is on its last legs, autumn, winter or early spring is the easier time to do it.',
       },
     ],
     aside: {
-      title: 'We will tell you if it does not need replacing',
-      body: 'If your system is worth repairing rather than replacing, we will say so. A replacement is a bigger job for us and a bigger bill for you, and there is no reason to recommend one you do not need.',
+      title: 'We will say if it can be saved',
+      body: 'If your system is worth repairing, that is what we will recommend, and we will show you why. You get the same straight answer whether the job turns out to be a small repair or a full replacement.',
     },
     faqs: [
       {
@@ -1248,8 +1344,8 @@ export const services: Service[] = [
         a: 'Age, what has actually failed, and whether it still runs a refrigerant that can legally be topped up. A system on an obsolete refrigerant with a leak usually has to be replaced; most other faults are worth repairing first.',
       },
       {
-        q: 'Will you quote for a repair as well as a replacement?',
-        a: 'Yes, wherever a repair is genuinely possible. You should be comparing two figures, not being handed one.',
+        q: 'Can I get a price for repairing it as well?',
+        a: 'Yes, wherever a repair is genuinely possible. Comparing both prices is the only fair way to make the decision.',
       },
       {
         q: 'Can I upgrade to a bigger or multi-split system when I replace?',
@@ -1257,7 +1353,15 @@ export const services: Service[] = [
       },
       {
         q: 'Do you remove the old unit?',
-        a: 'Yes, removal and disposal of the old system, including the outdoor condenser, is part of the job.',
+        a: 'Yes. The refrigerant is recovered first, then the old indoor and outdoor units are taken away and disposed of properly as part of the job.',
+      },
+      {
+        q: 'How can I tell if my system uses R22?',
+        a: 'Look for the label on the outside unit, which lists the refrigerant type. If it says R22 or HCFC-22, the system was almost certainly made before R22 was phased out of new equipment in the early 2000s. If the label is missing, a photo of the unit with the make and model often tells us.',
+      },
+      {
+        q: 'If the new unit goes in the same place, do I need consent again?',
+        a: 'Not always, but it is worth checking. A straight swap in the same spot is usually simpler than a first installation. If the new outdoor unit is larger, moves to a different wall or needs new holes through the outside of the building, leaseholders should ask the freeholder first, and anyone in a listed building or conservation area should check with the council.',
       },
     ],
   },
@@ -1274,7 +1378,7 @@ export const services: Service[] = [
       'Blocked toilet in London cleared properly — not flushing, water rising, or blocking again and again. We find the cause too. Call 020 3576 5825.',
     eyebrow: 'Blockages',
     icon: 'drain',
-    target: 'blocked toilet (4,400/mo) · blocked toilet london (480/mo) · toilet not flushing (1,600/mo)',
+    target: 'blocked toilet (4,400/mo) · blocked toilet london (480/mo) · toilet not flushing (1,600/mo — now owned by toilet-repair)',
     summary:
       'A toilet that will not flush away, or one that keeps blocking. Cleared, with the cause explained.',
     intro:
@@ -1969,6 +2073,257 @@ export const services: Service[] = [
       {
         q: 'How do you reach the gutter on a terraced house?',
         a: 'With the right access for the height and the position — that varies with the property, the number of storeys and whether the run is at the front or over the back. We look at access when we quote, because it is part of what the job takes.',
+      },
+    ],
+  },
+  // ---- Added Sept 2026: problem-led repair pages (Semrush UK, measured) ----
+  {
+    slug: 'water-through-ceiling',
+    title: 'Leaking Ceiling',
+    h1: 'Water coming through the ceiling?',
+    metaTitle: 'Leaking Ceiling in London? What to Do | Ninja Plumbers',
+    metaDescription:
+      'Water coming through the ceiling? Turn the water off, and the power if it is near lights. Then we find the source and stop it. Call 020 3576 5825.',
+    eyebrow: 'Ceiling leaks',
+    icon: 'emergency',
+    target: 'leaking ceiling (720/mo) · water coming through ceiling (590/mo) · water leaking through ceiling (480/mo) · ceiling leak repair (210/mo) — mostly searched mid-incident or just after one',
+    summary:
+      'Water dripping or pouring through a ceiling. What to do first, then the source found and stopped — in your home or the flat above.',
+    intro:
+      'Water running out of a light fitting. A brown stain suddenly wet to the touch. A ceiling sagging under whatever is sitting above it. Deal with the next five minutes first: water off at the stopcock, power off if it is anywhere near electrics, and everyone out from under the wet patch. Then Ninja Plumbers finds where the water is really coming from and stops it there — or tells you plainly when it is a roofer you need, not a plumber.',
+    does: [
+      'Water dripping or pouring through a ceiling',
+      'Supply shut off and the leak isolated first',
+      'Leaking showers, baths, toilets and wastes on the floor above',
+      'Failed joints and valves in the ceiling void',
+      'Overflowing cisterns, loft tanks and cylinders',
+      'Leaks from a neighbour’s flat, traced with their agreement',
+      'A written note of what failed, for insurers and agents',
+    ],
+    guidance: [
+      {
+        title: 'The next five minutes',
+        body: 'Shut the water off at the stopcock. If the water is near a light, a ceiling rose or a socket, switch off the main switch on the consumer unit without touching anything wet — and if the consumer unit itself is getting wet, leave it and ring us. Put a bucket and towels under the drip and move what you can out of the room. If the water is coming from a flat above, your stopcock will not stop it: go and knock on their door.',
+      },
+      {
+        title: 'If the ceiling is bulging',
+        body: 'A ceiling holding water can give way without warning, and Victorian lath and plaster comes down in heavy pieces. Keep everyone out from underneath. A small hole at the lowest point of the bulge lets the water drain into a bucket rather than bringing the ceiling down — but only with the power off, from the side with a long-handled tool, never from a chair or ladder beneath it. If the bulge is near a light or already cracking, shut the door and call; out of hours, that is our emergency plumbing line.',
+      },
+      {
+        title: 'Finding where it is coming from',
+        body: 'Water shows up at the lowest point it can find — a light fitting, a plasterboard joint — often a metre or more from where it got in. Under a bathroom, the usual causes are the seal round a shower tray or bath, a waste, or the connector behind the toilet. Elsewhere it is often a joint or radiator valve under the floorboards, or an overflowing cistern, tank or cylinder. A stain with no water coming through is a hidden leak, which our leak detection page deals with; a burst pipe is covered on pipe repair.',
+      },
+      {
+        title: 'Notice when it drips',
+        body: 'Timing is the best clue you can give us. Only when somebody showers upstairs points at the tray, seal or waste. Only after the toilet above is flushed points at its pan connector or cistern. Day and night suggests a pipe that is always under pressure. Only in heavy rain means water is getting in from outside — a slipped slate, failed flashing, a flat roof — and that is a roofer’s job. Gutters and downpipes are the exception: see our gutter repair page.',
+      },
+      {
+        title: 'When the leak is in the flat upstairs',
+        body: 'In a London house split into flats, your ceiling is somebody else’s floor. If the leak is in their bathroom or pipework, it has to be fixed from their side, and nobody can go in without them or whoever holds a key — if they are away, ring the managing agent or freeholder. Photograph everything and tell your insurer early. Buildings insurance in a leasehold block is usually the freeholder’s; your contents are on your own policy.',
+      },
+      {
+        title: 'The repair, and the ceiling afterwards',
+        body: 'Most ceiling leaks come from something small — a perished seal, a loose waste nut, a slipped pan connector — and where we can, we reach it from above, through a floorboard or a bath panel, rather than cutting into a ceiling that might still be saved. Ceilings themselves are not our trade. A wet one has to dry out fully before it is repaired or painted, and we will tell you what you need next: a plasterer, a drying specialist or a roofer.',
+      },
+    ],
+    aside: {
+      title: 'Photograph it before you mop up',
+      body: 'Photos and a short video of the ceiling, the drip and anything that got wet, taken before the clean-up starts, are what an insurer or managing agent will ask to see.',
+    },
+    faqs: [
+      {
+        q: 'Is water through the ceiling an emergency?',
+        a: 'If it is dripping now, spreading, or the ceiling is sagging, treat it as one and ring us — emergency callout runs 24/7. A dry stain that has stopped growing can usually be booked in as a normal job.',
+      },
+      {
+        q: 'Can I turn the lights back on?',
+        a: 'Not in that room until the fitting and the ceiling round it have dried out and been checked by an electrician. Water inside a light fitting is not something to test with the switch.',
+      },
+      {
+        q: 'The leak is from upstairs and nobody is answering. What now?',
+        a: 'Try the managing agent or freeholder, who may have an out-of-hours number or a key. In some converted houses one stopcock feeds every flat, so turning it off cuts everyone’s water — do it only if the damage demands it, and tell the neighbours.',
+      },
+      {
+        q: 'Who pays if the leak came from the flat above?',
+        a: 'Usually whoever owns the fitting that failed pays to fix it, and the damage goes through insurance. Leases differ, so check yours or ask the managing agent. We can put in writing what failed and where.',
+      },
+      {
+        q: 'How long does a wet ceiling take to dry?',
+        a: 'It depends how much water went in and what the ceiling is made of. Plasterboard after a short soaking can dry in days; lath and plaster that held water for hours takes much longer. A moisture reading says when it is ready, not the look of it.',
+      },
+      {
+        q: 'Will you repair the ceiling afterwards?',
+        a: 'No. We stop the water and fix what caused it, then tell you honestly what the ceiling needs and who to call — usually a plasterer, once it has properly dried.',
+      },
+    ],
+  },
+
+  {
+    slug: 'toilet-repair',
+    title: 'Toilet Repair',
+    h1: 'Toilet repair in London',
+    metaTitle: 'Toilet Repair London | Leaks & Flush Faults | Ninja Plumbers',
+    metaDescription:
+      'Toilet not flushing, running on or leaking at the base? Ninja Plumbers repairs flush valves, fill valves, seals and concealed cisterns. Call 020 3576 5825.',
+    eyebrow: 'Toilets and cisterns',
+    icon: 'bathroom',
+    target: 'toilet not flushing (1,600/mo — now owned by toilet-repair) · leaking toilet (880/mo) · toilet repair (720/mo) · toilet leaking (720/mo) — many searchers want to try a fix themselves first',
+    summary:
+      'Toilets that will not flush, keep running, fill slowly or leak onto the floor. Usually one worn part, replaced without needing a new toilet.',
+    intro:
+      'A flush button that does nothing. A cistern that hisses and refills through the night. A puddle by the pan that is back every morning however often it is wiped up. Almost every toilet fault comes down to a handful of inexpensive parts in the cistern or at the joints. The checks below are safe to try yourself, and a few faults can be put right on the spot. If they do not sort it, Ninja Plumbers will.',
+    does: [
+      'Toilets that will not flush, or take several goes',
+      'Cisterns that keep running or refilling on their own',
+      'Slow filling and weak flushes',
+      'Leaks at the base of the pan',
+      'Leaks between the cistern and the pan',
+      'Flush valves, fill valves, siphons and buttons replaced',
+      'Concealed cisterns and wall-hung toilets',
+    ],
+    guidance: [
+      {
+        title: 'Lever or button: two different mechanisms',
+        body: 'An older toilet with a lever usually flushes with a siphon: the lever lifts a thin plastic diaphragm, and when that splits you end up pumping the handle. A push-button toilet uses a drop valve instead, lifted by a rod or cable from the button. Take the lid off and flush with it open. A link that has come unhooked or a rod that has slipped is often the whole fault, and it clips back in a minute.',
+      },
+      {
+        title: 'A cistern that will not stop running',
+        body: 'With the lid off, look at the water level. Up at the top of the overflow means the fill valve is not shutting off — the float may need setting lower, or the valve has worn. Below the overflow but still trickling into the pan means the flush valve seal is letting water past. To check, add a few drops of food colouring to the cistern and leave it half an hour. Colour in the pan means the seal has gone.',
+      },
+      {
+        title: 'Slow to fill, weak to flush',
+        body: 'First check the isolation valve on the pipe to the cistern: on most, a screwdriver slot in line with the pipe means open, and one left half-closed makes the cistern crawl. After that, limescale is the usual suspect in London. It furs up the fill valve and its filter, and blocks the flushing holes under the rim. A weak flush can also be a water level set too low.',
+      },
+      {
+        title: 'Water round the base of the pan',
+        body: 'Dry everything with kitchen roll and watch where it comes back. Droplets all over the cistern on a cold day are condensation, not a leak. Water only after flushing usually means the pan connector — the sleeve joining the pan to the soil pipe — or the joint under the cistern. Water whether anyone flushes or not points at the supply pipe, the valve, or a hairline crack in the pan. In a flat, a slow leak here ends up on the ceiling downstairs.',
+      },
+      {
+        title: 'Leaking between cistern and pan',
+        body: 'On a close-coupled toilet the cistern sits directly on the back of the pan, sealed by a large foam or rubber washer and held by two bolts with washers of their own. When those perish, it drips from under the back with every flush. Tightening the bolts harder is tempting, and it is how pans crack. The proper fix is to drain the cistern, lift it off and renew the washers.',
+      },
+      {
+        title: 'Concealed cisterns and wall-hung toilets',
+        body: 'Many newer London flats and refurbished conversions hide the cistern behind a panel, with only a flush plate showing. On most, the plate lifts off and the valves come out through the opening behind it, so nothing needs breaking. Parts vary by frame maker, so a photo of the plate helps. If a cistern has been tiled in with no access at all, we will explain what is needed before touching anything.',
+      },
+      {
+        title: 'When it is not a repair',
+        body: 'If the water rises in the pan instead of flushing away, the toilet is blocked rather than broken, and our blocked toilet page covers that. A cracked pan or cistern cannot be repaired properly, and nor can a design nobody makes parts for any more. Replacing the whole toilet is covered on our toilet installation page, and we will be honest about which side of that line yours is on.',
+      },
+    ],
+    aside: {
+      title: 'Photograph the inside of the cistern',
+      body: 'Lift the lid, take a picture of what is inside plus one of the button or lever, and send them on WhatsApp. Valves differ between makes, and a clear photo lets the engineer arrive with the right part.',
+    },
+    faqs: [
+      {
+        q: 'Is it safe to put my hand in the cistern?',
+        a: 'Yes. It is clean supply water that has never been near the pan. Turn the isolation valve off and flush first, so the cistern is empty while you look.',
+      },
+      {
+        q: 'My toilet only flushes if I pump the handle.',
+        a: 'That is the classic sign of a split siphon diaphragm. On many close-coupled toilets the cistern has to come off to reach it, and fitting a two-part siphon at the same time makes any future change much easier.',
+      },
+      {
+        q: 'Can I fix a running toilet myself?',
+        a: 'Often. Setting the float lower so the water stops below the overflow is simple, and most handy people can swap a fill valve. Changing a flush valve on a close-coupled toilet usually means taking the cistern off, which is where new leaks tend to get made.',
+      },
+      {
+        q: 'Is an old toilet worth repairing?',
+        a: 'Nearly always, if the pan and cistern are not cracked. Most parts are standard and fit a wide range of toilets. Replacement makes sense for cracked ceramics, or unusual designs with no parts left.',
+      },
+      {
+        q: 'Can you repair a wall-hung toilet without taking the wall apart?',
+        a: 'Usually, yes. Most concealed cisterns are serviced through the opening behind the flush plate. If yours needs more access, we will tell you before anything is opened up.',
+      },
+      {
+        q: 'The water rises when I flush and will not go down.',
+        a: 'That is a blockage, not a fault with the flush. Stop flushing, and see our blocked toilet page for what to do next.',
+      },
+    ],
+  },
+
+  {
+    slug: 'leak-repair',
+    title: 'Leak Repair',
+    h1: 'Water leak repair in London',
+    metaTitle: 'Water Leak Repair London | Joints & Valves | Ninja Plumbers',
+    metaDescription:
+      'Dripping joint under the sink, weeping radiator valve or leaking washing machine hose? Ninja Plumbers repairs visible leaks in London. Call 020 3576 5825.',
+    eyebrow: 'Visible leaks',
+    icon: 'leak',
+    target: 'water leak repair (880/mo)',
+    summary:
+      'Leaks you can see — dripping joints, weeping valves, perished hoses, overflows running outside — isolated, repaired and checked properly afterwards.',
+    intro:
+      'Some leaks are easy to see and just as easy to put off: a joint under the sink leaving a damp ring in the cupboard, a radiator valve with a green crust round it, an overflow dribbling down the outside wall. They rarely get better on their own. Ninja Plumbers isolates the supply, works out what kind of joint or fitting has failed, repairs it properly, and watches it under full pressure before the cupboard is packed back up.',
+    does: [
+      'Dripping joints under sinks, basins and baths',
+      'Weeping stopcocks, isolation valves and gate valves',
+      'Radiator valves and radiator tails',
+      'Washing machine and dishwasher hoses and valves',
+      'Compression, soldered and push-fit joints',
+      'Wastes and traps leaking under sinks and baths',
+      'Overflow pipes dripping outside the house',
+    ],
+    guidance: [
+      {
+        title: 'Turn it off at the nearest valve',
+        body: 'Most sinks, toilets and appliances have a small valve on the pipe feeding them, and closing it stops the leak without cutting water to the whole house. On a radiator, close both valves, counting the turns on the one under the plastic cap so it can be reset. If there is no local valve, use the stopcock. Then dry the pipework, because water runs along a pipe and drips from its lowest point, not from the leaking joint.',
+      },
+      {
+        title: 'The fix depends on the joint',
+        body: 'A compression fitting — a nut squeezing a brass ring called an olive onto the pipe — can sometimes be cured with a small nip, but a crushed olive has to be replaced. A soldered joint cannot be tightened; the pipe is drained and the joint remade. A push-fit joint usually leaks because the pipe was not pushed fully home or its end was scored, so it is cut back and remade. Threaded connections need fresh sealing or a new fibre washer.',
+      },
+      {
+        title: 'Leaks that only happen when water drains',
+        body: 'If the cupboard only gets wet when the sink empties, the leak is on the waste, not the supply. Fill the bowl, pull the plug and watch. Plastic trap nuts should be firm by hand, and the washers inside flatten and harden with age. A cracked trap, or a waste knocked out of line by whatever is stored in the cupboard, is just as common.',
+      },
+      {
+        title: 'Washing machines and dishwashers',
+        body: 'Fill hoses perish from the inside, and one that is stiff, cracked or swollen near the ends should be replaced before it splits. The valve it screws onto can weep at the spindle too. If water appears only when the machine empties, look at the waste hose and the standpipe or trap it runs into. Moving or adding connections is covered on our washing machine plumbing page.',
+      },
+      {
+        title: 'Radiator valves',
+        body: 'A radiator valve weeps either from the spindle under the head or from the nut joining it to the radiator. The first can sometimes be cured by gently tightening the gland nut; the second usually means draining the radiator and remaking the joint or fitting a new valve. Heating water is black, so floors get covered first. And every weep on a sealed system costs pressure — a boiler that keeps needing topping up is a reason to check the valves.',
+      },
+      {
+        title: 'An overflow pipe dripping outside',
+        body: 'A small pipe through an outside wall is an overflow. It drips when a float valve inside has stopped shutting off — usually on a toilet cistern, a cold water tank in the loft or the small heating tank beside it. Follow the pipe back to find which. If the water is warm, it is coming from the heating or hot water side and wants looking at soon; on an unvented cylinder it can mean a safety valve is opening.',
+      },
+      {
+        title: 'What we check before we leave',
+        body: 'The water goes back on slowly, and the repaired joint is dried and watched at full pressure. We look at the fittings either side, since a valve that has started weeping often has a neighbour of the same age not far behind, and at what the leak has soaked: a swollen cupboard base, damp boards, a mark on the ceiling below. If water has already come through downstairs, our water through the ceiling page covers what to do first.',
+      },
+    ],
+    aside: {
+      title: 'Cannot see where it is coming from?',
+      body: 'This page is for leaks you can see and put a finger on. A damp patch, a stain that keeps growing or a water meter that turns with everything off means the leak is hidden, and finding it comes first — that is our leak detection page.',
+    },
+    faqs: [
+      {
+        q: 'Can I just tighten the nut myself?',
+        a: 'On a compression fitting, a small nip — a quarter turn at most, holding the fitting still with a second spanner — sometimes stops a weep. If it does not, stop there: more force crushes the olive and turns a drip into a proper leak. Do not try it on push-fit or soldered joints.',
+      },
+      {
+        q: 'Is a slow drip worth calling someone out for?',
+        a: 'Yes, though not as an emergency. A drip on a supply pipe runs day and night, and in a cupboard it rots the base and feeds mould long before anyone sees a puddle.',
+      },
+      {
+        q: 'Will the water be off to the whole house?',
+        a: 'Only if there is no working valve near the leak. Where one is missing or seized, we can fit a new one while we are there, which makes the next repair simpler.',
+      },
+      {
+        q: 'The pipe itself has split. Is that this page?',
+        a: 'No. A split or burst pipe, often from frost or corrosion, is covered on our pipe repair page. If water is pouring out right now, turn the stopcock off and see our emergency plumbing page.',
+      },
+      {
+        q: 'What about a dripping tap or a leaking toilet?',
+        a: 'Both have their own pages, because the fault is usually a part inside the fitting rather than a joint on the pipework. See tap repair and replacement, and toilet repair.',
+      },
+      {
+        q: 'Do you repair leaks on the heating as well?',
+        a: 'Yes — radiator valves, radiator tails and visible joints on heating pipework. A leak from inside the boiler casing is a boiler repair, and that needs one of our Gas Safe registered engineers.',
       },
     ],
   },

@@ -3535,3 +3535,8 @@ body.qr-open { overflow: hidden; }
 /* The lead-source table on the area panel: narrow, and read alongside the map
    rather than instead of it. */
 .admin-source-table { max-width: 520px; }
+
+/* Service pages: payment line under "What affects the price", and the link
+   to the full service list under the narrowed "more work" grid. */
+.price-terms { margin-top: 18px; font-weight: 600; color: var(--navy); }
+.all-services-link { margin: 22px 0 0; font-weight: 600; }

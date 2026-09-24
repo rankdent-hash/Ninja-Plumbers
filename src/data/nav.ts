@@ -22,7 +22,8 @@ export const serviceGroups: ServiceGroup[] = [
     label: 'Plumbing',
     blurb: 'Leaks, bursts, taps, toilets and pipework, from an emergency callout to a planned repair.',
     services: [
-      'emergency-plumbing', 'general-plumbing', 'tap-repair-and-replacement', 'leak-detection',
+      'emergency-plumbing', 'general-plumbing', 'water-through-ceiling', 'leak-repair', 'leak-detection',
+      'toilet-repair', 'tap-repair-and-replacement',
       'pipe-repair', 'low-water-pressure', 'lead-pipe-and-water-main-replacement',
       'commercial-plumbing', 'gas-safety-certificate',
     ],

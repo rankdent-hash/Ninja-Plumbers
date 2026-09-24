@@ -40,8 +40,8 @@ export const rejectedTerms: { term: string; volume: number; note: string }[] = [
   { term: 'plumber sw6 / sw11 / w6 / nw3', volume: 20, note: 'Postcode pages — the whole category is dead' },
   { term: 'garden drainage london', volume: 20, note: 'Room-based sub-service' },
   { term: 'overflow pipe repair', volume: 20, note: 'Too narrow to sustain a page' },
-  { term: 'tap repair london', volume: 30, note: 'Covered by General Plumbing' },
-  { term: 'toilet repair london', volume: 70, note: 'Beaten by "blocked toilet london" at 480' },
+  { term: 'tap repair london', volume: 30, note: 'Reversed Sept 2026: built as tap-repair-and-replacement (kitchen tap replacement 480, tap replacement 390)' },
+  { term: 'toilet repair london', volume: 70, note: 'Reversed Sept 2026: built as toilet-repair. The London-qualified term was small, but the unqualified problem searches are not: toilet not flushing 1,600, leaking toilet 880, toilet repair 720, toilet leaking 720 (UK, Semrush)' },
 ];
 
 // A full "plumbing by room" section was proposed and measured before being

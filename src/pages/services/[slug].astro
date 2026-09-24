@@ -31,6 +31,7 @@ import PhoneIcon from '../../components/PhoneIcon.astro';
 import WhatsAppIcon from '../../components/WhatsAppIcon.astro';
 import HeroWithForm from '../../components/HeroWithForm.astro';
 import Schema from '../../components/Schema.astro';
+import { serviceExtras } from '../../data/service-extras';
 import { getSupabaseAdmin } from '../../lib/supabaseAdmin';
 import { publishedServicePages } from '../../lib/servicePages';
 
@@ -48,15 +49,24 @@ if (!service) {
 }
 
 Astro.response.headers.set('Cache-Control', 'public, s-maxage=300, stale-while-revalidate=86400');
-// "Other work we take on" is site-wide for every group except air conditioning: a
-// plumbing or boiler page linking to every other trade on the site is the
-// established pattern, but an air con visitor is not looking for a drain
-// survey — so that group narrows the section to its own sibling pages
-// (repair/maintenance/installation/replacement) instead.
+// "Other work we take on" lists the page's own group only (plumbing, heating,
+// drainage, bathrooms, air con). It used to list every other service on every
+// page — about 750 words repeated site-wide, which diluted each page's topic
+// and added nothing unique. The full list stays one click away on /services.
+// A published AI-created service belongs to no group, so it falls back to a
+// short list rather than everything.
 const currentGroup = serviceGroups.find((g) => g.services.includes(service.slug));
-const others = currentGroup?.slug === 'air-conditioning'
-  ? allServices.filter((s) => s.slug !== service.slug && currentGroup.services.includes(s.slug))
-  : allServices.filter((s) => s.slug !== service.slug);
+const others = currentGroup
+  ? currentGroup.services
+      .filter((slug) => slug !== service.slug)
+      .map((slug) => allServices.find((s) => s.slug === slug))
+      .filter((s): s is (typeof allServices)[number] => Boolean(s))
+  : allServices.filter((s) => s.slug !== service.slug).slice(0, 6);
+
+// Unique per-page sections: what changes the price, extra questions, and (on
+// the emergency page) what to have ready when you ring.
+const extra = serviceExtras[service.slug];
+const allFaqs = [...service.faqs, ...(extra?.extraFaqs ?? [])];
 
 const HEADING: Record<string, string> = {
   'emergency-plumbing': 'Emergency plumber',
@@ -115,7 +125,7 @@ const serviceSchema = {
   title={service.metaTitle}
   description={service.metaDescription}
 >
-  <Schema slot="head" breadcrumb={crumbs} faqs={service.faqs} extra={serviceSchema} />
+  <Schema slot="head" breadcrumb={crumbs} faqs={allFaqs} extra={serviceSchema} />
 
   <HeroWithForm
     eyebrow={service.eyebrow}
@@ -261,12 +271,43 @@ const serviceSchema = {
     </div>
   </section>
 
-  <section class="section">
+  {extra?.haveReady && (
+    <section class="section">
+      <div class="container measure-wide">
+        <span class="eyebrow">When you ring</span>
+        <h2>{extra.haveReady.heading}</h2>
+        <ul class="ticks">
+          {extra.haveReady.items.map((item) => <li><Tick /> {item}</li>)}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  {extra?.price && (
+    <section class={extra.haveReady ? 'section section-alt' : 'section'}>
+      <div class="container">
+        <span class="eyebrow">Pricing</span>
+        <h2>What affects the price</h2>
+        <p class="measure">{extra.price.intro}</p>
+        <div class="guidance">
+          {extra.price.factors.map((f) => (
+            <div class="guidance-item">
+              <h3>{f.title}</h3>
+              <p>{f.body}</p>
+            </div>
+          ))}
+        </div>
+        <p class="measure price-terms">The price is agreed before any work starts. We take card and cash.</p>
+      </div>
+    </section>
+  )}
+
+  <section class={extra?.price && !extra.haveReady ? 'section section-alt' : 'section'}>
     <div class="container measure-wide">
       <span class="eyebrow">Questions</span>
       <h2>Common questions</h2>
       <div class="faqs">
-        {service.faqs.map((f) => (
+        {allFaqs.map((f) => (
           <details class="faq">
             <summary>{f.q}</summary>
             <p>{f.a}</p>
@@ -319,7 +360,7 @@ const serviceSchema = {
   <section class="section">
     <div class="container">
       <span class="eyebrow">Other services</span>
-      <h2>Other work we take on</h2>
+      <h2>{currentGroup ? `More ${currentGroup.label.toLowerCase().replace(/^bathrooms$/, 'bathroom')} work we take on` : 'Other work we take on'}</h2>
       <ul class="grid grid-3 card-grid">
         {others.map((s) => (
           <li class="card">
@@ -332,6 +373,7 @@ const serviceSchema = {
           </li>
         ))}
       </ul>
+      <p class="all-services-link"><a href="/services">See every service we offer <span aria-hidden="true">&rarr;</span></a></p>
     </div>
   </section>
 
