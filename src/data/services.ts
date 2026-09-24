@@ -77,7 +77,7 @@ export const services: Service[] = [
     faqs: [
       {
         q: 'Do you really answer at night?',
-        a: 'Emergency callout is available 24/7. The office is open Monday to Friday, 8:00 to 17:30, and outside those hours the booking line goes to whoever is on call.',
+        a: 'Yes. Emergency callout is available 24/7. The office is open every day from 7am to 10pm, and outside those hours the same number goes straight to whoever is on call.',
       },
       {
         q: 'What counts as an emergency?',
