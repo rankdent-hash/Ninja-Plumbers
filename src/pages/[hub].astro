@@ -4,6 +4,7 @@
 // "heating engineer london", "drainage company london" — then send each
 // visitor to the page for their actual problem. Copy lives in
 // src/data/hubs.ts; the links there are checked against real pages at build.
+import { SCHEMA_AREA_SERVED } from '../data/serviceArea';
 import Base from '../layouts/Base.astro';
 import HeroWithForm from '../components/HeroWithForm.astro';
 import Schema from '../components/Schema.astro';
@@ -38,7 +39,7 @@ const hubSchema = {
   name: label,
   serviceType: label,
   description: hub.metaDescription,
-  areaServed: { '@type': 'City', name: 'London' },
+  areaServed: SCHEMA_AREA_SERVED,
   provider: { '@type': 'Plumber', name: site.name, telephone: site.booking.tel, url: site.url },
 };
 ---

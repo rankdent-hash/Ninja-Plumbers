@@ -10,6 +10,7 @@
 //
 // So each brand gets one page covering all four intents for that brand, and
 // the four service pages carry the intent-level content.
+import { SCHEMA_AREA_SERVED } from '../../data/serviceArea';
 import Base from '../../layouts/Base.astro';
 import site from '../../data/site.json';
 import { brands } from '../../data/brands';
@@ -57,7 +58,7 @@ const schema = {
   '@type': 'Service',
   serviceType: `${brand.name} boiler repair and servicing`,
   provider: { '@type': 'Plumber', name: site.legalName, telephone: site.booking.tel, url: site.url },
-  areaServed: { '@type': 'City', name: 'London' },
+  areaServed: SCHEMA_AREA_SERVED,
 };
 
 // The long form runs past 65 characters for brands with long names — "Alpha

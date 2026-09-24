@@ -42,3 +42,14 @@ export const CORRIDOR_MILES = 3;
  * a half times larger than it is.
  */
 export const CORRIDOR_AREA_SHARE_PCT = 40;
+
+/**
+ * Where the business works, for structured data (schema.org areaServed): the
+ * city plus the main towns around Guildford. Kept here so the website's
+ * description of its coverage cannot drift from what the form accepts.
+ */
+export const SCHEMA_AREA_SERVED = [
+  { '@type': 'City', name: 'London' },
+  ...['Guildford', 'Woking', 'Godalming', 'Farnham', 'Camberley', 'Aldershot', 'Farnborough', 'Cranleigh', 'Dorking']
+    .map((name) => ({ '@type': 'City', name })),
+];

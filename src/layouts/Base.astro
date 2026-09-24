@@ -1,5 +1,6 @@
 ---
 import site from '../data/site.json';
+import { SCHEMA_AREA_SERVED } from '../data/serviceArea';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import MobileBar from '../components/MobileBar.astro';
@@ -40,7 +41,7 @@ const localBusiness = {
     postalCode: site.address.postcode,
     addressCountry: site.address.country,
   },
-  areaServed: 'London, UK',
+  areaServed: SCHEMA_AREA_SERVED,
   openingHoursSpecification: [
     {
       '@type': 'OpeningHoursSpecification',
@@ -58,7 +59,7 @@ const localBusiness = {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{title}</title>
 <meta name="description" content={description}>
-<meta name="google-site-verification" content="cR-PivC0_1-zovfFw_6teSvNQpn_Lu8ezDM7NmlRrzk" />
+{site.googleSiteVerification && <meta name="google-site-verification" content={site.googleSiteVerification} />}
 <link rel="canonical" href={canonical}>
 {noindex && <meta name="robots" content="noindex, nofollow">}
 <meta property="og:title" content={title}>

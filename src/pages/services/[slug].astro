@@ -17,6 +17,7 @@
 // next deploy.
 export const prerender = false;
 
+import { SCHEMA_AREA_SERVED } from '../../data/serviceArea';
 import Base from '../../layouts/Base.astro';
 import site from '../../data/site.json';
 import { services } from '../../data/services';
@@ -118,7 +119,7 @@ const serviceSchema = {
       addressCountry: site.address.country,
     },
   },
-  areaServed: { '@type': 'City', name: 'London' },
+  areaServed: SCHEMA_AREA_SERVED,
 };
 ---
 <Base

@@ -2,6 +2,7 @@
 // One page per appliance or fixture. Same shape as a service page so the two
 // read as one site, with a cross-link block back to the core services this
 // job belongs to — nothing under /appliances is a dead end.
+import { SCHEMA_AREA_SERVED } from '../../data/serviceArea';
 import Base from '../../layouts/Base.astro';
 import site from '../../data/site.json';
 import { appliances, applianceGroups } from '../../data/appliances';
@@ -57,7 +58,7 @@ const serviceSchema = {
       addressCountry: site.address.country,
     },
   },
-  areaServed: { '@type': 'City', name: 'London' },
+  areaServed: SCHEMA_AREA_SERVED,
 };
 ---
 <Base title={appliance.metaTitle} description={appliance.metaDescription}>
