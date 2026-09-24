@@ -137,6 +137,24 @@ export const DISTRICT_NAMES: Record<string, string[]> = {
   KT21: ['Ashtead'],
   KT22: ['Leatherhead', 'Fetcham', 'Oxshott'],
   KT23: ['Bookham'],
+  // Around Guildford (Sept 2026): same OS Open Names source, district and
+  // county council names in that data (Waverley, Rushmoor, Surrey Heath) left out.
+  GU6: ['Cranleigh', 'Ewhurst', 'Alfold'],
+  GU7: ['Godalming', 'Farncombe', 'Busbridge'],
+  GU8: ['Milford', 'Elstead', 'Witley', 'Hambledon', 'Chiddingfold'],
+  GU9: ['Farnham', 'Upper Hale', 'Weybourne', 'Badshot Lea'],
+  GU10: ['Farnham', 'Tongham', 'Wrecclesham', 'Rowledge'],
+  GU11: ['Aldershot'],
+  GU12: ['Ash', 'Ash Vale', 'Aldershot', 'Mytchett'],
+  GU14: ['Farnborough'],
+  GU15: ['Camberley'],
+  GU16: ['Frimley', 'Mytchett', 'Deepcut'],
+  GU18: ['Lightwater'],
+  GU19: ['Bagshot'],
+  GU20: ['Windlesham'],
+  GU21: ['Woking', 'Knaphill', 'Sheerwater'],
+  GU22: ['Woking', 'Pyrford'],
+  RH4: ['Dorking', 'Westcott'],
   // Guildford districts (Sept 2026): place names from OS Open Names, April 2026
   // (OGL v3.0), ranked by how many of the district's streets each covers.
   GU1: ['Guildford'],
