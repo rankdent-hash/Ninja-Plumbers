@@ -344,8 +344,8 @@ const corridorSharePct = CORRIDOR_AREA_SHARE_PCT;
       position for the postcode district, and it holds {Object.keys(POINTS).length} of them; these are
       not among them, so {offMap.length === 1 ? 'it' : 'they'} would have to be plotted somewhere
       invented. {offMap.length === 1 ? 'It is' : 'They are'} still counted in the table below, and
-      {offMap.some((r) => COVERED_OUTSIDE_LONDON.some((n) => r.district.startsWith('GU') || r.district.startsWith('AL')))
-        ? 'a district being absent here says nothing about whether we cover it — Guildford and St Albans are covered and have no dot position yet.'
+      {offMap.some((r) => r.district === 'GU10' || r.district === 'GU12')
+        ? 'being absent here says nothing about whether we cover it — GU10 and GU12 are partly inside Guildford, which we cover, but their centres fall west of the map frame.'
         : 'being absent here says nothing about whether we cover the place.'}
     </p>
   )}
@@ -492,7 +492,7 @@ const corridorSharePct = CORRIDOR_AREA_SHARE_PCT;
     <h2>What the map is and isn&rsquo;t</h2>
     <p class="admin-note">
       <strong>Not everything drawn here is a place we work.</strong> Greater London&rsquo;s 33 boroughs,
-      plus Guildford and St Albans, are filled blue-grey with a solid border: those are covered today.
+      plus Guildford, are filled blue-grey with a solid border: those are covered today.
       The {plannedCount} unfilled shapes with a dashed border are the districts the planned M25 corridor
       passes through &mdash; they are named so the expansion can be read against real places, and we do
       not work in them yet. They are left unfilled on purpose: only about
@@ -502,12 +502,12 @@ const corridorSharePct = CORRIDOR_AREA_SHARE_PCT;
       get in traffic.
     </p>
     <p class="admin-note">
-      Two details worth knowing before you lean on this. <strong>Guildford</strong> is not near the
+      One detail worth knowing before you lean on this. <strong>Guildford</strong> is not near the
       corridor at all &mdash; its town centre is about 7&frac12; miles from the motorway, roughly
       4&frac12; miles beyond the edge of the band. It is on the map because we cover it, not because
-      of where the M25 goes. <strong>St Albans</strong> is a coin toss: the city centre is about 2.8
-      miles from the motorway, so it falls inside the band by around 250 metres, and picking a
-      slightly different point in the city puts it outside. Treat the band&rsquo;s edge as
+      of where the M25 goes; its postcode districts GU1&ndash;GU5, GU23 and GU24 have their own dots,
+      and GU10 and GU12, which straddle its western edge, are listed separately because their centres
+      fall outside the frame. Treat the band&rsquo;s edge as
       approximate everywhere &mdash; East Hertfordshire and Harlow miss it by a tenth of a mile, and
       a 3.1-mile band would have pulled them both in.
     </p>

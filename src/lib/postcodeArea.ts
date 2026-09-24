@@ -45,7 +45,7 @@ export async function lookupPostcode(postcode: string): Promise<Lookup> {
     const r = body?.result;
     if (!r) return { valid: true, inServiceArea: true };
     // Greater London, plus the districts we cover beyond it. Testing the region
-    // alone used to flag a Guildford or St Albans job as out of area and put
+    // alone used to flag a Guildford job as out of area and put
     // "*** OUTSIDE SERVICE AREA ***" at the top of the notification email for a
     // customer we do in fact serve. COVERED_OUTSIDE_LONDON is the same list the
     // admin map draws as covered, so the two cannot disagree.

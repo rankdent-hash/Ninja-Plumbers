@@ -342,7 +342,30 @@ export const M25: string[] = [
   "M593.8,272.2L618.3,280.6L640.7,280.9",
 ];
 
+//
+// GUILDFORD DISTRICTS (GU1-GU5, GU23, GU24), added Sept 2026, DO have recorded
+// provenance. Each is the mean position of every postcode in the district in
+// the ONS Postcode Directory, February 2026 (bundled in the npm package
+// uk-address-lookup 0.1.0), projected with a least-squares fit of this map's
+// own x/y against the same centroids for all 329 districts already plotted
+// (median error 0.10 miles, 90th percentile 0.31, worst 0.90). Licence: Open
+// Government Licence v3.0. Required attribution: Contains OS data (c) Crown
+// copyright and database right 2026; Contains Royal Mail data (c) Royal Mail
+// copyright and database right 2026; Source: Office for National Statistics
+// licensed under the Open Government Licence v.3.0.
+// These are the districts with a meaningful share of their postcodes inside
+// the Guildford boundary above (GU1, GU2 100%; GU23 99%; GU3 97%; GU4 94%;
+// GU5 47%; GU24 17%). KT24 (100% inside) was already plotted. GU12 (64%)
+// and GU10 (17%) are too: their centres fall west of this frame, so they are
+// left off rather than drawn at the edge, and /admin/areas lists them.
 export const POINTS: Record<string, [number, number]> = {
+  "GU1": [217.2, 1683.4],
+  "GU2": [162.5, 1675.7],
+  "GU3": [98.0, 1671.8],
+  "GU4": [263.5, 1682.7],
+  "GU5": [319.5, 1817.2],
+  "GU23": [326.1, 1531.5],
+  "GU24": [98.3, 1421.2],
   "BR1": [1313.4, 1172.6],
   "BR2": [1309.3, 1249.1],
   "BR3": [1214, 1196.7],

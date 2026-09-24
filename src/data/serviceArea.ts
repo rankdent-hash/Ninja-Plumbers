@@ -10,18 +10,13 @@
  * Local authority districts outside Greater London that are covered today.
  * Names must match OUTER_DISTRICTS in src/data/londonMap.ts exactly.
  *
- * Both are here because the business covers them, not because of where the M25
- * runs. Measured to the motorway centreline:
- *   - Guildford town centre is 7.53 miles out, so roughly 4.5 miles beyond the
- *     edge of the 3-mile band. Nowhere near it, on any published coordinate
- *     for the town centre (they range 7.1-7.7 miles).
- *   - St Albans city centre is 2.85 miles out, which is inside the band by
- *     about 250 metres. That verdict is not robust: St Peter's Church, an
- *     equally standard reference for the city centre, measures 3.08 miles and
- *     falls outside. Do not state flatly that St Albans is in the corridor.
- * Neither is part of the planned expansion — they are already served.
+ * Guildford: confirmed by the owner for Ninja Plumbers (Sept 2026). It is well
+ * outside the M25 corridor (town centre about 7.5 miles beyond the motorway),
+ * so it is here as a place already served, not as part of the planned
+ * expansion. The Tamesis codebase this admin came from also lists St Albans;
+ * that was Tamesis's coverage, not confirmed for Ninja, so it is not listed.
  */
-export const COVERED_OUTSIDE_LONDON: readonly string[] = ['Guildford', 'St Albans'];
+export const COVERED_OUTSIDE_LONDON: readonly string[] = ['Guildford'];
 
 /** Planned expansion: how far either side of the M25 the corridor band is drawn. */
 export const CORRIDOR_MILES = 3;

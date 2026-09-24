@@ -137,6 +137,15 @@ export const DISTRICT_NAMES: Record<string, string[]> = {
   KT21: ['Ashtead'],
   KT22: ['Leatherhead', 'Fetcham', 'Oxshott'],
   KT23: ['Bookham'],
+  // Guildford districts (Sept 2026): place names from OS Open Names, April 2026
+  // (OGL v3.0), ranked by how many of the district's streets each covers.
+  GU1: ['Guildford'],
+  GU2: ['Guildford', 'Artington'],
+  GU3: ['Wood Street Village', 'Flexford', 'Normandy', 'Artington'],
+  GU4: ['Chilworth', 'Shalford', 'Jacobs Well', 'West Clandon', 'Bramley'],
+  GU5: ['Bramley', 'Wonersh', 'Gomshall', 'Shamley Green'],
+  GU23: ['Ripley', 'Send', 'Burntcommon', 'Send Marsh', 'Ockham'],
+  GU24: ['Bisley', 'Chobham', 'West End', 'Pirbright', 'Brookwood'],
   KT24: ['East Horsley', 'West Horsley', 'Effingham'],
 
   // --- Havering, Barking and Dagenham, Thurrock ---
