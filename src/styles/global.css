@@ -2995,6 +2995,9 @@ body.qr-open { overflow: hidden; }
   aspect-ratio: 4 / 3;
   min-width: 0;
 }
+/* The van photo runs the full width of the grid, above the two job tiles. */
+.work-tile-wide { grid-column: 1 / -1; aspect-ratio: 16 / 7; }
+.work-tile-wide img { object-position: center 62%; }
 .work-tile img {
   display: block;
   width: 100%;
@@ -3031,6 +3034,8 @@ body.qr-open { overflow: hidden; }
 
 @media (max-width: 600px) {
   .work-grid { grid-template-columns: 1fr; gap: 14px; }
+  .work-tile-wide { aspect-ratio: 4 / 3; }
+  .work-tile-wide img { object-position: 30% center; }
   .work-caption { padding: 36px 15px 14px; }
   .work-caption strong { font-size: 0.98rem; }
 }
@@ -3573,3 +3578,17 @@ body.qr-open { overflow: hidden; }
 
 /* Service x area pages: the pairing-specific paragraph under the job list. */
 .combo-local { margin: 18px 0 0; }
+
+/* About page: the van photo under "Who we are". */
+.about-photo { margin: 36px 0 0; }
+.about-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center 62%;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.about-photo figcaption { margin-top: 10px; font-size: 0.9rem; color: var(--muted); }
