@@ -8,7 +8,7 @@ import { appliances } from './appliances';
 import { dampPages } from './damp';
 import { blogPosts } from './blog';
 import { serviceGroups } from './nav';
-import { areas } from './areas';
+import { allAreas as areas } from './areas';
 import { combos } from './combos';
 import { postcodes } from './postcodes';
 import { brands } from './brands';
@@ -112,7 +112,7 @@ const LOCAL_HEADING: Record<string, string> = {
 
 const PAGES: SearchEntry[] = [
   { t: 'page', title: 'Contact us', sub: 'Phone, WhatsApp, email and the office address', url: '/contact', k: 'contact phone call number email whatsapp address office hours book booking' },
-  { t: 'page', title: 'Areas we cover', sub: 'Every London area we work in', url: '/areas-we-cover', k: 'areas area coverage cover london borough boroughs where near me local' },
+  { t: 'page', title: 'Areas we cover', sub: 'London, and Guildford and the towns around it', url: '/areas-we-cover', k: 'areas area coverage cover london borough boroughs where near me local guildford surrey woking farnham godalming camberley aldershot farnborough dorking' },
   { t: 'page', title: 'Postcode districts', sub: 'Coverage by postcode district', url: '/postcodes', k: 'postcode postcodes district districts coverage' },
   { t: 'page', title: 'All services', sub: 'Everything we do, in one place', url: '/services', k: 'services service what we do' },
   { t: 'page', title: 'Appliances & fixtures', sub: 'Softeners, pumps, taps and appliance plumbing', url: '/appliances', k: 'appliance appliances fixtures fittings install installation fitted machine pump tap filter' },

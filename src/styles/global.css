@@ -3568,3 +3568,5 @@ body.qr-open { overflow: hidden; }
 .beyond-london li { display: flex; flex-direction: column; gap: 2px; padding: 12px 0; border-bottom: 1px solid var(--border); }
 .beyond-london strong { color: var(--navy); font-family: var(--font-heading); font-weight: 600; }
 .beyond-london span { color: var(--muted); font-size: 0.9rem; }
+.beyond-london a { text-decoration: none; }
+.beyond-london a strong { text-decoration: underline; text-underline-offset: 3px; }

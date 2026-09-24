@@ -3,7 +3,7 @@ import Base from '../../../layouts/Base.astro';
 import site from '../../../data/site.json';
 import { combos } from '../../../data/combos';
 import { services } from '../../../data/services';
-import { areas } from '../../../data/areas';
+import { allAreas as areas } from '../../../data/areas';
 import { comboDetail } from '../../../data/combo-detail';
 import HeroWithForm from '../../../components/HeroWithForm.astro';
 import Schema from '../../../components/Schema.astro';
@@ -43,10 +43,16 @@ const crumbs = [
   { label: service.title.replace('&amp;', 'and'), href: `/services/${service.slug}` },
   { label: area.name },
 ];
+// Outside London (the towns around Guildford) the coverage answer has to say
+// where the engineers come from, rather than "across Greater London".
+const outside = area.region === 'outside';
+const coverAnswer = outside
+  ? `We do. ${area.name} is in ${area.borough}, ${area.county}, covering the ${area.postcodes.join(', ')} postcodes. Our engineers come out from our Fulham base, so for an emergency we give you an honest arrival time when you ring.`
+  : `We do. ${area.name} falls within ${area.borough}, covering the ${area.postcodes.join(', ')} postcodes, and our engineers are out across Greater London from our Fulham office every day.`;
 // Matches the visible FAQ on the page, in the same order.
 const pageFaqs = [
   { q: `Do you cover ${area.name}?`,
-    a: `We do. ${area.name} falls within ${area.borough}, covering the ${area.postcodes.join(', ')} postcodes, and our engineers are out across Greater London from our Fulham office every day.` },
+    a: coverAnswer },
   ...(detail ? [detail.faq] : []),
   { q: 'What does it cost?',
     a: 'You will have a price for the work before an engineer starts. If something behind the wall changes the scope, we pause and talk it through with you rather than carrying on and billing you afterwards.' },
@@ -80,7 +86,7 @@ const schema = {
   },
   areaServed: {
     '@type': 'Place',
-    name: `${area.name}, London`,
+    name: `${area.name}, ${outside ? area.county : 'London'}`,
     containedInPlace: { '@type': 'AdministrativeArea', name: area.borough },
   },
 };
@@ -132,7 +138,9 @@ const schema = {
         <p>
           <strong>{area.name === area.borough
             ? `We cover ${area.name},`
-            : `${area.name} is in the London Borough of ${area.borough},`}</strong> across {area.postcodes.join(', ')}. What kind of buildings are around here tends to decide what goes wrong:
+            : outside
+              ? `${area.name} is in ${area.borough}, ${area.county},`
+              : `${area.name} is in the London Borough of ${area.borough},`}</strong> across {area.postcodes.join(', ')}. What kind of buildings are around here tends to decide what goes wrong:
           <a href={`/areas/${area.slug}`} class="inline-link">read more about plumbing in {area.name} &rarr;</a>
         </p>
       </div>
@@ -146,7 +154,7 @@ const schema = {
       <div class="faqs">
         <details class="faq">
           <summary>Do you cover {area.name}?</summary>
-          <p>We do. {area.name} falls within {area.borough}, covering the {area.postcodes.join(', ')} postcodes, and our engineers are out across Greater London from our Fulham office every day.</p>
+          <p>{coverAnswer}</p>
         </details>
         {detail && (
           <details class="faq">

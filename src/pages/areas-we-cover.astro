@@ -8,12 +8,13 @@ import site from '../data/site.json';
 // Covered towns beyond London. Keep in step with COVERED_COUNCILS in
 // src/data/serviceArea.ts, which is what the enquiry form actually checks.
 const guildfordArea = [
-  { town: 'Guildford', places: 'Burpham, Merrow, Shalford, Chilworth, Worplesdon, Send, Ripley, Ash' },
-  { town: 'Woking', places: 'Knaphill, Pyrford, Sheerwater' },
+  { town: 'Guildford', slug: 'guildford', places: 'Burpham, Merrow, Shalford, Chilworth, Worplesdon, Send, Ripley, Ash' },
+  { town: 'Woking', slug: 'woking', places: 'Knaphill, Pyrford, Sheerwater' },
   { town: 'Godalming', places: 'Farncombe, Milford, Elstead, Witley' },
-  { town: 'Farnham', places: 'Upper Hale, Wrecclesham, Rowledge, Tongham' },
+  { town: 'Farnham', slug: 'farnham', places: 'Upper Hale, Wrecclesham, Rowledge, Tongham' },
   { town: 'Camberley', places: 'Frimley, Bagshot, Lightwater, Windlesham' },
-  { town: 'Aldershot and Farnborough', places: 'Mytchett, Ash Vale' },
+  { town: 'Aldershot', slug: 'aldershot', places: 'Ash, Ash Vale, North Camp' },
+  { town: 'Farnborough', slug: 'farnborough', places: 'Cove, West Heath, Mytchett' },
   { town: 'Cranleigh', places: 'Ewhurst, Bramley, Wonersh' },
   { town: 'Dorking', places: 'Westcott, and the rest of Mole Valley' },
 ];
@@ -90,7 +91,12 @@ const guildfordArea = [
     </p>
     <ul class="beyond-london">
       {guildfordArea.map((t) => (
-        <li><strong>{t.town}</strong> <span>{t.places}</span></li>
+        <li>
+          {t.slug
+            ? <a href={`/areas/${t.slug}`}><strong>{t.town}</strong></a>
+            : <strong>{t.town}</strong>}
+          <span>{t.places}</span>
+        </li>
       ))}
     </ul>
     <p class="small">Somewhere nearby that isn&rsquo;t listed? Call {site.booking.display} with your postcode and we&rsquo;ll tell you straight away.</p>

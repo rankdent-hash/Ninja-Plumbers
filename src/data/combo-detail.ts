@@ -968,6 +968,52 @@ export const comboDetail: Record<string, ComboDetail> = {
       a: 'Usually, but pressure is the question to settle first. On a gravity-fed system the loft bathroom sits close to the tank, which leaves very little head — often not enough for a decent shower without a pump. We check the system before you choose anything, because the wrong shower on the wrong system is an expensive way to find out.',
     },
   },
+
+  // ---------- Around Guildford (Sept 2026) ----------
+  'emergency-plumbing|guildford': {
+    points: [
+      'Burst and leaking pipes in older town-centre and village houses after a cold snap',
+      'Leaks in shared student houses near the university, where the landlord needs to know straight away',
+      'No hot water from scaled-up combi boilers failing in the first cold week',
+    ],
+    faq: {
+      q: 'How quickly can you get to Guildford?',
+      a: 'Our engineers come from our base in Fulham, so it depends on the time of day and the A3. When you ring we will give you an honest arrival time rather than a promise, and talk you through turning off the water or power in the meantime so the damage stops while we travel.',
+    },
+  },
+  'emergency-plumbing|woking': {
+    points: [
+      'Leaks in town-centre apartment blocks that need the managing agent to reach the shared stopcock',
+      'Burst pipes in lofts and garages of 1970s and 80s estate houses',
+      'Overflowing toilets and blocked drains on older terraced streets near the centre',
+    ],
+    faq: {
+      q: 'I live in a new apartment block in Woking. Who do I call first?',
+      a: 'Call us, and call the building\'s managing agent or concierge as well: in most newer blocks the stopcock that isolates your flat, or the whole riser, is in a plant room they control. If water is near electrics, switch off at your consumer unit if you can do it without standing in water.',
+    },
+  },
+  'boiler-repair|guildford': {
+    points: [
+      'Scale in combi heat exchangers and on the hot water side, from Guildford\'s hard water',
+      'Ageing system boilers in larger suburban houses in Merrow, Burpham and Onslow',
+      'Landlord boiler faults in shared student houses, often found at the annual gas safety check',
+    ],
+    faq: {
+      q: 'Will a scale reducer stop my boiler breaking down again?',
+      a: 'It helps with one cause. In hard water areas like Guildford, a scale reducer on the incoming mains slows the build-up on the hot water side of a combi, and it is worth checking one is fitted and working. It will not fix a fault that is already there, and it does nothing for sludge in the heating side, which is a separate problem with a separate fix.',
+    },
+  },
+  'boiler-repair|woking': {
+    points: [
+      'First or second replacement boilers in 1970s and 80s estate houses',
+      'Pressure loss and leaks on older heating systems stretched by extensions',
+      'Boilers in newer apartment blocks where the flue and access need the managing agent',
+    ],
+    faq: {
+      q: 'My boiler is over 15 years old. Is it worth repairing?',
+      a: 'Sometimes. If the part is still made and the rest of the boiler is sound, a repair can buy years. If the fault is the heat exchanger, or parts are no longer made, replacement usually makes more sense. We price both before you decide, so you are comparing two figures rather than being told which to pick.',
+    },
+  },
 };
 
 export default comboDetail;

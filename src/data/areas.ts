@@ -22,6 +22,10 @@ export type Area = {
   common: string[];       // problems that come up locally
   nearby: string[];       // slugs, for internal linking
   note?: string;          // anything specific worth saying
+  // Outside Greater London (src/data/areas-guildford.ts). London pages leave
+  // both unset; templates use them to say "Surrey" rather than "London".
+  region?: 'london' | 'outside';
+  county?: string;
 };
 
 export const areas: Area[] = [
@@ -1182,3 +1186,8 @@ export const areas: Area[] = [
 }
 
 export default areas;
+
+// London areas plus the covered towns around Guildford. Use this for looking
+// an area up by slug; keep using `areas` wherever the list means London.
+import { guildfordAreas } from './areas-guildford';
+export const allAreas: Area[] = [...areas, ...guildfordAreas];

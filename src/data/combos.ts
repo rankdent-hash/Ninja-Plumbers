@@ -216,6 +216,16 @@ export const combos: Combo[] = [
 
   { service: 'bathroom-installation', area: 'enfield', volume: 140, cpc: '£4.41', kd: 8,
     angle: 'Suburban houses with room for a second bathroom or en-suite, usually on vented systems that need pressure checking first.' },
+
+  // ---- Around Guildford (Sept 2026). Same 140+ bar, Semrush UK. ----
+  { service: 'emergency-plumbing', area: 'guildford', volume: 260, cpc: '£9.88', kd: 8,
+    angle: 'Guildford is far enough from our Fulham base that an honest arrival time matters more than a promise, so the first call is about making the property safe while an engineer travels.' },
+  { service: 'emergency-plumbing', area: 'woking', volume: 140, cpc: '£16.02', kd: 7,
+    angle: 'In Woking the emergencies split between older houses near the centre and newer apartment blocks, where the first step is often reaching the managing agent for the shared stopcock.' },
+  { service: 'boiler-repair', area: 'guildford', volume: 170, cpc: '£7.70', kd: 24,
+    angle: 'Guildford\'s hard water is behind a lot of its boiler faults: scale in the heat exchanger and on the hot water side of combis long before anything else wears out.' },
+  { service: 'boiler-repair', area: 'woking', volume: 170, cpc: '£13.20', kd: 27,
+    angle: 'Many Woking estate houses are on their first or second boiler since the 1970s and 80s, so repair-or-replace is a real question and we give both figures.' },
 ];
 
 export default combos;
