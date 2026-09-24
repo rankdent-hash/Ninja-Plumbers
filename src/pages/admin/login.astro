@@ -38,6 +38,11 @@ const next = Astro.url.searchParams.get('next') || '/admin';
         </div>
       </div>
 
+      <label class="admin-remember">
+        <input type="checkbox" id="f-remember" name="remember" checked>
+        <span>Remember me on this device</span>
+      </label>
+
       <button type="submit" class="btn btn-orange btn-block btn-lg" id="admin-login-submit">Log in</button>
     </form>
   </div>
@@ -49,6 +54,17 @@ const next = Astro.url.searchParams.get('next') || '/admin';
     var errorBox = document.getElementById('admin-login-error');
     var submit = document.getElementById('admin-login-submit');
     var ERRORS = { invalid: 'Incorrect email or password.', not_configured: 'The admin panel is not connected yet.' };
+    var emailInput = document.getElementById('f-email');
+    var remember = document.getElementById('f-remember');
+
+    // "Remember me" keeps the email on this device so the form arrives filled
+    // in. The password is never stored by the page: it goes to the browser's
+    // own password manager (see the save offer after a successful login).
+    var KEY = 'ninja-admin-email';
+    try {
+      var saved = localStorage.getItem(KEY);
+      if (saved) { emailInput.value = saved; remember.checked = true; }
+    } catch (err) { /* storage blocked: the form still works, just empty */ }
 
     // A plain HTML form POST hits Astro's own CSRF guard on some browsers,
     // which do not send an Origin header on a top-level form navigation —
@@ -65,15 +81,30 @@ const next = Astro.url.searchParams.get('next') || '/admin';
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
-          email: document.getElementById('f-email').value,
+          email: emailInput.value,
           password: document.getElementById('f-password').value,
+          remember: remember.checked,
         }),
       })
         .then(function (res) {
           return res.json().catch(function () { return {}; }).then(function (body) { return { ok: res.ok, body: body }; });
         })
         .then(function (r) {
-          if (r.ok && r.body.ok) { location.href = next; return; }
+          if (r.ok && r.body.ok) {
+            try {
+              if (remember.checked) localStorage.setItem(KEY, emailInput.value.trim());
+              else localStorage.removeItem(KEY);
+            } catch (err) { /* ignore */ }
+            // Browsers can miss a login done by fetch, so hand the details to
+            // the password manager explicitly; it asks before saving anything.
+            var done = function () { location.href = next; };
+            if (remember.checked && window.PasswordCredential && navigator.credentials) {
+              navigator.credentials.store(new PasswordCredential(form)).then(done, done);
+            } else {
+              done();
+            }
+            return;
+          }
           errorBox.textContent = ERRORS[r.body.error] || 'Something went wrong. Please try again.';
           errorBox.hidden = false;
           submit.disabled = false;

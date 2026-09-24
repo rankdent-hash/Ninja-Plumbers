@@ -3558,3 +3558,7 @@ body.qr-open { overflow: hidden; }
 .safety-band h2 { margin-bottom: 18px; }
 .safety-note { margin: 20px 0 0; font-weight: 600; }
 .safety-note a { color: var(--navy); }
+
+/* Admin login: "Remember me" row between the password and the button. */
+.admin-remember { display: flex; align-items: center; gap: 10px; margin: 4px 0 18px; font-size: 0.92rem; color: var(--navy); cursor: pointer; }
+.admin-remember input { width: 18px; height: 18px; accent-color: var(--orange, #C4510E); margin: 0; }

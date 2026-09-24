@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 import { getSupabaseAdmin } from '../../../lib/supabaseAdmin';
-import { verifyPassword, createSession, SESSION_COOKIE, SESSION_TTL_SECONDS } from '../../../lib/adminAuth';
+import { verifyPassword, createSession, SESSION_COOKIE, SESSION_TTL_SECONDS, SHORT_SESSION_TTL_SECONDS } from '../../../lib/adminAuth';
 
 export const prerender = false;
 
@@ -21,6 +21,7 @@ export const POST: APIRoute = async ({ request, cookies }) => {
 
   const email = String(body.email || '').trim().toLowerCase();
   const password = String(body.password || '');
+  const remember = body.remember === true;
   if (!email || !password) return json({ ok: false, error: 'invalid' }, 400);
 
   const { data: admin } = await supabase
@@ -37,13 +38,19 @@ export const POST: APIRoute = async ({ request, cookies }) => {
 
   await supabase.from('admins').update({ last_login_at: new Date().toISOString() }).eq('id', admin.id);
 
-  const token = createSession({ id: admin.id, email: admin.email }, secret);
+  // "Remember me": a 30-day cookie. Otherwise no maxAge, so the browser drops
+  // the cookie when it closes, and the token inside expires in 12 hours.
+  const token = createSession(
+    { id: admin.id, email: admin.email },
+    secret,
+    remember ? SESSION_TTL_SECONDS : SHORT_SESSION_TTL_SECONDS
+  );
   cookies.set(SESSION_COOKIE, token, {
     httpOnly: true,
     secure: import.meta.env.PROD,
     sameSite: 'strict',
     path: '/',
-    maxAge: SESSION_TTL_SECONDS,
+    ...(remember ? { maxAge: SESSION_TTL_SECONDS } : {}),
   });
 
   return json({ ok: true }, 200);

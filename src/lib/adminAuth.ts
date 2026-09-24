@@ -9,7 +9,11 @@ import { randomBytes, pbkdf2Sync, timingSafeEqual, createHmac } from 'node:crypt
 
 const PBKDF2_ITERATIONS = 210_000; // OWASP 2023 minimum for PBKDF2-SHA256
 const KEY_LENGTH = 32;
-const SESSION_TTL_SECONDS = 30 * 24 * 60 * 60; // 30 days — a solo business owner checking leads, not a public app
+// "Remember me" ticked: 30 days on that device — a solo business owner
+// checking leads, not a public app. Unticked: a browser-session cookie, and
+// the token itself expires after 12 hours even if the browser stays open.
+const SESSION_TTL_SECONDS = 30 * 24 * 60 * 60;
+export const SHORT_SESSION_TTL_SECONDS = 12 * 60 * 60;
 
 export function hashPassword(password: string): string {
   const salt = randomBytes(16);
@@ -36,9 +40,13 @@ function sign(payloadB64: string, secret: string): string {
   return b64url(createHmac('sha256', secret).update(payloadB64).digest());
 }
 
-export function createSession(admin: { id: string; email: string }, secret: string): string {
+export function createSession(
+  admin: { id: string; email: string },
+  secret: string,
+  ttlSeconds: number = SESSION_TTL_SECONDS
+): string {
   const now = Math.floor(Date.now() / 1000);
-  const payload: SessionPayload = { id: admin.id, email: admin.email, iat: now, exp: now + SESSION_TTL_SECONDS };
+  const payload: SessionPayload = { id: admin.id, email: admin.email, iat: now, exp: now + ttlSeconds };
   const payloadB64 = b64url(Buffer.from(JSON.stringify(payload)));
   return `${payloadB64}.${sign(payloadB64, secret)}`;
 }
