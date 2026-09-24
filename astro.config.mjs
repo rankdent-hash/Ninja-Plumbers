@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import { legacyRedirects } from './src/data/legacy-redirects.mjs';
 import sitemap from '@astrojs/sitemap';
 import { createClient } from '@supabase/supabase-js';
 import { INDEX_POSTCODE_PAGES } from './src/data/postcodes.ts';
@@ -69,6 +70,8 @@ export default defineConfig({
   // than in vercel.json so the adapter emits them into its own routing config
   // — vercel.json routing does not reliably apply on top of Build Output API.
   redirects: {
+    // Old ninjaplumbers.co.uk URLs -> nearest page on this site.
+    ...legacyRedirects,
     '/index.html':          { status: 301, destination: '/' },
     '/services.html':       { status: 301, destination: '/services' },
     '/areas-we-cover.html': { status: 301, destination: '/areas-we-cover' },
