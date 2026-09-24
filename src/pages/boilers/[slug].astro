@@ -37,7 +37,7 @@ const crumbs = [
 // transitioning brands so no page implies a new unit can be bought.
 const offered = [
   { slug: 'boiler-repair', label: `${brand.name} boiler repair`, note: 'Breakdowns diagnosed before anything is quoted.' },
-  { slug: 'boiler-service', label: `${brand.name} boiler service`, note: 'The annual check that keeps a warranty valid.' },
+  { slug: 'boiler-service', label: `${brand.name} boiler service`, note: 'The yearly check most manufacturer warranties ask for.' },
   ...(brand.installs
     ? [{ slug: 'boiler-installation', label: `${brand.name} boiler installation`, note: 'Sized for the property, with the price agreed first.' }]
     : []),
@@ -45,7 +45,7 @@ const offered = [
 ];
 
 const faqs = [
-  brand.faq,
+  ...brand.faqs,
   {
     q: `Do you repair and service ${brand.name} boilers?`,
     a: `Yes. Gas work is carried out by Gas Safe registered engineers, which is the legal requirement for working on any gas boiler regardless of make.`,
@@ -99,6 +99,8 @@ const statusLine =
       <span class="eyebrow">About the brand</span>
       <h2>{brand.name} boilers</h2>
       <p class="measure">{brand.character}</p>
+      <h3>The {brand.name} range</h3>
+      <p class="measure">{brand.range}</p>
 
       {statusLine && (
         <div class="brand-status">
@@ -107,7 +109,7 @@ const statusLine =
       )}
 
       <h3>What we see on {brand.name} boilers</h3>
-      <ul class="tick-list">
+      <ul class="ticks">
         {brand.common.map((c) => <li><Tick /> {c}</li>)}
       </ul>
       <p class="small">
@@ -118,6 +120,21 @@ const statusLine =
   </section>
 
   <section class="section section-alt">
+    <div class="container">
+      <div class="guidance">
+        <div class="guidance-item">
+          <h2 class="guidance-h2">Servicing a {brand.name}</h2>
+          <p>{brand.servicing}</p>
+        </div>
+        <div class="guidance-item">
+          <h2 class="guidance-h2">Repair or replace?</h2>
+          <p>{brand.repairOrReplace}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="container">
       <span class="eyebrow">What we do</span>
       <h2>{brand.name} boiler work</h2>
@@ -138,7 +155,7 @@ const statusLine =
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section-alt">
     <div class="container">
       <span class="eyebrow">Questions</span>
       <h2>{brand.name} questions</h2>
@@ -154,7 +171,7 @@ const statusLine =
   </section>
 
   {others.length > 0 && (
-    <section class="section section-alt">
+    <section class="section">
       <div class="container">
         <span class="eyebrow">Other brands</span>
         <h2>We work on every make</h2>
