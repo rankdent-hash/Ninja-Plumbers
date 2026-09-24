@@ -19,7 +19,7 @@ export const prerender = false;
 // with a valid token can and cannot do.
 
 const PROTOCOL_VERSION = '2025-06-18';
-const SERVER_INFO = { name: 'tamesis-plumbers-blog', version: '1.0.0' };
+const SERVER_INFO = { name: 'ninja-plumbers-site', version: '1.0.0' };
 
 type JsonRpcRequest = { jsonrpc?: string; id?: string | number | null; method?: string; params?: Record<string, unknown> };
 

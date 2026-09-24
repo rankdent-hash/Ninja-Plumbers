@@ -1,6 +1,7 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 import type { Landing, PremiumArt, PremiumIcon } from '../data/landing';
 import { ICON } from '../data/premium-icons';
+import site from '../data/site.json';
 
 // Landing pages an AI/MCP client creates or edits, stored in Supabase — kept
 // entirely separate from the 10 hand-written campaigns in src/data/landing.ts,
@@ -12,15 +13,18 @@ import { ICON } from '../data/premium-icons';
 // rating and trustExtra are never accepted from a caller: every existing
 // landing page carries the same confirmed, live figures, so new ones reuse
 // them rather than risk an invented number ever reaching a page.
-export const REAL_RATING = { score: '4.6', count: '535+' };
+// Ninja Plumbers has no confirmed Google rating of its own yet, so new pages
+// carry none; set a real figure here only once it is confirmed.
+export const REAL_RATING: { score: string; count: string } | null = null;
 export const REAL_TRUST_EXTRA = [
-  '4.6 stars from 535+ Google reviews',
+  'Price agreed before any work starts',
   'Directly employed engineers, never subcontracted',
-  'Part of Tamesis Development Ltd, established 2019',
+  `${site.legalName}, established ${site.established}`,
 ];
 
 export const PREMIUM_ART_VALUES: PremiumArt[] = [
-  'tap', 'gauge', 'toilet', 'certificate', 'leak', 'pipes', 'burst', 'boiler', 'drain', 'bathroom',
+  // Only the illustrations LandingPremium.astro actually draws on this site.
+  'tap', 'gauge', 'toilet', 'certificate', 'leak', 'pipes',
 ];
 export const PREMIUM_ICON_VALUES = Object.keys(ICON) as PremiumIcon[];
 
@@ -57,7 +61,7 @@ export type LandingPageRow = {
   reassure: { title: string; body: string }[];
   faqs: { q: string; a: string }[];
   cross_link: { href: string; label: string; body: string } | null;
-  rating: { score: string; count: string };
+  rating: { score: string; count: string } | null;
   trust_extra: string[];
   offer: { disclaimer: string } | null;
   generated_by: string | null;

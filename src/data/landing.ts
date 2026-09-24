@@ -54,7 +54,7 @@ export type Landing = {
   // (rating and count are the same claim as trustExtra) — nothing new.
   premium?: {
     eyebrow: string;
-    rating: { score: string; count: string };
+    rating?: { score: string; count: string } | null;  // omit until confirmed
     whatsappLabel?: string; // defaults to "WhatsApp us a photo"
     proof: { label: string; note: string; icon: PremiumIcon }[];
     form: { title: string; sub: string; submit: string; note: string };
@@ -249,7 +249,6 @@ export const landings: Landing[] = [
     urgent: false,
     premium: {
       eyebrow: 'Tap repair across London',
-      rating: { score: '5.0', count: '8' },
       proof: [
         { label: 'Same-week appointments', note: 'Usually within days, not weeks', icon: 'calendar' },
         { label: 'Price agreed before we start', note: 'No surprise invoice, ever', icon: 'price' },
@@ -328,7 +327,7 @@ export const landings: Landing[] = [
     ],
     offer: { disclaimer: 'New customers only. Cannot be combined with other offers.' },
     trustExtra: [
-      `${site.name} rated 5.0 stars on Google`,
+      'Price agreed before any work starts',
       'Directly employed engineers, never subcontracted',
       `${site.legalName}, established ${site.established}`,
     ],
@@ -348,7 +347,6 @@ export const landings: Landing[] = [
     urgent: false,
     premium: {
       eyebrow: 'Low water pressure across London',
-      rating: { score: '5.0', count: '8' },
       proof: [
         { label: 'Proper pressure test', note: 'Measured at the mains and the fixture', icon: 'gauge' },
         { label: 'Price agreed before we start', note: 'No surprise invoice, ever', icon: 'price' },
@@ -426,7 +424,7 @@ export const landings: Landing[] = [
     ],
     offer: { disclaimer: 'New customers only. Cannot be combined with other offers.' },
     trustExtra: [
-      `${site.name} rated 5.0 stars on Google`,
+      'Price agreed before any work starts',
       'Directly employed engineers, never subcontracted',
       `${site.legalName}, established ${site.established}`,
     ],
@@ -446,7 +444,6 @@ export const landings: Landing[] = [
     urgent: false,
     premium: {
       eyebrow: 'Toilet repair across London',
-      rating: { score: '5.0', count: '8' },
       proof: [
         { label: 'Same-week appointments', note: 'Usually within days, not weeks', icon: 'calendar' },
         { label: 'Price agreed before we start', note: 'No surprise invoice, ever', icon: 'price' },
@@ -525,7 +522,7 @@ export const landings: Landing[] = [
     ],
     offer: { disclaimer: 'New customers only. Cannot be combined with other offers.' },
     trustExtra: [
-      `${site.name} rated 5.0 stars on Google`,
+      'Price agreed before any work starts',
       'Directly employed engineers, never subcontracted',
       `${site.legalName}, established ${site.established}`,
     ],
@@ -550,7 +547,6 @@ export const landings: Landing[] = [
     urgent: false,
     premium: {
       eyebrow: 'Landlords & letting agents · London',
-      rating: { score: '5.0', count: '8' },
       whatsappLabel: 'WhatsApp us',
       proof: [
         { label: 'Gas Safe registered', note: 'Landlord gas safety certificates (CP12)', icon: 'certificate' },
@@ -628,7 +624,7 @@ export const landings: Landing[] = [
     ],
     offer: { disclaimer: 'New customers only. Cannot be combined with other offers.' },
     trustExtra: [
-      `${site.name} rated 5.0 stars on Google`,
+      'Price agreed before any work starts',
       'Directly employed engineers, never subcontracted',
       `${site.legalName}, established ${site.established}`,
     ],
@@ -653,7 +649,6 @@ export const landings: Landing[] = [
     urgent: false,
     premium: {
       eyebrow: 'Leak detection across London',
-      rating: { score: '5.0', count: '8' },
       proof: [
         { label: 'Non-invasive detection', note: 'Acoustic and thermal equipment, not a hammer', icon: 'acoustic' },
         { label: 'Located before any floor comes up', note: 'A precise repair, not exploratory digging', icon: 'floor' },
@@ -724,7 +719,7 @@ export const landings: Landing[] = [
     ],
     offer: { disclaimer: 'New customers only. Cannot be combined with other offers.' },
     trustExtra: [
-      `${site.name} rated 5.0 stars on Google`,
+      'Price agreed before any work starts',
       'Directly employed engineers, never subcontracted',
       `${site.legalName}, established ${site.established}`,
     ],
@@ -744,7 +739,6 @@ export const landings: Landing[] = [
     urgent: false,
     premium: {
       eyebrow: 'General plumbing across London',
-      rating: { score: '5.0', count: '8' },
       proof: [
         { label: 'Same-week appointments', note: 'Usually booked within days', icon: 'calendar' },
         { label: 'Most jobs finished in one visit', note: 'Small repairs done there and then', icon: 'visit' },
@@ -815,7 +809,7 @@ export const landings: Landing[] = [
     ],
     offer: { disclaimer: 'New customers only. Cannot be combined with other offers.' },
     trustExtra: [
-      `${site.name} rated 5.0 stars on Google`,
+      'Price agreed before any work starts',
       'Directly employed engineers, never subcontracted',
       `${site.legalName}, established ${site.established}`,
     ],

@@ -1,11 +1,13 @@
 import { randomBytes, createHash } from 'node:crypto';
+import site from '../data/site.json';
 
 // Astro.url.origin / the APIRoute url param is not reliable behind Vercel's
 // proxy — it has been observed to reflect an internal "https://localhost"
 // rather than the real public host (the same issue already found and fixed
 // for the MCP server URL field in /admin/settings). Every OAuth endpoint
 // that needs its own absolute URL uses this constant instead.
-export const SITE_ORIGIN = 'https://www.tamesisplumbers.co.uk';
+// Read from site.json's appOrigin: the Vercel address until the domain moves.
+export const SITE_ORIGIN = site.appOrigin;
 
 // Minimal OAuth 2.1 authorization-code + PKCE wrapper around the existing
 // MCP bearer-token system (mcpAuth.ts). This exists for one reason: several

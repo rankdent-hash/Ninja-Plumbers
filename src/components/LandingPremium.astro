@@ -16,7 +16,10 @@ type Props = { lp: Landing; serviceTitle: string };
 const { lp, serviceTitle } = Astro.props;
 const p = lp.premium!;
 const topAreas = [...areas].sort((a, b) => b.volume - a.volume).slice(0, 10);
-const ratingPct = Math.round((parseFloat(p.rating.score) / 5) * 100);
+// No rating is shown until the business has its own confirmed Google figure:
+// `rating` is optional, and both the hero badge and the credentials tile
+// disappear without it rather than showing an empty or borrowed score.
+const ratingPct = p.rating ? Math.round((parseFloat(p.rating.score) / 5) * 100) : 0;
 
 // Submit-button rotation, picked client-side on each page load (see
 // EnquiryForm.astro). "Claim My £25 Off" only makes sense when the page
@@ -35,6 +38,7 @@ const starsRow = star.repeat(5);
     <div class="lp-hero-copy">
       <div class="lp-hero-top">
         <span class="eyebrow eyebrow-hero">{p.eyebrow}</span>
+        {p.rating && (
         <span class="lp-rating" role="img" aria-label={`Rated ${p.rating.score} out of 5 from ${p.rating.count} Google reviews`}>
           <Fragment set:html={googleG} />
           <span class="lp-stars" aria-hidden="true">
@@ -43,6 +47,7 @@ const starsRow = star.repeat(5);
           </span>
           <span class="lp-rating-text" aria-hidden="true">Google reviews</span>
         </span>
+        )}
       </div>
 
       <h1>{lp.h1}</h1>
@@ -104,6 +109,7 @@ const starsRow = star.repeat(5);
 <section class="lp-cred" aria-label="Credentials">
   <div class="container">
     <ul class="lp-cred-list">
+      {p.rating && (
       <li class="lp-cred-rating">
         <span class="lp-cred-g" set:html={googleG} />
         <span class="lp-cred-text">
@@ -114,6 +120,7 @@ const starsRow = star.repeat(5);
           </span>
         </span>
       </li>
+      )}
       <li>
         <span class="lp-cred-icon" set:html={icon('shield', 20)} />
         <span class="lp-cred-text"><strong>Gas Safe registered</strong><small>Gas work done legally and signed off</small></span>

@@ -54,7 +54,7 @@ const MAX_MCP_LANDING_PAGES_PER_HOUR = 10;
 
 // Service pages follow the same rule, but publishing one is a bigger claim
 // than a landing page: it's a real, Google-indexed statement that this is a
-// service Tamesis now offers, listed on /services, cross-linked from every
+// service Ninja Plumbers now offers, listed on /services, cross-linked from every
 // other service page, and in the sitemap from the next build (the page
 // itself resolves immediately). It is never wired into the
 // header mega menu or footer by any of this — those are hand-curated
@@ -204,7 +204,7 @@ export const TOOLS = [
   {
     name: 'list_blog_posts',
     description:
-      'List blog posts on the Tamesis Plumbers site. Returns id, slug, title, status and dates — use get_blog_post for the full content of one post.',
+      'List blog posts on the Ninja Plumbers site. Returns id, slug, title, status and dates — use get_blog_post for the full content of one post.',
     inputSchema: {
       type: 'object',
       properties: {
@@ -582,7 +582,7 @@ export const TOOLS = [
   {
     name: 'create_service_page',
     description:
-      'Create a new service page (the same /services/[slug] template as every real service) as a DRAFT. Not published by this tool — use publish_service_page (with dry_run to preview first). Publishing this is a bigger step than a blog post or landing page: it puts the page on the public /services hub, cross-linked from every other service page as something Tamesis now offers, and into the sitemap from the next deploy, so publish deliberately. It is also never wired into the header navigation or footer, whatever its status; that stays a separate, deliberate human edit.',
+      'Create a new service page (the same /services/[slug] template as every real service) as a DRAFT. Not published by this tool — use publish_service_page (with dry_run to preview first). Publishing this is a bigger step than a blog post or landing page: it puts the page on the public /services hub, cross-linked from every other service page as something Ninja Plumbers now offers, and into the sitemap from the next deploy, so publish deliberately. It is also never wired into the header navigation or footer, whatever its status; that stays a separate, deliberate human edit.',
     inputSchema: {
       type: 'object',
       required: ['title', 'h1', 'meta_title', 'meta_description', 'eyebrow', 'icon', 'summary', 'intro', 'does', 'guidance', 'aside', 'faqs'],

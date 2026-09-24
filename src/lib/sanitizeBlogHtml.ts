@@ -41,10 +41,12 @@ export function sanitizeBlogBody(html: string): string {
         // (cookies.astro, privacy.astro, the landing pages) — the editor
         // should not depend on whoever is typing to remember it.
         const isExternal = /^https?:\/\//i.test(attribs.href || '');
-        return {
-          tagName,
-          attribs: isExternal ? { ...attribs, rel: 'noopener' } : { href: attribs.href },
-        };
+        // Typed explicitly: TypeScript otherwise infers a union of the two
+        // object shapes that sanitize-html's Attributes type rejects.
+        const out: Record<string, string> = isExternal
+          ? { ...attribs, rel: 'noopener' }
+          : { href: attribs.href ?? '' };
+        return { tagName, attribs: out };
       },
     },
   }).trim();

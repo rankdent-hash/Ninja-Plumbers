@@ -72,7 +72,7 @@
   var publishBtn = document.getElementById('sp-publish-btn');
   if (publishBtn) {
     publishBtn.addEventListener('click', function () {
-      if (!window.confirm('Publish this service page? It will appear on /services, in the sitemap, and cross-linked from every other service page — a real, indexed statement that this is a service Tamesis now offers.')) return;
+      if (!window.confirm('Publish this service page? It will appear on /services, in the sitemap, and cross-linked from every other service page — a real, indexed statement that this is a service Ninja Plumbers now offers.')) return;
       publishBtn.disabled = true;
       jsonFetch('/api/admin/service-pages/' + encodeURIComponent(publishBtn.getAttribute('data-page-id')), {
         method: 'PATCH',

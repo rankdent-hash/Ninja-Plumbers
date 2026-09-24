@@ -11,7 +11,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="robots" content="noindex"/>
-<title>XML Sitemap | Tamesis Plumbers</title>
+<title>XML Sitemap | Ninja Plumbers</title>
 <style>
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Arial, sans-serif; background:#F7F9FB; color:#1C1C1C; margin:0; padding:40px 24px 60px; }
   .wrap { max-width: 960px; margin: 0 auto; }
@@ -28,7 +28,7 @@
 </head>
 <body>
 <div class="wrap">
-<h1>Tamesis Plumbers &#8212; XML Sitemap</h1>
+<h1>Ninja Plumbers &#8212; XML Sitemap</h1>
 <xsl:choose>
   <xsl:when test="sitemap:sitemapindex">
     <p class="sub">A sitemap index, listing the sitemap file(s) below.</p>

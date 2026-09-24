@@ -38,5 +38,6 @@
       "Saturday",
       "Sunday"
     ]
-  }
+  },
+  "appOrigin": "https://ninja-plumbers-london.vercel.app"
 }

@@ -1,4 +1,5 @@
 ---
+import site from '../../data/site.json';
 // API keys for the AI blog generation flow. Stored in Supabase rather than as
 // Vercel env vars, so a rotated key takes effect immediately with no
 // redeploy. Real values are never sent back to the browser — each field
@@ -31,7 +32,7 @@ if (!supabase) {
 // reached via a Vercel preview alias as well as the real domain, and an MCP
 // client needs the one stable, canonical URL regardless of which hostname
 // whoever generated the token happened to be looking at.
-const mcpUrl = 'https://www.tamesisplumbers.co.uk/api/mcp';
+const mcpUrl = `${site.appOrigin}/api/mcp`;
 const fmtDate = (iso: string | null) =>
   iso ? new Date(iso).toLocaleString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/London' }) : null;
 

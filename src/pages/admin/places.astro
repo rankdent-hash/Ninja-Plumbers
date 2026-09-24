@@ -343,7 +343,7 @@ const csv = rows.map((r) => ({
         var url = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
         var a = document.createElement('a');
         a.href = url;
-        a.download = 'tamesis-places.csv';
+        a.download = 'ninja-places.csv';
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);

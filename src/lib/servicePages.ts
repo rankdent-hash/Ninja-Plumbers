@@ -10,7 +10,7 @@ import type { Service } from '../data/services';
 // that section is generated from the same array this merges into.
 //
 // Publishing one of these is a bigger claim than publishing a landing page:
-// it's a real, Google-indexed statement that this is a service Tamesis now
+// it's a real, Google-indexed statement that this is a service Ninja Plumbers now
 // offers. It is never wired into the header mega menu or footer automatically
 // — those are hand-curated lists (src/data/nav.ts), and adding a new service
 // there stays a deliberate edit a person makes, not something a publish

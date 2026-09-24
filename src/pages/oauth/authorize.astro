@@ -60,14 +60,14 @@ if (!fatalError && client) {
 <AdminLayout title="Authorize connector">
   <div class="admin-login">
     <div class="admin-login-card">
-      <h1>Tamesis Admin</h1>
+      <h1>Ninja Plumbers Admin</h1>
       {fatalError ? (
         <p class="form-error-summary" role="alert">{fatalError}</p>
       ) : (
         <>
           <p class="admin-login-sub">
             <strong>{client?.client_name || 'An application'}</strong> wants to connect to the
-            Tamesis Plumbers MCP server — it will be able to draft blog posts, landing pages and
+            Ninja Plumbers MCP server — it will be able to draft blog posts, landing pages and
             service pages as drafts only. Nothing it writes goes live without you reviewing and
             publishing it in /admin.
           </p>
