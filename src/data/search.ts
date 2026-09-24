@@ -116,6 +116,8 @@ const PAGES: SearchEntry[] = [
   { t: 'page', title: 'Postcode districts', sub: 'Coverage by postcode district', url: '/postcodes', k: 'postcode postcodes district districts coverage' },
   { t: 'page', title: 'All services', sub: 'Everything we do, in one place', url: '/services', k: 'services service what we do' },
   { t: 'page', title: 'Appliances & fixtures', sub: 'Softeners, pumps, taps and appliance plumbing', url: '/appliances', k: 'appliance appliances fixtures fittings install installation fitted machine pump tap filter' },
+  { t: 'page', title: 'Heating', sub: 'Boilers, radiators, cylinders and heating systems', url: '/heating', k: 'heating engineer heating engineers heating services central heating radiators boiler hot water cylinder underfloor' },
+  { t: 'page', title: 'Drainage', sub: 'Blocked drains, surveys, repairs and gutters', url: '/drainage', k: 'drainage company drainage services drains drain engineer sewer gully manhole soakaway gutter' },
   { t: 'page', title: 'Damp & condensation', sub: 'Survey, proofing and ventilation across London', url: '/damp', k: 'damp condensation mould mold moisture rising penetrating survey proofing ventilation' },
   { t: 'page', title: 'Boiler brands we work on', sub: 'Repairs and servicing by manufacturer', url: '/boilers', k: 'brands brand manufacturer make makes' },
   { t: 'page', title: 'About us', sub: 'Who we are and how we work', url: '/about', k: 'about company who team gas safe insured ninja plumbers limited' },

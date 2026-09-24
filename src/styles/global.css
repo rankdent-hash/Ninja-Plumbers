@@ -3540,3 +3540,16 @@ body.qr-open { overflow: hidden; }
    to the full service list under the narrowed "more work" grid. */
 .price-terms { margin-top: 18px; font-weight: 600; color: var(--navy); }
 .all-services-link { margin: 22px 0 0; font-weight: 600; }
+
+/* Problem-first link grid: /heating, /drainage and the homepage finder. */
+.problem-grid { list-style: none; padding: 0; margin: 22px 0 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; }
+.problem-link {
+  display: flex; flex-direction: column; gap: 4px; height: 100%;
+  padding: 16px 18px; border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border); background: var(--white);
+  text-decoration: none; transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.problem-link strong { color: var(--navy); font-family: var(--font-heading); font-weight: 600; font-size: 1rem; }
+.problem-link span { color: var(--muted); font-size: 0.88rem; line-height: 1.4; }
+.problem-link:hover, .problem-link:focus-visible { border-color: var(--blue); box-shadow: var(--shadow); }
+.guidance-h2 { font-size: 1.15rem; margin-bottom: 8px; }

@@ -34,6 +34,7 @@ export const serviceGroups: ServiceGroup[] = [
     blurb: 'Boilers, radiators, cylinders and hot water — installed, serviced and kept running by Gas Safe engineers.',
     services: ['boiler-repair', 'boiler-service', 'boiler-installation', 'boiler-replacement', 'central-heating-installation'],
     extra: [
+      { label: 'Heating overview', href: '/heating' },
       { label: 'Boiler brands we work on', href: '/boilers' },
       { label: 'Radiators & power flushing', href: '/appliances/radiator-installation-and-power-flushing' },
       { label: 'Underfloor heating', href: '/appliances/underfloor-heating-installation' },
@@ -46,6 +47,7 @@ export const serviceGroups: ServiceGroup[] = [
     label: 'Drainage',
     blurb: 'Blockages cleared with proper equipment, CCTV surveys and repairs to the run itself.',
     services: ['drain-unblocking', 'blocked-toilet', 'cctv-drain-survey', 'drain-repairs', 'surface-water-drainage', 'gutter-repair'],
+    extra: [{ label: 'Drainage overview', href: '/drainage' }],
   },
   {
     slug: 'bathrooms',

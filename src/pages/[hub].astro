@@ -1,0 +1,138 @@
+---
+// Category hubs: /heating and /drainage. They sit above the service pages
+// (Home › Heating › Boiler repair) and aim at the broad category searches —
+// "heating engineer london", "drainage company london" — then send each
+// visitor to the page for their actual problem. Copy lives in
+// src/data/hubs.ts; the links there are checked against real pages at build.
+import Base from '../layouts/Base.astro';
+import HeroWithForm from '../components/HeroWithForm.astro';
+import Schema from '../components/Schema.astro';
+import PhoneIcon from '../components/PhoneIcon.astro';
+import WhatsAppIcon from '../components/WhatsAppIcon.astro';
+import site from '../data/site.json';
+import { hubs } from '../data/hubs';
+import { services } from '../data/services';
+import { appliances } from '../data/appliances';
+
+export function getStaticPaths() {
+  return hubs.map((hub) => ({ params: { hub: hub.slug }, props: { hub } }));
+}
+
+const { hub } = Astro.props;
+
+// A renamed page must not leave a hub pointing at nothing.
+const known = new Set([
+  ...services.map((s) => `/services/${s.slug}`),
+  ...appliances.map((a) => `/appliances/${a.slug}`),
+  '/boilers',
+]);
+for (const href of [...hub.problems.map((p) => p.href), ...hub.children.map((c) => c.href)]) {
+  if (!known.has(href)) throw new Error(`hubs.ts: ${hub.slug} links to unknown page ${href}`);
+}
+
+const label = hub.slug === 'heating' ? 'Heating' : 'Drainage';
+const crumbs = [{ label: 'Home', href: '/' }, { label }];
+const hubSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: label,
+  serviceType: label,
+  description: hub.metaDescription,
+  areaServed: { '@type': 'City', name: 'London' },
+  provider: { '@type': 'Plumber', name: site.name, telephone: site.booking.tel, url: site.url },
+};
+---
+<Base title={hub.metaTitle} description={hub.metaDescription}>
+  <Schema slot="head" breadcrumb={crumbs} faqs={hub.faqs} extra={hubSchema} />
+
+  <HeroWithForm
+    eyebrow={hub.eyebrow}
+    h1={hub.h1}
+    intro={hub.intro}
+    breadcrumb={crumbs}
+    bullets={[
+      'Gas Safe registered and fully insured',
+      'DBS-checked engineers',
+      'Emergency callout available 24/7',
+      'Price agreed before work starts',
+    ]}
+    formHeading={`Tell us about the ${label.toLowerCase()} problem`}
+  />
+
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Start with the problem</span>
+      <h2>What's happening?</h2>
+      <p class="measure">Pick the closest match and go straight to the page that deals with it.</p>
+      <ul class="problem-grid">
+        {hub.problems.map((p) => (
+          <li>
+            <a href={p.href} class="problem-link">
+              <strong>{p.label}</strong>
+              <span>{p.hint}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <span class="eyebrow">{label} services</span>
+      <h2>Everything under {label.toLowerCase()}</h2>
+      <ul class="grid grid-3 card-grid">
+        {hub.children.map((c) => (
+          <li class="card">
+            <h3><a href={c.href} class="card-title-link">{c.title}</a></h3>
+            <p>{c.blurb}</p>
+            <a href={c.href} class="card-link">More on {c.title.toLowerCase()} <span aria-hidden="true">&rarr;</span></a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="guidance">
+        {hub.sections.map((s) => (
+          <div class="guidance-item">
+            <h2 class="guidance-h2">{s.heading}</h2>
+            <p>{s.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container measure-wide">
+      <span class="eyebrow">Questions</span>
+      <h2>Common questions</h2>
+      <div class="faqs">
+        {hub.faqs.map((f) => (
+          <details class="faq">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-navy">
+    <div class="container center measure-wide">
+      <h2>{hub.closing.heading}</h2>
+      <p>{hub.closing.body}</p>
+      <div class="cta-row center-row">
+        <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">
+          <PhoneIcon /> Call {site.booking.display}
+        </a>
+        <a href={site.whatsapp.url} class="btn btn-outline btn-lg" target="_blank" rel="noopener">
+          <WhatsAppIcon /> WhatsApp us
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>
