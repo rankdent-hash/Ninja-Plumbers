@@ -5,6 +5,7 @@ import { combos } from '../../../data/combos';
 import { services } from '../../../data/services';
 import { allAreas as areas } from '../../../data/areas';
 import { comboDetail } from '../../../data/combo-detail';
+import { comboExtras } from '../../../data/combo-extras';
 import HeroWithForm from '../../../components/HeroWithForm.astro';
 import Schema from '../../../components/Schema.astro';
 import ServiceIcon from '../../../components/ServiceIcon.astro';
@@ -37,6 +38,7 @@ const HEADING: Record<string, string> = {
 };
 const label = HEADING[service.slug] ?? service.title;
 const detail = comboDetail[`${combo.service}|${combo.area}`];
+const extra = comboExtras[`${combo.service}|${combo.area}`];
 const crumbs = [
   { label: 'Home', href: '/' },
   { label: 'Services', href: '/services' },
@@ -54,6 +56,7 @@ const pageFaqs = [
   { q: `Do you cover ${area.name}?`,
     a: coverAnswer },
   ...(detail ? [detail.faq] : []),
+  ...(extra ? [extra.faq2] : []),
   { q: 'What does it cost?',
     a: 'You will have a price for the work before an engineer starts. If something behind the wall changes the scope, we pause and talk it through with you rather than carrying on and billing you afterwards.' },
 ];
@@ -122,6 +125,7 @@ const schema = {
             {detail.points.map((pt) => <li><Tick /> {pt}</li>)}
           </ul>
         )}
+        {extra && <p class="combo-local">{extra.local}</p>}
         <details class="combo-general">
           <summary>Everything {service.title.replace('&amp;', 'and').toLowerCase()} covers</summary>
           <ul class="ticks">
@@ -160,6 +164,12 @@ const schema = {
           <details class="faq">
             <summary>{detail.faq.q}</summary>
             <p>{detail.faq.a}</p>
+          </details>
+        )}
+        {extra && (
+          <details class="faq">
+            <summary>{extra.faq2.q}</summary>
+            <p>{extra.faq2.a}</p>
           </details>
         )}
         <details class="faq">

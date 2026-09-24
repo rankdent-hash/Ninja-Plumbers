@@ -3570,3 +3570,6 @@ body.qr-open { overflow: hidden; }
 .beyond-london span { color: var(--muted); font-size: 0.9rem; }
 .beyond-london a { text-decoration: none; }
 .beyond-london a strong { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Service x area pages: the pairing-specific paragraph under the job list. */
+.combo-local { margin: 18px 0 0; }
