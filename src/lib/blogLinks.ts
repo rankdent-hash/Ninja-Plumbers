@@ -45,11 +45,11 @@ export function postHubs(p: PostLinks): { href: string; label: string }[] {
     if (hrefs.some((x) => h.covers.has(x))) out.push({ href: h.href, label: h.label });
   }
   if ((p.related_damp ?? []).length > 0) out.push({ href: '/damp', label: 'damp and condensation' });
-  if (out.length === 0 && (p.related_appliances ?? []).length > 0) {
+  if ((p.related_appliances ?? []).length > 0) {
     out.push({ href: '/appliances', label: 'appliance and fixture plumbing' });
   }
-  if (out.length === 0) out.push({ href: '/services', label: 'plumbing services' });
-  return out;
+  if (out.length === 0) out.push({ href: '/services', label: 'services' });
+  return out.slice(0, 3);
 }
 
 // How many linked pages two posts share. Used to pick "related advice".
