@@ -16,6 +16,7 @@ import { appliances } from '../data/appliances';
 import { dampPages } from '../data/damp';
 import { SCHEMA_AREA_SERVED } from '../data/serviceArea';
 import { serviceGroups } from '../data/nav';
+import RelatedPosts from '../components/RelatedPosts.astro';
 
 const reg = site.electricalRegistration;
 const registeredLine = reg?.scheme
@@ -189,6 +190,8 @@ const hubSchema = {
       </p>
     </div>
   </section>
+
+  <RelatedPosts covers={cards.map((c) => c.href)} heading="Electrical advice" />
 
   <section class="section section-navy">
     <div class="container center measure-wide">

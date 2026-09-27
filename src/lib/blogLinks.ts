@@ -5,6 +5,9 @@
 // the admin. From those we work out which pages a post "covers" (as hrefs),
 // which category hubs it belongs under, and how related two posts are.
 import { hubs } from '../data/hubs';
+import { serviceGroups } from '../data/nav';
+
+const ELECTRICAL = new Set(serviceGroups.find((g) => g.slug === 'electrical')?.services ?? []);
 
 export type PostLinks = {
   related_services?: string[] | null;
@@ -38,11 +41,17 @@ export function hubCovers(slug: 'heating' | 'drainage'): string[] {
 export function postHubs(p: PostLinks): { href: string; label: string }[] {
   const hrefs = postHrefs(p);
   const out: { href: string; label: string }[] = [];
-  if ((p.related_services ?? []).some((s) => s.startsWith('boiler-') || s === 'gas-safety-certificate')) {
+  // A post about gas safety certificates links Boilers only when it is not
+  // mainly an electrical post (an EICR guide mentions gas safety in passing).
+  const electricalPost = (p.related_services ?? []).some((s) => ELECTRICAL.has(s));
+  if ((p.related_services ?? []).some((s) => s.startsWith('boiler-') || (s === 'gas-safety-certificate' && !electricalPost))) {
     out.push({ href: '/boilers', label: 'boiler engineers' });
   }
   for (const h of HUB_PAGES) {
     if (hrefs.some((x) => h.covers.has(x))) out.push({ href: h.href, label: h.label });
+  }
+  if ((p.related_services ?? []).some((s) => ELECTRICAL.has(s))) {
+    out.push({ href: '/electrical', label: 'electrical services' });
   }
   if ((p.related_damp ?? []).length > 0) out.push({ href: '/damp', label: 'damp and condensation' });
   if ((p.related_appliances ?? []).length > 0) {
