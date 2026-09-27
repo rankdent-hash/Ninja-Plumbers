@@ -1,9 +1,9 @@
 ---
 // Electrical hub. Aims at "electrician london" (2,400/mo) and "electricians
-// london" (1,000/mo), and sends each visitor to the page for their job.
-// Deliberately says nothing about 24/7 electrical callouts, EICRs, consumer
-// unit replacement or a registration scheme until the business confirms
-// each one: those are the pages to add next if it does.
+// london" (1,000/mo), and sends each visitor to the page for their job. The
+// child pages own their own terms (emergency electrician, EICR and so on).
+// The registration scheme and number come from site.json and only appear
+// once they are filled in.
 import Base from '../layouts/Base.astro';
 import HeroWithForm from '../components/HeroWithForm.astro';
 import Schema from '../components/Schema.astro';
@@ -15,10 +15,21 @@ import { services } from '../data/services';
 import { appliances } from '../data/appliances';
 import { dampPages } from '../data/damp';
 import { SCHEMA_AREA_SERVED } from '../data/serviceArea';
+import { serviceGroups } from '../data/nav';
+
+const reg = site.electricalRegistration;
+const registeredLine = reg?.scheme
+  ? `Registered with ${reg.scheme}${reg.number ? ` (registration number ${reg.number})` : ''}`
+  : 'Registered electricians';
 
 const crumbs = [{ label: 'Home', href: '/' }, { label: 'Electrical' }];
 
 const problems = [
+  { label: 'The power has gone, or something is burning', hint: 'Our 24/7 emergency line. We tell you how to make it safe first.', href: '/services/emergency-electrician' },
+  { label: 'You are a landlord and need an EICR', hint: 'Inspection, report and any remedial work priced separately.', href: '/services/eicr' },
+  { label: 'An old fuse box with no RCDs', hint: 'Replaced with a modern consumer unit, certified and notified.', href: '/services/consumer-unit-replacement' },
+  { label: 'Old wiring, or not enough sockets', hint: 'Full and partial rewires, planned room by room.', href: '/services/rewiring' },
+  { label: 'You want to charge an electric car at home', hint: 'Survey, smart charger, network notification and certificate.', href: '/services/ev-charger-installation' },
   { label: 'The power keeps tripping', hint: 'A fault on a circuit or an appliance. We find which.', href: '/services/electrical-repairs' },
   { label: 'A socket or switch has stopped working', hint: 'Often a loose or failed connection behind the plate.', href: '/services/electrical-repairs' },
   { label: 'Lights flicker or have failed', hint: 'Fittings, switches or the circuit behind them.', href: '/services/electrical-repairs' },
@@ -38,9 +49,10 @@ for (const p of problems) {
   if (!known.has(p.href)) throw new Error(`electrical.astro links to unknown page ${p.href}`);
 }
 
-const cards = [
-  services.find((s) => s.slug === 'electrical-repairs')!,
-].map((s) => ({ href: `/services/${s.slug}`, title: s.title, blurb: s.summary, icon: s.icon }));
+const electricalGroup = serviceGroups.find((g) => g.slug === 'electrical')!;
+const cards = electricalGroup.services
+  .map((slug) => services.find((s) => s.slug === slug)!)
+  .map((s) => ({ href: `/services/${s.slug}`, title: s.title, blurb: s.summary, icon: s.icon }));
 const electricShower = appliances.find((a) => a.slug === 'electric-shower-installation');
 if (electricShower) cards.push({ href: `/appliances/${electricShower.slug}`, title: electricShower.title, blurb: electricShower.summary, icon: electricShower.icon });
 const bathrooms = services.find((s) => s.slug === 'bathroom-installation');
@@ -71,7 +83,9 @@ const sections = [
 
 const faqs = [
   { q: 'Do you do electrical work as well as plumbing?', a: 'Yes. Ninja Plumbers carries out electrical work alongside plumbing, heating and drainage, so jobs that need both trades are handled by one team with one price.' },
-  { q: 'What electrical work do you take on?', a: 'Fault finding and repairs, tripping circuits, sockets and switches, lighting, extractor fans, and the electrical side of electric showers, bathrooms and kitchens. If your job is not listed, ask us and we will tell you straight whether it is something we do.' },
+  { q: 'What electrical work do you take on?', a: 'Emergency callouts, fault finding and repairs, EICRs for landlords and homeowners, fuse box and consumer unit replacement, full and partial rewires, EV charger installation, sockets, lighting and extractor fans, and the electrical side of showers, bathrooms and kitchens.' },
+  { q: 'Are your electricians registered?', a: `Yes. Our electricians are registered with a government-approved competent person scheme${reg?.scheme ? ` (${reg.scheme}${reg.number ? `, registration number ${reg.number}` : ''})` : ''}. That means notifiable work, such as a new consumer unit, a rewire or an EV charger circuit, is certified and notified to building control for you.` },
+  { q: 'Do you have emergency electricians?', a: 'Yes. Emergency callout is available 24/7 for electrical faults as well as plumbing. If you smell burning, see sparking or water has reached the electrics, call us straight away.' },
   { q: 'Can you fix the electrics after a leak?', a: 'Yes. We stop the leak, then check the affected circuits once the fittings and cables have dried out, so you are not booking two separate trades.' },
   { q: 'Do you cover my area for electrical work?', a: 'We cover Greater London, plus Guildford, Woking and the towns around them. Check your postcode on our areas page or give us a call.' },
   { q: 'How do I pay?', a: 'By card or cash once the work is done, at the price you agreed before it started.' },
@@ -82,25 +96,26 @@ const hubSchema = {
   '@type': 'Service',
   name: 'Electrical services',
   serviceType: 'Electrician',
-  description: 'Electrical fault finding and repairs, sockets, lighting, extractor fans and the electrics for showers, bathrooms and kitchens.',
+  description: 'Emergency electricians, EICRs, consumer unit replacement, rewiring, EV charger installation and electrical repairs.',
   areaServed: SCHEMA_AREA_SERVED,
   provider: { '@type': 'Plumber', name: site.name, telephone: site.booking.tel, url: site.url },
 };
 ---
 <Base
   title="Electrician London | Electrical Repairs | Ninja Plumbers"
-  description={`Electricians across London from Ninja Plumbers: fault finding, sockets, lighting, extractor fans and shower circuits. Price agreed first. Call ${site.booking.display}.`}
+  description={`Registered electricians across London, 24/7: emergencies, EICRs, fuse boxes, rewiring, EV chargers and repairs. Price agreed first. Call ${site.booking.display}.`}
 >
   <Schema slot="head" breadcrumb={crumbs} faqs={faqs} extra={hubSchema} />
 
   <HeroWithForm
     eyebrow="Electrical"
     h1="Electricians in London"
-    intro="Ninja Plumbers does electrical work as well as plumbing and heating: tracing faults, tripping circuits, sockets, lighting, extractor fans, and the electrics for showers, bathrooms and kitchens. One team, one visit and one price, agreed before any work starts. Pick what is happening from the list below, or send us a photo and a description and we will tell you what is likely wrong."
+    intro="Ninja Plumbers' registered electricians cover London day and night: emergency callouts, fault finding, EICRs for landlords, fuse box replacement, rewiring, EV chargers, and the electrics for showers, bathrooms and kitchens. One team does the plumbing and the electrics, with the price agreed before any work starts. Pick what is happening from the list below, or send us a photo and we will tell you what is likely wrong."
     breadcrumb={crumbs}
     bullets={[
-      'Plumbing and electrics from one team',
+      registeredLine,
       'Fully insured, DBS-checked engineers',
+      'Emergency callout available 24/7',
       'Price agreed before work starts',
       'Workmanship guaranteed',
     ]}

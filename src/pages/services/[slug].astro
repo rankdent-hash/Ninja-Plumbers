@@ -27,6 +27,7 @@ import { combos } from '../../data/combos';
 import { areas, allAreas } from '../../data/areas';
 import { serviceGroups } from '../../data/nav';
 import { brands } from '../../data/brands';
+import { lowerTitle } from '../../lib/text';
 import { dampPages } from '../../data/damp';
 import ServiceIcon from '../../components/ServiceIcon.astro';
 import Tick from '../../components/Tick.astro';
@@ -109,13 +110,19 @@ const relatedDamp = dampPages.filter((d) => d.related.includes(service.slug));
 const relatedPosts = blogPosts.filter((p) => p.relatedServices.includes(service.slug));
 const label = HEADING[service.slug] ?? service.title.replace('&amp;', 'and');
 
+// "Registered with NICEIC" style wording once the scheme is filled in in
+// site.json; a plain "Registered electricians" until then.
+const electricalRegistered = site.electricalRegistration?.scheme
+  ? `Registered with ${site.electricalRegistration.scheme}`
+  : 'Registered electricians';
+
 // Trust points in the hero. Air conditioning leads with the F-Gas
 // certification that refrigerant work needs; electrical drops Gas Safe,
 // which says nothing about electrical work.
 const heroBullets = service.slug.startsWith('air-conditioning-')
   ? ['F-Gas certified for refrigerant work', 'Fully insured, DBS-checked engineers', 'Price agreed before work starts', 'Workmanship guaranteed']
   : currentGroup?.slug === 'electrical'
-    ? ['Plumbing and electrics from one team', 'Fully insured, DBS-checked engineers', 'Price agreed before work starts', 'Workmanship guaranteed']
+    ? [electricalRegistered, 'Fully insured, DBS-checked engineers', 'Emergency callout available 24/7', 'Price agreed before work starts', 'Workmanship guaranteed']
     : ['Gas Safe registered and fully insured', 'DBS-checked engineers', 'Emergency callout available 24/7', 'Price agreed before work starts', 'Workmanship guaranteed'];
 const crumbs = [
   { label: 'Home', href: '/' },
@@ -134,7 +141,7 @@ const serviceSchema = {
   description: service.metaDescription,
   serviceType: service.title,
   provider: {
-    '@type': 'Plumber',
+    '@type': currentGroup?.slug === 'electrical' ? 'Electrician' : 'Plumber',
     name: site.name,
     telephone: site.booking.tel,
     address: {
@@ -160,7 +167,7 @@ const serviceSchema = {
     intro={service.intro}
     breadcrumb={crumbs}
     bullets={heroBullets}
-    formHeading={`Get a price for ${service.title.replace('&amp;', 'and').toLowerCase()}`}
+    formHeading={`Get a price for ${lowerTitle(service.title)}`}
     service={service.title}
     tel={primaryTel}
   />
@@ -442,7 +449,7 @@ const serviceSchema = {
 
   <section class="section section-navy">
     <div class="container center measure-wide">
-      <h2>Need {service.title.toLowerCase()} in London?</h2>
+      <h2>Need {lowerTitle(service.title)} in London?</h2>
       <p>Describe the problem and give us your area, and we&rsquo;ll tell you the price before anyone starts work.</p>
       <div class="cta-row center-row">
         <a href={`tel:${primaryTel.tel}`} class="btn btn-orange btn-lg">

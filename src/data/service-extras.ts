@@ -845,6 +845,181 @@ export const serviceExtras: Record<string, ServiceExtra> = {
     ],
   },
 
+  'emergency-electrician': {
+    price: {
+      intro:
+        'An emergency electrical visit is priced on what the electrician finds and what it takes to make the installation safe. You hear the price before work starts, whatever the hour.',
+      factors: [
+        {
+          title: 'Whether it really cannot wait',
+          body: 'Work that genuinely cannot wait is charged at emergency rates. If the installation can be made safe and the repair can wait for a normal appointment, we will say so.',
+        },
+        {
+          title: 'Making safe, or a full repair',
+          body: 'Sometimes the right thing at night is to isolate the faulty circuit and restore power to the rest of the home, then come back with the right parts. Other faults can be repaired there and then.',
+        },
+        {
+          title: 'How long the fault takes to trace',
+          body: 'A tripped RCD with an obvious cause is quick. An intermittent fault that only appears when certain things are running takes methodical testing to pin down.',
+        },
+        {
+          title: 'Water in the electrics',
+          body: 'Where a leak has reached the wiring, the leak is stopped first and the affected circuits are isolated until they have dried out and been tested, which can mean a return visit.',
+        },
+      ],
+    },
+    extraFaqs: [
+      {
+        q: 'Should I turn the power off at the main switch?',
+        a: 'If there is a burning smell, sparking or water near the electrics, and the consumer unit and the floor in front of it are dry, yes. If only one circuit is affected, switching off that circuit alone keeps the rest of the house running.',
+      },
+      {
+        q: 'Can I use the rest of the house while one circuit is off?',
+        a: 'Usually, yes. Each circuit has its own breaker, so the others stay live. Just leave the faulty one off until it has been checked, and do not keep resetting it.',
+      },
+    ],
+  },
+
+  'eicr': {
+    price: {
+      intro:
+        'An EICR is priced on the size and condition of the installation. Any remedial work it calls for is priced separately afterwards, so you only commit to what the report shows is needed.',
+      factors: [
+        {
+          title: 'The number of circuits',
+          body: 'A one-bedroom flat with a handful of circuits is a smaller job than a large house with several floors, an extension, outside lighting and an outbuilding. Each circuit is tested individually.',
+        },
+        {
+          title: 'Access',
+          body: 'The electrician needs to reach the consumer unit, every room and a sample of accessories and fittings. Locked rooms, heavily furnished tenanted homes or a consumer unit in a communal cupboard all add time.',
+        },
+        {
+          title: 'The age of the installation',
+          body: 'A modern, well-labelled installation tests quickly. Older wiring, undocumented alterations or a mix of old and new circuits take longer to trace and record accurately.',
+        },
+        {
+          title: 'Remedial work',
+          body: 'If the report is unsatisfactory, the C1, C2 and FI items are priced separately once the inspection is complete. You decide whether to use us for them.',
+        },
+      ],
+    },
+    extraFaqs: [
+      {
+        q: 'Do I need to be there for the inspection?',
+        a: 'Someone needs to let the electrician in and make sure every room can be reached. For a rented property, the landlord or agent usually arranges access with the tenants.',
+      },
+      {
+        q: 'Can tenants stay in during the inspection?',
+        a: 'Yes, but the power will be off in parts of the property at times, so let them know in advance, particularly anyone working from home.',
+      },
+    ],
+  },
+
+  'consumer-unit-replacement': {
+    price: {
+      intro:
+        'A consumer unit replacement is priced after a look at the existing installation, and you get the price before any work starts.',
+      factors: [
+        {
+          title: 'The number of circuits',
+          body: 'More circuits means a larger unit, more protective devices and more testing. Homes that have been extended over the years often have more circuits than you would expect.',
+        },
+        {
+          title: 'What the testing finds',
+          body: 'Faults that the old fuses ignored will trip modern RCDs. If testing finds a fault on a circuit, it has to be put right before the new unit goes in, and that is priced separately.',
+        },
+        {
+          title: 'The earthing and bonding',
+          body: 'A new unit needs a sound main earth and, where required, protective bonding to the gas and water pipes. Older homes sometimes need these brought up to standard at the same time.',
+        },
+        {
+          title: 'Where the unit is',
+          body: 'Swapping a unit in the same place is straightforward. Moving it, for example out from under the stairs or to a more accessible spot, means extending the tails and the circuits.',
+        },
+      ],
+    },
+    extraFaqs: [
+      {
+        q: 'Can you move the fuse box somewhere more convenient?',
+        a: 'Often, yes. The supply cables and circuits have to be extended to the new position, and some positions are not allowed, so we will tell you what is possible when we look at it.',
+      },
+      {
+        q: 'Do I need surge protection?',
+        a: 'The current wiring regulations call for surge protection in most new consumer unit installations. We will explain whether yours needs it when we price the job.',
+      },
+    ],
+  },
+
+  'rewiring': {
+    price: {
+      intro:
+        'Every rewire is priced on the property, after we have walked round it with you, and the price is agreed before any work starts.',
+      factors: [
+        {
+          title: 'Size and layout of the property',
+          body: 'The number of rooms, floors and circuits sets the scale of the job. A flat on one level is simpler to run cable through than a tall terrace with a basement and a loft.',
+        },
+        {
+          title: 'Full or partial',
+          body: 'Some installations only need part of the wiring replaced, such as the kitchen circuits or an old extension. An EICR helps show exactly what needs doing.',
+        },
+        {
+          title: 'Number of points',
+          body: 'Every socket, switch and light adds material and labour. A rewire is the right time to add more, and the price reflects the layout you choose.',
+        },
+        {
+          title: 'Access and making good',
+          body: 'Whether floors are carpeted, tiled or boarded, whether ceilings are plasterboard or old lath and plaster, and how much the rooms are furnished all affect how the cables are run and how much making good follows.',
+        },
+      ],
+    },
+    extraFaqs: [
+      {
+        q: 'Should I rewire before or after a new kitchen or bathroom?',
+        a: 'Before, or at the same time. The first fix of the wiring needs to go in while walls and floors are open, before the new kitchen or tiling goes on.',
+      },
+      {
+        q: 'Do you rewire rented properties between tenancies?',
+        a: 'Yes. An empty property is the easiest time to rewire, and landlords often combine it with an EICR once the work is done.',
+      },
+    ],
+  },
+
+  'ev-charger-installation': {
+    price: {
+      intro:
+        'A charger installation is priced after a survey or a look at your photos, and the price is agreed before any work starts.',
+      factors: [
+        {
+          title: 'The cable route',
+          body: 'A charger on the outside wall right behind the consumer unit is a short run. A charger at the far side of a driveway, or a unit in a flat where the cable has to travel through the building, takes considerably more work.',
+        },
+        {
+          title: 'The consumer unit',
+          body: 'If there is a spare way and the unit is in good order, the charger circuit connects straight in. If not, the unit may need replacing or a separate one fitted for the charger.',
+        },
+        {
+          title: 'The supply and earthing',
+          body: 'Some homes need changes to the earthing arrangement for the charger, and occasionally the network operator needs to upgrade the incoming supply or main fuse before the charger can be connected.',
+        },
+        {
+          title: 'The charger itself',
+          body: 'Chargers vary in price with features such as a tethered cable, load management, solar compatibility and app control.',
+        },
+      ],
+    },
+    extraFaqs: [
+      {
+        q: 'Can I charge from a normal three-pin socket?',
+        a: 'Many cars come with a cable that can, but it is slow and puts a long, heavy load on a socket and circuit that were not designed for it. A dedicated charger on its own circuit is safer and much quicker.',
+      },
+      {
+        q: 'Can you fit a charger at a block of flats?',
+        a: 'Sometimes, where there is allocated parking and the freeholder or managing agent agrees. The cable route and the supply are the main questions, so send us the details and we will tell you what is involved.',
+      },
+    ],
+  },
+
   'low-water-pressure': {
     price: {
       intro:

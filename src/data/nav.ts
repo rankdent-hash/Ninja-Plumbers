@@ -72,8 +72,8 @@ export const serviceGroups: ServiceGroup[] = [
   {
     slug: 'electrical',
     label: 'Electrical',
-    blurb: 'Fault finding, sockets, lighting and extractor fans, plus the electrics for showers, bathrooms and kitchens.',
-    services: ['electrical-repairs'],
+    blurb: 'Registered electricians for emergencies, EICRs, fuse boxes, rewiring, EV chargers and everyday repairs.',
+    services: ['emergency-electrician', 'electrical-repairs', 'eicr', 'consumer-unit-replacement', 'rewiring', 'ev-charger-installation'],
     extra: [
       { label: 'Electrical overview', href: '/electrical' },
       { label: 'Electric showers', href: '/appliances/electric-shower-installation' },

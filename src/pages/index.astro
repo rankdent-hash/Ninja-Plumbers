@@ -18,7 +18,7 @@ import Schema from '../components/Schema.astro';
 // so the cards cannot drift from the pages they link to. The earlier version
 // linked four of them to /services#anchor URLs that no longer exist.
 const featured = ['emergency-plumbing', 'boiler-repair', 'drain-unblocking',
-                  'leak-detection', 'bathroom-installation', 'general-plumbing']
+                  'leak-detection', 'bathroom-installation', 'emergency-electrician']
   .map((slug) => services.find((s) => s.slug === slug)!);
 
 const topAreas = [...areas].sort((a, b) => b.volume - a.volume).slice(0, 10);
@@ -85,7 +85,7 @@ const latestPosts = blogPosts.filter((p) => p.date && p.date <= today).slice(0, 
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">What we do</span>
-      <h2>Plumbing, heating and drainage &mdash; the whole job</h2>
+      <h2>Plumbing, heating, drainage and electrics &mdash; the whole job</h2>
       <p class="lead measure">{home.intros.services}</p>
     </div>
 

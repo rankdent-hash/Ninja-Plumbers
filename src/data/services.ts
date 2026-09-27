@@ -2394,6 +2394,321 @@ export const services: Service[] = [
       },
     ],
   },
+  {
+    slug: 'emergency-electrician',
+    title: 'Emergency Electrician',
+    h1: 'Emergency electrician in London',
+    metaTitle: '24-Hour Emergency Electrician London | Ninja Plumbers',
+    metaDescription:
+      'Emergency electrician across London, day and night: power loss, trips that will not reset, burning smells and water in the electrics. Call 020 3576 5825.',
+    eyebrow: '24/7 electrical callout',
+    icon: 'electrical',
+    target: 'emergency electrician london (1,600/mo) · 24 hour electrician london (260/mo) · emergency electrician near me (12,100/mo)',
+    summary:
+      'Power loss, trips that will not reset, burning smells and water in the electrics. We take calls around the clock.',
+    intro:
+      'Half the house has lost power and the trip switch will not stay up. A socket smells of burning. Water from the flat above is running near a light fitting. Electrical emergencies do not wait for office hours, and neither does our booking line. Ring us and we will tell you how to make things safe while we get an electrician moving.',
+    does: [
+      'Total or partial loss of power',
+      'Trip switches and RCDs that will not reset',
+      'Burning smells, scorching and overheating sockets',
+      'Water in light fittings, sockets or the consumer unit',
+      'Damaged cables and exposed wiring',
+      'Out of hours, weekends and bank holidays',
+    ],
+    guidance: [
+      {
+        title: 'The whole house has lost power',
+        body: 'Check whether your neighbours have power too. If the street is out, it is a power cut rather than a fault in your home: call 105, the free national power cut number, and they will tell you what is happening. If it is only your home, look at the consumer unit to see whether the main switch or an RCD has tripped.',
+      },
+      {
+        title: 'A trip switch will not stay on',
+        body: 'Switch off or unplug everything on that circuit and try it once more. If it holds, add things back one at a time to find the culprit. If it trips straight away with nothing connected, the fault is in the wiring. Leave it off and call us rather than forcing it back on.',
+      },
+      {
+        title: 'You smell burning or see scorch marks',
+        body: 'Stop using the socket or switch and, if you can reach the consumer unit safely, switch that circuit off. Do not touch anything that is hot, sparking or discoloured. If there is smoke or fire, get everyone out and call 999.',
+      },
+      {
+        title: 'Water has reached the electrics',
+        body: 'If the consumer unit and the floor in front of it are dry, switch off at the main switch. If they are wet, do not touch it and keep everyone out of the area. Then call. Because we are plumbers too, we can stop the leak and make the electrics safe on the same visit.',
+      },
+    ],
+    aside: {
+      title: 'Keep a torch by the consumer unit',
+      body: 'Keep a torch where you can find it in the dark, and know which switch on the consumer unit is the main switch. It makes the first few minutes of any electrical emergency much easier.',
+    },
+    faqs: [
+      {
+        q: 'Do you really have electricians available at night?',
+        a: 'Yes. Our emergency callout is available 24/7 for electrical faults as well as plumbing. Outside office hours the same number goes straight to whoever is on call.',
+      },
+      {
+        q: 'How do I know if it is an emergency?',
+        a: 'Treat it as one if there is a burning smell, scorching, sparking, water near the electrics, exposed wiring, or no power to heating, a fridge or medical equipment someone depends on. If a single light has stopped working, it can usually wait for a normal appointment.',
+      },
+      {
+        q: 'Is it a power cut or a fault in my home?',
+        a: 'If your neighbours are also without power, it is almost certainly a power cut: call 105 for updates. If only your home is affected, check the consumer unit for a tripped switch before calling us.',
+      },
+      {
+        q: 'Will you fix it on the first visit?',
+        a: 'The first priority is making it safe. Many faults are repaired there and then. Where a part is needed or the job is bigger, the electrician makes the installation safe, explains what is needed and agrees the price with you before carrying on.',
+      },
+    ],
+  },
+  {
+    slug: 'eicr',
+    title: 'EICR Certificates',
+    h1: 'EICR and landlord electrical safety certificates in London',
+    metaTitle: 'EICR Certificate London | Landlords | Ninja Plumbers',
+    metaDescription:
+      'Electrical Installation Condition Reports for London landlords, homeowners and buyers. Codes explained, remedial work priced first. Call 020 3576 5825.',
+    eyebrow: 'Electrical safety',
+    icon: 'certificate',
+    target: 'eicr london (1,300/mo) · eicr certificate london (590/mo)',
+    summary:
+      'Electrical Installation Condition Reports for landlords, homeowners and buyers, with any remedial work priced separately.',
+    intro:
+      'An Electrical Installation Condition Report, or EICR, is a thorough inspection and test of the fixed wiring in a property: the consumer unit, the circuits, sockets, switches and fixed fittings. Private landlords in England need one at least every five years, and one is well worth having when you buy a home or when the wiring has not been looked at for years. Our electricians carry out the inspection, explain the report in plain English, and price any remedial work separately so you can decide what happens next.',
+    does: [
+      'EICRs for private landlords and letting agents',
+      'Reports for homeowners and buyers',
+      'Testing of every circuit, the consumer unit and the earthing',
+      'Codes and observations explained in plain English',
+      'Remedial work priced separately',
+      'Written confirmation once remedial work is done',
+    ],
+    guidance: [
+      {
+        title: 'What the law asks of landlords',
+        body: 'Under the Electrical Safety Standards in the Private Rented Sector (England) Regulations 2020, private landlords must have the electrical installation inspected and tested at least every five years by a qualified person. Tenants must get a copy within 28 days of the inspection, new tenants before they move in, and the local council within seven days if it asks. Any remedial work the report calls for must be done within 28 days, or sooner if the report says so.',
+      },
+      {
+        title: 'What the codes mean',
+        body: 'C1 means danger is present and needs putting right immediately. C2 means potentially dangerous and needs urgent attention. FI means further investigation is needed. Any of these makes the report unsatisfactory. C3 means an improvement is recommended, but on its own it is not a reason for the report to fail.',
+      },
+      {
+        title: 'On the day',
+        body: 'How long the inspection takes depends on the size of the property and the number of circuits. The power has to be off for parts of it, so expect some time without electricity. The electrician needs to reach the consumer unit, every room and any outbuildings with power, so let tenants know in advance.',
+      },
+      {
+        title: 'Homeowners and buyers',
+        body: 'There is no legal deadline for owner-occupiers, but the usual recommendation is an inspection every ten years and whenever you buy a home. Older wiring, a fuse box without RCD protection, or a history of DIY alterations are all good reasons not to wait that long.',
+      },
+    ],
+    aside: {
+      title: 'Keep every report',
+      body: 'Keep each EICR and any written confirmation of remedial work together. The council can ask to see them, and the next electrician will want to know what was found last time.',
+    },
+    faqs: [
+      {
+        q: 'How often do I need an EICR as a landlord?',
+        a: 'At least every five years, or sooner if the last report recommends a shorter interval. A new report is also sensible after major electrical work.',
+      },
+      {
+        q: 'What happens if the report is unsatisfactory?',
+        a: 'The report lists the items coded C1, C2 or FI, and those must be put right within 28 days, or sooner if the report says so. We price the remedial work separately, carry it out if you want us to, and give you written confirmation once it is done, which you then pass on to your tenants and to the council if it asks.',
+      },
+      {
+        q: 'Is an EICR the same as a gas safety certificate?',
+        a: 'No. The gas safety record covers gas appliances and must be renewed every year. The EICR covers the fixed electrical installation and lasts up to five years for a rented home. Landlords need both, and we can arrange the two together.',
+      },
+      {
+        q: 'Does an EICR test my appliances?',
+        a: 'No. It covers the fixed installation: the wiring, consumer unit, sockets, switches and fixed fittings. Portable appliances such as kettles and lamps are checked separately, by PAT testing.',
+      },
+    ],
+  },
+  {
+    slug: 'consumer-unit-replacement',
+    title: 'Fuse Box Replacement',
+    h1: 'Fuse box and consumer unit replacement in London',
+    metaTitle: 'Fuse Box & Consumer Unit Replacement London | Ninja Plumbers',
+    metaDescription:
+      'Old fuse boxes replaced with modern consumer units with RCD protection across London. Tested, certified and notified, price agreed first. Call 020 3576 5825.',
+    eyebrow: 'Consumer units',
+    icon: 'fusebox',
+    target: 'fuse box replacement london (70/mo) · consumer unit replacement london (30/mo)',
+    summary:
+      'Old fuse boxes swapped for modern consumer units with RCD protection, tested, certified and notified for you.',
+    intro:
+      'The consumer unit, or fuse box, is where every circuit in your home is protected. An old one with wire fuses and no RCDs does very little to protect people from an electric shock, and plastic units are no longer allowed for new installations in homes. Our electricians test your circuits, replace the unit with a modern metal-cased one, and handle the certificate and the Building Regulations notification, with the price agreed before any work starts.',
+    does: [
+      'Old rewireable fuse boxes replaced',
+      'Modern consumer units with RCD protection',
+      'Surge protection where the regulations call for it',
+      'Every circuit tested before and after the change',
+      'Electrical Installation Certificate on completion',
+      'Building Regulations notification handled for you',
+    ],
+    guidance: [
+      {
+        title: 'Signs your fuse box is due for replacement',
+        body: 'Fuses with fuse wire, a wooden backboard, no RCD protection, trips you cannot explain, or scorch marks and a warm smell around the unit. Any one of these is worth an electrician looking at. If you are not sure what you have, send us a photo of it.',
+      },
+      {
+        title: 'Why modern units are metal',
+        body: 'Since 2016 the wiring regulations have required consumer units in homes to have an enclosure made of non-combustible material, which in practice means steel. It keeps a fault inside the box from spreading, which matters most where the unit sits under the stairs, the usual escape route.',
+      },
+      {
+        title: 'Testing comes first',
+        body: 'A new consumer unit only protects properly if the circuits it feeds are sound. The electrician tests the existing circuits before the change, because RCDs will trip on faults an old fuse box ignored. If a circuit has a fault, we tell you and price the fix before going further.',
+      },
+      {
+        title: 'The paperwork',
+        body: 'Replacing a consumer unit is notifiable work under Part P of the Building Regulations. As registered electricians we notify it for you, and you receive an Electrical Installation Certificate and a Building Regulations compliance certificate. Keep both with the house documents, because a buyer’s solicitor will ask for them.',
+      },
+    ],
+    aside: {
+      title: 'Plan for time without power',
+      body: 'The supply has to be off while the unit is changed and tested. We agree the day with you and tell you roughly how long to expect, so you can plan around the fridge, the freezer and working from home.',
+    },
+    faqs: [
+      {
+        q: 'Do I need to replace my fuse box?',
+        a: 'Not always. If it is an old rewireable type with no RCD protection, replacement is strongly recommended. If it is a newer unit that keeps tripping, the fault is more often on a circuit than in the unit, and we will find it first.',
+      },
+      {
+        q: 'What is an RCD?',
+        a: 'A residual current device detects current leaking to earth, as happens when someone touches a live part, and cuts the power in a fraction of a second. It is one of the most important safety features a modern installation has.',
+      },
+      {
+        q: 'Will the new unit trip more than the old one?',
+        a: 'It can at first, because it detects faults the old fuses could not. That is the unit doing its job. Testing beforehand finds most of these so they can be fixed as part of the same job.',
+      },
+      {
+        q: 'Is replacing a consumer unit notifiable?',
+        a: 'Yes. Replacing a consumer unit in a home is notifiable under Part P. We notify it through our registration scheme, so you do not have to deal with building control yourself.',
+      },
+    ],
+  },
+  {
+    slug: 'rewiring',
+    title: 'Rewiring',
+    h1: 'House and flat rewiring in London',
+    metaTitle: 'Rewiring London | House & Flat Rewires | Ninja Plumbers',
+    metaDescription:
+      'Full and partial rewires for London houses and flats, planned with you, tested, certified and notified. Price agreed before work starts. Call 020 3576 5825.',
+    eyebrow: 'Rewiring',
+    icon: 'wiring',
+    target: 'rewiring london (90/mo) · house rewire london (90/mo)',
+    summary:
+      'Full and partial rewires for houses and flats, planned around you and the other trades, then tested and certified.',
+    intro:
+      'Wiring does not last for ever. Rubber-insulated cable, a handful of sockets per room and a fuse box with wire fuses are still found in London homes, and even newer installations can be let down by decades of alterations. A rewire replaces the cables, accessories and consumer unit so the whole installation is safe, tested and certified. Our electricians plan it with you room by room and agree the price before any work starts.',
+    does: [
+      'Full rewires of houses and flats',
+      'Partial rewires of kitchens, bathrooms and extensions',
+      'Extra sockets and new lighting circuits',
+      'A new consumer unit as part of the rewire',
+      'Testing, certification and Building Regulations notification',
+      'Planned around your plasterer, decorator and other trades',
+    ],
+    guidance: [
+      {
+        title: 'Signs a rewire is due',
+        body: 'Rubber or fabric-covered cable, round-pin sockets, a fuse box with rewireable fuses, very few sockets in each room, light switches inside bathrooms, or an installation nobody has tested in decades. An EICR will tell you for certain whether the wiring can stay or needs replacing.',
+      },
+      {
+        title: 'First fix and second fix',
+        body: 'A rewire happens in two stages. First fix runs the new cables and back boxes while floors and walls are open. Second fix, after plastering, fits the sockets, switches, lights and consumer unit. The gap between the two is when the plasterer comes in, so the timing needs planning.',
+      },
+      {
+        title: 'Living in the property during a rewire',
+        body: 'It is possible, particularly in a house where the work can go room by room, but it is dusty and disruptive and the power will be off at times. In a flat it is often easier to rewire while it is empty, for example between tenancies or before you move in.',
+      },
+      {
+        title: 'Plan the layout while you can',
+        body: 'A rewire is the cheapest moment to put sockets, lights and switches exactly where you want them. Walk round each room with the furniture in mind, and think about outside lights, extra kitchen sockets and power for things like a future EV charger.',
+      },
+    ],
+    aside: {
+      title: 'Combine it with the plumbing',
+      body: 'If the kitchen or bathroom is being redone, or old pipework is being replaced, doing the rewire at the same time means floors and walls only come up once. Because we do both, we can plan it as one job.',
+    },
+    faqs: [
+      {
+        q: 'How do I know if my home needs rewiring?',
+        a: 'An EICR is the reliable way to find out. It tests the installation and tells you whether the wiring is safe to keep, needs some circuits replacing, or is due for a full rewire.',
+      },
+      {
+        q: 'Can I stay at home during a rewire?',
+        a: 'Often, yes, in a house where the work can be done room by room, though it is dusty and the power will be off at times. In a flat it is usually easier if the property is empty.',
+      },
+      {
+        q: 'Will the walls need replastering?',
+        a: 'Cables are run in chases cut into the plaster, under floorboards and through ceiling voids. The chases are filled afterwards, but most rewires are followed by some plastering and decorating, which is why it is best to rewire before redecorating rather than after.',
+      },
+      {
+        q: 'Is rewiring notifiable?',
+        a: 'Yes. A full or partial rewire is notifiable under Part P of the Building Regulations. We notify it through our registration scheme and give you an Electrical Installation Certificate when the work is complete.',
+      },
+    ],
+  },
+  {
+    slug: 'ev-charger-installation',
+    title: 'EV Charger Installation',
+    h1: 'EV charger installation in London',
+    metaTitle: 'EV Charger Installation London | Ninja Plumbers',
+    metaDescription:
+      'Home EV chargers fitted across London: supply survey, smart charger installation, network notification and certification. Price agreed first. Call 020 3576 5825.',
+    eyebrow: 'EV charging',
+    icon: 'ev',
+    target: 'ev charger installation london (480/mo)',
+    summary:
+      'Home charge points surveyed, fitted, notified and certified, with any supply upgrades priced up front.',
+    intro:
+      'Charging an electric car at home is cheaper and easier than relying on public chargers, provided the installation is done properly. A home charger draws a heavy load for hours at a time, so the supply, the consumer unit and the earthing all need checking before it goes on the wall. Our electricians survey your property, fit a smart charger, notify the network operator and certify the work, with the price agreed before anything starts.',
+    does: [
+      'Home charge point installation',
+      'Survey of the supply, consumer unit and cable route',
+      'Smart chargers that meet the charge point regulations',
+      'Earthing arrangements checked and put right',
+      'Notification to the network operator',
+      'Testing and certification on completion',
+    ],
+    guidance: [
+      {
+        title: 'Where the charger can go',
+        body: 'Most chargers go on an outside wall close to where you park, with a cable run back to the consumer unit. In London the first question is often whether you have off-street parking at all: a home charger must be on your own property, and a cable cannot be trailed across a public pavement.',
+      },
+      {
+        title: 'Is your supply ready?',
+        body: 'The survey checks the incoming supply, the main fuse, the consumer unit and the earthing, so we can tell you whether the charger can be fitted as things are or whether something needs upgrading first. Any upgrade is priced before work starts.',
+      },
+      {
+        title: 'Smart chargers are the law',
+        body: 'Home charge points installed in Great Britain have had to be smart since 2022, which means they can be scheduled and can respond to the electricity network. In practice that lets you charge on a cheaper overnight tariff if your supplier offers one.',
+      },
+      {
+        title: 'Notifying the network operator',
+        body: 'Charge point installations have to be notified to the local distribution network operator, which across London is UK Power Networks. We handle that as part of the job, along with the Building Regulations notification and your certificate.',
+      },
+    ],
+    aside: {
+      title: 'Send us three photos',
+      body: 'The make of car, where you park, and your consumer unit. That is usually enough for us to tell you what is involved before anyone comes out.',
+    },
+    faqs: [
+      {
+        q: 'Do I need off-street parking?',
+        a: 'Yes, for a home charger. It has to be installed on your own property, and a cable cannot be trailed across a public pavement. If you park on the street, public or workplace chargers are the usual options.',
+      },
+      {
+        q: 'Will I need a new consumer unit?',
+        a: 'Sometimes. If there is no spare way for the charger circuit, or the existing unit is old, it may need replacing or supplementing. The survey tells you, and it is priced before any work starts.',
+      },
+      {
+        q: 'Which charger should I choose?',
+        a: 'Most modern home chargers do the job well. The main choices are a tethered or untethered cable, how it works with your app and tariff, and how it looks on the wall. We will talk you through the options before you decide.',
+      },
+      {
+        q: 'Is a charger installation notifiable?',
+        a: 'Yes. A charger needs a new dedicated circuit, which is notifiable under Part P. We notify it through our registration scheme, notify the network operator, and give you the certificates when it is done.',
+      },
+    ],
+  },
 ];
 
 export default services;

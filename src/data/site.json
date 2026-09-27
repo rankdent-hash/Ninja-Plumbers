@@ -40,5 +40,10 @@
     ]
   },
   "appOrigin": "https://ninja-plumbers-london.vercel.app",
-  "googleSiteVerification": ""
+  "googleSiteVerification": "",
+  "electricalRegistration": {
+    "scheme": "",
+    "number": "",
+    "_note": "Competent person scheme (e.g. NICEIC or NAPIT) and registration number. Leave blank until confirmed; pages show them only when filled in."
+  }
 }

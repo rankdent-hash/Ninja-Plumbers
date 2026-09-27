@@ -28,7 +28,7 @@ const ogImage = new URL(image, Astro.site).href;
 
 const localBusiness = {
   '@context': 'https://schema.org',
-  '@type': 'Plumber',
+  '@type': ['Plumber', 'Electrician'],
   name: site.name,
   legalName: site.legalName,
   url: site.url,

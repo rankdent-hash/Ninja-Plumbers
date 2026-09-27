@@ -42,9 +42,9 @@ export const home = {
         href: '/services/low-water-pressure',
       },
       {
-        label: 'A pipe or joint is dripping',
-        hint: 'Leaks you can see, on pipes, valves and fittings',
-        href: '/services/leak-repair',
+        label: 'Power tripping, or a burning smell',
+        hint: 'Registered electricians, with a 24/7 emergency line',
+        href: '/electrical',
       },
       {
         label: 'Damp patch but no visible leak',
