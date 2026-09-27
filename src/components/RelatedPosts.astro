@@ -1,0 +1,37 @@
+---
+// "Advice on this" for a hub or listing page: the published blog posts that
+// relate to any of the pages this one covers (see src/lib/blogLinks.ts).
+// Read at build time, so a new post shows here after the next deploy.
+// Renders nothing when no post matches.
+import { blogPosts } from '../data/blog';
+import { postsCovering } from '../lib/blogLinks';
+
+type Props = { covers: string[]; heading?: string; tone?: 'plain' | 'alt'; limit?: number };
+const { covers, heading = 'Advice from our engineers', tone = 'plain', limit = 3 } = Astro.props;
+
+const withLinks = blogPosts.map((p) => ({
+  ...p,
+  related_services: p.relatedServices,
+  related_appliances: p.relatedAppliances,
+  related_damp: p.relatedDamp,
+}));
+const posts = postsCovering(withLinks, covers, limit);
+---
+{posts.length > 0 && (
+  <section class={tone === 'alt' ? 'section section-alt' : 'section'}>
+    <div class="container">
+      <span class="eyebrow">From the blog</span>
+      <h2>{heading}</h2>
+      <ul class="grid grid-3 card-grid">
+        {posts.map((p) => (
+          <li class="card">
+            <h3><a href={`/blog/${p.slug}`} class="card-title-link">{p.title}</a></h3>
+            <p>{p.excerpt}</p>
+            <a href={`/blog/${p.slug}`} class="card-link" aria-hidden="true" tabindex="-1">Read the guide <span>&rarr;</span></a>
+          </li>
+        ))}
+      </ul>
+      <p class="section-foot"><a href="/blog" class="btn btn-ghost">All guides</a></p>
+    </div>
+  </section>
+)}

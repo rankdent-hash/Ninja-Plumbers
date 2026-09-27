@@ -16,42 +16,52 @@ import PhoneIcon from '../../components/PhoneIcon.astro';
 import WhatsAppIcon from '../../components/WhatsAppIcon.astro';
 import HeroWithForm from '../../components/HeroWithForm.astro';
 import Schema from '../../components/Schema.astro';
+import { overlap, postHubs } from '../../lib/blogLinks';
 
 const slug = Astro.params.slug;
 const supabase = getSupabaseAdmin();
 
 type PostRow = {
   slug: string; title: string; h1: string; meta_title: string; meta_description: string;
-  excerpt: string; body: string; hero_image_url: string | null; published_at: string;
+  excerpt: string; body: string; hero_image_url: string | null; published_at: string; updated_at: string | null;
   related_services: string[]; related_appliances: string[]; related_damp: string[];
 };
+type OtherRow = Pick<PostRow, 'slug' | 'title' | 'published_at' | 'related_services' | 'related_appliances' | 'related_damp'>;
 
 let post: PostRow | null = null;
-let others: { slug: string; title: string }[] = [];
+let allOthers: OtherRow[] = [];
 
 if (supabase && slug) {
   const [{ data: postData }, { data: othersData }] = await Promise.all([
     supabase
       .from('blog_posts')
-      .select('slug, title, h1, meta_title, meta_description, excerpt, body, hero_image_url, published_at, related_services, related_appliances, related_damp')
+      .select('slug, title, h1, meta_title, meta_description, excerpt, body, hero_image_url, published_at, updated_at, related_services, related_appliances, related_damp')
       .eq('status', 'published')
       .eq('slug', slug)
       .maybeSingle(),
     supabase
       .from('blog_posts')
-      .select('slug, title')
+      .select('slug, title, published_at, related_services, related_appliances, related_damp')
       .eq('status', 'published')
       .neq('slug', slug)
-      .order('published_at', { ascending: false })
-      .limit(3),
+      .order('published_at', { ascending: false }),
   ]);
   post = postData ?? null;
-  others = othersData ?? [];
+  allOthers = othersData ?? [];
 }
 
 if (!post) {
   return new Response('Not found', { status: 404 });
 }
+
+// "More advice": the posts sharing the most linked pages with this one, then
+// the newest, so readers (and crawlers) move between posts on the same topic.
+const others = allOthers
+  .map((o, i) => ({ o, i, n: overlap(post!, o) }))
+  .sort((a, b) => b.n - a.n || a.i - b.i)
+  .slice(0, 4)
+  .map((x) => x.o);
+const hubLinks = postHubs(post);
 
 const relatedServices = post.related_services.map((s) => services.find((x) => x.slug === s)).filter((x): x is (typeof services)[number] => !!x);
 const relatedAppliances = post.related_appliances.map((s) => appliances.find((x) => x.slug === s)).filter((x): x is (typeof appliances)[number] => !!x);
@@ -63,15 +73,24 @@ const crumbs = [
   { label: post.title },
 ];
 
+const postUrl = new URL(`/blog/${post.slug}`, Astro.site).href;
 const articleSchema = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
   headline: post.title,
   description: post.meta_description,
   datePublished: post.published_at,
-  image: post.hero_image_url || undefined,
-  author: { '@type': 'Organization', name: site.name },
-  publisher: { '@type': 'Organization', name: site.name },
+  dateModified: post.updated_at || post.published_at,
+  mainEntityOfPage: postUrl,
+  url: postUrl,
+  image: post.hero_image_url || new URL('/images/og-ninja-vans.jpg', Astro.site).href,
+  author: { '@type': 'Organization', name: site.name, url: site.url },
+  publisher: {
+    '@type': 'Organization',
+    name: site.name,
+    url: site.url,
+    logo: { '@type': 'ImageObject', url: new URL('/images/logo.png', Astro.site).href },
+  },
 };
 
 const fmt = (iso: string) => new Date(iso).toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' });
@@ -100,6 +119,15 @@ const fmt = (iso: string) => new Date(iso).toLocaleDateString('en-GB', { day: '2
       <div class="blog-body">
         <Fragment set:html={post.body} />
       </div>
+      <aside class="blog-about">
+        <p>
+          From Ninja Plumbers, <a href="/">London plumbers</a> based in Fulham and
+          covering <a href="/areas-we-cover">every London borough and the towns around Guildford</a>.
+          This guide sits under our {hubLinks.map((h, i) => (
+            <>{i > 0 && (i === hubLinks.length - 1 ? ' and ' : ', ')}<a href={h.href}>{h.label}</a></>
+          ))}. <a href="/about">More about us</a>.
+        </p>
+      </aside>
     </div>
   </section>
 

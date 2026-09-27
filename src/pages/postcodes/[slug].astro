@@ -26,10 +26,19 @@ const { pc } = Astro.props;
 
 const areaPage = pc.areaSlug ? areas.find((a) => a.slug === pc.areaSlug) : null;
 
-// Other districts in the same region, for a genuine internal-linking path.
-const siblings = postcodes
-  .filter((p) => p.region === pc.region && p.slug !== pc.slug)
-  .slice(0, 12);
+// Other districts nearby: those sharing a borough first, then the rest of
+// the region in list order, starting from this district and wrapping round.
+// Taking the first twelve of the region instead left the later districts
+// with almost no links in.
+const region = postcodes.filter((p) => p.region === pc.region);
+const at = region.findIndex((p) => p.slug === pc.slug);
+const byDistance = region
+  .map((p, i) => ({ p, d: Math.min(Math.abs(i - at), region.length - Math.abs(i - at)) }))
+  .filter(({ p }) => p.slug !== pc.slug)
+  .sort((x, y) => x.d - y.d)
+  .map(({ p }) => p);
+const sharesBorough = (p: (typeof postcodes)[number]) => p.boroughs.some((b) => pc.boroughs.includes(b));
+const siblings = [...byDistance.filter(sharesBorough), ...byDistance.filter((p) => !sharesBorough(p))].slice(0, 12);
 
 const boroughList =
   pc.boroughs.length === 1

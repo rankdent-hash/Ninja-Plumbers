@@ -43,7 +43,13 @@ const crumbs = [
   { label: area.name },
 ];
 
-const nearby = area.nearby
+// Two-way: an area also lists every area that names it as a neighbour, so
+// no area page depends on a single list elsewhere for its links.
+const nearbySlugs = [
+  ...area.nearby,
+  ...areas.filter((a) => a.nearby.includes(area.slug) && !area.nearby.includes(a.slug)).map((a) => a.slug),
+];
+const nearby = nearbySlugs
   .map((s) => areas.find((a) => a.slug === s))
   .filter(Boolean);
 

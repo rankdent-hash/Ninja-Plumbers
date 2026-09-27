@@ -14,6 +14,7 @@ import site from '../data/site.json';
 import { hubs } from '../data/hubs';
 import { services } from '../data/services';
 import { appliances } from '../data/appliances';
+import RelatedPosts from '../components/RelatedPosts.astro';
 
 export function getStaticPaths() {
   return hubs.map((hub) => ({ params: { hub: hub.slug }, props: { hub } }));
@@ -121,6 +122,11 @@ const hubSchema = {
       </div>
     </div>
   </section>
+
+  <RelatedPosts
+    covers={[...hub.problems.map((p) => p.href), ...hub.children.map((c) => c.href)]}
+    heading={`${label} advice from our engineers`}
+  />
 
   <section class="section section-navy">
     <div class="container center measure-wide">

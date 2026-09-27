@@ -12,6 +12,7 @@ import Tick from '../components/Tick.astro';
 import PhoneIcon from '../components/PhoneIcon.astro';
 import WhatsAppIcon from '../components/WhatsAppIcon.astro';
 import HeroWithForm from '../components/HeroWithForm.astro';
+import RelatedPosts from '../components/RelatedPosts.astro';
 import { getSupabaseAdmin } from '../lib/supabaseAdmin';
 import { publishedServicePages } from '../lib/servicePages';
 
@@ -110,6 +111,8 @@ Astro.response.headers.set('Cache-Control', 'public, s-maxage=300, stale-while-r
     <p><a href="/damp" class="btn btn-navy">Damp & condensation services</a></p>
   </div>
 </section>
+
+<RelatedPosts covers={staticServices.map((s) => `/services/${s.slug}`)} heading="Plumbing and heating advice" />
 
 <section class="section section-navy">
   <div class="container center measure-wide">

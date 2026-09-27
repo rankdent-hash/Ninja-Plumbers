@@ -3082,3 +3082,15 @@ body.qr-open { overflow: hidden; }
 
 /* Blog index with nothing published yet. */
 .blog-empty { padding: 40px 0; text-align: center; color: var(--muted); }
+
+/* Blog post: the short "who we are" line under the article, linking home,
+   the post's category hubs and the areas page. */
+.blog-about {
+  margin-top: 36px;
+  padding: 18px 20px;
+  border-left: 4px solid var(--navy);
+  background: var(--bg);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: 0.95rem;
+}
+.blog-about p { margin: 0; }

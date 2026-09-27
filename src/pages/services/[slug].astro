@@ -26,6 +26,8 @@ import { blogPosts } from '../../data/blog';
 import { combos } from '../../data/combos';
 import { areas, allAreas } from '../../data/areas';
 import { serviceGroups } from '../../data/nav';
+import { brands } from '../../data/brands';
+import { dampPages } from '../../data/damp';
 import ServiceIcon from '../../components/ServiceIcon.astro';
 import Tick from '../../components/Tick.astro';
 import PhoneIcon from '../../components/PhoneIcon.astro';
@@ -88,6 +90,9 @@ const localPages = combos
 // The appliance pages that name this service as their parent, so the link
 // runs both ways and neither side is reachable only from the footer.
 const relatedAppliances = appliances.filter((a) => a.related.includes(service.slug));
+// Damp pages that point back at this service (general plumbing, leak
+// detection), linked the other way too: a damp patch is often a leak.
+const relatedDamp = dampPages.filter((d) => d.related.includes(service.slug));
 // Computed, not hand-maintained: a post links here, so this page links back.
 const relatedPosts = blogPosts.filter((p) => p.relatedServices.includes(service.slug));
 const label = HEADING[service.slug] ?? service.title.replace('&amp;', 'and');
@@ -374,6 +379,14 @@ const serviceSchema = {
           </li>
         ))}
       </ul>
+      {relatedDamp.length > 0 && (
+        <p class="measure">
+          Not sure whether it is a leak or damp? A slow leak often looks like damp, and the reverse.
+          See {relatedDamp.map((d, i) => (
+            <>{i > 0 && (i === relatedDamp.length - 1 ? ' and ' : ', ')}<a href={`/damp/${d.slug}`}>{d.title.toLowerCase()}</a></>
+          ))}, or our <a href="/damp">damp and condensation</a> page.
+        </p>
+      )}
       <p class="all-services-link"><a href="/services">See every service we offer <span aria-hidden="true">&rarr;</span></a></p>
     </div>
   </section>
@@ -401,7 +414,12 @@ const serviceSchema = {
           Every brand gets its own page on what is typical of it and the faults that tend to
           come up on that make.
         </p>
-        <p><a href="/boilers" class="btn btn-navy">All boiler brands</a></p>
+        <ul class="combo-links">
+          {brands.map((b) => (
+            <li><a href={`/boilers/${b.slug}`}>{b.name}</a></li>
+          ))}
+        </ul>
+        <p><a href="/boilers" class="btn btn-navy">Boiler and gas engineers</a></p>
       </div>
     </section>
   )}
