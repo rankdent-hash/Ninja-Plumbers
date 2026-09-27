@@ -1,0 +1,555 @@
+/* Admin panel styles (/admin, /oauth/authorize). Loaded only by
+   AdminLayout.astro, on top of global.css, so public pages don't download
+   them. Everything in here is scoped to admin-, areamap or Quill selectors. */
+
+/* ---- Admin panel ---- */
+.admin-body { background: var(--bg); min-height: 100vh; }
+.admin-bar { background: var(--surface); border-bottom: 1px solid var(--border); }
+.admin-bar-inner { display: flex; align-items: center; justify-content: space-between; min-height: 64px; }
+.admin-brand { font-family: var(--font-heading); font-weight: 700; font-size: 1.1rem; color: var(--navy); }
+.admin-brand .brand-mark { color: var(--orange-ink); }
+/* Wraps. Nine tabs do not fit on a phone, and without this the whole admin
+   panel scrolled sideways — every page, not just the wide ones. */
+.admin-sections { display: flex; flex-wrap: wrap; gap: 4px; }
+.admin-sections a {
+  padding: 8px 14px; border-radius: 999px; font-size: 0.9rem; font-weight: 600; color: var(--muted);
+}
+.admin-sections a:hover { color: var(--navy); }
+.admin-sections a[aria-current="page"] { background: var(--blue-tint); color: var(--navy); }
+.admin-bar-right { display: flex; align-items: center; gap: 14px; }
+.admin-bar-email { font-size: 0.86rem; color: var(--muted); }
+.admin-logout-btn { padding: 8px 16px; font-size: 0.88rem; }
+.admin-main { padding: 32px 0 64px; }
+
+.admin-login { display: flex; justify-content: center; padding: 8vh 16px; }
+.admin-login-card {
+  width: 100%; max-width: 380px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: 28px; display: grid; gap: 14px;
+}
+.admin-login-card h1 { font-size: 1.4rem; margin: 0; color: var(--navy); text-align: center; }
+.admin-login-sub { margin: -8px 0 4px; text-align: center; color: var(--muted); font-size: 0.9rem; }
+
+.admin-head { margin-bottom: 18px; }
+.admin-head h1 { font-size: 1.6rem; margin-bottom: 2px; }
+.admin-sub { margin: 0; color: var(--muted); font-size: 0.92rem; }
+.admin-back { margin-bottom: 14px; }
+.admin-back a { color: var(--blue-ink); font-weight: 600; font-size: 0.9rem; }
+.admin-dim { color: var(--muted); }
+.admin-empty { padding: 40px 0; text-align: center; color: var(--muted); }
+
+.admin-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
+.admin-tabs a {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 13px; border-radius: 999px; font-size: 0.86rem; font-weight: 600;
+  color: var(--navy); background: var(--surface); border: 1px solid var(--border);
+  text-transform: capitalize;
+}
+.admin-tabs a span { font-weight: 700; color: var(--muted); font-size: 0.8rem; }
+.admin-tabs a:hover { border-color: var(--navy); }
+.admin-tabs a.is-active { background: var(--navy); border-color: var(--navy); color: var(--white); }
+.admin-tabs a.is-active span { color: rgba(255,255,255,0.75); }
+
+/* position:relative so this is the containing block for anything absolutely
+   positioned inside it. Without it a `.sr-only` span in a header cell resolves
+   against the page instead, taking its static position from deep inside a
+   table far wider than a phone — which pushed the whole document 511px
+   sideways on /admin while the span itself stayed invisible. */
+.admin-table-scroll { position: relative; overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+.admin-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.admin-table th {
+  text-align: left; padding: 11px 14px; font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted);
+  border-bottom: 1px solid var(--border); white-space: nowrap;
+}
+.admin-table td { padding: 11px 14px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.admin-table tr:last-child td { border-bottom: none; }
+.admin-table tr.is-out-of-area { background: #FFF4E8; }
+.admin-table a { color: var(--blue-ink); font-weight: 600; }
+.admin-nowrap { white-space: nowrap; }
+.admin-col-view { text-align: right; }
+
+.admin-urgency { font-size: 0.82rem; font-weight: 600; color: var(--muted); }
+.admin-urgency.is-emergency { color: var(--orange-ink); font-weight: 700; }
+.admin-urgency.is-published, .admin-urgency.is-live { color: var(--green-ink); }
+.admin-urgency.is-draft { color: var(--muted); }
+
+.admin-note { color: var(--muted); font-size: 0.9rem; max-width: 60ch; margin-bottom: 18px; }
+
+.admin-add { margin-bottom: 22px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+.admin-add summary { padding: 14px 18px; cursor: pointer; font-weight: 600; color: var(--navy); font-size: 0.94rem; }
+.admin-add-form {
+  padding: 0 18px 18px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px 16px;
+}
+.admin-add-form .field-wide { grid-column: 1 / -1; }
+.admin-add-form button { grid-column: 1 / -1; justify-self: start; }
+
+.admin-settings-card .admin-add-form { padding-top: 18px; }
+.admin-field-hint { grid-column: 1 / -1; margin: -8px 0 0; font-size: 0.82rem; color: var(--muted); }
+.admin-code-textarea { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.85rem; line-height: 1.5; }
+.admin-hero-preview { display: block; width: 100%; max-width: 480px; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 10px; margin-bottom: 6px; }
+
+.admin-review-text { max-width: 40ch; }
+.admin-toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 600; color: var(--muted); cursor: pointer; }
+.admin-toggle input:checked ~ span { color: #1A7A4C; }
+.admin-link-btn { background: none; border: none; padding: 0; color: var(--blue-ink); font-weight: 600; font-size: 0.9rem; cursor: pointer; }
+.admin-link-btn:hover { text-decoration: underline; }
+
+@media (max-width: 700px) {
+  .admin-add-form { grid-template-columns: 1fr; }
+  .admin-bar-inner { flex-wrap: wrap; gap: 10px; min-height: 0; padding: 12px 0; }
+  .admin-sections { order: 3; width: 100%; }
+}
+
+.admin-status-form { display: inline-flex; align-items: center; gap: 8px; }
+.admin-status-select {
+  border: 1.5px solid var(--border-strong); border-radius: 999px;
+  padding: 6px 30px 6px 12px; font-size: 0.82rem; font-weight: 700;
+  text-transform: capitalize; color: var(--navy); background: var(--white);
+  appearance: none; -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2354646F' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+  background-repeat: no-repeat; background-position: right 10px center;
+}
+.admin-status-select.is-new { background-color: #FFF4E8; border-color: #F3C9A2; color: #6B3308; }
+.admin-status-select.is-contacted, .admin-status-select.is-quoted { background-color: var(--blue-tint); border-color: #B7D7EA; color: var(--blue-ink); }
+.admin-status-select.is-booked { background-color: #E4F0E9; border-color: #B9D9C6; color: var(--green-ink); }
+.admin-status-select.is-closed, .admin-status-select.is-spam { background-color: var(--bg); color: var(--muted); }
+.admin-status-saved { font-size: 0.78rem; font-weight: 600; color: var(--green-ink); }
+.admin-status-form-lg .admin-status-select { padding: 9px 34px 9px 16px; font-size: 0.9rem; }
+
+.admin-pager { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 22px; font-size: 0.88rem; }
+.admin-pager a { color: var(--blue-ink); font-weight: 600; }
+.admin-pager span { color: var(--muted); }
+
+.admin-detail { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 26px; }
+.admin-detail-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+.admin-detail-head h1 { font-size: 1.4rem; margin-bottom: 2px; }
+.admin-detail-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 18px 24px; padding: 18px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.admin-field span { display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
+/* The rule above is meant for the field's label. A `.admin-dim` span standing
+   in for a missing value is also a span, so "Not recorded" was being shouted
+   in the same caps as the label beside it and read as a second heading. */
+.admin-field .admin-dim {
+  display: inline; font-size: inherit; font-weight: inherit; letter-spacing: normal;
+  text-transform: none; margin-bottom: 0;
+}
+.admin-field a { color: var(--blue-ink); font-weight: 600; }
+.admin-field-block { padding-top: 18px; }
+.admin-description { white-space: pre-wrap; line-height: 1.55; margin: 0; }
+
+@media (max-width: 640px) {
+  .admin-bar-email { display: none; }
+  .admin-detail { padding: 18px; }
+}
+
+/* ---- Admin: contact activity ---------------------------------------- */
+.admin-stats {
+  list-style: none; margin: 0 0 14px; padding: 0;
+  display: grid; gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+.admin-stat {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+  padding: 16px 18px; display: flex; flex-direction: column; gap: 4px;
+}
+.admin-stat.is-primary { border-color: var(--navy); background: linear-gradient(160deg, var(--navy-deep) 0%, var(--navy) 100%); }
+.admin-stat.is-primary .admin-stat-n { color: var(--white); }
+.admin-stat.is-primary .admin-stat-l { color: rgba(255,255,255,0.78); }
+.admin-stat-n { font-size: 1.9rem; font-weight: 800; line-height: 1; color: var(--navy); font-variant-numeric: tabular-nums; }
+.admin-stat-l { font-size: 0.82rem; color: var(--muted); font-weight: 600; }
+.admin-note { font-size: 0.86rem; color: var(--muted); margin: 0 0 24px; max-width: 68ch; }
+.admin-section { margin-top: 34px; }
+.admin-section h2 { font-size: 1.08rem; margin: 0 0 12px; }
+.admin-tabs-sub { border-bottom: 0; padding-bottom: 0; margin-bottom: 12px; }
+.admin-num { text-align: right; font-variant-numeric: tabular-nums; }
+.admin-chan { font-size: 0.8rem; font-weight: 700; }
+.admin-chan.is-phone { color: var(--orange-ink); }
+.admin-chan.is-whatsapp { color: var(--green-ink); }
+.admin-chan.is-sms { color: var(--navy); }
+.admin-chan.is-ad { color: var(--navy); background: var(--bg); border: 1px solid var(--border); border-radius: 100px; padding: 2px 9px; font-size: 0.74rem; }
+
+/* ---- Admin: /admin/places ------------------------------------------- */
+/* A note the reader is meant to stop at. --orange-ink is 4.72:1 on white,
+   so it carries body text; the tint behind it is why it reads as a warning
+   rather than just coloured text, and colour is never the only signal — the
+   sentence itself opens with the caution in bold. */
+.admin-note-warn {
+  color: var(--navy-ink);
+  background: rgba(242,100,25,0.07);
+  border-left: 3px solid var(--orange-ink);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 12px 14px;
+}
+.admin-filters { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px; margin-bottom: 18px; }
+.admin-filter-field { display: grid; gap: 5px; min-width: 0; }
+.admin-filter-field label { font-size: 0.8rem; font-weight: 600; color: var(--navy); }
+.admin-filter-input {
+  height: 40px; min-width: 200px; padding: 0 12px;
+  border: 1.5px solid var(--border-strong); border-radius: var(--radius-sm);
+  background: var(--white); color: var(--navy-ink); font: inherit; font-size: 16px;
+}
+.admin-filter-input:focus-visible { outline: 2px solid var(--navy); outline-offset: 1px; }
+.admin-filters .btn { height: 40px; }
+.admin-pill {
+  display: inline-block; margin-left: 6px; padding: 2px 9px;
+  background: var(--blue-tint); color: var(--navy); border-radius: 100px;
+  font-size: 0.74rem; font-weight: 700; white-space: nowrap;
+}
+.admin-pill-quiet { background: var(--surface-2); color: var(--muted); }
+.admin-csv-btn { padding: 2px 10px; font-size: 0.82rem; height: auto; vertical-align: baseline; }
+.admin-steps { max-width: 68ch; margin: 0 0 24px; padding-left: 20px; display: grid; gap: 10px; }
+.admin-steps li { font-size: 0.86rem; color: var(--muted); line-height: 1.55; }
+.admin-steps strong { color: var(--navy); }
+/* .admin-table th is styled as a COLUMN header: small, spaced, uppercase. A
+   row header is a place name — "Earl's Court", not "EARL'S COURT" — so it
+   takes body styling instead. Scoped to this table so no other admin table
+   changes. */
+.admin-table .admin-rowhead {
+  text-transform: none; letter-spacing: 0; font-size: 0.9rem;
+  color: var(--navy); white-space: normal;
+}
+@media (max-width: 560px) {
+  .admin-filters { display: grid; grid-template-columns: 1fr; }
+  .admin-filter-input { width: 100%; min-width: 0; }
+}
+
+/* ---- Admin: rich-text body editor (Quill) --------------------------- */
+#body-editor-mount {
+  background: var(--surface);
+  border-radius: var(--radius);
+  overflow: hidden; /* clip Quill's own toolbar/container corners to ours */
+}
+#body-editor-mount .ql-toolbar.ql-snow {
+  border: 1px solid var(--border);
+  border-bottom: none;
+  border-radius: var(--radius) var(--radius) 0 0;
+  background: var(--bg);
+  font-family: inherit;
+}
+#body-editor-mount .ql-container.ql-snow {
+  border: 1px solid var(--border);
+  border-radius: 0 0 var(--radius) var(--radius);
+  font-family: inherit;
+  font-size: 1rem;
+}
+#body-editor-mount .ql-editor { min-height: 340px; line-height: 1.7; color: var(--navy); }
+#body-editor-mount .ql-editor h2 { font-size: 1.3rem; margin: 1.2em 0 0.4em; }
+#body-editor-mount .ql-editor p { margin: 0 0 0.9em; }
+#body-editor-mount .ql-editor.ql-blank::before { color: var(--muted); font-style: normal; }
+.admin-editor-hint { margin: 6px 0 0; font-size: 0.82rem; color: var(--muted); }
+/* h2 used here for correct document outline (was h3, skipping a level after
+   the page's own h1) — sized back down to what it looked like as an h3. */
+.admin-card-heading { font-size: 1.15rem; letter-spacing: -0.01em; }
+
+/* --- /admin/areas: schematic Greater London map --- */
+.areamap { margin-bottom: 24px; }
+.areamap-toolbar {
+  display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-start;
+  justify-content: space-between; margin-bottom: 10px;
+}
+.areamap-legend { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+.areamap-key { display: inline-flex; align-items: center; gap: 6px; font-size: 0.82rem; color: var(--navy); }
+.areamap-key small { color: var(--muted); font-size: 0.75rem; }
+.areamap-key::before {
+  content: ''; width: 11px; height: 11px; border-radius: 999px; flex: none;
+  background: var(--dot, var(--navy));
+}
+.areamap-key-enquiries { --dot: #1d4ed8; }
+.areamap-key-phone { --dot: #ea580c; }
+.areamap-key-whatsapp { --dot: #15803d; }
+.areamap-key-sms { --dot: #7c3aed; }
+.areamap-legend-note { flex-basis: 100%; font-size: 0.78rem; color: var(--muted); }
+.areamap-zoom { display: flex; gap: 6px; flex: none; }
+.areamap-zoom .btn { padding: 4px 11px; font-size: 0.85rem; min-width: 38px; }
+
+.areamap-stage {
+  position: relative; overflow: hidden;
+  border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface);
+}
+.areamap-svg { display: block; width: 100%; height: auto; touch-action: none; }
+.areamap.is-zoomed .areamap-svg { cursor: grab; }
+.areamap.is-dragging .areamap-svg { cursor: grabbing; }
+
+/* Two grounds, one axis: cool = we work here, warm = we do not. The two fills
+   are about 1.03:1 apart in luminance — all but identical in greyscale — so
+   fill is only ever a reminder. Border style carries the meaning, and that
+   survives greyscale and every colour-vision type. */
+.areamap-outside { fill: #f7ede4; }
+
+/* Covered today: London's boroughs and the named districts beyond it get one
+   rule, on purpose. A borough and Guildford are the same claim, so they are
+   the same drawing.
+   The stroke was #94a3b8, which measured 2.3:1 on its own fill and 1.8:1 under
+   the corridor band — under the 3:1 floor for graphics, and invisible once the
+   band crossed it. #64758c is 4.2:1 and 3.3:1. */
+.areamap-borough,
+.areamap-district.is-covered {
+  fill: #eef2f7; stroke: #64758c; stroke-width: 2.6; stroke-dasharray: none;
+  stroke-linejoin: round; vector-effect: non-scaling-stroke;
+}
+.areamap-borough:hover,
+.areamap-district.is-covered:hover { fill: #dfe7f1; }
+
+/* Not covered yet. fill:none deliberately — the uncovered ground shows
+   straight through, so the shape is named without being promoted to something
+   that looks like our patch. A tinted fill was tried and dropped: it dragged
+   this stroke to 3.0:1 and the covered stroke to 2.2:1 under the band.
+   pointer-events must be spelled out precisely BECAUSE there is no fill:
+   without it only the 2px border would answer a hover. */
+.areamap-district {
+  fill: none; pointer-events: all;
+  stroke: #8a6f52; stroke-width: 2.2; stroke-dasharray: 9 7;
+  stroke-linejoin: round; vector-effect: non-scaling-stroke;
+}
+.areamap-district:hover { fill: rgba(138, 111, 82, 0.1); stroke: #5e4b38; }
+
+.areamap-label {
+  /* Sized in px-on-screen by the script, like the postcode codes: zooming in
+     on a borough used to inflate "Reigate & Banstead" to about 90px. The 26px
+     fallback is what a no-JS render gets, which is right at 1x. */
+  font-size: var(--areamap-name-size, 26px); font-weight: 600; fill: #6b5540;
+  text-anchor: middle; dominant-baseline: middle;
+  paint-order: stroke; stroke: #fdf8f3; stroke-width: 6; stroke-linejoin: round;
+  pointer-events: none;
+}
+.areamap-label.is-covered { fill: #3f5468; stroke: #f4f7fb; }
+
+/* Every area can be opened, so say so with the pointer. */
+.areamap-borough, .areamap-district { cursor: pointer; }
+.areamap.is-dragging .areamap-borough, .areamap.is-dragging .areamap-district { cursor: grabbing; }
+
+/* While one area is open the rest step back, so the shape being read is the
+   one the eye lands on. Dots stay at full strength throughout — they are the
+   data, and dimming them would hide the thing the map is for. */
+.areamap.is-focused .areamap-borough,
+.areamap.is-focused .areamap-district { opacity: 0.4; }
+.areamap.is-focused .areamap-borough.is-open,
+.areamap.is-focused .areamap-district.is-open { opacity: 1; stroke-width: 3.4; }
+.areamap.is-focused .areamap-labels { opacity: 0.35; }
+
+/* Postcode codes inside the open area. --areamap-code-size is set by the
+   script from the live zoom, so these stay about 11px however far in the map
+   is; without it they would double in size every time the map did. */
+.areamap-code {
+  display: none;
+  font-size: var(--areamap-code-size, 14px);
+  font-weight: 700; fill: #1f3247;
+  text-anchor: middle; dominant-baseline: middle;
+  paint-order: stroke; stroke: #fff; stroke-width: 0.28em; stroke-linejoin: round;
+  pointer-events: none;
+}
+.areamap-code.is-shown { display: initial; }
+/* The place name under the code: smaller and lighter, so the code still reads
+   first and the name qualifies it rather than competing. */
+.areamap-code-place { font-size: 0.82em; font-weight: 600; fill: #55708a; }
+/* The other places a district covers, listed inside its own boundary when it
+   is opened. They are NOT drawn as sub-areas: nothing in this repo records
+   where Earlsfield sits inside SW18, and a labelled shape would be a claim
+   about position that no data here supports. */
+.areamap-code-extra { font-size: 0.74em; fill: #7d90a3; }
+.areamap-code:not(.is-selected) .areamap-code-extra { display: none; }
+
+/* The districts inside the open area, and the hover target for each. Hidden
+   and inert otherwise — 268 of them would intercept every hover on the full
+   map. Dashed, because these divisions are schematic rather than surveyed and
+   the border should not pretend to be a boundary anyone measured. */
+.areamap-cell { display: none; pointer-events: none; }
+.areamap-cell.is-shown {
+  display: initial;
+  pointer-events: all;
+  fill: rgba(250, 204, 21, 0.09);
+  stroke: #d9a521; stroke-width: 1.5; stroke-dasharray: 5 4;
+  stroke-linejoin: round; vector-effect: non-scaling-stroke;
+}
+.areamap-cell.is-shown:hover { fill: rgba(250, 204, 21, 0.26); stroke: #a87400; stroke-width: 2.4; }
+
+.areamap-tip-dim { color: #9fb0c0; }
+
+/* --- find an area or postcode --- */
+.areamap-search { margin-bottom: 12px; }
+.areamap-search-label {
+  display: block; font-size: 0.8rem; font-weight: 700; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 5px;
+}
+.areamap-search-box { position: relative; max-width: 420px; }
+.areamap-search-input {
+  width: 100%; padding: 9px 34px 9px 14px;
+  border: 1.5px solid var(--border-strong); border-radius: 999px;
+  font: inherit; font-size: 0.92rem; color: var(--navy); background: var(--white);
+}
+.areamap-search-input:focus-visible { outline: 2px solid var(--blue-ink); outline-offset: 1px; }
+.areamap-search-clear {
+  position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+  border: none; background: none; cursor: pointer;
+  font-size: 1.3rem; line-height: 1; color: var(--muted); padding: 0 6px;
+}
+.areamap-search-clear:hover { color: var(--navy); }
+.areamap-suggestions {
+  position: absolute; z-index: 20; left: 0; right: 0; top: calc(100% + 4px);
+  margin: 0; padding: 4px; list-style: none;
+  background: var(--white); border: 1px solid var(--border); border-radius: 12px;
+  box-shadow: var(--shadow); max-height: 280px; overflow-y: auto;
+}
+.areamap-suggestion {
+  padding: 7px 10px; border-radius: 8px; cursor: pointer;
+  display: flex; flex-direction: column; gap: 1px;
+}
+.areamap-suggestion strong { font-size: 0.9rem; color: var(--navy); }
+.areamap-suggestion span { font-size: 0.78rem; color: var(--muted); }
+.areamap-suggestion:hover, .areamap-suggestion.is-active { background: var(--blue-tint); }
+.areamap-search-status { margin: 6px 0 0; font-size: 0.83rem; color: var(--muted); min-height: 1.1em; }
+
+
+
+/* The district picked out of the open area. Both the shape and its dots get
+   marked, so it is obvious which one the panel below is describing. */
+.areamap-cell.is-shown.is-selected {
+  fill: rgba(250, 204, 21, 0.34); stroke: #8a5a00; stroke-width: 3;
+}
+.areamap-dot.is-selected { stroke: #1f3247; stroke-width: 3; opacity: 1; }
+
+/* What the search found. Declared after the selection rules on purpose:
+   searching marks a district found AND selects it, and green — "this is the one
+   you looked for" — is the more useful of the two to see. */
+.areamap-cell.is-shown.is-found {
+  fill: rgba(74, 222, 128, 0.42); stroke: #15803d; stroke-width: 3.2;
+}
+.areamap-borough.is-found, .areamap-district.is-found { fill: #dcfce7; stroke: #15803d; stroke-width: 3.2; }
+.areamap.is-focused .areamap-borough.is-found,
+.areamap.is-focused .areamap-district.is-found { opacity: 1; }
+
+/* The breakdown panel. Sits under the map rather than over it: it carries a
+   table, and an overlay that covers the thing you just clicked is a poor trade
+   on a page whose whole point is comparing places. */
+.areamap-detail {
+  margin-top: 14px; padding: 18px 20px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+}
+.areamap-detail-head h2 { margin: 0; font-size: 1.15rem; color: var(--navy); }
+.areamap-detail-places { font-weight: 600; color: var(--muted); font-size: 0.92rem; }
+.areamap-detail-sub { margin: 2px 0 0; color: var(--muted); font-size: 0.88rem; }
+.areamap-detail-stats {
+  display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0 6px;
+}
+.areamap-stat {
+  flex: 1 1 120px; min-width: 110px;
+  background: var(--bg); border: 1px solid var(--border); border-radius: 10px;
+  padding: 10px 12px; display: flex; flex-direction: column; gap: 2px;
+}
+.areamap-stat-n { font-size: 1.5rem; font-weight: 700; color: var(--navy); line-height: 1.1; }
+.areamap-stat-l { font-size: 0.8rem; color: var(--muted); font-weight: 600; }
+.areamap-stat-l small { font-weight: 500; }
+.areamap-detail-h4 { margin: 18px 0 8px; font-size: 0.95rem; color: var(--navy); }
+.areamap-detail-rate { font-weight: 600; color: var(--muted); }
+.areamap-detail-table { font-size: 0.86rem; }
+.areamap-detail-note { margin: 14px 0 0; font-size: 0.86rem; color: var(--muted); line-height: 1.55; }
+
+/* display:flex would win over the hidden attribute, leaving a stale borough
+   name on screen after the area is closed. Spell the hidden case out. */
+.areamap-readout { margin: 0 0 8px; font-size: 0.88rem; font-weight: 600; color: var(--navy); }
+.areamap-readout:not([hidden]) { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.areamap-close {
+  border: 1.5px solid var(--border-strong); background: var(--white);
+  border-radius: 999px; padding: 3px 12px;
+  font: inherit; font-size: 0.8rem; color: var(--muted); cursor: pointer;
+}
+.areamap-close:hover { color: var(--navy); border-color: var(--navy); }
+
+/* Opacity belongs on the group, not the paths: the motorway is drawn as 216
+   overlapping runs, and per-path alpha would stack at every overlap into the
+   blotchy mess that looks nothing like a 3-mile band. Group opacity flattens
+   the union first and composites it once. */
+/* The band is a 260-unit-wide stroke laid over the boroughs and districts, so
+   without this it swallows the hover for every shape within 3 miles of the
+   motorway — the exact ring the map exists to explain. */
+.areamap-corridor { opacity: 0.17; pointer-events: none; }
+.areamap-corridor path {
+  fill: none; stroke: #0f766e;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.areamap-m25 path {
+  fill: none; stroke: #0f766e; stroke-width: 4; stroke-opacity: 0.85;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.areamap.hide-corridor .areamap-corridor { display: none; }
+.areamap-key-corridor { --dot: #0f766e; }
+.areamap-key-covered { --dot: #64758c; }
+.areamap-key-planned { --dot: #8a6f52; }
+
+/* The only layer that was missing non-scaling-stroke: the white ring is what
+   separates one dot from the dot it overlaps, so it must not thin out as the
+   frame grows. 3 user units was ~1.6px and falling. */
+.areamap-dot { stroke: #fff; stroke-width: 1.8; opacity: 0.9; vector-effect: non-scaling-stroke; }
+.areamap-dot:hover { opacity: 1; }
+.areamap-dot-enquiries { fill: #1d4ed8; }
+.areamap-dot-phone { fill: #ea580c; }
+.areamap-dot-whatsapp { fill: #15803d; }
+.areamap-dot-sms { fill: #7c3aed; }
+
+.areamap-tip {
+  position: absolute; z-index: 2; pointer-events: none;
+  background: var(--navy); color: var(--white);
+  padding: 7px 10px; border-radius: 8px; font-size: 0.8rem; line-height: 1.35;
+  max-width: 190px; box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+}
+.areamap-empty { margin-top: 12px; }
+
+@media (max-width: 640px) {
+  .areamap-toolbar { flex-direction: column; }
+  .areamap-zoom { align-self: flex-end; }
+
+  /* On a phone the whole map is about 350px wide, which renders a 26-unit
+     name at roughly 4px — not small text, just noise across the shapes. The
+     names come back as soon as the map is zoomed, since everything in the pan
+     group scales with it. */
+  .areamap-label { display: none; }
+  .areamap.is-zoomed .areamap-label { display: initial; }
+}
+
+/* --- Leads: how an enquiry came in --------------------------------------- */
+
+/* A quiet second row of filters under the status tabs. Same pills, no second
+   rule across the page — two full-weight tab bars stacked read as two
+   competing navigations rather than one list narrowed twice. */
+.admin-tabs-quiet { border-bottom: 0; padding-bottom: 0; margin-top: -8px; margin-bottom: 18px; }
+.admin-tabs-quiet a { font-size: 0.82rem; padding: 5px 11px; text-transform: none; }
+
+/* Channel badge. Deliberately not colour-coded by channel: a phone call is
+   not better or worse than a form, and tinting them differently invites the
+   reading that one column is the good one. Only the website form is set
+   apart, because that is the one the conversion rates count. */
+.admin-channel { font-size: 0.8rem; font-weight: 600; color: var(--navy); white-space: nowrap; }
+.admin-channel.is-form { color: var(--muted); font-weight: 500; }
+
+.admin-head-actions { margin-top: 10px; }
+.admin-head-actions .btn { font-size: 0.86rem; padding: 8px 16px; }
+
+/* The required marker reads as words, not a bare asterisk that a screen
+   reader announces as "star". */
+.admin-req {
+  font-weight: 600; font-size: 0.72rem; letter-spacing: 0.04em;
+  text-transform: uppercase; color: var(--orange-ink); margin-left: 6px;
+}
+
+.admin-channel-set { border: 0; padding: 0; margin: 0; }
+.admin-channel-choices { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+.admin-channel-choice {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 8px 14px; border: 1px solid var(--border); border-radius: 999px;
+  background: var(--surface); font-size: 0.88rem; font-weight: 600; color: var(--navy);
+  cursor: pointer;
+}
+.admin-channel-choice:hover { border-color: var(--navy); }
+.admin-channel-choice:has(input:checked) { background: var(--navy); border-color: var(--navy); color: var(--white); }
+/* :has() is the styling; the focus ring must not depend on it, or keyboard
+   users on an older browser lose track of where they are. */
+.admin-channel-choice:focus-within { outline: 2px solid var(--blue-ink); outline-offset: 2px; }
+
+.admin-lead-edit { border-top: 1px solid var(--border); padding-top: 22px; }
+.admin-lead-edit .admin-add-form { padding-left: 0; padding-right: 0; padding-bottom: 0; }
+
+/* The lead-source table on the area panel: narrow, and read alongside the map
+   rather than instead of it. */
+.admin-source-table { max-width: 520px; }
+

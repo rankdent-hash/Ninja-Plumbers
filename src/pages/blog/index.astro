@@ -53,7 +53,7 @@ const fmt = (iso: string) => new Date(iso).toLocaleDateString('en-GB', { day: '2
 
   <section class="section">
     <div class="container">
-      {posts.length === 0 && <p class="admin-empty">Nothing published yet &mdash; check back soon.</p>}
+      {posts.length === 0 && <p class="blog-empty">Nothing published yet &mdash; check back soon.</p>}
       {posts.length > 0 && (
         <ul class="grid grid-3 card-grid blog-card-grid">
           {posts.map((post) => (

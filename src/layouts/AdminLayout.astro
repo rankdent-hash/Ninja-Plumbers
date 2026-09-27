@@ -3,6 +3,7 @@
 // menu, search or Book now popup, and always noindex. Shares global.css so
 // colours, type and .btn/.field styles match the rest of the site.
 import '../styles/global.css';
+import '../styles/admin.css';
 
 const { title, admin } = Astro.props as { title: string; admin?: { email: string } | null };
 const path = Astro.url.pathname;
