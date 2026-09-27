@@ -9,20 +9,9 @@
 // New approvals take effect on the next deploy, the same as every other
 // piece of content on this site — there is no live database read on the
 // public homepage itself.
-import { getSupabaseAdmin } from '../lib/supabaseAdmin';
+import { getApprovedTestimonials } from '../lib/testimonials';
 
-type Testimonial = { name: string; rating: 1 | 2 | 3 | 4 | 5; text: string };
-
-let testimonials: Testimonial[] = [];
-const supabase = getSupabaseAdmin();
-if (supabase) {
-  const { data } = await supabase
-    .from('testimonials')
-    .select('name, rating, text')
-    .eq('approved', true)
-    .order('created_at', { ascending: false });
-  if (data) testimonials = data as Testimonial[];
-}
+const testimonials = await getApprovedTestimonials();
 ---
 {testimonials.length > 0 && (
   <section class="section reviews-rail" aria-label="Google reviews">

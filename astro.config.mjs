@@ -43,7 +43,19 @@ async function serviceUrls() {
   return [...staticUrls, ...(data ?? []).map((s) => `${SITE_URL}/services/${s.slug}`)];
 }
 
+// /reviews is noindex while no review has been approved (see
+// src/pages/reviews.astro), so it stays out of the sitemap until then too.
+async function hasApprovedReviews() {
+  const url = process.env.SUPABASE_URL;
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!url || !key) return false;
+  const supabase = createClient(url, key, { auth: { persistSession: false } });
+  const { count } = await supabase.from('testimonials').select('id', { count: 'exact', head: true }).eq('approved', true);
+  return (count ?? 0) > 0;
+}
+
 const blogUrls = await publishedBlogUrls();
+const reviewsLive = await hasApprovedReviews();
 const serviceSitemapUrls = await serviceUrls();
 
 export default defineConfig({
@@ -121,6 +133,7 @@ export default defineConfig({
         !page.includes('/explorer') &&
         !page.includes('search-index') &&
         !page.includes('/admin') &&
+        (reviewsLive || !/\/reviews\/?$/.test(page)) &&
         // Postcode district pages come out of the sitemap together with their
         // noindex, controlled by the one flag in src/data/postcodes.ts.
         (INDEX_POSTCODE_PAGES || !/\/postcodes\//.test(page)),

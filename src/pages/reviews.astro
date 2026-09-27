@@ -3,16 +3,29 @@ import Base from '../layouts/Base.astro';
 import HeroWithForm from '../components/HeroWithForm.astro';
 import ReviewsCarousel from '../components/ReviewsCarousel.astro';
 import site from '../data/site.json';
+import { getApprovedTestimonials } from '../lib/testimonials';
+
+// Until at least one real review has been approved in /admin/reviews, this
+// page has nothing to show, so it says so plainly, asks customers for
+// feedback and stays out of Google (noindex here, and out of the sitemap in
+// astro.config.mjs). The first approval flips it back on the next deploy.
+const hasReviews = (await getApprovedTestimonials()).length > 0;
+const companiesHouseUrl = `https://find-and-update.company-information.service.gov.uk/company/${site.companyNumber}`;
 ---
 <Base
-  title="Customer Reviews | Ninja Plumbers London"
-  description="Read what London customers say about Ninja Plumbers on Google — every review is tied to a real, completed job."
+  title={hasReviews ? 'Customer Reviews | Ninja Plumbers London' : 'Reviews & Feedback | Ninja Plumbers London'}
+  description={hasReviews
+    ? 'Read what London customers say about Ninja Plumbers on Google. Every review is tied to a real, completed job.'
+    : 'Had a job done by Ninja Plumbers? Tell us how it went. We only publish reviews we can trace back to a real customer and a real job.'}
+  noindex={!hasReviews}
 >
 
 <HeroWithForm
   eyebrow="Reviews"
-  h1="Customer reviews"
-  intro="These come straight from Google, and every one is tied to a job Ninja Plumbers actually did. It's a growing list rather than the finished picture, so treat it as what's been added so far."
+  h1={hasReviews ? 'Customer reviews' : 'Reviews and feedback'}
+  intro={hasReviews
+    ? "These come straight from Google, and every one is tied to a job Ninja Plumbers actually did. It's a growing list rather than the finished picture, so treat it as what's been added so far."
+    : `Ninja Plumbers has been trading since ${site.established}, and we're building our reviews one job at a time. We only put a review on this site if we can trace it back to a real customer and a real job, so until those are in, this page stays empty rather than padded out.`}
   breadcrumb={[{ label: 'Home', href: '/' }, { label: 'Reviews' }]}
   bullets={[
     'Gas Safe registered and fully insured',
@@ -23,16 +36,33 @@ import site from '../data/site.json';
   formHeading="Send us the job"
 />
 
-<ReviewsCarousel />
+{hasReviews && <ReviewsCarousel />}
 
 <section class="section">
   <div class="container narrow">
-    <h2>About these reviews</h2>
-    <p>Nothing on this page is written for it. Each review comes straight across from our Google listing, with only the reviewer's own words and star rating shown &mdash; if we can't point back to a real one, it stays off the page.</p>
-    <p>New reviews get added by hand as they arrive, which is why this is a growing selection rather than a finished archive. For the complete history, our Google listing is the place to look.</p>
+    {hasReviews ? (
+      <>
+        <h2>About these reviews</h2>
+        <p>Nothing on this page is written for it. Each review comes straight across from our Google listing, with only the reviewer's own words and star rating shown &mdash; if we can't point back to a real one, it stays off the page.</p>
+        <p>New reviews get added by hand as they arrive, which is why this is a growing selection rather than a finished archive. For the complete history, our Google listing is the place to look.</p>
+      </>
+    ) : (
+      <>
+        <h2>Why there are no reviews here yet</h2>
+        <p>Plenty of trade websites fill this space with quotes nobody can check. We would rather show nothing than show something we can't stand behind. As customers leave reviews on our Google listing, we check each one against the job it came from and add it here, word for word, with the star rating they gave.</p>
+
+        <h2 style="margin-top:44px;">What you can check in the meantime</h2>
+        <ul class="plain-list">
+          <li><strong>The engineer's Gas Safe ID.</strong> Every engineer who works on gas carries a Gas Safe ID card. You can check the number on it at <a href="https://www.gassaferegister.co.uk/" rel="noopener">gassaferegister.co.uk</a> before they start, and it will show which gas work they are qualified for.</li>
+          <li><strong>The company itself.</strong> {site.legalName} is registered at Companies House, company number {site.companyNumber}. You can <a href={companiesHouseUrl} rel="noopener">look it up on the Companies House register</a>.</li>
+          <li><strong>The price before the work.</strong> We agree the price with you before any work starts, so the bill at the end matches what you agreed.</li>
+        </ul>
+        <p>There is more about how we work on our <a href="/about">About page</a>.</p>
+      </>
+    )}
 
     <h2 style="margin-top:44px;">Had a job done by us?</h2>
-    <p>Good or bad, we want to hear it. Something wasn&rsquo;t right? We&rsquo;d much rather you told Ninja Plumbers directly so we can put it straight.</p>
+    <p>Good or bad, we want to hear it. {hasReviews ? '' : 'Your feedback is how this page gets started. '}Something wasn&rsquo;t right? We&rsquo;d much rather you told Ninja Plumbers directly so we can put it straight.</p>
     <ul class="plain-list">
       <li><strong>Call the office</strong> &mdash; <a href={`tel:${site.booking.tel}`}>{site.booking.display}</a>, {site.hours.office}</li>
       <li><strong>WhatsApp</strong> &mdash; <a href={site.whatsapp.url}>{site.whatsapp.display}</a></li>
