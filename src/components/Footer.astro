@@ -2,7 +2,7 @@
 import site from '../data/site.json';
 import { groupedServices } from '../data/nav';
 import { appliances, applianceGroups } from '../data/appliances';
-import { areas } from '../data/areas';
+import { areas, allAreas } from '../data/areas';
 import PhoneIcon from './PhoneIcon.astro';
 import WhatsAppIcon from './WhatsAppIcon.astro';
 const year = new Date().getFullYear();
@@ -22,6 +22,9 @@ const companyLinks = [
 // The areas most people search for a plumber in, so the footer's area links
 // are the ones that get used. The hub carries the full list.
 const topAreas = [...areas].sort((a, b) => b.volume - a.volume).slice(0, 12);
+// Plus the two main towns we cover outside London, so the Surrey pages are
+// linked from every page too.
+const outsideAreas = allAreas.filter((a) => a.slug === 'guildford' || a.slug === 'woking');
 ---
 <footer class="site-footer">
   <div class="container">
@@ -98,7 +101,10 @@ const topAreas = [...areas].sort((a, b) => b.volume - a.volume).slice(0, 12);
         {topAreas.map((a) => (
           <li><a href={`/areas/${a.slug}`}>{a.name}</a></li>
         ))}
-        <li class="footer-area-more"><a href="/areas-we-cover">All {areas.length} areas <span aria-hidden="true">&rarr;</span></a></li>
+        {outsideAreas.map((a) => (
+          <li><a href={`/areas/${a.slug}`}>{a.name}</a></li>
+        ))}
+        <li class="footer-area-more"><a href="/areas-we-cover">All {allAreas.length} areas <span aria-hidden="true">&rarr;</span></a></li>
         <li class="footer-area-more"><a href="/postcodes">Postcode districts <span aria-hidden="true">&rarr;</span></a></li>
       </ul>
     </div>

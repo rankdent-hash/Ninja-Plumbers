@@ -33,7 +33,7 @@ export const dampPages: DampPage[] = [
     slug: 'damp-survey-and-diagnosis',
     title: 'Damp Survey & Diagnosis',
     h1: 'Damp survey and diagnosis in London',
-    metaTitle: 'Damp Survey London | Diagnosis & Written Report | Ninja Plumbers',
+    metaTitle: 'Damp Survey London | Diagnosis & Report | Ninja Plumbers',
     metaDescription:
       'Ninja Plumbers surveys damp across London, identifies the real cause and gives you a written report before any treatment is proposed. Call 020 3576 5825.',
     eyebrow: 'Diagnosis first',
@@ -98,7 +98,7 @@ export const dampPages: DampPage[] = [
     slug: 'damp-proofing-and-penetrating-damp',
     title: 'Damp Proofing & Penetrating Damp',
     h1: 'Damp proofing and penetrating damp treatment in London',
-    metaTitle: 'Damp Proofing London | Penetrating Damp Treatment | Ninja Plumbers',
+    metaTitle: 'Damp Proofing London | Penetrating Damp | Ninja Plumbers',
     metaDescription:
       'Damp proofing and penetrating damp treatment across London from Ninja Plumbers: the cause fixed at source, not masked with a coating. Call 020 3576 5825.',
     eyebrow: 'Treatment',
@@ -163,9 +163,9 @@ export const dampPages: DampPage[] = [
     slug: 'condensation-and-ventilation-control',
     title: 'Condensation & Ventilation Control',
     h1: 'Condensation and ventilation control in London',
-    metaTitle: 'Condensation Control London | Ventilation Solutions | Ninja Plumbers',
+    metaTitle: 'Condensation Control London | Ventilation | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers tackles condensation and mould across London: extractor fans and ventilation fixed at the cause, not just cleaned off the surface. Call 020 3576 5825.',
+      'Condensation and mould fixed at the cause across London: extractor fans, trickle vents and ventilation, not just cleaning. Call 020 3576 5825.',
     eyebrow: 'Ventilation',
     icon: 'water',
     target: 'condensation control (480/mo)',

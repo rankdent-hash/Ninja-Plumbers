@@ -26,7 +26,7 @@ export const guildfordAreas: Area[] = [
     postcodes: ['GU1', 'GU2', 'GU3', 'GU4'],
     volume: 390,
     kd: 9,
-    metaTitle: 'Plumber in Guildford | Boilers, Leaks & Drains | Ninja Plumbers',
+    metaTitle: 'Plumber in Guildford | Boilers & Drains | Ninja Plumbers',
     metaDescription:
       'Ninja Plumbers covers Guildford and the villages around it: boiler repair, leaks, blocked drains and bathroom fitting, priced first. Call 020 3576 5825.',
     intro:

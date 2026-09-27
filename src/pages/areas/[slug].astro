@@ -47,6 +47,30 @@ const nearby = area.nearby
   .map((s) => areas.find((a) => a.slug === s))
   .filter(Boolean);
 
+// Three questions per area, built from the area's own data so each page's
+// answers differ: its postcodes and council, its most common jobs, and
+// (outside London) an honest word on distance. No response times.
+const PROPER = new Set(['Victorian', 'Edwardian', 'Georgian', 'Warner', 'Thames', 'London']);
+const lowerFirst = (t: string) => (PROPER.has(t.split(/[\s,]/)[0]) ? t : t.charAt(0).toLowerCase() + t.slice(1));
+const where = outside ? `${area.borough}, ${area.county}` : `the London Borough of ${area.borough}`;
+const faqs = [
+  {
+    q: `Do you cover all of ${area.name}?`,
+    a: `Yes. We cover ${area.name} and the ${area.postcodes.join(', ')} postcode ${area.postcodes.length > 1 ? 'districts' : 'district'}, in ${where}. Postcode and council boundaries do not always line up, so if you are unsure, check your postcode on our areas page or give us a call.`,
+  },
+  {
+    q: `What plumbing problems come up most in ${area.name}?`,
+    a: `The ones we see most often here are ${area.common.map(lowerFirst).join('; ')}.`,
+    list: area.common,
+  },
+  {
+    q: `Can I get an emergency plumber in ${area.name}?`,
+    a: outside
+      ? `Yes. Our emergency line is answered 24 hours a day for burst pipes, major leaks, no water and no heating. ${area.name} is further from our Fulham base than our London areas, so when you call we will tell you honestly when an engineer can be with you. Call ${site.booking.display}.`
+      : `Yes. Our emergency line is answered 24 hours a day for burst pipes, major leaks, no water and no heating in ${area.name}. When you call, we will tell you honestly when an engineer can be with you. Call ${site.booking.display}.`,
+  },
+];
+
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'Plumber',
@@ -69,7 +93,7 @@ const schema = {
 };
 ---
 <Base title={area.metaTitle} description={area.metaDescription}>
-  <Schema slot="head" breadcrumb={crumbs} extra={schema} />
+  <Schema slot="head" breadcrumb={crumbs} faqs={faqs.map(({ q, a }) => ({ q, a }))} extra={schema} />
 
   <HeroWithForm
     eyebrow={`${area.borough} · ${area.postcodes.join(', ')}`}
@@ -193,6 +217,28 @@ const schema = {
             <p class="small"><a href="/areas-we-cover">See the full coverage list</a></p>
           </div>
         )}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container measure-wide">
+      <span class="eyebrow">Questions</span>
+      <h2>Plumbing in {area.name}: common questions</h2>
+      <div class="faqs">
+        {faqs.map((f) => (
+          <details class="faq">
+            <summary>{f.q}</summary>
+            {f.list ? (
+              <>
+                <p>The ones we see most often here:</p>
+                <ul class="faq-list">{f.list.map((item) => <li>{item}</li>)}</ul>
+              </>
+            ) : (
+              <p>{f.a}</p>
+            )}
+          </details>
+        ))}
       </div>
     </div>
   </section>

@@ -74,11 +74,11 @@ const faqs = [
 ];
 
 // Metadata is length-budgeted rather than assembled and hoped for: Google
-// truncates titles around 65 characters and descriptions around 160, and
+// truncates titles around 60 characters and descriptions around 160, and
 // district names like "Crystal Palace and Upper Norwood" blow through both.
 const shortPrimary = pc.primary.split(' and ')[0];
 const longTitle = `Plumber in ${pc.district} | ${pc.primary} | Ninja Plumbers`;
-const title = longTitle.length <= 65
+const title = longTitle.length <= 60
   ? longTitle
   : `Plumber in ${pc.district} | ${shortPrimary} | Ninja Plumbers`;
 

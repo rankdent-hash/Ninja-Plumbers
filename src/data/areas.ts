@@ -38,9 +38,9 @@ export const areas: Area[] = [
     kd: 18,
     metaTitle: 'Plumber in Fulham | SW6 Emergency Callouts | Ninja Plumbers',
     metaDescription:
-      'Local plumber in Fulham, SW6, based on the High Street. Boiler repair, blocked drains, bathroom fitting and same-day callouts. Call 020 3576 5825.',
+      'Local plumber in Fulham, SW6, based on the High Street. Boiler repair, blocked drains, bathroom fitting and 24/7 emergency callouts. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers is based on Fulham High Street, so SW6 is where most of our vans start the day. We cover boiler work, drainage and bathroom installation across Fulham and the streets around it, usually with someone on site within the hour.',
+      'Ninja Plumbers is based on Fulham High Street, so SW6 is where most of our vans start the day. We cover boiler work, drainage and bathroom installation across Fulham and the streets around it, and being local means we are never far away.',
     character:
       'Fulham is dense Victorian and Edwardian terraces, a great many of them converted into flats. Two problems come up again and again: original pipework that has been extended and re-routed by successive owners, and shared soil stacks where a blockage in one flat shows up in another lower down the building. Basements and lower-ground conversions are common too, so pumped waste and sump systems are part of the job as often as a straightforward gravity drain.',
     common: [
@@ -125,7 +125,7 @@ export const areas: Area[] = [
     postcodes: ['HA1', 'HA2', 'HA3', 'HA5'],
     volume: 720,
     kd: 20,
-    metaTitle: 'Plumber in Harrow | HA1 to HA5 Heating Engineers | Ninja Plumbers',
+    metaTitle: 'Plumber in Harrow | HA1 to HA5 Heating | Ninja Plumbers',
     metaDescription:
       'Ninja Plumbers covers Harrow and the HA postcodes. Boiler installation and repair, drains, bathrooms and emergency plumbing. Call 020 3576 5825.',
     intro:
@@ -327,7 +327,7 @@ export const areas: Area[] = [
     postcodes: ['SE13', 'SE4', 'SE6'],
     volume: 480,
     kd: 7,
-    metaTitle: 'Plumber in Lewisham | SE13 Ladywell & Hither Green | Ninja Plumbers',
+    metaTitle: 'Plumber in Lewisham | SE13 & Hither Green | Ninja Plumbers',
     metaDescription:
       'Ninja Plumbers covers Lewisham, SE13, Hither Green and Ladywell. Boiler repair, blocked drains, bathrooms and callouts. Call 020 3576 5825.',
     intro:
@@ -415,7 +415,7 @@ export const areas: Area[] = [
     postcodes: ['SE10', 'SE3', 'SE7'],
     volume: 390,
     kd: 12,
-    metaTitle: 'Plumber in Greenwich | SE10 Town Centre & Peninsula | Ninja Plumbers',
+    metaTitle: 'Plumber in Greenwich | SE10 & the Peninsula | Ninja Plumbers',
     metaDescription:
       'Ninja Plumbers covers Greenwich, SE10, the town centre and the Peninsula. Boiler repair, blocked drains and bathrooms. Call 020 3576 5825.',
     intro:
@@ -459,7 +459,7 @@ export const areas: Area[] = [
     postcodes: ['E17', 'E10'],
     volume: 320,
     kd: 10,
-    metaTitle: 'Plumber in Walthamstow | E17 Warner Maisonettes | Ninja Plumbers',
+    metaTitle: 'Plumber in Walthamstow | E17 Maisonettes | Ninja Plumbers',
     metaDescription:
       'Ninja Plumbers covers Walthamstow, E17. Boiler repair, blocked drains and bathroom installation, including Warner maisonettes. Call 020 3576 5825.',
     intro:
@@ -547,7 +547,7 @@ export const areas: Area[] = [
     postcodes: ['SE21', 'SE22', 'SE24'],
     volume: 320,
     kd: 10,
-    metaTitle: 'Plumber in Dulwich | SE21 Village & West Dulwich | Ninja Plumbers',
+    metaTitle: 'Plumber in Dulwich | SE21 & West Dulwich | Ninja Plumbers',
     metaDescription:
       'Ninja Plumbers covers Dulwich, SE21, Dulwich Village and West Dulwich. Boiler repair, blocked drains and bathrooms. Call 020 3576 5825.',
     intro:
@@ -638,7 +638,7 @@ export const areas: Area[] = [
     postcodes: ['EN5', 'EN4', 'N20'],
     volume: 480,
     kd: 31,
-    metaTitle: 'Plumber in Barnet | EN5 Whetstone & New Barnet | Ninja Plumbers',
+    metaTitle: 'Plumber in Barnet | EN5 & New Barnet | Ninja Plumbers',
     metaDescription:
       'Ninja Plumbers covers Barnet, EN5, Whetstone and New Barnet. Boiler repair and servicing, blocked drains and bathrooms. Call 020 3576 5825.',
     intro:
@@ -814,7 +814,7 @@ export const areas: Area[] = [
     postcodes: ['SE9', 'SE12', 'SE18'],
     volume: 210,
     kd: 9,
-    metaTitle: 'Plumber in Eltham | SE9 Village & Progress Estate | Ninja Plumbers',
+    metaTitle: 'Plumber in Eltham | SE9 & Progress Estate | Ninja Plumbers',
     metaDescription:
       'Ninja Plumbers covers Eltham, SE9 and the Progress Estate. Boiler repair and servicing, blocked drains and bathrooms. Call 020 3576 5825.',
     intro:
@@ -836,7 +836,7 @@ export const areas: Area[] = [
     postcodes: ['SE22', 'SE15', 'SE21'],
     volume: 210,
     kd: 9,
-    metaTitle: 'Plumber in East Dulwich | SE22 Side-Return Extensions | Ninja Plumbers',
+    metaTitle: 'Plumber in East Dulwich | SE22 Extensions | Ninja Plumbers',
     metaDescription:
       'Ninja Plumbers covers East Dulwich, SE22 and Peckham Rye. Boiler repair, blocked drains and bathroom installation. Call 020 3576 5825.',
     intro:
@@ -946,7 +946,7 @@ export const areas: Area[] = [
     postcodes: ['SE6', 'SE13', 'SE12'],
     volume: 170,
     kd: 13,
-    metaTitle: 'Plumber in Catford | SE6 Drainage Specialists | Ninja Plumbers',
+    metaTitle: 'Plumber in Catford | SE6 Drainage | Ninja Plumbers',
     metaDescription:
       'Ninja Plumbers covers Catford and SE6. Blocked drains, boiler repair and bathroom installation. Emergency callout. Call 020 3576 5825.',
     intro:

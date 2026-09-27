@@ -64,7 +64,7 @@ export const appliances: Appliance[] = [
     slug: 'water-softener-installation',
     title: 'Water Softener Installation',
     h1: 'Water softener installation in London',
-    metaTitle: 'Water Softener Installation London | Sized, Fitted & Serviced | Ninja Plumbers',
+    metaTitle: 'Water Softener Installation London | Ninja Plumbers',
     metaDescription:
       'Water softener installation across London, sized to your household with bypass valves, drainage and salt sorted. Call Ninja Plumbers on 020 3576 5825.',
     eyebrow: 'Hard water',
@@ -130,7 +130,7 @@ export const appliances: Appliance[] = [
     slug: 'underfloor-heating-installation',
     title: 'Underfloor Heating',
     h1: 'Underfloor heating installation in London',
-    metaTitle: 'Underfloor Heating Installation London | Wet Systems Fitted | Ninja Plumbers',
+    metaTitle: 'Underfloor Heating Installation London | Ninja Plumbers',
     metaDescription:
       'Wet underfloor heating fitted across London: manifolds, zoning, screed and low-profile boards, plus repairs to loops gone cold. Call 020 3576 5825.',
     eyebrow: 'Wet systems',
@@ -196,7 +196,7 @@ export const appliances: Appliance[] = [
     slug: 'radiator-installation-and-power-flushing',
     title: 'Radiators & Power Flushing',
     h1: 'Radiator installation and power flushing in London',
-    metaTitle: 'Power Flush London | Radiator Installation & System Cleaning | Ninja Plumbers',
+    metaTitle: 'Power Flush & Radiators London | Ninja Plumbers',
     metaDescription:
       'Power flushing and radiator installation across London: sludge cleared properly, new radiators fitted, systems balanced. Call Ninja Plumbers 020 3576 5825.',
     eyebrow: 'System cleaning',
@@ -262,7 +262,7 @@ export const appliances: Appliance[] = [
     slug: 'boiling-water-taps',
     title: 'Boiling Water Taps',
     h1: 'Boiling water tap installation in London',
-    metaTitle: 'Boiling Water Tap Installation London | Instant Hot Taps | Ninja Plumbers',
+    metaTitle: 'Boiling Water Tap Installation London | Ninja Plumbers',
     metaDescription:
       'Boiling and instant hot water taps fitted across London: tank siting, power, filters and servicing sorted. Call Ninja Plumbers on 020 3576 5825.',
     eyebrow: 'Kitchen taps',
@@ -328,7 +328,7 @@ export const appliances: Appliance[] = [
     slug: 'washing-machine-plumbing',
     title: 'Washing Machine Plumbing',
     h1: 'Washing machine plumbing in London',
-    metaTitle: 'Washing Machine Plumbing London | Plumbed In, Moved & Fixed | Ninja Plumbers',
+    metaTitle: 'Washing Machine Plumbing London | Ninja Plumbers',
     metaDescription:
       'Washing machines plumbed in, relocated and repaired across London: valves, standpipes and waste leaks sorted properly. Call 020 3576 5825.',
     eyebrow: 'Appliances',
@@ -394,7 +394,7 @@ export const appliances: Appliance[] = [
     slug: 'water-meter-installation',
     title: 'Water Meter Installation',
     h1: 'Water meter installation and relocation in London',
-    metaTitle: 'Water Meter Installation London | Pipework & Relocation | Ninja Plumbers',
+    metaTitle: 'Water Meter Installation London | Ninja Plumbers',
     metaDescription:
       'Water meter pipework, relocation and shared-supply separation across London, plus honest advice on what your supplier fits free. Call 020 3576 5825.',
     eyebrow: 'Supply',
@@ -461,7 +461,7 @@ export const appliances: Appliance[] = [
     slug: 'sump-pumps',
     title: 'Sump Pumps',
     h1: 'Sump pump installation in London',
-    metaTitle: 'Sump Pump Installation London | Basements & Cellars | Ninja Plumbers',
+    metaTitle: 'Sump Pump Installation London | Basements | Ninja Plumbers',
     metaDescription:
       'Sump pump installation, replacement and servicing for London basements and cellars, with backup pumps and alarms. Call Ninja Plumbers 020 3576 5825.',
     eyebrow: 'Groundwater',
@@ -527,7 +527,7 @@ export const appliances: Appliance[] = [
     slug: 'shower-pumps',
     title: 'Shower Pumps',
     h1: 'Shower pump installation in London',
-    metaTitle: 'Shower Pump Installation London | Fitted, Matched & Replaced | Ninja Plumbers',
+    metaTitle: 'Shower Pump Installation London | Ninja Plumbers',
     metaDescription:
       'Shower pump installation across London: correctly matched positive/negative head pumps, plus honest advice on whether a pump helps. Call 020 3576 5825.',
     eyebrow: 'Pressure',
@@ -593,7 +593,7 @@ export const appliances: Appliance[] = [
     slug: 'electric-shower-installation',
     title: 'Electric Shower Installation',
     h1: 'Electric shower installation in London',
-    metaTitle: 'Electric Shower Installation London | Fitted Properly First Time | Ninja Plumbers',
+    metaTitle: 'Electric Shower Installation London | Ninja Plumbers',
     metaDescription:
       'Electric shower installation across London: new units fitted, old ones swapped, cable and kW load checked before the shower goes up. Call 020 3576 5825.',
     eyebrow: 'Self-contained showers',
@@ -659,7 +659,7 @@ export const appliances: Appliance[] = [
     slug: 'saniflo-macerator-pumps',
     title: 'Saniflo & Macerator Pumps',
     h1: 'Saniflo and macerator pump installation in London',
-    metaTitle: 'Saniflo & Macerator Installation London | Fitted & Serviced | Ninja Plumbers',
+    metaTitle: 'Saniflo & Macerator Installation London | Ninja Plumbers',
     metaDescription:
       'Macerator and Saniflo installation, servicing and unblocking across London: basement and loft WCs, blockages and descaling. Call 020 3576 5825.',
     eyebrow: 'Pumped waste',
@@ -725,7 +725,7 @@ export const appliances: Appliance[] = [
     slug: 'whole-house-water-filtration',
     title: 'Water Filtration & Limescale',
     h1: 'Water filtration and limescale systems in London',
-    metaTitle: 'Water Filtration Systems London | Filters & Limescale | Ninja Plumbers',
+    metaTitle: 'Water Filtration Systems London | Ninja Plumbers',
     metaDescription:
       'Whole-house filtration, under-sink drinking filters and scale reducers fitted across London, with a straight answer on which one you need. 020 3576 5825.',
     eyebrow: 'Water quality',
@@ -791,7 +791,7 @@ export const appliances: Appliance[] = [
     slug: 'outside-tap-installation',
     title: 'Outside Tap Installation',
     h1: 'Outside tap installation in London',
-    metaTitle: 'Outside Tap Installation London | Garden Taps Fitted | Ninja Plumbers',
+    metaTitle: 'Outside Tap Installation London | Ninja Plumbers',
     metaDescription:
       'Outside taps fitted across London with the required check valve, an isolation valve inside, and a neat run through the wall. Call 020 3576 5825.',
     eyebrow: 'Garden',
@@ -857,7 +857,7 @@ export const appliances: Appliance[] = [
     slug: 'dishwasher-plumbing',
     title: 'Dishwasher Plumbing',
     h1: 'Dishwasher plumbing in London',
-    metaTitle: 'Dishwasher Plumbing London | Plumbed In & Repaired | Ninja Plumbers',
+    metaTitle: 'Dishwasher Plumbing London | Plumbed In | Ninja Plumbers',
     metaDescription:
       'Dishwashers plumbed in, relocated and repaired across London: integrated units, waste connections and leaks sorted. Call Ninja Plumbers 020 3576 5825.',
     eyebrow: 'Appliances',
@@ -923,7 +923,7 @@ export const appliances: Appliance[] = [
     slug: 'hot-water-cylinder-installation',
     title: 'Hot Water Cylinders',
     h1: 'Hot water cylinder installation in London',
-    metaTitle: 'Hot Water Cylinder Installation London | Vented & Unvented | Ninja Plumbers',
+    metaTitle: 'Hot Water Cylinder Installation London | Ninja Plumbers',
     metaDescription:
       'Hot water cylinder replacement and servicing across London, vented and unvented, with immersion heaters and controls sorted. Call 020 3576 5825.',
     eyebrow: 'Hot water',

@@ -3626,3 +3626,7 @@ body.qr-open { overflow: hidden; }
 .contact-steps p { margin: 0; font-size: 0.95rem; }
 @media (max-width: 900px) { .contact-steps { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 600px) { .contact-steps { grid-template-columns: 1fr; } }
+
+/* Area pages: a bulleted answer inside an FAQ. */
+.faq .faq-list { margin: 0 0 14px; padding-left: 20px; }
+.faq .faq-list li { margin: 4px 0; }
