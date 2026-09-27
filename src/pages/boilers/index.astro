@@ -1,9 +1,16 @@
 ---
-// Boiler hub. Ties the four boiler services to the brand pages.
+// Boiler hub. Aims at "boiler engineer london" (260/mo) and "gas engineer
+// london" (880/mo), which no other page targets, and sends each visitor on
+// to the service page for their job. It deliberately does not chase
+// "boiler repair london" or "boiler service london": those belong to
+// /services/boiler-repair and /services/boiler-service.
 import Base from '../../layouts/Base.astro';
+import HeroWithForm from '../../components/HeroWithForm.astro';
 import site from '../../data/site.json';
 import { brands } from '../../data/brands';
 import { services } from '../../data/services';
+import { appliances } from '../../data/appliances';
+import { SCHEMA_AREA_SERVED } from '../../data/serviceArea';
 import Schema from '../../components/Schema.astro';
 import ServiceIcon from '../../components/ServiceIcon.astro';
 import PhoneIcon from '../../components/PhoneIcon.astro';
@@ -19,6 +26,49 @@ const crumbs = [
   { label: 'Boilers' },
 ];
 
+const problems = [
+  { label: 'The boiler has stopped or shows a fault code', hint: 'Diagnosis first, then a straight answer on the repair.', href: '/services/boiler-repair' },
+  { label: 'Heating works, but the taps run cold', hint: 'Usually a diverter valve, sensor or cylinder control.', href: '/services/boiler-repair' },
+  { label: 'The pressure keeps dropping', hint: 'A leak or a flat expansion vessel. Topping up only hides it.', href: '/services/boiler-repair' },
+  { label: 'It works, but it has not been serviced this year', hint: 'Catches wear early and keeps the warranty conditions met.', href: '/services/boiler-service' },
+  { label: 'It is old and keeps breaking down', hint: 'Repair or replace, with both options costed side by side.', href: '/services/boiler-replacement' },
+  { label: 'You need a boiler where there is none', hint: 'New installations, including a change of boiler type.', href: '/services/boiler-installation' },
+  { label: 'Landlord needing a gas safety record', hint: 'The yearly CP12 check for rented homes.', href: '/services/gas-safety-certificate' },
+  { label: 'Radiators cold at the bottom', hint: 'Sludge in the system. A flush clears it.', href: '/appliances/radiator-installation-and-power-flushing' },
+];
+
+// A renamed page must not leave this hub pointing at nothing.
+const known = new Set([
+  ...services.map((s) => `/services/${s.slug}`),
+  ...appliances.map((a) => `/appliances/${a.slug}`),
+]);
+for (const p of problems) {
+  if (!known.has(p.href)) throw new Error(`boilers/index.astro links to unknown page ${p.href}`);
+}
+
+const sections = [
+  {
+    heading: 'Which boiler do you have?',
+    body: 'Most London homes have one of three types. A combi heats water the moment you open a tap, with no tank anywhere, and is what you will find in most flats and many terraced houses. A system boiler heats a hot water cylinder, usually in an airing cupboard, and suits homes with more than one bathroom. A regular, or heat-only, boiler works with a cylinder and a cold water tank in the loft, and is common in larger period houses that have not been converted. Knowing which you have helps us work out what has gone wrong before we arrive, and it matters when you replace one, because swapping type changes the pipework.',
+  },
+  {
+    heading: 'Repair, service or replace: how we decide',
+    body: 'The engineer finds the fault before anyone talks about a new boiler. Most breakdowns come down to one part, such as a fan, a diverter valve, a sensor or a pump, and fixing it is the sensible answer. Replacement makes sense when the same boiler keeps failing, when parts for it are hard to get, or when a major part such as the heat exchanger has gone on an older unit. When it is a close call we give you the repair cost and the replacement cost side by side and leave the decision with you. A yearly service is the cheapest way to stay out of that position in the first place.',
+  },
+  {
+    heading: 'Boilers in London homes',
+    body: 'London throws up the same boiler problems again and again. Converted flats often have the boiler in a kitchen cupboard with a flue that has to meet clearance rules from windows and neighbouring properties. Hard water leaves scale in combi heat exchangers, which shows up as lukewarm or fluctuating hot water. Condensate pipes that run outside freeze in a cold snap and lock the boiler out. Older houses can still have gravity-fed systems full of sludge, which starves radiators and strains a new boiler if it is not flushed out first. These come up all the time in London homes, so our engineers know what to look for.',
+  },
+  {
+    heading: 'Gas Safe and the paperwork',
+    body: 'By law, anyone working on a gas boiler in a home must be on the Gas Safe Register, and you can check an engineer by the number on their ID card. A new boiler installation also has to be notified to building control. A Gas Safe registered installer does that for you, and you receive a Building Regulations compliance certificate afterwards. Manufacturer warranties usually depend on the boiler being registered after installation and serviced every year, so keep the service records. Landlords must have gas appliances checked every year and give tenants a copy of the gas safety record.',
+  },
+  {
+    heading: 'What affects the price',
+    body: 'We agree the price before any work starts, and it depends on the job. For a repair, the main factors are the part that has failed, whether it is in stock for your make and model, and how easy the boiler is to reach. For a replacement, it is the type and size of boiler your home needs, whether it goes in the same place, any changes to the flue, gas pipe or condensate route, and whether the system needs flushing first. Telling us the make, model and any fault code when you get in touch helps us give you a clearer idea from the start.',
+  },
+];
+
 const faqs = [
   {
     q: 'Do you work on every boiler make?',
@@ -28,35 +78,77 @@ const faqs = [
     q: 'Are you an approved installer for any manufacturer?',
     a: 'We do not claim manufacturer accreditation. Gas work is carried out by Gas Safe registered engineers, which is the legal requirement, and we would rather state what we hold than imply something we do not.',
   },
+  {
+    q: 'How often should a boiler be serviced?',
+    a: 'Once a year. Most manufacturers make an annual service a condition of the warranty, and it is the point where worn seals, a blocked condensate trap or a failing part get picked up before they stop the boiler in winter.',
+  },
+  {
+    q: 'My boiler is still under the manufacturer’s warranty. Should I call you?',
+    a: 'Ring the manufacturer first. A repair by anyone other than their own engineers can affect the warranty, and the repair itself may be free. We can still carry out the yearly service, which is what keeps most warranties valid in the first place.',
+  },
+  {
+    q: 'What should I have ready when I get in touch?',
+    a: 'The make and model (usually on a label on the front or underneath), any fault code on the display, the reading on the pressure gauge, and whether you still have heating, hot water or neither. A photo of the display on WhatsApp is often enough for us to narrow it down.',
+  },
+  {
+    q: 'What should I do if I smell gas?',
+    a: 'Turn off the gas at the meter if you can safely reach it, open doors and windows, do not use light switches or anything that could spark, and call the National Gas Emergency Service on 0800 111 999. Once they have made it safe, we can find and repair the fault.',
+  },
+  {
+    q: 'Do you work on oil or LPG boilers?',
+    a: 'No. We work on mains gas boilers only. Oil boilers need an OFTEC-registered engineer, and we would rather point you to the right trade than take on work outside what we do every day.',
+  },
 ];
+
+const hubSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Boiler and gas engineers',
+  serviceType: 'Boiler repair, servicing, installation and replacement',
+  description: 'Gas Safe registered boiler engineers covering repair, servicing, installation and replacement of every make of gas boiler.',
+  areaServed: SCHEMA_AREA_SERVED,
+  provider: { '@type': 'Plumber', name: site.name, telephone: site.booking.tel, url: site.url },
+};
 ---
 <Base
-  title="Boiler Repair &amp; Servicing London | Ninja Plumbers"
-  description={`Ninja Plumbers repairs, services and installs boilers across London — every make, by Gas Safe registered engineers. Call ${site.booking.display}.`}
+  title="Boiler &amp; Gas Engineers in London | Ninja Plumbers"
+  description={`Gas Safe registered boiler engineers across London: repairs, servicing, new boilers and replacements for every make. Price agreed first. Call ${site.booking.display}.`}
 >
-  <Schema slot="head" breadcrumb={crumbs} faqs={faqs} />
+  <Schema slot="head" breadcrumb={crumbs} faqs={faqs} extra={hubSchema} />
 
-  <section class="page-hero">
+  <HeroWithForm
+    eyebrow="Heating and hot water"
+    h1="Boiler and gas engineers in London"
+    intro="Whatever the make and whatever the problem, our Gas Safe registered engineers repair, service, install and replace gas boilers across London. Every engineer is directly employed, DBS-checked and insured, and you get a price before any work starts. Pick what is happening from the list below, or send us the make, model and any fault code and we will tell you what is likely wrong before anyone sets off."
+    breadcrumb={crumbs}
+    bullets={[
+      'Gas Safe registered and fully insured',
+      'DBS-checked engineers',
+      'Emergency callout available 24/7',
+      'Price agreed before work starts',
+    ]}
+    formHeading="Tell us about the boiler"
+  />
+
+  <section class="section">
     <div class="container">
-      <div class="breadcrumb"><a href="/">Home</a> / Boilers</div>
-      <span class="eyebrow">Heating and hot water</span>
-      <h1>Boilers</h1>
-      <p>
-        Whatever the make, Ninja Plumbers covers repair, servicing, installation and replacement
-        across London, with all gas work carried out by Gas Safe registered engineers.
-      </p>
-      <div class="cta-row">
-        <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">
-          <PhoneIcon /> Call {site.booking.display}
-        </a>
-        <a href={site.whatsapp.url} class="btn btn-outline btn-lg">
-          <WhatsAppIcon /> WhatsApp us
-        </a>
-      </div>
+      <span class="eyebrow">Start with the problem</span>
+      <h2>What's happening with the boiler?</h2>
+      <p class="measure">Pick the closest match and go straight to the page that deals with it.</p>
+      <ul class="problem-grid">
+        {problems.map((p) => (
+          <li>
+            <a href={p.href} class="problem-link">
+              <strong>{p.label}</strong>
+              <span>{p.hint}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section-alt">
     <div class="container">
       <span class="eyebrow">What you need</span>
       <h2>Four different jobs</h2>
@@ -73,6 +165,19 @@ const faqs = [
           </li>
         ))}
       </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="guidance">
+        {sections.map((s) => (
+          <div class="guidance-item">
+            <h2 class="guidance-h2">{s.heading}</h2>
+            <p>{s.body}</p>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 
@@ -104,17 +209,23 @@ const faqs = [
   </section>
 
   <section class="section">
-    <div class="container">
+    <div class="container measure-wide">
       <span class="eyebrow">Questions</span>
       <h2>Before you call</h2>
-      <dl class="faq">
+      <div class="faqs">
         {faqs.map((f) => (
-          <div class="faq-item">
-            <dt>{f.q}</dt>
-            <dd>{f.a}</dd>
-          </div>
+          <details class="faq">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
         ))}
-      </dl>
+      </div>
+      <p class="measure" style="margin-top:24px;">
+        More help: <a href="/blog/no-hot-water-but-the-boiler-is-working">no hot water</a>,
+        <a href="/blog/boiler-pressure-low-how-to-top-up">low boiler pressure</a> and
+        <a href="/blog/landlord-gas-safety-certificates-explained">landlord gas safety certificates</a>
+        on our blog, or the wider <a href="/heating">heating services</a> page.
+      </p>
     </div>
   </section>
 
@@ -129,7 +240,7 @@ const faqs = [
         <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">
           <PhoneIcon /> Call {site.booking.display}
         </a>
-        <a href={site.whatsapp.url} class="btn btn-outline btn-lg">
+        <a href={site.whatsapp.url} class="btn btn-outline btn-lg" target="_blank" rel="noopener">
           <WhatsAppIcon /> WhatsApp us
         </a>
       </div>
