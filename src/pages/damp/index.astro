@@ -18,12 +18,58 @@ const crumbs = [
 
 const backTo = ['general-plumbing', 'leak-detection']
   .map((slug) => services.find((s) => s.slug === slug)!);
+
+const sections = [
+  {
+    heading: 'Three kinds of damp, and how to tell them apart',
+    body: 'Condensation is by far the most common in London homes. It shows up as black mould in corners, behind furniture and around windows, is worst in winter, and gets better when the room is aired. Penetrating damp comes in from outside through a defect such as a blocked gutter, cracked render or failed pointing. It tends to be a patch that grows after rain and sits where the wall faces the weather. Rising damp is ground moisture moving up a wall with no working damp-proof course. It stays low, usually below about a metre, often with a tide mark and salts. It is diagnosed far more often than it actually exists.',
+  },
+  {
+    heading: 'When the damp is really a plumbing leak',
+    body: 'Because we are plumbers as well, we see a lot of damp that is nothing to do with the walls at all. A weeping joint under a bath, a failed shower seal, a leaking radiator valve under the floorboards or a slow drip from a waste pipe in a ceiling void can all leave a stain that looks exactly like damp. The clue is usually that it does not follow the weather or the seasons, and keeps spreading whatever you do to the room. If that sounds familiar, finding the leak comes first, and our leak detection service is the place to start.',
+  },
+  {
+    heading: 'Why we survey before we treat',
+    body: 'A damp treatment chosen without a proper diagnosis is a guess, and an expensive one if it is wrong. Injecting a damp-proof course will not help a wall that is wet from a leaking gutter, and no amount of tanking stops condensation. So the first visit is about finding the cause: where the moisture is, how it is getting there, and what is keeping it there. You then get a clear explanation of what we found and what we would do about it, with the price agreed before any treatment starts.',
+  },
+  {
+    heading: 'London homes and damp',
+    body: 'Much of London is Victorian and Edwardian solid brick, built to breathe. Cement render, modern plaster and plastic-based paints trap moisture in walls that used to dry out naturally. Basements and lower-ground flats sit against damp ground, and garden levels raised over the years can bridge an old damp-proof course. Flats with small kitchens and bathrooms, laundry dried indoors and windows kept shut in winter produce a lot of condensation with nowhere to go. Most of these problems have straightforward fixes once the actual cause is clear.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'Is black mould on the walls a sign of rising damp?',
+    a: 'Almost never. Black mould grows where surfaces stay damp from condensation: cold corners, behind wardrobes, around windows and on bathroom ceilings. Rising damp tends to leave tide marks and salt deposits low on the wall rather than mould higher up.',
+  },
+  {
+    q: 'Can a plumbing leak cause damp patches?',
+    a: 'Yes, and it is one of the most common causes we find. A slow leak from pipework, a bath or shower seal, a radiator valve or a waste pipe can soak into walls and ceilings and look just like damp. If a patch does not change with the weather, check for a leak first.',
+  },
+  {
+    q: 'Do I need a damp survey before buying a house?',
+    a: 'If the home buyer\'s survey flags damp, it is worth getting a specialist survey before you exchange, so you know the cause and the likely fix rather than relying on a meter reading taken in passing. Our blog post on damp surveys before buying goes into more detail.',
+  },
+  {
+    q: 'Will a dehumidifier fix condensation?',
+    a: 'It helps, especially in a flat where laundry is dried indoors, but it treats the symptom. Lasting fixes are usually better extraction in the kitchen and bathroom, working trickle vents, and keeping rooms at a steady temperature rather than heating them in short bursts.',
+  },
+  {
+    q: 'Do you treat damp in rented properties?',
+    a: 'Yes. We work for landlords, letting agents and tenants. Where a tenant has reported damp or mould, a clear written diagnosis of the cause is useful to everyone, because the fix for condensation is very different from the fix for a leak or a building defect.',
+  },
+  {
+    q: 'How long does a wall take to dry out after the cause is fixed?',
+    a: 'Longer than most people expect. A solid brick wall can take many months to dry fully, which is why replastering straight away over a wet wall often fails. We will tell you when it is sensible to redecorate.',
+  },
+];
 ---
 <Base
   title="Damp &amp; Condensation London | Ninja Plumbers"
   description={`Ninja Plumbers handles damp surveys, damp proofing and condensation control across London, from diagnosis through to the fix. Call ${site.booking.display}.`}
 >
-  <Schema slot="head" breadcrumb={crumbs} />
+  <Schema slot="head" breadcrumb={crumbs} faqs={faqs} />
 
   <HeroWithForm
     eyebrow="Damp & condensation"
@@ -59,7 +105,39 @@ const backTo = ['general-plumbing', 'leak-detection']
     </div>
   </section>
 
+  <section class="section">
+    <div class="container">
+      <div class="guidance">
+        {sections.map((s) => (
+          <div class="guidance-item">
+            <h2 class="guidance-h2">{s.heading}</h2>
+            <p>{s.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <section class="section section-alt">
+    <div class="container measure-wide">
+      <span class="eyebrow">Questions</span>
+      <h2>Common questions about damp</h2>
+      <div class="faqs">
+        {faqs.map((f) => (
+          <details class="faq">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+      <p class="measure" style="margin-top:24px;">
+        More help on our blog: <a href="/blog/rising-damp-penetrating-damp-or-condensation">rising damp, penetrating damp or condensation</a>
+        and <a href="/blog/do-you-need-a-damp-survey-before-buying-a-house">damp surveys before buying a house</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="container">
       <span class="eyebrow">Looking for something else</span>
       <h2>The main services</h2>

@@ -26,12 +26,35 @@ const grouped = applianceGroups.map((g) => ({
 // a dead end that only goes downwards.
 const backTo = ['general-plumbing', 'boiler-service', 'bathroom-installation']
   .map((slug) => services.find((s) => s.slug === slug)!);
+
+const faqs = [
+  {
+    q: 'Do I need a plumber to connect a washing machine or dishwasher?',
+    a: 'If there is already a cold feed with an isolating valve and a waste connection in the right place, connecting a new machine is usually simple. You need a plumber when those are missing, in the wrong place, leaking, or when the machine is moving to a new spot and needs a new supply and waste run.',
+  },
+  {
+    q: 'How do I know if my heating needs a power flush?',
+    a: 'The usual signs are radiators that are warm at the top and cold along the bottom, a boiler that is noisy or keeps cutting out, and black or brown water when you bleed a radiator. All of them point to sludge in the system. A flush clears it; bleeding the radiators will not.',
+  },
+  {
+    q: 'Is a water softener worth it in London?',
+    a: 'London water is hard, so a softener cuts limescale on taps, showers and glass, and inside boilers, cylinders and appliances. Whether it is worth it depends on your home and how much scale bothers you. Our blog post on water softeners in London sets out the pros and cons.',
+  },
+  {
+    q: 'What is the difference between a Saniflo and a sump pump?',
+    a: 'A Saniflo, or macerator, pumps waste from a toilet, basin or shower away where there is no fall for normal gravity drainage, such as a basement or loft bathroom. A sump pump removes groundwater or surface water that collects in a pit, usually in a basement or cellar, and pumps it out.',
+  },
+  {
+    q: 'What does a boiling water tap need under the sink?',
+    a: 'Most need room in the cupboard below for a small tank, a cold water supply, and an electrical socket for the tank. Some also have a filter that needs changing from time to time. We check the space and the supply before the tap goes in.',
+  },
+];
 ---
 <Base
   title="Appliance &amp; Fixture Plumbing | Ninja Plumbers London"
   description={`Ninja Plumbers fits and repairs water softeners, underfloor heating, power flushing, boiling taps and pumps across London. Call ${site.booking.display}.`}
 >
-  <Schema slot="head" breadcrumb={crumbs} />
+  <Schema slot="head" breadcrumb={crumbs} faqs={faqs} />
 
   <HeroWithForm
     eyebrow="Appliances & fixtures"
@@ -70,6 +93,26 @@ const backTo = ['general-plumbing', 'boiler-service', 'bathroom-installation']
   ))}
 
   <section class="section section-alt">
+    <div class="container measure-wide">
+      <span class="eyebrow">Questions</span>
+      <h2>Common questions</h2>
+      <div class="faqs">
+        {faqs.map((f) => (
+          <details class="faq">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+      <p class="measure" style="margin-top:24px;">
+        More help on our blog: <a href="/blog/is-a-water-softener-worth-it-in-london">water softeners in London</a>,
+        <a href="/blog/what-is-a-saniflo-and-when-do-you-need-one">Saniflo pumps</a> and
+        <a href="/blog/why-outside-taps-freeze-and-burst">outside taps in winter</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="container">
       <span class="eyebrow">Looking for something else</span>
       <h2>The main services</h2>
