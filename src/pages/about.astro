@@ -2,18 +2,45 @@
 import Base from '../layouts/Base.astro';
 import HeroWithForm from '../components/HeroWithForm.astro';
 import site from '../data/site.json';
+import Schema from '../components/Schema.astro';
+
+const crumbs = [{ label: 'Home', href: '/' }, { label: 'About' }];
+const aboutSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: 'About Ninja Plumbers',
+  url: new URL('/about', Astro.site).href,
+  about: {
+    '@type': 'Plumber',
+    name: site.name,
+    legalName: site.legalName,
+    foundingDate: site.established,
+    url: site.url,
+    telephone: site.booking.tel,
+  },
+};
+
+const whatWeDo = [
+  { href: '/services/emergency-plumbing', title: 'Emergency plumbing', blurb: 'Burst pipes, major leaks and no water, around the clock.' },
+  { href: '/boilers', title: 'Boilers', blurb: 'Repairs, servicing, new boilers and replacements, every make.' },
+  { href: '/heating', title: 'Heating', blurb: 'Radiators, cylinders, controls and whole systems.' },
+  { href: '/drainage', title: 'Drainage', blurb: 'Blocked drains, CCTV surveys and drain repairs.' },
+  { href: '/services/bathroom-installation', title: 'Bathrooms', blurb: 'Full bathroom fits, showers, wet rooms and toilets.' },
+  { href: '/damp', title: 'Damp and condensation', blurb: 'Surveys first, then the fix that matches the cause.' },
+];
 ---
 <Base
   title="About Us | Ninja Plumbers, London"
-  description="Meet Ninja Plumbers, a Fulham-based London plumbing company established in 2024. Gas Safe registered and insured, covering homes and businesses across the capital."
+  description="Meet Ninja Plumbers, a Fulham-based plumbing company established in 2024. Gas Safe registered and insured, working for homes and businesses across London."
   image="/images/og-ninja-vans.jpg"
 >
+<Schema slot="head" breadcrumb={crumbs} extra={aboutSchema} />
 
 <HeroWithForm
   eyebrow="About us"
   h1="A London plumbing company, built to do the basics properly"
   intro="Ninja Plumbers is a dedicated London plumbing company based in Fulham. We built the business around the things a lot of trades treat as optional — turning up when we said we would, pricing before the work rather than after, and leaving the place clean enough that you'd struggle to prove we'd been there."
-  breadcrumb={[{ label: 'Home', href: '/' }, { label: 'About' }]}
+  breadcrumb={crumbs}
   bullets={[
     'Gas Safe registered and fully insured',
     'DBS-checked engineers',
@@ -79,6 +106,23 @@ import site from '../data/site.json';
 </section>
 
 <section class="section">
+  <div class="container">
+    <span class="eyebrow">What we do</span>
+    <h2>The work we take on</h2>
+    <p class="measure">Plumbing, heating and drainage, from a dripping tap to a new boiler. These are the main areas, and <a href="/services">all our services</a> are listed on one page.</p>
+    <ul class="grid grid-3 card-grid">
+      {whatWeDo.map((w) => (
+        <li class="card">
+          <h3><a href={w.href} class="card-title-link">{w.title}</a></h3>
+          <p>{w.blurb}</p>
+        </li>
+      ))}
+    </ul>
+    <p class="measure" style="margin-top:20px;">We work across Greater London from our Fulham base, and in Guildford, Woking and the towns around them. <a href="/areas-we-cover">See every area we cover</a>.</p>
+  </div>
+</section>
+
+<section class="section section-alt">
   <div class="container">
     <div class="coverage-split">
       <div class="check-area">
