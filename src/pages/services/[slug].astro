@@ -59,12 +59,24 @@ Astro.response.headers.set('Cache-Control', 'public, s-maxage=300, stale-while-r
 // A published AI-created service belongs to no group, so it falls back to a
 // short list rather than everything.
 const currentGroup = serviceGroups.find((g) => g.services.includes(service.slug));
-const others = currentGroup
+const groupOthers = currentGroup
   ? currentGroup.services
       .filter((slug) => slug !== service.slug)
       .map((slug) => allServices.find((s) => s.slug === slug))
       .filter((s): s is (typeof allServices)[number] => Boolean(s))
-  : allServices.filter((s) => s.slug !== service.slug).slice(0, 6);
+  : [];
+// A group with a single service (electrical, for now) has no siblings, so it
+// shows the jobs it most often goes alongside instead of an empty section.
+const PAIRED: Record<string, string[]> = {
+  'electrical-repairs': ['bathroom-installation', 'shower-installation', 'water-through-ceiling'],
+};
+const others = groupOthers.length > 0
+  ? groupOthers
+  : (PAIRED[service.slug] ?? [])
+      .map((slug) => allServices.find((s) => s.slug === slug))
+      .filter((s): s is (typeof allServices)[number] => Boolean(s))
+      .concat(PAIRED[service.slug] ? [] : allServices.filter((s) => s.slug !== service.slug).slice(0, 6));
+const othersInGroup = groupOthers.length > 0 && currentGroup;
 
 // Unique per-page sections: what changes the price, extra questions, and (on
 // the emergency page) what to have ready when you ring.
@@ -96,6 +108,15 @@ const relatedDamp = dampPages.filter((d) => d.related.includes(service.slug));
 // Computed, not hand-maintained: a post links here, so this page links back.
 const relatedPosts = blogPosts.filter((p) => p.relatedServices.includes(service.slug));
 const label = HEADING[service.slug] ?? service.title.replace('&amp;', 'and');
+
+// Trust points in the hero. Air conditioning leads with the F-Gas
+// certification that refrigerant work needs; electrical drops Gas Safe,
+// which says nothing about electrical work.
+const heroBullets = service.slug.startsWith('air-conditioning-')
+  ? ['F-Gas certified for refrigerant work', 'Fully insured, DBS-checked engineers', 'Price agreed before work starts', 'Workmanship guaranteed']
+  : currentGroup?.slug === 'electrical'
+    ? ['Plumbing and electrics from one team', 'Fully insured, DBS-checked engineers', 'Price agreed before work starts', 'Workmanship guaranteed']
+    : ['Gas Safe registered and fully insured', 'DBS-checked engineers', 'Emergency callout available 24/7', 'Price agreed before work starts', 'Workmanship guaranteed'];
 const crumbs = [
   { label: 'Home', href: '/' },
   { label: 'Services', href: '/services' },
@@ -138,12 +159,7 @@ const serviceSchema = {
     h1={service.h1}
     intro={service.intro}
     breadcrumb={crumbs}
-    bullets={[
-      'Gas Safe registered and fully insured',
-      'DBS-checked engineers',
-      'Emergency callout available 24/7',
-      'Price agreed before work starts',
-    ]}
+    bullets={heroBullets}
     formHeading={`Get a price for ${service.title.replace('&amp;', 'and').toLowerCase()}`}
     service={service.title}
     tel={primaryTel}
@@ -366,7 +382,7 @@ const serviceSchema = {
   <section class="section">
     <div class="container">
       <span class="eyebrow">Other services</span>
-      <h2>{currentGroup ? `More ${currentGroup.label.toLowerCase().replace(/^bathrooms$/, 'bathroom')} work we take on` : 'Other work we take on'}</h2>
+      <h2>{othersInGroup ? `More ${currentGroup.label.toLowerCase().replace(/^bathrooms$/, 'bathroom')} work we take on` : 'Other work we take on'}</h2>
       <ul class="grid grid-3 card-grid">
         {others.map((s) => (
           <li class="card">

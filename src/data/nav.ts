@@ -69,6 +69,16 @@ export const serviceGroups: ServiceGroup[] = [
     blurb: 'Split and multi-split systems, fitted, maintained, repaired and replaced by F-Gas registered engineers.',
     services: ['air-conditioning-repair', 'air-conditioning-maintenance', 'air-conditioning-installation', 'air-conditioning-replacement'],
   },
+  {
+    slug: 'electrical',
+    label: 'Electrical',
+    blurb: 'Fault finding, sockets, lighting and extractor fans, plus the electrics for showers, bathrooms and kitchens.',
+    services: ['electrical-repairs'],
+    extra: [
+      { label: 'Electrical overview', href: '/electrical' },
+      { label: 'Electric showers', href: '/appliances/electric-shower-installation' },
+    ],
+  },
 ];
 
 // The header, in order. A group item opens a panel of its services; a link
@@ -103,6 +113,7 @@ export const mainNav: NavItem[] = [
   { group: 'bathrooms' },
   { label: 'Appliances', href: '/appliances', mega: 'appliances' },
   { group: 'air-conditioning' },
+  { group: 'electrical' },
   {
     label: 'Damp',
     href: '/damp',

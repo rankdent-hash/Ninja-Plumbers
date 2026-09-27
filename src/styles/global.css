@@ -803,11 +803,11 @@ body.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-6px) rotate
   .borough-list { grid-template-columns: repeat(3, 1fr); }
 }
 
-/* Between the drawer and full desktop the eight items only fit when they are
-   a little tighter and the call button drops its label line. The upper bound
-   tracks the item count: adding Damp pushed the point where the bar fits at
-   full size out to about 1500px. */
-@media (min-width: 1101px) and (max-width: 1500px) {
+/* With ten menu items (Electrical made ten) the bar only fits when the items
+   are a little tighter and the call button drops its label line, at every
+   desktop width: the container stops growing long before the full-size bar
+   would fit. So this and the block below apply to all desktop widths. */
+@media (min-width: 1181px) {
   .header-bar { gap: 14px; }
   .logo-img { height: 43px; }
   .logo .sub { display: none; }
@@ -820,19 +820,19 @@ body.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-6px) rotate
   .header-cta-label { display: none; }
 }
 
-/* Tighter again at the bottom of that band, where eight items plus the logo
-   and the call button have the least room to work with. */
-@media (min-width: 1101px) and (max-width: 1360px) {
+/* Tighter again, so ten items, the logo, search and the call button fit. */
+@media (min-width: 1181px) {
   .header-bar { gap: 10px; }
   .logo-img { height: 38px; }
-  .nav-link { font-size: 0.8rem; padding: 10px 5px; }
-  .nav-link[aria-current="page"]::after { left: 5px; right: 5px; }
+  .nav-link { font-size: 0.8rem; padding: 10px 4px; }
+  .nav-link[aria-current="page"]::after { left: 4px; right: 4px; }
   .header-cta { padding: 9px 11px; }
   .header-cta-number { font-size: 0.92rem; }
 }
 
-/* Nav collapses to a drawer; the Call Now CTA stays in the bar. */
-@media (max-width: 1100px) {
+/* Nav collapses to a drawer; the Call Now CTA stays in the bar. Kept in step
+   with the matchMedia check in public/script.js. */
+@media (max-width: 1180px) {
   .nav-toggle { display: block; }
   .main-nav { display: none; }
   body.nav-open { overflow: hidden; }
@@ -1038,14 +1038,15 @@ body.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-6px) rotate
 .trust { background: var(--surface); border-bottom: 1px solid var(--border); }
 .trust-grid {
   list-style: none; margin: 0; padding: 0;
-  display: grid; grid-template-columns: repeat(4, 1fr);
+  display: grid; grid-template-columns: repeat(3, 1fr);
 }
 .trust-grid li {
   display: flex; align-items: center; gap: 14px;
   padding: 22px 20px;
   border-right: 1px solid var(--border);
 }
-.trust-grid li:last-child { border-right: none; }
+.trust-grid li:nth-child(3n) { border-right: none; }
+.trust-grid li:nth-child(-n+3) { border-bottom: 1px solid var(--border); }
 .trust-icon {
   flex: none;
   width: 42px; height: 42px;

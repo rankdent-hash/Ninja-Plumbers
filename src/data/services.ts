@@ -2137,7 +2137,7 @@ export const services: Service[] = [
       },
       {
         q: 'Can I turn the lights back on?',
-        a: 'Not in that room until the fitting and the ceiling round it have dried out and been checked by an electrician. Water inside a light fitting is not something to test with the switch.',
+        a: 'Not in that room until the fitting and the ceiling round it have dried out and been checked by an electrician, which we can do once the leak is fixed. Water inside a light fitting is not something to test with the switch.',
       },
       {
         q: 'The leak is from upstairs and nobody is answering. What now?',
@@ -2324,6 +2324,73 @@ export const services: Service[] = [
       {
         q: 'Do you repair leaks on the heating as well?',
         a: 'Yes — radiator valves, radiator tails and visible joints on heating pipework. A leak from inside the boiler casing is a boiler repair, and that needs one of our Gas Safe registered engineers.',
+      },
+    ],
+  },
+  {
+    slug: 'electrical-repairs',
+    title: 'Electrical Repairs',
+    h1: 'Electrical repairs and fault finding in London',
+    metaTitle: 'Electrical Repairs London | Fault Finding | Ninja Plumbers',
+    metaDescription:
+      'Electrical faults found and fixed across London: tripping circuits, dead sockets, lighting and extractor fans. Price agreed first. Call 020 3576 5825.',
+    eyebrow: 'Electrical',
+    icon: 'electrical',
+    target: 'electrical repairs london (390/mo) · electrical fault finding london (140/mo) · electrician london (2,400/mo, owned by /electrical)',
+    summary:
+      'Tripping circuits, dead sockets, faulty lighting and extractor fans, traced and fixed with the price agreed first.',
+    intro:
+      'A circuit that keeps tripping, a socket that has gone dead, lights that flicker or a fan that has stopped: most electrical faults in a home come down to one failing part or connection, and finding it is the skilled bit. Our electricians trace the fault properly, explain what they found, and agree the price with you before the repair. Because we are plumbers as well, we are used to the jobs where water and electrics meet, from electric showers to a leak that has reached the wiring.',
+    does: [
+      'Circuits that keep tripping the consumer unit',
+      'Dead, loose or damaged sockets and switches',
+      'Flickering or failed lighting',
+      'Extractor fans in bathrooms and kitchens',
+      'Electric shower and appliance circuits',
+      'Electrical checks after a leak',
+    ],
+    guidance: [
+      {
+        title: 'When the power keeps tripping',
+        body: 'A trip switch or RCD that keeps going off is doing its job: it has detected a fault. Resist the urge to keep resetting it. Unplug everything on that circuit, reset it once, then plug things back in one at a time. If one appliance trips it every time, the fault is in that appliance. If it trips with nothing plugged in, the fault is in the fixed wiring and needs an electrician.',
+      },
+      {
+        title: 'After a leak',
+        body: 'If water has reached a light fitting, a socket or the consumer unit, turn the power off at the consumer unit, keep it off, and do not use anything in that area until the wiring has dried out and been checked. Because we do both trades, we can deal with the leak and the electrical check on the same job.',
+      },
+      {
+        title: 'Signs worth taking seriously',
+        body: 'A burning smell, scorch marks around a socket, sockets or switches that feel warm, buzzing from the consumer unit, or lights that dim whenever something else switches on. If it is safe to do so, switch off at the consumer unit and call us.',
+      },
+      {
+        title: 'Extractor fans and condensation',
+        body: 'A bathroom or kitchen fan that stops the moment the light goes off, or barely moves any air, is one of the most common causes of condensation and black mould in London flats. Replacing it with a fan that has a run-on timer or a humidity sensor is a small electrical job that makes a real difference.',
+      },
+    ],
+    aside: {
+      title: 'Know where your consumer unit is',
+      body: 'Find your consumer unit (the fuse box) now and keep it easy to reach. In a fault or a leak, switching off there is the quickest way to make things safe.',
+    },
+    faqs: [
+      {
+        q: 'Do you do electrical work as well as plumbing?',
+        a: 'Yes. Ninja Plumbers carries out electrical work alongside plumbing, heating and drainage. That is useful on jobs that need both, such as an electric shower, a new bathroom, or water that has reached the wiring.',
+      },
+      {
+        q: 'My electrics keep tripping. Is it dangerous?',
+        a: 'The trip is a safety device doing its job, so the circuit is protected. The fault behind it still needs finding. If it trips with nothing plugged in, or you notice a burning smell or scorch marks, leave that circuit off and call us.',
+      },
+      {
+        q: 'Can you replace or fit an extractor fan?',
+        a: 'Yes. We replace and fit extractor fans in bathrooms and kitchens, including fans with a timer or humidity sensor that keep running after you leave the room, which is what actually clears the moisture.',
+      },
+      {
+        q: 'Can you do the electrics for a new bathroom or kitchen?',
+        a: 'Yes. We can handle the plumbing and the electrical side of a bathroom or kitchen together, so you are not coordinating separate trades and waiting on one to finish before the other starts.',
+      },
+      {
+        q: 'How is the price worked out?',
+        a: 'For a fault, the engineer finds the cause first and then gives you a price for the repair before starting. For planned work such as new sockets or a fan, we can often give you an idea from a description and photos, then confirm the price on site before any work begins.',
       },
     ],
   },

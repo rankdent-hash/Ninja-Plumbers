@@ -152,7 +152,7 @@ export const appliances: Appliance[] = [
     guidance: [
       {
         title: 'Wet systems, not electric mats',
-        body: 'Electric underfloor mats are an electrician’s job and are usually only worth it in a small bathroom. Everything on this page is wet — water through pipe loops, fed by your heating system. If you have been quoted electric for a whole floor, get a second opinion on the running cost.',
+        body: 'Electric underfloor mats are electrical rather than plumbing work, and are usually only worth it in a small bathroom. Everything on this page is wet — water through pipe loops, fed by your heating system. If you have been quoted electric for a whole floor, get a second opinion on the running cost.',
       },
       {
         title: 'Floor height is usually the real constraint',
@@ -284,7 +284,7 @@ export const appliances: Appliance[] = [
     guidance: [
       {
         title: 'You will need a socket under the sink',
-        body: 'The tank is electric and needs a switched fused spur or socket in the cupboard. If there is not one there, that is an electrician’s job and worth arranging before we come rather than after.',
+        body: 'The tank is electric and needs a switched fused spur or socket in the cupboard. If there is not one there, our electricians can fit one on the same job, so mention it when you book.',
       },
       {
         title: 'The tank takes real cupboard space',
@@ -306,7 +306,7 @@ export const appliances: Appliance[] = [
     faqs: [
       {
         q: 'Do I need an electrician as well?',
-        a: 'Only if there is not already a socket or fused spur under the sink. Where one exists, we can handle the whole job ourselves; where it does not, that part is electrical work for an electrician, and we will flag that clearly before any work starts rather than after.',
+        a: 'Only if there is not already a socket or fused spur under the sink. Where one exists, we connect straight to it. Where it does not, our electricians can add one on the same job, and it is included in the price you agree before any work starts. You do not need to book a separate trade.',
       },
       {
         q: 'How much space does the tank need?',
@@ -610,7 +610,7 @@ export const appliances: Appliance[] = [
       'Cold water isolation valve fitted where there is none',
       'Checking existing cable and breaker against the new unit’s load',
       'Siting and pipework for a shower where there was none before',
-      'Coordinating the dedicated circuit with an electrician where one is needed',
+      'Adding or upgrading the dedicated circuit where one is needed',
     ],
     guidance: [
       {
@@ -622,8 +622,8 @@ export const appliances: Appliance[] = [
         body: 'Moving up from something like an 8.5kW unit to a 10.5kW or above pulls significantly more current, and the cable and breaker already in place might not be rated to handle it. Ninja Plumbers checks that before you spend money on the higher-power unit, not after it has already gone up on the wall.',
       },
       {
-        title: 'The circuit is an electrician’s job, the shower is ours',
-        body: 'A dedicated fused circuit back to the consumer unit is notifiable electrical work. Where one already exists and is adequate for the new unit, we connect straight to it. Where it does not, that circuit needs an electrician first — we will tell you plainly rather than fit it regardless.',
+        title: 'The circuit and the shower, from one team',
+        body: 'A dedicated fused circuit back to the consumer unit is notifiable electrical work. Where one already exists and is adequate for the new unit, we connect straight to it. Where it does not, our electricians install or upgrade the circuit first, and that is included in the price before anything starts, so you are not coordinating a separate trade.',
       },
       {
         title: 'Mains pressure and flow decide what is realistic',
@@ -637,11 +637,11 @@ export const appliances: Appliance[] = [
     faqs: [
       {
         q: 'Can you fit a shower with a higher kW rating than the old one?',
-        a: 'Often, once the existing cable and breaker are checked against the new load. If they are not adequate, that is an electrician’s job to upgrade first, and we will tell you plainly rather than fit it regardless.',
+        a: 'Often, once the existing cable and breaker are checked against the new load. If they are not adequate, the circuit has to be upgraded first, which our electricians can do as part of the same job. We will tell you before quoting, not after.',
       },
       {
         q: 'Do I need an electrician as well as a plumber?',
-        a: 'Only if there is no adequate dedicated circuit already there. If there is, we connect to it directly. If there is not, the circuit is an electrician’s job and we will say so before quoting, not after.',
+        a: 'Only if there is no adequate dedicated circuit already there. If there is, we connect to it directly. If there is not, our electricians can install one, and it is included in the price before any work starts.',
       },
       {
         q: 'Can you supply the shower as well as fit it?',
@@ -1089,7 +1089,7 @@ export const appliances: Appliance[] = [
       },
       {
         title: 'Thermostat or element, and a drain-down either way',
-        body: 'A failed thermostat and a failed element look identical from the tap, so both get tested rather than guessed at. Replacing the element means draining the cylinder down first and refilling it afterwards, which is the bulk of the time on the job. The connection at the element is electrical work, and it must be done by someone competent to do it — we will say plainly if what you have needs an electrician rather than us.',
+        body: 'A failed thermostat and a failed element look identical from the tap, so both get tested rather than guessed at. Replacing the element means draining the cylinder down first and refilling it afterwards, which is the bulk of the time on the job. The connection at the element is electrical work, and our electricians handle that part, so one visit covers both.',
       },
     ],
     aside: {
@@ -1111,7 +1111,7 @@ export const appliances: Appliance[] = [
       },
       {
         q: 'Do you do the electrical side of it?',
-        a: 'The connection at the element is electrical work and has to be done by someone competent to carry it out. We are Gas Safe registered and fully insured, our engineers are DBS-checked and directly employed rather than subcontracted, and we will tell you straight if your job needs an electrician instead. Either way the price is agreed before any work starts.',
+        a: 'The connection at the element is electrical work and has to be done by someone competent to carry it out. We do both the plumbing and the electrical side, we are fully insured, and our engineers are DBS-checked and directly employed rather than subcontracted. Either way the price is agreed before any work starts.',
       },
     ],
     related: ['boiler-repair', 'general-plumbing'],

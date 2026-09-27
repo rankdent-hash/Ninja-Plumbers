@@ -1,0 +1,192 @@
+---
+// Electrical hub. Aims at "electrician london" (2,400/mo) and "electricians
+// london" (1,000/mo), and sends each visitor to the page for their job.
+// Deliberately says nothing about 24/7 electrical callouts, EICRs, consumer
+// unit replacement or a registration scheme until the business confirms
+// each one: those are the pages to add next if it does.
+import Base from '../layouts/Base.astro';
+import HeroWithForm from '../components/HeroWithForm.astro';
+import Schema from '../components/Schema.astro';
+import ServiceIcon from '../components/ServiceIcon.astro';
+import PhoneIcon from '../components/PhoneIcon.astro';
+import WhatsAppIcon from '../components/WhatsAppIcon.astro';
+import site from '../data/site.json';
+import { services } from '../data/services';
+import { appliances } from '../data/appliances';
+import { dampPages } from '../data/damp';
+import { SCHEMA_AREA_SERVED } from '../data/serviceArea';
+
+const crumbs = [{ label: 'Home', href: '/' }, { label: 'Electrical' }];
+
+const problems = [
+  { label: 'The power keeps tripping', hint: 'A fault on a circuit or an appliance. We find which.', href: '/services/electrical-repairs' },
+  { label: 'A socket or switch has stopped working', hint: 'Often a loose or failed connection behind the plate.', href: '/services/electrical-repairs' },
+  { label: 'Lights flicker or have failed', hint: 'Fittings, switches or the circuit behind them.', href: '/services/electrical-repairs' },
+  { label: 'The bathroom fan is useless', hint: 'Replaced with one that actually clears the steam.', href: '/services/electrical-repairs' },
+  { label: 'You want a new electric shower', hint: 'The circuit and the shower, from one team.', href: '/appliances/electric-shower-installation' },
+  { label: 'Water has reached lights or sockets', hint: 'Stop the leak first, then check the wiring.', href: '/services/water-through-ceiling' },
+  { label: 'A new bathroom needs electrics', hint: 'Lighting, fan, shaver socket and shower, fitted with the plumbing.', href: '/services/bathroom-installation' },
+  { label: 'Condensation and mould keep coming back', hint: 'Usually weak extraction. Fixing the fan fixes most of it.', href: '/damp/condensation-and-ventilation-control' },
+];
+
+const known = new Set([
+  ...services.map((s) => `/services/${s.slug}`),
+  ...appliances.map((a) => `/appliances/${a.slug}`),
+  ...dampPages.map((d) => `/damp/${d.slug}`),
+]);
+for (const p of problems) {
+  if (!known.has(p.href)) throw new Error(`electrical.astro links to unknown page ${p.href}`);
+}
+
+const cards = [
+  services.find((s) => s.slug === 'electrical-repairs')!,
+].map((s) => ({ href: `/services/${s.slug}`, title: s.title, blurb: s.summary, icon: s.icon }));
+const electricShower = appliances.find((a) => a.slug === 'electric-shower-installation');
+if (electricShower) cards.push({ href: `/appliances/${electricShower.slug}`, title: electricShower.title, blurb: electricShower.summary, icon: electricShower.icon });
+const bathrooms = services.find((s) => s.slug === 'bathroom-installation');
+if (bathrooms) cards.push({ href: `/services/${bathrooms.slug}`, title: 'Bathroom electrics', blurb: 'Lighting, extractor fan, shaver socket and shower circuit, fitted alongside the plumbing so one team finishes the room.', icon: 'bathroom' });
+
+const sections = [
+  {
+    heading: 'Plumbing and electrics under one roof',
+    body: 'A lot of jobs in a home need both trades. An electric shower needs a dedicated circuit as well as the water supply. A new bathroom needs lighting, an extractor fan and often a shaver socket alongside the pipework. A boiling water tap needs a socket under the sink. A leak that has reached a light fitting needs the plumbing fixed and the wiring checked. Because Ninja Plumbers does both, one team handles the whole job, the price covers all of it, and nobody is waiting for another trade to turn up before they can finish.',
+  },
+  {
+    heading: 'How an electrical visit works',
+    body: 'Tell us what is happening when you get in touch: which circuit or room, what trips or stops working, and anything that seems to set it off. The electrician tests to find the cause rather than swapping parts until something works, explains what they found, and gives you a price for the repair before starting. For planned work, such as a new fan or extra sockets, we can often give you an idea from photos first, then confirm the price on site before any work begins.',
+  },
+  {
+    heading: 'Electrics in London homes',
+    body: 'London housing throws up the same electrical issues again and again. Period houses converted into flats often have circuits that were split, extended and re-routed by successive owners, so what is on each breaker is not always what the label says. Older installations may still have fuse boards without modern RCD protection. Bathrooms and kitchens squeezed into small spaces often have extractor fans that were never up to the job, which shows up as condensation and mould. And in blocks of flats, water from the flat above is a common reason for a light or socket to fail. These are the jobs we are used to dealing with across the capital.',
+  },
+  {
+    heading: 'Stay safe until we get there',
+    body: 'If you smell burning, see scorch marks, or a socket or switch feels hot, stop using it and switch that circuit off at the consumer unit if you can do so safely. If water has reached any electrics, switch off at the main switch as long as the consumer unit and the floor in front of it are dry, and keep out of that room. Do not keep resetting a breaker that trips straight away: it is telling you there is a fault.',
+  },
+  {
+    heading: 'What affects the price',
+    body: 'We agree the price before any work starts. For a fault, the main factors are how long it takes to trace, how easy the wiring is to get to, and the age and condition of the installation. For new work, it is the number of points, the route the cable has to take, any making good afterwards, and the fittings you choose. Sending photos of the consumer unit and the area involved helps us give you a clearer idea from the start.',
+  },
+];
+
+const faqs = [
+  { q: 'Do you do electrical work as well as plumbing?', a: 'Yes. Ninja Plumbers carries out electrical work alongside plumbing, heating and drainage, so jobs that need both trades are handled by one team with one price.' },
+  { q: 'What electrical work do you take on?', a: 'Fault finding and repairs, tripping circuits, sockets and switches, lighting, extractor fans, and the electrical side of electric showers, bathrooms and kitchens. If your job is not listed, ask us and we will tell you straight whether it is something we do.' },
+  { q: 'Can you fix the electrics after a leak?', a: 'Yes. We stop the leak, then check the affected circuits once the fittings and cables have dried out, so you are not booking two separate trades.' },
+  { q: 'Do you cover my area for electrical work?', a: 'We cover Greater London, plus Guildford, Woking and the towns around them. Check your postcode on our areas page or give us a call.' },
+  { q: 'How do I pay?', a: 'By card or cash once the work is done, at the price you agreed before it started.' },
+];
+
+const hubSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Electrical services',
+  serviceType: 'Electrician',
+  description: 'Electrical fault finding and repairs, sockets, lighting, extractor fans and the electrics for showers, bathrooms and kitchens.',
+  areaServed: SCHEMA_AREA_SERVED,
+  provider: { '@type': 'Plumber', name: site.name, telephone: site.booking.tel, url: site.url },
+};
+---
+<Base
+  title="Electrician London | Electrical Repairs | Ninja Plumbers"
+  description={`Electricians across London from Ninja Plumbers: fault finding, sockets, lighting, extractor fans and shower circuits. Price agreed first. Call ${site.booking.display}.`}
+>
+  <Schema slot="head" breadcrumb={crumbs} faqs={faqs} extra={hubSchema} />
+
+  <HeroWithForm
+    eyebrow="Electrical"
+    h1="Electricians in London"
+    intro="Ninja Plumbers does electrical work as well as plumbing and heating: tracing faults, tripping circuits, sockets, lighting, extractor fans, and the electrics for showers, bathrooms and kitchens. One team, one visit and one price, agreed before any work starts. Pick what is happening from the list below, or send us a photo and a description and we will tell you what is likely wrong."
+    breadcrumb={crumbs}
+    bullets={[
+      'Plumbing and electrics from one team',
+      'Fully insured, DBS-checked engineers',
+      'Price agreed before work starts',
+      'Workmanship guaranteed',
+    ]}
+    formHeading="Tell us about the electrics"
+  />
+
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Start with the problem</span>
+      <h2>What's happening with the electrics?</h2>
+      <p class="measure">Pick the closest match and go straight to the page that deals with it.</p>
+      <ul class="problem-grid">
+        {problems.map((p) => (
+          <li>
+            <a href={p.href} class="problem-link">
+              <strong>{p.label}</strong>
+              <span>{p.hint}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <span class="eyebrow">Electrical services</span>
+      <h2>What our electricians do</h2>
+      <ul class="grid grid-3 card-grid">
+        {cards.map((c) => (
+          <li class="card">
+            <div class="icon"><ServiceIcon name={c.icon} /></div>
+            <h3><a href={c.href} class="card-title-link" set:html={c.title} /></h3>
+            <p>{c.blurb}</p>
+            <a href={c.href} class="card-link">Find out more <span aria-hidden="true">&rarr;</span></a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="guidance">
+        {sections.map((s) => (
+          <div class="guidance-item">
+            <h2 class="guidance-h2">{s.heading}</h2>
+            <p>{s.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container measure-wide">
+      <span class="eyebrow">Questions</span>
+      <h2>Common questions</h2>
+      <div class="faqs">
+        {faqs.map((f) => (
+          <details class="faq">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+      <p class="measure" style="margin-top:24px;">
+        Looking for something else? See our <a href="/services">full list of services</a>,
+        the <a href="/heating">heating</a> and <a href="/boilers">boiler</a> pages, or
+        <a href="/areas-we-cover">the areas we cover</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-navy">
+    <div class="container center measure-wide">
+      <h2>Electrics playing up?</h2>
+      <p>Tell us what trips, what has stopped working and where you are, and we will tell you the price before anyone starts.</p>
+      <div class="cta-row center-row">
+        <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">
+          <PhoneIcon /> Call {site.booking.display}
+        </a>
+        <a href={site.whatsapp.url} class="btn btn-outline btn-lg" target="_blank" rel="noopener">
+          <WhatsAppIcon /> WhatsApp us
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

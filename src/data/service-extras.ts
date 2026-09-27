@@ -58,7 +58,7 @@ export const serviceExtras: Record<string, ServiceExtra> = {
       },
       {
         q: 'Water is near the electrics — what do I do?',
-        a: 'Treat anything wet as live. Keep your hands off switches, sockets and fittings the water has reached. If the consumer unit is dry, and so is the floor in front of it, switch everything off at the main switch; if not, keep everyone out of that room. We will deal with the water, but have an electrician check any wiring that got wet before it is used again.',
+        a: 'Treat anything wet as live. Keep your hands off switches, sockets and fittings the water has reached. If the consumer unit is dry, and so is the floor in front of it, switch everything off at the main switch; if not, keep everyone out of that room. We will deal with the water, and our electricians can check any wiring that got wet before it is used again.',
       },
       {
         q: 'Can a landlord or managing agent book on a tenant\'s behalf?',
@@ -350,7 +350,7 @@ export const serviceExtras: Record<string, ServiceExtra> = {
       },
       {
         q: 'Can you fit a shower toilet with a built-in bidet wash?',
-        a: 'Yes, but check the room before buying one. Most shower toilets need a fused electrical supply close to the pan, fitted by an electrician, as well as a water feed and the usual waste. Some are wall-hung and need a frame, and the seat unit adds depth, which matters in a narrow cloakroom. Send us the model and a photo of the space and we will say whether it will work.',
+        a: 'Yes, but check the room before buying one. Most shower toilets need a fused electrical supply close to the pan, which our electricians can fit, as well as a water feed and the usual waste. Some are wall-hung and need a frame, and the seat unit adds depth, which matters in a narrow cloakroom. Send us the model and a photo of the space and we will say whether it will work.',
       },
     ],
   },
@@ -615,7 +615,7 @@ export const serviceExtras: Record<string, ServiceExtra> = {
         },
         {
           title: 'Whether a pump is needed',
-          body: 'On a gravity-fed system, a shower that needs more pressure than the tank gives means fitting a pump. That adds the pump itself, a place for it, suitable pipework from the cylinder and an electrical supply from an electrician.',
+          body: 'On a gravity-fed system, a shower that needs more pressure than the tank gives means fitting a pump. That adds the pump itself, a place for it, suitable pipework from the cylinder and an electrical supply, which our electricians can add on the same job.',
         },
         {
           title: 'Tray, enclosure and waste',
@@ -626,7 +626,7 @@ export const serviceExtras: Record<string, ServiceExtra> = {
     extraFaqs: [
       {
         q: 'Does a new shower need an extractor fan?',
-        a: 'A bathroom with a shower really needs mechanical extraction, and building regulations require it in a newly created bathroom. If there is already a working fan, it can usually stay. If there is none, or it is too weak to clear the steam, a new one needs an electrician and a way out through an outside wall or the roof, which is worth planning alongside the shower rather than afterwards.',
+        a: 'A bathroom with a shower really needs mechanical extraction, and building regulations require it in a newly created bathroom. If there is already a working fan, it can usually stay. If there is none, or it is too weak to clear the steam, our electricians can fit a new one with a way out through an outside wall or the roof, which is worth planning alongside the shower rather than afterwards.',
       },
       {
         q: 'How soon can we use the shower after it is fitted?',
@@ -735,7 +735,7 @@ export const serviceExtras: Record<string, ServiceExtra> = {
       },
       {
         q: 'Can you fit a boiling water tap?',
-        a: 'Yes, provided the kitchen can take one. Most need a tank or boiler unit in the cupboard under the sink, a plug socket inside that cupboard, fitted by an electrician if there is not one already, and a cold supply to connect to. Some include a filter cartridge that needs changing periodically, which matters more in hard-water London. Check the space under your sink and the tap-hole size before buying.',
+        a: 'Yes, provided the kitchen can take one. Most need a tank or boiler unit in the cupboard under the sink, a plug socket inside that cupboard, which our electricians can fit if there is not one already, and a cold supply to connect to. Some include a filter cartridge that needs changing periodically, which matters more in hard-water London. Check the space under your sink and the tap-hole size before buying.',
       },
     ],
   },
@@ -806,6 +806,41 @@ export const serviceExtras: Record<string, ServiceExtra> = {
       {
         q: 'Can plastic pipe be used to repair a copper pipe?',
         a: 'In many places, yes. Modern plastic pipe with proper inserts and fittings is reliable and quick to join to copper. It is not the right choice everywhere, though: many boiler manufacturers want copper for the first stretch of pipe from the boiler, and in a room where the pipework is on show, copper often looks better. We will use whichever suits the location rather than whichever is quickest.',
+      },
+    ],
+  },
+
+  'electrical-repairs': {
+    price: {
+      intro:
+        'Electrical work is priced once the engineer has found the cause, and you get the price before the repair starts. These are the things that make the biggest difference.',
+      factors: [
+        {
+          title: 'How long the fault takes to trace',
+          body: 'A dead socket with a loose connection is found in minutes. An intermittent trip that only happens when two appliances run together, or a fault somewhere along a long circuit, takes methodical testing to pin down.',
+        },
+        {
+          title: 'Getting to the wiring',
+          body: 'Cables under suspended floorboards or in a loft are easy to reach. Wiring buried in plaster, behind tiles or fitted units, or in a flat where the circuit runs through a shared ceiling void, takes longer to get at and make good.',
+        },
+        {
+          title: 'The age of the installation',
+          body: 'A modern installation with clearly labelled circuits is straightforward to work on. Older wiring, a mix of alterations by previous owners, or a fuse board without modern protection can mean more testing, and sometimes a recommendation to upgrade before adding anything new.',
+        },
+        {
+          title: 'Parts and fittings',
+          body: 'A standard socket, switch or fan is a small cost. Specific fittings you have chosen, a humidity-sensing fan with new ducting through an outside wall, or a replacement for an obsolete part all change the price.',
+        },
+      ],
+    },
+    extraFaqs: [
+      {
+        q: 'Can you look at the electrics after water has come through a ceiling?',
+        a: 'Yes, and it is worth doing before the power goes back on in that area. We can find and stop the leak, then check the affected circuits once the fittings and cables have dried out, rather than you booking two separate trades.',
+      },
+      {
+        q: 'What should I do if a socket is scorched or smells of burning?',
+        a: 'Stop using it, switch that circuit off at the consumer unit if you can do so safely, and do not plug anything else into it. A scorched socket usually means a loose or overheating connection, which needs repairing before the circuit is used again.',
       },
     ],
   },

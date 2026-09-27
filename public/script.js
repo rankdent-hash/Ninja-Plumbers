@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var navToggle = document.querySelector('.nav-toggle');
   var nav = document.getElementById('main-nav');
   var dropdownToggles = Array.prototype.slice.call(document.querySelectorAll('.dropdown-toggle'));
-  var desktop = window.matchMedia('(min-width: 1101px)');
+  var desktop = window.matchMedia('(min-width: 1181px)');
 
   function closeDropdowns(except) {
     dropdownToggles.forEach(function (t) {
