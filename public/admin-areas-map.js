@@ -15,7 +15,9 @@
   if (!svg || !pan || !tip || !stage) return;
 
   var MIN = 1;
-  var MAX = 8;
+  // 12 rather than 8: the City and the small inner boroughs need it on a
+  // phone, where the whole map is under 400px wide to begin with.
+  var MAX = 12;
   var scale = 1;
   var tx = 0;
   var ty = 0;
@@ -49,31 +51,118 @@
     var pxPerUnit = (rect.width / vbW) * scale;
     root.style.setProperty('--areamap-code-size', CODE_PX / pxPerUnit + 'px');
     root.style.setProperty('--areamap-name-size', NAME_PX / pxPerUnit + 'px');
-    sizeDots();
+    sizeDots(rect);
   }
   window.addEventListener('resize', sizeText);
 
-  // Dots are markers, not geography. Left alone they would scale with the map
-  // and a borough opened at 7x would show dots seven times too big, swamping
-  // the thing they sit on. Radius AND the rosette offset are both divided by
-  // the zoom, so a dot keeps its size and four dots at one district stay a
-  // tight cluster instead of drifting apart.
+  // Dots are markers, not geography, so they are sized in screen pixels and
+  // converted back into map units at every zoom. Left to scale with the map, a
+  // borough opened at 7x would show dots seven times too big; left at their
+  // map-unit size, they come out 2px wide on a phone, which is what this used
+  // to do.
+  //
+  // Two modes:
+  //   - the whole map: a bubble per channel, area proportional to the count,
+  //     never smaller than DOT_MIN_PX so a single tap is still a visible dot.
+  //   - zoomed in (or an area open): a marker of one fixed, finger-sized
+  //     radius with its count written on it. Once the number is printed the
+  //     size no longer needs to carry it, and equal sizes read more cleanly.
+  // Either way a district's dots sit on a ring just wide enough that they
+  // never overlap, so every colour stays visible.
   var dotEls = root.querySelectorAll('.areamap-dot');
+  var numEls = root.querySelectorAll('.areamap-dot-n');
   var cellEls = root.querySelectorAll('.areamap-cell');
-  function sizeDots() {
-    for (var i = 0; i < dotEls.length; i++) {
-      var d = dotEls[i];
-      var bx = parseFloat(d.getAttribute('data-x'));
-      var by = parseFloat(d.getAttribute('data-y'));
-      var ox = parseFloat(d.getAttribute('data-ox'));
-      var oy = parseFloat(d.getAttribute('data-oy'));
-      var br = parseFloat(d.getAttribute('data-r'));
-      if (isNaN(bx) || isNaN(br)) continue;
-      d.setAttribute('cx', bx + ox / scale);
-      d.setAttribute('cy', by + oy / scale);
-      d.setAttribute('r', br / scale);
-    }
+  var coarse = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+  var DOT_MIN_PX = coarse ? 5 : 4;
+  var DOT_MAX_PX = 18;
+  var CHIP_PX = coarse ? 13 : 11;
+  var NUM_PX = coarse ? 12 : 11;
+  var LABEL_AT = 2.5;
 
+  // Group once: a district's dots are laid out together.
+  var groups = {};
+  for (var g = 0; g < dotEls.length; g++) {
+    var key = dotEls[g].getAttribute('data-district');
+    (groups[key] = groups[key] || []).push(g);
+  }
+
+  function isLabelled() {
+    return scale >= LABEL_AT || !!focused;
+  }
+
+  function sizeDots(rect) {
+    rect = rect || svg.getBoundingClientRect();
+    if (!rect.width) return;
+    var basePx = rect.width / vbW; // pixels per map unit at scale 1
+    var upp = 1 / (basePx * scale); // map units per pixel now
+    var labelled = isLabelled();
+    root.classList.toggle('is-labelled', labelled);
+    root.style.setProperty('--areamap-dotn-size', NUM_PX * upp + 'px');
+
+    for (var key in groups) {
+      var idx = groups[key];
+      var n = idx.length;
+      var radii = [];
+      var biggest = 0;
+      for (var i = 0; i < n; i++) {
+        var d = dotEls[idx[i]];
+        var r;
+        if (labelled) {
+          var digits = String(d.getAttribute('data-count')).length;
+          r = Math.max(CHIP_PX, 5 + digits * 3.6);
+        } else {
+          var br = parseFloat(d.getAttribute('data-r')) || 0;
+          r = Math.min(DOT_MAX_PX, Math.max(DOT_MIN_PX, br * basePx));
+        }
+        radii.push(r);
+        if (r > biggest) biggest = r;
+      }
+      // Ring radius so neighbours are 2 * biggest apart, plus a sliver of gap.
+      var ring = n > 1 ? (biggest / Math.sin(Math.PI / n)) * 1.08 : 0;
+      for (var j = 0; j < n; j++) {
+        var el = dotEls[idx[j]];
+        var bx = parseFloat(el.getAttribute('data-x'));
+        var by = parseFloat(el.getAttribute('data-y'));
+        if (isNaN(bx) || isNaN(by)) continue;
+        var slot = parseInt(el.getAttribute('data-slot'), 10) || 0;
+        var a = (n === 2 ? Math.PI : -Math.PI / 2) + (slot * 2 * Math.PI) / n;
+        var cx = bx + Math.cos(a) * ring * upp;
+        var cy = by + Math.sin(a) * ring * upp;
+        el.setAttribute('cx', cx);
+        el.setAttribute('cy', cy);
+        el.setAttribute('r', radii[j] * upp);
+        var num = numEls[idx[j]];
+        if (num) {
+          num.setAttribute('x', cx);
+          num.setAttribute('y', cy);
+        }
+      }
+    }
+  }
+
+  // Zoom about a point on screen, so whatever is under the fingers or the
+  // pointer stays under them. At scale s a screen pixel p maps to the map
+  // point p * (vbW / width) / s - t, so holding that point fixed while s
+  // changes gives t directly.
+  function toMap(clientX, clientY, rect) {
+    var k = vbW / rect.width;
+    return {
+      x: ((clientX - rect.left) * k) / scale - tx,
+      y: ((clientY - rect.top) * k) / scale - ty,
+    };
+  }
+
+  function zoomAt(next, clientX, clientY) {
+    next = Math.min(MAX, Math.max(MIN, next));
+    if (next === scale) return;
+    var rect = svg.getBoundingClientRect();
+    if (!rect.width) return;
+    var m = toMap(clientX, clientY, rect);
+    var k = vbW / rect.width;
+    scale = next;
+    tx = ((clientX - rect.left) * k) / scale - m.x;
+    ty = ((clientY - rect.top) * k) / scale - m.y;
+    apply();
   }
 
   function zoomBy(factor) {
@@ -315,12 +404,99 @@
   svg.addEventListener('mousedown', startDrag);
   window.addEventListener('mousemove', moveDrag);
   window.addEventListener('mouseup', endDrag);
-  svg.addEventListener('touchstart', startDrag, { passive: true });
-  svg.addEventListener('touchmove', moveDrag, { passive: false });
-  window.addEventListener('touchend', endDrag);
+
+  // --- two-finger pinch ---
+  // Tracks the distance between the fingers and the map point under their
+  // midpoint. Scale follows the change in distance and the midpoint point is
+  // held under the midpoint, so pinching and two-finger panning are the same
+  // gesture, the way every phone map behaves.
+  var pinch = null;
+
+  function pinchState(e) {
+    var a = e.touches[0];
+    var b = e.touches[1];
+    return {
+      dist: Math.max(1, Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY)),
+      x: (a.clientX + b.clientX) / 2,
+      y: (a.clientY + b.clientY) / 2,
+    };
+  }
+
+  function startPinch(e) {
+    var p = pinchState(e);
+    var rect = svg.getBoundingClientRect();
+    pinch = { dist: p.dist, scale: scale, at: toMap(p.x, p.y, rect) };
+    dragging = false;
+    // A pinch is never a tap, so lifting the fingers must not open whatever
+    // happens to be under them.
+    movedDuringPress = true;
+    root.classList.remove('is-dragging');
+    hideTip();
+  }
+
+  function movePinch(e) {
+    var p = pinchState(e);
+    var rect = svg.getBoundingClientRect();
+    if (!rect.width) return;
+    var k = vbW / rect.width;
+    scale = Math.min(MAX, Math.max(MIN, pinch.scale * (p.dist / pinch.dist)));
+    tx = ((p.x - rect.left) * k) / scale - pinch.at.x;
+    ty = ((p.y - rect.top) * k) / scale - pinch.at.y;
+    apply();
+  }
+
+  svg.addEventListener('touchstart', function (e) {
+    if (e.touches.length >= 2) {
+      startPinch(e);
+      if (e.cancelable) e.preventDefault();
+      return;
+    }
+    startDrag(e);
+  }, { passive: false });
+
+  svg.addEventListener('touchmove', function (e) {
+    if (pinch && e.touches.length >= 2) {
+      movePinch(e);
+      if (e.cancelable) e.preventDefault();
+      return;
+    }
+    moveDrag(e);
+  }, { passive: false });
+
+  function endTouch(e) {
+    if (pinch && e.touches.length < 2) {
+      pinch = null;
+      // One finger still down: carry on as a pan from where it is now, so the
+      // map does not jump by the distance the lifted finger was away.
+      if (e.touches.length === 1 && scale > 1) {
+        dragging = true;
+        lastX = e.touches[0].clientX;
+        lastY = e.touches[0].clientY;
+        root.classList.add('is-dragging');
+        return;
+      }
+    }
+    if (e.touches.length === 0) endDrag();
+  }
+  window.addEventListener('touchend', endTouch);
+  window.addEventListener('touchcancel', endTouch);
+
+  // Safari zooms the whole page on a pinch through its own gesture events,
+  // whatever touch-action says. The map handles the pinch itself.
+  svg.addEventListener('gesturestart', function (e) { e.preventDefault(); });
+
+  // Trackpad pinch arrives as a wheel event with ctrlKey set, and Ctrl+scroll
+  // is the desktop convention for the same thing. A plain scroll is left to
+  // scroll the page: a map that hijacks the wheel traps the reader.
+  svg.addEventListener('wheel', function (e) {
+    if (!e.ctrlKey && !e.metaKey) return;
+    e.preventDefault();
+    var dy = e.deltaMode === 1 ? e.deltaY * 16 : e.deltaY;
+    zoomAt(scale * Math.exp(-dy * 0.01), e.clientX, e.clientY);
+  }, { passive: false });
 
   // --- hover readout ---
-  var LABEL = { enquiries: 'enquiries', phone: 'phone taps', whatsapp: 'WhatsApp taps', sms: 'text taps' };
+  var LABEL = { form: 'form enquiries', phone: 'call taps', whatsapp: 'WhatsApp taps', sms: 'text taps', logged: 'enquiries logged by the office' };
 
   function showTip(html, e) {
     tip.innerHTML = html;
@@ -352,7 +528,7 @@
         '<strong>' + dot.getAttribute('data-district') + '</strong>' +
           (borough ? ' &middot; ' + borough : '') +
           '<br>' + (summary || count + ' ' + (LABEL[kind] || kind)) +
-          '<br><span class="areamap-tip-dim">Click for the full breakdown</span>',
+          '<br><span class="areamap-tip-dim">' + (focused ? 'Click for the full breakdown' : 'Click to open this area') + '</span>',
         e
       );
       return;

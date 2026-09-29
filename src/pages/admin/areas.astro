@@ -224,6 +224,11 @@ const markers: MapMarker[] = [...markerDistricts]
       x: pointFor(d)![0],
       y: pointFor(d)![1],
       enquiries: Number(row?.total ?? 0),
+      // A form enquiry and one the office logged from a call or message are
+      // both real jobs, but only the first is "a form submission", which is
+      // what the blue dot claims to be.
+      form: Math.min(Number(row?.by_form ?? 0), Number(row?.total ?? 0)),
+      logged: Math.max(0, Number(row?.total ?? 0) - Number(row?.by_form ?? 0)),
       phone: taps.phone,
       whatsapp: taps.whatsapp,
       sms: taps.sms,

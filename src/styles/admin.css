@@ -255,11 +255,16 @@
   content: ''; width: 11px; height: 11px; border-radius: 999px; flex: none;
   background: var(--dot, var(--navy));
 }
-.areamap-key-enquiries { --dot: #1d4ed8; }
+.areamap-key-form { --dot: #1d4ed8; }
 .areamap-key-phone { --dot: #ea580c; }
 .areamap-key-whatsapp { --dot: #15803d; }
 .areamap-key-sms { --dot: #7c3aed; }
+.areamap-key-logged { --dot: #334155; }
+/* Folded away: on a phone this paragraph alone pushed the map a full screen
+   down, and it is reference material, read once, not every visit. */
 .areamap-legend-note { flex-basis: 100%; font-size: 0.78rem; color: var(--muted); }
+.areamap-legend-note summary { cursor: pointer; font-weight: 600; color: var(--navy); width: fit-content; padding: 4px 0; }
+.areamap-legend-note p { margin: 4px 0 0; }
 .areamap-zoom { display: flex; gap: 6px; flex: none; }
 .areamap-zoom .btn { padding: 4px 11px; font-size: 0.85rem; min-width: 38px; }
 
@@ -267,7 +272,22 @@
   position: relative; overflow: hidden;
   border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface);
 }
-.areamap-svg { display: block; width: 100%; height: auto; touch-action: none; }
+.areamap-svg { display: block; width: 100%; height: auto; }
+/* Touch: the whole map, not zoomed, lets one finger scroll the page, because a
+   map that swallows every swipe traps the reader on a phone. Pinch-zoom is
+   left out of the list, so the browser hands two-finger gestures to the
+   script rather than zooming the page. Once zoomed, one finger pans the map. */
+.areamap-svg { touch-action: pan-x pan-y; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+.areamap.is-zoomed .areamap-svg { touch-action: none; }
+
+/* How to zoom. The touch hint shows on a phone or tablet, the mouse hint on a
+   desktop, so neither describes a gesture the device cannot make. */
+.areamap-hint { margin: 0 0 8px; font-size: 0.8rem; color: var(--muted); }
+.areamap-hint-touch { display: none; }
+@media (pointer: coarse) {
+  .areamap-hint-touch { display: inline; }
+  .areamap-hint-mouse { display: none; }
+}
 .areamap.is-zoomed .areamap-svg { cursor: grab; }
 .areamap.is-dragging .areamap-svg { cursor: grabbing; }
 
@@ -482,10 +502,22 @@
    frame grows. 3 user units was ~1.6px and falling. */
 .areamap-dot { stroke: #fff; stroke-width: 1.8; opacity: 0.9; vector-effect: non-scaling-stroke; }
 .areamap-dot:hover { opacity: 1; }
-.areamap-dot-enquiries { fill: #1d4ed8; }
+.areamap-dot-form { fill: #1d4ed8; }
 .areamap-dot-phone { fill: #ea580c; }
 .areamap-dot-whatsapp { fill: #15803d; }
 .areamap-dot-sms { fill: #7c3aed; }
+.areamap-dot-logged { fill: #334155; }
+/* Zoomed in, a dot is a labelled marker rather than a bubble: full opacity,
+   a firmer ring and its count in white. All five fills are 4.5:1 or better
+   against white text. */
+.areamap.is-labelled .areamap-dot { opacity: 1; stroke-width: 2; }
+.areamap-dot-n {
+  display: none; pointer-events: none;
+  font-size: var(--areamap-dotn-size, 20px); font-weight: 700; fill: #fff;
+  text-anchor: middle; dominant-baseline: central;
+  font-variant-numeric: tabular-nums;
+}
+.areamap.is-labelled .areamap-dot-n { display: initial; }
 
 .areamap-tip {
   position: absolute; z-index: 2; pointer-events: none;

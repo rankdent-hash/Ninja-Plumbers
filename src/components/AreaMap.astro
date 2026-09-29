@@ -63,6 +63,10 @@ export type MapMarker = {
   x: number;
   y: number;
   enquiries: number;
+  // The enquiries split by how they came in: a website form, or a call,
+  // WhatsApp or email the office logged by hand. These sum to `enquiries`.
+  form: number;
+  logged: number;
   phone: number;
   whatsapp: number;
   sms: number;
@@ -99,31 +103,45 @@ const { markers, details = [], summary } = Astro.props;
 // the HTML rather than being assembled by a script that might not run.
 const pct = (n: number, of: number) => (of > 0 ? Math.round((n / of) * 100) : null);
 
-// Dots are placed on a small rosette around the district centroid so four
-// types at one district stay separable instead of stacking into one blob.
-// Offsets and radii are in viewBox units: the map is ~2075 units wide and
-// renders around 1100px, so a unit is roughly half a pixel.
-// Widening the frame to fit the corridor districts shrank everything drawn in
-// it, so the dots and their rosette scale back up by the same factor and keep
-// the size they were tuned at.
+// Each channel gets its own colour: form enquiries, call taps, WhatsApp taps,
+// text taps, and enquiries the office logged by hand. The dots a district has
+// are laid out on a small ring around its centre, so one dot sits on the
+// centre, two sit side by side, and three to five form a tight cluster that
+// never overlaps. The script redoes this layout in screen pixels at every
+// zoom; this server-side pass is what shows if the script never runs.
+// Radii are in viewBox units: the map is ~2075 units wide and renders around
+// 1100px on a desktop, so a unit is roughly half a pixel there.
 //
-// Derived, not typed in: .areamap-svg is width:100%/height:auto, so what is on
-// screen is driven by MAP_WIDTH alone and MAP_HEIGHT only sets the aspect
-// ratio. A hand-set 1.14 was wrong here — that is the HEIGHT ratio, which
-// cannot affect rendered size.
+// Widening the frame to fit the corridor districts shrank everything drawn in
+// it, so the dots scale back up by the same factor and keep the size they were
+// tuned at. Derived, not typed in: .areamap-svg is width:100%/height:auto, so
+// what is on screen is driven by MAP_WIDTH alone.
 const TUNED_WIDTH = 1918.6;
 const SCALE = MAP_WIDTH / TUNED_WIDTH;
-const OFFSETS: Record<string, [number, number]> = {
-  enquiries: [0, -13 * SCALE],
-  phone: [13 * SCALE, 4 * SCALE],
-  whatsapp: [-13 * SCALE, 4 * SCALE],
-  sms: [0, 17 * SCALE],
+const KINDS = ['form', 'phone', 'whatsapp', 'sms', 'logged'] as const;
+type Kind = (typeof KINDS)[number];
+const KIND_LABEL: Record<Kind, [string, string]> = {
+  form: ['form enquiry', 'form enquiries'],
+  phone: ['call tap', 'call taps'],
+  whatsapp: ['WhatsApp tap', 'WhatsApp taps'],
+  sms: ['text tap', 'text taps'],
+  logged: ['enquiry logged by the office', 'enquiries logged by the office'],
 };
-const KINDS = ['enquiries', 'phone', 'whatsapp', 'sms'] as const;
+const kindLabel = (k: Kind, n: number) => `${n} ${KIND_LABEL[k][n === 1 ? 0 : 1]}`;
 
 // Area, not radius, carries the count — a circle twice as wide reads as four
 // times as much, which is exactly the misreading sqrt avoids.
 const radius = (n: number) => Math.min(30 * SCALE, (7 + Math.sqrt(n) * 4.5) * SCALE);
+
+// Where slot i of n sits around the district centre, as a unit vector times
+// the ring radius. Two dots sit left and right; three or more start at the top.
+// The ring is just wide enough that neighbouring dots of radius r do not touch.
+function ringOffset(i: number, n: number, r: number): [number, number] {
+  if (n <= 1) return [0, 0];
+  const ring = (r / Math.sin(Math.PI / n)) * 1.08;
+  const a = (n === 2 ? Math.PI : -Math.PI / 2) + (i * 2 * Math.PI) / n;
+  return [ring * Math.cos(a), ring * Math.sin(a)];
+}
 
 // One label per postcode district, rendered for every shape but shown only for
 // the one the reader has opened. Rendering them all server-side keeps the
@@ -182,21 +200,29 @@ const searchIndex = [
   })),
 ];
 
-const dots = markers.flatMap((m) =>
-  KINDS.filter((k) => m[k] > 0).map((k) => ({
-    kind: k,
-    district: m.district,
-    borough: m.borough,
-    count: m[k],
-    x: m.x,
-    y: m.y,
-    ox: OFFSETS[k][0],
-    oy: OFFSETS[k][1],
-    cx: m.x + OFFSETS[k][0],
-    cy: m.y + OFFSETS[k][1],
-    r: radius(m[k]),
-  }))
-);
+const dots = markers.flatMap((m) => {
+  const present = KINDS.filter((k) => m[k] > 0);
+  const biggest = Math.max(0, ...present.map((k) => radius(m[k])));
+  const summary = present.map((k) => kindLabel(k, m[k])).join(' &middot; ');
+  return present.map((k, i) => {
+    const [ox, oy] = ringOffset(i, present.length, biggest);
+    return {
+      kind: k,
+      district: m.district,
+      borough: m.borough,
+      count: m[k],
+      summary,
+      slot: i,
+      slots: present.length,
+      x: m.x,
+      y: m.y,
+      cx: m.x + ox,
+      cy: m.y + oy,
+      r: radius(m[k]),
+    };
+  });
+});
+const hasLogged = markers.some((m) => m.logged > 0);
 ---
 <div class="areamap" data-areamap>
   <div class="areamap-search">
@@ -227,14 +253,15 @@ const dots = markers.flatMap((m) =>
 
   <div class="areamap-toolbar">
     <div class="areamap-legend">
-      <span class="areamap-key areamap-key-enquiries">Enquiries <small>(job postcode)</small></span>
-      <span class="areamap-key areamap-key-phone">Phone</span>
+      <span class="areamap-key areamap-key-form">Form enquiry <small>(job postcode)</small></span>
+      <span class="areamap-key areamap-key-phone">Call</span>
       <span class="areamap-key areamap-key-whatsapp">WhatsApp</span>
-      <span class="areamap-key areamap-key-sms">Text</span>
+      <span class="areamap-key areamap-key-sms">Text (SMS)</span>
+      {hasLogged && <span class="areamap-key areamap-key-logged">Logged by the office <small>(job postcode)</small></span>}
       <span class="areamap-key areamap-key-corridor">M25 &plusmn;{CORRIDOR_MILES} miles</span>
       <span class="areamap-key areamap-key-covered">Covered today</span>
       <span class="areamap-key areamap-key-planned">Not covered yet</span>
-      <span class="areamap-legend-note">Click any area to zoom into it and see the postcode districts inside, then click a district or one of its dots for the full breakdown &mdash; how many enquiries and taps, and which pages earned them. Escape steps back out. Those district divisions are schematic &mdash; each district centre claims the ground nearest to it, so the middle of each one is right and the seams between them are approximate. Call, WhatsApp and text dots show the page that earned the tap, not where the person was. {coveredLabel}; the named districts around the M25 are where the planned expansion would reach, not places we work today.</span>
+      <details class="areamap-legend-note"><summary>How to read this map</summary><p>Click any area to zoom into it and see the postcode districts inside, then click a district or one of its dots for the full breakdown &mdash; how many enquiries and taps, and which pages earned them. Escape steps back out. Those district divisions are schematic &mdash; each district centre claims the ground nearest to it, so the middle of each one is right and the seams between them are approximate. Zoomed in, each dot carries its count. Call, WhatsApp and text dots show the page that earned the tap, not where the person was. {coveredLabel}; the named districts around the M25 are where the planned expansion would reach, not places we work today.</p></details>
     </div>
     <div class="areamap-zoom">
       <button type="button" class="btn btn-ghost" data-areamap-toggle="corridor" aria-pressed="true">M25 band</button>
@@ -243,6 +270,11 @@ const dots = markers.flatMap((m) =>
       <button type="button" class="btn btn-ghost" data-areamap-zoom="reset">Reset</button>
     </div>
   </div>
+
+  <p class="areamap-hint">
+    <span class="areamap-hint-touch">Pinch with two fingers to zoom in and out. Once zoomed, drag with one finger to move around.</span>
+    <span class="areamap-hint-mouse">Pinch the trackpad or hold Ctrl and scroll to zoom. Once zoomed, drag to move around.</span>
+  </p>
 
   <p class="areamap-readout" data-areamap-readout hidden aria-live="polite"></p>
 
@@ -353,22 +385,24 @@ const dots = markers.flatMap((m) =>
               data-borough={d.borough ?? ''}
               data-kind={d.kind}
               data-count={d.count}
-              data-summary={(() => {
-                const m = markers.find((x) => x.district === d.district)!;
-                return [
-                  m.enquiries ? `${m.enquiries} enquir${m.enquiries === 1 ? 'y' : 'ies'}` : '',
-                  m.phone ? `${m.phone} phone` : '',
-                  m.whatsapp ? `${m.whatsapp} WhatsApp` : '',
-                  m.sms ? `${m.sms} text` : '',
-                ].filter(Boolean).join(' &middot; ');
-              })()}
+              data-summary={d.summary}
               data-x={d.x}
               data-y={d.y}
-              data-ox={d.ox}
-              data-oy={d.oy}
+              data-slot={d.slot}
+              data-slots={d.slots}
               data-r={d.r}
               data-parent-shape={DISTRICT_PARENT[d.district] ?? ''}
             />
+          ))}
+        </g>
+
+        {/* The count on each dot, shown once the map is zoomed far enough for
+            the dots to be drawn at a readable size. A separate layer, in the
+            same order as the dots, so every number sits above every dot and
+            never takes a tap meant for one. */}
+        <g class="areamap-dotnums" aria-hidden="true">
+          {dots.map((d) => (
+            <text class="areamap-dot-n" x={d.cx} y={d.cy}>{d.count > 999 ? '999+' : d.count}</text>
           ))}
         </g>
       </g>
@@ -416,7 +450,7 @@ const dots = markers.flatMap((m) =>
             <span class="areamap-stat-n">{d.booked}</span>
             <span class="areamap-stat-l">booked{bookedRate !== null && <><br /><small>{bookedRate}% of enquiries</small></>}</span>
           </div>
-          <div class="areamap-stat"><span class="areamap-stat-n">{d.phone}</span><span class="areamap-stat-l">phone taps</span></div>
+          <div class="areamap-stat"><span class="areamap-stat-n">{d.phone}</span><span class="areamap-stat-l">call taps</span></div>
           <div class="areamap-stat"><span class="areamap-stat-n">{d.whatsapp}</span><span class="areamap-stat-l">WhatsApp taps</span></div>
           <div class="areamap-stat"><span class="areamap-stat-n">{d.sms}</span><span class="areamap-stat-l">text taps</span></div>
         </div>
