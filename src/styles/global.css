@@ -3100,3 +3100,25 @@ body.qr-open { overflow: hidden; }
 @media (min-width: 720px) {
   .sector-does { grid-template-columns: 1fr 1fr; column-gap: 24px; }
 }
+
+/* ---- Sector pages: service illustration (SectorScene.astro) ---- */
+.sector-scene { margin: 0; }
+.sector-scene svg { display: block; width: 100%; height: auto; }
+.sector-scene figcaption { margin-top: 12px; font-size: 0.88rem; color: var(--muted); text-align: center; }
+.ss-bg { fill: var(--blue-tint); }
+.ss-ring { fill: none; stroke: var(--border); stroke-width: 1.5; stroke-dasharray: 2 8; }
+.ss-centre { fill: var(--white); stroke: var(--navy); stroke-width: 3; }
+.ss-pictogram { fill: none; stroke: var(--navy); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.ss-link { stroke: var(--orange); stroke-width: 2.5; stroke-dasharray: 6 7; stroke-linecap: round; animation: ss-flow 1.6s linear infinite; }
+.ss-badge circle { fill: var(--white); stroke: var(--orange); stroke-width: 2.5; }
+.ss-badge-icon { fill: none; stroke: var(--orange-ink); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.ss-badge text { fill: var(--navy); font-family: var(--font-heading); font-weight: 600; font-size: 15px; }
+@keyframes ss-flow { to { stroke-dashoffset: -26; } }
+@media (prefers-reduced-motion: reduce) { .ss-link { animation: none; } }
+
+/* Sector pages: icon row on cards. */
+.card-icon-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.card-icon-row .icon { margin: 0; }
+.card-icon-row h3 { margin: 0; }
+.sector-oneteam { margin: 26px 0 8px; font-size: 1.1rem; }
+.sector-scene-wrap { align-self: center; }

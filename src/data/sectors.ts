@@ -20,7 +20,7 @@ export type Sector = {
   target: string;
   summary: string;
   intro: string;
-  needs: { title: string; body: string }[];
+  needs: { title: string; body: string; icon?: string }[];  // icon: a ServiceIcon name for the card
   does: string[];
   guidance: { title: string; body: string }[];
   links: { href: string; label: string; why: string }[];

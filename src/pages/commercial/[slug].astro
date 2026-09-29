@@ -15,6 +15,9 @@ import { services } from '../../data/services';
 import { appliances } from '../../data/appliances';
 import { dampPages } from '../../data/damp';
 import { SCHEMA_AREA_SERVED } from '../../data/serviceArea';
+import SectorScene from '../../components/SectorScene.astro';
+import SectorPictogram from '../../components/SectorPictogram.astro';
+import { iconForHref, iconForNeed } from '../../data/sectorVisuals';
 
 export function getStaticPaths() {
   return sectors.map((sector) => ({ params: { slug: sector.slug }, props: { sector } }));
@@ -83,6 +86,7 @@ const serviceSchema = {
       <ul class="grid grid-2 card-grid">
         {sector.needs.map((n) => (
           <li class="card">
+            <div class="icon"><ServiceIcon name={n.icon ?? iconForNeed(n.title, n.body)} /></div>
             <h3>{n.title}</h3>
             <p>{n.body}</p>
           </li>
@@ -99,15 +103,15 @@ const serviceSchema = {
         <ul class="ticks sector-does">
           {sector.does.map((d) => <li><Tick /> {d}</li>)}
         </ul>
-      </div>
-      <aside class="service-aside">
-        <div class="icon"><ServiceIcon name={sector.icon} /></div>
-        <h3>One team, around your hours</h3>
+        <h3 class="sector-oneteam">One team, around your hours</h3>
         <p>
           Plumbing, heating, drainage, electrics and air conditioning from one company, so a job
           that needs more than one trade is booked once. We work early, late or at weekends so
           you can keep trading, and the price is agreed before anything starts.
         </p>
+      </div>
+      <aside class="sector-scene-wrap">
+        <SectorScene sector={sector} />
       </aside>
     </div>
   </section>
@@ -132,6 +136,7 @@ const serviceSchema = {
       <ul class="grid grid-3 card-grid">
         {sector.links.map((l) => (
           <li class="card">
+            <div class="icon"><ServiceIcon name={iconForHref(l.href)} /></div>
             <h3><a href={l.href} class="card-title-link">{l.label}</a></h3>
             <p>{l.why}</p>
             <a href={l.href} class="card-link" aria-hidden="true" tabindex="-1">Find out more <span>&rarr;</span></a>
@@ -163,6 +168,7 @@ const serviceSchema = {
       <ul class="grid grid-3 card-grid">
         {related.map((r) => (
           <li class="card">
+            <div class="icon"><SectorPictogram slug={r.slug} /></div>
             <h3><a href={`/commercial/${r.slug}`} class="card-title-link">{r.name}</a></h3>
             <p>{r.summary}</p>
           </li>

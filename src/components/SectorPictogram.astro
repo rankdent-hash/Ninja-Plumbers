@@ -1,0 +1,8 @@
+---
+// Line pictogram for a business sector (see src/data/sectorVisuals.ts).
+import { SECTOR_PICTOGRAMS } from '../data/sectorVisuals';
+const { slug, size = 24 } = Astro.props;
+---
+<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor"
+     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+     set:html={SECTOR_PICTOGRAMS[slug] ?? SECTOR_PICTOGRAMS['offices']} />

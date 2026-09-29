@@ -29,6 +29,7 @@ import { serviceGroups } from '../../data/nav';
 import { brands } from '../../data/brands';
 import { lowerTitle } from '../../lib/text';
 import { sectors, sectorsLinkingTo } from '../../data/sectors';
+import SectorPictogram from '../../components/SectorPictogram.astro';
 import { dampPages } from '../../data/damp';
 import ServiceIcon from '../../components/ServiceIcon.astro';
 import Tick from '../../components/Tick.astro';
@@ -438,7 +439,7 @@ const serviceSchema = {
         <ul class="grid grid-3 card-grid">
           {sectorCards.map((sc) => (
             <li class="card">
-              <div class="icon"><ServiceIcon name={sc.icon} /></div>
+              <div class="icon"><SectorPictogram slug={sc.slug} /></div>
               <h3><a href={`/commercial/${sc.slug}`} class="card-title-link">{sc.name}</a></h3>
               <p>{sc.summary}</p>
             </li>

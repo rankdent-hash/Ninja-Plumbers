@@ -1,0 +1,55 @@
+---
+// Illustration for a sector page: the business in the middle, joined to the
+// services it relies on. Badges come from the sector's own links (see
+// sectorBadges), so each page's picture matches what the page offers.
+// Colours come from CSS classes, so the drawing follows the site palette.
+import { SECTOR_PICTOGRAMS, sectorBadges } from '../data/sectorVisuals';
+import { SERVICE_ICON_PATHS } from '../data/serviceIconPaths';
+import type { Sector } from '../data/sectors';
+
+const { sector } = Astro.props as { sector: Sector };
+const badges = sectorBadges(sector);
+
+const W = 520, H = 400, CX = 260, CY = 196, R_CENTRE = 78, R_BADGE = 30;
+const RX = 188, RY = 124;
+const placed = badges.map((b, i) => {
+  const angle = -Math.PI / 2 + (i * 2 * Math.PI) / badges.length;
+  const x = CX + RX * Math.cos(angle);
+  const y = CY + RY * Math.sin(angle);
+  // Connector from the edge of the centre disc to the edge of the badge.
+  const dx = x - CX, dy = y - CY, len = Math.hypot(dx, dy);
+  const ux = dx / len, uy = dy / len;
+  return {
+    ...b, x, y,
+    x1: CX + ux * (R_CENTRE + 6), y1: CY + uy * (R_CENTRE + 6),
+    x2: x - ux * (R_BADGE + 6), y2: y - uy * (R_BADGE + 6),
+    delay: `${(i * 0.35).toFixed(2)}s`,
+  };
+});
+const r = (n: number) => Math.round(n * 10) / 10;
+const label = `${sector.name.replace('&', 'and')}: ${badges.map((b) => b.label.toLowerCase()).join(', ')}, all from one team`;
+---
+<figure class="sector-scene">
+  <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={label}>
+    <rect class="ss-bg" x="0" y="0" width={W} height={H} rx="18" />
+    <circle class="ss-ring" cx={CX} cy={CY} r={RX - 40} />
+
+    {placed.map((p) => (
+      <line class="ss-link" x1={r(p.x1)} y1={r(p.y1)} x2={r(p.x2)} y2={r(p.y2)} style={`animation-delay:${p.delay}`} />
+    ))}
+
+    <circle class="ss-centre" cx={CX} cy={CY} r={R_CENTRE} />
+    <g class="ss-pictogram" transform={`translate(${CX - 48} ${CY - 48}) scale(4)`}
+       set:html={SECTOR_PICTOGRAMS[sector.slug] ?? SECTOR_PICTOGRAMS['offices']} />
+
+    {placed.map((p) => (
+      <g class="ss-badge">
+        <circle cx={r(p.x)} cy={r(p.y)} r={R_BADGE} />
+        <g class="ss-badge-icon" transform={`translate(${r(p.x - 18)} ${r(p.y - 18)}) scale(1.5)`}
+           set:html={SERVICE_ICON_PATHS[p.icon] ?? SERVICE_ICON_PATHS.general} />
+        <text x={r(p.x)} y={r(p.y < CY - 60 ? p.y - R_BADGE - 10 : p.y + R_BADGE + 20)} text-anchor="middle">{p.label}</text>
+      </g>
+    ))}
+  </svg>
+  <figcaption>{sector.name}: {badges.map((b) => b.label.toLowerCase()).join(', ')}, from one team.</figcaption>
+</figure>

@@ -13,19 +13,23 @@
     "needs": [
       {
         "title": "Washrooms that cope with the whole team",
-        "body": "An office washroom takes far more use than a home bathroom, and most of it comes in a few busy periods. Cisterns and flush valves wear, push taps stick, and urinal cisterns can run all night if nothing controls them. The Workplace (Health, Safety and Welfare) Regulations 1992 expect suitable toilets and washing facilities with hot and cold, or warm, water for staff. When one cubicle is out of use, the queue for the rest grows fast."
+        "body": "An office washroom takes far more use than a home bathroom, and most of it comes in a few busy periods. Cisterns and flush valves wear, push taps stick, and urinal cisterns can run all night if nothing controls them. The Workplace (Health, Safety and Welfare) Regulations 1992 expect suitable toilets and washing facilities with hot and cold, or warm, water for staff. When one cubicle is out of use, the queue for the rest grows fast.",
+        "icon": "bathroom"
       },
       {
         "title": "Kitchenettes and drinks points",
-        "body": "Most offices run on one small kitchen: a sink, a dishwasher, perhaps a boiling water tap or a plumbed-in coffee machine and a fridge with a water feed. Each appliance needs a proper isolation valve, a sound waste connection and, where the supply feeds a machine, the right backflow protection. Hard London water scales up boiling water taps and dishwasher elements, so a filter or softener on the feed often means fewer breakdowns."
+        "body": "Most offices run on one small kitchen: a sink, a dishwasher, perhaps a boiling water tap or a plumbed-in coffee machine and a fridge with a water feed. Each appliance needs a proper isolation valve, a sound waste connection and, where the supply feeds a machine, the right backflow protection. Hard London water scales up boiling water taps and dishwasher elements, so a filter or softener on the feed often means fewer breakdowns.",
+        "icon": "appliance"
       },
       {
         "title": "Hot water where people wash their hands",
-        "body": "Many offices heat water with a small unvented cylinder or with under-sink point-of-use heaters at each basin. Point-of-use heaters are handy but can fail quietly, leaving one basin cold for weeks before anyone reports it. A single cylinder serving several floors can mean long pipe runs and a wait for warm water. We look at how your water is heated, how far it travels and whether a new heater would need its own circuit."
+        "body": "Many offices heat water with a small unvented cylinder or with under-sink point-of-use heaters at each basin. Point-of-use heaters are handy but can fail quietly, leaving one basin cold for weeks before anyone reports it. A single cylinder serving several floors can mean long pipe runs and a wait for warm water. We look at how your water is heated, how far it travels and whether a new heater would need its own circuit.",
+        "icon": "water"
       },
       {
         "title": "Comfortable temperatures all year",
-        "body": "South-facing glass, a comms cupboard and a room full of laptops can make an office stuffy by lunchtime, while an ageing boiler may struggle on winter mornings. Our Gas Safe engineers work on domestic-sized boilers and heating, which covers many small offices. Larger commercial boiler plant needs engineers with commercial gas qualifications, and we will tell you straight if yours is beyond what we do. Our F-Gas certified engineers fit and maintain split air conditioning."
+        "body": "South-facing glass, a comms cupboard and a room full of laptops can make an office stuffy by lunchtime, while an ageing boiler may struggle on winter mornings. Our Gas Safe engineers work on domestic-sized boilers and heating, which covers many small offices. Larger commercial boiler plant needs engineers with commercial gas qualifications, and we will tell you straight if yours is beyond what we do. Our F-Gas certified engineers fit and maintain split air conditioning.",
+        "icon": "boiler"
       }
     ],
     "does": [
@@ -131,19 +135,23 @@
     "needs": [
       {
         "title": "A staff toilet and basin that work",
-        "body": "Most small shops have one WC and basin tucked behind the stockroom, sometimes shared with the unit next door. When it blocks or the cistern fails, staff have nowhere to go and you may have to close early. Workplace rules expect suitable toilets and hand-washing with hot and cold, or warm, water. Many shops rely on a small under-sink heater or an old cylinder, and both are simple to repair or replace."
+        "body": "Most small shops have one WC and basin tucked behind the stockroom, sometimes shared with the unit next door. When it blocks or the cistern fails, staff have nowhere to go and you may have to close early. Workplace rules expect suitable toilets and hand-washing with hot and cold, or warm, water. Many shops rely on a small under-sink heater or an old cylinder, and both are simple to repair or replace.",
+        "icon": "bathroom"
       },
       {
         "title": "Protection from leaks above and below",
-        "body": "Shops often sit under flats, with bathrooms and kitchens directly over the sales floor or stockroom. A failed shower seal upstairs can bring water through a suspended ceiling onto stock or light fittings. Basement stores can take in water through old drains or a failed pump. Finding the true source quickly, and knowing where your own stopcock is, limits the damage and helps when you talk to the landlord or your insurer."
+        "body": "Shops often sit under flats, with bathrooms and kitchens directly over the sales floor or stockroom. A failed shower seal upstairs can bring water through a suspended ceiling onto stock or light fittings. Basement stores can take in water through old drains or a failed pump. Finding the true source quickly, and knowing where your own stopcock is, limits the damage and helps when you talk to the landlord or your insurer.",
+        "icon": "leak"
       },
       {
         "title": "Cooling for customers and stock",
-        "body": "Shopfront glazing, spotlights and a door that stays open all day can make a small shop hot and stuffy by mid-afternoon. Chocolate, cosmetics, flowers and electronics can all suffer in the heat. Air conditioning for shops is usually a wall-mounted or ceiling cassette split system, sized for the floor area, the glazing and the heat from lighting. Positioning matters, so the airflow reaches the shop floor without blowing straight onto the till."
+        "body": "Shopfront glazing, spotlights and a door that stays open all day can make a small shop hot and stuffy by mid-afternoon. Chocolate, cosmetics, flowers and electronics can all suffer in the heat. Air conditioning for shops is usually a wall-mounted or ceiling cassette split system, sized for the floor area, the glazing and the heat from lighting. Positioning matters, so the airflow reaches the shop floor without blowing straight onto the till.",
+        "icon": "ac"
       },
       {
         "title": "Heating and electrics that suit trading",
-        "body": "A cold shop sends customers back out quickly. Small units are often heated by a domestic-sized boiler, electric panel heaters or air conditioning that can heat as well as cool. Our Gas Safe engineers handle domestic-sized boilers; larger commercial boilers need engineers with commercial gas qualifications, and we will say so if yours is one. Our electricians add sockets for displays, fix tripping circuits and carry out periodic inspections."
+        "body": "A cold shop sends customers back out quickly. Small units are often heated by a domestic-sized boiler, electric panel heaters or air conditioning that can heat as well as cool. Our Gas Safe engineers handle domestic-sized boilers; larger commercial boilers need engineers with commercial gas qualifications, and we will say so if yours is one. Our electricians add sockets for displays, fix tripping circuits and carry out periodic inspections.",
+        "icon": "electrical"
       }
     ],
     "does": [
@@ -249,24 +257,28 @@
     "needs": [
       {
         "title": "Keeping fats, oils and grease out of the drain",
-        "body": "Fats, oils and grease (FOG) must not go down the drain, and Thames Water can take action against businesses whose waste causes blockages in the public sewer. Even with good scraping and wiping, washing up sends grease down the sink waste, where it cools, sets and narrows the pipe. A correctly sized grease trap under the pot wash sink catches much of it before it reaches your drains or the sewer."
+        "body": "Fats, oils and grease (FOG) must not go down the drain, and Thames Water can take action against businesses whose waste causes blockages in the public sewer. Even with good scraping and wiping, washing up sends grease down the sink waste, where it cools, sets and narrows the pipe. A correctly sized grease trap under the pot wash sink catches much of it before it reaches your drains or the sewer.",
+        "icon": "drain"
       },
       {
         "title": "Hand-wash basins where food is handled",
-        "body": "Food businesses must provide enough hand-washing facilities with hot and cold running water, kept separate from the sinks used for washing food or equipment where needed. A basin placed behind a door or blocked by boxes does not get used. We fit dedicated hand-wash basins with lever or sensor taps close to prep areas, add a small water heater where hot water does not reach, and route the waste so it drains freely."
+        "body": "Food businesses must provide enough hand-washing facilities with hot and cold running water, kept separate from the sinks used for washing food or equipment where needed. A basin placed behind a door or blocked by boxes does not get used. We fit dedicated hand-wash basins with lever or sensor taps close to prep areas, add a small water heater where hot water does not reach, and route the waste so it drains freely.",
+        "icon": "bathroom"
       },
       {
         "title": "Dishwashers, glasswashers and coffee machines",
-        "body": "Commercial dishwashers and glasswashers need a steady water feed, a waste that copes with a fast discharge and, in London's hard water, softening to stop scale building up on elements and spray arms. Espresso machines need a mains cold feed, an isolating valve, a filter cartridge and a drain point. The Water Supply (Water Fittings) Regulations 1999 require backflow protection matched to the fluid risk, so each connection needs to be right, not just a quick tee."
+        "body": "Commercial dishwashers and glasswashers need a steady water feed, a waste that copes with a fast discharge and, in London's hard water, softening to stop scale building up on elements and spray arms. Espresso machines need a mains cold feed, an isolating valve, a filter cartridge and a drain point. The Water Supply (Water Fittings) Regulations 1999 require backflow protection matched to the fluid risk, so each connection needs to be right, not just a quick tee.",
+        "icon": "appliance"
       },
       {
         "title": "Hot water that keeps up with service",
-        "body": "A café can use most of its hot water in a short rush: washing up, hand washing and cleaning down all at once. An old cylinder with slow recovery, or one small instantaneous heater, runs cold just when you need it most. We look at your peak demand, your space and your electrical supply before suggesting a larger cylinder, extra point-of-use heaters or a mix of both. New heaters often need a dedicated circuit, which our electricians install."
+        "body": "A café can use most of its hot water in a short rush: washing up, hand washing and cleaning down all at once. An old cylinder with slow recovery, or one small instantaneous heater, runs cold just when you need it most. We look at your peak demand, your space and your electrical supply before suggesting a larger cylinder, extra point-of-use heaters or a mix of both. New heaters often need a dedicated circuit, which our electricians install.",
+        "icon": "water"
       }
     ],
     "does": [
       "Grease trap installation under sinks",
-      "Grease trap cleaning and servicing",
+      "Blocked grease traps cleared and repaired",
       "Hand-wash basins with lever or sensor taps",
       "Dishwasher and glasswasher feeds and wastes",
       "Coffee machine plumbing and water filtration",
@@ -367,19 +379,23 @@
     "needs": [
       {
         "title": "Backwash units that work every wash",
-        "body": "Most salon plumbing calls start at the backwash. Tilting basins crack at the pivot, mixer cartridges wear out from constant use, spray hoses split and the flexible connections behind the unit weep into the floor. When you refit or add a station, each unit needs isolating valves you can reach, a waste with enough fall, and a spray handset with backflow protection so dirty water can't be drawn back into the supply. We fit units you have already bought or help you choose one."
+        "body": "Most salon plumbing calls start at the backwash. Tilting basins crack at the pivot, mixer cartridges wear out from constant use, spray hoses split and the flexible connections behind the unit weep into the floor. When you refit or add a station, each unit needs isolating valves you can reach, a waste with enough fall, and a spray handset with backflow protection so dirty water can't be drawn back into the supply. We fit units you have already bought or help you choose one.",
+        "icon": "bathroom"
       },
       {
         "title": "Waste pipes that cope with hair",
-        "body": "Hair, colour, bleach residue and conditioner combine into a stubborn plug in traps and in the long, shallow waste runs that often connect a row of backwashes. Where basins sit in the middle of the floor, the waste may run under the floor or in boxing with barely any fall, or go to a small pump. We clear blockages, fit hair catchers and accessible traps, reroute runs with a proper fall and add rodding points so the next clearance is quicker."
+        "body": "Hair, colour, bleach residue and conditioner combine into a stubborn plug in traps and in the long, shallow waste runs that often connect a row of backwashes. Where basins sit in the middle of the floor, the waste may run under the floor or in boxing with barely any fall, or go to a small pump. We clear blockages, fit hair catchers and accessible traps, reroute runs with a proper fall and add rodding points so the next clearance is quicker.",
+        "icon": "drain"
       },
       {
         "title": "Hot water for back-to-back washes",
-        "body": "A salon uses hot water all day in short bursts, often with several basins running at once. An undersized combi or cylinder shows it first as lukewarm rinses at the busiest time. The choice is usually between instantaneous water heaters, electric or gas, which heat on demand but have a limited flow rate, and a cylinder that stores hot water for busy spells. We look at how many basins you run, your gas and electrical supply and the space available before suggesting either."
+        "body": "A salon uses hot water all day in short bursts, often with several basins running at once. An undersized combi or cylinder shows it first as lukewarm rinses at the busiest time. The choice is usually between instantaneous water heaters, electric or gas, which heat on demand but have a limited flow rate, and a cylinder that stores hot water for busy spells. We look at how many basins you run, your gas and electrical supply and the space available before suggesting either.",
+        "icon": "water"
       },
       {
         "title": "A comfortable, safe place to work",
-        "body": "Clients sit still with wet hair, so a cold salon gets noticed. Radiators, heating controls and the boiler need to be reliable through winter, while in summer dryers and styling tools add heat that air conditioning can take away. Staff need a working WC and hand-wash basin, and dryers and tongs on overloaded sockets trip circuits. Because we also do electrics and air conditioning, a new water heater with its own circuit, or a cooling unit for the styling floor, is one team's job."
+        "body": "Clients sit still with wet hair, so a cold salon gets noticed. Radiators, heating controls and the boiler need to be reliable through winter, while in summer dryers and styling tools add heat that air conditioning can take away. Staff need a working WC and hand-wash basin, and dryers and tongs on overloaded sockets trip circuits. Because we also do electrics and air conditioning, a new water heater with its own circuit, or a cooling unit for the styling floor, is one team's job.",
+        "icon": "boiler"
       }
     ],
     "does": [
@@ -485,19 +501,23 @@
     "needs": [
       {
         "title": "Hand-wash basins where you work",
-        "body": "A licensing officer will usually want a hand-wash basin in or next to each treatment area, used only for washing hands, with hot and cold or suitably mixed warm water. Many councils prefer taps you don't have to touch with your hands, such as lever, elbow or sensor taps. Some also want a separate sink for cleaning equipment. We fit compact basins into tight treatment rooms and tattoo booths, and run the supply and waste neatly so the room still looks finished."
+        "body": "A licensing officer will usually want a hand-wash basin in or next to each treatment area, used only for washing hands, with hot and cold or suitably mixed warm water. Many councils prefer taps you don't have to touch with your hands, such as lever, elbow or sensor taps. Some also want a separate sink for cleaning equipment. We fit compact basins into tight treatment rooms and tattoo booths, and run the supply and waste neatly so the room still looks finished.",
+        "icon": "bathroom"
       },
       {
         "title": "Hot water on tap all day",
-        "body": "A basin that takes a minute to run warm is no use between clients. Treatment rooms are often at the far end of the building from the boiler, so the answer may be a small point-of-use water heater under the basin rather than a long pipe run back to the cylinder. For studios with several rooms, a hot water cylinder or a better pipe layout may suit. Either way, we size the solution to the number of basins you actually use."
+        "body": "A basin that takes a minute to run warm is no use between clients. Treatment rooms are often at the far end of the building from the boiler, so the answer may be a small point-of-use water heater under the basin rather than a long pipe run back to the cylinder. For studios with several rooms, a hot water cylinder or a better pipe layout may suit. Either way, we size the solution to the number of basins you actually use.",
+        "icon": "water"
       },
       {
         "title": "Pedicure, spa and treatment plumbing",
-        "body": "Pedicure chairs with built-in basins, foot spas and wet treatment rooms need a water supply, a waste that drains quickly and backflow protection so used water can't get back into the mains. Floor-level wastes sometimes need a small pump to reach the drain. Facial steamers, wax heaters and spray tan booths bring their own electrical needs, and nail bars need good extraction for dust and fumes. Because we also do electrics, one team can handle both sides of the job."
+        "body": "Pedicure chairs with built-in basins, foot spas and wet treatment rooms need a water supply, a waste that drains quickly and backflow protection so used water can't get back into the mains. Floor-level wastes sometimes need a small pump to reach the drain. Facial steamers, wax heaters and spray tan booths bring their own electrical needs, and nail bars need good extraction for dust and fumes. Because we also do electrics, one team can handle both sides of the job.",
+        "icon": "tap"
       },
       {
         "title": "Drains, WCs and cleaning sinks",
-        "body": "Studios need a WC that works for staff and clients, and a separate sink for cleaning tools before they go into the ultrasonic cleaner or steriliser. Wax, massage oils, scrubs and pedicure debris build up in traps, and tattoo studios rinse ink and soap through their sinks every day. We clear blocked wastes, fit accessible traps, fix running toilets and hidden leaks, and plumb in cleaning sinks so your hand-wash basins stay reserved for hands."
+        "body": "Studios need a WC that works for staff and clients, and a separate sink for cleaning tools before they go into the ultrasonic cleaner or steriliser. Wax, massage oils, scrubs and pedicure debris build up in traps, and tattoo studios rinse ink and soap through their sinks every day. We clear blocked wastes, fit accessible traps, fix running toilets and hidden leaks, and plumb in cleaning sinks so your hand-wash basins stay reserved for hands.",
+        "icon": "drain"
       }
     ],
     "does": [
@@ -603,19 +623,23 @@
     "needs": [
       {
         "title": "Clinical hand-wash basins",
-        "body": "Clinical settings have their own guidance on hand-wash basins, and it asks more than a standard washroom does. It generally favours basins without a plug or overflow, taps you can operate without using your hands, and water mixed to a safe, comfortable temperature. We fit and replace basins, lever and sensor taps and the pipework behind them. If your practice follows a particular specification or your infection control lead has requirements, give them to us and we will work to them."
+        "body": "Clinical settings have their own guidance on hand-wash basins, and it asks more than a standard washroom does. It generally favours basins without a plug or overflow, taps you can operate without using your hands, and water mixed to a safe, comfortable temperature. We fit and replace basins, lever and sensor taps and the pipework behind them. If your practice follows a particular specification or your infection control lead has requirements, give them to us and we will work to them.",
+        "icon": "bathroom"
       },
       {
         "title": "Water that stays safe",
-        "body": "Clinics often have more little-used outlets than they realise: a basin in a room used twice a week, a staff shower, a sink kept for emergencies. Water standing in those pipes is a legionella concern, and clinical settings also have their own water safety guidance. The practice or its landlord holds the duty to manage that risk under HSE guidance. We do the plumbing side: removing dead legs, fixing little-used outlets, cylinder work and fitting or replacing thermostatic mixing valves."
+        "body": "Clinics often have more little-used outlets than they realise: a basin in a room used twice a week, a staff shower, a sink kept for emergencies. Water standing in those pipes is a legionella concern, and clinical settings also have their own water safety guidance. The practice or its landlord holds the duty to manage that risk under HSE guidance. We do the plumbing side: removing dead legs, fixing little-used outlets, cylinder work and fitting or replacing thermostatic mixing valves.",
+        "icon": "water"
       },
       {
         "title": "Reliable hot water and heating",
-        "body": "Patients in a cold waiting room notice, and so does a nurse at a basin that runs lukewarm. Many practices are in converted houses and shops, running a domestic-sized boiler and cylinder or combi that now works far harder than it was meant to. We repair and replace boilers, cylinders and radiators, and improve controls so rooms heat evenly. Larger commercial boilers need engineers with commercial gas qualifications, and we will tell you straight if yours is beyond what we do."
+        "body": "Patients in a cold waiting room notice, and so does a nurse at a basin that runs lukewarm. Many practices are in converted houses and shops, running a domestic-sized boiler and cylinder or combi that now works far harder than it was meant to. We repair and replace boilers, cylinders and radiators, and improve controls so rooms heat evenly. Larger commercial boilers need engineers with commercial gas qualifications, and we will tell you straight if yours is beyond what we do.",
+        "icon": "boiler"
       },
       {
         "title": "Drains and WCs that don't close a room",
-        "body": "A blocked patient toilet or a slow drain in a treatment room means cancelled appointments. Accessible WCs see heavy use, and wipes and hygiene products cause most blockages. Drains under older buildings can also be cracked or displaced. We clear blockages, repair and replace WCs, fit new cisterns and fill valves, and survey drains by camera when problems keep coming back. Because we also do electrics, washroom extractor fans and lighting can be sorted by the same team."
+        "body": "A blocked patient toilet or a slow drain in a treatment room means cancelled appointments. Accessible WCs see heavy use, and wipes and hygiene products cause most blockages. Drains under older buildings can also be cracked or displaced. We clear blockages, repair and replace WCs, fit new cisterns and fill valves, and survey drains by camera when problems keep coming back. Because we also do electrics, washroom extractor fans and lighting can be sorted by the same team.",
+        "icon": "drain"
       }
     ],
     "does": [
@@ -716,19 +740,23 @@
     "needs": [
       {
         "title": "A gas safety record every year",
-        "body": "If a rented home has a gas boiler, hob or fire, you need a gas safety check every year by a Gas Safe registered engineer, and your tenants need a copy of the record. Across a portfolio, a missed renewal date is one of the easiest slips to make. We check each appliance, flue and the ventilation, record what we find and tell you plainly about anything that needs putting right, with a price for the repair."
+        "body": "If a rented home has a gas boiler, hob or fire, you need a gas safety check every year by a Gas Safe registered engineer, and your tenants need a copy of the record. Across a portfolio, a missed renewal date is one of the easiest slips to make. We check each appliance, flue and the ventilation, record what we find and tell you plainly about anything that needs putting right, with a price for the repair.",
+        "icon": "certificate"
       },
       {
         "title": "Electrical safety checks every five years",
-        "body": "Most private tenancies in England need an Electrical Installation Condition Report at least every five years, and sooner if the last report says so. Our registered electricians test the consumer unit, circuits, sockets and fittings, then explain the codes in plain terms. Where the report asks for remedial work, we can do it and give you written confirmation, which you need to keep with the report. Because we do plumbing and electrics, one visit often covers both."
+        "body": "Most private tenancies in England need an Electrical Installation Condition Report at least every five years, and sooner if the last report says so. Our registered electricians test the consumer unit, circuits, sockets and fittings, then explain the codes in plain terms. Where the report asks for remedial work, we can do it and give you written confirmation, which you need to keep with the report. Because we do plumbing and electrics, one visit often covers both.",
+        "icon": "electrical"
       },
       {
         "title": "Tenant call-outs that get closed off",
-        "body": "Tenants ring about no hot water, a toilet that will not flush, a dripping ceiling or a boiler showing a fault code. What you need is someone who contacts the tenant, books a time that suits them, fixes the fault and then tells you what was done. We report back to you or your agent with notes, and if the repair goes beyond what you have approved, we call you before carrying on."
+        "body": "Tenants ring about no hot water, a toilet that will not flush, a dripping ceiling or a boiler showing a fault code. What you need is someone who contacts the tenant, books a time that suits them, fixes the fault and then tells you what was done. We report back to you or your agent with notes, and if the repair goes beyond what you have approved, we call you before carrying on.",
+        "icon": "emergency"
       },
       {
         "title": "Void periods and HMO wear",
-        "body": "The weeks between tenancies are the cheapest time to replace a tired bathroom, swap a failing boiler, upgrade an old fuse box or sort the drip everyone has ignored. HMOs add their own load: several showers running each morning, shared kitchens, more toilets and more blockages. We plan void work to fit your re-letting date, and handle jobs that need more than one trade, such as a new shower with an extractor fan, with one team."
+        "body": "The weeks between tenancies are the cheapest time to replace a tired bathroom, swap a failing boiler, upgrade an old fuse box or sort the drip everyone has ignored. HMOs add their own load: several showers running each morning, shared kitchens, more toilets and more blockages. We plan void work to fit your re-letting date, and handle jobs that need more than one trade, such as a new shower with an extractor fan, with one team.",
+        "icon": "general"
       }
     ],
     "does": [
@@ -834,19 +862,23 @@
     "needs": [
       {
         "title": "Fixes that fit the changeover window",
-        "body": "Most faults are spotted by cleaners on changeover day or by guests on arrival. What you need is someone who can work in the gap between checkout and check-in where that can be arranged, and who takes the fault seriously when a guest is already in the flat. We book changeover visits around your cleaning schedule, and our 24/7 emergency callout covers the leak or the lost heating that cannot wait until the next stay ends."
+        "body": "Most faults are spotted by cleaners on changeover day or by guests on arrival. What you need is someone who can work in the gap between checkout and check-in where that can be arranged, and who takes the fault seriously when a guest is already in the flat. We book changeover visits around your cleaning schedule, and our 24/7 emergency callout covers the leak or the lost heating that cannot wait until the next stay ends.",
+        "icon": "general"
       },
       {
         "title": "Showers and hot water that cope with every guest",
-        "body": "Short-stay flats take far more use than a normal home. Groups shower back to back, often at the same time of the morning, and London's hard water scales up shower heads, cartridges and heating elements. Combi boilers that manage fine for a couple struggle when four people arrive together. We repair and replace mixer and electric showers, pumps and cylinders, and tell you honestly if the hot-water setup is too small for the number of guests you take."
+        "body": "Short-stay flats take far more use than a normal home. Groups shower back to back, often at the same time of the morning, and London's hard water scales up shower heads, cartridges and heating elements. Combi boilers that manage fine for a couple struggle when four people arrive together. We repair and replace mixer and electric showers, pumps and cylinders, and tell you honestly if the hot-water setup is too small for the number of guests you take.",
+        "icon": "bathroom"
       },
       {
         "title": "Gas safety every year, electrics checked",
-        "body": "The gas safety rules for landlords apply to holiday lets and short lets too, so every gas boiler, hob and fire needs a check by a Gas Safe registered engineer each year. HSE guidance allows the record to be displayed in the property for short stays. The five-yearly EICR rules are aimed at longer private tenancies, so for most holiday lets an EICR is recommended rather than legally required, though insurers, platforms and agents may ask for one."
+        "body": "The gas safety rules for landlords apply to holiday lets and short lets too, so every gas boiler, hob and fire needs a check by a Gas Safe registered engineer each year. HSE guidance allows the record to be displayed in the property for short stays. The five-yearly EICR rules are aimed at longer private tenancies, so for most holiday lets an EICR is recommended rather than legally required, though insurers, platforms and agents may ask for one.",
+        "icon": "certificate"
       },
       {
         "title": "Access when you are not there",
-        "body": "Many hosts live outside London or manage several flats at once. We work from key safe codes, smart lock codes, concierge desks or a cleaner meeting us, and confirm the arrangement with you before we set off. When the job is done we send notes and photos, so you know the flat is ready for the next guest. If a job turns out bigger than expected, we call you with the price before carrying on."
+        "body": "Many hosts live outside London or manage several flats at once. We work from key safe codes, smart lock codes, concierge desks or a cleaner meeting us, and confirm the arrangement with you before we set off. When the job is done we send notes and photos, so you know the flat is ready for the next guest. If a job turns out bigger than expected, we call you with the price before carrying on.",
+        "icon": "commercial"
       }
     ],
     "does": [
@@ -952,19 +984,23 @@
     "needs": [
       {
         "title": "Many en-suites on one system",
-        "body": "In a converted townhouse, rooms on the top floor often get the weakest pressure and the longest wait for hot water, while a leak in one en-suite can stain the ceiling of the room below. You need a system where each bathroom can be isolated on its own, so one room can be taken out of use without draining the whole house. We fit isolation valves, balance supplies between floors and trace the leaks that turn up under shower trays."
+        "body": "In a converted townhouse, rooms on the top floor often get the weakest pressure and the longest wait for hot water, while a leak in one en-suite can stain the ceiling of the room below. You need a system where each bathroom can be isolated on its own, so one room can be taken out of use without draining the whole house. We fit isolation valves, balance supplies between floors and trace the leaks that turn up under shower trays.",
+        "icon": "bathroom"
       },
       {
         "title": "Hot water for the breakfast rush",
-        "body": "Between seven and nine, most guests shower within the same hour, and that is when a guest house finds out whether its hot water is big enough. A cylinder that recovers too slowly, or a combi boiler asked to serve several rooms, leaves the last guests with a lukewarm shower. We look at stored volume, recovery time and how many outlets run together, then advise on a larger cylinder, an unvented system or better controls."
+        "body": "Between seven and nine, most guests shower within the same hour, and that is when a guest house finds out whether its hot water is big enough. A cylinder that recovers too slowly, or a combi boiler asked to serve several rooms, leaves the last guests with a lukewarm shower. We look at stored volume, recovery time and how many outlets run together, then advise on a larger cylinder, an unvented system or better controls.",
+        "icon": "water"
       },
       {
         "title": "Pumps, stacks and waste",
-        "body": "Shower pumps work harder in a guest house than anywhere else and tend to fail noisily or without warning. Hair builds up in shower traps, and wipes or sanitary products flushed by guests block soil stacks, usually showing first as a gurgling basin on a lower floor. Where an en-suite has been added far from the stack, a macerator may be doing the work. We repair and replace pumps, clear stacks and fit macerators properly."
+        "body": "Shower pumps work harder in a guest house than anywhere else and tend to fail noisily or without warning. Hair builds up in shower traps, and wipes or sanitary products flushed by guests block soil stacks, usually showing first as a gurgling basin on a lower floor. Where an en-suite has been added far from the stack, a macerator may be doing the work. We repair and replace pumps, clear stacks and fit macerators properly.",
+        "icon": "pump"
       },
       {
         "title": "Gas: domestic boilers and larger plant",
-        "body": "Many guest houses run on one or two domestic-sized boilers, which our Gas Safe registered engineers service, repair, replace and include in your annual gas safety check. Some small hotels have larger commercial boilers or commercial catering gas equipment such as ranges, fryers or combi ovens in the breakfast kitchen. Those need engineers with commercial gas qualifications. We will look at what you have and tell you straight if it is beyond what we do."
+        "body": "Many guest houses run on one or two domestic-sized boilers, which our Gas Safe registered engineers service, repair, replace and include in your annual gas safety check. Some small hotels have larger commercial boilers or commercial catering gas equipment such as ranges, fryers or combi ovens in the breakfast kitchen. Those need engineers with commercial gas qualifications. We will look at what you have and tell you straight if it is beyond what we do.",
+        "icon": "boiler"
       }
     ],
     "does": [
@@ -1070,19 +1106,23 @@
     "needs": [
       {
         "title": "Customer toilets that stand up to a busy night",
-        "body": "Pub toilets take heavy, rough use in short bursts. Flush valves stick, cisterns get damaged, taps are left running and urinal traps block with debris. Customers notice tired, smelly toilets quickly, and one broken WC soon causes queues. Robust fittings help: vandal-resistant taps, concealed cisterns behind lockable panels, and urinals with a flush controller so the cistern does not keep cycling through the night when the pub is closed."
+        "body": "Pub toilets take heavy, rough use in short bursts. Flush valves stick, cisterns get damaged, taps are left running and urinal traps block with debris. Customers notice tired, smelly toilets quickly, and one broken WC soon causes queues. Robust fittings help: vandal-resistant taps, concealed cisterns behind lockable panels, and urinals with a flush controller so the cistern does not keep cycling through the night when the pub is closed.",
+        "icon": "bathroom"
       },
       {
         "title": "Glasswashers and bar sinks",
-        "body": "Glasswashers run almost constantly during service and suffer in London's hard water, which leaves glasses cloudy and scales up heaters and spray arms. A softener or dedicated filter on the feed, a proper isolating valve and a waste that can take a fast discharge all help. Bar sinks, ice machine feeds and drip tray wastes also need to drain freely. Where we can, we fix leaks behind the bar without taking the counter apart."
+        "body": "Glasswashers run almost constantly during service and suffer in London's hard water, which leaves glasses cloudy and scales up heaters and spray arms. A softener or dedicated filter on the feed, a proper isolating valve and a waste that can take a fast discharge all help. Bar sinks, ice machine feeds and drip tray wastes also need to drain freely. Where we can, we fix leaks behind the bar without taking the counter apart.",
+        "icon": "appliance"
       },
       {
         "title": "Cellars that stay dry",
-        "body": "Cellars collect water from cleaning, spills, condensation and sometimes groundwater. Many rely on a floor gully or a sump pump to lift water up to the drain, so a failed pump or blocked gully can flood the cellar within a shift. Non-return valves stop the drain backing up, and a high-level alarm warns you before water reaches stock or electrics. We keep to drainage and pumps; beer lines and cellar cooling are for your dispense technician."
+        "body": "Cellars collect water from cleaning, spills, condensation and sometimes groundwater. Many rely on a floor gully or a sump pump to lift water up to the drain, so a failed pump or blocked gully can flood the cellar within a shift. Non-return valves stop the drain backing up, and a high-level alarm warns you before water reaches stock or electrics. We keep to drainage and pumps; beer lines and cellar cooling are for your dispense technician.",
+        "icon": "pump"
       },
       {
         "title": "Kitchens and heating",
-        "body": "If you serve food, the kitchen needs the same care as any restaurant: a grease trap, hand-wash basins with hot and cold running water, and sound dishwasher connections. Old pubs often have awkward heating, with long pipe runs and radiators fighting draughty doors. Our Gas Safe engineers work on domestic-sized boilers. Larger commercial boilers and catering gas equipment need engineers with commercial gas qualifications, and we will tell you straight if yours is beyond what we do."
+        "body": "If you serve food, the kitchen needs the same care as any restaurant: a grease trap, hand-wash basins with hot and cold running water, and sound dishwasher connections. Old pubs often have awkward heating, with long pipe runs and radiators fighting draughty doors. Our Gas Safe engineers work on domestic-sized boilers. Larger commercial boilers and catering gas equipment need engineers with commercial gas qualifications, and we will tell you straight if yours is beyond what we do.",
+        "icon": "boiler"
       }
     ],
     "does": [
@@ -1188,19 +1228,23 @@
     "needs": [
       {
         "title": "Showers that stay hot and steady",
-        "body": "A row of changing room showers used at once, straight after a class, puts heavy demand on both hot water and pressure. If the cylinder is too small or recovers slowly, the last few people get cold showers. Mixing valves wear, and push-button timed showers can stick on or off. We look at your storage, recovery, pump and pipe sizes, then suggest repairs or upgrades that suit how your members actually use the showers."
+        "body": "A row of changing room showers used at once, straight after a class, puts heavy demand on both hot water and pressure. If the cylinder is too small or recovers slowly, the last few people get cold showers. Mixing valves wear, and push-button timed showers can stick on or off. We look at your storage, recovery, pump and pipe sizes, then suggest repairs or upgrades that suit how your members actually use the showers.",
+        "icon": "bathroom"
       },
       {
         "title": "Drains that cope with hair, soap and heavy use",
-        "body": "Hair, soap residue, body wash and grit build up quickly in shower traps and floor gullies, especially in shared wet areas. A slow drain means standing water, slippery floors and complaints at the front desk. Linear drains and wet room formers need to be laid to the right fall, or water spreads across the changing room. Regular trap cleaning helps, and when a drain keeps blocking, a camera survey can show whether the pipe itself is the problem."
+        "body": "Hair, soap residue, body wash and grit build up quickly in shower traps and floor gullies, especially in shared wet areas. A slow drain means standing water, slippery floors and complaints at the front desk. Linear drains and wet room formers need to be laid to the right fall, or water spreads across the changing room. Regular trap cleaning helps, and when a drain keeps blocking, a camera survey can show whether the pipe itself is the problem.",
+        "icon": "drain"
       },
       {
         "title": "Safe water in showers used unevenly",
-        "body": "Some showers are used all day while others, often in a quieter changing room or an accessible cubicle, sit idle. Showers create a fine spray, so stagnant water in little-used outlets and dead legs is a legionella concern. The gym operator, or the landlord, has a duty to manage that risk under HSE guidance (ACoP L8). We handle the plumbing side: removing dead legs, reworking pipework and fitting or replacing thermostatic mixing valves."
+        "body": "Some showers are used all day while others, often in a quieter changing room or an accessible cubicle, sit idle. Showers create a fine spray, so stagnant water in little-used outlets and dead legs is a legionella concern. The gym operator, or the landlord, has a duty to manage that risk under HSE guidance (ACoP L8). We handle the plumbing side: removing dead legs, reworking pipework and fitting or replacing thermostatic mixing valves.",
+        "icon": "water"
       },
       {
         "title": "Cool, well-ventilated training spaces",
-        "body": "A studio full of people working hard gets hot and humid fast, which makes classes uncomfortable and adds to condensation on windows and walls. Changing rooms need good extraction to clear shower steam. Our F-Gas certified engineers size and fit air conditioning for studios and gym floors, and our electricians wire extract fans and new circuits. Heating in small units is often a domestic-sized boiler, which our Gas Safe engineers cover; larger commercial boilers need commercial gas engineers."
+        "body": "A studio full of people working hard gets hot and humid fast, which makes classes uncomfortable and adds to condensation on windows and walls. Changing rooms need good extraction to clear shower steam. Our F-Gas certified engineers size and fit air conditioning for studios and gym floors, and our electricians wire extract fans and new circuits. Heating in small units is often a domestic-sized boiler, which our Gas Safe engineers cover; larger commercial boilers need commercial gas engineers.",
+        "icon": "ac"
       }
     ],
     "does": [
@@ -1306,19 +1350,23 @@
     "needs": [
       {
         "title": "Toilets and basins at the right height",
-        "body": "Children start using toilets and basins on their own early, so fittings need to suit their size: junior or low-level WCs, smaller pans, and basins set low enough to reach without a step. Nursery toilets are flushed dozens of times a day and see toys, too much paper and the odd wipe. We fit child-height sanitaryware, replace broken seats and flush mechanisms, clear blockages and rearrange toilet areas when rooms change use or age groups move."
+        "body": "Children start using toilets and basins on their own early, so fittings need to suit their size: junior or low-level WCs, smaller pans, and basins set low enough to reach without a step. Nursery toilets are flushed dozens of times a day and see toys, too much paper and the odd wipe. We fit child-height sanitaryware, replace broken seats and flush mechanisms, clear blockages and rearrange toilet areas when rooms change use or age groups move.",
+        "icon": "bathroom"
       },
       {
         "title": "Hot water that can't scald",
-        "body": "Young children pull their hands away slowly and their skin burns quickly. Hot water at basins children use should be controlled by a thermostatic mixing valve, which blends hot and cold to a set, safer temperature and is designed to shut off if the cold supply fails. Stored hot water still has to be kept hot enough to control legionella, so the valve sits close to the tap. We fit new valves and replace old or faulty ones."
+        "body": "Young children pull their hands away slowly and their skin burns quickly. Hot water at basins children use should be controlled by a thermostatic mixing valve, which blends hot and cold to a set, safer temperature and is designed to shut off if the cold supply fails. Stored hot water still has to be kept hot enough to control legionella, so the valve sits close to the tap. We fit new valves and replace old or faulty ones.",
+        "icon": "water"
       },
       {
         "title": "Nappy changing and laundry",
-        "body": "A nappy-change area needs a hand-wash basin within reach so staff aren't walking across the room with dirty hands, and hot water that arrives quickly. Many settings also run a washing machine and dryer for bibs, flannels and spare clothes, plus a dishwasher in the kitchen or milk room. We plumb in basins, sinks and appliances, run supplies and wastes neatly to the nearest drain and fit isolating valves so one fault doesn't shut a whole room."
+        "body": "A nappy-change area needs a hand-wash basin within reach so staff aren't walking across the room with dirty hands, and hot water that arrives quickly. Many settings also run a washing machine and dryer for bibs, flannels and spare clothes, plus a dishwasher in the kitchen or milk room. We plumb in basins, sinks and appliances, run supplies and wastes neatly to the nearest drain and fit isolating valves so one fault doesn't shut a whole room.",
+        "icon": "appliance"
       },
       {
         "title": "Warm rooms and outdoor play",
-        "body": "Children spend much of the day on the floor, so even warmth matters more than in an office. Radiators too hot to touch are a concern in rooms used by toddlers, so low surface temperature radiators or guards are worth considering. A garden or play area often needs an outside tap for water play and cleaning, protected from frost and fitted with backflow protection. We handle heating repairs and upgrades, and our electricians can deal with wiring and fans in the same building."
+        "body": "Children spend much of the day on the floor, so even warmth matters more than in an office. Radiators too hot to touch are a concern in rooms used by toddlers, so low surface temperature radiators or guards are worth considering. A garden or play area often needs an outside tap for water play and cleaning, protected from frost and fitted with backflow protection. We handle heating repairs and upgrades, and our electricians can deal with wiring and fans in the same building.",
+        "icon": "boiler"
       }
     ],
     "does": [
@@ -1419,19 +1467,23 @@
     "needs": [
       {
         "title": "Heat where and when people are",
-        "body": "Bringing a whole nave up to a comfortable temperature can take hours and a lot of gas. Many buildings do better with a mix: the main system brought up gently before services, and quicker heat in the spaces used during the week, such as a side chapel, vestry or meeting room. Timers, frost settings and separate zones make a real difference. We repair radiators and pipework, fit better controls, and our electricians can wire electric heating for smaller rooms."
+        "body": "Bringing a whole nave up to a comfortable temperature can take hours and a lot of gas. Many buildings do better with a mix: the main system brought up gently before services, and quicker heat in the spaces used during the week, such as a side chapel, vestry or meeting room. Timers, frost settings and separate zones make a real difference. We repair radiators and pipework, fit better controls, and our electricians can wire electric heating for smaller rooms.",
+        "icon": "heating"
       },
       {
         "title": "Boilers of every size",
-        "body": "Some churches and halls run on a domestic-sized boiler; others have a large commercial boiler in a plant room. Our Gas Safe engineers work on domestic-sized boilers and appliances, including those in halls, vestries and church houses. Larger commercial plant, and commercial catering gas equipment such as a range in the hall kitchen, needs engineers with commercial gas qualifications. We will tell you straight if your equipment is beyond what we do, and can often still help with leaks and radiators."
+        "body": "Some churches and halls run on a domestic-sized boiler; others have a large commercial boiler in a plant room. Our Gas Safe engineers work on domestic-sized boilers and appliances, including those in halls, vestries and church houses. Larger commercial plant, and commercial catering gas equipment such as a range in the hall kitchen, needs engineers with commercial gas qualifications. We will tell you straight if your equipment is beyond what we do, and can often still help with leaks and radiators.",
+        "icon": "boiler"
       },
       {
         "title": "Frost protection for quiet buildings",
-        "body": "An empty building in January is where burst pipes happen. Pipes in unheated vestries, lofts, towers and outside toilets are most at risk, and a leak can go unnoticed until the next service. Lagging exposed pipes, a frost thermostat that brings the heating on at a low temperature, and a stopcock volunteers can find and turn all help. For buildings left empty for long spells, draining down part of the system may be the safer option."
+        "body": "An empty building in January is where burst pipes happen. Pipes in unheated vestries, lofts, towers and outside toilets are most at risk, and a leak can go unnoticed until the next service. Lagging exposed pipes, a frost thermostat that brings the heating on at a low temperature, and a stopcock volunteers can find and turn all help. For buildings left empty for long spells, draining down part of the system may be the safer option.",
+        "icon": "leak"
       },
       {
         "title": "Kitchens, WCs and water in the hall",
-        "body": "Halls host toddler groups, lunch clubs, exercise classes and parties, so kitchens and toilets work hard in bursts and then sit idle. Sinks, hand-wash basins, water heaters and dishwashers need to be reliable, and drains need to cope with fat from community meals. We fix leaks, running toilets and blocked wastes, and plumb in kitchen sinks and dishwashers. Because we also do electrics, an extractor fan or a new circuit for a water heater can be done in the same visit."
+        "body": "Halls host toddler groups, lunch clubs, exercise classes and parties, so kitchens and toilets work hard in bursts and then sit idle. Sinks, hand-wash basins, water heaters and dishwashers need to be reliable, and drains need to cope with fat from community meals. We fix leaks, running toilets and blocked wastes, and plumb in kitchen sinks and dishwashers. Because we also do electrics, an extractor fan or a new circuit for a water heater can be done in the same visit.",
+        "icon": "bathroom"
       }
     ],
     "does": [
@@ -1537,19 +1589,23 @@
     "needs": [
       {
         "title": "Shared soil stacks and communal drains",
-        "body": "In a block, several flats discharge into the same stack and the same drains, so one blockage backs up into the lowest flat on that run. Older mansion blocks often have cast-iron stacks that crack or corrode, while newer blocks have plastic stacks with access points hidden behind boxing. We clear blockages, survey the drains by camera to find the cause, and repair or replace sections. Where a pipe may belong to the water company, we say so in our report."
+        "body": "In a block, several flats discharge into the same stack and the same drains, so one blockage backs up into the lowest flat on that run. Older mansion blocks often have cast-iron stacks that crack or corrode, while newer blocks have plastic stacks with access points hidden behind boxing. We clear blockages, survey the drains by camera to find the cause, and repair or replace sections. Where a pipe may belong to the water company, we say so in our report.",
+        "icon": "drain"
       },
       {
         "title": "Cold-water tanks and booster pumps",
-        "body": "Many blocks store cold water in communal tanks in the roof space or basement, often with a booster pump set feeding the upper floors. When a float valve sticks or a pump fails, several flats lose water or pressure at once. Tanks also need proper lids, insulation and screened vents and overflows to keep the water wholesome. We repair and replace tanks, valves, pumps and their controls on typical residential systems, and tell you if a system needs a specialist."
+        "body": "Many blocks store cold water in communal tanks in the roof space or basement, often with a booster pump set feeding the upper floors. When a float valve sticks or a pump fails, several flats lose water or pressure at once. Tanks also need proper lids, insulation and screened vents and overflows to keep the water wholesome. We repair and replace tanks, valves, pumps and their controls on typical residential systems, and tell you if a system needs a specialist.",
+        "icon": "pump"
       },
       {
         "title": "Leaks between flats",
-        "body": "Water coming through a ceiling is the call managing agents get most. The source might be a shower tray, a pipe under the floor of the flat above, a communal riser or the roof. Finding it usually means getting into more than one flat, sometimes when the owner is away. We trace the leak, isolate it, repair it and record exactly which fitting failed and where, so you can decide who is responsible under the lease."
+        "body": "Water coming through a ceiling is the call managing agents get most. The source might be a shower tray, a pipe under the floor of the flat above, a communal riser or the roof. Finding it usually means getting into more than one flat, sometimes when the owner is away. We trace the leak, isolate it, repair it and record exactly which fitting failed and where, so you can decide who is responsible under the lease.",
+        "icon": "leak"
       },
       {
         "title": "Heating plant and common-parts electrics",
-        "body": "Some blocks have communal boiler plant of commercial size in a basement plant room. That needs engineers with commercial gas qualifications, and we will tell you straight if your plant is beyond what we do. Where flats have their own domestic boilers, our Gas Safe engineers can work on those. Our registered electricians handle the landlord's supply in the common parts, including stairwell lighting faults, plant-room circuits and EICRs, so plumbing and electrical jobs can be booked together."
+        "body": "Some blocks have communal boiler plant of commercial size in a basement plant room. That needs engineers with commercial gas qualifications, and we will tell you straight if your plant is beyond what we do. Where flats have their own domestic boilers, our Gas Safe engineers can work on those. Our registered electricians handle the landlord's supply in the common parts, including stairwell lighting faults, plant-room circuits and EICRs, so plumbing and electrical jobs can be booked together.",
+        "icon": "boiler"
       }
     ],
     "does": [
