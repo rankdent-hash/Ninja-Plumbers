@@ -114,6 +114,10 @@ export default defineConfig({
     // repair, maintenance and installation, same pattern as the boiler split
     // above. This keeps the old URL alive.
     '/services/air-conditioning': { status: 301, destination: '/services/air-conditioning-installation' },
+
+    // Sector pages live under /commercial/[slug]; the bare path has no page
+    // of its own, so it goes to the Commercial Plumbing service page.
+    '/commercial': { status: 301, destination: '/services/commercial-plumbing' },
   },
   adapter: vercel(),
   integrations: [

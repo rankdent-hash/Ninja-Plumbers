@@ -28,6 +28,7 @@ import { areas, allAreas } from '../../data/areas';
 import { serviceGroups } from '../../data/nav';
 import { brands } from '../../data/brands';
 import { lowerTitle } from '../../lib/text';
+import { sectors, sectorsLinkingTo } from '../../data/sectors';
 import { dampPages } from '../../data/damp';
 import ServiceIcon from '../../components/ServiceIcon.astro';
 import Tick from '../../components/Tick.astro';
@@ -106,6 +107,10 @@ const relatedAppliances = appliances.filter((a) => a.related.includes(service.sl
 // Damp pages that point back at this service (general plumbing, leak
 // detection), linked the other way too: a damp patch is often a leak.
 const relatedDamp = dampPages.filter((d) => d.related.includes(service.slug));
+// Commercial Plumbing lists every sector page; any other service lists the
+// sectors whose pages link to it, so links run both ways.
+const sectorCards = service.slug === 'commercial-plumbing' ? sectors : [];
+const sectorMentions = service.slug === 'commercial-plumbing' ? [] : sectorsLinkingTo(`/services/${service.slug}`);
 // Computed, not hand-maintained: a post links here, so this page links back.
 const relatedPosts = blogPosts.filter((p) => p.relatedServices.includes(service.slug));
 const label = HEADING[service.slug] ?? service.title.replace('&amp;', 'and');
@@ -402,6 +407,13 @@ const serviceSchema = {
           </li>
         ))}
       </ul>
+      {sectorMentions.length > 0 && (
+        <p class="measure">
+          We also do {lowerTitle(service.title)} for businesses, including {sectorMentions.map((sc, i) => (
+            <>{i > 0 && (i === sectorMentions.length - 1 ? ' and ' : ', ')}<a href={`/commercial/${sc.slug}`}>{sc.name.replace('&', 'and').toLowerCase()}</a></>
+          ))}.
+        </p>
+      )}
       {relatedDamp.length > 0 && (
         <p class="measure">
           Not sure whether it is a leak or damp? A slow leak often looks like damp, and the reverse.
@@ -413,6 +425,28 @@ const serviceSchema = {
       <p class="all-services-link"><a href="/services">See every service we offer <span aria-hidden="true">&rarr;</span></a></p>
     </div>
   </section>
+
+  {sectorCards.length > 0 && (
+    <section class="section section-alt">
+      <div class="container">
+        <span class="eyebrow">Businesses we work for</span>
+        <h2>Plumbing for small businesses</h2>
+        <p class="measure">
+          Most small premises have plumbing much like a home, just used harder and with less room
+          for it to be out of action. Pick your type of business to see what we do for premises like yours.
+        </p>
+        <ul class="grid grid-3 card-grid">
+          {sectorCards.map((sc) => (
+            <li class="card">
+              <div class="icon"><ServiceIcon name={sc.icon} /></div>
+              <h3><a href={`/commercial/${sc.slug}`} class="card-title-link">{sc.name}</a></h3>
+              <p>{sc.summary}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
 
   {relatedPosts.length > 0 && (
     <section class="section section-alt">

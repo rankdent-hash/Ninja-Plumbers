@@ -1,0 +1,192 @@
+---
+// One page per small-business sector (see src/data/sectors.ts). Sits under
+// Commercial Plumbing in the breadcrumb and links out to the service pages
+// that matter to the sector, then to related sectors.
+import Base from '../../layouts/Base.astro';
+import HeroWithForm from '../../components/HeroWithForm.astro';
+import Schema from '../../components/Schema.astro';
+import ServiceIcon from '../../components/ServiceIcon.astro';
+import Tick from '../../components/Tick.astro';
+import PhoneIcon from '../../components/PhoneIcon.astro';
+import WhatsAppIcon from '../../components/WhatsAppIcon.astro';
+import site from '../../data/site.json';
+import { sectors, type Sector } from '../../data/sectors';
+import { services } from '../../data/services';
+import { appliances } from '../../data/appliances';
+import { dampPages } from '../../data/damp';
+import { SCHEMA_AREA_SERVED } from '../../data/serviceArea';
+
+export function getStaticPaths() {
+  return sectors.map((sector) => ({ params: { slug: sector.slug }, props: { sector } }));
+}
+
+const { sector } = Astro.props as { sector: Sector };
+
+// Every outbound link must point at a real page, and every related sector
+// must exist: a renamed page should fail the build, not leave a dead link.
+const known = new Set([
+  ...services.map((s) => `/services/${s.slug}`),
+  ...appliances.map((a) => `/appliances/${a.slug}`),
+  ...dampPages.map((d) => `/damp/${d.slug}`),
+  '/heating', '/drainage', '/boilers', '/electrical',
+]);
+for (const l of sector.links) {
+  if (!known.has(l.href) && !l.href.startsWith('/blog/')) throw new Error(`sectors.json: ${sector.slug} links to unknown page ${l.href}`);
+}
+const related = sector.related.map((slug) => {
+  const r = sectors.find((s) => s.slug === slug);
+  if (!r) throw new Error(`sectors.json: ${sector.slug} lists unknown related sector ${slug}`);
+  return r;
+});
+
+const crumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Commercial plumbing', href: '/services/commercial-plumbing' },
+  { label: sector.name },
+];
+
+const pageUrl = new URL(`/commercial/${sector.slug}`, Astro.site).href;
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: sector.h1,
+  description: sector.metaDescription,
+  serviceType: 'Commercial plumbing',
+  url: pageUrl,
+  audience: { '@type': 'BusinessAudience', name: sector.name.replace('&', 'and') },
+  areaServed: SCHEMA_AREA_SERVED,
+  provider: { '@type': ['Plumber', 'Electrician'], name: site.name, telephone: site.booking.tel, url: site.url },
+};
+---
+<Base title={sector.metaTitle} description={sector.metaDescription}>
+  <Schema slot="head" breadcrumb={crumbs} faqs={sector.faqs} extra={serviceSchema} />
+
+  <HeroWithForm
+    eyebrow={sector.eyebrow}
+    h1={sector.h1}
+    intro={sector.intro}
+    breadcrumb={crumbs}
+    bullets={[
+      'Work scheduled around your opening hours',
+      'Gas Safe registered and fully insured',
+      'DBS-checked, directly employed engineers',
+      'Price agreed before work starts',
+      'Workmanship guaranteed',
+    ]}
+    formHeading="Tell us about your premises"
+  />
+
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">What premises like yours need</span>
+      <h2>Plumbing, heating and electrics for {sector.name.replace('&', 'and').toLowerCase()}</h2>
+      <ul class="grid grid-2 card-grid">
+        {sector.needs.map((n) => (
+          <li class="card">
+            <h3>{n.title}</h3>
+            <p>{n.body}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container service-row">
+      <div class="service-copy">
+        <span class="eyebrow">What we do</span>
+        <h2>Jobs we take on for {sector.name.replace('&', 'and').toLowerCase()}</h2>
+        <ul class="ticks sector-does">
+          {sector.does.map((d) => <li><Tick /> {d}</li>)}
+        </ul>
+      </div>
+      <aside class="service-aside">
+        <div class="icon"><ServiceIcon name={sector.icon} /></div>
+        <h3>One team, around your hours</h3>
+        <p>
+          Plumbing, heating, drainage, electrics and air conditioning from one company, so a job
+          that needs more than one trade is booked once. We work early, late or at weekends so
+          you can keep trading, and the price is agreed before anything starts.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="guidance">
+        {sector.guidance.map((g) => (
+          <div class="guidance-item">
+            <h2 class="guidance-h2">{g.title}</h2>
+            <p>{g.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <span class="eyebrow">Services</span>
+      <h2>The services that matter most to {sector.name.replace('&', 'and').toLowerCase()}</h2>
+      <ul class="grid grid-3 card-grid">
+        {sector.links.map((l) => (
+          <li class="card">
+            <h3><a href={l.href} class="card-title-link">{l.label}</a></h3>
+            <p>{l.why}</p>
+            <a href={l.href} class="card-link" aria-hidden="true" tabindex="-1">Find out more <span>&rarr;</span></a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container measure-wide">
+      <span class="eyebrow">Questions</span>
+      <h2>Common questions</h2>
+      <div class="faqs">
+        {sector.faqs.map((f) => (
+          <details class="faq">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <span class="eyebrow">Other businesses we work for</span>
+      <h2>Related sectors</h2>
+      <ul class="grid grid-3 card-grid">
+        {related.map((r) => (
+          <li class="card">
+            <h3><a href={`/commercial/${r.slug}`} class="card-title-link">{r.name}</a></h3>
+            <p>{r.summary}</p>
+          </li>
+        ))}
+      </ul>
+      <p class="section-foot">
+        <a href="/services/commercial-plumbing" class="btn btn-ghost">All commercial plumbing</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-navy">
+    <div class="container center measure-wide">
+      <h2>Need something fixed at your premises?</h2>
+      <p>Tell us what the premises are, what is wrong and when you are open, and we will agree a time and a price that work around your business.</p>
+      <div class="cta-row center-row">
+        <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">
+          <PhoneIcon /> Call {site.booking.display}
+        </a>
+        <a href={site.whatsapp.url} class="btn btn-outline btn-lg" target="_blank" rel="noopener">
+          <WhatsAppIcon /> WhatsApp us
+        </a>
+      </div>
+      <p class="small">For ongoing maintenance or accounts, call management on <a href={`tel:${site.management.tel}`}>{site.management.display}</a>.</p>
+    </div>
+  </section>
+</Base>

@@ -8,6 +8,7 @@ import { appliances } from './appliances';
 import { dampPages } from './damp';
 import { blogPosts } from './blog';
 import { serviceGroups } from './nav';
+import { sectors } from './sectors';
 import { allAreas as areas } from './areas';
 import { combos } from './combos';
 import { postcodes } from './postcodes';
@@ -164,6 +165,16 @@ export function buildSearchIndex(): SearchEntry[] {
       sub: a.summary.split(/(?<=\.)\s/)[0],
       url: `/appliances/${a.slug}`,
       k: words(a.title, a.h1, APPLIANCE_TERMS[a.slug], a.guidance.map((x) => x.title)),
+    });
+  }
+
+  for (const sc of sectors) {
+    out.push({
+      t: 'page',
+      title: `${sc.name} plumbing`,
+      sub: sc.summary.split(/(?<=\.)\s/)[0],
+      url: `/commercial/${sc.slug}`,
+      k: words(sc.name, sc.h1, sc.eyebrow, 'commercial business', sc.does),
     });
   }
 

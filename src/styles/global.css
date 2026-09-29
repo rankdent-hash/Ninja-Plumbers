@@ -3095,3 +3095,8 @@ body.qr-open { overflow: hidden; }
   font-size: 0.95rem;
 }
 .blog-about p { margin: 0; }
+
+/* Sector pages: the jobs list runs in two columns on wider screens. */
+@media (min-width: 720px) {
+  .sector-does { grid-template-columns: 1fr 1fr; column-gap: 24px; }
+}

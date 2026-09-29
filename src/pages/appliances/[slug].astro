@@ -14,6 +14,7 @@ import PhoneIcon from '../../components/PhoneIcon.astro';
 import WhatsAppIcon from '../../components/WhatsAppIcon.astro';
 import HeroWithForm from '../../components/HeroWithForm.astro';
 import Schema from '../../components/Schema.astro';
+import { sectorsLinkingTo } from '../../data/sectors';
 
 export function getStaticPaths() {
   return appliances.map((appliance) => ({
@@ -60,6 +61,9 @@ const serviceSchema = {
   },
   areaServed: SCHEMA_AREA_SERVED,
 };
+
+// Business sectors whose pages link here, so the link runs both ways.
+const sectorMentions = sectorsLinkingTo(`/appliances/${appliance.slug}`);
 ---
 <Base title={appliance.metaTitle} description={appliance.metaDescription}>
   <Schema slot="head" breadcrumb={crumbs} faqs={appliance.faqs} extra={serviceSchema} />
@@ -163,6 +167,13 @@ const serviceSchema = {
           <li><a href={`/appliances/${a.slug}`}>{a.title}</a></li>
         ))}
       </ul>
+      {sectorMentions.length > 0 && (
+        <p class="measure">
+          We also fit and service these for businesses, including {sectorMentions.map((sc, i) => (
+            <>{i > 0 && (i === sectorMentions.length - 1 ? ' and ' : ', ')}<a href={`/commercial/${sc.slug}`}>{sc.name.replace('&', 'and').toLowerCase()}</a></>
+          ))}.
+        </p>
+      )}
       <p><a href="/appliances" class="btn btn-navy">All appliance work</a></p>
     </div>
   </section>
