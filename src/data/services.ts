@@ -2778,6 +2778,71 @@ export const services: Service[] = [
       },
     ],
   },
+  {
+    slug: 'tmv-servicing',
+    title: 'TMV Servicing & Testing',
+    h1: 'TMV servicing and testing in London',
+    metaTitle: 'TMV Servicing & Testing London | Ninja Plumbers',
+    metaDescription:
+      'Thermostatic mixing valve servicing in London: temperature and fail-safe checks, cleaning, cartridges and a record for every valve. Call 020 3576 5825.',
+    eyebrow: 'Water safety',
+    icon: 'water',
+    target: 'tmv servicing (590/mo) · tmv testing (70/mo)',
+    summary:
+      'Thermostatic mixing valves tested, cleaned and reset, with a record for every valve, for schools, nurseries, care and business premises.',
+    intro:
+      'A thermostatic mixing valve, or TMV, blends hot and cold water so it reaches the tap or shower at a safe, steady temperature, and it should shut off if the cold supply fails. In hard-water London, scale slowly stops them doing either properly. Our engineers test each valve, check its fail-safe, clean or replace the parts that wear, reset the temperature and give you a record for every valve, for schools, nurseries, care settings, clinics, gyms and any premises where scalding is a risk.',
+    does: [
+      'Outlet temperature checks against the set point',
+      'Fail-safe tests with the cold supply isolated',
+      'Strainers and check valves cleaned',
+      'Cartridges and worn parts replaced',
+      'Temperatures reset and recorded',
+      'A servicing record for every valve',
+      'Failed and obsolete TMVs replaced',
+      'New TMVs fitted where scalding is a risk',
+    ],
+    guidance: [
+      {
+        title: 'Why TMVs need regular servicing',
+        body: 'Stored hot water has to be kept hot enough to control legionella, which is far too hot to wash in. The TMV brings it down at the outlet. Over time, scale and debris build up on the strainers and the thermostatic element, so the valve drifts, reacts slowly or fails to shut off when it should. Regular testing catches that before someone is scalded or a valve sits at an unsafe setting for months.',
+      },
+      {
+        title: 'How often to test',
+        body: 'The right interval comes from your water-safety risk assessment and the valve manufacturer\'s instructions. Settings with vulnerable users, such as schools, nurseries and care settings, usually test more often. If a valve drifts little between checks, the interval can sometimes be extended; if it drifts a lot, it needs checking more often or replacing. We can work to the schedule your assessment sets.',
+      },
+      {
+        title: 'What a service involves',
+        body: 'We measure the mixed water temperature at the outlet, then isolate the cold supply to check the valve shuts down or reduces flow to a safe level. We clean the strainers and check valves, descale or replace the cartridge, reset the valve to the temperature you need and test again. Each valve is recorded with its location, setting, readings and any parts fitted.',
+      },
+      {
+        title: 'TMV2 and TMV3 valves',
+        body: 'TMV2 valves are approved for general domestic and commercial use. TMV3 valves meet the stricter scheme used in healthcare and care settings. If a valve has failed or the right parts are no longer made, we will tell you which type your setting needs and replace it, rather than keep patching an old one.',
+      },
+    ],
+    aside: {
+      title: 'Keep the records together',
+      body: 'Keep your TMV servicing records with your water-safety risk assessment and logbook. Inspectors, insurers and your own responsible person will want to see that every valve has been checked on schedule.',
+    },
+    faqs: [
+      {
+        q: 'Do you service TMVs for schools and nurseries?',
+        a: 'Yes. We service and test TMVs at pupils\' and children\'s basins, showers and nappy-change areas, working in holidays or outside session times, and leave a record for every valve.',
+      },
+      {
+        q: 'What temperature should a TMV be set to?',
+        a: 'It depends on the outlet and who uses it, and your risk assessment or the relevant guidance for your setting should say. Hand-wash basins used by children or vulnerable people are set lower than a shower or a bath. We set each valve to the temperature you specify and record it.',
+      },
+      {
+        q: 'Can you replace a TMV that keeps failing?',
+        a: 'Yes. Where a valve is badly scaled, keeps drifting or parts are no longer available, replacing it is usually the better answer. We fit a TMV2 or TMV3 valve to suit the setting and commission it before we leave.',
+      },
+      {
+        q: 'Do you carry out legionella risk assessments?',
+        a: 'No. The risk assessment should come from a competent specialist. We do the work it points to on the plumbing side, including TMV servicing and replacement, removing dead legs and sorting little-used outlets.',
+      },
+    ],
+  },
 ];
 
 export default services;

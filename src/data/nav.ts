@@ -25,7 +25,7 @@ export const serviceGroups: ServiceGroup[] = [
       'emergency-plumbing', 'general-plumbing', 'water-through-ceiling', 'leak-repair', 'leak-detection',
       'toilet-repair', 'tap-repair-and-replacement',
       'pipe-repair', 'low-water-pressure', 'lead-pipe-and-water-main-replacement',
-      'commercial-plumbing', 'gas-safety-certificate',
+      'commercial-plumbing', 'gas-safety-certificate', 'tmv-servicing',
     ],
   },
   {

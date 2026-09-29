@@ -814,6 +814,11 @@
         "why": "Replacing basin taps with lever, elbow or sensor types for hands-free use."
       },
       {
+        "href": "/services/tmv-servicing",
+        "label": "TMV servicing & testing",
+        "why": "TMVs tested and serviced on the schedule your water-safety assessment sets."
+      },
+      {
         "href": "/services/toilet-repair",
         "label": "Toilet Repair",
         "why": "Running cisterns, broken flushes and leaking pans in patient and staff toilets."
@@ -1305,6 +1310,11 @@
         "why": "Shared and public toilets refitted without closing the whole building."
       },
       {
+        "href": "/services/tmv-servicing",
+        "label": "TMV servicing & testing",
+        "why": "Mixing valves on guest baths and showers tested and recorded."
+      },
+      {
         "href": "/appliances/shower-pumps",
         "label": "Shower pumps",
         "why": "Pumps serving several en-suites work hard and are a common cause of guest complaints."
@@ -1323,11 +1333,6 @@
         "href": "/services/drain-unblocking",
         "label": "Drain unblocking",
         "why": "Blocked soil stacks and drains can affect several floors of rooms at once."
-      },
-      {
-        "href": "/appliances/saniflo-macerator-pumps",
-        "label": "Saniflo and macerator pumps",
-        "why": "Useful when adding an en-suite to a room that is a long way from the soil stack."
       }
     ],
     "faqs": [
@@ -1553,6 +1558,11 @@
         "why": "Changing rooms and showers refitted in phases around your class timetable."
       },
       {
+        "href": "/services/tmv-servicing",
+        "label": "TMV servicing & testing",
+        "why": "Shower mixing valves tested and serviced so showers stay safe and steady."
+      },
+      {
         "href": "/services/shower-installation",
         "label": "Shower Installation",
         "why": "New changing room showers with thermostatic valves and timed controls, fitted to suit heavy use."
@@ -1571,11 +1581,6 @@
         "href": "/appliances/hot-water-cylinder-installation",
         "label": "Hot Water Cylinders",
         "why": "A larger or second cylinder helps when several showers run straight after a busy class."
-      },
-      {
-        "href": "/appliances/shower-pumps",
-        "label": "Shower Pumps",
-        "why": "A pump can lift weak pressure so showers still perform when several run together."
       }
     ],
     "faqs": [
@@ -1677,6 +1682,11 @@
         "why": "Full changing room and toilet refits with robust showers, anti-slip floors and proper drainage."
       },
       {
+        "href": "/services/tmv-servicing",
+        "label": "TMV servicing & testing",
+        "why": "Team shower mixing valves tested before the season and serviced when they drift."
+      },
+      {
         "href": "/services/shower-installation",
         "label": "Shower Installation",
         "why": "New team showers with thermostatic or timed valves built for heavy post-match use."
@@ -1695,11 +1705,6 @@
         "href": "/appliances/outside-tap-installation",
         "label": "Outside Taps",
         "why": "Outside taps for boot cleaning and pitch-side water, fitted with the right backflow protection."
-      },
-      {
-        "href": "/services/drain-unblocking",
-        "label": "Drain Unblocking",
-        "why": "Shower gullies and floor drains blocked by mud, grass and grit from boots and kit."
       }
     ],
     "faqs": [
@@ -1773,7 +1778,7 @@
       "Flush, seat and cistern repairs",
       "Outside taps for gardens and play areas",
       "Radiator replacement and heating repairs",
-      "Washing machine and dishwasher plumbing"
+      "TMV servicing and temperature testing"
     ],
     "guidance": [
       {
@@ -1799,6 +1804,11 @@
         "href": "/services/toilet-installation",
         "label": "Toilet Installation",
         "why": "Fitting child-height and junior toilets when you refit or reorganise a toilet area."
+      },
+      {
+        "href": "/services/tmv-servicing",
+        "label": "TMV servicing & testing",
+        "why": "Regular testing of the valves that keep children's basins and showers at a safe temperature."
       },
       {
         "href": "/services/blocked-toilet",
@@ -1846,7 +1856,7 @@
     "related": [
       "clinics-and-dental-practices",
       "places-of-worship-and-community-halls",
-      "offices"
+      "schools-and-colleges"
     ]
   },
   {
@@ -1920,6 +1930,11 @@
         "why": "Refitting WCs and ablution areas with low-level taps, seating, gullies and anti-slip, easy-clean finishes."
       },
       {
+        "href": "/services/tmv-servicing",
+        "label": "TMV servicing & testing",
+        "why": "Mixing valves in ablution areas and hall washrooms tested and serviced."
+      },
+      {
         "href": "/heating",
         "label": "Heating services",
         "why": "Our full range of heating work for tall, occasionally used buildings, from repairs to controls and zoning."
@@ -1938,11 +1953,6 @@
         "href": "/services/pipe-repair",
         "label": "Pipe Repair",
         "why": "Frozen and burst pipes in unheated vestries, towers, ablution rooms and outside toilets."
-      },
-      {
-        "href": "/services/drain-unblocking",
-        "label": "Drain Unblocking",
-        "why": "Ablution gullies, hall kitchen sinks and toilets blocked by heavy use, grease or debris."
       }
     ],
     "faqs": [
@@ -2095,6 +2105,130 @@
       "shops-and-retail",
       "offices",
       "dog-groomers-and-pet-businesses"
+    ]
+  },
+  {
+    "slug": "schools-and-colleges",
+    "name": "Schools & Colleges",
+    "heroTitle": "Plumbing for schools & colleges",
+    "heroSub": "Pupil toilets, hot water, drains, heating and electrics kept working, with bigger jobs done in the holidays, at half-term or at weekends.",
+    "h1": "School toilet refurbishment and plumbing in London",
+    "metaTitle": "School Toilet & Washroom Refurbishment | Ninja Plumbers",
+    "metaDescription": "School toilet and washroom refurbishment in London, done in the holidays, plus repairs, TMV servicing, heating and EICRs for schools. Call 020 3576 5825.",
+    "eyebrow": "Schools & colleges",
+    "icon": "bathroom",
+    "target": "school toilet refurbishment (590/mo) · school washroom refurbishment (320/mo) · school heating (110/mo) · eicr for schools (50/mo) · college/university plumbing (low volume)",
+    "summary": "School toilet refurbishment, repairs, TMV servicing, heating and electrics for schools, academies, colleges and learning centres, planned around term dates and the school day.",
+    "intro": "Pupil toilets take more punishment than almost any others, and a block that is out of action in term time causes problems all day. Ninja Plumbers carries out school toilet refurbishment and everyday plumbing for primary and secondary schools, academies, independent and prep schools, sixth-form and FE colleges, and tutoring, learning and language centres across London and nearby Surrey. We plan refits for the holidays and half-terms, and fit smaller repairs before or after the school day. Our engineers are DBS-checked and directly employed, a RAMS pack comes with each job, and our registered electricians and F-Gas engineers work alongside our plumbers.",
+    "needs": [
+      {
+        "title": "Pupil and staff toilets that survive term time",
+        "body": "School toilets see heavy use in short bursts at break and lunch, and they get misused too. Paper towels go down pans, taps are left running, cistern lids are lifted and ball valves bent. Concealed cisterns and vandal-resistant fittings last longer but need proper access panels for repairs. The Department for Education publishes guidance on toilet and washing facilities in school premises, and a closed block puts more pressure on the rest. A refit is best planned for the summer or a longer break.",
+        "icon": "bathroom"
+      },
+      {
+        "title": "Warm, safe water at pupils' basins",
+        "body": "Hot water at pupils' basins is usually blended by thermostatic mixing valves so younger children cannot scald their hands. TMVs clog with scale and debris, drift off their setting or fail to shut off when the cold supply drops, so they need regular servicing and a temperature check. Little-used outlets, such as a spare basin or a cleaner's sink, can let water stagnate. Schools have a duty to manage legionella risk under HSE guidance (ACoP L8), and much of the fix is plumbing.",
+        "icon": "water"
+      },
+      {
+        "title": "Changing rooms, kitchens and specialist rooms",
+        "body": "PE showers, school kitchens, science labs and art rooms each bring their own plumbing. Changing room showers and gullies clog with hair, mud and soap. Art room sinks fill with clay and plaster, which sets hard in traps and drains. Science room sinks need wastes that cope with what goes down them. In kitchens we handle sinks, hand-wash basins, dishwasher feeds and drainage. We do not work on laboratory gas or commercial catering gas equipment, which need specialist or commercially qualified engineers.",
+        "icon": "drain"
+      },
+      {
+        "title": "Heating, electrics and cooling across the site",
+        "body": "Many schools mix a main building with extensions and modular classrooms, each heated differently. Our Gas Safe engineers work on domestic-sized boilers, which often serve a small school, a lodge, a nursery wing or a learning centre. Larger commercial boiler plant needs engineers with commercial gas qualifications, and we will tell you straight if yours is beyond what we do. Our registered electricians carry out EICRs, lighting and repairs, and our F-Gas engineers look after air conditioning in offices and server rooms.",
+        "icon": "heating"
+      }
+    ],
+    "does": [
+      "Pupil and staff toilet refurbishment",
+      "Blocked toilets, urinals and drains cleared",
+      "Leaking taps, pipes and drinking water points",
+      "TMV servicing and temperature checks",
+      "Changing room and PE shower repairs",
+      "Modular classroom water and heating",
+      "EICRs, lighting and electrical repairs",
+      "Air conditioning for offices and server rooms"
+    ],
+    "guidance": [
+      {
+        "title": "Planning a refurbishment around term dates",
+        "body": "A toilet block refit usually needs the longest break you have, so talk to us in the spring about a summer job. Survey visits can happen after school or during a half-term, and ordering sanitaryware early avoids a finish that runs into the new term. Think about how many pupils use each block at break, whether you need an accessible WC, and where the extract fan will vent. Where you have several blocks, we can refit one at a time so pupils always have somewhere to go."
+      },
+      {
+        "title": "Working safely on a live school site",
+        "body": "When work has to happen in term time, our engineers sign in at reception, wear identification and follow your safeguarding procedures. We keep work areas closed off from pupils, keep tools and materials out of reach, and plan noisy tasks around lessons and exams. Many school buildings put up before 2000 contain asbestos, so our engineers, who have asbestos awareness training, check your asbestos register before drilling or opening up walls, floors and ducts. A RAMS pack comes with each job for your site manager."
+      },
+      {
+        "title": "Water hygiene and the long summer break",
+        "body": "Schools close for weeks at a time, and water sitting still in pipes, tanks and little-used outlets is where legionella risk grows. Under ACoP L8, the school or its responsible body must manage that risk, and outlets are often flushed before pupils return. We do the plumbing side: removing dead legs, fixing or removing outlets nobody uses, cylinder and tank work, and servicing and testing TMVs. The risk assessment itself is for a water hygiene specialist; we do not offer it, but we work to its recommendations."
+      }
+    ],
+    "links": [
+      {
+        "href": "/services/commercial-plumbing",
+        "label": "Commercial Plumbing",
+        "why": "Our main service for schools and colleges, covering leaks, supplies, drinking water points and kitchen plumbing."
+      },
+      {
+        "href": "/services/commercial-washroom-refurbishment",
+        "label": "Commercial washroom refurbishment",
+        "why": "Pupil and staff toilet blocks stripped out and refitted during the holidays or a half-term."
+      },
+      {
+        "href": "/services/tmv-servicing",
+        "label": "TMV servicing and testing",
+        "why": "Keeps water at pupils' basins and showers at a safe temperature, with a record of each check."
+      },
+      {
+        "href": "/services/blocked-toilet",
+        "label": "Blocked Toilet",
+        "why": "Paper towels and other items in pupil toilets are one of the most common school callouts."
+      },
+      {
+        "href": "/services/eicr",
+        "label": "EICR Certificates",
+        "why": "A periodic inspection of your electrics, often booked for the holidays when classrooms are empty."
+      },
+      {
+        "href": "/services/boiler-repair",
+        "label": "Boiler Repair",
+        "why": "For smaller schools, lodges and learning centres heated by a domestic-sized boiler that has broken down."
+      },
+      {
+        "href": "/services/air-conditioning-installation",
+        "label": "Air Conditioning Installation",
+        "why": "Cooling for school offices, IT suites and server rooms that overheat in the summer term."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Can you refurbish our pupil toilets during the school holidays?",
+        "a": "Yes. Holiday and half-term refits are the main way we work for schools. We survey in term time, agree the scope and price before work starts, and plan the programme so the block is ready before pupils return. Because our electricians work with our plumbers, new lighting, hand dryers and extract fans are handled by the same team."
+      },
+      {
+        "q": "Can you provide RAMS and insurance details for our approved contractor list?",
+        "a": "Yes. We provide risk assessments and method statements for each job, and our insurance certificate is available on request. We hold recognised contractor accreditation, and details are available if you need them for an approved-contractor list or procurement form. Our engineers are DBS-checked, directly employed and trained in asbestos awareness."
+      },
+      {
+        "q": "Can you service the large gas boilers in our plant room?",
+        "a": "Our Gas Safe engineers work on domestic-sized boilers and appliances. Many schools have larger commercial boiler plant, which needs engineers with commercial gas qualifications. Send us a photo of the boiler and its data plate and we will tell you straight whether it is something we can take on. We can still help with radiators, pipework and heating in smaller buildings."
+      },
+      {
+        "q": "How often does a school need an EICR?",
+        "a": "There is no single fixed interval written into law for every school, but electrical installations must be kept safe, and a periodic inspection is the usual way to show that. Many schools work to a five-year cycle, though your insurer, local authority, trust or the condition of the wiring may call for shorter. We can carry out the inspection in the holidays and explain the results."
+      },
+      {
+        "q": "Can you assess our school for legionella risk?",
+        "a": "No, we do not offer legionella risk assessments. Your school has a duty to manage the risk under ACoP L8, and the assessment should come from a water hygiene specialist. We carry out the plumbing work it recommends, such as removing dead legs, reworking little-used outlets, tank and cylinder work, and servicing and testing TMVs."
+      }
+    ],
+    "related": [
+      "nurseries-and-childcare",
+      "sports-clubs-and-studios",
+      "places-of-worship-and-community-halls"
     ]
   },
   {

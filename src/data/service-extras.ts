@@ -1055,6 +1055,41 @@ export const serviceExtras: Record<string, ServiceExtra> = {
     ],
   },
 
+  'tmv-servicing': {
+    price: {
+      intro:
+        'TMV servicing is priced on the number of valves and how easy they are to reach, and the price is agreed before we start. Parts are priced separately if a valve needs them.',
+      factors: [
+        {
+          title: 'Number of valves',
+          body: 'A handful of basins in a small nursery is a short visit. A school or care setting with valves on every basin, shower and bath takes longer, and we plan the route so each area is disrupted once.',
+        },
+        {
+          title: 'Access to the valves',
+          body: 'Valves behind access panels or under basins are quick to reach. Valves boxed in behind tiling or fixed panels take longer, and some need the panel making accessible for future servicing.',
+        },
+        {
+          title: 'Condition and parts',
+          body: 'A valve that only needs cleaning and resetting is quicker than one that needs a new cartridge. Where a valve has failed or parts are obsolete, replacement is priced separately and agreed first.',
+        },
+        {
+          title: 'When the work is done',
+          body: 'Servicing in school holidays, before or after opening, or at weekends changes how the visit is planned. We agree the timing with you up front.',
+        },
+      ],
+    },
+    extraFaqs: [
+      {
+        q: 'Will the water be off while you service the valves?',
+        a: 'Only at the outlet or area being worked on, and only briefly. Each valve is isolated, serviced and tested before we move on, so the rest of the building keeps running.',
+      },
+      {
+        q: 'Do you give us a record for our logbook?',
+        a: 'Yes. Every valve is recorded with its location, set temperature, readings, the fail-safe result and any parts fitted, ready to keep with your water-safety records.',
+      },
+    ],
+  },
+
   'low-water-pressure': {
     price: {
       intro:
