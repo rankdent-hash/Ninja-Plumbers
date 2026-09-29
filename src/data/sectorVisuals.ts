@@ -19,7 +19,11 @@ export const SECTOR_PICTOGRAMS: Record<string, string> = {
   'pubs-and-bars': '<path d="M6 3h12l-1.6 17.1a1 1 0 0 1-1 .9H8.6a1 1 0 0 1-1-.9z"/><path d="M6.4 8h11.2"/>',
   'gyms-and-fitness-studios': '<rect x="2" y="9" width="3" height="6" rx="1"/><rect x="19" y="9" width="3" height="6" rx="1"/><rect x="5" y="6.5" width="3.5" height="11" rx="1"/><rect x="15.5" y="6.5" width="3.5" height="11" rx="1"/><line x1="8.5" y1="12" x2="15.5" y2="12"/>',
   'nurseries-and-childcare': '<rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/><rect x="8" y="4" width="8" height="8" rx="1.5"/><path d="M11 9.5l1-3 1 3M11.4 8.3h1.2"/>',
-  'churches-and-community-halls': '<path d="M12 2v4M10 4h4"/><path d="M6 21V11l6-5 6 5v10"/><path d="M3 21h18"/><path d="M10 21v-3.5a2 2 0 0 1 4 0V21"/>',
+  'dog-groomers-and-pet-businesses': '<circle cx="6.5" cy="10" r="2"/><circle cx="10" cy="5.5" r="2"/><circle cx="14" cy="5.5" r="2"/><circle cx="17.5" cy="10" r="2"/><path d="M12 11.5c-3 0-5.2 3.1-5.2 5.6 0 1.6 1.4 2.6 3 2.3l2.2-.5 2.2.5c1.6.3 3-.7 3-2.3 0-2.5-2.2-5.6-5.2-5.6z"/>',
+  'food-shops-and-takeaways': '<path d="M5 8h14l-1.2 13H6.2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/><path d="M9.5 13h5"/>',
+  'garages-and-workshops': '<path d="M3 16v-3l2-5h14l2 5v3z"/><path d="M3 13h18"/><circle cx="7.5" cy="16.5" r="2"/><circle cx="16.5" cy="16.5" r="2"/>',
+  'sports-clubs-and-studios': '<path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v1.5a3.5 3.5 0 0 1-3.5 3.5M7 5H4v1.5A3.5 3.5 0 0 0 7.5 10"/>',
+  'places-of-worship-and-community-halls': '<path d="M2 10l10-6 10 6z"/><path d="M5 10v9M9.5 10v9M14.5 10v9M19 10v9"/><path d="M3 21h18"/>',
   'blocks-of-flats-and-managing-agents': '<rect x="5" y="2" width="14" height="20" rx="1"/><path d="M9 6h1M14 6h1M9 10h1M14 10h1M9 14h1M14 14h1"/><path d="M10 22v-4h4v4"/>',
 };
 

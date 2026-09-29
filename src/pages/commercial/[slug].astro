@@ -16,6 +16,7 @@ import { appliances } from '../../data/appliances';
 import { dampPages } from '../../data/damp';
 import { SCHEMA_AREA_SERVED } from '../../data/serviceArea';
 import SectorScene from '../../components/SectorScene.astro';
+import TrustBar from '../../components/TrustBar.astro';
 import SectorPictogram from '../../components/SectorPictogram.astro';
 import { iconForHref, iconForNeed } from '../../data/sectorVisuals';
 
@@ -66,8 +67,9 @@ const serviceSchema = {
 
   <HeroWithForm
     eyebrow={sector.eyebrow}
-    h1={sector.h1}
-    intro={sector.intro}
+    h1={sector.heroTitle ?? sector.h1}
+    intro={sector.heroSub ?? sector.intro}
+    landing
     breadcrumb={crumbs}
     bullets={[
       'Work scheduled around your opening hours',
@@ -79,11 +81,15 @@ const serviceSchema = {
     formHeading="Tell us about your premises"
   />
 
+  <TrustBar />
+
   <section class="section">
     <div class="container service-row">
       <div class="service-copy">
         <span class="eyebrow">What we do</span>
-        <h2>Jobs we take on for {sector.name.replace('&', 'and').toLowerCase()}</h2>
+        <h2>{sector.h1}</h2>
+        <p class="lead sector-lead">{sector.intro}</p>
+        <h3 class="sector-jobs-h">Jobs we take on for {sector.name.replace('&', 'and').toLowerCase()}</h3>
         <ul class="ticks sector-does">
           {sector.does.map((d) => <li><Tick /> {d}</li>)}
         </ul>

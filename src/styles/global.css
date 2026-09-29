@@ -3122,3 +3122,23 @@ body.qr-open { overflow: hidden; }
 .card-icon-row h3 { margin: 0; }
 .sector-oneteam { margin: 26px 0 8px; font-size: 1.1rem; }
 .sector-scene-wrap { align-self: center; }
+
+/* ---- Landing-style hero (HeroWithForm landing): short title, subtitle,
+   buttons, form. Tighter on phones so the form is reached quickly. ---- */
+.hero-split--landing .hero-split-grid { align-items: center; }
+.hero-split--landing h1 { font-size: clamp(2.1rem, 4.2vw, 3.2rem); }
+.hero-split--landing .hero-split-lead { font-size: 1.2rem; }
+.hero-split--landing .hero-split-cta { margin-bottom: 0; }
+@media (max-width: 900px) {
+  .hero-split--landing { padding: 26px 0 32px; }
+  .hero-split--landing .breadcrumb { display: none; }
+  .hero-split--landing .eyebrow-hero { margin-bottom: 10px; }
+  .hero-split--landing h1 { font-size: 2rem; line-height: 1.12; margin-bottom: 10px; }
+  .hero-split--landing .hero-split-lead { font-size: 1.05rem; }
+  .hero-split--landing .hero-split-cta { margin-top: 18px; }
+  .hero-split--landing .hero-split-grid { gap: 22px; }
+}
+
+/* Sector pages: the long keyword heading and intro that open the body. */
+.sector-lead { font-size: 1.08rem; margin: 14px 0 6px; }
+.sector-jobs-h { margin: 26px 0 0; font-size: 1.15rem; }

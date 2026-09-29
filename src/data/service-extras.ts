@@ -1020,6 +1020,41 @@ export const serviceExtras: Record<string, ServiceExtra> = {
     ],
   },
 
+  'commercial-washroom-refurbishment': {
+    price: {
+      intro:
+        'A washroom refurbishment is priced after a survey, and the price is agreed before any work starts. These are the things that make the biggest difference.',
+      factors: [
+        {
+          title: 'The number of fittings',
+          body: 'Each WC, urinal, basin and shower adds pipework, drainage and time. A single staff WC is a very different job from a bank of cubicles and urinals.',
+        },
+        {
+          title: 'What is behind the walls and floor',
+          body: 'Old soil pipes, a waste that runs the wrong way for the new layout, or a floor that needs levelling all add work. Moving fittings to new positions costs more than replacing them where they are.',
+        },
+        {
+          title: 'Finishes and panels',
+          body: 'IPS panels, cubicle systems, sensor taps and high-end sanitaryware cost more than standard fittings, but last better in heavy use. We can price options side by side.',
+        },
+        {
+          title: 'Phasing and working hours',
+          body: 'Keeping part of the washroom open, or working early, late or at weekends to avoid trading hours, changes how the job is programmed. We agree the approach with you up front.',
+        },
+      ],
+    },
+    extraFaqs: [
+      {
+        q: 'Can you keep our existing layout to reduce the cost?',
+        a: 'Yes. Replacing fittings in the same positions reuses the existing soil and water connections, which usually keeps the job simpler and quicker. We will tell you where a small layout change is worth it.',
+      },
+      {
+        q: 'Do you work with our landlord or building management?',
+        a: 'Yes. Where the landlord or managing agent has to approve the work, tell us what they need to see and we will provide the details, and fit in with any building rules on access and working hours.',
+      },
+    ],
+  },
+
   'low-water-pressure': {
     price: {
       intro:

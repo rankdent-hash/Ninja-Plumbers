@@ -2,14 +2,16 @@
   {
     "slug": "offices",
     "name": "Offices",
+    "heroTitle": "Plumbing for offices and workplaces",
+    "heroSub": "Washrooms, kitchenettes, hot water, heating and electrics kept working, with the work done early, late or at weekends.",
     "h1": "Office plumber and washroom refurbishment in London",
     "metaTitle": "Office Plumber & Washroom Refurbishment | Ninja Plumbers",
     "metaDescription": "Office plumbing in London: washroom refurbishment, leaks, kitchenettes, boiling water taps and heating, done around your working day. Call 020 3576 5825.",
     "eyebrow": "Offices",
     "icon": "commercial",
     "target": "office plumber (20/mo) · office plumbing (20/mo) · commercial washroom refurbishment (390/mo)",
-    "summary": "Office plumbing for small and mid-sized workplaces: washrooms, kitchenettes, leaks, heating and electrics, planned around your working hours so staff can carry on.",
-    "intro": "When the only staff toilet stops flushing or the kitchenette tap will not turn off, the whole office notices. Ninja Plumbers is an office plumber for small and mid-sized workplaces across London and nearby Surrey. We handle day-to-day office plumbing, commercial washroom refurbishment, heating and hot water. Our team also includes registered electricians and F-Gas certified air conditioning engineers, so a job that crosses trades is handled by one team. Our engineers are DBS-checked and directly employed, the price is agreed before work starts, and we can work early, late or at weekends so desks stay usable.",
+    "summary": "Office plumbing for workplaces, coworking spaces and serviced offices: washrooms, kitchenettes, leaks, heating and electrics, planned around your working hours so staff can carry on.",
+    "intro": "When the only staff toilet stops flushing or the kitchenette tap will not turn off, the whole office notices. Ninja Plumbers is an office plumber for small and mid-sized workplaces, coworking spaces and serviced offices across London and nearby Surrey. We handle day-to-day office plumbing, commercial washroom refurbishment, heating and hot water. Our team also includes registered electricians and F-Gas certified air conditioning engineers, so a job that crosses trades is handled by one team. Our engineers are DBS-checked and directly employed, the price is agreed before work starts, and we can work early, late or at weekends so desks stay usable.",
     "needs": [
       {
         "title": "Washrooms that cope with the whole team",
@@ -63,6 +65,11 @@
         "why": "Our main service for workplaces, covering washrooms, kitchenettes, leaks and incoming water supplies."
       },
       {
+        "href": "/services/commercial-washroom-refurbishment",
+        "label": "Commercial washroom refurbishment",
+        "why": "Staff washrooms refitted in phases, so the office always has a working toilet."
+      },
+      {
         "href": "/services/bathroom-installation",
         "label": "Bathroom Installation",
         "why": "The same team refits office washrooms, from new sanitaryware to a full strip-out and refit."
@@ -86,11 +93,6 @@
         "href": "/services/air-conditioning-installation",
         "label": "Air Conditioning Installation",
         "why": "Keeps meeting rooms and busy open-plan areas comfortable when summer heat and equipment build up."
-      },
-      {
-        "href": "/services/eicr",
-        "label": "EICR Certificates",
-        "why": "A periodic electrical inspection helps show your office wiring is being kept safe for staff."
       }
     ],
     "faqs": [
@@ -124,6 +126,8 @@
   {
     "slug": "shops-and-retail",
     "name": "Shops & Retail",
+    "heroTitle": "Plumbing for shops and retail units",
+    "heroSub": "Staff toilets, leaks, water heaters, heating and air conditioning sorted around your trading hours, so the till keeps running.",
     "h1": "Retail plumbing and shop air conditioning in London",
     "metaTitle": "Retail Plumbing & Shop Air Conditioning | Ninja Plumbers",
     "metaDescription": "Shop plumber for London retailers: staff toilets, leaks, water heaters, air conditioning and electrics, done around trading hours. Call 020 3576 5825.",
@@ -185,6 +189,11 @@
         "why": "Our core service for business premises, covering leaks, toilets, water heaters and incoming supplies."
       },
       {
+        "href": "/services/commercial-washroom-refurbishment",
+        "label": "Commercial washroom refurbishment",
+        "why": "Staff and customer toilets refitted with hard-wearing fittings and extraction."
+      },
+      {
         "href": "/services/air-conditioning-installation",
         "label": "Air Conditioning Installation",
         "why": "Split systems sized for your shop floor, glazing and lighting, fitted by F-Gas certified engineers."
@@ -208,11 +217,6 @@
         "href": "/appliances/sump-pumps",
         "label": "Sump Pumps",
         "why": "Basement stockrooms need a working pump to keep groundwater and drain backflow away from stock."
-      },
-      {
-        "href": "/services/electrical-repairs",
-        "label": "Electrical Repairs",
-        "why": "Tripping circuits, failed lighting and extra sockets for displays are handled by our electricians."
       }
     ],
     "faqs": [
@@ -246,6 +250,8 @@
   {
     "slug": "cafes-and-restaurants",
     "name": "Cafés & Restaurants",
+    "heroTitle": "Plumbing for cafés and restaurants",
+    "heroSub": "Grease traps, hand-wash basins, dishwashers, coffee machine feeds and hot water, fitted and fixed around your service.",
     "h1": "Grease traps and restaurant plumbing in London",
     "metaTitle": "Grease Traps & Restaurant Plumbing London | Ninja Plumbers",
     "metaDescription": "Grease trap installation and repair, hand-wash basins, dishwasher and coffee machine plumbing for London cafés and restaurants. Call 020 3576 5825.",
@@ -307,6 +313,11 @@
         "why": "Our main service for business premises, including kitchen water supplies, wastes and hand-wash basins."
       },
       {
+        "href": "/services/commercial-washroom-refurbishment",
+        "label": "Commercial washroom refurbishment",
+        "why": "Customer toilets refitted with easy-clean fittings, planned around your service."
+      },
+      {
         "href": "/services/drain-unblocking",
         "label": "Drain Unblocking",
         "why": "Grease-lined kitchen drains block without warning, often right in the middle of a busy service."
@@ -330,11 +341,6 @@
         "href": "/appliances/hot-water-cylinder-installation",
         "label": "Hot Water Cylinders",
         "why": "A larger or faster-recovering cylinder helps when hot water runs short during the lunch rush."
-      },
-      {
-        "href": "/appliances/whole-house-water-filtration",
-        "label": "Water Filtration",
-        "why": "Filtration improves water for drinks and cuts scale in coffee machines and boiling water taps."
       }
     ],
     "faqs": [
@@ -366,8 +372,134 @@
     ]
   },
   {
+    "slug": "food-shops-and-takeaways",
+    "name": "Food Shops & Takeaways",
+    "heroTitle": "Plumbing for takeaways & food shops",
+    "heroSub": "Grease traps, prep sinks, hand-wash basins, hot water and blocked drains for takeaways, bakeries, butchers and delis, fitted around your trading hours.",
+    "h1": "Takeaway, bakery, butcher and deli plumbing in London",
+    "metaTitle": "Takeaway Plumbing & Grease Traps | Ninja Plumbers",
+    "metaDescription": "Plumbing for takeaways, bakeries, butchers and delis in London: grease traps, hand-wash basins, prep sinks, hot water and drains. Call 020 3576 5825.",
+    "eyebrow": "Food shops",
+    "icon": "drain",
+    "target": "takeaway, bakery, butcher and deli plumbing (low volume) · grease trap installation (210/mo, shared with cafes page — angle it to takeaways)",
+    "summary": "Plumbing for takeaways, bakeries, butchers and delis: grease traps, hand-wash basins, prep sinks, hot water, ice machines and wash-down drainage, planned around trading hours.",
+    "intro": "A takeaway with a blocked sink on a Friday night, or a butcher with no hot water at the hand-wash basin, cannot trade properly. Ninja Plumbers handles takeaway, bakery, butcher and deli plumbing for small food businesses across London and nearby Surrey. We carry out grease trap installation under pot-wash sinks, fit prep sinks and dedicated hand-wash basins, plumb in dishwashers and ice machines, and clear drains from wash-down floors. Our registered electricians work alongside our plumbers, so a new water heater and its circuit is one job. We can come before you open, after you close or on your quiet day.",
+    "needs": [
+      {
+        "title": "Grease traps for fryers and pot wash",
+        "body": "Takeaways cook with a lot of oil, and even with good habits some of it reaches the sink when fryer baskets, trays and utensils are washed. It cools in the waste and sets hard, often at the first bend. A grease trap sized for your pot-wash sink catches much of it before it reaches your drains or the public sewer. Used fryer oil itself should never go down any sink; it needs collecting by a licensed waste carrier.",
+        "icon": "drain"
+      },
+      {
+        "title": "Hand-wash basins kept apart from food sinks",
+        "body": "Food businesses must have enough hand-washing facilities with hot and cold running water, separate from sinks used for washing food or equipment where needed. In a small shop that often means squeezing a compact basin in beside the counter or near the prep area. We fit hand-wash basins with lever or sensor taps, add a small point-of-use heater where hot water does not reach, and connect a waste that will not back up into a food sink.",
+        "icon": "bathroom"
+      },
+      {
+        "title": "Wash-down floors and heavy drainage",
+        "body": "Butchers and some bakeries wash their floors down daily, so floor gullies and channels take fat, meat scraps, flour and cleaning chemicals. Flour and dough can form a paste that sets in pipes, and animal fat behaves like fryer grease. Gullies need removable baskets, and the pipework beyond them needs access points for rodding. A CCTV survey shows whether a recurring blockage is a build-up, a sagging pipe or a damaged joint.",
+        "icon": "drain"
+      },
+      {
+        "title": "Hot water, dishwashers and ice machines",
+        "body": "Hot water gets used fast when you are washing trays, cleaning down and washing hands at the same time. A slow cylinder or a single small heater runs cold just when you need it. Dishwashers need a sound feed and a waste that copes with fast discharge. Ice machines need a filtered cold feed and a drain with a proper air gap. Chiller condensate lines need a clear route to a drain, which we can provide.",
+        "icon": "appliance"
+      }
+    ],
+    "does": [
+      "Grease trap installation and replacement",
+      "Hand-wash basins with point-of-use heaters",
+      "Prep sinks and pot-wash sinks",
+      "Blocked sinks, gullies and wash-down drains",
+      "Dishwasher and ice machine plumbing",
+      "Condensate drain connections for chillers",
+      "Water heaters, cylinders and new circuits",
+      "CCTV drain surveys for recurring blockages"
+    ],
+    "guidance": [
+      {
+        "title": "Choosing and looking after a grease trap",
+        "body": "A grease trap under the sink is only useful if it is the right size and gets emptied. Size depends on the sink and how much greasy washing you do, so tell us your menu and how busy you get. Check it weekly at first and adjust from there. A full trap lets grease pass straight through and starts to smell. Keep a log of cleaning, and send the waste to a licensed carrier. Thames Water can take action over blockages caused by fats, oils and grease."
+      },
+      {
+        "title": "Gas equipment and what we do not cover",
+        "body": "Our Gas Safe engineers work on domestic-sized boilers and appliances. Commercial catering gas equipment in a takeaway or bakery, such as fryers, pizza ovens, chargrills, deck ovens and ranges, needs engineers with commercial catering gas qualifications. We will tell you straight if something is beyond what we do. Walk-in cold rooms and refrigeration units are also a job for a refrigeration engineer. We handle what surrounds that equipment: water feeds, sinks, drains, condensate connections, hot water, lighting and sockets."
+      },
+      {
+        "title": "Before an inspection or a refit",
+        "body": "If an environmental health visit is due, walk round first. Check each hand-wash basin has hot and cold water, soap and nothing stacked in front of it. Look under the sinks for drips and for grease building up in the trap. Make sure floor gullies have their baskets and drain freely. If you are refitting a shop, plan where the hand-wash basin, prep sink and pot-wash sink go before the counters are ordered, as moving wastes later costs more."
+      }
+    ],
+    "links": [
+      {
+        "href": "/services/commercial-plumbing",
+        "label": "Commercial Plumbing",
+        "why": "Our main service for business premises, covering sinks, hand-wash basins, grease traps and water supplies."
+      },
+      {
+        "href": "/services/drain-unblocking",
+        "label": "Drain Unblocking",
+        "why": "Grease, fat and dough blockages in sinks and floor gullies can stop a takeaway mid-service."
+      },
+      {
+        "href": "/services/cctv-drain-survey",
+        "label": "CCTV Drain Survey",
+        "why": "Finds out why a drain keeps blocking, whether that is grease build-up or a damaged pipe."
+      },
+      {
+        "href": "/appliances/kitchen-sink-installation",
+        "label": "Kitchen Sink Installation",
+        "why": "New prep and pot-wash sinks, fitted with the right waste and space for a grease trap."
+      },
+      {
+        "href": "/appliances/dishwasher-plumbing",
+        "label": "Dishwasher Plumbing",
+        "why": "A sound feed and waste keeps trays and utensils washing without leaks or slow draining."
+      },
+      {
+        "href": "/appliances/hot-water-cylinder-installation",
+        "label": "Hot Water Cylinders",
+        "why": "More stored hot water helps when washing up, cleaning down and hand washing all happen together."
+      },
+      {
+        "href": "/services/electrical-repairs",
+        "label": "Electrical Repairs",
+        "why": "Tripping circuits, failed lighting and extra sockets for new equipment behind the counter."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Do you install grease traps for takeaways?",
+        "a": "Yes. We fit under-sink grease traps sized for your pot-wash sink and how much greasy washing you do, and we replace old traps that are too small or damaged. We can also clear the blocked waste that often prompts the call. Large below-ground interceptors need specialist emptying by a tanker service, which we do not provide."
+      },
+      {
+        "q": "Can you service or repair our fryers and pizza oven?",
+        "a": "No. Commercial catering gas equipment needs engineers with commercial catering gas qualifications, and we will tell you straight that it is beyond what we do. We can handle the plumbing and electrics around it, such as sinks, drains, hot water, lighting and sockets, and our Gas Safe engineers work on domestic-sized boilers if you have one upstairs."
+      },
+      {
+        "q": "How many hand-wash basins does a food shop need?",
+        "a": "There is no single number for every shop. The rule is that you need enough hand-washing facilities, with hot and cold running water, and in places where staff will actually use them. Your local environmental health officer can advise on your layout. We can fit an extra compact basin near the prep area or counter, with its own heater if needed."
+      },
+      {
+        "q": "Can you connect the drain for our display chillers and ice machine?",
+        "a": "Yes, we do the plumbing side. That means a filtered cold feed and a drain with a proper air gap for an ice machine, and a clear condensate route or pump connection for chillers. The refrigeration unit itself, and any cold room, needs a refrigeration engineer. We are happy to work alongside them on the day."
+      },
+      {
+        "q": "Can you work without closing the shop?",
+        "a": "Usually, yes. Many jobs, such as a new hand-wash basin, a grease trap or a dishwasher feed, can be done before you open or after close. We agree timing and the price before work starts. If a drain blocks during trading, we run a 24/7 emergency callout. Our engineers are DBS-checked, directly employed and fully insured."
+      }
+    ],
+    "related": [
+      "cafes-and-restaurants",
+      "pubs-and-bars",
+      "shops-and-retail"
+    ]
+  },
+  {
     "slug": "salons-and-barbers",
     "name": "Salons & Barbers",
+    "heroTitle": "Plumbing for salons and barbers",
+    "heroSub": "Backwash basins fitted, moved and unblocked, plus hot water, heating and electrics, all done when your chairs are empty.",
     "h1": "Plumbing for hair salons and barbers in London",
     "metaTitle": "Salon Backwash & Plumbing, London | Ninja Plumbers",
     "metaDescription": "Salon backwash basins installed, moved and unblocked, plus hot water, heating and electrics for hair salons and barbers in London. Call 020 3576 5825.",
@@ -490,6 +622,8 @@
   {
     "slug": "beauty-and-tattoo-studios",
     "name": "Beauty & Tattoo Studios",
+    "heroTitle": "Plumbing for beauty and tattoo studios",
+    "heroSub": "Hand-wash basins, hot water, treatment room plumbing and electrics, fitted with your special treatment licence in mind.",
     "h1": "Plumbing for beauty salons, nail bars and tattoo studios in London",
     "metaTitle": "Beauty & Tattoo Studio Plumbing, London | Ninja Plumbers",
     "metaDescription": "Hand-wash basins, hot water, pedicure plumbing and drains for London beauty salons, nail bars and tattoo studios, fitted around bookings. Call 020 3576 5825.",
@@ -612,6 +746,8 @@
   {
     "slug": "clinics-and-dental-practices",
     "name": "Clinics & Dental Practices",
+    "heroTitle": "Plumbing for clinics and dental practices",
+    "heroSub": "Clinical hand-wash basins, hot water, WCs, drainage and heating kept working, with work scheduled around your appointment book.",
     "h1": "Plumbing and heating for clinics and dental practices in London",
     "metaTitle": "Clinic & Dental Practice Plumbing, London | Ninja Plumbers",
     "metaDescription": "Clinical hand-wash basins, WCs, hot water, drains and heating for clinics and dental practices in London, planned around patient lists. Call 020 3576 5825.",
@@ -727,15 +863,141 @@
     ]
   },
   {
+    "slug": "dog-groomers-and-pet-businesses",
+    "name": "Dog Groomers & Pet Businesses",
+    "heroTitle": "Plumbing for dog groomers & pet businesses",
+    "heroSub": "Grooming baths, wash stations, hair-clogged wastes, hot water and electrics sorted, with work booked around your appointments and days off.",
+    "h1": "Dog grooming bath and wash station plumbing in London",
+    "metaTitle": "Dog Grooming Bath & Wash Station Plumbing | Ninja Plumbers",
+    "metaDescription": "Dog grooming bath and wash station plumbing in London: hair traps, blocked wastes, hot water, mixing valves and electrics for dryers. Call 020 3576 5825.",
+    "eyebrow": "Dog groomers",
+    "icon": "bathroom",
+    "target": "dog grooming bath (1,300/mo, partly product intent) · dog wash station (1,300/mo) · pet business plumbing",
+    "summary": "Plumbing and electrics for dog groomers, pet shops and small vets: grooming baths, wash stations, hair traps, hot water and circuits for dryers and blasters.",
+    "intro": "A dog grooming bath that drains slowly or runs cold halfway through a big double-coated breed puts your whole day behind. Ninja Plumbers fits and plumbs dog grooming baths and walk-in dog wash stations for groomers and pet businesses across London and nearby Surrey. We do not sell grooming equipment, but we can install a bath you have bought or tell you what connections it needs before you order. We also clear hair-clogged wastes, improve hot water and fit mixing valves. Our registered electricians wire dryers, blasters and washing machines, so the whole job is handled by one team.",
+    "needs": [
+      {
+        "title": "Baths and wash stations that drain properly",
+        "body": "Raised grooming baths, often with a ramp or lift, and walk-in wash stations for large dogs each need a cold and hot feed, a mixer and hand shower, and a waste with enough fall to the drain. A raised bath usually has its outlet close to the floor, so the route to the nearest soil pipe matters. Where there is no fall, a pumped waste unit can lift the water. A walk-in station also needs a tiled floor that falls to a gully.",
+        "icon": "bathroom"
+      },
+      {
+        "title": "Dealing with dog hair in the waste",
+        "body": "Dog hair is the main reason grooming wastes block. It knots with shampoo and conditioner residue into a mat that catches everything that follows. A basket strainer in the bath outlet stops most of it, and an accessible hair trap on the waste makes the rest easy to clear. Long runs of small-bore pipe with tight bends are the usual trouble spot. We can re-route or upsize a waste so it is easier to rod through.",
+        "icon": "drain"
+      },
+      {
+        "title": "Plenty of hot water at a safe temperature",
+        "body": "A busy groomer can wash a dozen or more dogs a day, each needing several minutes of warm water, plus towels and cleaning down. A small combi or one instantaneous heater may not keep up with that. A cylinder with a good reheat rate, or a larger instantaneous heater on its own circuit, often suits better. Because you are washing an animal, a thermostatic mixing valve on the bath feed helps keep the water at a steady, comfortable temperature.",
+        "icon": "water"
+      },
+      {
+        "title": "Power for dryers, blasters and laundry",
+        "body": "High-velocity blasters and stand dryers draw a lot of current, and running two or three at once alongside a washing machine and tumble dryer can overload a circuit or trip the RCD. Sockets near a wet bath need careful placing and protection. Our electricians can check your consumer unit, add dedicated circuits for dryers and laundry, and fit sockets where you work rather than across a trip hazard of extension leads.",
+        "icon": "electrical"
+      }
+    ],
+    "does": [
+      "Grooming bath fitting and plumbing connections",
+      "Walk-in dog wash stations and floor gullies",
+      "Hair traps and blocked bath wastes",
+      "Thermostatic mixing valves on bath feeds",
+      "Water heaters and hot water cylinders",
+      "Washing machine and tumble dryer connections",
+      "Dedicated circuits for dryers and blasters",
+      "Pumped wastes where there is no fall"
+    ],
+    "guidance": [
+      {
+        "title": "Before you buy a grooming bath",
+        "body": "Check a few things before you order a bath or wash station. Measure the route from where it will sit to your nearest soil pipe or drain, and note whether the floor is solid concrete or suspended timber. Find out what size hot and cold connections the bath takes and whether it has an electric lift or pump that needs a socket or fused spur. Allow space to reach the waste trap. If you send us the spec sheet, we can tell you what the connections need."
+      },
+      {
+        "title": "Keeping hair out of your drains",
+        "body": "Brush out and pre-strip coats before the bath where you can, because every handful caught on the table is one less in the waste. Empty the outlet strainer after each dog, not at the end of the day. Clear the hair trap at least weekly on a busy schedule. Avoid pouring hot water and chemical drain cleaner down a slow waste, as it rarely shifts a hair mat and can damage plastic fittings. If the bath drains slowly after cleaning the trap, the blockage is further down."
+      },
+      {
+        "title": "Water safety on a pet bath",
+        "body": "A hand shower on a flexible hose can drop into a bath of dirty water, so the supply needs backflow protection suited to the risk, as the Water Supply (Water Fittings) Regulations 1999 require. A thermostatic mixing valve helps stop water arriving too hot for an animal's skin. If you rarely use a second bath or an outside hose, run it for a few minutes each week, because stagnant water can let bacteria grow. We can remove unused pipe runs and fit or replace mixing valves."
+      }
+    ],
+    "links": [
+      {
+        "href": "/services/commercial-plumbing",
+        "label": "Commercial Plumbing",
+        "why": "Our main service for business premises, covering grooming baths, wash stations, water supplies and leaks."
+      },
+      {
+        "href": "/services/drain-unblocking",
+        "label": "Drain Unblocking",
+        "why": "Hair and shampoo residue are the most common cause of slow or blocked grooming wastes."
+      },
+      {
+        "href": "/appliances/hot-water-cylinder-installation",
+        "label": "Hot Water Cylinders",
+        "why": "A cylinder with a good reheat rate keeps warm water coming through a full day of bookings."
+      },
+      {
+        "href": "/appliances/saniflo-macerator-pumps",
+        "label": "Saniflo & Macerator Pumps",
+        "why": "A pumped waste lets you put a bath or wash station where the drain has no natural fall."
+      },
+      {
+        "href": "/appliances/washing-machine-plumbing",
+        "label": "Washing Machine Plumbing",
+        "why": "Towels go through the machine all day, so the feed and waste need to be sound."
+      },
+      {
+        "href": "/services/electrical-repairs",
+        "label": "Electrical Repairs",
+        "why": "Dryers and blasters put a heavy load on circuits, and tripping RCDs stop you working."
+      },
+      {
+        "href": "/services/wet-rooms-and-walk-in-showers",
+        "label": "Wet Rooms & Walk-in Showers",
+        "why": "Walk-in dog wash stations use the same tanking, floor falls and gullies as a wet room."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Do you sell dog grooming baths?",
+        "a": "No. We do not sell grooming equipment. If you have bought a bath or wash station, or are choosing one, we can fit it and connect the hot and cold feeds, waste and any electrics it needs. Send us the spec sheet before you order and we can tell you whether your space and drainage will suit it."
+      },
+      {
+        "q": "My grooming bath keeps blocking. Can you stop it happening?",
+        "a": "We can clear the blockage and then look at why it keeps coming back. Often the waste is too small, has too many tight bends or has no hair trap you can get at. We can fit a basket strainer and an accessible trap, and re-route the pipe so it is easier to keep clear. The price is agreed before we start."
+      },
+      {
+        "q": "Can you fit a walk-in dog wash station in our unit?",
+        "a": "Usually, yes. A walk-in station needs a waterproofed floor and walls, a floor that falls to a gully, hot and cold feeds with a mixer and a waste route to the drain. On a solid floor we may need to cut a channel for the waste. If there is no fall, a pumped waste can lift it. We will look first and explain the options."
+      },
+      {
+        "q": "Our hot water runs out by the afternoon. What are the options?",
+        "a": "It depends on how many dogs you wash, what heats your water now and what electrical supply you have. A larger cylinder, a bigger instantaneous heater on its own circuit, or a mix of both are the usual answers. Our plumbers and electricians work together, so the heater and its circuit are one job, done on a day you are closed."
+      },
+      {
+        "q": "Do you work with pet shops and small vets as well?",
+        "a": "Yes. Pet shops often need a sink for cleaning cages and bowls, a hand-wash basin and a sound drain. Small veterinary practices need clinical-style hand-wash basins, hot water and reliable electrics. Our engineers are DBS-checked, directly employed and fully insured, and we can work early, late or at weekends so animals and customers are not disturbed."
+      }
+    ],
+    "related": [
+      "salons-and-barbers",
+      "shops-and-retail",
+      "clinics-and-dental-practices"
+    ]
+  },
+  {
     "slug": "landlords-and-letting-agents",
     "name": "Landlords & Letting Agents",
+    "heroTitle": "Maintenance for landlords and agents",
+    "heroSub": "Gas safety records, EICRs, tenant call-outs and void-period work, with access arranged and a clear report after every visit.",
     "h1": "Property maintenance for landlords and letting agents in London",
     "metaTitle": "Landlord Plumbing & Maintenance, London | Ninja Plumbers",
     "metaDescription": "Property maintenance for landlords and letting agents: gas safety records, EICRs, tenant call-outs and void work across London. Call 020 3576 5825.",
     "eyebrow": "Landlords & agents",
     "icon": "certificate",
     "target": "property maintenance for landlords (90/mo) · landlord plumbing services (40/mo) · landlord gas safety certificate london (210/mo, owned by /services/gas-safety-certificate)",
-    "summary": "Annual gas safety records, EICRs, tenant call-outs and void-period work for landlords and letting agents, with access arranged and a clear report after each visit.",
+    "summary": "Annual gas safety records, EICRs, tenant call-outs and void-period work for landlords, letting agents, HMOs and student lets, with access arranged and a clear report after each visit.",
     "intro": "Property maintenance for landlords comes down to two jobs: keeping on the right side of the safety rules, and fixing what tenants report before a small fault turns into a big claim. Ninja Plumbers looks after rented flats, houses and HMOs across London and into Surrey for private landlords and letting agents. Our Gas Safe registered engineers carry out annual gas safety checks on domestic boilers and appliances, our registered electricians carry out EICRs, and the same team deals with leaks, blocked drains, boiler breakdowns and void-period refits. We arrange access with you or the tenant, agree the price before work starts and send a clear write-up for your records.",
     "needs": [
       {
@@ -767,7 +1029,7 @@
       "Blocked toilets, sinks and drains",
       "Void-period bathroom and kitchen refits",
       "Removing dead legs and little-used outlets",
-      "Fuse box upgrades in rented homes"
+      "Fuse box upgrades in HMOs and student lets"
     ],
     "guidance": [
       {
@@ -851,6 +1113,8 @@
   {
     "slug": "holiday-lets-and-serviced-apartments",
     "name": "Holiday Lets & Serviced Apartments",
+    "heroTitle": "Maintenance for holiday lets",
+    "heroSub": "Showers, hot water, heating and leaks fixed between guests, gas and electrical checks booked, and access arranged when you are away.",
     "h1": "Holiday let maintenance and plumbing in London",
     "metaTitle": "Holiday Let & Airbnb Maintenance, London | Ninja Plumbers",
     "metaDescription": "Holiday let maintenance for hosts and serviced apartments: changeover-day repairs, annual gas safety checks, showers, hot water and leaks. Call 020 3576 5825.",
@@ -973,6 +1237,8 @@
   {
     "slug": "guest-houses-and-small-hotels",
     "name": "Guest Houses & Small Hotels",
+    "heroTitle": "Plumbing for guest houses and B&Bs",
+    "heroSub": "En-suites, hot water for the breakfast rush, shower pumps and heating kept working, without disturbing your guests.",
     "h1": "Plumbing for guest houses, B&Bs and small hotels in London",
     "metaTitle": "Hotel & Guest House Plumbing, London | Ninja Plumbers",
     "metaDescription": "Hotel plumbing for guest houses, B&Bs and small hotels: en-suite showers, hot water at peak times, shower pumps, stacks and gas checks. Call 020 3576 5825.",
@@ -1034,6 +1300,11 @@
         "why": "How we schedule and price work for businesses that stay open while we are on site."
       },
       {
+        "href": "/services/commercial-washroom-refurbishment",
+        "label": "Commercial washroom refurbishment",
+        "why": "Shared and public toilets refitted without closing the whole building."
+      },
+      {
         "href": "/appliances/shower-pumps",
         "label": "Shower pumps",
         "why": "Pumps serving several en-suites work hard and are a common cause of guest complaints."
@@ -1057,11 +1328,6 @@
         "href": "/appliances/saniflo-macerator-pumps",
         "label": "Saniflo and macerator pumps",
         "why": "Useful when adding an en-suite to a room that is a long way from the soil stack."
-      },
-      {
-        "href": "/services/gas-safety-certificate",
-        "label": "Gas safety certificates",
-        "why": "Annual checks on the domestic-sized boilers and gas appliances in your building."
       }
     ],
     "faqs": [
@@ -1095,6 +1361,8 @@
   {
     "slug": "pubs-and-bars",
     "name": "Pubs & Bars",
+    "heroTitle": "Plumbing for pubs and bars",
+    "heroSub": "Customer toilets, glasswashers, cellar drainage and heating fixed before opening, after last orders or on a quiet day.",
     "h1": "Pub plumber for toilets, cellars and bars in London",
     "metaTitle": "Pub Plumber & Pub Toilet Refurbishment | Ninja Plumbers",
     "metaDescription": "Pub plumber in London for toilet refurbishment, glasswashers, cellar drainage, sump pumps and heating, planned around opening hours. Call 020 3576 5825.",
@@ -1156,6 +1424,11 @@
         "why": "Our main service for business premises, covering toilets, bar supplies and kitchen plumbing in pubs."
       },
       {
+        "href": "/services/commercial-washroom-refurbishment",
+        "label": "Commercial washroom refurbishment",
+        "why": "Customer toilets stripped out and refitted before opening or on your quietest days."
+      },
+      {
         "href": "/services/bathroom-installation",
         "label": "Bathroom Installation",
         "why": "The same team refits customer and staff toilets, from new urinals to full strip-outs."
@@ -1179,11 +1452,6 @@
         "href": "/appliances/water-softener-installation",
         "label": "Water Softeners",
         "why": "Softened water keeps glasswashers free of scale and glasses clearer through a busy service."
-      },
-      {
-        "href": "/services/boiler-repair",
-        "label": "Boiler Repair",
-        "why": "For pubs heated by a domestic-sized boiler that fails just as customers start arriving."
       }
     ],
     "faqs": [
@@ -1211,12 +1479,14 @@
     "related": [
       "cafes-and-restaurants",
       "guest-houses-and-small-hotels",
-      "churches-and-community-halls"
+      "places-of-worship-and-community-halls"
     ]
   },
   {
     "slug": "gyms-and-fitness-studios",
     "name": "Gyms & Fitness Studios",
+    "heroTitle": "Plumbing for gyms and fitness studios",
+    "heroSub": "Showers that stay hot, changing-room drains that keep up, hot water, air conditioning and electrics, planned around your class timetable.",
     "h1": "Gym plumbing and changing room showers in London",
     "metaTitle": "Gym Plumbing & Changing Room Showers | Ninja Plumbers",
     "metaDescription": "Gym plumbing in London: changing room showers, drains, hot water, pumps and air conditioning for gyms and studios, planned around classes. Call 020 3576 5825.",
@@ -1278,6 +1548,11 @@
         "why": "Our main service for business premises, covering showers, toilets, basins and water supplies in gyms."
       },
       {
+        "href": "/services/commercial-washroom-refurbishment",
+        "label": "Commercial washroom refurbishment",
+        "why": "Changing rooms and showers refitted in phases around your class timetable."
+      },
+      {
         "href": "/services/shower-installation",
         "label": "Shower Installation",
         "why": "New changing room showers with thermostatic valves and timed controls, fitted to suit heavy use."
@@ -1301,11 +1576,6 @@
         "href": "/appliances/shower-pumps",
         "label": "Shower Pumps",
         "why": "A pump can lift weak pressure so showers still perform when several run together."
-      },
-      {
-        "href": "/services/air-conditioning-installation",
-        "label": "Air Conditioning Installation",
-        "why": "Keeps studios and gym floors comfortable when classes are full and the weather is warm."
       }
     ],
     "faqs": [
@@ -1333,12 +1603,138 @@
     "related": [
       "beauty-and-tattoo-studios",
       "offices",
-      "churches-and-community-halls"
+      "places-of-worship-and-community-halls"
+    ]
+  },
+  {
+    "slug": "sports-clubs-and-studios",
+    "name": "Sports Clubs & Studios",
+    "heroTitle": "Plumbing for sports clubs & studios",
+    "heroSub": "Changing room showers, hot water, drains and heating for clubs, pavilions and studios, with work planned around fixtures, training and classes.",
+    "h1": "Changing room refurbishment and plumbing for sports clubs in London",
+    "metaTitle": "Changing Room Refurbishment, Sports Clubs | Ninja Plumbers",
+    "metaDescription": "Changing room refurbishment, showers, hot water and pavilion plumbing for sports clubs and studios in London, planned around fixtures. Call 020 3576 5825.",
+    "eyebrow": "Sports clubs",
+    "icon": "bathroom",
+    "target": "changing room refurbishment (320/mo) · changing room showers (40/mo) · sports club / pavilion / dance and martial arts studio plumbing",
+    "summary": "Changing room refurbishment, team showers that stay hot after a match, drains that cope with mud, pavilion frost protection and studio WCs, planned around fixtures.",
+    "intro": "Two teams coming off a wet pitch at the same time will find every weakness in a changing room. Ninja Plumbers handles changing room refurbishment, showers, hot water and drainage for football, rugby, cricket, hockey, tennis and bowls clubs, and for dance, martial arts and other small studios across London and nearby Surrey. We fit and repair team showers, size hot water for the post-match rush, clear drains clogged with mud and grass, and look after pavilions that sit empty for part of the year. Our registered electricians handle shower circuits, water heaters and lighting, so one team covers the job.",
+    "needs": [
+      {
+        "title": "Team showers after the final whistle",
+        "body": "After a match, two squads and the officials may all want a shower within the same half hour, and on a busy Saturday or a junior Sunday morning another game follows close behind. That peak, not the daily total, decides how much hot water you need stored and how fast it must recover. Undersized cylinders, tired immersion heaters and worn thermostatic valves all show up as cold showers for the last few in. We check storage, recovery, pipe sizes and pressure, then suggest changes that suit your fixture list.",
+        "icon": "bathroom"
+      },
+      {
+        "title": "Drains that cope with mud and grass",
+        "body": "Boots, kit and players carry mud, grass, sand and grit into the changing room, and all of it heads for the shower gullies and floor drains. Standard shower traps block quickly, and a slow drain soon floods the floor. Outside boot-wash areas benefit from a silt trap that can be emptied, and shower areas from larger gullies or channel drains laid to proper falls. Where a drain keeps blocking, a camera survey shows whether the pipe itself is damaged, too small or badly laid.",
+        "icon": "drain"
+      },
+      {
+        "title": "Pavilions that sit empty for months",
+        "body": "Cricket pavilions can be quiet all winter, and football and rugby clubhouses over the summer. Empty buildings suffer frozen and burst pipes, and water left standing in showers, tanks and cylinders is a legionella concern when the season restarts. The club, or its landlord, has a duty to manage that risk under HSE guidance (ACoP L8). We do the plumbing side: draining down and refilling, removing dead legs, fixing little-used outlets, cylinder and tank work, and fitting or replacing thermostatic mixing valves.",
+        "icon": "leak"
+      },
+      {
+        "title": "Kit laundry, outside taps and halls",
+        "body": "Many clubs wash kit on site, which needs a heavy-duty washing machine with a proper supply and a waste that copes with mud and lint. Outside taps for boot cleaning and pitch-side water need backflow protection matched to the risk under the Water Supply (Water Fittings) Regulations 1999. Club halls and studios need heating that warms a big space quickly. Our Gas Safe engineers cover domestic-sized boilers; a larger commercial boiler needs engineers with commercial gas qualifications, and we will tell you straight.",
+        "icon": "appliance"
+      }
+    ],
+    "does": [
+      "Changing room refurbishment and refits",
+      "Team shower installation and repair",
+      "Hot water cylinders sized for match days",
+      "Shower gullies and channel drains cleared",
+      "Pavilion drain-downs and frost protection",
+      "Kit laundry washing machine plumbing",
+      "Outside taps with backflow protection",
+      "Electric showers, water heaters and circuits"
+    ],
+    "guidance": [
+      {
+        "title": "Sizing hot water for match day",
+        "body": "Count the showers that could run at once when both teams and the officials come in, then allow for any match that follows close behind. A cylinder that copes with one game may be empty by the second. Options include a larger or second cylinder, a faster heat source, or putting home and away changing rooms on separate supplies. Stored water should stay hot enough to control bacteria, with thermostatic mixing valves bringing it down to a safe temperature at the shower. Electric showers can suit a small studio, but rarely a full team changing room."
+      },
+      {
+        "title": "Closing and reopening a seasonal pavilion",
+        "body": "Before the building shuts for the off-season, decide whether to keep a frost setting on the heating or have the water system drained down, and label the stopcock so any volunteer can find it. Isolate and drain outside taps. When the season restarts, flush every shower and tap before players use them, following the routine in your risk assessment, and check the cylinder reaches temperature. Keep a simple record of what was done and when. It helps the club show it is managing legionella risk, and it spots problems early."
+      },
+      {
+        "title": "Planning a changing room refurbishment",
+        "body": "A changing room refurbishment is easiest in the off-season, or one room at a time so home and away teams still have somewhere to change. Choose robust thermostatic or timed shower valves that are easy to isolate, slip-resistant floors laid to proper falls, drains sized for mud and wall finishes that wipe clean. Think about officials' changing, accessible WCs and showers, and separate facilities for women's and junior teams. Because our plumbers work alongside registered electricians, extractor fans, lighting and water heater circuits are planned in the same job."
+      }
+    ],
+    "links": [
+      {
+        "href": "/services/commercial-plumbing",
+        "label": "Commercial Plumbing",
+        "why": "Our main service for business premises, covering showers, toilets and water supplies in clubhouses and studios."
+      },
+      {
+        "href": "/services/commercial-washroom-refurbishment",
+        "label": "Commercial Washroom & Toilet Refurbishment",
+        "why": "Full changing room and toilet refits with robust showers, anti-slip floors and proper drainage."
+      },
+      {
+        "href": "/services/shower-installation",
+        "label": "Shower Installation",
+        "why": "New team showers with thermostatic or timed valves built for heavy post-match use."
+      },
+      {
+        "href": "/appliances/hot-water-cylinder-installation",
+        "label": "Hot Water Cylinders",
+        "why": "A larger or second cylinder so the second match of the day still gets hot showers."
+      },
+      {
+        "href": "/appliances/washing-machine-plumbing",
+        "label": "Washing Machine Plumbing",
+        "why": "Supplies and wastes for kit laundry machines that deal with muddy shirts and socks every week."
+      },
+      {
+        "href": "/appliances/outside-tap-installation",
+        "label": "Outside Taps",
+        "why": "Outside taps for boot cleaning and pitch-side water, fitted with the right backflow protection."
+      },
+      {
+        "href": "/services/drain-unblocking",
+        "label": "Drain Unblocking",
+        "why": "Shower gullies and floor drains blocked by mud, grass and grit from boots and kit."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Why do the showers run cold for the second match?",
+        "a": "Usually the first group has used the stored hot water and the cylinder cannot reheat fast enough before the next group comes in. A failing immersion element, a worn thermostatic valve or a heat source that is too small can make it worse. We check storage, recovery and valves, then explain the options, with the price agreed before any work starts."
+      },
+      {
+        "q": "Can you refurbish our changing rooms in the off-season?",
+        "a": "Yes, and the off-season is the best time for it. We strip out and refit showers, toilets, basins and drainage, lay slip-resistant floors to proper falls and fit easy-clean finishes. Our electricians handle extractor fans, lighting and shower or water heater circuits. If the work runs into the season, we can phase it room by room."
+      },
+      {
+        "q": "What should we do with the pavilion over winter?",
+        "a": "Either keep a frost setting on the heating with pipes lagged, or have the water system drained down if the building will be empty for long spells. Drain outside taps either way. Before reopening, the system needs refilling and every outlet flushing. We lag pipes, fit frost thermostats and isolating valves, and drain down and refill systems."
+      },
+      {
+        "q": "Can you work around training and fixtures?",
+        "a": "Yes. Send us your fixture list and training nights, and we will book work for days when the ground is quiet, early mornings or weekends outside match times. Studios can have work done between classes or before opening. For a burst pipe or flooded changing room, we run a 24/7 emergency callout."
+      },
+      {
+        "q": "Do you work with dance and martial arts studios?",
+        "a": "Yes. Studios usually need a reliable WC, basin and sometimes a shower, often squeezed into a small unit. We fix leaks and blockages, fit compact water heaters or electric showers with the right circuit, and can add a macerator WC where the drain is awkward. Our F-Gas certified engineers can also fit air conditioning for hot summer classes."
+      }
+    ],
+    "related": [
+      "gyms-and-fitness-studios",
+      "pubs-and-bars",
+      "places-of-worship-and-community-halls"
     ]
   },
   {
     "slug": "nurseries-and-childcare",
     "name": "Nurseries & Childcare",
+    "heroTitle": "Plumbing for nurseries and childcare",
+    "heroSub": "Child-height toilets and basins, scald-safe hot water, nappy-change sinks and heating, fitted outside the hours children are with you.",
     "h1": "Plumbing for nurseries and childcare settings in London",
     "metaTitle": "Nursery Toilets & Plumbing, London | Ninja Plumbers",
     "metaDescription": "Child-height toilets, basins, TMVs for scald protection, nappy-change sinks and heating for London nurseries, done outside session times. Call 020 3576 5825.",
@@ -1449,135 +1845,263 @@
     ],
     "related": [
       "clinics-and-dental-practices",
-      "churches-and-community-halls",
+      "places-of-worship-and-community-halls",
       "offices"
     ]
   },
   {
-    "slug": "churches-and-community-halls",
-    "name": "Churches & Community Halls",
-    "h1": "Heating and plumbing for churches and community halls in London",
-    "metaTitle": "Church Heating & Plumbing, London | Ninja Plumbers",
-    "metaDescription": "Heating, frost protection, kitchens and WCs for churches and community halls in London, with work planned around services and bookings. Call 020 3576 5825.",
-    "eyebrow": "Churches & halls",
+    "slug": "places-of-worship-and-community-halls",
+    "name": "Places of Worship & Community Halls",
+    "heroTitle": "Heating & plumbing for places of worship",
+    "heroSub": "Heating, ablution areas, kitchens and WCs for churches, mosques, gurdwaras, temples, synagogues and halls, planned around worship times and bookings.",
+    "h1": "Church heating, wudu areas and plumbing for places of worship in London",
+    "metaTitle": "Church Heating, Wudu & Ablution Areas | Ninja Plumbers",
+    "metaDescription": "Church heating, wudu and ablution areas, kitchens and WCs for places of worship and community halls in London, planned around worship. Call 020 3576 5825.",
+    "eyebrow": "Places of worship",
     "icon": "heating",
-    "target": "church heating (210/mo) · church plumbing (20/mo)",
-    "summary": "Heating for large, occasionally used spaces, frost protection for quiet weeks, and working kitchens and WCs for halls, planned around services and bookings.",
-    "intro": "Church heating is a different problem from heating a house. A tall, solid-walled building used for a few hours a week has to be warm when people arrive without burning fuel the rest of the time. Ninja Plumbers repairs and improves heating in churches, chapels and community halls across London, protects little-used buildings from frost and keeps hall kitchens, WCs and water supplies working. Our Gas Safe engineers work on domestic-sized boilers, and we will tell you straight if your plant is larger. Work is planned around services, weddings, funerals and hall bookings.",
+    "target": "church heating (210/mo) · wudu station (90/mo) · ablution facilities (70/mo) · church plumbing (20/mo)",
+    "summary": "Heating for tall, occasionally used buildings, wudu and ablution areas that cope with the rush before prayers, frost protection and working hall kitchens and WCs.",
+    "intro": "Church heating, a busy wudu area before Friday prayers and a kitchen that feeds a crowd after worship all ask a lot of a building's pipes. Ninja Plumbers looks after heating, hot water and plumbing for churches, mosques, gurdwaras, temples, synagogues and community and village halls across London and nearby Surrey. We repair and improve heating in tall, occasionally used buildings, plan and refit ablution facilities, protect quiet buildings from frost and keep kitchens and WCs working. Our Gas Safe engineers work on domestic-sized boilers, and we will tell you straight if your plant is larger. Work is planned around worship times, festivals and hall bookings.",
     "needs": [
       {
-        "title": "Heat where and when people are",
-        "body": "Bringing a whole nave up to a comfortable temperature can take hours and a lot of gas. Many buildings do better with a mix: the main system brought up gently before services, and quicker heat in the spaces used during the week, such as a side chapel, vestry or meeting room. Timers, frost settings and separate zones make a real difference. We repair radiators and pipework, fit better controls, and our electricians can wire electric heating for smaller rooms.",
+        "title": "Heat where and when people gather",
+        "body": "A tall nave, prayer hall or temple hall used for a few hours a week has to be warm when people arrive without burning gas the rest of the time. Many buildings do better with zones: the main space brought up gently before worship, and quicker heat in rooms used during the week, such as a vestry, classroom or office. Where people sit or pray on the floor, underfloor heating can work well. We repair radiators and pipework, fit better controls, and our electricians can wire heaters for smaller rooms.",
         "icon": "heating"
       },
       {
-        "title": "Boilers of every size",
-        "body": "Some churches and halls run on a domestic-sized boiler; others have a large commercial boiler in a plant room. Our Gas Safe engineers work on domestic-sized boilers and appliances, including those in halls, vestries and church houses. Larger commercial plant, and commercial catering gas equipment such as a range in the hall kitchen, needs engineers with commercial gas qualifications. We will tell you straight if your equipment is beyond what we do, and can often still help with leaks and radiators.",
-        "icon": "boiler"
+        "title": "Wudu and ablution areas built for the rush",
+        "body": "Ablution facilities are used hard in short bursts, with many people washing hands, face, arms and feet in the minutes before prayer, and busier still at Friday midday prayers and during Ramadan and Eid. A good wudu station has a row of low-level taps with fixed seating, a comfortable place to wash feet, a floor laid to fall into gullies or a channel drain, and anti-slip, easy-clean finishes. Hot water has to be sized for that peak, with thermostatic mixing valves keeping it at a safe, comfortable temperature.",
+        "icon": "tap"
+      },
+      {
+        "title": "Kitchens and WCs that work in bursts",
+        "body": "Halls host toddler groups, lunch clubs, classes and celebrations, and a gurdwara langar kitchen may cook and wash up for large numbers every day. Sinks, hand-wash basins, water heaters and dishwashers need to keep up, and drains need protecting from fat. Some kitchens keep separate sinks for different uses, such as meat and dairy. We do the plumbing side and fix running toilets and blocked wastes. Commercial catering gas equipment such as large burners and ranges needs engineers with commercial gas qualifications, and we will say so plainly.",
+        "icon": "bathroom"
       },
       {
         "title": "Frost protection for quiet buildings",
-        "body": "An empty building in January is where burst pipes happen. Pipes in unheated vestries, lofts, towers and outside toilets are most at risk, and a leak can go unnoticed until the next service. Lagging exposed pipes, a frost thermostat that brings the heating on at a low temperature, and a stopcock volunteers can find and turn all help. For buildings left empty for long spells, draining down part of the system may be the safer option.",
+        "body": "An empty building in January is where burst pipes happen. Pipes in unheated vestries, lofts, towers, ablution rooms and outside toilets are most at risk, and a leak can go unnoticed until the next gathering. Lagging exposed pipes, a frost thermostat that brings the heating on at a low temperature, and a stopcock that volunteers can find and turn all help. For buildings left empty for long spells, draining down part of the system may be the safer option, and we can do that and refill it later.",
         "icon": "leak"
-      },
-      {
-        "title": "Kitchens, WCs and water in the hall",
-        "body": "Halls host toddler groups, lunch clubs, exercise classes and parties, so kitchens and toilets work hard in bursts and then sit idle. Sinks, hand-wash basins, water heaters and dishwashers need to be reliable, and drains need to cope with fat from community meals. We fix leaks, running toilets and blocked wastes, and plumb in kitchen sinks and dishwashers. Because we also do electrics, an extractor fan or a new circuit for a water heater can be done in the same visit.",
-        "icon": "bathroom"
       }
     ],
     "does": [
-      "Heating repairs on domestic-sized boilers",
-      "Radiator, pipework and valve replacement",
-      "Heating timers, zoning and frost thermostats",
-      "Pipe lagging and winter drain-downs",
-      "Hall kitchen sink and dishwasher plumbing",
-      "Toilet repairs and blockages cleared",
-      "Dead legs and unused outlets removed",
-      "Outside tap installation and repairs"
+      "Church heating repairs on domestic-sized boilers",
+      "Radiators, zoning, timers and frost thermostats",
+      "Wudu station and ablution area refits",
+      "Low-level taps, seating and foot-washing positions",
+      "Thermostatic mixing valves fitted and replaced",
+      "Hot water sized for peak prayer times",
+      "Hall and langar kitchen sink plumbing",
+      "Floor gullies, channel drains and blockages"
     ],
     "guidance": [
       {
         "title": "Getting the heating on in time",
-        "body": "Thick stone and brick walls soak up heat, so a building used on Sunday morning may need the heating on for several hours beforehand, sometimes from the evening before. A programmable timer, or a controller that learns how long the building takes to warm, saves guesswork and wasted gas. Keep internal doors closed and deal with obvious draughts. Between services, a low background setting can help protect the fabric and the organ from damp, but check with your architect or your denomination's advisers on what suits your building."
+        "body": "Thick stone and brick walls soak up heat, so a church, temple or hall used on a weekend morning may need the heating on for several hours beforehand, sometimes from the evening before. A programmable timer, or an optimising controller that learns how long the building takes to warm, saves guesswork and wasted gas. Keep internal doors closed and deal with obvious draughts. A low background setting between services can help protect the fabric, organ and furnishings from damp, but check with your architect or your faith body's building advisers on what suits your building."
       },
       {
-        "title": "Protecting little-used buildings in winter",
-        "body": "Before winter, check that exposed pipes are lagged, that the frost setting on your heating actually brings it on, and that more than one person knows where the stopcock is. If the building will be empty for more than a few days in cold weather, ask a volunteer to look in, check for damp patches and listen for running water. Outside toilets and taps freeze first, and an isolating valve indoors lets you drain an outside tap. If a pipe bursts, turn the water off at the stopcock and call our 24/7 emergency line."
+        "title": "Planning an ablution or wudu area",
+        "body": "Start with numbers: how many people wash at the busiest prayer, and roughly how long each takes. That peak decides how many wudu positions you need, how much hot water must be stored or heated, and how large the drains and gullies should be. Fix seats at a comfortable height with taps within easy reach, and add a grab rail for older worshippers. Floors need a slip-resistant finish laid to fall, with walls that wipe clean. Plan an accessible position, separate areas where your community needs them, and an extractor fan to keep damp down."
       },
       {
-        "title": "Legionella and alterations",
-        "body": "Buildings used once or twice a week have the conditions legionella bacteria like: water standing in pipes, tanks and little-used showers. The church, charity or hall committee has a duty to manage that risk under HSE guidance, and running kitchen and WC taps for a few minutes before a group arrives is a sensible habit. We do the plumbing side: removing dead legs, cutting out unused outlets, tank and cylinder work and fitting or replacing thermostatic mixing valves. If your building is listed or your denomination requires approval for alterations, get it before work starts."
+        "title": "Legionella, quiet weeks and approvals",
+        "body": "Buildings used once or twice a week leave water standing in pipes, tanks and little-used taps and showers, the conditions legionella bacteria like. Ablution areas that are packed on Fridays and quiet midweek are similar. The trustees, committee or other body responsible for the building has a duty to manage that risk under HSE guidance (ACoP L8), and running taps for a few minutes before a group arrives is a sensible habit. We do the plumbing side: removing dead legs, fixing little-used outlets, tank and cylinder work and fitting mixing valves. If your building is listed or alterations need approval, get it first."
       }
     ],
     "links": [
       {
         "href": "/services/commercial-plumbing",
         "label": "Commercial Plumbing",
-        "why": "The plumbing work we do for churches, halls and other small non-domestic buildings."
+        "why": "The plumbing work we do for places of worship, halls and other small non-domestic buildings."
+      },
+      {
+        "href": "/services/commercial-washroom-refurbishment",
+        "label": "Commercial Washroom & Toilet Refurbishment",
+        "why": "Refitting WCs and ablution areas with low-level taps, seating, gullies and anti-slip, easy-clean finishes."
       },
       {
         "href": "/heating",
         "label": "Heating services",
-        "why": "Our full range of heating work, from boiler repairs to radiators, controls and upgrades."
+        "why": "Our full range of heating work for tall, occasionally used buildings, from repairs to controls and zoning."
       },
       {
         "href": "/services/boiler-repair",
         "label": "Boiler Repair",
-        "why": "For domestic-sized boilers in halls, vestries and church houses that fail before a service."
+        "why": "For domestic-sized boilers in halls, vestries and attached houses that fail before worship or a booking."
       },
       {
-        "href": "/services/central-heating-installation",
-        "label": "Central Heating Installation",
-        "why": "Replacing tired pipework, radiators and controls in buildings heated only a few days a week."
+        "href": "/appliances/hot-water-cylinder-installation",
+        "label": "Hot Water Cylinders",
+        "why": "Stored hot water sized for the rush before prayers or the washing-up after a community meal."
       },
       {
         "href": "/services/pipe-repair",
         "label": "Pipe Repair",
-        "why": "Frozen and burst pipes in unheated vestries, towers and outside toilets."
+        "why": "Frozen and burst pipes in unheated vestries, towers, ablution rooms and outside toilets."
       },
       {
         "href": "/services/drain-unblocking",
         "label": "Drain Unblocking",
-        "why": "Hall kitchen sinks and toilets blocked by fat from community meals and heavy use."
-      },
-      {
-        "href": "/electrical",
-        "label": "Electrical services",
-        "why": "Wiring, lighting and heater circuits for halls and meeting rooms, handled by our electricians."
+        "why": "Ablution gullies, hall kitchen sinks and toilets blocked by heavy use, grease or debris."
       }
     ],
     "faqs": [
       {
-        "q": "Can you service our church boiler?",
-        "a": "If it is a domestic-sized boiler, yes. Our Gas Safe engineers service and repair domestic-sized boilers and appliances. Many churches have larger commercial boilers, which need engineers with commercial gas qualifications. Send us the make and model, or a photo of the data plate, and we will tell you straight whether it is something we can do."
+        "q": "Can you service the boiler in our church, mosque or hall?",
+        "a": "If it is a domestic-sized boiler, yes. Our Gas Safe engineers service and repair domestic-sized boilers and appliances. Many larger places of worship have commercial boilers, which need engineers with commercial gas qualifications. Send us the make and model, or a photo of the data plate, and we will tell you straight whether it is something we can do."
+      },
+      {
+        "q": "Can you build or refit a wudu area?",
+        "a": "Yes. We plan and fit ablution facilities: rows of low-level taps with fixed seating, foot-washing positions, floor gullies or channel drains, anti-slip and easy-clean finishes, and thermostatic mixing valves. We size hot water and drainage for your busiest prayer time. Our electricians handle extractor fans, lighting and water heater circuits, so one team does the whole job."
+      },
+      {
+        "q": "Why does the building take so long to warm up?",
+        "a": "Thick walls and high ceilings absorb a lot of heat before the air feels warm. Undersized radiators, sludge in the system or basic controls make it worse. Better timing, zoning and balanced radiators often help noticeably. We can look at your system and suggest practical improvements, starting with the ones likely to make the most difference."
       },
       {
         "q": "How do we stop pipes freezing when the building is empty?",
         "a": "Lag pipes in unheated areas, keep a frost setting on the heating and make sure the frost thermostat actually works. Label the stopcock so anyone can find it. For long empty spells, draining down part of the system can be safer. We lag pipes, fit frost thermostats and isolating valves, and drain down and refill systems."
       },
       {
-        "q": "Why does the church take so long to warm up?",
-        "a": "Thick walls and high ceilings absorb a lot of heat before the air feels warm. Undersized radiators, sludge in the system or basic controls make it worse. Better timing, zoning and balanced radiators often help noticeably. We can look at your system and suggest practical improvements, starting with the ones likely to make the most difference."
-      },
-      {
-        "q": "Can you work around services and hall bookings?",
-        "a": "Yes. Tell us when services, weddings, funerals and regular bookings happen, and we will plan around them, working on weekdays, early or late. Larger jobs can be split so the building stays usable. For emergencies such as a burst pipe or a flooded toilet, we have a 24/7 emergency callout, and the price is agreed before work starts."
-      },
-      {
-        "q": "Who is responsible for legionella in a church hall?",
-        "a": "The organisation responsible for the building has a duty to manage legionella risk under HSE guidance, and a risk assessment by a specialist is the usual starting point. We don't carry out assessments, but we do the plumbing work they recommend: removing dead legs, fixing little-used outlets, tank and cylinder work and fitting thermostatic mixing valves."
+        "q": "Can you work around worship times and hall bookings?",
+        "a": "Yes. Tell us your prayer and service times, festivals, weddings, funerals and regular bookings, and we will plan around them, working on weekdays, early or late. Larger jobs such as an ablution refit can be phased so some positions stay in use. For a burst pipe or flooded WC there is a 24/7 emergency callout, and the price is agreed before work starts."
       }
     ],
     "related": [
       "nurseries-and-childcare",
-      "cafes-and-restaurants",
-      "offices"
+      "sports-clubs-and-studios",
+      "cafes-and-restaurants"
+    ]
+  },
+  {
+    "slug": "garages-and-workshops",
+    "name": "Garages & Workshops",
+    "heroTitle": "Plumbing & electrics for garages",
+    "heroSub": "Staff washrooms, hot water for oily hands, heating, drains and electrics for garages and workshops, booked around the jobs on your ramps.",
+    "h1": "Garage and workshop plumbing, welfare and electrics in London",
+    "metaTitle": "Garage & Workshop Plumbing and Electrics | Ninja Plumbers",
+    "metaDescription": "Garage and workshop plumbing in London: staff toilets, hand-wash stations, hot water, heating, drains and electrics including EV chargers. Call 020 3576 5825.",
+    "eyebrow": "Garages & workshops",
+    "icon": "commercial",
+    "target": "garage and workshop plumbing, welfare facilities (low volume)",
+    "summary": "Plumbing, heating and electrics for garages and workshops: staff toilets, hand-wash stations for oily hands, hot water, outside taps, drains, sockets and EV chargers.",
+    "intro": "A workshop runs on its ramps and tools, but the staff toilet, the hand-wash sink and the heating in the office matter just as much to the people working there. Ninja Plumbers handles garage and workshop plumbing and welfare facilities for small garages, body shops and trade workshops across London and nearby Surrey. We refit staff washrooms, fit deep hand-wash sinks with proper hot water, clear drains, add outside taps and look after domestic-sized boilers. Our registered electricians cover sockets, lighting, consumer units and EV chargers, so one team handles the lot, early or late around your bookings.",
+    "needs": [
+      {
+        "title": "Welfare facilities for the team",
+        "body": "The Workplace (Health, Safety and Welfare) Regulations 1992 require suitable toilets and washing facilities with hot and cold, or warm, running water, plus soap and a way to dry hands. In many garages the washroom is an afterthought at the back of the unit, with a tired cistern and a basin that only runs cold. We repair or refit staff toilets and washrooms, add extractor fans and lighting, and make sure the hot water actually reaches the tap.",
+        "icon": "bathroom"
+      },
+      {
+        "title": "Hand washing that shifts oil and grease",
+        "body": "A small cloakroom basin is not much use when hands are covered in engine oil. A deep sink or trough with a lever or knee-operated tap, and plenty of warm water, makes cleaning up quicker and keeps grime off door handles. Hand cleaners and grease wash down with the water, so the waste needs to be sized for it and easy to clear. A point-of-use heater near the bays saves waiting for water from a distant boiler.",
+        "icon": "tap"
+      },
+      {
+        "title": "Heating the office and welfare areas",
+        "body": "Most garages heat the office, reception and staff room with a domestic-sized gas boiler and radiators, or with electric heaters. Our Gas Safe engineers repair, service and replace domestic-sized boilers. Large warm-air heaters and radiant tube heaters in the workshop itself are commercial plant and need engineers with commercial gas qualifications, and we will tell you straight if your equipment is beyond what we do. We can also fit air conditioning in offices.",
+        "icon": "boiler"
+      },
+      {
+        "title": "Electrics that keep the bays working",
+        "body": "Workshops draw heavy loads from chargers, heaters, lifts and power tools, and old installations often have too few circuits and sockets in the wrong places. Our electricians add sockets and circuits, replace consumer units, upgrade lighting over the bays and carry out EICRs. If you sell or service electric vehicles, we can install EV charge points for the workshop and forecourt. Compressors, air lines and MOT equipment are for specialist suppliers.",
+        "icon": "electrical"
+      }
+    ],
+    "does": [
+      "Staff toilet and washroom repairs and refits",
+      "Deep hand-wash sinks for oily hands",
+      "Point-of-use water heaters near the bays",
+      "Domestic-sized boiler repair and servicing",
+      "Outside taps and hose wash-down points",
+      "Blocked drains, gullies and toilets",
+      "Sockets, lighting and consumer units",
+      "EV charger installation for workshops"
+    ],
+    "guidance": [
+      {
+        "title": "Oil separators: what we do and do not do",
+        "body": "Many garages have an oil interceptor, also called a separator, between the workshop floor drains and the sewer or surface water drain. It must be emptied by a licensed waste contractor, and the waste needs the right paperwork. We do not provide that service. What we can do is clear blockages in the ordinary drainage around it, repair gullies and pipework, and survey the drains by CCTV to show where problems are. Ask your waste contractor about the separator's condition and alarm."
+      },
+      {
+        "title": "Washing vehicles and using outside taps",
+        "body": "If you wash vehicles on site, check where the water goes. Wash water with detergent, oil and road dirt should not go into a surface water drain, which often runs straight to a local river. Your water company or the Environment Agency can advise on what applies to you. An outside tap used with a hose needs backflow protection so dirty water cannot siphon back into the supply. Fit a frost-proof tap or insulate the pipe, and isolate it over winter."
+      },
+      {
+        "title": "Keeping the welfare area usable",
+        "body": "Staff will put up with a lot in a busy workshop, but a broken toilet or no hot water soon becomes a real problem. Check the washroom each week for a running cistern, a dripping tap or a blocked basin. Keep oil, rags and hand-cleaner tubs out of the toilet. If the washroom needs refitting, consider wipe-clean wall panels, a robust WC, a deep basin and an extractor fan. We can plan the work around bookings and do it early or late."
+      }
+    ],
+    "links": [
+      {
+        "href": "/services/commercial-plumbing",
+        "label": "Commercial Plumbing",
+        "why": "Our main service for business premises, covering welfare facilities, water supplies, leaks and sinks."
+      },
+      {
+        "href": "/services/commercial-washroom-refurbishment",
+        "label": "Commercial Washroom & Toilet Refurbishment",
+        "why": "Turns a tired staff toilet into a hard-wearing washroom that meets workplace welfare expectations."
+      },
+      {
+        "href": "/services/drain-unblocking",
+        "label": "Drain Unblocking",
+        "why": "Clears blocked gullies, toilets and pipework, including the ordinary drainage around oil separators."
+      },
+      {
+        "href": "/services/boiler-repair",
+        "label": "Boiler Repair",
+        "why": "For offices and staff rooms heated by a domestic-sized boiler that fails on a cold morning."
+      },
+      {
+        "href": "/appliances/outside-tap-installation",
+        "label": "Outside Taps",
+        "why": "A hose point for washing down, fitted with the backflow protection the regulations require."
+      },
+      {
+        "href": "/services/ev-charger-installation",
+        "label": "EV Charger Installation",
+        "why": "Charge points for garages that sell, service or repair electric vehicles."
+      },
+      {
+        "href": "/services/eicr",
+        "label": "EICR Certificates",
+        "why": "A periodic inspection helps show a hard-working workshop installation is being kept safe."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Can you empty our oil interceptor?",
+        "a": "No. An oil interceptor or separator must be emptied by a licensed waste contractor, who also provides the waste paperwork. We do not offer that service. We can clear blockages in the drains leading to and from it, repair gullies and pipes, and carry out a CCTV drain survey if you need to know the condition of the pipework."
+      },
+      {
+        "q": "Can you service the heaters in our workshop?",
+        "a": "It depends on the heater. Our Gas Safe engineers work on domestic-sized boilers and appliances, which often heat the office and staff room. Large warm-air heaters and radiant tube heaters in the workshop are commercial plant and need engineers with commercial gas qualifications. Send us a photo of the data plate and we will tell you straight whether we can help."
+      },
+      {
+        "q": "What welfare facilities does a small garage need?",
+        "a": "The Workplace (Health, Safety and Welfare) Regulations 1992 expect suitable toilets and washing facilities with hot and cold, or warm, running water, soap and a way to dry hands. The number depends on how many people work there. HSE guidance gives more detail. We can repair what you have, add a hand-wash sink by the bays or refit the washroom."
+      },
+      {
+        "q": "Can you install EV chargers at our garage?",
+        "a": "Yes. Our registered electricians install EV charge points for workshops that sell, service or repair electric vehicles. We will check your supply and consumer unit first, as a charger adds a large load to an installation that may already be busy. If the board needs replacing or extra circuits are needed, we can do that as part of the same job."
+      },
+      {
+        "q": "Can you work while the garage is open?",
+        "a": "Often, yes. We can work in the office or washroom while the bays carry on, and save jobs that need the water or power off for early mornings, evenings or weekends. The price is agreed before work starts, and our engineers are DBS-checked, directly employed and fully insured. For burst pipes or a total power loss, we run a 24/7 emergency callout."
+      }
+    ],
+    "related": [
+      "shops-and-retail",
+      "offices",
+      "dog-groomers-and-pet-businesses"
     ]
   },
   {
     "slug": "blocks-of-flats-and-managing-agents",
     "name": "Blocks of Flats & Managing Agents",
+    "heroTitle": "Plumbing for blocks of flats",
+    "heroSub": "Shared stacks, communal drainage, water tanks, leaks between flats and heating, reported back to managing agents and freeholders.",
     "h1": "Communal plumbing for blocks of flats and managing agents in London",
     "metaTitle": "Block Management & Communal Plumbing | Ninja Plumbers",
     "metaDescription": "Communal plumbing for blocks of flats: soil stacks, drains, water tanks, booster pumps and leaks between flats, reported to your agent. Call 020 3576 5825.",

@@ -12,7 +12,9 @@ import data from './sectors.json';
 export type Sector = {
   slug: string;
   name: string;
-  h1: string;
+  heroTitle?: string;   // short landing-page H1
+  heroSub?: string;     // one-line subtitle under it
+  h1: string;           // longer keyword heading, opens the page body as an H2
   metaTitle: string;
   metaDescription: string;
   eyebrow: string;

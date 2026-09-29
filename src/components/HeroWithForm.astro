@@ -21,6 +21,10 @@ const {
   // Faint plumbing line-art behind the copy. Masked to fade out under the
   // form and CTAs so it never competes with them — see .hero-split--pattern.
   pattern = false,
+  // Landing-page layout: a short title and one-line subtitle, the call
+  // buttons, then the form. No bullets or hours line in the hero, and the
+  // breadcrumb is hidden on phones, so the form sits high on a small screen.
+  landing = false,
 } = Astro.props;
 
 // `tel` is the whole booking object, not the number string. Passing
@@ -34,7 +38,7 @@ if (!tel || typeof tel.tel !== 'string' || typeof tel.display !== 'string') {
   );
 }
 ---
-<section class:list={['hero-split', { 'hero-split--pattern': pattern }]}>
+<section class:list={['hero-split', { 'hero-split--pattern': pattern, 'hero-split--landing': landing }]}>
   <div class="container hero-split-grid">
     <div class="hero-split-copy">
       {breadcrumb.length > 0 && (
@@ -61,13 +65,13 @@ if (!tel || typeof tel.tel !== 'string' || typeof tel.display !== 'string') {
         </a>
       </div>
 
-      {bullets.length > 0 && (
+      {!landing && bullets.length > 0 && (
         <ul class="hero-split-bullets">
           {bullets.map((b) => <li><Tick /> {b}</li>)}
         </ul>
       )}
 
-      <p class="hero-split-hours">{site.hours.office} &middot; {site.hours.emergency}</p>
+      {!landing && <p class="hero-split-hours">{site.hours.office} &middot; {site.hours.emergency}</p>}
     </div>
 
     <div class="hero-split-form">

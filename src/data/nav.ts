@@ -56,6 +56,7 @@ export const serviceGroups: ServiceGroup[] = [
     services: [
       'bathroom-installation', 'shower-installation', 'shower-repair',
       'bath-installation', 'toilet-installation', 'wet-rooms-and-walk-in-showers',
+      'commercial-washroom-refurbishment',
     ],
     extra: [
       { label: 'Shower pumps', href: '/appliances/shower-pumps' },

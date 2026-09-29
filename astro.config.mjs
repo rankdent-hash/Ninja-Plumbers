@@ -118,6 +118,8 @@ export default defineConfig({
     // Sector pages live under /commercial/[slug]; the bare path has no page
     // of its own, so it goes to the Commercial Plumbing service page.
     '/commercial': { status: 301, destination: '/services/commercial-plumbing' },
+    // Widened to every faith and community hall.
+    '/commercial/churches-and-community-halls': { status: 301, destination: '/commercial/places-of-worship-and-community-halls' },
   },
   adapter: vercel(),
   integrations: [

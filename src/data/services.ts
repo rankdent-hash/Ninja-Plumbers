@@ -2709,6 +2709,75 @@ export const services: Service[] = [
       },
     ],
   },
+  {
+    slug: 'commercial-washroom-refurbishment',
+    title: 'Commercial Washroom Refurbishment',
+    h1: 'Commercial washroom and toilet refurbishment in London',
+    metaTitle: 'Commercial Washroom Refurbishment London | Ninja Plumbers',
+    metaDescription:
+      'Office, shop, pub, restaurant and changing-room toilets refurbished across London, planned around your opening hours. Price agreed first. Call 020 3576 5825.',
+    eyebrow: 'Washrooms',
+    icon: 'bathroom',
+    target: 'commercial toilet refurbishment (480/mo) · commercial washroom refurbishment (390/mo) · changing room refurbishment (320/mo) · office washroom refurbishment (210/mo) · restaurant toilet refurbishment (90/mo) · pub toilet refurbishment (70/mo)',
+    summary:
+      'Staff and customer toilets, washrooms and changing rooms stripped out and refitted, planned around your trading hours.',
+    intro:
+      'Tired toilets are one of the first things customers and staff notice, and one of the hardest rooms to take out of use in a busy building. We strip out and refit commercial washrooms, from a single staff WC in a shop to the customer toilets in a pub, an office floor or a club changing room. The plumbing, drainage, lighting, extraction and water heating are handled by one team, the work is phased so you always have a toilet available, and the price is agreed before anything starts.',
+    does: [
+      'Staff and customer toilet refurbishments',
+      'Office washrooms and shower rooms',
+      'Pub, restaurant and café customer toilets',
+      'Changing rooms and team showers',
+      'Accessible WCs and baby-change areas',
+      'Urinals, cubicles, vanity units and IPS panels',
+      'Water heaters, extraction and lighting',
+      'Phased work so a toilet stays open',
+    ],
+    guidance: [
+      {
+        title: 'How many toilets you need',
+        body: 'For workplaces, the Workplace (Health, Safety and Welfare) Regulations 1992 and the HSE Approved Code of Practice set minimum numbers of toilets and washbasins by headcount: one of each for up to five people, two for six to 25, and so on. Basins need hot and cold, or warm, running water. A refurbishment is a good moment to check you still meet those numbers after staff changes.',
+      },
+      {
+        title: 'Plan it around trading',
+        body: 'Most businesses cannot lose every toilet at once. We phase the work so one WC or one side stays in use, or do the noisy strip-out early, late or at the weekend. Tell us your opening hours and your busiest days, and the programme is built around them rather than the other way round.',
+      },
+      {
+        title: 'Hard-wearing and easy to clean',
+        body: 'Commercial toilets take far heavier use than a home bathroom. Concealed cisterns behind lockable IPS panels, wall-hung pans for easy floor cleaning, vandal-resistant or sensor taps, and urinals with flush controls so they do not run all night all save time and water. Isolating valves on every fitting mean one fault never closes the whole room.',
+      },
+      {
+        title: 'Ventilation, access and the regulations',
+        body: 'Toilets need mechanical extraction, and new or substantially altered facilities may need to meet Building Regulations, including accessible toilet provision where it applies. We will tell you what your job needs, fit the extraction and electrics with our own electricians, and work with your landlord or building management where their approval is needed.',
+      },
+    ],
+    aside: {
+      title: 'Send us photos and a floor plan',
+      body: 'Photos of the room, rough measurements and your headcount or customer numbers are usually enough for us to give you an idea of what is involved before a survey.',
+    },
+    faqs: [
+      {
+        q: 'Can you refurbish our toilets without closing the business?',
+        a: 'Usually, yes. We phase the work so at least one toilet stays in use, and schedule the strip-out and noisiest work outside your opening hours. For a single-WC premises, we agree the shortest practical closure and do it on your quietest day.',
+      },
+      {
+        q: 'Do you handle the electrics and extraction too?',
+        a: 'Yes. Our registered electricians fit the lighting, extractor fans, hand dryers and any water heater circuits, so the whole washroom is done by one team and one price.',
+      },
+      {
+        q: 'Can you fit an accessible toilet?',
+        a: 'Yes. We fit accessible WCs, including the grab rails, basin and emergency alarm they need. Space is usually the deciding factor, so we will check the room and tell you what is possible before you commit.',
+      },
+      {
+        q: 'Do you refurbish changing rooms and showers?',
+        a: 'Yes, for gyms, sports clubs and workplaces. Showers under peak demand need hot water sized for it, strong drainage and valves that are easy to isolate and service, and we plan all of that as part of the job.',
+      },
+      {
+        q: 'How is the price worked out?',
+        a: 'After a survey, based on the number of fittings, what is behind the walls and floors, the finishes you choose and how the work has to be phased. The price is agreed with you before anything starts.',
+      },
+    ],
+  },
 ];
 
 export default services;
