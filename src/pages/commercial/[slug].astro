@@ -80,22 +80,6 @@ const serviceSchema = {
   />
 
   <section class="section">
-    <div class="container">
-      <span class="eyebrow">What premises like yours need</span>
-      <h2>Plumbing, heating and electrics for {sector.name.replace('&', 'and').toLowerCase()}</h2>
-      <ul class="grid grid-2 card-grid">
-        {sector.needs.map((n) => (
-          <li class="card">
-            <div class="icon"><ServiceIcon name={n.icon ?? iconForNeed(n.title, n.body)} /></div>
-            <h3>{n.title}</h3>
-            <p>{n.body}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </section>
-
-  <section class="section section-alt">
     <div class="container service-row">
       <div class="service-copy">
         <span class="eyebrow">What we do</span>
@@ -113,6 +97,22 @@ const serviceSchema = {
       <aside class="sector-scene-wrap">
         <SectorScene sector={sector} />
       </aside>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <span class="eyebrow">What premises like yours need</span>
+      <h2>Plumbing, heating and electrics for {sector.name.replace('&', 'and').toLowerCase()}</h2>
+      <ul class="grid grid-2 card-grid">
+        {sector.needs.map((n) => (
+          <li class="card">
+            <div class="icon"><ServiceIcon name={n.icon ?? iconForNeed(n.title, n.body)} /></div>
+            <h3>{n.title}</h3>
+            <p>{n.body}</p>
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
 
