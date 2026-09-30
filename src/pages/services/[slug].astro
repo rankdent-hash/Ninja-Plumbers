@@ -28,7 +28,7 @@ import { areas, allAreas } from '../../data/areas';
 import { serviceGroups } from '../../data/nav';
 import { brands } from '../../data/brands';
 import { lowerTitle } from '../../lib/text';
-import { sectors, sectorsLinkingTo } from '../../data/sectors';
+import { groupedSectors, sectorsLinkingTo } from '../../data/sectors';
 import SectorPictogram from '../../components/SectorPictogram.astro';
 import { dampPages } from '../../data/damp';
 import ServiceIcon from '../../components/ServiceIcon.astro';
@@ -110,8 +110,14 @@ const relatedAppliances = appliances.filter((a) => a.related.includes(service.sl
 const relatedDamp = dampPages.filter((d) => d.related.includes(service.slug));
 // Commercial Plumbing lists every sector page; any other service lists the
 // sectors whose pages link to it, so links run both ways.
-const sectorCards = service.slug === 'commercial-plumbing' ? sectors : [];
-const sectorMentions = service.slug === 'commercial-plumbing' ? [] : sectorsLinkingTo(`/services/${service.slug}`);
+const sectorGroups = service.slug === 'commercial-plumbing' ? groupedSectors : [];
+// A popular service can be linked from twenty-odd sector pages; naming them
+// all turns one helpful sentence into a list nobody reads. Six, then a link
+// to the rest.
+const MENTION_CAP = 6;
+const allMentions = service.slug === 'commercial-plumbing' ? [] : sectorsLinkingTo(`/services/${service.slug}`);
+const sectorMentions = allMentions.slice(0, MENTION_CAP);
+const moreMentions = allMentions.length > MENTION_CAP;
 // Computed, not hand-maintained: a post links here, so this page links back.
 const relatedPosts = blogPosts.filter((p) => p.relatedServices.includes(service.slug));
 const label = HEADING[service.slug] ?? service.title.replace('&amp;', 'and');
@@ -411,8 +417,8 @@ const serviceSchema = {
       {sectorMentions.length > 0 && (
         <p class="measure">
           We also do {lowerTitle(service.title)} for businesses, including {sectorMentions.map((sc, i) => (
-            <>{i > 0 && (i === sectorMentions.length - 1 ? ' and ' : ', ')}<a href={`/commercial/${sc.slug}`}>{sc.name.replace('&', 'and').toLowerCase()}</a></>
-          ))}.
+            <>{i > 0 && (i === sectorMentions.length - 1 && !moreMentions ? ' and ' : ', ')}<a href={`/commercial/${sc.slug}`}>{sc.name.replace('&', 'and').toLowerCase()}</a></>
+          ))}{moreMentions && <>, and <a href="/services/commercial-plumbing">many other kinds of business</a></>}.
         </p>
       )}
       {relatedDamp.length > 0 && (
@@ -427,7 +433,7 @@ const serviceSchema = {
     </div>
   </section>
 
-  {sectorCards.length > 0 && (
+  {sectorGroups.length > 0 && (
     <section class="section section-alt">
       <div class="container">
         <span class="eyebrow">Businesses we work for</span>
@@ -437,15 +443,23 @@ const serviceSchema = {
           for it to be out of action. Pick your type of business to see what we do for premises like yours,
           or see <a href="/services/commercial-washroom-refurbishment">commercial washroom refurbishment</a> for toilet and changing-room refits.
         </p>
-        <ul class="grid grid-3 card-grid">
-          {sectorCards.map((sc) => (
-            <li class="card">
-              <div class="icon"><SectorPictogram slug={sc.slug} /></div>
-              <h3><a href={`/commercial/${sc.slug}`} class="card-title-link">{sc.name}</a></h3>
-              <p>{sc.summary}</p>
-            </li>
+        <div class="sector-groups">
+          {sectorGroups.map((g) => (
+            <div class="sector-group">
+              <h3 class="sector-group-h">{g.label}</h3>
+              <ul class="sector-tiles">
+                {g.sectors.map((sc) => (
+                  <li>
+                    <a href={`/commercial/${sc.slug}`} class="sector-tile">
+                      <span class="sector-tile-icon"><SectorPictogram slug={sc.slug} /></span>
+                      <span>{sc.name}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   )}

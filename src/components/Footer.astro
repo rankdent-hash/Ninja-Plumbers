@@ -3,7 +3,9 @@ import site from '../data/site.json';
 import { groupedServices } from '../data/nav';
 import { appliances, applianceGroups } from '../data/appliances';
 import { areas, allAreas } from '../data/areas';
-import { sectors } from '../data/sectors';
+import { groupedSectors } from '../data/sectors';
+// Footer lists sectors in their group order, so related businesses sit together.
+const sectors = groupedSectors.flatMap((g) => g.sectors);
 import PhoneIcon from './PhoneIcon.astro';
 import WhatsAppIcon from './WhatsAppIcon.astro';
 const year = new Date().getFullYear();

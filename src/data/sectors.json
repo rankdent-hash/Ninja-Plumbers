@@ -244,7 +244,7 @@
     "related": [
       "offices",
       "cafes-and-restaurants",
-      "salons-and-barbers"
+      "launderettes-and-dry-cleaners"
     ]
   },
   {
@@ -864,7 +864,7 @@
     "related": [
       "beauty-and-tattoo-studios",
       "offices",
-      "nurseries-and-childcare"
+      "care-homes-and-supported-living"
     ]
   },
   {
@@ -988,7 +988,7 @@
     "related": [
       "salons-and-barbers",
       "shops-and-retail",
-      "clinics-and-dental-practices"
+      "garden-centres-and-farm-shops"
     ]
   },
   {
@@ -1112,7 +1112,7 @@
     "related": [
       "holiday-lets-and-serviced-apartments",
       "blocks-of-flats-and-managing-agents",
-      "guest-houses-and-small-hotels"
+      "hmos-and-shared-houses"
     ]
   },
   {
@@ -1980,7 +1980,7 @@
     "related": [
       "nurseries-and-childcare",
       "sports-clubs-and-studios",
-      "cafes-and-restaurants"
+      "art-and-pottery-studios"
     ]
   },
   {
@@ -2353,6 +2353,2165 @@
       "landlords-and-letting-agents",
       "holiday-lets-and-serviced-apartments",
       "offices"
+    ]
+  },
+  {
+    "slug": "hmos-and-shared-houses",
+    "name": "HMOs & Shared Houses",
+    "heroTitle": "Plumbing for HMOs & shared houses",
+    "heroSub": "Hot water, en-suites, drains, gas safety checks and EICRs for shared houses and student lets, booked around your tenants and letting calendar.",
+    "h1": "HMO plumbing, gas safety and EICRs for landlords in London",
+    "metaTitle": "HMO Plumbing, Gas Safety & EICRs | Ninja Plumbers",
+    "metaDescription": "HMO plumbing for landlords in London and Guildford: hot water for the morning rush, en-suites, drains, gas safety certificates and EICRs. Call 020 3576 5825.",
+    "eyebrow": "HMO landlords",
+    "icon": "water",
+    "target": "hmo landlord (260/mo) · hmo gas safety certificate (40/mo) · hmo eicr (20/mo) · hmo plumbing",
+    "summary": "Plumbing, heating and electrics for HMO landlords and agents: hot water for several showers, en-suites, shared kitchens, blocked drains, gas safety certificates and EICRs.",
+    "intro": "Five or six tenants getting ready at the same time put a house under a strain that a family home rarely sees. Ninja Plumbers works for HMO landlords and managing agents across London, and around Guildford and Woking where student lets cluster near the university. We sort hot water that runs out during the morning rush, en-suites with weak pressure or noisy macerators, shared kitchens full of machines, and drains that block from constant use. Our Gas Safe engineers carry out the annual HMO gas safety certificate, our registered electricians carry out the HMO EICR, and one team handles jobs that cross trades. The price is agreed before work starts.",
+    "needs": [
+      {
+        "title": "Hot water for the morning rush",
+        "body": "In a shared house, four or five showers can run within the same hour. A combi boiler heats water only as fast as its output allows, so the second or third shower runs cool and tenants complain. Often the answer is stored hot water: an unvented cylinder sized for the number of bathrooms, with a boiler or immersion heater that can reheat it quickly. We look at occupancy, mains pressure and flow before recommending a combi, a cylinder or another arrangement."
+      },
+      {
+        "title": "En-suites added in conversions",
+        "body": "Many HMOs gained en-suites when bedrooms were converted, and not all were well planned. Top-floor showers may lack pressure because the supply pipe is too small or the cold tank sits too low. En-suites below drain level, or far from the soil stack, often rely on a Saniflo or other macerator, which blocks when tenants flush wipes. We fix shower pumps, upsize supplies, repair leaking trays and replace macerators with a model that suits the fittings it serves."
+      },
+      {
+        "title": "Shared kitchens and busy drains",
+        "body": "A shared kitchen might have two sinks, two washing machines, a dishwasher and several fridges in one room. Wastes block with food and grease, washing machine hoses split, and appliance valves get knocked. More people also means more toilet paper, wipes and hair heading for the same drain. We clear blocked sinks, toilets and underground drains, fit proper traps and isolation valves, and survey the drain by camera when the same blockage keeps coming back."
+      },
+      {
+        "title": "Gas, electrics and damp in tenants' rooms",
+        "body": "The Management of Houses in Multiple Occupation (England) Regulations 2006 expect the manager to keep the water supply and drainage in good repair and the gas and electrical installations maintained. HMOs also tend to need more sockets, dedicated circuits for electric showers and working extractor fans, because steam from drying clothes and long showers soon turns into mould in bedrooms. Our registered electricians and Gas Safe engineers work together, so a new shower and its circuit are one job."
+      }
+    ],
+    "does": [
+      "Annual HMO gas safety certificates",
+      "HMO EICRs and remedial electrical work",
+      "Unvented cylinders sized for several showers",
+      "Boiler replacements for higher hot-water demand",
+      "Saniflo and macerator repairs and replacements",
+      "Clearing blocked drains, toilets and kitchen sinks",
+      "Shower pumps and top-floor pressure fixes",
+      "Extractor fans for en-suites and kitchens"
+    ],
+    "guidance": [
+      {
+        "title": "Licensing and amenity standards",
+        "body": "Under the Housing Act 2004, larger HMOs need a mandatory licence, typically where five or more people from more than one household share. Many London boroughs also run additional licensing schemes that cover smaller shared houses, so check with your council. Councils set amenity standards for how many bathrooms, WCs and kitchen facilities a house needs for its number of occupants, and these vary by borough. We do not apply for licences, but we can carry out the plumbing, heating and electrical work an inspection or licence condition asks for, such as an extra WC or wash basin."
+      },
+      {
+        "title": "Gas and electrical checks across your houses",
+        "body": "The Gas Safety (Installation and Use) Regulations 1998 require gas appliances in a let property to be checked every year, and the Electrical Safety Standards in the Private Rented Sector (England) Regulations 2020 require an EICR at least every five years. For an HMO, the council may also ask to see both when it inspects or renews a licence. Keep the due dates for every house on one list, give tenants their copies, and book the gas check and EICR on the same visit where the dates line up."
+      },
+      {
+        "title": "Summer vacancies, legionella and small checks",
+        "body": "Student lets often stand half empty over the summer, and water sitting in pipes, tanks and unused en-suites raises legionella risk. As the landlord, you have a duty to manage that risk under HSE guidance, ACoP L8. Before new tenants arrive, run every tap and shower for a few minutes. We do the plumbing side: removing dead legs, sorting little-used outlets, cylinder and tank work, and fitting thermostatic mixing valves. Ask tenants to report drips, slow drains and mould early, and to leave extractor fans switched on."
+      }
+    ],
+    "links": [
+      {
+        "href": "/services/commercial-plumbing",
+        "label": "Commercial Plumbing",
+        "why": "Our main service for property businesses, covering supplies, leaks, washrooms and planned maintenance work."
+      },
+      {
+        "href": "/services/gas-safety-certificate",
+        "label": "Gas Safety Certificates",
+        "why": "How the annual gas safety check works for every boiler, hob and gas fire in the house."
+      },
+      {
+        "href": "/services/eicr",
+        "label": "EICR Certificates",
+        "why": "Electrical testing for shared houses with more circuits and sockets, plus remedial work where codes are raised."
+      },
+      {
+        "href": "/appliances/hot-water-cylinder-installation",
+        "label": "Hot Water Cylinders",
+        "why": "Stored hot water is often the fix when several tenants shower at once each morning."
+      },
+      {
+        "href": "/appliances/saniflo-macerator-pumps",
+        "label": "Saniflo & Macerator Pumps",
+        "why": "Many converted en-suites depend on a macerator, and a failed one takes a bathroom out of use."
+      },
+      {
+        "href": "/services/drain-unblocking",
+        "label": "Drain Unblocking",
+        "why": "Busy shared houses block drains more often, especially kitchen wastes, toilets and ground-floor gullies."
+      },
+      {
+        "href": "/damp/condensation-and-ventilation-control",
+        "label": "Condensation & Ventilation",
+        "why": "Extractor fans and better ventilation help stop mould in bedrooms, en-suites and shared kitchens."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Can you do the gas safety certificate for my HMO?",
+        "a": "Yes. Our Gas Safe registered engineers check every gas appliance in the house, including the boiler, any hobs and gas fires, along with flues and ventilation. You get a gas safety record to keep and to give your tenants. If something fails, we explain why and give you a price to put it right before we do any work."
+      },
+      {
+        "q": "How often does an HMO need an EICR?",
+        "a": "Under the 2020 private rented sector regulations, the electrical installation needs inspecting and testing at least every five years, or sooner if the last report says so. Your licence may also set conditions. Our registered electricians carry out the EICR, explain any codes in plain terms and can complete remedial work, giving you written confirmation for your records."
+      },
+      {
+        "q": "Why do my tenants run out of hot water in the morning?",
+        "a": "Usually the system cannot keep up with several showers running close together. A combi boiler may be too small for the number of bathrooms, a cylinder may be undersized or slow to reheat, or an immersion heater may have failed. We check how the house is used and recommend a fix, whether that is a repair, a larger cylinder or a boiler replacement."
+      },
+      {
+        "q": "Can you help us meet our HMO licence conditions?",
+        "a": "We do not apply for licences or advise on them, and we do not fit fire alarms or fire doors. What we can do is the plumbing, heating and electrical work a council inspection or licence condition asks for, such as an extra WC, a wash basin in a bedroom, hot water repairs or remedial electrical work."
+      },
+      {
+        "q": "Can you work around tenants and term times?",
+        "a": "Yes. We arrange access with you, your agent or the tenants, and can work early, late or at weekends to limit disruption in shared bathrooms and kitchens. Bigger jobs, such as cylinder replacements or en-suite refits, are often best done over the summer or between tenancies. Our engineers are DBS-checked and directly employed, not subcontractors."
+      }
+    ],
+    "related": [
+      "landlords-and-letting-agents",
+      "blocks-of-flats-and-managing-agents",
+      "holiday-lets-and-serviced-apartments"
+    ]
+  },
+  {
+    "slug": "care-homes-and-supported-living",
+    "name": "Care Homes & Supported Living",
+    "heroTitle": "Care home & supported living plumbing",
+    "heroSub": "Scald-safe hot water, TMV servicing, accessible bathrooms, heating and blocked drains, planned with your manager around residents' routines.",
+    "h1": "Plumbing and maintenance for care homes and supported living in London",
+    "metaTitle": "Care Home Plumbing & Maintenance | Ninja Plumbers",
+    "metaDescription": "Care home plumbing and maintenance in London: TMV servicing, wet rooms, heating, hot water and drains, by DBS-checked engineers. Call 020 3576 5825.",
+    "eyebrow": "Care homes",
+    "icon": "bathroom",
+    "target": "care home maintenance (110/mo) · care home plumbing (40/mo) · supported living plumbing",
+    "summary": "Plumbing, heating and electrics for small care homes and supported living: TMVs, accessible bathrooms, hot water and drains, done quietly around residents.",
+    "intro": "In a care home, a cold shower or a blocked toilet is more than an inconvenience. It affects the safety and dignity of people who rely on you. Ninja Plumbers handles care home maintenance and plumbing for small residential homes, supported living houses and flats, and respite homes across London and nearby Surrey. We service thermostatic mixing valves, fit accessible bathrooms, keep hot water and heating running, and clear drains. Our team includes Gas Safe engineers, registered electricians and F-Gas certified air conditioning engineers, so one team covers jobs that cross trades. Every engineer is DBS-checked and directly employed, and we agree times with your manager first.",
+    "needs": [
+      {
+        "title": "Scald protection on every outlet residents use",
+        "body": "Residents who are frail, have reduced feeling or cannot react quickly can be badly scalded by water most of us would simply pull away from. HSE guidance on health and safety in care homes expects that risk to be controlled, usually with thermostatic mixing valves on the baths, showers and basins residents use. TMV3 is the approval scheme for valves used in healthcare and care settings. Each valve needs regular testing, cleaning and a written record to keep blending safely."
+      },
+      {
+        "title": "Bathrooms that suit the people using them",
+        "body": "Many small homes are converted houses, with bathrooms planned for a family rather than for residents with walking frames or wheelchairs. Level-access wet rooms, lever taps, grab rails, comfort-height WCs and room for a carer all make washing safer and more dignified. If you are putting in an assisted bath, the supplier provides the bath and we fit the plumbing alongside them. A new wet room usually needs an extractor fan too, which our electricians wire in."
+      },
+      {
+        "title": "Warmth and hot water across many rooms",
+        "body": "A home with eight or ten bedrooms, many with their own basin, asks a lot of one boiler and cylinder, especially during morning washes. Residents who sit still for long periods feel the cold, so a failed boiler becomes urgent quickly. Radiators and exposed hot pipes can also burn a resident who falls against them and cannot move away, which is why guards or low surface temperature radiators are commonly fitted in care settings."
+      },
+      {
+        "title": "Drains, laundry and sluice sinks that work hard",
+        "body": "Wipes and pads flushed by mistake are a common cause of blocked toilets and drains in care homes, and a blockage on a ground-floor run can back up into several rooms. The laundry runs washing machines for much of the day, so hoses, valves and waste connections wear quickly. Sluice and utility sinks need a sound supply and waste. Rooms left empty between residents leave outlets unused, and water standing in those pipes is a legionella concern."
+      }
+    ],
+    "does": [
+      "TMV3 valve servicing, testing and replacement",
+      "Level-access wet rooms with grab rails",
+      "Plumbing for assisted baths alongside the supplier",
+      "Blocked toilet and drain clearance",
+      "Domestic-sized boiler and hot water repairs",
+      "Low surface temperature radiators and radiator guards",
+      "Laundry, sluice sink and washing machine plumbing",
+      "Removing dead legs and little-used outlets"
+    ],
+    "guidance": [
+      {
+        "title": "Keep a TMV record an inspector can follow",
+        "body": "Care homes are regulated by the CQC, and its inspections look at whether the premises are safe. For hot water, that usually means being able to show which outlets have TMVs, when each was last tested and what temperature it delivered. Keep a simple list by room. Between services, staff can check outlet temperatures with a thermometer and note anything running hotter or colder than usual. We service and test TMVs, replace failed cartridges or valves, and give you a written record for your file."
+      },
+      {
+        "title": "Legionella: your duty, our plumbing",
+        "body": "The home has a duty to manage legionella risk under HSE guidance, the Approved Code of Practice L8, which usually means a written assessment by a competent person. We don't carry out that assessment. We do the plumbing work it often points to: removing dead legs, taking out outlets nobody uses, repairing or replacing cylinders and tanks, and fitting or servicing TMVs. When a room is empty between residents, run its taps and shower as your water management plan sets out, so water does not sit in the pipes."
+      },
+      {
+        "title": "Planning work around residents",
+        "body": "Noise, dust and a bathroom out of use land harder on people who live in the building. Tell us about residents' routines, mealtimes and anyone who finds strangers upsetting, and we will agree times with your manager before we start. Where we can, we keep one bathroom usable while another is refitted, and isolate water to as few rooms as possible. Our Gas Safe engineers work on domestic-sized boilers. Larger homes with commercial boiler plant need engineers with commercial gas qualifications, and we will tell you straight if yours is beyond what we do."
+      }
+    ],
+    "links": [
+      {
+        "href": "/services/tmv-servicing",
+        "label": "TMV Servicing & Testing",
+        "why": "Regular testing and a written record for the mixing valves on residents' baths, showers and basins."
+      },
+      {
+        "href": "/services/wet-rooms-and-walk-in-showers",
+        "label": "Wet Rooms & Walk-in Showers",
+        "why": "Level-access showers for residents who use a wheelchair, walking frame or shower chair."
+      },
+      {
+        "href": "/services/blocked-toilet",
+        "label": "Blocked Toilet",
+        "why": "Wipes and pads flushed by mistake are a common reason care home toilets block."
+      },
+      {
+        "href": "/services/boiler-repair",
+        "label": "Boiler Repair",
+        "why": "Residents feel the cold quickly, so a failed domestic-sized boiler is a priority to put right."
+      },
+      {
+        "href": "/appliances/radiator-installation-and-power-flushing",
+        "label": "Radiators & Power Flushing",
+        "why": "Swapping hot radiators for low surface temperature models and keeping the heating circulating properly."
+      },
+      {
+        "href": "/services/eicr",
+        "label": "EICR Certificates",
+        "why": "An electrical condition report on the wiring that runs showers, extractor fans and the laundry."
+      },
+      {
+        "href": "/services/commercial-plumbing",
+        "label": "Commercial Plumbing",
+        "why": "Our main page for plumbing, heating and electrics in small business and care premises."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Are your engineers DBS-checked?",
+        "a": "Yes. Our engineers are DBS-checked and directly employed by Ninja Plumbers, not subcontractors. Tell us if your home has its own procedure for visiting trades, such as signing in, wearing ID or being accompanied in residents' rooms, and we will follow it."
+      },
+      {
+        "q": "Do you service TMVs and keep records?",
+        "a": "Yes. We measure the blended temperature at each outlet, check the valve shuts down safely when the cold supply is isolated, clean strainers, replace worn cartridges and replace valves that cannot be put right. You get a written record of each valve and what we found, which helps you show how scald risk is managed."
+      },
+      {
+        "q": "Do you do legionella assessments for care homes?",
+        "a": "No. The home's duty to manage legionella risk under HSE guidance (ACoP L8) usually means using a specialist to assess it. We do the plumbing side: removing dead legs, dealing with little-used outlets, cylinder and tank work, and fitting or servicing thermostatic mixing valves. If your assessment lists remedial plumbing work, send it over and we will price it."
+      },
+      {
+        "q": "Can you work on our boiler?",
+        "a": "Our Gas Safe engineers repair, service and replace domestic-sized boilers, which many converted-house care homes and supported living flats have. Larger homes often run commercial boiler plant, which needs engineers with commercial gas qualifications. We will tell you straight if your system is beyond what we do. For leaks and blockages that cannot wait, we offer a 24/7 emergency callout."
+      },
+      {
+        "q": "Can residents keep using the bathrooms while you work?",
+        "a": "Usually, yes. We agree times with your manager, work around washes and mealtimes, and plan the job so at least one bathroom stays in use while another is being refitted. A wet room conversion takes a bathroom out of use for part of the job, so we talk that through with you before any work starts."
+      }
+    ],
+    "related": [
+      "nurseries-and-childcare",
+      "clinics-and-dental-practices",
+      "hmos-and-shared-houses"
+    ]
+  },
+  {
+    "slug": "launderettes-and-dry-cleaners",
+    "name": "Launderettes & Dry Cleaners",
+    "heroTitle": "Plumbing for launderettes & dry cleaners",
+    "heroSub": "Machine supplies, isolating valves, lint-clogged drains, leaks and electrics sorted, with work done early, late or on your quietest day.",
+    "h1": "Launderette plumbing and dry cleaners plumbing in London",
+    "metaTitle": "Launderette & Dry Cleaners Plumbing | Ninja Plumbers",
+    "metaDescription": "Laundrette plumber in London: machine water supplies, isolating valves, backflow protection, lint-blocked drains, leaks and electrics. Call 020 3576 5825.",
+    "eyebrow": "Launderettes",
+    "icon": "appliance",
+    "target": "launderette plumbing · laundrette plumber · dry cleaners plumbing (low volume; \"laundrette\" 22,200/mo as a head term)",
+    "summary": "Water supplies to banks of washing machines, isolating valves, drains that cope with lint, leak repairs and electrics for launderettes, service washes and dry cleaners.",
+    "intro": "Launderette plumbing works hard. A row of washers can all fill at once, then all empty at once, and the drains carry lint and fibres every cycle. When one machine leaks or a supply fails, you want that machine out of use, not the whole shop shut. Ninja Plumbers looks after launderettes, service-wash counters, dry cleaners and small ironing and alteration shops across London. We fit and repair machine supplies and valves, clear and improve drainage, trace leaks under machines, and put in the circuits new equipment needs. Work is planned around your opening hours.",
+    "needs": [
+      {
+        "title": "A supply to every machine you can isolate",
+        "body": "Each washer should have its own isolating valve on the hot and cold feeds, within easy reach. Then a leaking hose or a failed inlet valve means one machine out of use while the rest keep earning. Older shops often have a single stop valve for the whole bank, so any repair closes the floor. We add or replace isolating valves, renew tired flexible hoses and tidy up supply pipework so each machine can be taken out on its own."
+      },
+      {
+        "title": "Pressure and flow when machines fill together",
+        "body": "A washer that fills slowly runs long and can throw an error. When several machines call for water at the same moment, an undersized supply pipe or a partly closed valve shows up quickly. We check the incoming pressure and flow, look for restrictions in the pipework, and advise on whether the main, a larger supply run or a booster would help. We tell you what the numbers show before suggesting any work."
+      },
+      {
+        "title": "Drains that handle lint and many machines emptying",
+        "body": "Commercial washers dump a lot of water fast, and when they empty together a small waste pipe or shallow trap backs up. Lint and fibres settle in traps, drain channels and gullies, mix with detergent and harden into mats that slow everything down. We clear blocked wastes and gullies, fit or renew lint traps and strainers where they suit your setup, and can look at whether your drain runs are large enough for the load."
+      },
+      {
+        "title": "Hot water, a staff washroom and the electrics",
+        "body": "Some machines take a hot feed, and your staff need a WC and a basin with hot and cold water. Water heaters under steady use scale up in London's hard water and lose output. New or extra machines may need new circuits, and dryers and presses add heat and moisture to the room. Because we do plumbing and electrics in one team, a new water heater with its own circuit or a washroom with an extractor fan is handled in one visit."
+      }
+    ],
+    "does": [
+      "Isolating valves fitted to each washing machine",
+      "Hot and cold feeds renewed along a machine bank",
+      "Backflow protection on machine supplies",
+      "Lint-blocked wastes, traps and gullies cleared",
+      "Leaks traced and fixed under machines",
+      "Water heaters repaired or replaced",
+      "Staff WC and basin repairs",
+      "New circuits for new machines"
+    ],
+    "guidance": [
+      {
+        "title": "Keep lint out of the drains",
+        "body": "Lint does more damage to launderette drains than anything else. Most machines have a filter or lint trap, and tumble dryers have their own lint screens; clean them as the maker suggests, which in a busy shop can mean daily. Where machines discharge into an open channel or gully, a removable strainer basket catches fibres before they reach the pipe. Empty it into the bin, never rinse it down the sink. If water starts to sit in a channel or a gully smells, get it cleared before a full blockage floods the floor on a busy morning."
+      },
+      {
+        "title": "Backflow protection and the water rules",
+        "body": "The Water Supply (Water Fittings) Regulations 1999 require backflow protection matched to the fluid risk, so dirty wash water cannot be drawn back into the mains. Commercial washing machines usually have protection built in, but the type and whether it suits your installation depends on the machine and how it is connected. When you add or swap machines, check what the maker specifies and that the supply matches. We can look at your existing connections and fit check valves or other devices where the installation needs them. If a machine is in doubt, ask the supplier too."
+      },
+      {
+        "title": "Gas dryers, dry-cleaning machines and your electricity supply",
+        "body": "Commercial gas-fired tumble dryers and commercial water heaters need engineers with commercial gas qualifications. Our Gas Safe engineers work on domestic-sized appliances, and we will tell you straight if your equipment is beyond what we do. Dry-cleaning solvent machines are specialist equipment serviced by their suppliers; we do the water, drainage, washroom and electrical side around them. New machines may need new circuits. Our electricians will tell you whether your supply is big enough, and if it needs upgrading by the network operator."
+      }
+    ],
+    "links": [
+      {
+        "href": "/services/commercial-plumbing",
+        "label": "Commercial plumbing",
+        "why": "How we plan and carry out plumbing work in shops and small business premises around opening hours."
+      },
+      {
+        "href": "/appliances/washing-machine-plumbing",
+        "label": "Washing machine plumbing",
+        "why": "Supplies, valves, hoses and wastes for washing machines, from a single unit to a full bank."
+      },
+      {
+        "href": "/services/drain-unblocking",
+        "label": "Drain unblocking",
+        "why": "Clearing wastes, gullies and channels choked with lint, fibres and detergent from many machines."
+      },
+      {
+        "href": "/services/leak-detection",
+        "label": "Leak detection",
+        "why": "Finding hidden leaks behind and under machines before they damage floors or the unit below."
+      },
+      {
+        "href": "/services/low-water-pressure",
+        "label": "Low water pressure",
+        "why": "Slow filling machines and weak flow when several washers draw water at the same moment."
+      },
+      {
+        "href": "/appliances/water-softener-installation",
+        "label": "Water softeners",
+        "why": "Hard London water scales heaters and machine valves; softening can help protect hot-water equipment."
+      },
+      {
+        "href": "/services/electrical-repairs",
+        "label": "Electrical repairs",
+        "why": "New circuits for new machines, and faults on sockets, lighting and extraction in the shop."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Can you fit isolating valves without closing my launderette?",
+        "a": "Usually the water has to go off briefly while each valve is fitted, so we plan the work for early morning, late evening or your quietest day. Once every machine has its own isolating valve, future repairs can be done one machine at a time while the rest of the shop keeps trading."
+      },
+      {
+        "q": "Do you service dry-cleaning machines?",
+        "a": "No. Dry-cleaning solvent machines are specialist equipment and should be serviced by their suppliers. We do the work around them: water supplies, drainage, the staff washroom, water heaters and the electrical side, such as circuits and sockets. If a job needs the machine supplier involved, we will say so."
+      },
+      {
+        "q": "Can you work on my gas tumble dryers?",
+        "a": "Commercial gas-fired tumble dryers need engineers with commercial gas qualifications. Our Gas Safe engineers work on domestic-sized appliances, so we will tell you straight if your dryers are beyond what we do. We can still help with the water, drainage and electrical work in the rest of the shop."
+      },
+      {
+        "q": "Why does water back up in my drain channel when machines empty?",
+        "a": "Usually lint and fibres have built up in the channel, trap or gully and narrowed the pipe, or the drain is too small for several machines emptying at once. We clear the blockage, check the run for damage and tell you whether a strainer, better access or a larger pipe would help."
+      },
+      {
+        "q": "We are adding more machines. Can our electrics cope?",
+        "a": "New machines may need new circuits. Our registered electricians will look at your board and supply, tell you whether it is big enough, and fit the circuits if it is. If the supply itself needs upgrading, that is arranged with the network operator, and we will explain the next steps."
+      }
+    ],
+    "related": [
+      "shops-and-retail",
+      "dog-groomers-and-pet-businesses",
+      "garages-and-workshops"
+    ]
+  },
+  {
+    "slug": "art-and-pottery-studios",
+    "name": "Art & Pottery Studios",
+    "heroTitle": "Plumbing for art & pottery studios",
+    "heroSub": "Clay and plaster traps, belfast sink rows, hot water, heating and kiln circuits, fitted and fixed around your classes and firing days.",
+    "h1": "Clay trap sinks and plumbing for art and pottery studios in London",
+    "metaTitle": "Clay Trap Sinks & Studio Plumbing London | Ninja Plumbers",
+    "metaDescription": "Clay and plaster trap sinks, belfast sink rows, hot water, heating and kiln circuits for London pottery and art studios. Call 020 3576 5825.",
+    "eyebrow": "Art & pottery studios",
+    "icon": "tap",
+    "target": "clay trap sink (70/mo) · plaster trap sink (20/mo) · art studio sink (20/mo) · pottery studio plumbing",
+    "summary": "Clay and plaster trap sinks, deep belfast sinks for classes, hot water, heating for cold units and circuits for kilns, fitted around your studio timetable.",
+    "intro": "Clay and plaster should never reach an ordinary drain. They settle in the pipe, harden and build up until the sink stops draining, often under a floor you would rather not lift. A clay trap sink, sometimes called a plaster or silt trap, catches the sediment in a tub under the basin so you can empty it. We fit clay trap sinks, butler and belfast sink rows, hot water and heating for pottery studios, art rooms, printmaking studios and makers' spaces across London. Our electricians can also wire kiln circuits, so one team handles the lot.",
+    "needs": [
+      {
+        "title": "A clay or plaster trap on every wash-up sink",
+        "body": "Throwing, trimming, glazing and plaster work all send fine sediment into the sink. Without a trap it settles in the waste pipe and sets hard, especially plaster. A sediment trap sits under the basin and slows the water so the solids drop into a removable bucket or chamber. We size the trap to the number of sinks and how busy the studio is, and fit it where you can actually reach it to empty it."
+      },
+      {
+        "title": "Deep sinks that suit classes",
+        "body": "Studios usually want deep butler or belfast sinks, often a row of two or three so a class can wash up at once. They need solid support, taps high enough to fill a bucket, and wastes that all run through a trap rather than straight to the drain. We plan the run with you, including splashbacks, a drainer or slab for tools, and a place for the bucket that is not in the way."
+      },
+      {
+        "title": "Hot water, WCs and basins",
+        "body": "Washing clay off hands in cold water in January is miserable, and warm water shifts slip and glaze faster. Depending on the space, that might be an under-sink or point-of-use water heater, an immersion cylinder, or a feed from the building's boiler. Staff and students also need working WCs and hand-wash basins. Keep hand washing on a clean basin away from the clay sink where you can, so the trap takes the clay and the WC drains stay clear."
+      },
+      {
+        "title": "Heating and power for the kiln room",
+        "body": "Many studios are in railway arches, old industrial units or draughty church halls. Clay can freeze or crack if a unit gets too cold overnight, and nobody enjoys a class in a coat. Kilns bring their own demands: a suitable dedicated circuit, and for larger kilns sometimes a supply upgrade. Our registered electricians can check what your supply can take before you buy, and our heating engineers can look at radiators, heaters or a new system."
+      }
+    ],
+    "does": [
+      "Clay and plaster trap sinks fitted",
+      "Belfast and butler sink rows installed",
+      "Blocked studio sinks and wastes cleared",
+      "Point-of-use water heaters and immersions",
+      "Staff and student WCs and basins",
+      "Dedicated kiln circuits wired",
+      "Radiators and heating for cold units",
+      "CCTV surveys of clay-blocked drains"
+    ],
+    "guidance": [
+      {
+        "title": "Emptying the trap and knowing when it is full",
+        "body": "A sediment trap only works if someone empties it. Busy teaching studios may need to do it weekly, quieter ones less often, so make it part of the closing routine. Signs it is full: the sink drains slowly, water sits in the basin, clay appears in the outlet, or there is a stale or eggy smell from standing water. Scoop or lift out the settled clay, let it dry and bin it or reclaim it, never tip it down a toilet or outside gully. Check the seals and lid when you put it back so it does not leak."
+      },
+      {
+        "title": "What must not go down the drain",
+        "body": "It is an offence to put anything into a public sewer that is likely to damage it or block it, and Thames Water can take action over blockages caused by materials that should not be in the drains. Clay, plaster, glaze and slip all fall into that group. Inks and paints are different: follow the disposal instructions on each product, and never pour solvents, white spirit or oil paint down any sink. Wipe brushes, screens and rollers with rags first, then wash off the last traces in a trapped sink."
+      },
+      {
+        "title": "Kilns, water supply and ventilation",
+        "body": "Before you buy a kiln, get an electrician to look at your consumer unit and incoming supply. A small kiln may run on a dedicated circuit, but larger ones can need more than your supply can safely give, and that can mean talking to the network operator. Separately, the Water Supply (Water Fittings) Regulations require backflow protection matched to the risk, so hoses and sinks used with glazes or chemicals may need suitable protection. Kiln rooms and glazing areas also need decent ventilation; ask the kiln maker what they recommend."
+      }
+    ],
+    "links": [
+      {
+        "href": "/services/commercial-plumbing",
+        "label": "Commercial plumbing",
+        "why": "Our main page for business premises, covering how we plan and schedule work around your opening hours."
+      },
+      {
+        "href": "/appliances/kitchen-sink-installation",
+        "label": "Sink installation",
+        "why": "Deep belfast and butler sinks for studio wash-up, fitted with proper support and a trap underneath."
+      },
+      {
+        "href": "/services/drain-unblocking",
+        "label": "Drain unblocking",
+        "why": "When clay or plaster has already set in the waste, we clear it and find where it collected."
+      },
+      {
+        "href": "/services/cctv-drain-survey",
+        "label": "CCTV drain survey",
+        "why": "A camera shows how far clay has built up in the drain before anyone starts digging or relining."
+      },
+      {
+        "href": "/appliances/immersion-heater-replacement",
+        "label": "Immersion heaters",
+        "why": "Many studios rely on an immersion cylinder for warm wash-up water, and a failed element stops classes."
+      },
+      {
+        "href": "/services/electrical-repairs",
+        "label": "Electrical repairs",
+        "why": "Kiln circuits, sockets for wheels and supply checks from our registered electricians, alongside the plumbing work."
+      },
+      {
+        "href": "/services/central-heating-installation",
+        "label": "Central heating installation",
+        "why": "Heating for draughty units so clay does not freeze overnight and classes stay comfortable in winter."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "What is a clay trap sink?",
+        "a": "It is an ordinary deep sink with a sediment trap fitted under it. Water from the sink runs into a chamber where it slows down, so clay, plaster and glaze settle to the bottom while clearer water carries on to the drain. You lift out the settled material and empty it. It protects your pipes and the public sewer from build-ups that set hard."
+      },
+      {
+        "q": "Can you fit a trap to the sinks we already have?",
+        "a": "Usually, yes. Most sediment traps sit under an existing sink and connect into the waste, provided there is enough space below the basin for the trap and for you to get the bucket or lid out. If the sink is too low or boxed in, we may suggest raising it, moving it, or swapping to a deeper belfast sink."
+      },
+      {
+        "q": "Our studio sink drains slowly. Is the trap full or is it the pipe?",
+        "a": "Empty the trap first, as that is the usual cause. If it still drains slowly afterwards, clay may have got past the trap or built up in the pipe from before it was fitted. We can clear the waste and, if the problem is further down, run a camera through to see where it has collected."
+      },
+      {
+        "q": "Can you wire a circuit for our kiln?",
+        "a": "Our registered electricians can check your consumer unit and supply and tell you what it can take, then wire a suitable dedicated circuit if it is within what your supply can give. Larger kilns can need a supply upgrade from the network operator, which takes longer. It is worth asking before you buy, so the kiln matches what the building can run."
+      },
+      {
+        "q": "Can you work around our classes and open studio times?",
+        "a": "Yes. We can book work early, late, at weekends or out of hours so classes and firings are not disrupted. The price is agreed before work starts, and plumbing, heating and electrical jobs can be done by one team on one visit where that fits, which helps if you are fitting a new sink row with a water heater and circuit."
+      }
+    ],
+    "related": [
+      "schools-and-colleges",
+      "places-of-worship-and-community-halls",
+      "garages-and-workshops"
+    ]
+  },
+  {
+    "slug": "garden-centres-and-farm-shops",
+    "name": "Garden Centres & Farm Shops",
+    "heroTitle": "Plumbing for garden centres & farm shops",
+    "heroSub": "We fix watering points, buried leaks, frozen pipes, café plumbing and customer toilets, and we work around your opening hours.",
+    "h1": "Plumbing for garden centres, nurseries and farm shops in London and Surrey",
+    "metaTitle": "Garden Centre & Farm Shop Plumbing | Ninja Plumbers",
+    "metaDescription": "Plumbing for garden centres, nurseries and farm shops in London and Surrey: outside taps, backflow protection, buried leaks, frost, cafés. Call 020 3576 5825.",
+    "eyebrow": "Garden & farm shops",
+    "icon": "tap",
+    "target": "garden centre plumbing · farm shop plumbing · outside tap installation (low volume sector terms; fits the Surrey side of our area)",
+    "summary": "Watering points, backflow protection, underground leaks and frost-proofing for garden centres, nurseries and farm shops, plus café plumbing, customer toilets and outdoor electrics.",
+    "intro": "Garden centre plumbing is mostly about what happens outside: taps and standpipes across the sales areas and glasshouses, long supply pipes buried under hardstanding, and hoses that need the right backflow protection. Farm shops and pick-your-own sites add a café, customer toilets, food preparation areas and pipes exposed to frost every winter. Ninja Plumbers works for garden centres, plant nurseries, farm shops, pick-your-own sites and allotment societies across outer London and the Guildford and Woking side of Surrey. Our plumbers and electricians work as one team, and we plan visits around opening hours, deliveries and busy weekends.",
+    "needs": [
+      {
+        "title": "Watering points and backflow protection",
+        "body": "Watering benches, washing down paths and filling cans all depend on outside taps and standpipes that get heavy daily use. Handles snap, washers wear and wall plates work loose when hoses are dragged across a sales area. Each outlet needs backflow protection suited to its use: a double check valve suits an ordinary garden tap, while a hose left in a water butt or a tank of plant feed is a higher risk and may need an air gap. We fit, move and replace taps with that in mind."
+      },
+      {
+        "title": "Long supply runs and hidden leaks",
+        "body": "Many garden centres and farm shops are fed by one pipe running a long way across car parks, polytunnels or fields, often older blue plastic or even galvanised steel. A leak underground rarely shows at first. The usual signs are a water bill that jumps, a patch of ground that stays green or wet in dry weather, or pressure that falls away at the far end of the run. We trace the leak, repair or replace the damaged length and check whether the pipe size still suits the demand."
+      },
+      {
+        "title": "Frost and exposed pipework",
+        "body": "Pipes to glasshouses, potting sheds, outdoor sales areas and field taps are the first to freeze in a cold snap, and a split often only shows when the thaw comes. We lag and box in vulnerable runs, fit insulated tap covers and add drain-down points so seasonal supplies can be emptied for winter. Where a pipe has to stay live and cannot be buried deeper, our electricians can fit trace heating to help stop it freezing, where it suits the pipe and location."
+      },
+      {
+        "title": "Cafés, toilets, shops and offices",
+        "body": "Customers expect clean toilets and a working café, and staff need somewhere warm to wash. That means water heaters sized for the café and washrooms, hand-wash basins in food areas, and heating that keeps a shop or office usable in winter. Because we also do electrics, one team can add a water heater circuit, outdoor sockets or car park lighting. Commercial catering gas equipment needs engineers with commercial gas qualifications, and we will tell you straight if yours is beyond what we do."
+      }
+    ],
+    "does": [
+      "Outside tap and standpipe installation and repair",
+      "Double check valves and backflow protection",
+      "Underground supply pipe leak tracing and repair",
+      "New water supplies to glasshouses and sheds",
+      "Frost lagging, insulated covers and drain-down points",
+      "Customer toilet and café washroom plumbing",
+      "Hand-wash basins for food areas",
+      "Outdoor sockets, lighting and trace heating"
+    ],
+    "guidance": [
+      {
+        "title": "Backflow: match the protection to the use",
+        "body": "The Water Supply (Water Fittings) Regulations 1999 require backflow protection matched to the fluid risk at each outlet. A tap used for filling watering cans is a lower risk than a hose left lying in a pond display, a water butt or a tank with feed or chemicals in it. Hoses used around the site are generally treated as a higher-risk use, and some set-ups need an air gap rather than a simple check valve. If you are not sure what your outside taps have, we can check each outlet and tell you what we find."
+      },
+      {
+        "title": "Getting through winter",
+        "body": "Frozen and split pipes are the most common winter problem on garden centre and farm shop sites. Before the first hard frost, lag exposed pipes to glasshouses and outbuildings, fit covers on outside taps and find your stopcocks so you can isolate a section quickly. Seasonal supplies, such as pick-your-own field taps or summer-only standpipes, are best drained down and left open until spring. Keep heating on low in shops, toilets and cafés overnight. Where a pipe cannot be drained or buried deeper, trace heating fitted by our electricians may help, where it suits the location."
+      },
+      {
+        "title": "Hand-washing in cafés and food areas",
+        "body": "If you sell fresh food, run a café or offer tastings, food hygiene rules require adequate hand-washing facilities with hot and cold running water, kept separate from food sinks where needed. A basin tucked behind stock or without hot water is a common finding on inspections. Farm shop butchery or deli counters and pick-your-own weighing huts often need a basin added. We can plumb basins into kiosks, counters and outbuildings, fit a small water heater where there is no hot supply, and make sure the waste goes somewhere suitable."
+      }
+    ],
+    "links": [
+      {
+        "href": "/services/commercial-plumbing",
+        "label": "Commercial Plumbing",
+        "why": "Our main page for business premises, covering washrooms, cafés, shops and work planned around your trading hours."
+      },
+      {
+        "href": "/appliances/outside-tap-installation",
+        "label": "Outside Taps",
+        "why": "New or moved outside taps and standpipes for watering benches, sales areas and glasshouses, with backflow protection."
+      },
+      {
+        "href": "/services/leak-detection",
+        "label": "Leak Detection",
+        "why": "Finds leaks on long buried supply pipes across car parks and fields with as little digging as possible."
+      },
+      {
+        "href": "/blog/why-is-my-water-bill-so-high",
+        "label": "Hidden leaks and high water bills guide",
+        "why": "Explains what a sudden rise in your water bill can mean and how to check your meter."
+      },
+      {
+        "href": "/services/pipe-repair",
+        "label": "Pipe Repair",
+        "why": "Repairs to split, frozen or damaged pipes feeding glasshouses, potting sheds, field taps and outbuildings."
+      },
+      {
+        "href": "/services/surface-water-drainage",
+        "label": "Surface Water Drainage",
+        "why": "For yards, car parks and paths that flood, and rainwater from shop and barn gutters with nowhere to go."
+      },
+      {
+        "href": "/services/electrical-repairs",
+        "label": "Electrical Repairs",
+        "why": "Faults with outdoor sockets, car park lighting and shop or office electrics, handled by our own electricians."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Do you work on garden centre and farm shop premises?",
+        "a": "Yes. We repair and fit outside taps and standpipes, trace leaks on buried supply pipes, protect exposed pipes from frost and plumb cafés, customer toilets and staff washrooms. We can also sort outdoor sockets, car park lighting and heating in the shop or office. We plan visits around opening hours and deliveries where we can."
+      },
+      {
+        "q": "Can you fit an irrigation system for our nursery?",
+        "a": "No, we do not design irrigation systems, and we do not work on boreholes, septic tanks or cesspits. What we can do is fit and move outside taps and standpipes, run a new supply to a glasshouse or potting shed, and add the right backflow protection so watering hoses cannot contaminate the mains."
+      },
+      {
+        "q": "Our water bill has shot up. Could it be a leak?",
+        "a": "Quite possibly. On sites with long buried pipes, a leak can run for months unseen. Turn off every tap and watch the meter: if it still moves, water is escaping somewhere. Other clues are wet or unusually green patches and weak pressure at the far end. We can trace the leak and repair or replace the damaged length."
+      },
+      {
+        "q": "Why is the pressure so poor at our far glasshouse?",
+        "a": "Usually the supply pipe is too small for the distance, has partly furred up, or is losing water through a leak along the way. Several taps running at once makes it worse. We can test pressure and flow at both ends, look for leaks, and advise on upsizing the run or splitting supplies so the far end gets enough water."
+      },
+      {
+        "q": "Do you cover Surrey as well as London?",
+        "a": "Yes. We cover Greater London, including the outer boroughs where many garden centres and nurseries sit, plus Guildford, Woking and nearby Surrey and north-east Hampshire towns. Our engineers are directly employed and DBS-checked, the price is agreed before work starts, and there is a 24/7 emergency callout for burst pipes and floods."
+      }
+    ],
+    "related": [
+      "cafes-and-restaurants",
+      "food-shops-and-takeaways",
+      "shops-and-retail"
+    ]
+  },
+  {
+    "slug": "veterinary-practices",
+    "name": "Veterinary Practices",
+    "heroTitle": "Plumbing for veterinary practices",
+    "heroSub": "Clinical basins, kennel wash-downs, blocked gullies, hot water, ward heating and equipment circuits, with work fitted around surgery lists and out of hours.",
+    "h1": "Plumbing, heating and electrics for vet practices in London",
+    "metaTitle": "Vet Practice Plumbing & Heating, London | Ninja Plumbers",
+    "metaDescription": "Vet practice plumbing in London: consult-room basins, kennel wash-down drains, hot water, ward heating and equipment circuits. Call 020 3576 5825.",
+    "eyebrow": "Veterinary practices",
+    "icon": "drain",
+    "target": "vet practice plumbing · veterinary surgery plumbing (low volume)",
+    "summary": "Plumbing, heating and electrics for vet practices: consult-room basins, kennel wash-down drains, hot water, warm wards and dedicated circuits for sterilisers and fridges.",
+    "intro": "Vet practice plumbing takes more punishment than most. Kennels and wards are hosed down several times a day, prep sinks catch fur, blood and bedding fibres, and every consult room needs a basin between animals. Ninja Plumbers looks after the plumbing, heating and electrics in veterinary surgeries across London, Guildford and Woking: clinical basins, wash-down drainage and gullies, hot water, ward heating and power for equipment. We do not install medical gas pipelines, x-ray room shielding or anaesthetic scavenging, which belong with specialist contractors. Everything else we plan around your surgery lists and opening hours, with the price agreed before work starts.",
+    "needs": [
+      {
+        "title": "Basins in consult rooms and prep",
+        "body": "Every consult room and the prep area needs a hand-wash basin that staff can use without touching the taps with dirty hands. Lever taps worked with an elbow or wrist, or sensor taps, are the usual choice, set over a basin big enough not to splash the worktop. Prep also needs a deep sink for washing instruments, bowls and kit, kept apart from the hand-wash basin. We fit both, each on its own shut-off valve so a fault at one does not stop the other."
+      },
+      {
+        "title": "Kennel and ward wash-down drainage",
+        "body": "Kennels, wards and isolation rooms are cleaned by hosing down, so the floor must fall to a gully and the gully must cope with fur, bedding shreds, cat litter and the odd lost toy. Gullies without a removable bucket or grate are the ones that block. A gully that has lost its water seal lets drain smells into a ward full of animals. We clear, replace and add gullies, fit removable silt buckets, and look at the run beyond by camera if it keeps backing up."
+      },
+      {
+        "title": "Hot water and warm recovery",
+        "body": "A practice uses hot water all day, for scrubbing up, wash-down, laundering vet bedding and cleaning bowls. Recovering animals, especially small ones after an anaesthetic, lose heat quickly, so wards and recovery need heating that holds a steady temperature through the night, not just during opening hours. We repair and upgrade boilers, cylinders and radiators, add zones so a ward can be heated on its own, and fit air conditioning where summer heat builds up in kennels or the medicine store."
+      },
+      {
+        "title": "Power for equipment and fridges",
+        "body": "Autoclaves, washer-disinfectants, laundry machines, blood analysers, warming cabinets and vaccine fridges all need a sound electrical supply, and several need a circuit of their own. A tripped RCD that takes out a vaccine fridge overnight can cost you stock. Our registered electricians add dedicated circuits, move fridges off supplies shared with kettles and dryers, and label them clearly. Sterilisers and washers that need water and a drain we connect to the maker's installation instructions, alongside the electrics, as one job."
+      }
+    ],
+    "does": [
+      "Consult-room basins with lever or sensor taps",
+      "Deep prep and instrument-wash sinks",
+      "Kennel floor gullies cleared and replaced",
+      "Fur and bedding cleared from traps",
+      "Water and waste for sterilisers and washers",
+      "Separate heating zones for wards and recovery",
+      "Dedicated circuits for equipment and fridges",
+      "Staff and client WC repairs"
+    ],
+    "guidance": [
+      {
+        "title": "Clinical waste stays out of the drains",
+        "body": "Sharps, soiled dressings, anatomical waste, unused medicines and contaminated swabs are clinical waste and should never be washed or flushed away. They go into the right containers for collection by a licensed waste contractor under your practice's waste arrangements. Large amounts of cat litter and shredded bedding also belong in the bin, because they settle and set in a drain. When a gully or trap blocks, what we pull out usually tells the story. A strainer on every prep sink and a bucket in every gully keeps most solids where they can be lifted out."
+      },
+      {
+        "title": "Working around surgery lists and emergencies",
+        "body": "Theatre and prep are hard to lose during a list, so we plan work in those rooms for early mornings, evenings or a day when nobody is operating. Kennels can often be done one run at a time while animals are moved along. If your practice runs an out-of-hours emergency service, tell us, because there may be no truly quiet time and we will agree a sequence with your head nurse or practice manager. Our 24/7 emergency callout covers a burst pipe or a flooded ward at any hour."
+      },
+      {
+        "title": "Checks your team can do",
+        "body": "Once a week, lift gully grates and empty the silt buckets, and pour a jug of water into any floor gully in a room that is rarely washed, so the trap does not dry out and let smells in. Clear hair from prep-sink strainers at the end of every day. Look at the temperature logs on medicine and vaccine fridges and note any that dipped overnight, as that can point to a tripping circuit. Run little-used taps and showers weekly; the practice or its landlord has a duty to manage legionella risk under HSE guidance."
+      }
+    ],
+    "links": [
+      {
+        "href": "/services/commercial-plumbing",
+        "label": "Commercial Plumbing",
+        "why": "Our core service for business premises, covering surgery basins, prep sinks, water supplies and leaks."
+      },
+      {
+        "href": "/services/drain-unblocking",
+        "label": "Drain Unblocking",
+        "why": "Fur, bedding and litter are behind most blocked kennel gullies and prep-sink wastes."
+      },
+      {
+        "href": "/services/cctv-drain-survey",
+        "label": "CCTV Drain Survey",
+        "why": "A camera shows why a kennel drain keeps backing up before anything is dug out."
+      },
+      {
+        "href": "/services/tap-repair-and-replacement",
+        "label": "Tap Repair & Replacement",
+        "why": "Swapping consult-room taps for lever or sensor types that staff can use hands-free."
+      },
+      {
+        "href": "/appliances/hot-water-cylinder-installation",
+        "label": "Hot Water Cylinders",
+        "why": "A cylinder sized for scrubbing up, wash-down and bedding laundry across a long clinical day."
+      },
+      {
+        "href": "/heating",
+        "label": "Heating services",
+        "why": "Ward and recovery heating that keeps animals warm overnight as well as in opening hours."
+      },
+      {
+        "href": "/services/electrical-repairs",
+        "label": "Electrical Repairs",
+        "why": "Dedicated circuits and fault-finding when a tripping RCD puts fridges or the autoclave at risk."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Do you install medical gas or x-ray shielding?",
+        "a": "No. Medical gas pipelines, x-ray room shielding and anaesthetic scavenging are specialist work, and we leave them to contractors who do nothing else. Our part is the building services around them: basins, sinks, drains, hot water, heating and electrics. If a job touches both, we are happy to work alongside your specialist so it is clear where our work ends and theirs begins."
+      },
+      {
+        "q": "Can you connect our new autoclave or washer-disinfector?",
+        "a": "Usually, yes, where it needs a water feed, a drain and a power supply of a size we work with. We follow the maker's installation instructions for the feed, backflow protection, waste and electrics, and our electricians can add a dedicated circuit if it needs one. Send us the installation sheet before delivery so the connections are ready when it arrives."
+      },
+      {
+        "q": "Our kennel gullies smell. What is causing it?",
+        "a": "Often a trap has dried out in a room that is not washed every day, so drain air comes straight up. It can also be fur and bedding built up in the gully or the pipe beyond it. Topping the trap up with water fixes the first. For the second we clear the gully and pipe, and fit a removable bucket so solids are easier to lift out."
+      },
+      {
+        "q": "Can clinical waste go down the drain if it is diluted?",
+        "a": "No. Clinical waste, including sharps, contaminated dressings, anatomical waste and medicines, goes in the correct containers for collection by a licensed waste contractor, never down a sink, gully or toilet. We only look after the drainage itself. If items like these turn up in a blocked drain, it is worth reminding the team where they should go."
+      },
+      {
+        "q": "Can you work while our emergency service is open overnight?",
+        "a": "Yes. Many practices with an out-of-hours service never fully close, so we agree with you which rooms can be taken out of use and in what order. We can work early, late or at weekends, and our 24/7 emergency callout is there for a burst pipe or a flooded ward. Our engineers are DBS-checked, directly employed and fully insured."
+      }
+    ],
+    "related": [
+      "dog-groomers-and-pet-businesses",
+      "clinics-and-dental-practices",
+      "pharmacies"
+    ]
+  },
+  {
+    "slug": "pharmacies",
+    "name": "Pharmacies",
+    "heroTitle": "Plumbing and electrics for pharmacies",
+    "heroSub": "Dispensary sinks, consultation-room basins, leaks near stock, water heaters and reliable fridge circuits, with refits done overnight so dispensing carries on.",
+    "h1": "Pharmacy plumbing, heating and electrics in London",
+    "metaTitle": "Pharmacy Plumbing & Refits, London | Ninja Plumbers",
+    "metaDescription": "Pharmacy plumbing in London: dispensary sinks, consultation basins, leaks, water heaters and fridge circuits, refits done out of hours. Call 020 3576 5825.",
+    "eyebrow": "Pharmacies",
+    "icon": "tap",
+    "target": "pharmacy plumbing · pharmacy refit plumbing (low volume)",
+    "summary": "Dispensary sinks, consultation-room basins, staff WCs, water heaters, fridge circuits and cooling for pharmacies, with refit work carried out overnight or out of hours.",
+    "intro": "Pharmacy plumbing is mostly small fixtures, but each one matters. The dispensary sink is where measures, bottles and equipment are washed, the consultation-room basin is used before every vaccination, and one slow leak under a counter can ruin shelves of stock. Ninja Plumbers looks after independent and multiple pharmacies across London, Guildford and Woking: sinks, basins, water heaters, staff WCs, fridge circuits, heating and air conditioning. For a refit we work overnight or out of hours so the dispensary keeps running, and the price is agreed before we start. Because we also do electrics and cooling, one team covers the lot.",
+    "needs": [
+      {
+        "title": "A dispensary sink with hot and cold water",
+        "body": "The GPhC standards for registered pharmacies expect premises to be suitable for the services you provide, and a clean dispensary sink with hot and cold running water is standard. It is used for washing measures, bottles and equipment, so it should be kept for that job and not double as the staff washing-up sink. We fit sinks with a good-quality mixer, a waste that does not gurgle or smell and a shut-off valve you can reach, sized to the bench you have."
+      },
+      {
+        "title": "Basins for clinical services",
+        "body": "If you offer vaccinations, blood pressure checks, travel clinics or other clinical services, a hand-wash basin in or close to the consultation room is generally expected, so staff can wash hands between patients. Many consultation rooms were squeezed into a corner of the shop floor with no plumbing nearby. We can run feeds and a waste to a new basin, add a small point-of-use heater where hot water is far away, and fit lever or sensor taps. Check what your service agreements ask for before you plan the room."
+      },
+      {
+        "title": "Leaks kept away from stock",
+        "body": "Pharmacies are packed tight, with stock shelved floor to ceiling and pipes hidden behind fixtures. A dripping joint behind a shelving unit or a failing water heater in a stock room can soak cartons for weeks before anyone notices. Water through the ceiling from a flat upstairs is another common cause. We trace and repair leaks, fit drip trays and accessible shut-off valves under water heaters, and replace tired heaters and flexible hoses before they give way."
+      },
+      {
+        "title": "Power and temperature for medicines",
+        "body": "Medicine fridges are best on a supply that nobody can switch off by accident, such as a switchless socket or a clearly labelled one on its own circuit, so a cleaner does not unplug one to run a vacuum. Many medicines are labelled for storage below 25°C, and a dispensary with a sunny window, bright lighting and several computers can go well above that in summer. We install and maintain air conditioning for dispensaries and stock rooms, and repair heating for the colder months."
+      }
+    ],
+    "does": [
+      "Dispensary sinks and mixer taps",
+      "Consultation-room hand-wash basins",
+      "Point-of-use water heaters",
+      "Leaks traced behind shelving and counters",
+      "Staff WC repairs and replacements",
+      "Switchless or labelled fridge sockets",
+      "Air conditioning for dispensaries and stock rooms",
+      "Out-of-hours plumbing for pharmacy refits"
+    ],
+    "guidance": [
+      {
+        "title": "Planning a refit without stopping dispensing",
+        "body": "Most refits move the dispensary sink, add a consultation room or both. Plan the plumbing early, because a sink moved to the other side of the shop needs a waste with enough fall, and that can decide where the counters go. We can run new pipework overnight or out of hours in stages, keeping the old sink in use until the new one is connected. Fridges can be moved onto new circuits one at a time, so medicines are never left without power. Bring us in at the same time as your shopfitter."
+      },
+      {
+        "title": "Protecting stock from water",
+        "body": "Look at what sits above and around your stock. Water heaters, WC cisterns and pipe runs over shelving are the usual culprits, along with the flat or office upstairs. Know where your stopcock is and check that it turns, because a seized one turns a small leak into a flood. Keep the lowest shelf off the floor where you can. If your water meter keeps turning with every tap closed, a hidden leak is likely, and leak detection can find it without emptying the shop."
+      },
+      {
+        "title": "Keeping fridges and rooms in range",
+        "body": "Your standard operating procedures will cover fridge temperature records, but the building has a part to play. A fridge plugged into a switched socket or a multi-way adaptor is easy to turn off by mistake, and one on a shared circuit can go off when another appliance trips the RCD. Ask us to put fridges on their own clearly labelled supply. For room temperature, keep a thermometer in the dispensary through summer; if readings creep up, cooling or better ventilation is worth looking at before stock is affected."
+      }
+    ],
+    "links": [
+      {
+        "href": "/services/commercial-plumbing",
+        "label": "Commercial Plumbing",
+        "why": "Our main service for business premises, including dispensary sinks, basins and refit pipework."
+      },
+      {
+        "href": "/services/leak-detection",
+        "label": "Leak Detection",
+        "why": "Finds hidden leaks behind shelving and counters before water reaches your stock."
+      },
+      {
+        "href": "/services/water-through-ceiling",
+        "label": "Water Through Ceiling",
+        "why": "Water coming through from the flat above is a common threat to pharmacy stock."
+      },
+      {
+        "href": "/appliances/kitchen-sink-installation",
+        "label": "Kitchen Sink Installation",
+        "why": "The same sink, mixer and waste work we use when fitting or moving a dispensary sink."
+      },
+      {
+        "href": "/services/electrical-repairs",
+        "label": "Electrical Repairs",
+        "why": "Clearly labelled supplies for medicine fridges, and fixing circuits that keep tripping."
+      },
+      {
+        "href": "/services/air-conditioning-installation",
+        "label": "Air Conditioning Installation",
+        "why": "Cooling for dispensaries and stock rooms that run warm, since many medicines have storage limits."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Does a pharmacy need a sink with hot and cold water?",
+        "a": "In practice, yes. The GPhC standards for registered pharmacies expect premises to be suitable for the services provided, and a clean dispensary sink with hot and cold running water is standard. Check the current standards and any inspection feedback for your own premises. We can fit a new sink, add hot water where there is none, or fix one that drains slowly."
+      },
+      {
+        "q": "Do we need a basin in the consultation room?",
+        "a": "If you offer vaccinations, blood pressure checks or other clinical services, a hand-wash basin in or near the consultation room is generally expected for hand hygiene. Your service specifications may say more, so check them. Where there is no plumbing close by, we can run new feeds and a waste, and a small water heater can supply hot water on the spot."
+      },
+      {
+        "q": "Can you do our refit plumbing overnight?",
+        "a": "Yes. We regularly work late, overnight or at weekends so dispensing is not interrupted. We phase the work so there is always a working sink and the fridges always have power, and we clear up before you open. If a shopfitter is running the refit, we are happy to work to their programme. The price is agreed before work starts."
+      },
+      {
+        "q": "Can you stop our medicine fridge being switched off by accident?",
+        "a": "Our registered electricians can move the fridge onto a switchless fused connection or a clearly labelled socket that staff know to leave alone, ideally on a circuit it does not share with kettles and heaters. That makes an accidental switch-off or a nuisance trip less likely. Your fridge monitoring routine still matters, but the supply should not be the weak point."
+      },
+      {
+        "q": "Our dispensary gets too hot in summer. What can we do?",
+        "a": "Many medicines are labelled for storage below 25°C, so a dispensary that runs warm is worth dealing with. Air conditioning is the usual answer, and our F-Gas certified engineers install and maintain it. We will look at the room, the heat from lighting and equipment and where an outdoor unit could go, then explain the options before quoting."
+      }
+    ],
+    "related": [
+      "clinics-and-dental-practices",
+      "shops-and-retail",
+      "veterinary-practices"
+    ]
+  },
+  {
+    "slug": "physio-and-osteopathy-clinics",
+    "name": "Physio & Osteopathy Clinics",
+    "heroTitle": "Plumbing for physio & osteopathy clinics",
+    "heroSub": "Treatment-room basins, warm rooms, accessible WCs, hot water and couch sockets for therapy clinics, with work done quietly between or outside appointments.",
+    "h1": "Plumbing, heating and electrics for physio and osteopathy clinics in London",
+    "metaTitle": "Physio & Osteopath Clinic Plumbing | Ninja Plumbers",
+    "metaDescription": "Physio clinic plumbing and osteopath clinic fit-outs in London: treatment-room basins, warm rooms, accessible WCs and couch sockets. Call 020 3576 5825.",
+    "eyebrow": "Physio & osteopathy",
+    "icon": "heating",
+    "target": "physio clinic plumbing · osteopath clinic fit out (low volume)",
+    "summary": "Basins, heating, accessible WCs, hot water and electrics for physiotherapists, osteopaths, chiropractors and sports and massage therapists, fitted around your appointment diary.",
+    "intro": "Physio clinic plumbing is less about big plant and more about the room a patient lies in half-dressed. Ninja Plumbers works for physiotherapists, osteopaths, chiropractors, sports therapists and massage therapists across London, Guildford and Woking, often in converted shops or flats above shops. We fit hand-wash basins in treatment rooms, get heating warm before your first patient, make WCs usable for people with limited mobility, and put hot water where it arrives quickly. Our electricians add sockets for electric couches and ultrasound or shockwave units. If you are planning an osteopath clinic fit-out, one team handles the plumbing, heating and electrics.",
+    "needs": [
+      {
+        "title": "A basin in every treatment room",
+        "body": "Hands-on treatment means washing hands before and after every patient, and a basin in the room itself makes that easy rather than a trip down the corridor. In a converted shop or flat, the nearest waste may be a floor away, so the basin position is often decided by the drain. Where the fall is poor, a small pumped waste solves it. We fit compact basins with lever taps and, where hot water is far off, a point-of-use heater under the basin."
+      },
+      {
+        "title": "Rooms warm enough to undress in",
+        "body": "Patients strip to underwear or shorts and lie still for half an hour, so a room that feels fine to a therapist in a fleece can feel cold on a couch. Heating needs to be up to temperature before the first appointment and recover quickly after a door has been left open. Correctly sized radiators with thermostatic valves, a programmable timer, or electric underfloor heating in a small room all help. We balance systems so the far treatment room is not always the coldest."
+      },
+      {
+        "title": "Access for patients with limited mobility",
+        "body": "Your patients include people recovering from surgery, living with back pain or walking on crutches. A WC with grab rails, a comfort-height pan, lever taps and room to turn makes a real difference, as does a step-free route to it. In older buildings the only WC is often up a stair or squeezed under one. We can refit a WC with accessible fittings, fix grab rails where the wall will take the load, and swap stiff old taps for levers."
+      },
+      {
+        "title": "Showers, laundry and power",
+        "body": "Sports injury clinics often need a small shower for athletes arriving straight from training. Every clinic goes through piles of towels and couch covers, so a washing machine and dryer need a feed, a waste and power. Treatment rooms without windows need extraction to stay fresh. Electric couches, ultrasound and shockwave units, lasers and heat packs need sockets placed at the couch, not an extension lead across the floor. Because we do plumbing, electrics and ventilation, a room refit is handled by one team."
+      }
+    ],
+    "does": [
+      "Hand-wash basins fitted in treatment rooms",
+      "Point-of-use water heaters under basins",
+      "Radiators, controls and underfloor heating",
+      "Accessible WC refits with grab rails",
+      "Lever taps for patients and staff",
+      "Small showers for sports injury clinics",
+      "Washing machine plumbing for towel laundry",
+      "Sockets for electric couches and equipment"
+    ],
+    "guidance": [
+      {
+        "title": "Turning a shop or flat into a clinic",
+        "body": "Many clinics start in a former shop or the flat above one, and the existing plumbing rarely suits. Before you sign a lease or draw up room layouts, find out where the soil stack and drains run, how hot water is produced and what size the incoming electrical supply is. Basins and a shower are easiest near the stack; rooms further away may need a pumped waste. Check with your landlord what alterations need their consent. We can look over the services before your fit-out plan is fixed."
+      },
+      {
+        "title": "Keeping work quiet around appointments",
+        "body": "Treatment depends on a calm room, so drilling and hammering next door during a session is not an option. Send us your weekly diary and mark which rooms are in use. We can do noisy work before opening, in lunch gaps, in the evening or on the day you are closed, and do quieter jobs such as changing a tap or bleeding radiators between patients. A service valve under each basin lets us fix one room while the others carry on."
+      },
+      {
+        "title": "Hot water and heating checks worth doing",
+        "body": "If a basin takes a long time to run hot, the pipe from the heater is probably long and uninsulated, so therapists skip the warm wash. A point-of-use heater fixes that. Set the heating timer to bring rooms up well before the first patient, and check that thermostatic radiator valves have not been turned down. Run showers used only a few times a week regularly; the practice or landlord has a duty to manage legionella risk under HSE guidance, and we can cut out pipework nobody uses."
+      }
+    ],
+    "links": [
+      {
+        "href": "/services/commercial-plumbing",
+        "label": "Commercial Plumbing",
+        "why": "Our main business plumbing service, including treatment-room basins and clinic fit-out pipework."
+      },
+      {
+        "href": "/appliances/radiator-installation-and-power-flushing",
+        "label": "Radiators & Power Flushing",
+        "why": "Radiators sized for each treatment room, and flushing where cold spots leave rooms chilly."
+      },
+      {
+        "href": "/appliances/underfloor-heating-installation",
+        "label": "Underfloor Heating",
+        "why": "Even, quiet warmth for small treatment rooms where patients lie undressed."
+      },
+      {
+        "href": "/services/commercial-washroom-refurbishment",
+        "label": "Commercial Washroom & Toilet Refurbishment",
+        "why": "WC refits with grab rails and lever taps for patients with limited mobility."
+      },
+      {
+        "href": "/appliances/washing-machine-plumbing",
+        "label": "Washing Machine Plumbing",
+        "why": "A reliable feed and waste for the washer that handles towels and couch covers."
+      },
+      {
+        "href": "/appliances/saniflo-macerator-pumps",
+        "label": "Saniflo & Macerator Pumps",
+        "why": "Lets you put a basin or shower in a treatment room far from the drain."
+      },
+      {
+        "href": "/services/electrical-repairs",
+        "label": "Electrical Repairs",
+        "why": "Sockets at the couch for electric tables, ultrasound and shockwave units."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Does each treatment room need its own basin?",
+        "a": "Hand hygiene between patients is central to infection control, and your professional body or insurer may expect easy access to a basin. For massage, London boroughs that license special treatment premises usually look for a hand-wash basin with hot and cold water. A basin in each room is the simplest answer, and we can usually add one, with a pumped waste where the drain is far away."
+      },
+      {
+        "q": "Our treatment rooms are cold first thing. Can you help?",
+        "a": "Usually, yes. Often the timer starts the heating too late, radiators are undersized for the room, or the system needs balancing or a flush. We check each of these and set things up so rooms are warm before your first patient. In a small room, electric underfloor heating can be a good addition, and our electricians and plumbers handle it together."
+      },
+      {
+        "q": "Can you make our WC easier for patients with limited mobility?",
+        "a": "We can refit a WC with grab rails, a comfort-height pan, lever taps, a lever flush and a basin that can be reached from the seat. How far we can go depends on the space; a full wheelchair-accessible room needs more floor area than many converted shops have. We will measure up and explain what fits before quoting."
+      },
+      {
+        "q": "Can you fit a shower for our sports clinic?",
+        "a": "Yes. A compact shower or small walk-in shower suits most sports injury clinics. We check your hot water and water pressure first, because a busy post-training session can empty a small cylinder. An electric shower on its own circuit is another option where hot water is limited. Our plumbers and electricians fit it as one job."
+      },
+      {
+        "q": "Will your work disturb our patients?",
+        "a": "We plan it not to. Noisy jobs go before opening, after the last appointment or on your closed day, and quiet repairs can fit between patients. Our engineers are DBS-checked and directly employed, so you know who is in your clinic. For a burst pipe or flooded room there is a 24/7 emergency callout, and the price is agreed before work starts."
+      }
+    ],
+    "related": [
+      "clinics-and-dental-practices",
+      "gyms-and-fitness-studios",
+      "yoga-and-pilates-studios"
+    ]
+  },
+  {
+    "slug": "co-working-spaces",
+    "name": "Co-working Spaces",
+    "heroTitle": "Plumbing for co-working spaces",
+    "heroSub": "Tea points, washrooms, cyclist showers, cooling and desk power kept running, with the work booked around your members' hours.",
+    "h1": "Co-working space plumbing and maintenance in London",
+    "metaTitle": "Coworking Space Plumbing & Maintenance | Ninja Plumbers",
+    "metaDescription": "Coworking space plumbing in London: tea points, boiling water taps, cyclist showers, WCs, air conditioning and power, done around members. Call 020 3576 5825.",
+    "eyebrow": "Co-working spaces",
+    "icon": "appliance",
+    "target": "coworking space plumbing · serviced office maintenance (low volume)",
+    "summary": "Plumbing, electrics and air conditioning for co-working operators and shared workspaces: tea points, busy washrooms, cyclist showers and extra desk power, scheduled around member hours.",
+    "intro": "Members judge a co-working space on small things: whether the boiling water tap works at nine, whether the shower runs hot after a ride in, and whether the phone booths are bearable in July. Good coworking space plumbing keeps those things quietly working. Ninja Plumbers looks after flexible offices, serviced suites and shared workspaces in converted warehouses and former shopfronts across London and nearby Surrey. Our plumbers, Gas Safe engineers, registered electricians and F-Gas certified air conditioning engineers work as one team, so a new tea point with its own socket and filtered feed is a single booking. We schedule around member hours and agree the price first.",
+    "needs": [
+      {
+        "title": "Tea points and kitchens on every floor",
+        "body": "A co-working building might have a main kitchen plus a tea point on each floor, and each one carries more kit than a typical workplace: a boiling water tap, a dishwasher, a fridge with a water feed and often a bean-to-cup coffee machine. Every appliance should have its own isolation valve, so one fault does not shut the whole kitchen, and machine feeds need backflow protection matched to the risk. Scale from London's hard water is the usual cause of tired taps and machines."
+      },
+      {
+        "title": "Washrooms that take whatever the day brings",
+        "body": "Membership numbers shift from month to month, and the WCs have to cope with a packed Tuesday as well as a quiet Friday. In converted warehouses and shopfronts, toilets were often added long after the building went up, sometimes on long waste runs with shallow falls or pumped away by a macerator. Those are the ones that block first. When the only accessible WC on a floor is out of use, members head for the stairs and your community team hears about it within minutes."
+      },
+      {
+        "title": "Showers and changing rooms for cyclists",
+        "body": "Cyclist showers are hammered between eight and half past nine, then sit idle for most of the day. That pattern tests the hot water: a cylinder sized for hand basins can run cold by the third shower, and a weak supply on an upper floor leaves members with a trickle. Changing-room gullies clog with hair and shower gel. Thermostatic mixing valves limit outlet temperature to reduce scalding risk, and need checking to keep doing it. We look at storage, recovery, pressure and drainage together."
+      },
+      {
+        "title": "Cool booths, extra power and car parks",
+        "body": "Glazed phone booths and small meeting rooms heat up fast with two people and a screen inside. Our F-Gas certified engineers fit, repair and service split air conditioning. When you add desks or re-plan a floor, our registered electricians add sockets, floor boxes and circuits, and fit EV chargers in a members' car park. Where heating runs on a domestic-sized boiler, our Gas Safe engineers look after it; larger commercial plant needs commercially qualified gas engineers, and we will say if yours is beyond us."
+      }
+    ],
+    "does": [
+      "Boiling water tap fitting and filter changes",
+      "Coffee machine and fridge water feeds",
+      "Dishwasher plumbing for shared kitchens",
+      "Blocked toilets and slow basin wastes",
+      "Cyclist shower repairs, pumps and TMVs",
+      "Phone booth and meeting room air conditioning",
+      "Extra sockets, floor boxes and desk circuits",
+      "EV charger installation for member car parks"
+    ],
+    "guidance": [
+      {
+        "title": "Book around your members, not against them",
+        "body": "Most co-working spaces are busy from early morning into the evening, and some members come in at weekends too. Noisy or disruptive jobs, such as isolating the water to a floor or cutting into a wall, are best booked for a quiet evening or a Sunday. Tell members in advance which tea point or washroom will be closed and for how long, and signpost the nearest alternative. Give us one named contact who can let us in, knows where the stopcocks are and can sign off the work."
+      },
+      {
+        "title": "Keep a simple log of repeat faults",
+        "body": "A shared kitchen breaks in the same ways again and again: a dishwasher that will not drain, a boiling water tap showing a filter warning, a toilet on the second floor that keeps blocking. Ask your community team to note each fault with the date and location. After a few weeks, patterns show up, and it becomes clear whether a part needs replacing or the layout is the real problem, such as a waste pipe with too little fall. That turns repeat call-outs into one planned fix."
+      },
+      {
+        "title": "Showers that go quiet",
+        "body": "If your cyclist showers see little use in winter, or a floor sits empty between members, water can stand in the pipework and warm up, which raises the risk of legionella. Depending on your lease, you as operator or your landlord have a duty to manage that risk under HSE guidance, the Approved Code of Practice L8. A weekly flush of little-used showers and taps is an easy habit to build. We do the plumbing side: taking out dead legs, reworking unused outlets, and fitting, servicing and testing TMVs."
+      }
+    ],
+    "links": [
+      {
+        "href": "/services/commercial-plumbing",
+        "label": "Commercial Plumbing",
+        "why": "Planned and reactive plumbing for shared workspaces, from tea points to washrooms across several floors."
+      },
+      {
+        "href": "/appliances/boiling-water-taps",
+        "label": "Boiling Water Taps",
+        "why": "Every tea point relies on one, and each needs a filtered feed and a nearby socket."
+      },
+      {
+        "href": "/appliances/dishwasher-plumbing",
+        "label": "Dishwasher Plumbing",
+        "why": "Shared kitchens run dishwashers all day, so sound waste and supply connections really matter."
+      },
+      {
+        "href": "/services/blocked-toilet",
+        "label": "Blocked Toilet",
+        "why": "A blocked WC on a busy floor is the fault members notice and mention first."
+      },
+      {
+        "href": "/services/tmv-servicing",
+        "label": "TMV Servicing & Testing",
+        "why": "Keeps cyclist shower temperatures safe and steady after heavy morning use."
+      },
+      {
+        "href": "/services/air-conditioning-installation",
+        "label": "Air Conditioning Installation",
+        "why": "Cooling for phone booths and meeting rooms that overheat once the door is shut."
+      },
+      {
+        "href": "/services/ev-charger-installation",
+        "label": "EV Charger Installation",
+        "why": "Chargers for members' cars in a building car park, with the supply and load checked first."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Can you work when our members are not in?",
+        "a": "Yes. We can start early, work into the evening or come at weekends, and we agree the timing with you before booking. Where a job has to happen during the day, such as clearing a blocked toilet, we screen off the area and keep noise down. For a burst pipe or water coming through a ceiling, there is a 24/7 emergency callout."
+      },
+      {
+        "q": "Can we have one contact for repeat jobs?",
+        "a": "Yes. We keep a record of your building: where the stopcocks and isolation valves are, which appliances sit on each floor and what we have done before. You get one point of contact at our office for booking and invoicing, and where we can, we send engineers who already know the site. That saves explaining the layout on every visit."
+      },
+      {
+        "q": "Our boiling water tap keeps showing a filter warning. What does that mean?",
+        "a": "Most boiling water taps have a filter cartridge on the feed that needs changing at intervals set by the maker, and many count litres or months and warn when it is due. In a busy tea point that comes round quickly. If the tap is also slow, spitting or tripping the power, the tank may be scaled or failing. We can change filters, repair or replace the unit."
+      },
+      {
+        "q": "Can you add sockets and power for new desks?",
+        "a": "Yes. Our registered electricians add sockets, floor boxes and dedicated circuits, and check first that your consumer unit and existing wiring can take the extra load. If a new tea point needs both water and power, the plumber and electrician come from the same team, so you are not lining up two contractors or waiting between visits."
+      },
+      {
+        "q": "Do you service air conditioning as well as fit it?",
+        "a": "Yes. Our F-Gas certified engineers fit, repair and service split air conditioning. In a co-working space, units in phone booths and meeting rooms often run all day, so filters clog sooner than they would at home. Regular cleaning keeps them cooling properly and quieter, which matters in a booth used for calls. We can book servicing out of hours."
+      }
+    ],
+    "related": [
+      "offices",
+      "gyms-and-fitness-studios",
+      "solicitors-and-accountants"
+    ]
+  },
+  {
+    "slug": "estate-agents",
+    "name": "Estate Agents",
+    "heroTitle": "Pre-sale repairs for estate agents",
+    "heroSub": "Survey repairs, drain surveys, boiler checks and vacant-home care, quoted up front and booked around viewings so your sale keeps moving.",
+    "h1": "Plumber for estate agents: pre-sale repairs in London",
+    "metaTitle": "Pre-sale Repairs: Plumber for Estate Agents | Ninja Plumbers",
+    "metaDescription": "Plumber for estate agents in London: survey repairs, CCTV drain surveys, boiler services and vacant property checks, priced before work. Call 020 3576 5825.",
+    "eyebrow": "Estate agents",
+    "icon": "general",
+    "target": "plumber for estate agents · pre-sale plumbing repairs (low volume)",
+    "summary": "Repairs flagged on a buyer's survey, CCTV drain surveys, boiler services and care of vacant or probate homes, priced up front so a sale does not stall.",
+    "intro": "A sale can stall over something small: a surveyor notes a stain under the bath, a buyer asks about the drains, or a probate house has had no heating since last winter. As a plumber for estate agents, Ninja Plumbers gives you a trade you can pass to a vendor or buyer. We carry out pre-sale plumbing repairs, CCTV drain surveys, boiler servicing and electrical checks across London and nearby Surrey. Our engineers are DBS-checked and directly employed, and we agree the price before starting, so there is a clear figure to pass on. If your office also handles lettings, we look after rented homes too.",
+    "needs": [
+      {
+        "title": "Repairs raised by a buyer's survey",
+        "body": "A home survey often lists plumbing and heating items in cautious language: a weeping joint, an older boiler, what looks like lead pipework at the stopcock, or a gully that seems slow to drain. Buyers then ask for a quote or a price reduction. We inspect what the surveyor flagged, tell the vendor what is actually wrong and what is not, and give a written price. Putting a small item right quickly can stop it turning into a renegotiation."
+      },
+      {
+        "title": "Drainage evidence for buyers and lenders",
+        "body": "Older London houses often share a clay drain with next door, and surveyors commonly suggest a CCTV drain survey where they see cracked gullies, trees close to the house or signs of past blockages. Buyers, and sometimes their lenders, may want that report before exchange. We run a camera through the drain runs, record the footage and write a summary of the condition, with any repairs priced separately. Knowing early lets the vendor choose between a repair and a price adjustment."
+      },
+      {
+        "title": "Boiler and electrics questions from buyers",
+        "body": "For the sale of an owner-occupied home, a gas safety certificate or an EICR is not generally a legal requirement. Even so, buyers and their solicitors often ask when the boiler was last serviced and whether the electrics have been checked. A recent service by a Gas Safe registered engineer and a condition report from a registered electrician can answer those questions. Where either turns up a fault, we price the repair so the vendor has a clear choice."
+      },
+      {
+        "title": "Vacant, probate and chain-delayed homes",
+        "body": "An empty house can sit for months while probate is granted or a chain sorts itself out. In winter, a frozen pipe in an unheated loft can flood two floors before anyone visits. We can drain the system down, or leave the heating on a frost-protection setting, and check for leaks on visits you arrange. Before viewings, we can get the boiler firing, bleed radiators and make sure taps and toilets work, so the house shows as a working home."
+      }
+    ],
+    "does": [
+      "Repairs listed on a buyer's survey",
+      "CCTV drain surveys with written reports",
+      "Lead supply pipe replacement",
+      "Boiler servicing and repairs before completion",
+      "Electrical condition reports and fault repairs",
+      "Draining down and frost protection for empty homes",
+      "Heating recommissioned ahead of viewings",
+      "Branch WC, kitchenette and air conditioning"
+    ],
+    "guidance": [
+      {
+        "title": "Get a written price before an offer wobbles",
+        "body": "When a survey comes back with plumbing or heating points, the quickest route is usually a proper inspection and a written price rather than a guess. Ask the vendor to give us access early, ideally before the buyer's solicitor raises formal enquiries. A written quote lets both sides negotiate on facts. Bear in mind that a surveyor's note is a pointer, not a diagnosis: an older boiler may be working well and simply due a service, while a small stain can hide an active leak."
+      },
+      {
+        "title": "Protecting a vacant property in winter",
+        "body": "If a property will stand empty through cold weather, decide early whether to keep low heat on or drain the system. Low heat protects the pipes but relies on the boiler, gas and power all staying on. Draining down removes the risk of a burst but means the system needs refilling and checking before viewings or a survey. Check the property's insurance too, because many policies set conditions for unoccupied homes, such as regular inspections or the water being turned off."
+      },
+      {
+        "title": "Lead pipes and weak flow",
+        "body": "Many older London houses still have a lead supply pipe running from the boundary stopcock into the house. Surveyors often flag it, and buyers may ask about it because of concerns over lead in drinking water. The section inside the property boundary is usually the owner's responsibility, while the water company looks after its own side. Replacing it with modern plastic pipe often improves flow at the taps as well. We can confirm whether the pipe is lead, price the replacement and explain what the vendor needs to arrange."
+      }
+    ],
+    "links": [
+      {
+        "href": "/services/commercial-plumbing",
+        "label": "Commercial Plumbing",
+        "why": "Our main service for businesses, covering your own branch as well as homes you are selling."
+      },
+      {
+        "href": "/services/cctv-drain-survey",
+        "label": "CCTV Drain Survey",
+        "why": "Camera surveys with footage and a written summary when a buyer or lender asks about drains."
+      },
+      {
+        "href": "/blog/when-do-you-need-a-cctv-drain-survey",
+        "label": "CCTV drain survey guide",
+        "why": "Explains when a drain survey is worth doing and what the report will show."
+      },
+      {
+        "href": "/services/lead-pipe-and-water-main-replacement",
+        "label": "Lead Pipe & Water Main Replacement",
+        "why": "Replacing the lead supply pipes that surveyors commonly flag in older London houses."
+      },
+      {
+        "href": "/services/boiler-service",
+        "label": "Boiler Service",
+        "why": "A recent service record answers one of the questions buyers ask most often."
+      },
+      {
+        "href": "/services/eicr",
+        "label": "EICR Certificates",
+        "why": "A condition report gives buyers evidence that the wiring has been inspected and tested."
+      },
+      {
+        "href": "/services/leak-detection",
+        "label": "Leak Detection",
+        "why": "Tracing the source of the damp patches and stains a surveyor has noted."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Can you quote from the surveyor's report alone?",
+        "a": "We can explain what an item usually involves, but a firm price needs an inspection, because a survey note is a pointer rather than a diagnosis. Once we have seen it, we agree the price before any work starts, so the vendor, the buyer or your office has a written figure to work with."
+      },
+      {
+        "q": "Does a house need a gas safety certificate to be sold?",
+        "a": "Not generally, for an owner-occupied home. The annual gas safety record is a duty for landlords, not a condition of sale. Buyers often want evidence the boiler has been looked after, though, and a recent service by a Gas Safe registered engineer is a simple way to give it. If the home is let, the landlord rules apply."
+      },
+      {
+        "q": "Can you meet us at a vacant or probate property?",
+        "a": "Yes. We can arrange access through your branch or meet a negotiator on site, and our engineers are DBS-checked and directly employed. We report back to whoever instructed us, whether that is you, the executor or the vendor, with photos where they help. We do not go beyond the agreed job without checking with you first."
+      },
+      {
+        "q": "Who pays for the work?",
+        "a": "Whoever instructs us, which is usually the vendor and sometimes the buyer or an executor. We give that person a clear price before starting and invoice them for the work they agreed. There is a call-out charge, which we tell you about when you book, and we accept card or cash. Our workmanship is guaranteed."
+      },
+      {
+        "q": "Can you look after our own branch too?",
+        "a": "Yes. A shopfront branch usually has a small staff WC, a kitchenette and a heater or air conditioning unit working hard behind the front glass. We repair and replace all of these, and can do noisy work before you open or after you close, so viewings and walk-in enquiries carry on. Our F-Gas certified engineers fit and service air conditioning."
+      }
+    ],
+    "related": [
+      "landlords-and-letting-agents",
+      "blocks-of-flats-and-managing-agents",
+      "solicitors-and-accountants"
+    ]
+  },
+  {
+    "slug": "solicitors-and-accountants",
+    "name": "Solicitors & Accountants",
+    "heroTitle": "Plumbing for solicitors & accountants",
+    "heroSub": "Client WCs, heating in period buildings, air conditioning and electrics looked after, with work done out of hours so meetings run undisturbed.",
+    "h1": "Office plumber for solicitors and accountants in London",
+    "metaTitle": "Office Plumber for Solicitors & Accountants | Ninja Plumbers",
+    "metaDescription": "Office plumber for solicitors and accountants in London: client WCs, period heating, air conditioning and EICRs, done out of hours. Call 020 3576 5825.",
+    "eyebrow": "Professional practices",
+    "icon": "heating",
+    "target": "office plumber for solicitors · accountants office maintenance (low volume)",
+    "summary": "Plumbing, heating, electrics and air conditioning for law firms and accountancy practices, often in period townhouses, with discreet work booked around client meetings.",
+    "intro": "Clients form a view of a practice before the meeting starts, and a hissing cistern in the client WC or a cold meeting room does not help. Ninja Plumbers is an office plumber for solicitors, accountants and other professional practices across London and nearby Surrey, many of them in Georgian or Victorian townhouses, upper floors over shops or compact office suites. We look after washrooms, kitchenettes, older boilers and radiators, air conditioning and electrics. Our DBS-checked engineers are directly employed, which matters where confidential files are kept, and we can work in the evening or at weekends. The price is agreed before work starts.",
+    "needs": [
+      {
+        "title": "Client-facing WCs and kitchenettes",
+        "body": "In a practice, the client WC and the meeting-room kitchenette are part of how you present yourself. A stained pan, a cistern that hisses or a tap dripping into a chipped basin sends the wrong message to someone about to sign a contract. We repair and replace sanitaryware, taps and concealed cisterns, fit neat boiling water taps and compact dishwashers, and pay attention to the finish: matching fittings, tidy silicone and no loose pipework on show."
+      },
+      {
+        "title": "Uneven heating in period buildings",
+        "body": "Converted townhouses were never designed as offices. Heating often runs from one domestic-sized boiler on long, much-altered pipe runs, so the basement is warm while the top-floor office stays cold. Old radiators fill with sludge, valves seize and air collects upstairs. Balancing the system, flushing radiators and fitting thermostatic valves can even things out. Our Gas Safe engineers work on domestic-sized boilers; larger commercial plant needs engineers with commercial gas qualifications, and we will tell you if yours is outside what we do."
+      },
+      {
+        "title": "Cooling for comms cupboards and meeting rooms",
+        "body": "A server or comms cupboard in a converted building is often a former store room with no window and no ventilation. Heat builds up, equipment slows or shuts down, and nobody notices until the network drops. Meeting rooms with the door closed and a full table get stuffy too. Our F-Gas certified engineers fit and service split air conditioning suited to small rooms, and our electricians provide the supply, so one team handles the whole job."
+      },
+      {
+        "title": "Electrical safety and capacity",
+        "body": "The Electricity at Work Regulations 1989 require electrical systems to be maintained so they are safe. A periodic inspection and report, the EICR, is the usual way to show you have done that, and your insurer or landlord may ask to see one. In older buildings, the wiring may date from several refits, with too few sockets and extension leads trailing under desks. Our registered electricians inspect, repair, add circuits and replace old fuse boards."
+      }
+    ],
+    "does": [
+      "Client WC repairs and refits",
+      "Meeting-room kitchenettes and boiling water taps",
+      "Radiator balancing, flushing and valve replacement",
+      "Domestic-sized boiler repairs and servicing",
+      "Comms cupboard and meeting room cooling",
+      "EICRs and remedial electrical work",
+      "Extra sockets and fuse board upgrades",
+      "Leak tracing under period floors and ceilings"
+    ],
+    "guidance": [
+      {
+        "title": "Plan work from the client diary",
+        "body": "Most practices keep a shared diary of client meetings, and that is the best place to plan maintenance. Send us the quiet windows: an early morning, an afternoon with no appointments, or a Saturday. Disruptive work such as draining the heating, lifting floorboards or drilling for new sockets can then happen with no clients in the building. For smaller repairs during the day, we keep noise down, protect floors and stairs, and leave meeting rooms as we found them."
+      },
+      {
+        "title": "Working in a listed building",
+        "body": "Many practices occupy listed Georgian or Victorian houses. If your building is listed, some alterations need listed building consent from the local council, and that can include new pipe routes through historic fabric, removing original features or fixing units to a visible elevation. Talk to your landlord and, if needed, the council's conservation officer before planning major changes. We work within what has been agreed, reuse existing routes where we can and keep new pipework and outdoor units discreet."
+      },
+      {
+        "title": "Confidential rooms and access",
+        "body": "Your offices hold client files, laptops and papers left on desks. Our engineers are DBS-checked and directly employed rather than subcontracted, carry identification and work only in the areas you have agreed. If some rooms must stay locked, tell us which and we will plan the job around them. For out-of-hours visits, agree in advance who will let us in and lock up, and whether a member of staff will stay on site. Where possible, we send the same engineers for repeat visits."
+      }
+    ],
+    "links": [
+      {
+        "href": "/services/commercial-plumbing",
+        "label": "Commercial Plumbing",
+        "why": "How we look after small professional offices, from client WCs to kitchenettes and incoming supplies."
+      },
+      {
+        "href": "/services/toilet-repair",
+        "label": "Toilet Repair",
+        "why": "Running cisterns and weak flushes in the client WC, fixed before the next meeting."
+      },
+      {
+        "href": "/appliances/radiator-installation-and-power-flushing",
+        "label": "Radiators & Power Flushing",
+        "why": "Flushing and rebalancing radiators to even out heating across several floors of a townhouse."
+      },
+      {
+        "href": "/services/boiler-repair",
+        "label": "Boiler Repair",
+        "why": "For practices heated by a single domestic-sized boiler that struggles in cold weather."
+      },
+      {
+        "href": "/services/air-conditioning-installation",
+        "label": "Air Conditioning Installation",
+        "why": "Cooling for comms cupboards and meeting rooms that overheat with the door closed."
+      },
+      {
+        "href": "/services/eicr",
+        "label": "EICR Certificates",
+        "why": "A periodic inspection shows your electrics have been kept in a safe condition."
+      },
+      {
+        "href": "/services/consumer-unit-replacement",
+        "label": "Fuse Box Replacement",
+        "why": "Replacing older fuse boards in converted buildings with modern, properly protected units."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Can you work in the evening or at weekends?",
+        "a": "Yes. We can come after the office closes or on a Saturday, so draining the heating or refitting a WC happens without clients in the building. We agree the timing and the price with you beforehand. If something urgent happens, such as water coming through a ceiling onto files, there is a 24/7 emergency callout."
+      },
+      {
+        "q": "Our top floor is always cold. Is the boiler too small?",
+        "a": "Not always. In converted townhouses the cause is often an unbalanced system, sludge in the radiators or air collecting at the top of the building, rather than a boiler that cannot cope. We check the boiler, pump and radiators first and explain the options. If a bigger boiler or extra radiators really are needed, we price that separately."
+      },
+      {
+        "q": "Is an EICR a legal requirement for our practice?",
+        "a": "The law does not set one fixed interval for every workplace, but the Electricity at Work Regulations 1989 require electrical systems to be kept safe. A periodic inspection and report is the usual way to show that. Your insurer or landlord may set their own interval, so check your policy and lease. Our registered electricians can carry out the inspection and any repairs it identifies."
+      },
+      {
+        "q": "Can you cool our server cupboard?",
+        "a": "Yes. Our F-Gas certified engineers fit small split air conditioning units suited to comms cupboards, and our registered electricians provide a dedicated supply, so one team handles both. We look at where the outdoor unit can go, which matters in a listed or conservation-area building, and where the condensate can drain. Regular servicing keeps the unit reliable once it is in."
+      },
+      {
+        "q": "Can you replace a WC without losing its period look?",
+        "a": "Usually. We can fit traditional-style pans, high or low-level cisterns and pillar taps, or keep existing fittings where they are sound. Hidden parts such as flush and fill valves can be modernised without changing the look. If your building is listed, check with your landlord whether any change needs consent before we start, and we will work within what has been agreed."
+      }
+    ],
+    "related": [
+      "offices",
+      "co-working-spaces",
+      "estate-agents"
+    ]
+  },
+  {
+    "slug": "airbnb-and-short-lets",
+    "name": "Airbnb & Short Lets",
+    "heroTitle": "Plumbing for Airbnb & short lets",
+    "heroSub": "Guest-reported leaks, blocked toilets and cold showers fixed while you are elsewhere, with photos sent back and planned work fitted into changeovers.",
+    "h1": "Airbnb plumber and short let maintenance in London",
+    "metaTitle": "Airbnb Plumber & Short Let Maintenance | Ninja Plumbers",
+    "metaDescription": "Airbnb plumber for London hosts and co-hosts: mid-stay leaks, blocked toilets, no hot water, gas safety checks and changeover repairs. Call 020 3576 5825.",
+    "eyebrow": "Airbnb hosts",
+    "icon": "emergency",
+    "target": "airbnb plumber · short let maintenance london (low volume)",
+    "summary": "Mid-stay repairs, changeover-day jobs and annual gas checks for Airbnb hosts, co-hosts and short-let managers, with lockbox access agreed and photos sent when we finish.",
+    "intro": "Your guest messages at eight in the evening: the toilet will not flush, or water is dripping from the bathroom light, and you live miles away. That is when an Airbnb plumber who can let themselves in earns their keep. Ninja Plumbers works for individual hosts, co-hosts and short-let management companies all over London and in parts of Surrey. We agree access through your lockbox or smart lock, deal with the fault and send you photos of what we found and what we did. Planned jobs go into the gap between check-out and check-in. Because we also do electrics, a leaking shower and a dead extractor fan are one visit.",
+    "needs": [
+      {
+        "title": "When a guest calls and you are not there",
+        "body": "Most hosts run one or two flats and live somewhere else, so the first you hear of a fault is a message from a guest. You need a trade who will go in on an access arrangement you have agreed, find the cause rather than patch the symptom, and tell you plainly what happened. We contact the guest before arriving so nobody is surprised at the door, and we send dated photos, which give you a record if you later need to make an insurance claim."
+      },
+      {
+        "title": "Guests who do not know the flat",
+        "body": "A guest has never seen your boiler before. They turn the thermostat right up, press the reset button again and again, or cannot find the stopcock when a pipe under the sink starts spraying. Much of this is avoidable. We can label the stopcock and isolation valves, show you where the boiler controls and pressure gauge are, and suggest wording for a simple instruction card. Clear labels turn a flood into a nuisance, and save a callout for a fault that was only a switch."
+      },
+      {
+        "title": "Toilets, wipes and sanitary products",
+        "body": "Blocked toilets are among the commonest mid-stay calls in short lets. Visitors flush wet wipes, sanitary towels, cotton buds and kitchen roll that an owner would put in the bin, and in older London flats the soil pipe may already be narrow or poorly sloped. A clear sign in the bathroom and a lidded bin beside the WC help a lot. If the same toilet keeps blocking, a camera survey can show whether the problem lies in the pipe rather than with the guests."
+      },
+      {
+        "title": "Showers and water pressure guests notice",
+        "body": "Guests judge a flat quickly on its shower. A weak spray, water that swings between hot and cold, or a tray that drains slowly will all get mentioned in feedback. Causes range from a scaled shower head or a failing mixer cartridge to a combi boiler that cannot keep up, or low mains pressure on an upper floor. We work out which one it is, then repair the valve, fit a pump where the system allows one, or suggest a different setup."
+      }
+    ],
+    "does": [
+      "Mid-stay leak and hot-water callouts",
+      "Blocked toilet and slow drain clearing",
+      "Annual gas safety checks for short lets",
+      "Stopcock and valve labelling for guests",
+      "Shower valve, cartridge and pump repairs",
+      "Boiler repairs, servicing and pressure faults",
+      "EICRs and electrical fault finding",
+      "Photo reports after every visit"
+    ],
+    "guidance": [
+      {
+        "title": "Gas and electrical safety for short lets",
+        "body": "The Gas Safety (Installation and Use) Regulations 1998 cover holiday and short lets as well as long tenancies. Each gas appliance, flue and length of pipework you provide needs a yearly check by an engineer on the Gas Safe Register, and the record should be kept. Electrics are less clear cut. The five-yearly EICR rule is written for private tenancies, but an EICR is good practice for a short let, and some platforms, insurers or councils ask to see evidence that the wiring is safe. Our registered electricians can test the installation and put right anything that fails."
+      },
+      {
+        "title": "Set the flat up for guests",
+        "body": "Leave a short printed card near the boiler explaining the thermostat, how to top up the pressure if your boiler allows it, and who to contact. Tie a tag to the stopcock and mention where it is in your house manual and check-in message. Put a sign in each bathroom asking guests to bin wipes and sanitary products, and provide a bin with a lid. Keep a plunger and a spare shower head in a cupboard. These small steps stop many of the calls that hosts would otherwise get."
+      },
+      {
+        "title": "Planning work and letting rules",
+        "body": "Book planned jobs, such as a tap swap or a boiler service, for a changeover day and give us the check-out and check-in times. Anything longer, such as a new shower valve set into tiles, is better done on dates you block in your calendar. Tell your cleaner or co-host when we are due so linen and cleaning are not held up. In London, letting a whole home as a short let for more than 90 nights a year generally needs planning permission, so check your own position with your borough."
+      }
+    ],
+    "links": [
+      {
+        "href": "/services/commercial-plumbing",
+        "label": "Commercial Plumbing",
+        "why": "How we plan, price and report on work for hosts and management companies with several flats."
+      },
+      {
+        "href": "/services/blocked-toilet",
+        "label": "Blocked Toilet",
+        "why": "Wipes and sanitary products flushed by guests are behind many mid-stay calls from short lets."
+      },
+      {
+        "href": "/services/emergency-plumbing",
+        "label": "Emergency Plumbing",
+        "why": "For a leak or no water while a guest is staying and you cannot get there yourself."
+      },
+      {
+        "href": "/services/gas-safety-certificate",
+        "label": "Gas Safety Certificates",
+        "why": "The yearly check the 1998 gas regulations require on every appliance you provide to guests."
+      },
+      {
+        "href": "/services/shower-repair",
+        "label": "Shower Repair",
+        "why": "Weak, scalding or slow-draining showers are what guests tend to mention first after a stay."
+      },
+      {
+        "href": "/services/boiler-repair",
+        "label": "Boiler Repair",
+        "why": "Fault codes and lost pressure on a boiler that visitors have never used before."
+      },
+      {
+        "href": "/services/eicr",
+        "label": "EICR Certificates",
+        "why": "Good practice for short lets, and some platforms, insurers or councils ask to see evidence."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Can you go in when neither I nor the guest is there?",
+        "a": "Yes, if you agree it with us first. Most hosts give us a lockbox or smart lock code, or ask a co-host or cleaner to meet us. We confirm the arrangement before setting off, lock up and leave keys as we found them, and send you photos of the fault and the finished repair."
+      },
+      {
+        "q": "What should a guest try before I call you out?",
+        "a": "Ask them to note any code showing on the boiler's screen, read the pressure gauge, and check that the timer or thermostat is actually calling for heat. For a leak, the first job is turning off the stopcock, which is why labelling it matters. Photos sent to you help us bring the right parts."
+      },
+      {
+        "q": "Do short lets need a gas safety certificate?",
+        "a": "Yes. The Gas Safety (Installation and Use) Regulations 1998 apply to short lets as well as holiday lets. The boiler, hob and any other gas appliance you provide must be checked every twelve months by someone on the Gas Safe Register. We carry out the check, give you the record and can book the next one around your calendar."
+      },
+      {
+        "q": "Why does the toilet in my flat keep blocking?",
+        "a": "In short lets the usual cause is what guests flush: wipes, sanitary products and thick paper. A sign and a lidded bin help. If it still blocks with careful use, the pipe may be partly collapsed, badly sloped or scaled up inside. A CCTV drain survey shows which, so you fix the cause once."
+      },
+      {
+        "q": "Do you work for short-let management companies?",
+        "a": "Yes. We work with co-hosts and management companies looking after several flats. We can agree a single contact, a standard way of getting in and a format for photo reports, and we give you the price before any work starts. Whoever we send is a directly employed engineer, not a subcontractor, DBS-checked and fully insured."
+      }
+    ],
+    "related": [
+      "holiday-lets-and-serviced-apartments",
+      "landlords-and-letting-agents",
+      "guest-houses-and-small-hotels"
+    ]
+  },
+  {
+    "slug": "hostels",
+    "name": "Hostels",
+    "heroTitle": "Plumbing and heating for hostels",
+    "heroSub": "Shower blocks, hot water, WCs, drains and heating kept running for busy hostels, with work planned around check-in, check-out and occupancy.",
+    "h1": "Hostel plumbing and maintenance in London",
+    "metaTitle": "Hostel Plumbing & Maintenance, London | Ninja Plumbers",
+    "metaDescription": "Hostel plumbing for backpacker, youth and student hostels: shower blocks, hot water, TMVs, WCs, blocked drains and heating in London. Call 020 3576 5825.",
+    "eyebrow": "Hostels",
+    "icon": "water",
+    "target": "hostel plumbing · hostel maintenance (low volume)",
+    "summary": "Shared shower blocks, hot water sizing, TMVs, WCs and urinals, guest kitchens and heating for backpacker, youth and student hostels, planned around check-in and occupancy.",
+    "intro": "Hostel plumbing gets tested every morning. When a full dormitory floor wakes up, every shower, basin and WC in the block runs at once. Ninja Plumbers works with backpacker and youth hostels, student hostels and small budget hostels in London and nearby Surrey towns. We repair and upgrade shower blocks, fit and service thermostatic mixing valves, add isolating valves to WCs and urinals, clear blocked drains, and keep radiators working across dozens of rooms. We also plumb guest kitchens and laundries. Because we also employ registered electricians, a shower room that needs an extractor fan, or a water heater that needs its own circuit, is done by one team.",
+    "needs": [
+      {
+        "title": "Shower blocks under peak load",
+        "body": "A hostel shower block does in a day what a family bathroom does in a month. Heads scale up, cartridges wear, trays crack and seals fail under constant use, and a single leaking valve can soak the floor below. Hair and soap collect in shared floor wastes and channel drains. We repair and replace shower valves and heads, reseal trays, clear and rod shower wastes, and can swap standard fittings for sturdier, vandal-resistant ones with push-button or timed flow."
+      },
+      {
+        "title": "Hot water that keeps up and stays safe",
+        "body": "Sizing hot water for a hostel means knowing how many showers run together and how quickly the store refills. A cylinder that empties in the morning peak leaves late risers with cold water, and the fix is more storage, faster recovery or both. Stored water has to be kept hot enough to control bacteria, which means it can scald at the outlet. Thermostatic mixing valves on shared showers and basins blend it down to a safer temperature. We fit, service and test TMVs."
+      },
+      {
+        "title": "WCs, urinals and isolating valves",
+        "body": "When a WC in a row of six has no isolating valve, fixing its cistern can mean turning off water to the whole washroom or floor. Fitting a service valve to each WC, urinal and basin lets one fault be dealt with while the rest stay in use. We repair flush valves and syphons, replace worn urinal controls, clear blocked pans and traps, and refit tired washrooms with sturdier sanitaryware where hard wear is expected."
+      },
+      {
+        "title": "Guest kitchens, laundries and heating",
+        "body": "Self-catering kitchens see sinks blocked with food scraps and cooking fat, and tap washers that give up from constant use. Laundry rooms need sound supplies and wastes for several machines running back to back. Heating across many rooms brings its own faults: cold radiators on upper floors, sludge in old pipework and valves broken by guests. We repair and add sinks, plumb washing machines and dishwashers, balance radiators, and power flush systems where sludge is the cause."
+      }
+    ],
+    "does": [
+      "Shower block repairs and upgrades",
+      "TMV fitting, servicing and testing",
+      "Isolating valves on WCs and urinals",
+      "Blocked toilets, showers and drains cleared",
+      "Hot water cylinder sizing and replacement",
+      "Vandal-resistant taps and shower controls",
+      "Guest kitchen and laundry plumbing",
+      "EICRs and electrical repairs across rooms"
+    ],
+    "guidance": [
+      {
+        "title": "Quiet months and little-used outlets",
+        "body": "Out of season, whole floors of a hostel can sit empty, and water stands in the showers and pipes serving them. Controlling legionella is the operator's legal responsibility, and the HSE's Approved Code of Practice, L8, sets out how. A regular flushing routine for unused rooms, with a simple log, is a common part of that. Risk assessments are not something we offer. What we provide is the plumbing work behind them: removing dead legs left by old alterations, sorting outlets that rarely get used, cylinder work, and fitting or servicing TMVs."
+      },
+      {
+        "title": "Planning work around occupancy",
+        "body": "Check-out mornings and the gap before afternoon check-in are usually the best time for work in dorms and shower blocks. Tell us your busiest days, school holidays and any group bookings, and we will plan around them. For work that shuts a whole block, hold back the beds that depend on it, or arrange for guests to use another floor. A log of recurring faults kept by reception helps us spot patterns, such as the same shower failing again and again."
+      },
+      {
+        "title": "Gas, electrics and where our work stops",
+        "body": "Where a smaller hostel is heated by one or two domestic-sized boilers, our Gas Safe registered team can service and repair them. Bigger sites may have commercial boiler plant, which calls for engineers holding commercial gas qualifications; we will say so straight if yours is beyond what we do. Our registered electricians can carry out an EICR, repair faulty sockets and lighting, and add circuits for water heaters or laundry machines. Regular electrical testing is sensible in a building with heavy daily use, and your insurer may ask to see a recent report."
+      }
+    ],
+    "links": [
+      {
+        "href": "/services/commercial-plumbing",
+        "label": "Commercial Plumbing",
+        "why": "How we plan and price plumbing work for premises that stay open with guests in."
+      },
+      {
+        "href": "/services/commercial-washroom-refurbishment",
+        "label": "Commercial Washroom Refurbishment",
+        "why": "Worn shared shower blocks and toilets refitted with tougher fittings, one section at a time."
+      },
+      {
+        "href": "/services/tmv-servicing",
+        "label": "TMV Servicing & Testing",
+        "why": "Mixing valves on shared showers need regular servicing and testing to guard against scalding."
+      },
+      {
+        "href": "/appliances/hot-water-cylinder-installation",
+        "label": "Hot Water Cylinders",
+        "why": "Sizing storage and recovery so the morning peak does not leave the showers running cold."
+      },
+      {
+        "href": "/services/drain-unblocking",
+        "label": "Drain Unblocking",
+        "why": "Shower wastes, WCs and kitchen sinks in shared areas block more often than most."
+      },
+      {
+        "href": "/appliances/radiator-installation-and-power-flushing",
+        "label": "Radiators & Power Flushing",
+        "why": "Cold radiators and sludge in systems that heat many rooms at once."
+      },
+      {
+        "href": "/services/eicr",
+        "label": "EICR Certificates",
+        "why": "Testing the electrics in a building with many rooms and heavy daily use."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Can you work on a shower block without closing it?",
+        "a": "Often, if the block has isolating valves on each shower and WC. We can then take one cubicle out at a time and leave the rest open. Where there are no valves, we fit them first. Work that shuts off the whole supply is planned for a quiet part of the day and agreed with you in advance."
+      },
+      {
+        "q": "Should our hostel showers have TMVs?",
+        "a": "Stored hot water has to be kept hot to control bacteria, which also makes it hot enough to scald. Fitting TMVs to shared showers and basins is a common way to reduce that risk where guests are strangers to the system. TMVs need servicing and testing to keep working properly, which we can do and record."
+      },
+      {
+        "q": "Can you service our commercial boilers?",
+        "a": "No. Commercial boiler plant, common in larger hostels, needs engineers with commercial gas qualifications, and ours are Gas Safe registered for domestic-sized boilers and appliances. If the boiler room is a mystery, one of our engineers can inspect it and say straight away whether it falls within our work. Cylinders, pipework, radiators and electrics we can still handle."
+      },
+      {
+        "q": "Can you fit taps that stand up to heavy use?",
+        "a": "Yes. Push-button and timed-flow taps, sturdier shower controls and fixings that resist being worked loose all suit hostel washrooms, and they stop taps being left running. We will talk through what suits each area, since timed taps work well in washrooms but can frustrate guests at a kitchen sink."
+      },
+      {
+        "q": "Do you offer a 24/7 callout for hostels?",
+        "a": "Yes. A burst pipe or a failed cylinder affects many guests at once, so hostels can call on our 24/7 emergency callout at any hour. Planned work is priced and agreed before it starts. Everyone we send is DBS-checked, fully insured and directly employed, and used to working around guests in shared spaces."
+      }
+    ],
+    "related": [
+      "guest-houses-and-small-hotels",
+      "hmos-and-shared-houses",
+      "airbnb-and-short-lets"
+    ]
+  },
+  {
+    "slug": "dark-kitchens",
+    "name": "Dark Kitchens",
+    "heroTitle": "Plumbing for dark kitchens",
+    "heroSub": "When a brand changes or a drain blocks mid-service, we move sinks, clear waste and keep hot water flowing around delivery hours.",
+    "h1": "Dark kitchen plumbing and delivery kitchen fit-outs in London",
+    "metaTitle": "Dark Kitchen Plumbing & Fit-Out | Ninja Plumbers",
+    "metaDescription": "Dark kitchen plumbing for delivery-only and virtual-brand kitchens: hand-wash basins, pot-wash sinks, grease traps, drains and refits. Call 020 3576 5825.",
+    "eyebrow": "Dark kitchens",
+    "icon": "commercial",
+    "target": "dark kitchen plumbing · delivery kitchen fit out plumbing (low volume)",
+    "summary": "Plumbing and electrics for delivery-only, virtual-brand and ghost kitchens: separate hand-wash basins, pot-wash sinks, dishwashers, grease traps, FOG blockages and reworking layouts between menus.",
+    "intro": "Dark kitchen plumbing has to cope with change. A unit might launch as a burger brand, add a second menu within months, then be stripped back for a different operator. Ninja Plumbers works with delivery-only and virtual-brand kitchens, ghost kitchens in shared sites, converted units and containers, and caterers running from commercial premises throughout London and the Surrey towns we cover. We fit hand-wash basins, prep and pot-wash sinks, dishwashers and glasswashers, connect under-sink grease traps, clear drains blocked with fat and food waste, and move points when the layout changes. Our registered electricians add the sockets and circuits new equipment needs, so the whole job stays with one team.",
+    "needs": [
+      {
+        "title": "Basins kept just for hands",
+        "body": "The food hygiene rules expect a basin used only for washing hands, with running hot and cold water, and in most kitchens it has to be kept apart from the sinks where ingredients and equipment are cleaned. In a narrow unit or a container, finding room for it is the hard part. We fit compact basins at the stations where staff actually need them, add a small water heater where the main supply is too far away, and route each waste so it cannot back up."
+      },
+      {
+        "title": "Pot wash, prep sinks and hot water demand",
+        "body": "Delivery kitchens run long services with constant washing of pans, gastronorm trays and containers. A double-bowl pot-wash sink, a separate prep sink and a dishwasher or pass-through machine can all draw hot water together. If the heater or cylinder is too small, the water goes lukewarm mid-shift and trays pile up. We look at what runs at the same time and how long the heaviest washing lasts, then advise on more storage, a larger unit or an extra point-of-use heater."
+      },
+      {
+        "title": "Fats, oils and grease",
+        "body": "Fats, oils and grease must not go down the drain. In a kitchen cooking several menus, grease still reaches the waste from pans, trays and rinsing, and it sets hard further along the pipe. An under-sink grease trap can hold back some of that grease upstream of your drains, provided it is sized sensibly and emptied often. We fit and connect these traps. Large below-ground grease separators are emptied by specialist waste contractors, not by us, and used oil should go to a licensed collector."
+      },
+      {
+        "title": "Kitchens that get rearranged",
+        "body": "Menus and brands change often in delivery kitchens, and each change can mean a new fryer line, a second prep station or a sink that now sits in the wrong place. We move sinks and wastes, add capped water points for future equipment, and connect water feeds to combi ovens, coffee machines and drinks dispensers following each maker's instructions. Where floor gullies are needed, or have ended up hidden under new units, we make sure they stay reachable for cleaning."
+      }
+    ],
+    "does": [
+      "Dedicated hand-wash basins at each station",
+      "Pot-wash and prep sink installation",
+      "Dishwasher and glasswasher plumbing",
+      "Under-sink grease trap fitting and connection",
+      "Clearing FOG and food-waste blockages",
+      "Moving sinks and points between menus",
+      "Water feeds to combi ovens and drinks machines",
+      "Sockets and circuits for new equipment"
+    ],
+    "guidance": [
+      {
+        "title": "Keeping FOG out of your drains",
+        "body": "Scrape plates, pans and trays into food waste before they reach the sink, and wipe greasy trays with paper first. Never pour oil or fat down a sink, even with hot water and detergent, because it cools and hardens further along. Sink strainers catch food scraps. Check your grease trap regularly and empty it before it is full, and write down when you do. Where kitchen grease blocks a public sewer, Thames Water can take action against the business responsible, so repeated problems are worth fixing properly."
+      },
+      {
+        "title": "Commercial gas and where our work stops",
+        "body": "Our Gas Safe registration covers domestic-sized boilers and appliances. Wok burners, fryers, gas combi ovens and other commercial catering gas equipment need engineers holding commercial gas qualifications, and we tell you straight when your line-up falls outside what we do. Kitchen extraction canopies and ductwork are also outside our work. What we cover is everything around that kit: water feeds, sinks, wastes, hot water, lighting and power, so you can bring in a specialist for the rest."
+      },
+      {
+        "title": "Planning a fit-out or a menu change",
+        "body": "Before signing off a new layout, mark where each hand-wash basin, prep sink, pot-wash sink and dishwasher will go, and check where the drains and gullies actually run. In shared sites and converted units the waste route is often the limit, and moving a sink a short way can mean new pipework through a wall or floor. Tell us what equipment is coming and what water and power it needs. We can then fit capped points ready for later, and plan work for the hours between services."
+      }
+    ],
+    "links": [
+      {
+        "href": "/services/commercial-plumbing",
+        "label": "Commercial Plumbing",
+        "why": "How we quote, plan and carry out work in kitchens that trade most evenings."
+      },
+      {
+        "href": "/services/drain-unblocking",
+        "label": "Drain Unblocking",
+        "why": "Fat and food waste can block a kitchen drain in the middle of a busy service."
+      },
+      {
+        "href": "/services/cctv-drain-survey",
+        "label": "CCTV Drain Survey",
+        "why": "Shows where fat has built up in a shared site's drains before it becomes a full blockage."
+      },
+      {
+        "href": "/appliances/kitchen-sink-installation",
+        "label": "Kitchen Sink Installation",
+        "why": "New prep and pot-wash sinks, or existing ones moved, when the layout or menu changes."
+      },
+      {
+        "href": "/appliances/dishwasher-plumbing",
+        "label": "Dishwasher Plumbing",
+        "why": "Feeds and wastes for dishwashers and glasswashers that run through every shift."
+      },
+      {
+        "href": "/appliances/hot-water-cylinder-installation",
+        "label": "Hot Water Cylinders",
+        "why": "Stored hot water sized for long washing-up sessions during busy delivery periods."
+      },
+      {
+        "href": "/services/electrical-repairs",
+        "label": "Electrical Repairs",
+        "why": "Extra sockets, new circuits and tripping faults when more equipment arrives."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Can you fit a grease trap in our dark kitchen?",
+        "a": "We fit and connect under-sink grease traps to pot-wash and prep sinks, and advise on a size to suit what you cook and wash. A trap only works if it is emptied regularly. Large below-ground grease separators are a different job: they are emptied by specialist waste contractors, which we do not provide."
+      },
+      {
+        "q": "We are changing brands. Can you move our sinks?",
+        "a": "Yes. We move sinks and wastes, add or remove water points, and cap off pipework you no longer need. Tell us the new layout and equipment list early, and we will say what the drains allow. Where possible, we do the work between services or on your closed day, with the price agreed first."
+      },
+      {
+        "q": "Can you connect our combi oven and coffee machine?",
+        "a": "We connect the water supply and, where needed, the drain, following the manufacturer's instructions for pressure, filtration and backflow protection. Gas connections for commercial catering equipment need an engineer with commercial gas qualifications, and we will be straight with you if that applies. Our electricians can add a suitable supply for electric units."
+      },
+      {
+        "q": "Our drain keeps blocking. What is causing it?",
+        "a": "In delivery kitchens the usual causes are fat and food scraps, often from rinsing containers and trays. A recurring blockage can also point to a grease trap that needs emptying more often, a badly sloped pipe or a damaged section. We clear the blockage, and if it keeps coming back, a CCTV survey shows exactly where and why."
+      },
+      {
+        "q": "Do you work in shared ghost kitchen sites?",
+        "a": "Yes. We work in shared sites, converted units and containers, and liaise with the site manager about access, water shut-offs and shared drains. The engineers we send are directly employed, DBS-checked and fully insured. If a drain fails late at night, you can reach our 24/7 emergency callout."
+      }
+    ],
+    "related": [
+      "food-shops-and-takeaways",
+      "cafes-and-restaurants",
+      "warehouses-and-industrial-units"
+    ]
+  },
+  {
+    "slug": "nail-bars",
+    "name": "Nail Bars",
+    "heroTitle": "Plumbing for nail bars",
+    "heroSub": "Pedicure chair plumbing, hand-wash basins, hot water and desk sockets for nail bars, fitted before you open or after you close.",
+    "h1": "Nail bar and pedicure chair plumbing in London",
+    "metaTitle": "Nail Bar & Pedicure Chair Plumbing | Ninja Plumbers",
+    "metaDescription": "Pedicure chair plumbing, hand-wash basins, hot water, extract fans and desk sockets for nail bars in London, done outside opening hours. Call 020 3576 5825.",
+    "eyebrow": "Nail bars",
+    "icon": "tap",
+    "target": "nail bar plumbing · pedicure chair plumbing (low volume)",
+    "summary": "Pedicure spa chairs plumbed in, hand-wash and tool sinks kept apart, hot water for several stations, plus extract fans and sockets at every desk.",
+    "intro": "A nail bar runs on a row of pedicure chairs, a line of manicure desks and a steady supply of hot water, usually squeezed into a narrow shopfront unit. Ninja Plumbers handles nail bar plumbing across London: connecting pedicure spa chairs to hot and cold supplies and a drain, fitting hand-wash basins for technicians and a separate sink for cleaning tools, and making sure hot water keeps up when several footbaths fill at once. Our registered electricians add sockets at each desk and fit extract fans, so one team covers the whole job. We work before you open or after you close.",
+    "needs": [
+      {
+        "title": "Pedicure chairs that fill and drain properly",
+        "body": "Plumbed pedicure spa chairs need a hot and a cold supply, usually on isolating valves, and a waste to carry used footbath water away. Where the chairs sit on a raised platform or a long way from the drain, a small pump may be needed to lift the waste. Not every chair is plumbed: some are pipeless, and some are filled and emptied by hand, so check what yours needs before you plan the layout. The maker's instructions set out how the supply and waste should connect."
+      },
+      {
+        "title": "Hand-wash basins and a separate tool sink",
+        "body": "Technicians wash their hands many times a day, so a basin within easy reach of the desks matters, with hot and cold or mixed warm water. Cleaning files, bowls and implements in that same basin is a habit worth avoiding. A second sink kept for tools, near where you disinfect and store them, keeps the two jobs apart. In a narrow unit we often fit a compact basin by the desks and a tool sink at the back, sharing one waste run where the layout allows."
+      },
+      {
+        "title": "Hot water for several footbaths at once",
+        "body": "When three clients arrive for pedicures together, three footbaths fill at the same moment while the hand-wash basins are still in use. A small combi or a single under-sink heater can fall behind, and the last bath fills lukewarm. We look at how many chairs you have, how often they fill in a busy hour and what your gas and electrical supply can take, then suggest a cylinder, a larger heater or a point-of-use unit for the far end of the room."
+      },
+      {
+        "title": "Fume extraction and power at every desk",
+        "body": "Acetone, acrylic liquid and gel products give off fumes and dust that build up in a small, busy room. Our electricians fit and wire extract fans, which help clear the air; specialist local exhaust ventilation at each desk is a job for a ventilation designer, and we will say so. Each desk also needs its own sockets for UV or LED lamps, drills and dust collectors, rather than chains of extension leads. Near footbaths and sinks, sockets and switches must be kept a safe distance from water."
+      }
+    ],
+    "does": [
+      "Pedicure spa chair supply and waste connections",
+      "Hand-wash basins for technicians",
+      "Separate tool cleaning sinks",
+      "Water heaters sized for several footbaths",
+      "Pumped wastes for raised pedicure platforms",
+      "Extract fans fitted and wired",
+      "Extra sockets at manicure desks",
+      "Staff WC and leak repairs"
+    ],
+    "guidance": [
+      {
+        "title": "Cleaning footbaths between clients",
+        "body": "Footbaths and their pipework hold warm water, skin and product residue, which is why makers set out a cleaning and disinfecting routine between clients and at the end of the day. Follow the instructions for your chair, as the steps and products vary, and keep a simple log of when it was done. Pipeless chairs are easier to clean but still need care around the jet housing. If a chair drains slowly or smells even after cleaning, the waste or trap may be partly blocked, and that is something we can clear and check."
+      },
+      {
+        "title": "Licensing and your council",
+        "body": "Many London boroughs license special treatment premises, and some include nail treatments in that list while others handle them differently. Check with your council's licensing team before you open or refit, and ask what they expect to see. Where a licence applies, officers usually look for hand-wash basins with hot and cold running water, and many like to see a sink for tools kept apart from the one used for hands. Leave time before any council visit so that anything the officer raises can be put right."
+      },
+      {
+        "title": "Planning a refit in a shopfront unit",
+        "body": "Most nail bars sit in narrow units with the only drain at the back, so where the pedicure chairs go decides much of the plumbing. Chairs along the back wall can often drain by gravity; chairs near the window may need a pump, or a raised platform to hide the pipework. Leave access panels so valves and traps can be reached without taking the platform apart. If you rent, get your landlord's written consent for drainage changes. We can do the noisy work after closing so you keep trading."
+      }
+    ],
+    "links": [
+      {
+        "href": "/services/commercial-plumbing",
+        "label": "Commercial Plumbing",
+        "why": "Our plumbing service for small business premises, from pedicure chair connections to staff WCs."
+      },
+      {
+        "href": "/appliances/saniflo-macerator-pumps",
+        "label": "Saniflo & Macerator Pumps",
+        "why": "Pumped wastes for pedicure chairs set far from the drain or on raised platforms."
+      },
+      {
+        "href": "/appliances/hot-water-cylinder-installation",
+        "label": "Hot Water Cylinders",
+        "why": "Stored hot water for nail bars filling several footbaths in the same busy hour."
+      },
+      {
+        "href": "/services/drain-unblocking",
+        "label": "Drain Unblocking",
+        "why": "Clearing pedicure wastes and traps clogged with skin, product residue and debris."
+      },
+      {
+        "href": "/damp/condensation-and-ventilation-control",
+        "label": "Condensation & Ventilation",
+        "why": "Extract fans to help clear acetone and acrylic fumes from a small, busy room."
+      },
+      {
+        "href": "/services/electrical-repairs",
+        "label": "Electrical Repairs",
+        "why": "Extra desk sockets, new circuits for water heaters and faults near wet areas."
+      },
+      {
+        "href": "/services/tap-repair-and-replacement",
+        "label": "Tap Repair & Replacement",
+        "why": "Lever or sensor taps on technicians' hand-wash basins, and worn taps on tool sinks."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Can you plumb in a new pedicure spa chair?",
+        "a": "Yes, if it is a plumbed model. We connect the hot and cold supply with isolating valves and run the waste to a drain, or fit a small pump where gravity won't work. Send us the model and installation guide first, as makers differ. Pipeless or hand-filled chairs may need no plumbing at all."
+      },
+      {
+        "q": "Do I need a separate sink for cleaning tools?",
+        "a": "It is good practice, and many councils expect it where a licence applies. Using the hand-wash basin to rinse files and bowls mixes two jobs that should stay apart. A small tool sink near your cleaning area is usually straightforward to add, and it can often share a waste run with an existing basin."
+      },
+      {
+        "q": "Can you fit extraction for acetone and acrylic fumes?",
+        "a": "Our electricians fit and wire extract fans, which help clear the general air in the room. Extraction at each desk, known as local exhaust ventilation, is a specialist design job, and if that is what you need we will tell you. We can then wire in the units your ventilation supplier specifies."
+      },
+      {
+        "q": "Why does our hot water run out on busy days?",
+        "a": "Usually several footbaths and basins are drawing hot water at once and the heater or combi cannot keep up. A worn heater element, or scale from hard London water, can make it worse. We check what you have against how you use it, then suggest options, with the price agreed before work starts."
+      },
+      {
+        "q": "Will the work mean closing for a day?",
+        "a": "Rarely. Connecting a chair or adding a basin can usually be done before your first booking or after the last one. Bigger refits can be split over several evenings so you keep trading. If a chair connection leaks during the day, call our 24/7 emergency line. Our DBS-checked engineers are directly employed, not subcontractors."
+      }
+    ],
+    "related": [
+      "beauty-and-tattoo-studios",
+      "salons-and-barbers",
+      "shops-and-retail"
+    ]
+  },
+  {
+    "slug": "yoga-and-pilates-studios",
+    "name": "Yoga & Pilates Studios",
+    "heroTitle": "Plumbing for yoga & pilates studios",
+    "heroSub": "Showers, WCs, warm floors and air conditioning for yoga and pilates studios, with work kept quiet and out of class times.",
+    "h1": "Yoga studio plumbing and pilates studio fit outs in London",
+    "metaTitle": "Yoga & Pilates Studio Plumbing, London | Ninja Plumbers",
+    "metaDescription": "Yoga studio plumbing and pilates studio fit outs in London: showers, WCs, underfloor heating and air conditioning, done between classes. Call 020 3576 5825.",
+    "eyebrow": "Yoga & pilates",
+    "icon": "heating",
+    "target": "yoga studio plumbing · pilates studio fit out (low volume)",
+    "summary": "Showers with steady hot water, WCs that cope at changeover, underfloor heating for floor work, and air conditioning for hot yoga and reformer rooms.",
+    "intro": "Your members lie on the floor, breathe slowly and notice everything: a cold draught, a clammy room, a queue for the only WC. Ninja Plumbers handles yoga studio plumbing and pilates studio fit outs across London, often in small units above shops. We fit and repair changing room showers, keep WCs working through busy changeovers, add a water refill point, and install heating that has the room warm before the first class. Our F-Gas certified engineers fit air conditioning, and our registered electricians wire hot yoga heaters and extract fans, so the whole job stays with one team. We work quietly, between classes or before opening.",
+    "needs": [
+      {
+        "title": "Warm floors for mat work",
+        "body": "Much of yoga and pilates happens lying or sitting on the floor, so a room heated only at head height feels cold where it matters. Underfloor heating spreads gentle warmth across the whole floor and frees the walls, which suits studios well. Where radiators stay, keep them away from where mats go, as hot metal beside a mat is uncomfortable and easy to knock. Set the heating to come on early so the room is warm by the first class."
+      },
+      {
+        "title": "Showers and WCs between classes",
+        "body": "A class ends, the next group is arriving, and for a short spell everyone wants the WC, the basin or one of the two showers. That concentrated demand exposes slow-filling cisterns, weak flushes and hot water that drops off after the first shower. We repair and replace WCs, fit showers with steady thermostatic control, and check whether your water heater can recover in the gap between classes. A water refill point near reception cuts plastic bottles and queues at the basin."
+      },
+      {
+        "title": "Hot yoga: heat, steam and power",
+        "body": "Hot yoga rooms are heated well above normal room temperature and fill with moisture from a room full of people. The heaters draw a lot of power and should be on their own circuits, which our electricians install and test. After class, extraction and air conditioning help clear the heat and humidity, so condensation doesn't run down walls or soak into ceilings. We plan heaters, extraction and cooling together so the room warms for class and clears afterwards."
+      },
+      {
+        "title": "Reformer rooms in converted units",
+        "body": "Reformer pilates studios often open in former shops, offices or light industrial units with poor ventilation and big windows. A full room of people working on machines gets warm and stuffy fast, so our F-Gas certified engineers size and fit air conditioning for it. Where the building has no shower or WC, we can add them, with a pumped waste if the drain is far off. Our Gas Safe engineers cover domestic-sized boilers; larger commercial plant needs commercial gas engineers, and we will tell you straight."
+      }
+    ],
+    "does": [
+      "Changing room shower installation and repair",
+      "WC and cistern repairs for busy changeovers",
+      "Drinking water refill points",
+      "Underfloor heating for studio floors",
+      "Radiators moved away from mat areas",
+      "Dedicated circuits for hot yoga heaters",
+      "Air conditioning for hot and reformer studios",
+      "Extract fans for steamy rooms"
+    ],
+    "guidance": [
+      {
+        "title": "Getting the room warm for the first class",
+        "body": "An early class in a cold room is a poor start, especially for floor-based practice. Underfloor heating responds slowly, so put it on a schedule that starts well before the doors open, rather than turning it up when you arrive. Room thermostats work best on an inside wall away from windows and heaters. If the boiler struggles on cold mornings, a service or a bleed and balance of the radiators often helps. In older buildings, draught-proofing the doors makes any heating more effective."
+      },
+      {
+        "title": "Clearing humidity after hot classes",
+        "body": "Damp air left in a hot studio after the last class condenses on cold walls, windows and ceilings overnight, and mould follows. Run extraction or air conditioning for a while after each hot session, keep doors through to the changing rooms closed, and watch for staining above windows and in corners. Air conditioning filters in a humid room need cleaning more often than they would in an office. If condensation keeps coming back, have the extraction checked against how the room is actually used."
+      },
+      {
+        "title": "Keeping the quieter shower safe",
+        "body": "Studios with two showers often find one gets used far less. Water sitting in pipes and shower heads is part of the legionella risk that the studio, or its landlord, has a duty to manage under HSE guidance (ACoP L8). Run a little-used shower regularly, descale the heads, and note when it was done. We handle the plumbing side: removing dead legs left by earlier fit outs, cylinder work, and fitting or servicing thermostatic mixing valves so showers run safe and steady."
+      }
+    ],
+    "links": [
+      {
+        "href": "/services/commercial-plumbing",
+        "label": "Commercial Plumbing",
+        "why": "Our plumbing service for business premises, covering studio showers, WCs and water supplies."
+      },
+      {
+        "href": "/appliances/underfloor-heating-installation",
+        "label": "Underfloor Heating",
+        "why": "Even warmth at floor level suits mat work and keeps walls free of radiators."
+      },
+      {
+        "href": "/services/air-conditioning-installation",
+        "label": "Air Conditioning Installation",
+        "why": "Cooling for reformer studios, and clearing heat and humidity after hot yoga classes."
+      },
+      {
+        "href": "/services/shower-installation",
+        "label": "Shower Installation",
+        "why": "Changing room showers with thermostatic control that stays steady between classes."
+      },
+      {
+        "href": "/services/tmv-servicing",
+        "label": "TMV Servicing & Testing",
+        "why": "Shower mixing valves checked and serviced so water stays at a safe temperature."
+      },
+      {
+        "href": "/damp/condensation-and-ventilation-control",
+        "label": "Condensation & Ventilation",
+        "why": "Extraction to stop hot yoga humidity turning into condensation and mould overnight."
+      },
+      {
+        "href": "/services/electrical-repairs",
+        "label": "Electrical Repairs",
+        "why": "Dedicated circuits for infrared and hot yoga heaters, plus faults and extra sockets."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Is underfloor heating good for a yoga studio?",
+        "a": "It often suits well. Warmth rises gently from the whole floor, there are no radiators to plan mats around, and the walls stay clear. It warms up slowly, so it needs a schedule set ahead of classes. It is easiest to fit during a refit when the floor is up, and we check your floor build-up first."
+      },
+      {
+        "q": "Can you wire heaters for a hot yoga room?",
+        "a": "Yes. Our registered electricians install dedicated circuits for hot yoga and infrared heaters, sized to their load and tested before use. We check your fuse board has the capacity first, and will say if it needs upgrading. Pairing the heaters with extraction or air conditioning helps the room clear between classes."
+      },
+      {
+        "q": "Our reformer studio gets too hot. What can we do?",
+        "a": "Air conditioning is usually the answer in a converted unit with limited ventilation. Our F-Gas certified engineers look at the room size, windows, class numbers and where an outdoor unit could go, then recommend a system. If you rent, check with your landlord before an outdoor unit goes on the building."
+      },
+      {
+        "q": "Can you add a shower to a small studio above a shop?",
+        "a": "Usually. The main questions are the waste route, the water pressure upstairs and how the hot water will be supplied. Where the drain is far away or awkward to reach, a pumped waste can help. We check all three on a visit and agree a price before any work starts."
+      },
+      {
+        "q": "Will the work disturb our classes?",
+        "a": "We plan noisy work for before opening, after the last class or days you are closed, and keep quieter jobs to the gaps between sessions. Timings are agreed with you in advance. If a leak or a blocked WC can't wait, our 24/7 emergency callout covers it, and our engineers are DBS-checked."
+      }
+    ],
+    "related": [
+      "gyms-and-fitness-studios",
+      "dance-schools-and-studios",
+      "physio-and-osteopathy-clinics"
+    ]
+  },
+  {
+    "slug": "dance-schools-and-studios",
+    "name": "Dance Schools & Studios",
+    "heroTitle": "Plumbing for dance schools & studios",
+    "heroSub": "WCs for busy changeovers, heating for high-ceilinged studios and leak protection for sprung floors, done in school holidays and at weekends.",
+    "h1": "Dance studio plumbing and heating in London",
+    "metaTitle": "Dance Studio Plumbing & Heating, London | Ninja Plumbers",
+    "metaDescription": "Dance studio plumbing in London: WCs, basins with TMVs for children, heating for tall rooms and leak repairs that protect sprung floors. Call 020 3576 5825.",
+    "eyebrow": "Dance schools",
+    "icon": "heating",
+    "target": "dance studio plumbing (low volume)",
+    "summary": "Child-friendly WCs and basins, heating that copes with tall studios, air conditioning, water points and careful leak repairs to protect sprung floors, planned around term.",
+    "intro": "Dance schools put a lot of people through a small set of facilities: a line of children at the WC between ballet and tap, parents waiting in the corridor, older students changing for the next class. Ninja Plumbers provides dance studio plumbing and heating across London, whether you own your studio or hire a church hall or community centre. We fit child-friendly WCs and basins with thermostatic mixing valves, heat tall rooms evenly, add water points and fix leaks before they reach a sprung floor. Our DBS-checked engineers can work in school holidays and at weekends, and one team covers plumbing, electrics and air conditioning.",
+    "needs": [
+      {
+        "title": "Facilities for children and waiting parents",
+        "body": "Classes for young children change over quickly, and within moments a whole group needs the WC and a basin. Lower pans and basins, or sturdy step stools at standard ones, help small children manage on their own. Where children use basins, a thermostatic mixing valve keeps the hot water at a safe temperature. Parents waiting through a class also need a WC, and somewhere to change a baby is useful. We fit, repair and adapt these fittings so the queue keeps moving."
+      },
+      {
+        "title": "Heating tall studios evenly",
+        "body": "Dance studios are often big rooms with high ceilings, so warm air collects overhead while the floor stays cold. Radiators along one wall leave the far side chilly. Depending on the room, the answer may be more or larger radiators spread around the walls, warm-air heating, or underfloor heating laid under a new floor. Timing matters too: the heating needs to come on well before an early class so dancers are not warming up in a cold room. We look at the space before recommending anything."
+      },
+      {
+        "title": "Cooling, changing rooms and water points",
+        "body": "A studio full of dancers heats up quickly, even in spring, and opening windows is not always possible. Our F-Gas certified engineers fit air conditioning sized to the room. Adult and vocational classes often need changing rooms, and sometimes a shower or two with steady hot water. Dancers also need to drink through class, so a water point in or near the studio is useful. We plumb these in, and our electricians handle any circuits they need."
+      },
+      {
+        "title": "Protecting sprung and vinyl floors",
+        "body": "A sprung dance floor is a timber frame with a performance vinyl surface on top, and it does not cope well with water. A drip from a radiator valve, a pipe under the floor or a WC next door can soak into the subfloor unseen until boards swell or the vinyl lifts. Repairs mean lifting an expensive floor. Keep pipes out of the floor void where you can, fit valves you can reach, and act on damp patches early. We trace leaks with as little floor lifting as possible."
+      }
+    ],
+    "does": [
+      "Child-height WCs and basins",
+      "TMVs fitted where children use basins",
+      "Changing room showers for adult classes",
+      "Radiators, warm-air and underfloor heating",
+      "Heating timers set for early classes",
+      "Air conditioning for busy studios",
+      "Drinking water points for dancers",
+      "Leak detection near sprung floors"
+    ],
+    "guidance": [
+      {
+        "title": "Working in a hired church or community hall",
+        "body": "Many dance schools teach in halls they hire rather than own. The plumbing and heating there belong to the hall's committee, trustees or landlord, so any work needs their agreement first. If the WCs are poor or the heating runs on a timer you can't change, raise it with the committee and explain what your classes need. We are happy to deal with the committee directly, quote them for the work and carry it out on days when the hall is not booked."
+      },
+      {
+        "title": "Planning work around term and children",
+        "body": "The quietest time for larger jobs is the school holidays, when most classes stop, or a weekday morning before after-school sessions begin. Book early for the summer, as many schools want work done in the same few weeks. Where children may be on site, our engineers are DBS-checked employees rather than subcontractors. Tell us your timetable and any rules about access, signing in and safeguarding, and we will plan the visit around them."
+      },
+      {
+        "title": "Keeping water off the dance floor",
+        "body": "Know where your stopcock is and label it, so a teacher can turn the water off if a pipe bursts mid-class. Check radiator valves and the pipes beneath them for drips each term, and look at the ceiling if there are WCs or kitchens on the floor above. Keep water bottles and mop buckets off sprung floors. If you notice a soft spot, a musty smell or vinyl lifting at the edges, have it looked at before the damage spreads under the floor."
+      }
+    ],
+    "links": [
+      {
+        "href": "/services/commercial-plumbing",
+        "label": "Commercial Plumbing",
+        "why": "Our main service for business premises, covering WCs, basins and water supplies in dance studios."
+      },
+      {
+        "href": "/services/tmv-servicing",
+        "label": "TMV Servicing & Testing",
+        "why": "Mixing valves that keep basin water at a safe temperature for young dancers."
+      },
+      {
+        "href": "/services/leak-detection",
+        "label": "Leak Detection",
+        "why": "Finding hidden leaks near sprung floors before water spreads through the subfloor."
+      },
+      {
+        "href": "/appliances/radiator-installation-and-power-flushing",
+        "label": "Radiators & Power Flushing",
+        "why": "More or better-placed radiators so tall studios warm up evenly before class."
+      },
+      {
+        "href": "/appliances/underfloor-heating-installation",
+        "label": "Underfloor Heating",
+        "why": "Floor-level warmth where a studio is being refloored and the floor build-up allows it."
+      },
+      {
+        "href": "/services/air-conditioning-installation",
+        "label": "Air Conditioning Installation",
+        "why": "Cooling for studios that get hot and stuffy during busy classes."
+      },
+      {
+        "href": "/services/commercial-washroom-refurbishment",
+        "label": "Commercial Washroom & Toilet Refurbishment",
+        "why": "Refitting toilets and changing rooms with child-height fittings during the holidays."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Can you fit child-height toilets and basins?",
+        "a": "Yes. We fit lower WC pans and basins, or adapt existing ones and suggest sturdy step stools where a refit isn't practical. Where children use basins, we fit a thermostatic mixing valve so the hot water can't scald. We can do the work in the school holidays so classes carry on as normal."
+      },
+      {
+        "q": "Our studio never feels warm enough. Why?",
+        "a": "High ceilings let warm air rise away from the dancers, and radiators on one wall leave the rest of the room cold. Undersized radiators, sludge in the system or a heating timer that starts too late all add to it. We look at the room and the system, then suggest options with the price agreed first."
+      },
+      {
+        "q": "We hire a church hall. Can you still help?",
+        "a": "Yes. The hall's committee or landlord usually has to approve any work, so we can quote them directly, explain what is needed and agree a date when the hall is free. Small fixes, such as a WC that keeps running or a stiff radiator valve, are often simple to sort once they agree."
+      },
+      {
+        "q": "What happens if a pipe leaks under our sprung floor?",
+        "a": "Turn the water off at the stopcock and stop using that area. We trace the leak with detection equipment first, so only the boards that need lifting are lifted. Once the pipe is repaired, the subfloor needs time to dry before the floor goes back down. For leaks that can't wait, we have a 24/7 emergency callout."
+      },
+      {
+        "q": "Are your engineers DBS-checked?",
+        "a": "Yes. Our engineers are DBS-checked and directly employed, not subcontractors. Even so, most dance schools prefer work to happen when children are not in the building, so we usually book jobs for the holidays, weekends or before classes start. We follow your sign-in and safeguarding rules while on site."
+      }
+    ],
+    "related": [
+      "yoga-and-pilates-studios",
+      "places-of-worship-and-community-halls",
+      "nurseries-and-childcare"
+    ]
+  },
+  {
+    "slug": "warehouses-and-industrial-units",
+    "name": "Warehouses & Industrial Units",
+    "heroTitle": "Plumbing for warehouses & industrial units",
+    "heroSub": "Welfare blocks, mess rooms, hot water, yard drains, frost protection and electrics for warehouses and industrial units, booked around deliveries and shifts.",
+    "h1": "Warehouse and industrial unit plumbing in London and Surrey",
+    "metaTitle": "Warehouse & Industrial Unit Plumbing | Ninja Plumbers",
+    "metaDescription": "Warehouse and industrial unit plumbing in London: welfare toilets, mess rooms, water heaters, buried leaks, yard drains and electrics. Call 020 3576 5825.",
+    "eyebrow": "Warehouses & units",
+    "icon": "commercial",
+    "target": "warehouse plumbing (110/mo) · industrial unit plumbing · welfare facilities (low volume)",
+    "summary": "Welfare blocks, mess rooms and electrics for warehouses and industrial units, plus water heaters, buried leaks, yard gullies, frost protection and void checks for landlords.",
+    "intro": "Warehouse plumbing rarely gets a thought until something stops working: the welfare block runs cold, the water bill jumps, or a pipe splits in an unheated bay over a frosty weekend. Ninja Plumbers looks after small warehouses, storage and logistics units, light industrial and trade-counter units across London, Guildford, Woking and nearby towns. We repair and refit staff toilets and mess rooms, fit water heaters where there is no central hot water, trace leaks on long supply pipes, clear yard gullies and keep office heating going. Our registered electricians handle sockets, lighting, EICRs and EV chargers, and we help landlords and agents get units ready for a new tenant.",
+    "needs": [
+      {
+        "title": "Welfare facilities people can rely on",
+        "body": "Under the Workplace (Health, Safety and Welfare) Regulations 1992, the people working in your unit should have suitable toilets, washing facilities supplied with hot and cold, or warm, water, drinking water and a place to sit and eat. In many older units the welfare block is a single WC off the loading bay with a basin nobody trusts. We fix cisterns and basins, refit toilets and washrooms, add drinking-water points, and plumb in mess-room sinks, dishwashers and boiling water taps.",
+        "icon": "bathroom"
+      },
+      {
+        "title": "Hot water where there is no boiler",
+        "body": "Plenty of industrial units have no central heating or hot water at all, so it has to be made where it is used. An undersink heater suits a single hand basin, while a larger instantaneous heater or a small cylinder can serve a mess-room sink and a shower. Drivers and warehouse staff finishing a dusty or dirty shift will use a decent shower. Because we also do electrics, the new circuit, isolator and pipework are fitted by one team.",
+        "icon": "water"
+      },
+      {
+        "title": "Long supply runs and buried leaks",
+        "body": "On a business park the water meter often sits at the boundary, with a long run of pipe under the yard before it reaches your unit. A leak on that buried section may never show on the surface, only as a water bill that keeps climbing. We check the meter with everything shut off, trace the escape with leak detection equipment, then repair or renew the pipe. Old lead or galvanised supplies are worth replacing while the ground is open.",
+        "icon": "leak"
+      },
+      {
+        "title": "Frost in unheated space",
+        "body": "Warehouse floors are usually left unheated, and pipes running along the walls, up to high-level cisterns or out to a yard tap take the full force of a hard frost. A split pipe over a bank holiday can soak racking and stock before anyone is back. We lag exposed runs and fit isolating valves and drain-down points so sections can be emptied for winter, and our electricians can install thermostatically controlled trace heating on pipes that must stay live.",
+        "icon": "heating"
+      }
+    ],
+    "does": [
+      "Fixing and refitting welfare blocks",
+      "Mess room sinks, kitchens and drinking water",
+      "Showers for drivers and warehouse staff",
+      "Undersink and point-of-use water heaters",
+      "Tracing and repairing underground supply leaks",
+      "Pipe lagging, drain-down points and trace heating",
+      "Yard gullies and drains cleared of silt",
+      "Void checks between tenants for landlords"
+    ],
+    "guidance": [
+      {
+        "title": "Yard gullies, drains and separators",
+        "body": "Yard gullies collect silt, pallet splinters, shrink-wrap and leaves, and once the trap fills, rainwater backs up across the loading area. Lift the gratings and look inside every few months, and always before winter. If your site has an oil separator or interceptor, emptying it is a job for a licensed waste carrier, who issues the waste transfer paperwork, which is not a service we offer. We can clear and jet the gullies and drain runs on either side of it, and a CCTV survey will show whether a pipe has cracked under the weight of lorries."
+      },
+      {
+        "title": "Space heaters, office heating and electrics",
+        "body": "Gas-fired space heaters and warm-air heaters hung in the warehouse are commercial gas appliances, so only an engineer holding commercial gas qualifications should work on them. Our own Gas Safe engineers stick to domestic-sized boilers and appliances, so if your heater falls outside that we will say so plainly rather than touch it. Offices and mess rooms are often warmed by a small boiler or electric heaters, which we can repair, service or replace. The Electricity at Work Regulations 1989 require electrical systems to be maintained so they are safe, and a periodic EICR is a sensible way to show you are doing that."
+      },
+      {
+        "title": "Turning a unit round between tenants",
+        "body": "An empty unit can sit for months with water standing in the pipes, the water heater switched off and a welfare block left to go stale. Before a new occupier moves in, run every outlet, flush little-used taps and showers, check cisterns and heaters, test the yard tap and lift the gully gratings. Whoever controls the premises has a duty to manage legionella risk under HSE guidance (ACoP L8); we can handle the plumbing side, such as removing dead legs and repairing unused outlets. An EICR at the changeover gives the incoming tenant a clear picture of the electrics."
+      }
+    ],
+    "links": [
+      {
+        "href": "/services/commercial-plumbing",
+        "label": "Commercial Plumbing",
+        "why": "Our core service for business premises, from welfare blocks and mess rooms to supply pipes and yard taps."
+      },
+      {
+        "href": "/services/commercial-washroom-refurbishment",
+        "label": "Commercial Washroom & Toilet Refurbishment",
+        "why": "For refitting a worn staff toilet block so it stands up to shift work and heavy use."
+      },
+      {
+        "href": "/services/leak-detection",
+        "label": "Leak Detection",
+        "why": "Finds leaks on long buried supply pipes between the site meter and your unit."
+      },
+      {
+        "href": "/blog/why-is-my-water-bill-so-high",
+        "label": "Hidden leaks and high water bills guide",
+        "why": "Explains how to use the meter to check whether an unexplained water bill points to a leak."
+      },
+      {
+        "href": "/appliances/hot-water-cylinder-installation",
+        "label": "Hot Water Cylinders",
+        "why": "An option when a mess-room sink and staff shower need more hot water than a small heater gives."
+      },
+      {
+        "href": "/services/drain-unblocking",
+        "label": "Drain Unblocking",
+        "why": "Clears silted yard gullies and blocked drain runs, including those either side of an oil separator."
+      },
+      {
+        "href": "/services/eicr",
+        "label": "EICR Certificates",
+        "why": "Inspection of the unit's electrics, useful at a tenant changeover or lease renewal."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Our water bill has jumped. Could there be a leak under the yard?",
+        "a": "It is a common cause on larger sites. Shut off every tap, cistern feed and appliance in the unit, note the meter reading and check it again an hour or two later without using any water. If the numbers have moved, water is escaping somewhere between the meter and your outlets. We can trace buried leaks with detection equipment and repair or renew the pipe."
+      },
+      {
+        "q": "Can you service the gas heaters in our warehouse?",
+        "a": "Usually not, and we would rather be upfront about that. Gas-fired space heaters and warm-air heaters are commercial gas appliances that need an engineer with commercial gas qualifications. We do look after the domestic-sized boilers and appliances that commonly warm a unit's office and mess room. Not sure which kind you have? A photo of the heater's rating plate usually lets us confirm."
+      },
+      {
+        "q": "Our unit has no hot water. What are the options?",
+        "a": "For one hand basin, an undersink water heater is normally the simplest answer. For a mess-room sink plus a shower, a larger instantaneous heater or a small cylinder may suit better. Each needs a suitable electrical supply, and our electricians can run the circuit while the plumbing goes in, so you are not coordinating two contractors."
+      },
+      {
+        "q": "Do you work for landlords and agents on business parks?",
+        "a": "Yes. We carry out void checks between tenants, get welfare blocks and water heaters working again, clear yard drains and arrange EICRs so a unit is ready to let. You get an agreed price up front, and we can report back on what we found and fixed. For a burst pipe in an empty unit, our 24/7 emergency callout covers you."
+      },
+      {
+        "q": "Can you fit EV chargers for our vans?",
+        "a": "Yes. Charge points for delivery vans, pool vehicles and staff cars are fitted by our registered electricians. Before quoting, we look at how much spare capacity your supply has, because charging several vans at once is a heavy demand, and we advise whether load management or a new consumer unit is needed. We can add sockets or repair warehouse lighting on the same visit."
+      }
+    ],
+    "related": [
+      "garages-and-workshops",
+      "offices",
+      "dark-kitchens"
     ]
   }
 ]
