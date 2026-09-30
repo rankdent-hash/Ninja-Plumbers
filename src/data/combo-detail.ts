@@ -18,954 +18,954 @@ export const comboDetail: Record<string, ComboDetail> = {
   // ---------- Emergency plumbing ----------
   'emergency-plumbing|bromley': {
     points: [
-      'Burst pipes in unheated garages, outbuildings and loft spaces after a cold snap',
-      'Cast iron waste pipes that crack rather than split, so the leak is slow and hidden',
-      'Outside taps left connected over winter and splitting the pipe behind the wall',
+      'Pipes splitting in loft spaces, garages and outbuildings with no heating once a cold spell hits',
+      'Old cast iron waste pipes that crack instead of splitting, leaving a slow leak nobody can see',
+      'Garden taps left on through winter, which split the pipe inside the wall behind them',
     ],
     faq: {
-      q: 'My pipes froze in the garage. Can that wait until morning?',
-      a: 'If it is still frozen, it is not leaking yet — but it will when it thaws. Turn the water off at the stopcock now and call in the morning. If it has already thawed and water is running, that is a callout tonight.',
+      q: 'A pipe in my garage has frozen. Is it safe to leave it until the morning?',
+      a: 'While the ice is still in it, nothing is escaping, but it will leak as soon as it thaws. Shut the stopcock now and ring us in the morning. If it has thawed already and you can see water running, that needs an engineer tonight.',
     },
   },
   'emergency-plumbing|croydon': {
     points: [
-      'Leaks in flats that show up in the property below before the source flat notices',
-      'Communal risers and shared supply in town centre blocks',
-      'Older heating systems in interwar semis failing in the first cold week',
+      'Flat leaks that the neighbours downstairs spot before the people in the flat causing them do',
+      'Shared supply pipes and communal risers in blocks around the town centre',
+      'Ageing heating in interwar semis giving up once the first proper cold arrives',
     ],
     faq: {
-      q: 'Water is coming through my ceiling from the flat above. What do I do?',
-      a: 'Turn off your own electrics in that room and get hold of the flat above or the building manager, because the stopcock you need is almost certainly in their property. Call us in parallel and we will talk you through it.',
+      q: 'The flat above is leaking through my ceiling. What should I do?',
+      a: 'Switch off the electrics for that room first. Then contact the upstairs neighbour or the building manager: the stopcock that will stop it is nearly always inside their flat, not yours. Ring us at the same time and we will guide you through the next steps.',
     },
   },
   'emergency-plumbing|wimbledon': {
     points: [
-      'Loft tank and cylinder failures flooding from the top of the house down',
-      'Older vented systems where the mains stopcock alone will not stop the flow',
-      'Larger properties where the leak has spread before anyone notices',
+      'Failed loft tanks and cylinders sending water down through the house from the top',
+      'Older vented systems in which closing the mains stopcock is not enough to stop the water',
+      'Bigger houses where water has spread a long way before anyone spots it',
     ],
     faq: {
-      q: 'I turned the mains off and water is still coming. Why?',
-      a: 'You almost certainly have a tank in the loft still emptying itself through the leak. There is usually a separate gate valve on the tank outlet — turning that off, and opening all the hot taps to drain it down, is what actually stops it.',
+      q: 'Why is water still coming through after I shut off the mains?',
+      a: 'Most likely a loft tank is still draining out through the leak. The tank outlet normally has its own gate valve. Close that, then open every hot tap so the system drains down, and the flow will stop.',
     },
   },
   'emergency-plumbing|islington': {
     points: [
-      'Leaks under original floorboards in Georgian and early Victorian property',
-      'Restricted access where flooring, panelling or plasterwork cannot simply be cut',
-      'Basement and lower-ground flats taking water from the whole building',
+      'Leaks hidden beneath the original floorboards of Georgian and early Victorian houses',
+      'Limited access where you cannot just cut into the floor, panelling or plaster',
+      'Lower-ground and basement flats that end up with water from every floor above',
     ],
     faq: {
-      q: 'My house is listed. Can you still work on it?',
-      a: 'Yes, but it changes how. We trace leaks before opening anything up, because exploratory holes in listed fabric are a much bigger problem than in a modern house. Tell us at the point of booking so the engineer arrives expecting it.',
+      q: 'Can you still work on my house if it is listed?',
+      a: 'We can, though the approach is different. We find the leak before opening anything, since trial holes in listed fabric cause far more trouble than they would in a newer building. Mention it when you book so the engineer knows before arriving.',
     },
   },
   'emergency-plumbing|clapham': {
     points: [
-      'Shared houses where nobody living there knows where the stopcock is',
-      'Washing machine and dishwasher hoses failing in heavily used kitchens',
-      'Landlord and letting agent callouts where the tenant needs an engineer tonight',
+      'House shares where none of the tenants know where to find the stopcock',
+      'Burst washing machine and dishwasher hoses in kitchens that get heavy use',
+      'Calls from landlords and letting agents whose tenant needs someone out tonight',
     ],
     faq: {
-      q: 'I rent. Should I call you or my landlord?',
-      a: 'If water is actively causing damage, turn it off and stop the damage first, then tell your landlord or agent. Many of them already use us. If you call us direct in an emergency we will attend and invoice whoever is responsible, but tell us the arrangement up front.',
+      q: 'I am a tenant. Do I ring you or my landlord?',
+      a: 'When water is doing damage right now, shut it off and deal with that before anything else, then let your landlord or agent know. Plenty of them already use us. In an emergency you can ring us yourself and we will come out and bill whoever is responsible, as long as you explain the arrangement at the start.',
     },
   },
   'emergency-plumbing|hackney': {
     points: [
-      'Communal systems in estates where the isolating valve is outside your flat',
-      'Long horizontal waste runs in warehouse conversions backing up',
-      'Commercial kitchens where a leak closes the business',
+      'Estate communal systems with the isolating valve somewhere outside your own flat',
+      'Warehouse conversions whose long, flat waste runs back up',
+      'Leaks in commercial kitchens that force the business to shut',
     ],
     faq: {
-      q: 'The stopcock is not in my flat. What now?',
-      a: 'That is common in estates and conversions. It is usually in a shared cupboard, riser or landing. Call the building manager or caretaker in parallel with calling us, because access to that cupboard is often what decides how fast this stops.',
+      q: 'What do I do if the stopcock is not inside my flat?',
+      a: 'On estates and in conversions that is normal. Look in a shared cupboard, a riser or on the landing. Ring the caretaker or building manager while you ring us, because getting into that cupboard is usually what sets how quickly the water can be stopped.',
     },
   },
   'emergency-plumbing|fulham': {
     points: [
-      'Sump pump failures flooding lower-ground and basement conversions',
-      'Shared soil stacks backing up into the lowest flat in the building',
-      'Leaks tracking down through converted terraces to the flat below',
+      'Basement and lower-ground conversions flooding when the sump pump fails',
+      'A shared soil stack backing up into whichever flat is lowest',
+      'Water finding its way down through a converted terrace into the flat underneath',
     ],
     faq: {
-      q: 'My basement is flooding and the pump has stopped. What can I do now?',
-      a: 'Check the pump has power and that the float switch is not jammed — those are the two most common causes and both are fixable in minutes. If the water is still rising, stop and call. We are on Fulham High Street.',
+      q: 'The pump has stopped and water is rising in my basement. What can I do straight away?',
+      a: 'First make sure the pump is getting power, then check the float switch has not stuck. Those two cause most failures and each takes minutes to put right. If the level keeps climbing after that, leave it and ring us. Fulham High Street is where we are based.',
     },
   },
   'emergency-plumbing|wandsworth': {
     points: [
-      'Leaks in pipework buried in rear and side-return extensions',
-      'Water surfacing a long way from the failed pipe',
-      'Pressurised systems in riverside blocks losing pressure suddenly',
+      'Leaking pipes buried inside side-return and rear extensions',
+      'Water appearing well away from the pipe that has actually failed',
+      'Sudden pressure loss on sealed systems in the riverside blocks',
     ],
     faq: {
-      q: 'The damp patch is nowhere near any pipes. Is that possible?',
-      a: 'Very. Water runs along joists and under floors before it appears, and in an extended house it can travel a surprising distance. That is exactly why we trace it rather than opening up where the stain is.',
+      q: 'Can a damp patch appear far from any pipework?',
+      a: 'Easily. Before it shows, water follows joists and runs beneath floors, and in an extended house it can end up a long way from the source. That is why we trace the leak instead of cutting in where the stain happens to be.',
     },
   },
   'emergency-plumbing|ealing': {
     points: [
-      'Large houses where one branch can be isolated without shutting off the whole property',
-      'Multiple bathrooms on long runs added over decades',
-      'Communal cold water storage in purpose-built blocks',
+      'Big houses where a single branch can be shut off while the rest keeps its water',
+      'Several bathrooms, added over the decades, on long pipe runs',
+      'Shared cold water storage in purpose-built blocks of flats',
     ],
     faq: {
-      q: 'Do I have to turn the whole house off?',
-      a: 'Often not. Most bathrooms and kitchens have local isolation valves on the supply beneath them — a small screwdriver slot you turn a quarter turn. If you can find one for the fixture that is leaking, the rest of the house keeps its water.',
+      q: 'Does the water to the whole house need to go off?',
+      a: 'Not always. Under most kitchen and bathroom fittings the supply pipe has a small isolation valve, with a screwdriver slot that needs a quarter turn. Close the one feeding the leaking fitting and everywhere else stays on.',
     },
   },
   'emergency-plumbing|brixton': {
     points: [
-      'Commercial kitchen failures that close a business until they are fixed',
-      'Out-of-hours attendance so trade is not lost during service',
-      'Communal systems in estates and converted terraces',
+      'Breakdowns in commercial kitchens that keep a business shut until they are repaired',
+      'Visits outside opening hours so service carries on and no trade is lost',
+      'Shared systems in converted terraces and on estates',
     ],
     faq: {
-      q: 'We are a restaurant. Can you come after we close?',
-      a: 'Yes, and for most kitchen work that is the only sensible time. Tell us your service times when you call and we will schedule around them rather than through them.',
+      q: 'Can you come to our restaurant once we have closed?',
+      a: 'We can, and for most kitchen jobs it is the only time that makes sense. Give us your service hours when you ring and we will plan the visit to avoid them.',
     },
   },
   'emergency-plumbing|harrow': {
     points: [
-      'Failures at the joint between original and replacement pipework',
-      'Older galvanised pipe corroding from the inside and finally splitting',
-      'Loft conversion bathrooms on pipe runs the original system never anticipated',
+      'Joints failing where newer pipe has been connected to the original',
+      'Old galvanised pipe that rusts from within until it eventually splits',
+      'Bathrooms in loft conversions fed by pipe runs the first system was never designed for',
     ],
     faq: {
-      q: 'My pipes are the old grey metal type. Is that a problem?',
-      a: 'Galvanised steel corrodes from the inside, so it narrows for years and then fails suddenly. If yours is still in place it is worth planning a replacement rather than waiting for the emergency.',
+      q: 'Should I worry that my pipes are the old grey metal kind?',
+      a: 'That is galvanised steel, which rusts internally. The bore narrows slowly for years, then the pipe gives way without warning. If you still have it, plan to replace it before it turns into an emergency.',
     },
   },
   'emergency-plumbing|balham': {
     points: [
-      'Upper flat leaks presenting in the lower flat first',
-      'Single shared soil stacks between two households',
-      'Access to the flat above being the thing that decides response time',
+      'Leaks from the upstairs flat showing up first in the one below',
+      'One soil stack shared by two separate households',
+      'Response time set by how quickly someone can get into the flat above',
     ],
     faq: {
-      q: 'I am the downstairs flat and water is coming through. Is it my problem?',
-      a: 'Usually not. In a Balham conversion the source is very often above you. Try to reach the upstairs flat while you call us, because we will need access to stop it rather than just to clear up after it.',
+      q: 'Water is coming into my downstairs flat. Is it my responsibility?',
+      a: 'In most cases, no. In Balham conversions the leak usually starts somewhere above you. Contact the upstairs flat while you ring us, as we will need to get in there to stop it, not just to deal with the mess below.',
     },
   },
 
   // ---------- Boiler repair ----------
   'boiler-repair|wimbledon': {
     points: [
-      'Vented systems with a cylinder rather than a combi',
-      'Hot water faults that turn out to be the cylinder, not the boiler',
-      'Whole-system replacement quoted alongside a boiler-only repair',
+      'Vented systems running a hot water cylinder instead of a combi',
+      'Hot water problems traced to the cylinder rather than the boiler',
+      'A boiler-only repair priced side by side with replacing the whole system',
     ],
     faq: {
-      q: 'I have a hot water tank. Should I switch to a combi?',
-      a: 'Not automatically. In a house with several bathrooms, a cylinder often delivers better hot water than a combi can. We will tell you honestly which suits the property rather than defaulting to whichever is easier to install.',
+      q: 'Should I swap my hot water tank for a combi?',
+      a: 'Not as a matter of course. Where a house has several bathrooms, a cylinder often gives better hot water than any combi. We will give you a straight answer on what suits your home, not just pick whichever is simpler to fit.',
     },
   },
   'boiler-repair|ealing': {
     points: [
-      'Boilers asked to serve more bathrooms than they were sized for',
-      'Pressure and flow complaints that are the system rather than the unit',
-      'Heating that never quite reaches the top floor of a large house',
+      'Boilers expected to supply more bathrooms than their sizing allowed',
+      'Complaints about flow and pressure caused by the system, not the boiler itself',
+      'Top floors of large houses that the heating never fully warms',
     ],
     faq: {
-      q: 'My shower goes cold when someone runs a tap. Is the boiler broken?',
-      a: 'Probably not. That is the classic sign of a combi being asked to supply two outlets at once. It is a sizing problem rather than a fault, and replacing the same size boiler will not change it.',
+      q: 'Why does my shower run cold when someone turns on a tap? Is the boiler faulty?',
+      a: 'Unlikely. It is the textbook symptom of a combi trying to feed two outlets together. The issue is size, not a fault, so fitting another boiler of the same output will not help.',
     },
   },
   'boiler-repair|croydon': {
     points: [
-      'Newer boilers bolted onto original system pipework',
-      'Recurring faults caused by sludge in an old circuit',
-      'Power flushing where a repair alone will not hold',
+      'Modern boilers connected to the pipework of the original system',
+      'Faults that keep coming back because of sludge in an ageing circuit',
+      'Power flushing when a repair on its own will not last',
     ],
     faq: {
-      q: 'Why does my new boiler keep breaking down?',
-      a: 'Frequently because the system around it was never cleaned when it was fitted. Debris from decades of old pipework ends up in a modern boiler that has much tighter tolerances. A flush usually fixes what a third repair will not.',
+      q: 'My boiler is new. Why does it keep failing?',
+      a: 'Often the system was not cleaned out when the boiler went in. Decades of debris from the old pipes then collect in a modern unit built to far tighter tolerances. A flush tends to cure what a third repair cannot.',
     },
   },
   'boiler-repair|harrow': {
     points: [
-      'Loft conversion bathrooms with pressure the system cannot reach',
-      'Second and third generation heating installs on original pipe runs',
-      'Cylinders and immersion heaters in airing cupboards',
+      'Bathrooms in loft conversions beyond the reach of the system’s pressure',
+      'A second or third heating system still running on the original pipe routes',
+      'Immersion heaters and cylinders tucked into airing cupboards',
     ],
     faq: {
-      q: 'The shower in the loft conversion is weak. Can a new boiler fix it?',
-      a: 'Usually no. Pressure at that height is about the system type and often needs a pump or a change of setup, not a bigger boiler. We would rather tell you that than sell you a boiler that does not solve it.',
+      q: 'Would a new boiler cure the weak shower in our loft conversion?',
+      a: 'In most cases, no. How much pressure you get that high up depends on the type of system, and the fix is often a pump or a different setup rather than a larger boiler. We would sooner say so than sell you a boiler that leaves the problem in place.',
     },
   },
   'boiler-repair|fulham': {
     points: [
-      'Boilers in kitchen cupboards with awkward access in flat conversions',
-      'Flues routed wherever the conversion allowed rather than where ideal',
-      'Servicing where the unit is boxed in behind fitted units',
+      'Awkward-to-reach boilers inside kitchen cupboards in converted flats',
+      'Flues run wherever the conversion left room, not where they would ideally go',
+      'Services on boilers enclosed behind fitted kitchen units',
     ],
     faq: {
-      q: 'My boiler is boxed into a cupboard. Is that a problem?',
-      a: 'Only if the access clearances are too tight to service it safely. Send us a photo on WhatsApp with the make and model and we will tell you before we come out whether it can be worked on where it is.',
+      q: 'Does it matter that my boiler is boxed into a cupboard?',
+      a: 'It only matters if there is not enough clearance to service it safely. WhatsApp us a photo along with the make and model, and before anyone visits we will let you know whether it can be worked on in place.',
     },
   },
   'boiler-repair|wandsworth': {
     points: [
-      'Kitchens and boilers relocated into rear extensions',
-      'Long pipe runs from the boiler to the original bathroom',
-      'Condensate pipes on external walls freezing in winter',
+      'Boilers and kitchens moved out into rear extensions',
+      'Lengthy pipe runs between the boiler and the original bathroom',
+      'Condensate pipes on outside walls that freeze over winter',
     ],
     faq: {
-      q: 'My boiler locked out in the cold weather. Why?',
-      a: 'Very often a frozen condensate pipe, especially where it runs outside along an extension. Thawing it with warm — not boiling — water and resetting the boiler frequently fixes it, and we will talk you through that on the phone before sending anyone.',
+      q: 'Why has my boiler locked out now the weather is cold?',
+      a: 'The usual cause is a frozen condensate pipe, particularly where it runs outdoors along an extension. Pouring warm water over it (never boiling) and then resetting the boiler often sorts it. We will walk you through that by phone before sending anyone out.',
     },
   },
   'boiler-repair|clapham': {
     points: [
-      'Boilers in shared houses running far harder than in a family home',
-      'Back-to-back shower use morning and evening',
-      'Landlord servicing and tenancy-turnaround checks',
+      'Boilers in house shares working much harder than they would for one family',
+      'Showers running one after another every morning and evening',
+      'Services for landlords and checks between tenancies',
     ],
     faq: {
-      q: 'How often should a boiler in a shared house be serviced?',
-      a: 'Annually as a minimum, same as anywhere, but the case for it is stronger here because the system does considerably more work. Most manufacturer warranties also require it, and a skipped service is a common reason a claim gets refused.',
+      q: 'How regularly does a shared-house boiler need servicing?',
+      a: 'Once a year at least, as with any boiler, and there is more reason to keep to it here because the system works so much harder. Most manufacturers’ warranties insist on it too, and a missed service is one of the usual grounds for turning a claim down.',
     },
   },
   'boiler-repair|bromley': {
     points: [
-      'Hot water cylinders and airing cupboard installations',
-      'Hot water faults with several possible causes beyond the boiler',
-      'Full system upgrades in larger family houses',
+      'Airing cupboard set-ups with a hot water cylinder',
+      'Hot water faults that could come from several parts other than the boiler',
+      'Upgrading the whole system in bigger family homes',
     ],
     faq: {
-      q: 'I have heating but no hot water. Is that the boiler?',
-      a: 'Not necessarily. In a cylinder system it can be the diverter, the cylinder thermostat, the immersion, or a motorised valve. Diagnosing which comes first, because replacing the boiler would not fix three of those four.',
+      q: 'The heating works but there is no hot water. Is the boiler to blame?',
+      a: 'Not always. On a cylinder system the culprit could be the diverter, a motorised valve, the immersion or the cylinder thermostat. We work out which one before anything else, since a new boiler would leave three of those four problems untouched.',
     },
   },
   'boiler-repair|brixton': {
     points: [
-      'Communal and shared heating arrangements in estates and conversions',
-      'Establishing what is your responsibility and what is the building’s',
-      'Boilers in converted terraces serving more than they were sized for',
+      'Shared and communal heating set-ups on estates and in conversions',
+      'Working out which parts are yours to fix and which belong to the building',
+      'Converted-terrace boilers supplying more than their sizing allowed for',
     ],
     faq: {
-      q: 'Who is responsible for the heating in my block?',
-      a: 'It depends entirely on how the building is set up. Individual boilers are yours; communal plant is the freeholder’s. Working out which you are on is usually the first useful thing we do, and it can save you paying for something that is not yours.',
+      q: 'Whose job is it to fix the heating in my block?',
+      a: 'That comes down to how your building is arranged. A boiler of your own is your responsibility, while communal plant sits with the freeholder. Finding out which applies is normally the first useful step we take, and it can stop you paying for repairs that were never yours.',
     },
   },
   'boiler-repair|hackney': {
     points: [
-      'Unusual boiler positions in warehouse and industrial conversions',
-      'Long exposed pipe runs losing heat before they reach the radiators',
-      'Communal plant in estates and blocks',
+      'Boilers in odd positions inside warehouse and industrial conversions',
+      'Long runs of exposed pipe that shed heat on the way to the radiators',
+      'Shared plant serving blocks and estates',
     ],
     faq: {
-      q: 'My warehouse flat is expensive to heat. Is the boiler at fault?',
-      a: 'Often it is the pipe runs rather than the boiler. Long exposed pipework in a high-ceilinged space loses a lot of heat before it arrives. Insulating those runs frequently does more than changing the unit.',
+      q: 'Heating my warehouse flat costs a lot. Is the boiler the problem?',
+      a: 'More often the pipes are to blame. In a space with high ceilings, long runs of bare pipe give off much of their heat before it gets anywhere useful. Lagging them often achieves more than a new boiler would.',
     },
   },
 
   // ---------- Bathroom installation ----------
   'bathroom-installation|croydon': {
     points: [
-      'Original small back-room bathrooms in interwar semis',
-      'Keeping the WC where it is versus moving the soil connection',
-      'Downstairs cloakrooms added under the stairs',
+      'Small original bathrooms at the back of interwar semis',
+      'Deciding whether to leave the WC in place or move the soil connection',
+      'Cloakrooms fitted into the space under the stairs',
     ],
     faq: {
-      q: 'Can I move the toilet to the other side of the room?',
-      a: 'Yes, but it is the single decision that most affects the price, because it means moving the soil connection. If the budget matters, keeping the WC and moving everything else around it gets you a better bathroom for the money.',
+      q: 'Is it possible to put the toilet on the opposite side of the room?',
+      a: 'It is, but no other choice changes the price as much, since the soil connection has to move with it. On a tight budget, leave the WC where it is and rearrange the rest around it. You get more bathroom for your money that way.',
     },
   },
   'bathroom-installation|bromley': {
     points: [
-      'Second bathrooms and en-suites in larger family houses',
-      'Adding outlets to vented systems where pressure needs checking first',
-      'Shower pumps where gravity pressure will not do the job',
+      'En-suites and extra bathrooms in bigger family homes',
+      'New outlets on vented systems, with the pressure checked beforehand',
+      'Pumped showers where gravity alone does not give enough pressure',
     ],
     faq: {
-      q: 'Do I need a pump for the new en-suite?',
-      a: 'If you are on a gravity-fed system with a loft tank and the new bathroom is high in the house, very likely yes. We check the pressure before you buy anything, because the wrong shower on the wrong system is an expensive disappointment.',
+      q: 'Will the new en-suite need a pump?',
+      a: 'Quite probably, if your system is gravity-fed from a loft tank and the en-suite is on an upper floor. We test the pressure before you spend anything, because pairing the wrong shower with the wrong system is a costly let-down.',
     },
   },
   'bathroom-installation|harrow': {
     points: [
-      'Bathrooms added in loft conversions',
-      'Pressure at the top of the house settled before ordering',
-      'Soil and waste routing down through an existing house',
+      'New bathrooms in loft conversions',
+      'Top-floor pressure confirmed before anything is ordered',
+      'Running soil and waste pipes down through the house as it stands',
     ],
     faq: {
-      q: 'Can I put a bathroom in my loft conversion?',
-      a: 'Nearly always, but two things decide how straightforward it is: where the waste can run down to the existing stack, and whether the water pressure reaches that height. Both are worth answering before you choose a suite.',
+      q: 'Is a bathroom possible in my loft conversion?',
+      a: 'Almost always. How simple it is depends on two questions: can the waste get down to the existing stack, and does the water pressure reach that high? Settle both before you pick a suite.',
     },
   },
   'bathroom-installation|wimbledon': {
     points: [
-      'Period property with conservation constraints on external work',
-      'Soil pipe and extract routing on protected elevations',
-      'Family bathrooms and en-suites in larger houses',
+      'Conservation rules on period homes that limit work on the outside',
+      'Routing extract ducts and soil pipes on protected elevations',
+      'En-suites and family bathrooms in bigger houses',
     ],
     faq: {
-      q: 'Will conservation rules stop me refitting my bathroom?',
-      a: 'Rarely for what happens inside the room. Where they bite is on external work — new soil pipes, extract terminals and vents on a visible elevation. Worth checking with the council before the design is fixed.',
+      q: 'Could conservation rules prevent a bathroom refit?',
+      a: 'Seldom for anything inside the room itself. They matter for work on the outside, such as new soil pipes, vents and extract terminals on an elevation people can see. Check with the council before you finalise the design.',
     },
   },
   'bathroom-installation|fulham': {
     points: [
-      'Leasehold flats where freeholder consent is needed before work starts',
-      'Restrictions on moving wet areas over habitable rooms below',
-      'Working hours limited by the terms of the lease',
+      'Leasehold flats needing the freeholder’s consent before any work begins',
+      'Limits on relocating wet areas above habitable rooms in the flat below',
+      'Lease terms that restrict the hours work can take place',
     ],
     faq: {
-      q: 'Do I need permission from my freeholder?',
-      a: 'In most Fulham flats, yes. Leases here commonly require consent for bathroom work, and some prohibit moving wet areas over rooms below. Check the lease before committing to a design — it is much cheaper than finding out afterwards.',
+      q: 'Will my freeholder have to give permission?',
+      a: 'For most flats in Fulham, yes. Local leases often ask for consent before bathroom work, and some ban moving wet areas above the rooms below. Read your lease before settling on a design. Finding out afterwards costs far more.',
     },
   },
 
   // ---------- Drain unblocking ----------
   'drain-unblocking|croydon': {
     points: [
-      'Long external drain runs with multiple gullies and inspection chambers',
-      'More access points, so rodding and camera work is usually straightforward',
-      'Blockages between the house and the boundary',
+      'Long outside drain runs with several inspection chambers and gullies',
+      'Plenty of access points, which usually makes rodding and camera surveys simple',
+      'Blockages on the stretch from the house to the boundary',
     ],
     faq: {
-      q: 'Where does my responsibility for the drain end?',
-      a: 'Broadly at your property boundary. Beyond that it is normally the shared sewer and Thames Water’s to deal with. We will tell you which side of the line the blockage is on before doing work you should not be paying for.',
+      q: 'At what point does the drain stop being my responsibility?',
+      a: 'Roughly at the edge of your property. Past that point it is usually the shared sewer, which Thames Water looks after. Before doing any work you should not be paying for, we will confirm on which side of that line the blockage sits.',
     },
   },
   'drain-unblocking|bromley': {
     points: [
-      'Root ingress from mature trees into clay and cast iron drains',
-      'The same run blocking repeatedly through the year',
-      'CCTV survey to find the section that needs repair rather than clearing',
+      'Roots from mature trees getting into cast iron and clay drains',
+      'One run of drain blocking again and again over the year',
+      'A CCTV survey to pinpoint the length that needs repairing, not just clearing',
     ],
     faq: {
-      q: 'My drain blocks every few months. Why does it keep happening?',
-      a: 'In Bromley that is very often tree roots finding a joint in an old clay drain. Clearing it buys a few months and then it returns. A camera survey finds the section at fault so it can be repaired or lined once instead of cleared four times.',
+      q: 'Why does my drain block again every few months?',
+      a: 'Around Bromley the usual reason is tree roots working into a joint in an old clay pipe. Clearing them gives you a few months before the blockage returns. A camera survey locates the faulty length so it can be lined or repaired once, rather than cleared four times over.',
     },
   },
   'drain-unblocking|wimbledon': {
     points: [
-      'Private drainage runs on larger plots',
-      'Shared drainage in the terraces and flats nearer the station',
-      'Establishing whether the run is yours or shared before work starts',
+      'Private drain runs serving bigger plots',
+      'Shared drains under the flats and terraces close to the station',
+      'Confirming whether a run is private or shared before any work begins',
     ],
     faq: {
-      q: 'Is my drain shared with the neighbours?',
-      a: 'In the terraces near the station, very often yes — and a shared drain beyond your boundary is usually Thames Water’s responsibility. On the larger plots it is more likely to be entirely yours. We check which before quoting.',
+      q: 'Do I share my drain with next door?',
+      a: 'Near the station, in the terraces, it frequently is, and once a shared drain passes your boundary it is normally Thames Water’s job. On bigger plots the whole run is more likely to belong to you. We find out which before we quote.',
     },
   },
 
   // ---------- Tier A expansion ----------
   'emergency-plumbing|kensington': {
     points: [
-      'Basement drainage pumps failing and flooding the lowest floor, where gravity offers no fallback',
-      'Stopcocks buried behind later joinery in period conversions, so isolation takes longer than the repair',
-      'Mansion block leaks where the water has to be shut off at the riser rather than in the flat',
+      'Basement drainage pumps breaking down and flooding the bottom floor, with no gravity route as a backup',
+      'Stopcocks hidden behind later joinery in period conversions, so turning the water off takes longer than fixing the leak',
+      'Leaks in mansion blocks that can only be isolated at the riser, not inside the flat',
     ],
     faq: {
-      q: 'My basement is flooding and the pump has stopped. What can I do right now?',
-      a: 'Stop anything adding water to it — no taps, no washing machine, no shower — and turn the power off to that floor if water is anywhere near sockets. A failed pump will not clear on its own and the water has nowhere to go, so this is a callout rather than something to leave overnight.',
+      q: 'Water is filling my basement because the pump has failed. What should I do immediately?',
+      a: 'Stop sending more water into it: no taps, no shower and no washing machine. If the water is close to any sockets, switch off the power to that floor. A pump that has failed will not recover by itself and the water cannot drain away, so this needs an engineer now, not in the morning.',
     },
   },
   'emergency-plumbing|lewisham': {
     points: [
-      'Leaks that present two or three floors below the flat they started in',
-      'Communal risers where the isolation valve is in a locked service cupboard',
-      'Ex-local-authority blocks where the building manager holds the only key to the plant room',
+      'Leaks that first appear two or three storeys below the flat where they began',
+      'Communal risers with the isolation valve behind a locked service cupboard door',
+      'Former council blocks where only the building manager has a key to the plant room',
     ],
     faq: {
-      q: 'Water is coming through my ceiling and the flat above is empty. Who can turn it off?',
-      a: 'For a block, the isolation you need is usually on the communal riser rather than inside the empty flat, and that means the building manager or a caretaker. Ring the emergency number on your service charge paperwork and call us at the same time — we can often work with them to isolate it.',
+      q: 'Nobody is in the flat above and water is coming through my ceiling. Who can shut it off?',
+      a: 'In a block, the valve that matters is normally on the shared riser, not inside the empty flat, so you need a caretaker or the building manager. Ring the emergency number printed on your service charge paperwork and phone us too. We can often work alongside them to get it isolated.',
     },
   },
   'emergency-plumbing|battersea': {
     points: [
-      'Heat interface unit failures in Nine Elms and Power Station flats, which look like a boiler fault but are not',
-      'Communal heat network problems where several flats lose hot water at once',
-      'Concierge and building management access needed before an engineer can reach the plant',
+      'Heat interface units failing in Power Station and Nine Elms flats, which can pass for a boiler fault but are something else',
+      'Faults on the communal heat network that leave several flats without hot water together',
+      'Plant that an engineer can only reach once building management or the concierge lets them in',
     ],
     faq: {
-      q: 'I have no hot water and my neighbours do not either. Is that my flat?',
-      a: 'Almost certainly not. In the riverside developments the hot water comes from a communal network through a heat interface unit in your flat, so several properties losing it together points at the network. Report it to building management first — if it turns out to be your HIU, that part is ours.',
+      q: 'Neither my neighbours nor I have hot water. Is the problem in my flat?',
+      a: 'Very unlikely. In the riverside developments your hot water arrives from a communal network via a heat interface unit inside the flat, so when several homes lose it at once the network is the likely cause. Tell building management first. If your HIU turns out to be at fault, we can take that on.',
     },
   },
   'emergency-plumbing|putney': {
     points: [
-      'Mansion block stacks near the bridge where one blockage backs up into several flats',
-      'Pumped waste in lower-ground rooms close to the river failing under heavy use',
-      'Estate property at Roehampton on shared supply, where isolation is a communal job',
+      'Stacks in mansion blocks by the bridge, where a single blockage backs up into several flats',
+      'Lower-ground rooms near the river whose pumped waste gives out under heavy use',
+      'Roehampton estate homes on a shared supply, where turning the water off is a communal task',
     ],
     faq: {
-      q: 'The waste from my basement bathroom has backed up. Is that an emergency?',
-      a: 'If it is a pumped system and the pump has failed, yes — there is no gravity fallback, so everything discharged into it stays there. Stop using that bathroom entirely and call. If the rest of the property drains normally, it is the pump rather than the main drain.',
+      q: 'Is it an emergency if waste has backed up in my basement bathroom?',
+      a: 'Yes, if the bathroom is on a pumped system and the pump has stopped. Without gravity to fall back on, whatever goes down stays put. Stop using that bathroom completely and ring us. If everything else in the house drains as normal, it is the pump that has failed and the main drain is fine.',
     },
   },
   'emergency-plumbing|dulwich': {
     points: [
-      'Gullies and inspection chambers well down the garden, so the blockage is rarely near the house',
-      'Long external runs where roots find the joints in older clay drainage',
-      'Large houses where the stopcock is often in an outbuilding or under a floor',
+      'Inspection chambers and gullies far down the garden, so blockages are seldom close to the house',
+      'Long outdoor runs of old clay drain with joints that roots work their way into',
+      'Big houses with the stopcock often under a floor or out in an outbuilding',
     ],
     faq: {
-      q: 'My outside drain is overflowing but everything indoors still works. How urgent is it?',
-      a: 'It is urgent enough to deal with today but you are not in immediate danger of flooding the house. Stop using washing machines and baths, which discharge a lot at once, and keep an eye on whether it rises further. On the longer runs here the blockage is often several chambers away from the house.',
+      q: 'How urgent is an overflowing outside drain if everything inside still drains?',
+      a: 'It needs sorting today, but the house is not about to flood. Hold off on baths and the washing machine, since both release a lot of water in one go, and watch whether the level keeps rising. With the long runs in this area, the blockage is often a few chambers further down the garden.',
     },
   },
   'emergency-plumbing|greenwich': {
     points: [
-      'Conservation-area properties where the obvious external repair needs permission the emergency will not wait for',
-      'Peninsula flats on heat interface units rather than individual boilers',
-      'Older properties around the town centre where earlier alterations are undocumented',
+      'Homes in the conservation area where the natural external repair needs permission, and the emergency cannot wait for it',
+      'Flats on the Peninsula that run on heat interface units, not their own boilers',
+      'Older houses near the town centre with past alterations nobody recorded',
     ],
     faq: {
-      q: 'I live in a listed building and have a burst pipe. Does that change anything?',
-      a: 'It does not change the immediate job — we isolate the water and stop the damage the same way anywhere. It changes what comes after: a permanent repair that alters anything visible or structural may need consent, so we will make it safe first and tell you clearly which parts need checking before they are made permanent.',
+      q: 'Does a burst pipe in a listed building change what happens?',
+      a: 'Not the first part. Wherever you live, we turn off the water and stop the damage in the same way. The difference is in the follow-up: a permanent repair that touches anything visible or structural might need consent. We make it safe, then tell you plainly which parts must be checked before they become permanent.',
     },
   },
   'emergency-plumbing|chelsea': {
     points: [
-      'Excavated basements where a drainage pump failure floods the lowest and most finished floor',
-      'Tall townhouses where a leak at the top travels through every storey below it',
-      'Mews properties with restricted access for anything that does not fit down the mews',
+      'Dug-out basements that flood on their lowest, best-finished level when the drainage pump fails',
+      'Tall townhouses in which a leak near the top works down through every floor',
+      'Mews houses where anything too big for the mews is hard to get in',
     ],
     faq: {
-      q: 'Water is coming down from the top floor through the whole house. What first?',
-      a: 'Stopcock off first, then electrics off on every floor the water has reached — it travels down inside walls and gets into lighting circuits well away from the leak. Do not wait to find the source. Ring us once the water is off.',
+      q: 'Water from the top floor is running down through the whole house. What do I do first?',
+      a: 'Close the stopcock, then switch off the electrics on each floor the water has got to. It runs down inside the walls and reaches lighting circuits a long way from the leak. Do not hold off while you look for the source. Once the water is off, call us.',
     },
   },
   'emergency-plumbing|tooting': {
     points: [
-      'Shared houses where the person calling is not the person whose bathroom is leaking',
-      'Second and third bathrooms discharging into a stack sized for one, backing up under load',
-      'Food business drainage on and around the Broadway failing during service',
+      'House shares where whoever rings is not the person whose bathroom has the leak',
+      'A second and third bathroom emptying into a stack meant for one, which backs up under load',
+      'Drains at food businesses on and near the Broadway failing mid-service',
     ],
     faq: {
-      q: 'I rent a room and the bathroom upstairs is leaking into mine. Who calls it in?',
-      a: 'Anyone can call us, but in a shared house the landlord or agent is usually the one who has to authorise the work. Turn the water off if you can reach the stopcock, tell whoever manages the property immediately, and give them our number — we can talk to them directly.',
+      q: 'The upstairs bathroom is leaking into the room I rent. Who should report it?',
+      a: 'Anybody can ring us, though in a shared house it is normally the landlord or agent who signs off the work. If you can get to the stopcock, turn the water off. Let whoever manages the property know straight away and pass them our number so we can speak to them ourselves.',
     },
   },
 
   // ---------- Boiler repair ----------
   'boiler-repair|dulwich': {
     points: [
-      'Large houses where the boiler cannot keep up because the system was never resized for extensions',
-      'Long pipe runs that lose heat before reaching the far end of the house',
-      'Original systems in single-occupation family homes running well past their efficient life',
+      'Big houses where the boiler falls behind because nobody resized the system after it was extended',
+      'Lengthy pipe runs shedding heat before they get to the far side of the house',
+      'Original systems in family homes with one household, still going long after their efficient years',
     ],
     faq: {
-      q: 'My boiler runs constantly but the far end of the house is never warm. Is it failing?',
-      a: 'Often not. In a large house that has been extended, the more likely story is a system asked to heat more than it was sized for, or a balancing problem where the near radiators take everything. Both are fixable without a new boiler, and we would look at that before quoting for one.',
+      q: 'The boiler never stops running, yet the far end of the house stays cold. Is it on its way out?',
+      a: 'Frequently it is not. In a big, extended house the likelier explanation is a system heating more than it was sized for, or poor balancing that lets the nearest radiators take all the heat. You can fix either without replacing the boiler, and we would check that before pricing a new one.',
     },
   },
   'boiler-repair|greenwich': {
     points: [
-      'Heat interface units in Peninsula flats, which fail differently from boilers and are often mistaken for them',
-      'Flue positions constrained by conservation-area and listed status around the town centre',
-      'Period properties where pipework has been re-routed repeatedly and is not where drawings suggest',
+      'Peninsula flats with heat interface units, often taken for boilers though they fail in other ways',
+      'Listed status and conservation-area rules limiting flue positions near the town centre',
+      'Period homes with pipework re-routed so many times it no longer matches any drawings',
     ],
     faq: {
-      q: 'My flat on the Peninsula has no hot water but there is no boiler. What has failed?',
-      a: 'You almost certainly have a heat interface unit taking heat from a communal network. If neighbours are affected too it is the network and building management need to know. If it is only you, the HIU itself — the plate heat exchanger or its controls — is the usual culprit and that is a repair we can do.',
+      q: 'There is no boiler in my Peninsula flat and the hot water has stopped. What has gone wrong?',
+      a: 'Your flat will almost certainly have a heat interface unit drawing heat from a communal network. If the neighbours have lost hot water as well, the network is at fault and building management should be told. If it is just your flat, the HIU is the usual suspect, normally its controls or plate heat exchanger, and we can repair that.',
     },
   },
   'boiler-repair|kensington': {
     points: [
-      'Listed buildings where a repair is straightforward but anything touching the flue needs establishing first',
-      'Boilers fitted into cupboards and voids where servicing access was never considered',
-      'Mansion blocks where the boiler is sound and the communal supply feeding it is not',
+      'In listed buildings the repair is simple, but any work near the flue has to be cleared first',
+      'Boilers squeezed into voids and cupboards with no thought for servicing access',
+      'Mansion blocks where the boiler works fine but the communal supply to it does not',
     ],
     faq: {
-      q: 'Does listed status stop you repairing my boiler?',
-      a: 'No. Repairing or replacing internal components is unaffected. What listed status affects is anything altering the building — a new flue route, a new external terminal, or core drilling through a protected elevation. We will tell you at the point it becomes relevant rather than after the work.',
+      q: 'Can you still repair my boiler if the building is listed?',
+      a: 'Yes. Listing makes no difference to repairing or replacing internal parts. It applies to work that alters the building, such as a new flue route, a new terminal outside, or core drilling a protected elevation. We will flag it when it becomes relevant, not after the work is done.',
     },
   },
   'boiler-repair|walthamstow': {
     points: [
-      'Boilers relocated during kitchen extensions, with pipework extended rather than replaced',
-      'Warner maisonettes where the flue or condensate affects the neighbouring dwelling',
-      'Condensate pipes run externally during extension work and freezing in winter',
+      'Boilers moved during kitchen extensions, with the old pipework lengthened instead of renewed',
+      'Warner maisonettes where a flue or condensate pipe affects the home next door',
+      'Condensate pipes moved outside during extension work, which then freeze in winter',
     ],
     faq: {
-      q: 'My boiler locks out every time it gets really cold. Why only then?',
-      a: 'That is the classic frozen condensate pipe, and it is common here because extension work so often puts the condensate run outside. The boiler shuts down safely because it cannot drain. Thawing it restores heat, but the real fix is re-routing or lagging the pipe so it does not happen every January.',
+      q: 'Why does my boiler lock out only when it gets really cold?',
+      a: 'That pattern points to a frozen condensate pipe, which is common locally because extensions so often leave the condensate run outdoors. Unable to drain, the boiler shuts itself down safely. Thawing the pipe brings the heat back, but the lasting fix is to lag or re-route it so it stops happening each January.',
     },
   },
   'boiler-repair|chelsea': {
     points: [
-      'Poor performance on upper floors of tall townhouses, where the cause is flow rather than the boiler',
-      'Boilers serving several bathrooms that were added after the unit was sized',
-      'Restricted routing in mews properties limiting where a replacement flue could go',
+      'Weak performance on the top floors of tall townhouses, caused by flow and not by the boiler',
+      'Boilers feeding several bathrooms added after the unit’s size was chosen',
+      'Tight routing in mews houses restricting where any replacement flue could run',
     ],
     faq: {
-      q: 'The shower on the top floor is weak but the boiler is new. What is wrong?',
-      a: 'In a tall, narrow house this is usually not the boiler at all. It is the height between the water source and the outlet, and sometimes pipework too narrow for the run. A pump or an accumulator normally solves it. Replacing a working boiler would not.',
+      q: 'Our boiler is new, yet the top-floor shower is still weak. Why?',
+      a: 'In a tall, narrow house the boiler is rarely the cause. The problem is the height from the water source up to the outlet, and at times pipework that is too narrow for the distance. An accumulator or a pump usually sorts it. Swapping out a boiler that works would not.',
     },
   },
   'boiler-repair|battersea': {
     points: [
-      'Heat interface units in Nine Elms and Power Station flats, which have no burner and no flue',
-      'Communal heat networks where low network temperature presents as a flat-level fault',
-      'Victorian conversions off the park with combis serving more bathrooms than intended',
+      'Power Station and Nine Elms flats with heat interface units, which have neither a burner nor a flue',
+      'Communal heat networks running cool, which shows up as what looks like a fault in one flat',
+      'Victorian conversions just off the park where combis supply more bathrooms than planned',
     ],
     faq: {
-      q: 'Do you work on heat interface units, or only boilers?',
-      a: 'Both. An HIU is a heat exchanger and a set of controls rather than a boiler, so it fails in different ways — usually the plate exchanger scaling up or the controls losing calibration. What we cannot repair is the network upstream of your flat; that belongs to the building.',
+      q: 'Is it just boilers, or do you repair heat interface units too?',
+      a: 'We do both. An HIU is not a boiler but a heat exchanger with controls, so its faults differ. Typically the plate exchanger scales up or the controls drift out of calibration. The one thing we cannot repair is the network before it reaches your flat, which is the building’s.',
     },
   },
   'boiler-repair|tooting': {
     points: [
-      'Combis serving bathrooms added long after the boiler was sized',
-      'Shared houses where simultaneous demand makes a healthy boiler look faulty',
-      'Boilers in flat conversions squeezed into cupboards with poor ventilation and access',
+      'Combis supplying bathrooms that arrived long after the boiler was chosen',
+      'House shares where everyone using hot water at once makes a sound boiler seem broken',
+      'Converted-flat boilers crammed into cupboards that are hard to reach and badly ventilated',
     ],
     faq: {
-      q: 'The hot water goes cold when someone else runs a tap. Is the boiler broken?',
-      a: 'Probably not. A combi heats water on demand and can only serve one significant outlet properly at a time. In a house where a second or third bathroom has been added since, that is a capacity limit rather than a fault — and the answer is usually a system boiler and cylinder rather than a repair.',
+      q: 'If someone else turns on a tap, my hot water runs cold. Has the boiler failed?',
+      a: 'It is unlikely. Because a combi heats water as you use it, it can only supply one main outlet well at any moment. In a house that has gained a second or third bathroom since then, you are hitting a capacity limit, not a fault. The usual answer is to fit a system boiler and cylinder, not to repair anything.',
     },
   },
   'boiler-repair|hammersmith': {
     points: [
-      'Mansion block flats where the boiler is sound and the communal supply is the problem',
-      'Managing agent access required before an engineer can reach communal plant',
-      'Office and commercial heating around the Broadway needing out-of-hours attendance',
+      'Flats in mansion blocks where the fault lies in the communal supply, not the boiler',
+      'Communal plant an engineer cannot reach until the managing agent grants access',
+      'Heating in offices and commercial premises near the Broadway that has to be seen to out of hours',
     ],
     faq: {
-      q: 'The managing agent says it is my boiler and I think it is the building. Who is right?',
-      a: 'That is a common standoff and it is answerable. We test what is arriving at your flat — pressure and supply — before touching the boiler. If the supply is short, the evidence points at the building and you have something concrete to put to the agent rather than an opinion.',
+      q: 'I think the building is at fault but the managing agent blames my boiler. Who is right?',
+      a: 'This dispute comes up a lot, and it can be settled. Before we touch the boiler, we measure the pressure and supply reaching your flat. If the supply falls short, the building is shown to be the cause, and you can take hard evidence to the agent instead of a view.',
     },
   },
   'boiler-repair|lewisham': {
     points: [
-      'Communal heating in blocks, where the fault frequently sits outside the flat reporting it',
-      'Ex-local-authority properties on original pipework with limited isolation points',
-      'Older systems in Ladywell and Hither Green terraces on their second or third boiler',
+      'Blocks on communal heating, where the fault is often outside the flat that reports it',
+      'Former council homes still on their original pipes, with few places to isolate',
+      'Ageing systems in Hither Green and Ladywell terraces now on a second or third boiler',
     ],
     faq: {
-      q: 'Several flats in my block have no heating. Should we each call an engineer?',
-      a: 'No — that gets you several callout charges for one fault. If the whole block is affected the problem is communal plant and it is the freeholder or managing agent who has to instruct the work. Report it collectively. If it turns out only your flat is affected, then it is yours.',
+      q: 'A few flats in our block have lost their heating. Does each of us need to book an engineer?',
+      a: 'No. That way you pay several callout charges for a single fault. When the whole block is hit, the communal plant is at fault and the freeholder or managing agent must instruct the repair, so report it together. If only your flat turns out to be affected, the fault is yours.',
     },
   },
   'boiler-repair|putney': {
     points: [
-      'Riverside mansion blocks with shared plant and agent-controlled access',
-      'Roehampton estate property on communal heating systems',
-      'Pumped waste and drainage in lower-ground rooms adding failure points near the river',
+      'Mansion blocks by the river with shared plant and access run by the agent',
+      'Homes on the Roehampton estate that use communal heating',
+      'Pumped drainage and waste in lower-ground rooms by the river, adding more that can fail',
     ],
     faq: {
-      q: 'My block has communal heating. What can you actually repair?',
-      a: 'Everything from where the system enters your flat inwards — controls, radiators, cylinder, heat interface unit if you have one. The communal boiler plant belongs to the building and has to be instructed by the freeholder or agent. We will tell you which side of that line your fault is on before charging you for anything.',
+      q: 'What can you fix in my flat if the block runs on communal heating?',
+      a: 'Anything from the point the system comes into your flat onwards: radiators, controls, the cylinder, and a heat interface unit if there is one. The communal boiler plant is the building’s, and work on it must be instructed by the agent or freeholder. Before you are charged for anything, we will say which side of that line the fault falls.',
     },
   },
 
   // ---------- Boiler service ----------
   'boiler-service|ealing': {
     points: [
-      'Services booked ahead of winter rather than after a breakdown, which is most of the demand here',
-      'Warranty terms that require documented annual servicing on newer installations',
-      'Older systems in the larger houses towards Ealing Common running well past their efficient life',
+      'Services booked before winter instead of after a breakdown, which accounts for most requests here',
+      'Newer installations whose warranties need a recorded service every year',
+      'Ageing systems in the bigger houses towards Ealing Common, running long past their efficient years',
     ],
     faq: {
-      q: 'When is the best time of year to book a boiler service?',
-      a: 'Late summer or early autumn. It costs the same as any other time and it is far easier to get a slot — everyone discovers a problem in the first genuinely cold week, which is exactly when engineers are hardest to book.',
+      q: 'When in the year should I book my boiler service?',
+      a: 'Aim for late summer or the start of autumn. The price is no different, and slots are much easier to find. Problems tend to surface in the first properly cold week, which is precisely when engineers are hardest to get hold of.',
     },
   },
   'boiler-service|croydon': {
     points: [
-      'Interwar and 1930s semis on systems that have had several boilers over the years',
-      'Town centre flats where the boiler is the flat’s but the supply feeding it is not',
-      'Long heating runs where poor circulation shows up as cold rooms rather than a boiler fault',
+      '1930s and interwar semis whose systems have been through several boilers',
+      'Flats in the town centre that own their boiler but not the supply running to it',
+      'Long heating circuits where weak circulation shows as cold rooms, not as a boiler fault',
     ],
     faq: {
-      q: 'My heating works but some rooms never get warm. Will a service fix that?',
-      a: 'Probably not on its own. A service checks the boiler, not the whole system. Rooms that never warm up usually mean the system needs balancing, or there is sludge in the circuit — both separate jobs, and we would tell you which rather than sell you a service that will not solve it.',
+      q: 'Some rooms stay cold even though the heating works. Would a service sort that out?',
+      a: 'Not by itself, most likely. A service looks at the boiler rather than the whole system. Cold rooms normally mean the system needs balancing or the circuit has sludge in it. Each is a separate job, and we would point you to the right one instead of booking you a service that cannot fix it.',
     },
   },
   'boiler-service|bromley': {
     points: [
-      'Larger houses where an inefficient boiler costs meaningfully more over a winter',
-      'Systems extended into conversions and extensions without being resized',
-      'Older units where the service is really a decision point about replacement',
+      'Bigger homes where a poorly performing boiler adds real cost across a winter',
+      'Systems stretched into extensions and conversions with no resizing',
+      'Older boilers where the service becomes the moment to decide on replacing them',
     ],
     faq: {
-      q: 'Is a service worth it on a boiler I am probably replacing soon?',
-      a: 'If it is going this year, spend the money on the replacement instead. If it has a couple of winters left, a service is worth it — it is the difference between choosing when it goes and having it choose for you in January.',
+      q: 'Should I bother servicing a boiler I will likely replace soon?',
+      a: 'If it is being replaced this year, put the money towards the new one. If you expect another two winters from it, get it serviced. That way you decide when it goes, rather than the boiler making that call in January.',
     },
   },
   'boiler-service|harrow': {
     points: [
-      'Metroland semis on their second or third heating system, with pipework from all of them',
-      'Loft conversions added above a system that was never resized for them',
-      'Older controls that no longer do what the householder thinks they do',
+      'Semis in Metroland now on a second or third heating system, with pipes left over from each',
+      'Loft conversions built on top of a system nobody resized to suit them',
+      'Old controls that no longer work the way the owner believes',
     ],
     faq: {
-      q: 'The house has had three boilers. Does any of that old pipework matter?',
-      a: 'It can. Successive installations tend to leave redundant pipework, dead legs and valves nobody has turned in twenty years. None of it is dangerous by itself, but it affects circulation and it makes diagnosing anything slower. A service is a good moment to note what is actually there.',
+      q: 'We are on our third boiler. Does the old pipework make any difference?',
+      a: 'It might. Each new installation tends to leave behind dead legs, redundant pipes and valves no one has touched for twenty years. On its own none of that is dangerous, but it hampers circulation and slows down any diagnosis. A service is a sensible time to record what is really there.',
     },
   },
   'boiler-service|wimbledon': {
     points: [
-      'Relatively recent installations still inside manufacturer warranty terms',
-      'Warranty claims that depend on evidence of annual servicing',
-      'Larger properties where the system does more work than a flat’s would',
+      'Fairly new installations still covered by the manufacturer’s warranty terms',
+      'Claims under warranty that rely on proof of yearly servicing',
+      'Bigger homes where the system works harder than one in a flat',
     ],
     faq: {
-      q: 'Does skipping a year of servicing really void a warranty?',
-      a: 'It can, and it is one of the commonest reasons a claim gets refused. Manufacturers generally require documented annual servicing, so the gap in the record is what they point at rather than anything about the fault itself. Keep the paperwork somewhere you can find it.',
+      q: 'Can missing one year’s service really void the warranty?',
+      a: 'Yes, and it is among the most frequent reasons claims are turned down. Most manufacturers want a documented service every year, so they point to the missing record rather than to the fault. Keep your paperwork where you can lay hands on it.',
     },
   },
   'boiler-service|greenwich': {
     points: [
-      'Conventional gas boilers in the older town centre properties',
-      'Heat interface units in Peninsula flats, which are not gas appliances and need a different check',
-      'Conservation-area properties where flue access affects how the service is carried out',
+      'Standard gas boilers in the older homes around the town centre',
+      'Peninsula flats on heat interface units. These are not gas appliances and call for their own kind of check',
+      'Homes in the conservation area where getting to the flue shapes how the service is done',
     ],
     faq: {
-      q: 'I have a heat interface unit, not a boiler. Does it need servicing?',
-      a: 'It benefits from a periodic check, but it is not a gas appliance and it is not a gas service. The plate heat exchanger scales up over time and the controls drift, both of which show as poor hot water. Worth doing, but it is a different job from a boiler service and we would price it as one.',
+      q: 'Does a heat interface unit need servicing the way a boiler does?',
+      a: 'Checking it now and then helps, but it is not a gas appliance, so this is not a gas service. Over time the plate heat exchanger scales up and the controls drift, and either shows as poor hot water. It is worth having done, but it is not the same job as a boiler service, so we would quote for it on its own.',
     },
   },
   'boiler-service|lewisham': {
     points: [
-      'Flats where the boiler is the occupier’s and the communal system behind it is the building’s',
-      'Ex-local-authority property on original pipework with limited isolation',
-      'Terraces towards Ladywell and Hither Green on ageing individual systems',
+      'In flats, the occupier owns the boiler and the building owns the communal system behind it',
+      'Ex-council property still on its first pipework and short of isolation valves',
+      'Terraced houses towards Hither Green and Ladywell on old individual systems',
     ],
     faq: {
-      q: 'My block has communal heating. Is there anything to service in my flat?',
-      a: 'Usually yes, but it is not a boiler service. There will be controls, valves and often a heat interface unit inside your flat that are yours, and communal plant beyond it that belongs to the building. We will tell you which side of that line each part sits on before doing anything.',
+      q: 'Is there anything in my flat to service if the block has communal heating?',
+      a: 'Normally there is, though it is not a boiler service. Inside your flat you will have controls and valves, and frequently a heat interface unit, all of which are yours. Past them is communal plant owned by the building. Before we do anything, we will explain which side of that line each part is on.',
     },
   },
   'boiler-service|wandsworth': {
     points: [
-      'Combis serving more bathrooms than they were originally sized for',
-      'Converted terraces where the boiler position was decided by the conversion, not by access',
-      'Systems where hot water performance has declined gradually enough that nobody noticed',
+      'Combis supplying more bathrooms than their original sizing allowed',
+      'Converted terraces where the conversion, not access, dictated where the boiler went',
+      'Systems whose hot water has tailed off so slowly that no one noticed',
     ],
     faq: {
-      q: 'Hot water is slower than it used to be. Is that a service issue?',
-      a: 'Sometimes. Scale on the plate heat exchanger builds gradually and a service can catch it before it becomes a replacement part. But if the house has gained a bathroom since the boiler went in, the honest answer may be that the boiler is doing all it can and no amount of servicing changes that.',
+      q: 'My hot water takes longer than it used to. Can a service help?',
+      a: 'In some cases. Scale builds up slowly on the plate heat exchanger, and a service can spot it before the part needs replacing. If a bathroom has been added since the boiler was fitted, though, the truthful answer may be that it is already doing its best, and servicing will not change that.',
     },
   },
   'boiler-service|brixton': {
     points: [
-      'Restaurants and bars where a service has to happen outside trading hours',
-      'Flats above commercial premises sharing a building with very different heating demands',
-      'Estate and converted-terrace property on individual boilers of varying age',
+      'Bars and restaurants that need their service done outside trading hours',
+      'Flats over commercial units, in buildings where heating needs differ sharply',
+      'Homes on estates and in converted terraces with their own boilers of mixed ages',
     ],
     faq: {
-      q: 'Can you service the boiler in my restaurant without closing?',
-      a: 'We schedule commercial work around trading — usually early morning or after close. It is a normal way to work here and it is worth agreeing the slot when you book rather than discovering the clash on the day.',
+      q: 'Is it possible to service my restaurant’s boiler without shutting?',
+      a: 'Commercial jobs are planned around your trading hours, normally first thing or after closing. That is how most work is done locally. Agree the time when you book to avoid any clash.',
     },
   },
   'boiler-service|islington': {
     points: [
-      'More searches for servicing than for repair, which is unusual and suggests planned maintenance',
-      'Period conversions with boilers in cupboards where access is the practical constraint',
-      'Flats where the service has to be arranged around a managing agent',
+      'Searches for servicing outnumbering those for repair, which is unusual and points to planned upkeep',
+      'Period conversions where a boiler in a cupboard makes access the real limitation',
+      'Flats where servicing must be fitted around a managing agent',
     ],
     faq: {
-      q: 'The boiler is in a cupboard behind fitted units. Is that a problem?',
-      a: 'It is a common one here and it depends how much comes off. An engineer needs proper access to service it safely, so if that means dismantling a cupboard every year it is worth knowing — and worth thinking about at the point the boiler is next replaced.',
+      q: 'Is it an issue that the boiler sits in a cupboard behind fitted units?',
+      a: 'It comes up a lot here, and it depends on how much has to be removed. To service a boiler safely an engineer needs proper access, so if a cupboard has to come apart each year you should know that, and bear it in mind at the next replacement.',
     },
   },
   'boiler-service|walthamstow': {
     points: [
-      'Condensate pipes run externally during extension work, which freeze in the first hard frost',
-      'Warner maisonettes where a flue or condensate route affects the neighbouring dwelling',
-      'Terraces extended repeatedly with pipework added rather than replaced',
+      'Extensions that moved condensate pipes outdoors, where they freeze at the first hard frost',
+      'Flues or condensate routes on Warner maisonettes that affect the neighbours',
+      'Terraces extended several times over, with pipework added to instead of renewed',
     ],
     faq: {
-      q: 'Can a service stop my boiler locking out every cold snap?',
-      a: 'If it is the condensate pipe freezing — and here it very often is, because extension work so often puts that run outside — then yes, in the sense that we can see it and re-route or lag it. That is a small job done in autumn and a miserable one done in January.',
+      q: 'Will a service prevent my boiler locking out in each cold spell?',
+      a: 'If a freezing condensate pipe is to blame, and locally it very often is because extensions tend to put that run outdoors, then yes: we can spot it and lag or re-route it. Done in autumn it is a small job. Done in January it is a miserable one.',
     },
   },
   'boiler-service|streatham': {
     points: [
-      'Large houses divided into flats, each with its own boiler and its own service',
-      'Mansion blocks along the High Road with communal tanks and risers alongside individual boilers',
-      'Freeholders and agents arranging several services in one building at once',
+      'Big houses split into flats, every one with a boiler and service of its own',
+      'High Road mansion blocks with individual boilers as well as communal tanks and risers',
+      'Agents and freeholders booking a number of services in a single building together',
     ],
     faq: {
-      q: 'Can you service every flat in the building in one visit?',
-      a: 'Usually, and it is easier for everyone if it is arranged that way — one visit, one set of access arrangements. Whoever manages the building normally coordinates it. Each flat still gets its own service and its own record.',
+      q: 'Could you service all the flats in the building on the same visit?',
+      a: 'In most cases, yes, and it suits everyone to do it like that: a single visit with a single set of access arrangements. The person who manages the building usually organises it. Every flat is still serviced on its own, with a separate record.',
     },
   },
   'boiler-service|tooting': {
     points: [
-      'Shared houses where nobody currently living there knows when it was last serviced',
-      'Boilers running near capacity because bathrooms were added after installation',
-      'Properties where the person using the boiler is not the person who arranges the service',
+      'House shares where none of the current tenants know when the last service was',
+      'Boilers working close to their limit because bathrooms came after they were fitted',
+      'Homes where the boiler is used by one person and its service booked by another',
     ],
     faq: {
-      q: 'I rent. Can I book a boiler service myself?',
-      a: 'You can call us, but the boiler is the landlord’s and they normally arrange and pay for the work. Tell them, give them our number, and we can deal with them directly — it saves you being the go-between.',
+      q: 'As a tenant, can I arrange a boiler service myself?',
+      a: 'You are welcome to ring us, but the boiler belongs to your landlord, who usually books and pays for the service. Let them know and pass on our number. We can then deal with them directly, so you are not stuck in the middle.',
     },
   },
   'boiler-service|acton': {
     points: [
-      'Older conversions in South Acton on individual boilers of varying vintage',
-      'North Acton blocks on communal systems where the flat-side equipment is what gets checked',
-      'Boilers relocated during extensions, sometimes to positions that make servicing awkward',
+      'Older South Acton conversions with their own boilers of assorted ages',
+      'Communal systems in North Acton blocks, where the equipment on the flat side is what gets checked',
+      'Boilers moved during extensions, now and then into awkward spots for servicing',
     ],
     faq: {
-      q: 'My flat is in one of the new North Acton blocks. What actually needs servicing?',
-      a: 'Often not a boiler at all — many of those blocks run communal heating with a heat interface unit in each flat. That unit is worth a periodic check, but it is not a gas service and the plant that feeds it belongs to the building. We will look and tell you which you have.',
+      q: 'My flat is in a newly built North Acton block. What needs servicing?',
+      a: 'Quite often there is no boiler. Many of those blocks are on communal heating, and every flat has its own heat interface unit. The unit is worth checking from time to time, but that is no gas service, and the building owns the plant that supplies it. We will take a look and tell you which setup is yours.',
     },
   },
 
   'boiler-repair|acton': {
     points: [
-      'Boilers moved during kitchen extensions, with pipework extended rather than renewed',
-      'North Acton flats where the fault is in the building system rather than the property',
-      'Conversions where the boiler serves more outlets than it was sized for',
+      'Boilers shifted during kitchen extensions, with existing pipes lengthened instead of replaced',
+      'Flats in North Acton where the fault is in the building’s system, not the flat',
+      'Conversions whose boiler feeds more outlets than it was sized to',
     ],
     faq: {
-      q: 'No hot water and my neighbours are the same. Is that my boiler?',
-      a: 'In the newer North Acton blocks, almost certainly not — that pattern points at the communal system, and building management need to know before you pay for a callout. In the older converted houses it is more likely to be your own boiler. Tell us which you are in and we can usually work it out on the phone.',
+      q: 'My neighbours and I both have no hot water. Is my boiler at fault?',
+      a: 'In the newer blocks in North Acton, very unlikely. That pattern suggests the communal system, so tell building management before paying for a callout. Your own boiler is the likelier cause in the older converted houses. Let us know which you live in and we can normally narrow it down over the phone.',
     },
   },
 
   // ---------- Boiler installation ----------
   'boiler-installation|kensington': {
     points: [
-      'Listed and conservation-area buildings where the flue terminal position is the first question, not the last',
-      'Basements where condensate has to be pumped rather than run to a drain by gravity',
-      'Mansion blocks where the installation date depends on the managing agent as much as on us',
+      'Listed buildings and conservation areas, where the position of the flue terminal comes first, not last',
+      'Basements where gravity cannot carry condensate to a drain, so it has to be pumped',
+      'In mansion blocks, the fitting date rests as much with the managing agent as with us',
     ],
     faq: {
-      q: 'Can I have any boiler I like in a listed building?',
-      a: 'The boiler itself is rarely the constraint — the flue is. Where it can terminate, and whether anything may be cored through a protected elevation, decides which units are actually installable. We establish that before recommending a product, because choosing first and finding out afterwards wastes everyone’s time.',
+      q: 'Am I free to choose any boiler for a listed building?',
+      a: 'The limit is seldom the boiler. It is the flue. Which units you can actually install depends on where the flue may end and whether any coring through a protected elevation is allowed. We work that out before suggesting a model, since choosing a model first and finding the snag later is a waste of time for everyone.',
     },
   },
   'boiler-installation|ealing': {
     points: [
-      'Family houses that have gained bathrooms and occupants since the last boiler went in',
-      'Combi-to-system conversions where simultaneous hot water demand has outgrown a combi',
-      'Boilers in kitchen cupboards where the extension work has since boxed them in',
+      'Homes with more bathrooms and more people than when the last boiler was fitted',
+      'Swapping a combi for a system boiler where hot water use at the same time has outgrown it',
+      'Kitchen-cupboard boilers that later extension work has boxed in',
     ],
     faq: {
-      q: 'We have added a second bathroom. Do we need a different type of boiler?',
-      a: 'Possibly. A combi heats water on demand and can only serve one significant outlet properly at a time, so two showers at once is the case it fails. If that will happen regularly, a system boiler with a cylinder is the answer. If it will not, a correctly sized combi is still simpler and cheaper.',
+      q: 'Now we have a second bathroom, should we change the type of boiler?',
+      a: 'You might. A combi heats water as it is drawn and can only supply one main outlet properly at once, so it struggles when two showers run together. If that will happen often, go for a system boiler and cylinder. If not, a combi of the right size remains the simpler, cheaper choice.',
     },
   },
   'boiler-installation|wandsworth': {
     points: [
-      'Boiler positions inherited from a conversion rather than chosen for access or noise',
-      'Terraces where a new installation is the chance to move the unit off a bedroom wall',
-      'Systems serving more outlets than the original boiler was sized for',
+      'Boilers left where a conversion put them, not where access or noise would suggest',
+      'Terraced houses where replacing the boiler is a chance to get it off a bedroom wall',
+      'Systems supplying more outlets than the first boiler was sized to handle',
     ],
     faq: {
-      q: 'Is it worth moving the boiler while it is being replaced?',
-      a: 'Often, yes. Moving it adds pipework and flue routing to the job, but a replacement is the only realistic moment to fix a boiler that is noisy against a bedroom, buried behind fitted units, or somewhere that makes every future service awkward. We will price both so you can see what the move actually costs.',
+      q: 'Should we move the boiler at the same time as replacing it?',
+      a: 'It is often worthwhile. A move means extra pipework and a new flue route, but replacement is the only practical time to deal with a boiler that is noisy next to a bedroom, hidden behind fitted units, or placed so that every service is a struggle. We will quote for both options so the true cost of moving it is clear.',
     },
   },
   'boiler-installation|wimbledon': {
     points: [
-      'Larger houses with two or more bathrooms likely to be in use at once',
-      'Properties where a combi was fitted on price and has never quite kept up',
-      'Installations sized on the radiator count and occupancy rather than on what was there before',
+      'Bigger houses with two or more bathrooms that may well be used at the same time',
+      'Homes where a combi went in because it was cheap and has always struggled to keep up',
+      'Boilers sized by occupancy and radiator count, not by whatever was fitted before',
     ],
     faq: {
-      q: 'How do you decide what size boiler we need?',
-      a: 'Radiator count, number of bathrooms and how many people actually live there — not the size of the old one, which may well have been wrong too. Oversized boilers cycle on and off and wear out early; undersized ones never keep up. It is worth getting right at the point of installation because it cannot be adjusted afterwards.',
+      q: 'How do you work out the right boiler size for us?',
+      a: 'We look at how many radiators and bathrooms you have and how many people really live there. The size of the old boiler does not count, as that could easily have been wrong as well. Too big and it cycles on and off and wears out early. Too small and it never keeps up. Get it right when it is fitted, because it cannot be changed later.',
     },
   },
   'boiler-installation|fulham': {
     points: [
-      'Flat conversions where the flue has to reach an external wall that may be some way off',
-      'Basement and lower-ground rooms needing pumped condensate rather than gravity fall',
-      'Shared stacks and party walls limiting where pipework can be routed',
+      'Converted flats where the flue must reach an outside wall that could be a fair distance away',
+      'Lower-ground and basement rooms where condensate has to be pumped, not left to fall by gravity',
+      'Party walls and shared stacks restricting where pipes can run',
     ],
     faq: {
-      q: 'Our flat has no external wall near the boiler position. Is installation possible?',
-      a: 'Usually, but it may need a twin-flue system, which allows a far longer flue run than a standard boiler. It needs designing rather than improvised, and it narrows which units will work. We look at the route before recommending anything.',
+      q: 'Can a boiler still be fitted if there is no outside wall near where it goes?',
+      a: 'Usually it can, though a twin-flue system may be needed, as it allows a much longer flue run than a standard boiler. That has to be designed properly, not improvised, and it limits which units are suitable. We check the route before suggesting anything.',
     },
   },
   'boiler-installation|croydon': {
     points: [
-      'Interwar semis still on their original system layout',
-      'Boilers in kitchen cupboards where a move improves both access and noise',
-      'Long pipe runs where circulation matters as much as boiler output',
+      'Semis from the interwar years whose system layout has never changed',
+      'Kitchen-cupboard boilers where moving them would help with noise and access',
+      'Long pipework where circulation counts for as much as the boiler’s output',
     ],
     faq: {
-      q: 'Should the new boiler go where the old one is?',
-      a: 'Not automatically. Like-for-like is the cheapest and quickest option and often the right one — but if the current position is awkward to service, noisy, or was chosen because it suited a kitchen fitter twenty years ago, a replacement is the moment to reconsider it.',
+      q: 'Does the new boiler have to go in the same place as the old one?',
+      a: 'No. A like-for-like swap is the quickest and cheapest route and is often correct. But if the current spot is noisy, hard to service, or was chosen for a kitchen fitter’s convenience twenty years back, replacement is the time to think again.',
     },
   },
   'boiler-installation|bromley': {
     points: [
-      'Larger properties where correct sizing has a real effect on running cost',
-      'Systems extended into conversions without ever being resized',
-      'Older heat-only setups with cylinders, where the choice of replacement type is genuinely open',
+      'Bigger homes where getting the size right makes a real difference to running costs',
+      'Systems carried into conversions and never resized afterwards',
+      'Older heat-only systems with a cylinder, where any replacement type could genuinely suit',
     ],
     faq: {
-      q: 'Is a bigger boiler better for a big house?',
-      a: 'No — bigger than needed is actively worse. An oversized boiler short-cycles, which wastes gas and wears out components early. The right size is the one matched to the radiators and hot water demand. That usually surprises people who assume more output is safer.',
+      q: 'Will a big house do better with a bigger boiler?',
+      a: 'No. A boiler larger than necessary is actually worse. It short-cycles, wasting gas and wearing parts out before their time. The correct size is whatever matches your radiators and hot water demand, which tends to surprise anyone who thinks extra output is the safe option.',
     },
   },
   'boiler-installation|harrow': {
     points: [
-      'Loft conversions with bathrooms added above what the system was sized for',
-      'Rear extensions where radiators were added onto an existing circuit',
-      'Properties on their third heating system, with pipework surviving from all of them',
+      'Bathrooms in loft conversions that the system was never sized to serve',
+      'Radiators tacked onto the existing circuit for rear extensions',
+      'Homes now on a third heating system, with pipes remaining from all three',
     ],
     faq: {
-      q: 'The top floor is always cold. Will a new boiler fix it?',
-      a: 'Only if the boiler is the problem, and in a house with a loft conversion it often is not. More commonly the system was never resized for the extra radiators, or the circuit needs balancing. We would rather establish that first than sell you a boiler that changes nothing.',
+      q: 'Our top floor is cold all the time. Would a new boiler solve that?',
+      a: 'Only when the boiler is at fault, and with a loft conversion it frequently is not. Usually either the system was not resized for the added radiators, or the circuit needs balancing. We prefer to find that out first rather than sell you a boiler that makes no difference.',
     },
   },
   'boiler-installation|battersea': {
     points: [
-      'Victorian conversions off the park, which do have individual boilers',
-      'Riverside and Nine Elms blocks on communal heat networks, where there is no boiler to install',
-      'Conversions where flue routing has to respect the flats above and below',
+      'Victorian conversions near the park, where flats do have their own boilers',
+      'Nine Elms and riverside blocks on communal heat networks, with no boiler to fit',
+      'Conversions where the flue route must take account of the flats above and below',
     ],
     faq: {
-      q: 'Can I have my own boiler installed in a Nine Elms flat?',
-      a: 'Almost certainly not. Those buildings run communal heat networks and each flat has a heat interface unit rather than a boiler — that is a design decision made for the whole building and not something an individual flat can opt out of. What we can do is repair and maintain the unit you have.',
+      q: 'Is it possible to fit my own boiler in a Nine Elms flat?',
+      a: 'Very unlikely. Those buildings run on communal heat networks. Instead of a boiler, every flat has a heat interface unit. That choice was made for the building as a whole, and a single flat cannot opt out. We can, however, maintain and repair the unit already installed.',
     },
   },
   'boiler-installation|chelsea': {
     points: [
-      'Tall, narrow townhouses where plant position affects pressure on the upper floors',
-      'Mews properties with limited external routing and restricted access',
-      'Listed buildings where flue and external pipework need establishing before product choice',
+      'Townhouses that are tall and narrow, where the plant’s position affects pressure higher up',
+      'Mews houses with tight access and few options for routing outside',
+      'Listed buildings where the flue and outside pipework must be settled before choosing a model',
     ],
     faq: {
-      q: 'Will a new boiler improve the weak shower on the top floor?',
-      a: 'Not on its own. In a tall house that is usually the height between the water source and the outlet, plus pipework too narrow for the run. A pump or accumulator solves it. A new boiler will not, and anyone selling you one on that basis is selling the wrong thing.',
+      q: 'Would the weak top-floor shower get better with a new boiler?',
+      a: 'Not by itself. In a tall house the usual cause is the height from the water source to the outlet, along with pipes too narrow for the distance. A pump or an accumulator fixes that. A new boiler does not, and anyone selling one for that reason is selling you the wrong fix.',
     },
   },
   'boiler-installation|clapham': {
     points: [
-      'Terrace conversions where a flue terminal affects the flat above or below',
-      'Boilers in cupboards sized by the conversion rather than for servicing access',
-      'Freeholder consent needed before external work on a converted house',
+      'Converted terraces where the neighbours above or beneath are affected by a flue terminal',
+      'Boilers in cupboards whose size was set by the conversion, not by servicing needs',
+      'Consent from the freeholder before any outside work on a converted house',
     ],
     faq: {
-      q: 'Do I need the freeholder’s permission to install a boiler?',
-      a: 'For the boiler itself, usually not. For anything that alters the building — a new flue terminal, core drilling an external wall, new external pipework — very often yes, and it is in most leases. Worth checking before booking a date rather than on the morning.',
+      q: 'Will I need my freeholder to agree before a boiler is installed?',
+      a: 'Not usually for the boiler. For work that changes the building, such as a new flue terminal, new outside pipework or core drilling an external wall, it is very often required, and most leases say so. Check before you book a date, not on the morning of the job.',
     },
   },
   'boiler-installation|brixton': {
     points: [
-      'Flats above shops and restaurants, where the work affects a business downstairs',
-      'Installations scheduled around trading hours rather than the engineer’s diary',
-      'Converted terraces and estate property with very different constraints on the same street',
+      'Flats over shops and restaurants, where the job affects a business below',
+      'Fitting booked to suit trading hours, not the engineer’s diary',
+      'Estate homes and converted terraces on one street with quite different constraints',
     ],
     faq: {
-      q: 'I live above a restaurant. Does that complicate the installation?',
-      a: 'It affects timing more than method. Water off, drilling and deliveries all have to be agreed with the business below, which usually means starting early or working around service. It is normal here — worth raising when you book so the date works for both of you.',
+      q: 'Does living over a restaurant make the installation harder?',
+      a: 'It changes the timing more than the method. Turning off the water, drilling and deliveries all need agreeing with the business downstairs, which usually means an early start or working between services. That is routine locally. Mention it when booking so the date suits you both.',
     },
   },
   'boiler-installation|greenwich': {
     points: [
-      'Conservation-area and listed constraints on flue terminals in the town centre',
-      'Peninsula flats on heat networks, where a boiler installation is not possible or needed',
-      'Older properties where earlier alterations are undocumented and found on the day',
+      'Limits on flue terminals in the town centre from listing and the conservation area',
+      'Heat network flats on the Peninsula, where fitting a boiler is neither possible nor needed',
+      'Older homes whose unrecorded past alterations only come to light on the day',
     ],
     faq: {
-      q: 'Which parts of Greenwich can actually have a new boiler?',
-      a: 'The older housing around the town centre and out towards Blackheath, yes — subject to flue constraints where the property is listed or in a conservation area. Peninsula flats on the communal heat network, no: there is no individual boiler and no provision for one. Tell us which you are in and we can be specific.',
+      q: 'Where in Greenwich can a new boiler actually be fitted?',
+      a: 'Yes for the older homes near the town centre and further out towards Blackheath, although flue limits apply where a home is listed or sits in a conservation area. No for flats on the Peninsula’s communal heat network, as there is no individual boiler and nowhere for one to go. Let us know which applies and we can give you a precise answer.',
     },
   },
   'boiler-installation|putney': {
     points: [
-      'Mansion blocks where the managing agent has to approve the flue and the date',
-      'Riverside properties with pumped drainage in lower-ground rooms',
-      'Roehampton estate property where heating may be communal rather than individual',
+      'Blocks of mansion flats needing the managing agent’s approval for both the flue and the date',
+      'Homes by the river with pumped drainage serving lower-ground rooms',
+      'Roehampton estate homes where the heating may be shared, not individual',
     ],
     faq: {
-      q: 'How long does getting agent approval usually add?',
-      a: 'It varies and we cannot promise a timescale for someone else’s decision. What we can do is give you the technical detail agents ask for — flue position, route, and what is being altered — in a form you can send on, which is usually what holds these up.',
+      q: 'How much time does agent approval tend to add?',
+      a: 'It differs, and we cannot promise how long someone else will take to decide. What we can provide is the technical detail agents want, covering the flue position, its route and what is being altered, set out so you can forward it. That detail is usually what causes the delay.',
     },
   },
   'boiler-installation|tooting': {
     points: [
-      'Houses that have gained bathrooms since the last boiler was sized',
-      'Shared houses with simultaneous hot water demand a combi cannot meet',
-      'Conversions where the cupboard, not the property, has decided the boiler size',
+      'Homes with extra bathrooms added since the last boiler was sized',
+      'House shares whose demand for hot water all at once is beyond a combi',
+      'Conversions where the size of the cupboard, not the home, set the boiler size',
     ],
     faq: {
-      q: 'Four of us share the house. What should we be fitting?',
-      a: 'Almost certainly a system boiler with a cylinder rather than a combi. Four people means overlapping showers, and a combi physically cannot serve two at once without both suffering. A cylinder stores hot water so simultaneous demand stops being a problem.',
+      q: 'There are four of us in a shared house. What should we have fitted?',
+      a: 'Nearly always a system boiler and cylinder, not a combi. With four people, showers will overlap, and a combi simply cannot feed two at once without both losing out. A cylinder keeps a store of hot water, so everyone using it at the same time is no longer an issue.',
     },
   },
   'boiler-installation|balham': {
     points: [
-      'Conversions where the boiler cupboard was sized by whoever did the conversion',
-      'Flats where servicing access was not considered when the space was built',
-      'Systems serving more outlets than the original installation allowed for',
+      'Conversions with a boiler cupboard sized by whoever carried out the conversion',
+      'Flats where nobody thought about servicing access when the space was built',
+      'Systems feeding more outlets than the first installation was planned for',
     ],
     faq: {
-      q: 'Will a new boiler fit the existing cupboard?',
-      a: 'Usually, but it is worth measuring rather than assuming — modern condensing boilers need clearance around them for servicing as well as physical space, and some cupboards built around an older unit do not have it. We check before ordering, not on the day of installation.',
+      q: 'Is the current cupboard big enough for a new boiler?',
+      a: 'Usually, though it is better to measure than assume. Modern condensing boilers need servicing clearance around them as well as room to sit in, and some cupboards built for an older unit fall short. We check this before ordering, not on installation day.',
     },
   },
   'boiler-installation|dulwich': {
     points: [
-      'Large family houses on long pipe runs where circulation affects perceived output',
-      'Systems extended into loft and rear conversions without resizing',
-      'Estate scheme of management restrictions where external work is involved',
+      'Big family homes on long pipe runs, where circulation affects how much heat you feel',
+      'Systems stretched into rear and loft conversions with no resizing',
+      'Estate scheme of management limits whenever outside work is involved',
     ],
     faq: {
-      q: 'Does the Dulwich Estate scheme affect a boiler installation?',
-      a: 'It can, where the work alters the outside of the property — a new flue terminal or external pipework in particular. The boiler and internal work generally are not affected. Check your own paperwork, because the terms vary, and we will tell you which parts of the job are external.',
+      q: 'Will the Dulwich Estate scheme have any bearing on a boiler installation?',
+      a: 'It may, if the work changes the outside of the house, especially new external pipework or a new flue terminal. Inside work and the boiler itself are generally unaffected. Read your own paperwork, as terms differ, and we will point out the external parts of the job.',
     },
   },
   'boiler-installation|acton': {
     points: [
-      'Older conversions where a proper installation replaces years of piecemeal extension',
-      'North Acton blocks on communal systems, where a boiler installation is not applicable',
-      'Properties where the boiler was moved during an extension and never quite suited the position',
+      'Years of piecemeal additions in older conversions, replaced by a proper installation',
+      'Communal-system blocks in North Acton, where installing a boiler does not apply',
+      'Homes where the boiler was relocated during an extension and never really suited its new spot',
     ],
     faq: {
-      q: 'My flat is a new build in North Acton. Can I install a boiler?',
-      a: 'If it is on the building’s communal heat network, no — there is no gas supply to the flat and no boiler position. You have a heat interface unit instead, which we can service and repair. In the older converted property further south, a normal installation is straightforward.',
+      q: 'Can a boiler be installed in my new-build flat in North Acton?',
+      a: 'Not if the building runs a communal heat network, as the flat has no gas supply and no place for a boiler. Instead you have a heat interface unit, and we can service and repair it. In the older converted homes further south, a standard installation is simple.',
     },
   },
 
   // ---------- Enfield, Barnet, and two first-of-service pages ----------
   'emergency-plumbing|enfield': {
     points: [
-      'Stopcocks in garages, outbuildings and under floors rather than under the kitchen sink',
-      'Burst pipes in unheated outbuildings when a freeze thaws',
-      'Long external runs where a leak surfaces a long way from its source',
+      'Stopcocks under floors, in garages or in outbuildings, not beneath the kitchen sink',
+      'Pipes bursting in unheated outbuildings as a freeze thaws',
+      'Long outdoor runs where a leak shows up far from where it started',
     ],
     faq: {
-      q: 'I cannot find the stopcock. What do I do while I wait?',
-      a: 'Look under the kitchen sink first, then in a garage, utility room or downstairs cloakroom — on properties out this way it is often not in the kitchen at all. If you cannot find it, there is usually an external stop tap under a small metal cover near the boundary. Tell us on the phone and we will talk you through it.',
+      q: 'What should I do while I wait if I cannot find the stopcock?',
+      a: 'Check under the kitchen sink, then the garage, utility room or downstairs cloakroom, because in homes out this way it is frequently nowhere near the kitchen. Failing that, there is normally an outside stop tap beneath a small metal cover close to the boundary. Ring and tell us, and we will help you find it.',
     },
   },
   'emergency-plumbing|barnet': {
     points: [
-      'Older property around the centre where isolation points have been built over',
-      'Larger suburban houses with long runs and multiple isolation valves',
-      'Unheated garages and lofts where pipes freeze and split',
+      'Isolation points built over in older homes near the centre',
+      'Bigger suburban houses with long runs and several isolation valves',
+      'Pipes freezing and splitting in lofts and garages with no heating',
     ],
     faq: {
-      q: 'The water is off but it is still running. Why?',
-      a: 'Whatever is above the leak is still draining down, and in a house with a loft tank that can be a lot of water. Open the cold taps downstairs to drain it faster, and it should stop within a few minutes. If it does not, the stopcock has not fully closed and we need to get there.',
+      q: 'Why does water keep running after I have turned it off?',
+      a: 'The water held above the leak is still draining out, and with a loft tank that can be quite a volume. Run the downstairs cold taps to empty it faster and it should stop in a few minutes. If it carries on, the stopcock is not fully shut and we need to come out.',
     },
   },
   'leak-detection|croydon': {
     points: [
-      'Buried supply runs across long driveways and gardens, where a leak can go unseen for months',
-      'Water bills rising with no visible cause anywhere in the property',
-      'Older external pipework on larger plots, well away from the house',
+      'Supply pipes buried under long gardens and driveways, where a leak can stay hidden for months',
+      'Water bills going up with nothing visibly wrong anywhere in the house',
+      'Older outdoor pipework on bigger plots, some distance from the house',
     ],
     faq: {
-      q: 'My bill has gone up but I cannot see a leak anywhere. Is that possible?',
-      a: 'Very. On a property with a long buried supply run, water can escape underground for months and never surface — it just soaks away. The meter test tells you quickly: turn everything off, read the meter, wait an hour, read it again. If it has moved, something is running.',
+      q: 'Could I have a leak if my bill has risen but nothing is visible?',
+      a: 'Quite easily. Where the supply pipe runs a long way underground, water can leak for months without ever surfacing, simply soaking into the soil. A meter test gives a fast answer: switch everything off, take a reading, wait an hour and read it again. Any movement means water is running somewhere.',
     },
   },
   'bathroom-installation|enfield': {
     points: [
-      'Space for a second bathroom or en-suite in larger suburban houses',
-      'Vented systems where adding an outlet means checking pressure before choosing a shower',
-      'Loft conversions where the new bathroom sits above the existing tank',
+      'Room for an en-suite or second bathroom in bigger suburban homes',
+      'Vented systems where a new outlet means testing the pressure before picking a shower',
+      'Loft conversions that put the new bathroom above the existing tank',
     ],
     faq: {
-      q: 'Can I put a shower in the loft conversion?',
-      a: 'Usually, but pressure is the question to settle first. On a gravity-fed system the loft bathroom sits close to the tank, which leaves very little head — often not enough for a decent shower without a pump. We check the system before you choose anything, because the wrong shower on the wrong system is an expensive way to find out.',
+      q: 'Is a shower possible in our loft conversion?',
+      a: 'Most of the time, though pressure needs answering first. With a gravity-fed system, a loft bathroom is close to the tank and gets very little head, often too little for a decent shower unless you add a pump. We look at the system before you pick anything, as learning this with the wrong shower fitted is a costly lesson.',
     },
   },
 
@@ -974,7 +974,7 @@ export const comboDetail: Record<string, ComboDetail> = {
     points: [
       'Burst and leaking pipes in older town-centre and village houses after a cold snap',
       'Leaks in shared student houses near the university, where the landlord needs to know straight away',
-      'No hot water from scaled-up combi boilers failing in the first cold week',
+      'No hot water from scaled-up combi boilers that fail when the first cold week arrives',
     ],
     faq: {
       q: 'How quickly can you get to Guildford?',

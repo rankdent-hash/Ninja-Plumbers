@@ -38,20 +38,20 @@ const crumbs = [
 ];
 ---
 <Base
-  title="London Postcode Districts | Ninja Plumbers"
-  description={`Ninja Plumbers covers ${postcodes.length} London postcode districts for plumbing, heating and drainage. Find yours, get a price. Call ${site.booking.display}.`}
+  title="London Postcode Districts We Cover | Ninja Plumbers"
+  description={`Plumbing, heating and drainage in ${postcodes.length} London postcode districts. Look up your own district, then ring ${site.booking.display} for a price.`}
 >
   <Schema slot="head" breadcrumb={crumbs} />
 
   <section class="page-hero">
     <div class="container">
       <div class="breadcrumb"><a href="/">Home</a> / <a href="/areas-we-cover">Areas We Cover</a> / Postcode districts</div>
-      <span class="eyebrow">Coverage</span>
+      <span class="eyebrow">Where we work</span>
       <h1>London postcode districts</h1>
       <p>
-        Ninja Plumbers covers {postcodes.length} districts spread across the eight London postal
-        areas. Look up yours for the neighbourhoods it takes in, or skip ahead to the area page
-        if you already know what your part of town is called.
+        Our engineers work in {postcodes.length} districts across all eight London postal areas.
+        Pick yours to see which neighbourhoods it includes. Where you can already name your
+        neighbourhood, its area page may be quicker.
       </p>
     </div>
   </section>
@@ -71,10 +71,10 @@ const crumbs = [
 
   <section class="section section-navy">
     <div class="container center measure-wide">
-      <h2>Not sure which district you are in?</h2>
+      <h2>Unsure which district is yours?</h2>
       <p>
-        Give us your full postcode and we'll confirm on the spot whether it's within our patch —
-        we cover the whole of Greater London.
+        Read us your full postcode and we can check straight away that it falls inside our area.
+        All of Greater London is covered.
       </p>
       <div class="cta-row center-row">
         <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">

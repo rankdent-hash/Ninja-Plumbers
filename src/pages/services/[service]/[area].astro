@@ -53,12 +53,12 @@ const coverAnswer = outside
   : `We do. ${area.name} falls within ${area.borough}, covering the ${area.postcodes.join(', ')} postcodes, and our engineers are out across Greater London from our Fulham office every day.`;
 // Matches the visible FAQ on the page, in the same order.
 const pageFaqs = [
-  { q: `Do you cover ${area.name}?`,
+  { q: `Do you work in ${area.name}?`,
     a: coverAnswer },
   ...(detail ? [detail.faq] : []),
   ...(extra ? [extra.faq2] : []),
-  { q: 'What does it cost?',
-    a: 'You will have a price for the work before an engineer starts. If something behind the wall changes the scope, we pause and talk it through with you rather than carrying on and billing you afterwards.' },
+  { q: 'How much will it cost?',
+    a: 'Before an engineer starts, you are given a price for the job. Should something hidden in a wall change what is needed, we stop and discuss it with you first, instead of pressing on and sending the bill later.' },
 ];
 const h1 = `${label} in ${area.name}`;
 
@@ -96,7 +96,7 @@ const schema = {
 ---
 <Base
   title={`${label} ${area.name} | ${area.postcodes[0]} | Ninja Plumbers`}
-  description={`${label} in ${area.name}, ${area.borough}, covering ${area.postcodes.join(', ')}. Gas Safe registered and fully insured. Call ${site.booking.display}.`}
+  description={`${label} in ${area.name}, ${area.borough}, serving ${area.postcodes.join(', ')}. Fully insured and Gas Safe registered. Phone ${site.booking.display}.`}
 >
   <Schema slot="head" breadcrumb={crumbs} faqs={pageFaqs} extra={schema} />
 
@@ -106,10 +106,10 @@ const schema = {
     intro={combo.angle}
     breadcrumb={crumbs}
     bullets={[
-      'Gas Safe registered and fully insured',
-      'DBS-checked engineers',
-      'Emergency callout available 24/7',
-      'Price agreed before work starts',
+      'Fully insured and Gas Safe registered',
+      'Engineers are DBS-checked',
+      '24/7 emergency callouts',
+      'Price agreed before any work begins',
       'Workmanship guaranteed',
     ]}
     formHeading={`${label} in ${area.name}`}
@@ -128,7 +128,7 @@ const schema = {
         )}
         {extra && <p class="combo-local">{extra.local}</p>}
         <details class="combo-general">
-          <summary>Everything {service.title.replace('&amp;', 'and').toLowerCase()} covers</summary>
+          <summary>The full scope of our {service.title.replace('&amp;', 'and').toLowerCase()} work</summary>
           <ul class="ticks">
             {service.does.map((d) => <li><Tick /> {d}</li>)}
           </ul>
@@ -142,11 +142,11 @@ const schema = {
       <div class="combo-area-note">
         <p>
           <strong>{area.name === area.borough
-            ? `We cover ${area.name},`
+            ? `We work throughout ${area.name},`
             : outside
-              ? `${area.name} is in ${area.borough}, ${area.county},`
-              : `${area.name} is in the London Borough of ${area.borough},`}</strong> across {area.postcodes.join(', ')}. What kind of buildings are around here tends to decide what goes wrong:
-          <a href={`/areas/${area.slug}`} class="inline-link">read more about plumbing in {area.name} &rarr;</a>
+              ? `${area.name} sits in ${area.borough}, ${area.county},`
+              : `${area.name} sits within the London Borough of ${area.borough},`}</strong> taking in {area.postcodes.join(', ')}. The local building stock largely explains which faults turn up:
+          <a href={`/areas/${area.slug}`} class="inline-link">see our full {area.name} plumbing page &rarr;</a>
         </p>
       </div>
     </div>
@@ -155,10 +155,10 @@ const schema = {
   <section class="section section-alt">
     <div class="container measure-wide">
       <span class="eyebrow">Questions</span>
-      <h2>Common questions</h2>
+      <h2>Questions we often get</h2>
       <div class="faqs">
         <details class="faq">
-          <summary>Do you cover {area.name}?</summary>
+          <summary>Do you work in {area.name}?</summary>
           <p>{coverAnswer}</p>
         </details>
         {detail && (
@@ -174,11 +174,11 @@ const schema = {
           </details>
         )}
         <details class="faq">
-          <summary>What does it cost?</summary>
-          <p>You will have a price for the work before an engineer starts. If something behind the wall changes the scope, we pause and talk it through with you rather than carrying on and billing you afterwards.</p>
+          <summary>How much will it cost?</summary>
+          <p>Before an engineer starts, you are given a price for the job. Should something hidden in a wall change what is needed, we stop and discuss it with you first, instead of pressing on and sending the bill later.</p>
         </details>
         <p class="faq-more">
-          <a href={`/services/${service.slug}`} class="inline-link">More questions about {service.title.replace('&amp;', 'and').toLowerCase()} &rarr;</a>
+          <a href={`/services/${service.slug}`} class="inline-link">Further answers on {service.title.replace('&amp;', 'and').toLowerCase()} &rarr;</a>
         </p>
       </div>
     </div>
@@ -209,14 +209,14 @@ const schema = {
         </>
       )}
 
-      <span class="eyebrow" style="margin-top:40px;">Nearby</span>
-      <h2>{label} in other areas</h2>
+      <span class="eyebrow" style="margin-top:40px;">Elsewhere</span>
+      <h2>{label}: other areas we cover</h2>
       <ul class="combo-links">
         {sameService.map((c) => {
           const a = areas.find((x) => x.slug === c.area)!;
           return <li><a href={`/services/${c.service}/${c.area}`}>{label} in {a.name}</a></li>;
         })}
-        <li><a href={`/services/${service.slug}`}>{service.title.replace('&amp;', 'and')} across London</a></li>
+        <li><a href={`/services/${service.slug}`}>{service.title.replace('&amp;', 'and')} anywhere in London</a></li>
       </ul>
     </div>
   </section>
@@ -224,7 +224,7 @@ const schema = {
   <section class="section section-navy">
     <div class="container center measure-wide">
       <h2>{label} in {area.name}</h2>
-      <p>Give us your postcode and a quick description of the problem, and we&rsquo;ll tell you what it costs before anyone sets foot on site.</p>
+      <p>Send us your postcode with a short note on what has gone wrong, and you&rsquo;ll know the cost before anyone turns up at your door.</p>
       <div class="cta-row center-row">
         <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">
           <PhoneIcon /> Call {site.booking.display}

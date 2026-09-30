@@ -36,10 +36,10 @@ const latestPosts = blogPosts.filter((p) => p.date && p.date <= today).slice(0, 
 <Schema slot="head" faqs={home.faq.items} />
 
 <HeroWithForm
-  eyebrow="Emergency callout available 24/7"
-  h1="London plumbers who turn up, price the job first, and fix it properly"
-  intro="From a boiler that's died overnight to a full bathroom refit — Ninja Plumbers handles it for homes and businesses across London. If it can't wait until morning, neither do we."
-  formHeading="Send us the job"
+  eyebrow="24/7 emergency callouts available"
+  h1="London plumbers who show up, quote before starting and do the job properly"
+  intro="Whether your boiler gave up overnight or you want a whole bathroom refitted, Ninja Plumbers covers homes and businesses across London. When it can't wait until morning, we don't make you wait."
+  formHeading="Tell us about the job"
   pattern
 />
 
@@ -84,8 +84,8 @@ const latestPosts = blogPosts.filter((p) => p.date && p.date <= today).slice(0, 
 <section class="section">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">What we do</span>
-      <h2>Plumbing, heating, drainage and electrics &mdash; the whole job</h2>
+      <span class="eyebrow">Our services</span>
+      <h2>One team for plumbing, heating, drainage and electrics</h2>
       <p class="lead measure">{home.intros.services}</p>
     </div>
 
@@ -95,11 +95,11 @@ const latestPosts = blogPosts.filter((p) => p.date && p.date <= today).slice(0, 
           <div class="icon"><ServiceIcon name={s.icon} /></div>
           <h3><a href={`/services/${s.slug}`} class="card-title-link" set:html={s.title} /></h3>
           <p>{s.summary}</p>
-          <a href={`/services/${s.slug}`} class="card-link" aria-hidden="true" tabindex="-1">Find out more <span>&rarr;</span></a>
+          <a href={`/services/${s.slug}`} class="card-link" aria-hidden="true" tabindex="-1">See the service <span>&rarr;</span></a>
         </li>
       ))}
     </ul>
-    <p class="section-foot"><a href="/services" class="btn btn-ghost">All our services</a></p>
+    <p class="section-foot"><a href="/services" class="btn btn-ghost">Browse every service</a></p>
   </div>
 </section>
 
@@ -111,39 +111,39 @@ const latestPosts = blogPosts.filter((p) => p.date && p.date <= today).slice(0, 
 <section class="section work-band">
   <div class="container">
     <div class="section-head center-head">
-      <span class="eyebrow">See us at work</span>
-      <h2>Ninja engineers, on the tools</h2>
-      <p class="lead measure">No subcontractors — every booking goes to one of our own directly employed engineers, out on jobs across the London boroughs from our Fulham base.</p>
+      <span class="eyebrow">Out on jobs</span>
+      <h2>Ninja engineers at work</h2>
+      <p class="lead measure">We don't use subcontractors. Each booking is handled by one of our own directly employed engineers, travelling out from Fulham to homes and premises across the London boroughs.</p>
     </div>
 
     <div class="work-grid">
       <a class="work-tile work-tile-wide" href="/areas-we-cover">
         <img src="/images/home/ninja-vans-on-the-road.webp" width="1600" height="1200"
-             alt="Two Ninja Plumbers vans, one dark grey and one white, parked on a London high street with the company phone number and website on the side"
+             alt="A dark grey van and a white van in Ninja Plumbers livery, showing the phone number and website, parked on a London high street"
              loading="lazy" decoding="async" />
         <span class="work-caption">
-          <strong>Ninja vans, out across London</strong>
-          <small>Our own liveried vans and engineers, working from our Fulham base</small>
+          <strong>Ninja vans on London streets</strong>
+          <small>Liveried vans and our own engineers, setting out from Fulham</small>
         </span>
       </a>
 
       <a class="work-tile" href="/services/general-plumbing">
         <img src="/images/home/kitchen-sink-plumbing.webp" width="900" height="675"
-             alt="An engineer working on the waste pipe under a kitchen sink, with a protective mat and tool bag laid out on the floor"
+             alt="Under a kitchen sink, an engineer fixes the waste pipe, with a protective mat down and the tool bag open"
              loading="lazy" decoding="async" />
         <span class="work-caption">
-          <strong>General plumbing repairs</strong>
-          <small>Leaks, taps, sinks and pipework sorted</small>
+          <strong>Household plumbing repairs</strong>
+          <small>Leaks, taps, sinks and pipes fixed</small>
         </span>
       </a>
 
       <a class="work-tile" href="/services/boiler-repair">
         <img src="/images/home/boiler-service-gas-safe.webp" width="900" height="675"
-             alt="An engineer testing the inside of a wall-mounted boiler with a multimeter"
+             alt="A multimeter in use as an engineer checks the internals of a wall-hung boiler"
              loading="lazy" decoding="async" />
         <span class="work-caption">
           <strong>Gas boiler repairs</strong>
-          <small>Every job handled by a Gas Safe registered engineer</small>
+          <small>Only Gas Safe registered engineers take on this work</small>
         </span>
       </a>
     </div>
@@ -153,30 +153,30 @@ const latestPosts = blogPosts.filter((p) => p.date && p.date <= today).slice(0, 
 <section class="section section-alt">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">Who we work for</span>
-      <h2>Homes and commercial premises</h2>
+      <span class="eyebrow">Our customers</span>
+      <h2>Households and businesses</h2>
     </div>
     <div class="split">
       <div class="split-panel">
         <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><path d="M9 21v-7h6v7"/></svg></div>
-        <h3>For your home</h3>
-        <p>We work for homeowners, tenants and landlords right across London — kitchens, bathrooms, toilets and basins, radiators and boilers, and yes, the burst pipe at eleven at night.</p>
+        <h3>In your home</h3>
+        <p>Across London, landlords, tenants and homeowners call us about kitchens, bathrooms, toilets, basins, radiators and boilers. That includes a pipe that bursts at eleven at night, too.</p>
         <ul class="ticks">
-          <li><Tick /> Emergency repairs, day or night</li>
-          <li><Tick /> Boiler servicing and replacement</li>
-          <li><Tick /> Bathroom and en-suite installation</li>
-          <li><Tick /> Landlord repairs and turnarounds</li>
+          <li><Tick /> Day and night emergency repairs</li>
+          <li><Tick /> Boiler services and replacements</li>
+          <li><Tick /> Fitting bathrooms and en-suites</li>
+          <li><Tick /> Repairs and turnarounds for landlords</li>
         </ul>
       </div>
       <div class="split-panel">
         <div class="icon"><ServiceIcon name="commercial" /></div>
-        <h3>For your business</h3>
-        <p>Offices, restaurants, shops and blocks of flats. We work around opening hours and tenants, and report back to whoever needs to sign it off.</p>
+        <h3>At your business</h3>
+        <p>We look after offices, restaurants, shops and blocks of flats. Visits fit around your opening hours and your tenants, and we report to whoever signs the work off.</p>
         <ul class="ticks">
-          <li><Tick /> Washroom and kitchen plumbing</li>
-          <li><Tick /> Commercial drain clearance</li>
-          <li><Tick /> Reactive repairs for managing agents</li>
-          <li><Tick /> Out-of-hours work to avoid disruption</li>
+          <li><Tick /> Plumbing for washrooms and kitchens</li>
+          <li><Tick /> Clearing commercial drains</li>
+          <li><Tick /> Managing agents&rsquo; reactive repairs</li>
+          <li><Tick /> Work outside hours to keep disruption down</li>
         </ul>
         <p class="split-foot"><a href="/services/commercial-plumbing" class="inline-link">Commercial plumbing <span aria-hidden="true">&rarr;</span></a></p>
       </div>
@@ -187,21 +187,21 @@ const latestPosts = blogPosts.filter((p) => p.date && p.date <= today).slice(0, 
 <section class="section">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">How it works</span>
-      <h2>No mystery, no surprise invoice</h2>
+      <span class="eyebrow">The process</span>
+      <h2>A clear process and no unexpected bill</h2>
     </div>
     <ol class="steps">
       <li class="step">
-        <h3>Tell us what&rsquo;s wrong</h3>
-        <p>Ring the booking line or send a photo over WhatsApp. Knowing what we're dealing with before the van sets off means a better chance of showing up with the right parts first time.</p>
+        <h3>Describe the problem</h3>
+        <p>Call the booking line, or WhatsApp us a photo. When we can see the fault before the van leaves, the engineer is more likely to arrive with the right parts on the first visit.</p>
       </li>
       <li class="step">
-        <h3>We agree the price first</h3>
-        <p>Before an engineer picks up a tool, you'll know what it costs. And if something turns up underneath that changes the job, we stop and talk it through with you rather than carry on.</p>
+        <h3>You get the price up front</h3>
+        <p>You'll know the cost before any tools come out. Should we uncover something that changes the job, we pause and talk it over with you instead of pressing on.</p>
       </li>
       <li class="step">
-        <h3>We fix it and clear up</h3>
-        <p>The job gets finished, tested and tidied. Gas work is carried out by Gas Safe registered engineers and certificated where it needs to be.</p>
+        <h3>The repair, then the tidy-up</h3>
+        <p>We complete the work, test it and leave things tidy. Any gas work is done by Gas Safe registered engineers, with a certificate issued wherever one is required.</p>
       </li>
     </ol>
   </div>
@@ -210,9 +210,9 @@ const latestPosts = blogPosts.filter((p) => p.date && p.date <= today).slice(0, 
 <section class="section section-alt">
   <div class="container areas-band">
     <div>
-      <span class="eyebrow">Areas we cover</span>
-      <h2>Plumbers across London</h2>
-      <p class="measure">From the City and Westminster out to Croydon, Harrow and Enfield, our engineers are on the road across the London boroughs — dispatched from the office in Fulham.</p>
+      <span class="eyebrow">Coverage</span>
+      <h2>Plumbers in the London boroughs</h2>
+      <p class="measure">We send engineers out from the Fulham office to jobs right across the London boroughs. That covers the City and Westminster through to Croydon, Harrow and Enfield.</p>
       <ul class="area-chips" aria-label="Popular areas">
         {topAreas.map((a) => (
           <li><a href={`/areas/${a.slug}`}>{a.name}</a></li>
@@ -223,15 +223,15 @@ const latestPosts = blogPosts.filter((p) => p.date && p.date <= today).slice(0, 
 
     <aside class="about-card">
       <span class="eyebrow">About</span>
-      <h3>A dedicated London plumbing company</h3>
-      <p>Ninja Plumbers is {site.legalName}, established {site.established} and based in Fulham. Being focused on plumbing, heating and drainage — and nothing else — is why we care about the things trades usually skip: turning up when we said, pricing before the work, leaving the place clean.</p>
+      <h3>A London company focused on plumbing</h3>
+      <p>Ninja Plumbers is {site.legalName}, set up in {site.established} and based in Fulham. We do plumbing, heating and drainage and nothing else. That focus is why we take care over what other trades often skip: arriving when we said, pricing before starting and cleaning up before we go.</p>
       <dl class="about-facts">
         <div><dt>Office</dt><dd>{site.address.line1}, {site.address.postcode}</dd></div>
         <div><dt>Job booking</dt><dd><a href={`tel:${site.booking.tel}`}>{site.booking.display}</a></dd></div>
         <div><dt>Management</dt><dd><a href={`tel:${site.management.tel}`}>{site.management.display}</a></dd></div>
-        <div><dt>Hours</dt><dd>{site.hours.office} &middot; 24/7 emergency</dd></div>
+        <div><dt>Hours</dt><dd>{site.hours.office} &middot; emergencies 24/7</dd></div>
       </dl>
-      <p class="about-links"><a href="/about" class="inline-link">More about Ninja</a> <a href="/reviews" class="inline-link">Reviews</a></p>
+      <p class="about-links"><a href="/about" class="inline-link">Company details</a> <a href="/reviews" class="inline-link">Reviews</a></p>
     </aside>
   </div>
 </section>
@@ -249,18 +249,18 @@ const latestPosts = blogPosts.filter((p) => p.date && p.date <= today).slice(0, 
           <li class="card">
             <h3><a href={`/blog/${p.slug}`} class="card-title-link">{p.title}</a></h3>
             <p>{p.excerpt}</p>
-            <a href={`/blog/${p.slug}`} class="card-link" aria-hidden="true" tabindex="-1">Read the guide <span>&rarr;</span></a>
+            <a href={`/blog/${p.slug}`} class="card-link" aria-hidden="true" tabindex="-1">Open the guide <span>&rarr;</span></a>
           </li>
         ))}
       </ul>
-      <p class="section-foot"><a href="/blog" class="btn btn-ghost">All guides</a></p>
+      <p class="section-foot"><a href="/blog" class="btn btn-ghost">See every guide</a></p>
     </div>
   </section>
 )}
 
 <section class="section section-alt">
   <div class="container measure-wide">
-    <span class="eyebrow">Questions</span>
+    <span class="eyebrow">FAQs</span>
     <h2>{home.faq.heading}</h2>
     <div class="faqs">
       {home.faq.items.map((f) => (
@@ -275,8 +275,8 @@ const latestPosts = blogPosts.filter((p) => p.date && p.date <= today).slice(0, 
 
 <section class="section section-navy">
   <div class="container center measure-wide">
-    <h2>Need a plumber today?</h2>
-    <p>A real person answers the booking line, and they can actually get an engineer moving toward you. Something urgent? Ring rather than email.</p>
+    <h2>Looking for a plumber today?</h2>
+    <p>Call the booking line and a real person picks up, someone who can send an engineer your way. For anything urgent, phone us instead of emailing.</p>
     <div class="cta-row center-row">
       <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg"><PhoneIcon /> Call {site.booking.display}</a>
       <a href={site.whatsapp.url} class="btn btn-outline btn-lg"><WhatsAppIcon /> WhatsApp us</a>

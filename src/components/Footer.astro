@@ -36,14 +36,14 @@ const outsideAreas = allAreas.filter((a) => a.slug === 'guildford' || a.slug ===
         <a href="/" class="footer-logo" aria-label="Ninja Plumbers — home">
           <img src="/images/logo-light.png" width="400" height="158" alt="Ninja Plumbers" />
         </a>
-        <p>Plumbing, heating, drainage and electrical work across London. {site.legalName}, established {site.established}. Gas Safe registered and fully insured.</p>
+        <p>We cover plumbing, heating, drainage and electrical jobs across London. {site.legalName}, set up in {site.established}, is fully insured and Gas Safe registered.</p>
         <div class="footer-cta">
           <a href={`tel:${site.booking.tel}`} class="btn btn-orange"><PhoneIcon /> {site.booking.display}</a>
           <a href={site.whatsapp.url} class="btn btn-outline"><WhatsAppIcon /> WhatsApp</a>
         </div>
         <ul class="footer-contact">
           <li>{site.address.line1}, {site.address.city}, {site.address.postcode}</li>
-          <li>{site.hours.office} &middot; Emergency callout 24/7</li>
+          <li>{site.hours.office} &middot; 24/7 emergency callouts</li>
           <li>Management: <a href={`tel:${site.management.tel}`}>{site.management.display}</a></li>
           <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
         </ul>
@@ -95,7 +95,7 @@ const outsideAreas = allAreas.filter((a) => a.slug === 'guildford' || a.slug ===
           </div>
         ))}
       </div>
-      <p class="footer-area-more"><a href="/appliances">All appliance work <span aria-hidden="true">&rarr;</span></a></p>
+      <p class="footer-area-more"><a href="/appliances">Every appliance job <span aria-hidden="true">&rarr;</span></a></p>
     </div>
 
     {/* The small-business sector pages, grouped under Commercial Plumbing. */}

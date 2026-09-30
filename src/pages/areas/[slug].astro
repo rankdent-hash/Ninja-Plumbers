@@ -61,19 +61,19 @@ const lowerFirst = (t: string) => (PROPER.has(t.split(/[\s,]/)[0]) ? t : t.charA
 const where = outside ? `${area.borough}, ${area.county}` : `the London Borough of ${area.borough}`;
 const faqs = [
   {
-    q: `Do you cover all of ${area.name}?`,
-    a: `Yes. We cover ${area.name} and the ${area.postcodes.join(', ')} postcode ${area.postcodes.length > 1 ? 'districts' : 'district'}, in ${where}. Postcode and council boundaries do not always line up, so if you are unsure, check your postcode on our areas page or give us a call.`,
+    q: `Do you work in every part of ${area.name}?`,
+    a: `Yes. Our area takes in the whole of ${area.name}, along with the ${area.postcodes.join(', ')} postcode ${area.postcodes.length > 1 ? 'districts' : 'district'}, in ${where}. Council lines and postcode lines often differ, so if you are not sure, look up your postcode on our areas page or ring us.`,
   },
   {
-    q: `What plumbing problems come up most in ${area.name}?`,
-    a: `The ones we see most often here are ${area.common.map(lowerFirst).join('; ')}.`,
+    q: `Which plumbing faults are most common in ${area.name}?`,
+    a: `The jobs that come up most here are ${area.common.map(lowerFirst).join('; ')}.`,
     list: area.common,
   },
   {
-    q: `Can I get an emergency plumber in ${area.name}?`,
+    q: `Do you send emergency plumbers to ${area.name}?`,
     a: outside
-      ? `Yes. Our emergency line is answered 24 hours a day for burst pipes, major leaks, no water and no heating. ${area.name} is further from our Fulham base than our London areas, so when you call we will tell you honestly when an engineer can be with you. Call ${site.booking.display}.`
-      : `Yes. Our emergency line is answered 24 hours a day for burst pipes, major leaks, no water and no heating in ${area.name}. When you call, we will tell you honestly when an engineer can be with you. Call ${site.booking.display}.`,
+      ? `Yes. Someone answers our emergency line at any hour, day or night, for burst pipes, major leaks, loss of water and loss of heating. ${area.name} is a longer trip from our Fulham base than our London areas are, so on the call we will give you an honest time for when an engineer can reach you. Ring ${site.booking.display}.`
+      : `Yes. Someone answers our emergency line at any hour, day or night, for burst pipes, major leaks, loss of water and loss of heating in ${area.name}. On the call we will give you an honest time for when an engineer can reach you. Ring ${site.booking.display}.`,
   },
 ];
 
@@ -107,10 +107,10 @@ const schema = {
     intro={area.intro}
     breadcrumb={crumbs}
     bullets={[
-      'Gas Safe registered, fully insured',
-      'Engineers are DBS-checked',
-      'Emergency callouts, day or night',
-      'You get a price before we start',
+      'Fully insured and on the Gas Safe Register',
+      'Every engineer DBS-checked',
+      'Callouts for emergencies at any hour',
+      'You know the price before we begin',
     ]}
     formHeading={`Get a plumber in ${area.name}`}
   />
@@ -118,13 +118,13 @@ const schema = {
   <section class="section">
     <div class="container service-row">
       <div class="service-copy">
-        <span class="eyebrow">Know the area</span>
-        <h2>Plumbing in {area.name}</h2>
+        <span class="eyebrow">The local picture</span>
+        <h2>Homes and plumbing in {area.name}</h2>
         <p class="lead">{area.character}</p>
         {area.note && <p class="area-note">{area.note}</p>}
       </div>
       <aside class="service-aside">
-        <h3>Common local jobs</h3>
+        <h3>Jobs we see a lot here</h3>
         <ul class="ticks">
           {area.common.map((c) => <li><Tick /> {c}</li>)}
         </ul>
@@ -134,8 +134,8 @@ const schema = {
 
   <section class="section section-alt">
     <div class="container">
-      <span class="eyebrow">Our services</span>
-      <h2>What we cover in {area.name}</h2>
+      <span class="eyebrow">How we can help</span>
+      <h2>Plumbing and heating services in {area.name}</h2>
       <ul class="grid grid-3 card-grid">
         {services.map((s) => (
           <li class="card">
@@ -154,14 +154,14 @@ const schema = {
       from {area.name} without 14 more near-duplicate URLs. */}
   <section class="section">
     <div class="container">
-      <span class="eyebrow">Fitting and replacement</span>
-      <h2>Appliances &amp; fixtures in {area.name}</h2>
-      <p class="measure">We also fit softeners, pumps, taps and similar — each one has its own page explaining what the job involves.</p>
+      <span class="eyebrow">Fitted and replaced</span>
+      <h2>Fixtures and appliances in {area.name}</h2>
+      <p class="measure">Softeners, pumps and taps are among the other things we fit. Each has a page of its own that sets out what the work involves.</p>
       <ul class="combo-links">
         {appliances.map((a) => (
           <li><a href={`/appliances/${a.slug}`}>{a.title}</a></li>
         ))}
-        <li><a href="/appliances">All appliance work</a></li>
+        <li><a href="/appliances">See all appliance work</a></li>
       </ul>
     </div>
   </section>
@@ -169,8 +169,8 @@ const schema = {
   {localPages.length > 0 && (
     <section class="section">
       <div class="container">
-        <span class="eyebrow">By the job</span>
-        <h2>Common callouts in {area.name}</h2>
+        <span class="eyebrow">Job by job</span>
+        <h2>Frequent callouts in {area.name}</h2>
         <ul class="combo-links">
           {localPages.map((c) => (
             <li><a href={`/services/${c.service}/${c.area}`}>{HEADING[c.service]} in {area.name}</a></li>
@@ -184,7 +184,7 @@ const schema = {
     <div class="container">
       <div class="coverage-split">
         <div class="check-area">
-          <h2>Postcodes covered</h2>
+          <h2>Postcodes we serve</h2>
           <ul class="postcode-chips">
             {area.postcodes.map((p) => (
               <li>{hasDistrict(p) ? <a href={`/postcodes/${p.toLowerCase()}`}>{p}</a> : p}</li>
@@ -193,9 +193,9 @@ const schema = {
           <p class="small">
             {outside
               ? `${area.name} is in ${area.borough}, ${area.county}.`
-              : `${area.name} falls within the London Borough of ${area.borough}.`} Postcode lines and
-            council lines rarely match up exactly, so if your postcode is not shown, give us a
-            call and we&rsquo;ll confirm whether we cover it.
+              : `${area.name} is part of the London Borough of ${area.borough}.`} Council boundaries
+            and postcode boundaries seldom line up perfectly. If you cannot see your postcode here,
+            ring us and we&rsquo;ll tell you whether it is one we serve.
           </p>
           <div class="cta-row">
             <a href={`tel:${site.booking.tel}`} class="btn btn-orange">
@@ -206,10 +206,10 @@ const schema = {
 
         {nearby.length > 0 && (
           <div class="check-area">
-            <h2>Areas close by</h2>
+            <h2>Neighbouring areas</h2>
             <p class="small">{outside
-              ? `We also cover the towns around ${area.name}:`
-              : `We work right across Greater London. Here is what borders ${area.name}:`}</p>
+              ? `The towns around ${area.name} are covered too:`
+              : `Our coverage spans all of Greater London. These areas border ${area.name}:`}</p>
             <ul class="nearby-list">
               {nearby.map((n) => (
                 <li>
@@ -220,7 +220,7 @@ const schema = {
                 </li>
               ))}
             </ul>
-            <p class="small"><a href="/areas-we-cover">See the full coverage list</a></p>
+            <p class="small"><a href="/areas-we-cover">View every area we cover</a></p>
           </div>
         )}
       </div>
@@ -229,15 +229,15 @@ const schema = {
 
   <section class="section">
     <div class="container measure-wide">
-      <span class="eyebrow">Questions</span>
-      <h2>Plumbing in {area.name}: common questions</h2>
+      <span class="eyebrow">FAQs</span>
+      <h2>Questions about plumbing in {area.name}</h2>
       <div class="faqs">
         {faqs.map((f) => (
           <details class="faq">
             <summary>{f.q}</summary>
             {f.list ? (
               <>
-                <p>The ones we see most often here:</p>
+                <p>The jobs that come up most here:</p>
                 <ul class="faq-list">{f.list.map((item) => <li>{item}</li>)}</ul>
               </>
             ) : (
@@ -251,8 +251,8 @@ const schema = {
 
   <section class="section section-navy">
     <div class="container center measure-wide">
-      <h2>Looking for a plumber in {area.name}?</h2>
-      <p>Let us know what&rsquo;s wrong and your postcode. We&rsquo;ll give you a price before anyone picks up a tool.</p>
+      <h2>Book a plumber in {area.name}</h2>
+      <p>Share your postcode and what has gone wrong, and we&rsquo;ll quote a price before any tools come out.</p>
       <div class="cta-row center-row">
         <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">
           <PhoneIcon /> Call {site.booking.display}

@@ -57,7 +57,7 @@ const chev =
       {/* Drawer only: the header's search button is hidden on small screens. */}
       <button type="button" class="drawer-search" data-search-open aria-expanded="false" aria-controls="site-search">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="20" y1="20" x2="16.65" y2="16.65"/></svg>
-        <span>Search a service, area or postcode</span>
+        <span>Find a service, area or postcode</span>
       </button>
       <ul>
         {mainNav.map((item) => {
@@ -108,7 +108,7 @@ const chev =
                     <div class="mega-side">
                       <p class="mega-heading">{g.label}</p>
                       <p class="mega-blurb">{g.blurb}</p>
-                      <span class="mega-panel-eyebrow">Need someone now?</span>
+                      <span class="mega-panel-eyebrow">Is it urgent?</span>
                       <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-block"><PhoneIcon /> Call {site.booking.display}</a>
                       <a href={site.whatsapp.url} class="btn btn-ghost btn-block"><WhatsAppIcon /> WhatsApp us</a>
                       <a href="/services" class="mega-all">All services <span aria-hidden="true">&rarr;</span></a>
@@ -160,15 +160,15 @@ const chev =
                           </div>
                         ))}
                       </div>
-                      <a href="/appliances" class="mega-more">All appliance work <span aria-hidden="true">&rarr;</span></a>
+                      <a href="/appliances" class="mega-more">Every appliance job <span aria-hidden="true">&rarr;</span></a>
                     </div>
                     <div class="mega-side">
                       <p class="mega-heading">Appliances &amp; fixtures</p>
-                      <p class="mega-blurb">Fitted, replaced and serviced &mdash; the parts of a house that are not the boiler.</p>
-                      <span class="mega-panel-eyebrow">Need someone now?</span>
+                      <p class="mega-blurb">The parts of a home other than the boiler &mdash; fitted, serviced and replaced.</p>
+                      <span class="mega-panel-eyebrow">Is it urgent?</span>
                       <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-block"><PhoneIcon /> Call {site.booking.display}</a>
                       <a href={site.whatsapp.url} class="btn btn-ghost btn-block"><WhatsAppIcon /> WhatsApp us</a>
-                      <a href="/appliances" class="mega-all">All appliance work <span aria-hidden="true">&rarr;</span></a>
+                      <a href="/appliances" class="mega-all">Every appliance job <span aria-hidden="true">&rarr;</span></a>
                     </div>
                   </div>
                 </div>

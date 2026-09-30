@@ -77,8 +77,8 @@ const schema = {
 
 const faqs = [
   {
-    q: `Which areas does the ${pc.district} postcode cover?`,
-    a: `${pc.district} covers ${placeList}, across ${boroughList}. We work throughout the district.`,
+    q: `Which neighbourhoods are in the ${pc.district} postcode district?`,
+    a: `${pc.district} takes in ${placeList}, within ${boroughList}. Our engineers work in every part of it.`,
   },
 ];
 
@@ -86,10 +86,10 @@ const faqs = [
 // truncates titles around 60 characters and descriptions around 160, and
 // district names like "Crystal Palace and Upper Norwood" blow through both.
 const shortPrimary = pc.primary.split(' and ')[0];
-const longTitle = `Plumber in ${pc.district} | ${pc.primary} | Ninja Plumbers`;
+const longTitle = `${pc.district} Plumber | ${pc.primary} | Ninja Plumbers`;
 const title = longTitle.length <= 60
   ? longTitle
-  : `Plumber in ${pc.district} | ${shortPrimary} | Ninja Plumbers`;
+  : `${pc.district} Plumber | ${shortPrimary} | Ninja Plumbers`;
 
 // Fit as many neighbourhood names as the description budget allows.
 const fitPlaces = (budget: number) => {
@@ -103,7 +103,7 @@ const fitPlaces = (budget: number) => {
   }
   return out.length ? out.join(', ') : places[0];
 };
-const description = `Plumber in ${pc.district}, covering ${fitPlaces(40)}. Emergency callout, boiler repair, blocked drains and bathrooms. Call ${site.booking.display}.`;
+const description = `${pc.district} plumber for ${fitPlaces(40)}. Boiler repairs, blocked drains, bathroom fitting and emergency callouts. Call us on ${site.booking.display}.`;
 ---
 <Base title={title} description={description} noindex={!INDEX_POSTCODE_PAGES}>
   <Schema slot="head" breadcrumb={crumbs} faqs={faqs} extra={schema} />
@@ -111,26 +111,26 @@ const description = `Plumber in ${pc.district}, covering ${fitPlaces(40)}. Emerg
   <HeroWithForm
     eyebrow={`${pc.region} · ${pc.district}`}
     h1={`Plumber in ${pc.district}`}
-    intro={`Plumbing, heating and drainage across the ${pc.district} postcode district, covering ${places.slice(0, 3).join(', ')}${places.length > 3 ? ' and the surrounding streets' : ''}.`}
+    intro={`Plumbing, heating and drainage work in every part of ${pc.district}. The district spans ${places.slice(0, 3).join(', ')}${places.length > 3 ? ', plus the streets in between' : ''}.`}
     breadcrumb={crumbs}
     bullets={[
-      'Gas Safe registered and fully insured',
-      'Emergency callout available 24/7',
-      'Price agreed before work starts',
-      'Workmanship guaranteed',
+      'Insured, and on the Gas Safe Register',
+      '24/7 emergency callout',
+      'You agree the price before we start',
+      'Our workmanship is guaranteed',
     ]}
-    formHeading={`Get a price for ${pc.district}`}
+    formHeading={`Your ${pc.district} price`}
   />
 
   <section class="section">
     <div class="container">
-      <span class="eyebrow">Coverage</span>
-      <h2>What {pc.district} covers</h2>
+      <span class="eyebrow">The district</span>
+      <h2>Places inside {pc.district}</h2>
       <p class="measure">
-        {pc.district} sits in {pc.region.toLowerCase()} and falls across {boroughList}.
+        {pc.district} is a {pc.region.toLowerCase()} district that spans {boroughList}.
         {places.length > 1
-          ? ` It takes in ${places.length} named areas, and we cover all of them.`
-          : ' We cover the whole district.'}
+          ? ` Our engineers work in all ${places.length} of the named areas listed here.`
+          : ' Our engineers cover the full district.'}
       </p>
       <ul class="pc-places">
         {places.map((n) => <li>{n}</li>)}
@@ -138,14 +138,14 @@ const description = `Plumber in ${pc.district}, covering ${fitPlaces(40)}. Emerg
 
       {areaPage && (
         <div class="pc-handoff">
-          <h3>Looking for {areaPage.name} specifically?</h3>
+          <h3>Searching for {areaPage.name} in particular?</h3>
           <p>
-            {areaPage.name} is the main area in {pc.district}, and it has a page of its own
-            covering the local building stock and the plumbing problems that come with it.
+            {areaPage.name} is the principal neighbourhood in {pc.district}. Its own page goes into
+            the housing there and the plumbing faults those buildings tend to have.
           </p>
           {/* btn-navy, not btn-outline: this block sits on a light section and
               btn-outline is white-on-transparent, built for the navy sections. */}
-          <p><a href={`/areas/${areaPage.slug}`} class="btn btn-navy">Plumber in {areaPage.name}</a></p>
+          <p><a href={`/areas/${areaPage.slug}`} class="btn btn-navy">{areaPage.name} plumbing page</a></p>
         </div>
       )}
     </div>
@@ -153,11 +153,11 @@ const description = `Plumber in ${pc.district}, covering ${fitPlaces(40)}. Emerg
 
   <section class="section section-alt">
     <div class="container">
-      <span class="eyebrow">What we do</span>
-      <h2>Services across {pc.district}</h2>
+      <span class="eyebrow">Services</span>
+      <h2>Our work in {pc.district}</h2>
       <p class="measure">
-        The same work we do everywhere in London. Each service has its own page with what it
-        covers and what to check before calling.
+        Nothing here differs from our work elsewhere in London. Open any service to see what is
+        included and what is worth checking before you get in touch.
       </p>
       <ul class="combo-links">
         {services.map((s) => (
@@ -172,21 +172,21 @@ const description = `Plumber in ${pc.district}, covering ${fitPlaces(40)}. Emerg
       down rather than a 14th URL for every district. */}
   <section class="section">
     <div class="container">
-      <span class="eyebrow">Also fitted here</span>
-      <h2>Appliances &amp; fixtures across {pc.district}</h2>
+      <span class="eyebrow">Fixtures and appliances</span>
+      <h2>{pc.district} appliance and fixture fitting</h2>
       <ul class="combo-links">
         {appliances.map((a) => (
           <li><a href={`/appliances/${a.slug}`}>{a.title}</a></li>
         ))}
-        <li><a href="/appliances">All appliance work</a></li>
+        <li><a href="/appliances">The full appliance list</a></li>
       </ul>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <span class="eyebrow">Questions</span>
-      <h2>Working in {pc.district}</h2>
+      <span class="eyebrow">FAQ</span>
+      <h2>{pc.district}, answered</h2>
       <dl class="faq">
         {faqs.map((f) => (
           <div class="faq-item">
@@ -201,13 +201,13 @@ const description = `Plumber in ${pc.district}, covering ${fitPlaces(40)}. Emerg
   {siblings.length > 0 && (
     <section class="section section-alt">
       <div class="container">
-        <span class="eyebrow">Nearby</span>
-        <h2>Other {pc.region.toLowerCase()} districts</h2>
+        <span class="eyebrow">Close by</span>
+        <h2>Further {pc.region.toLowerCase()} postcodes</h2>
         <ul class="combo-links">
           {siblings.map((s) => (
-            <li><a href={`/postcodes/${s.slug}`}>Plumber in {s.district}</a></li>
+            <li><a href={`/postcodes/${s.slug}`}>{s.district} plumber</a></li>
           ))}
-          <li><a href="/postcodes">All postcode districts</a></li>
+          <li><a href="/postcodes">The full district list</a></li>
         </ul>
       </div>
     </section>
@@ -215,10 +215,10 @@ const description = `Plumber in ${pc.district}, covering ${fitPlaces(40)}. Emerg
 
   <section class="section section-navy">
     <div class="container center measure-wide">
-      <h2>Need a plumber in {pc.district}?</h2>
+      <h2>Plumbing problem in {pc.district}?</h2>
       <p>
-        Tell us your postcode and what is happening, and we will tell you what it costs
-        before anyone starts work.
+        Send your postcode and a short account of the fault. You get the price
+        before any work gets under way.
       </p>
       <div class="cta-row center-row">
         <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">

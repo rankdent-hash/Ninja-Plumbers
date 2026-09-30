@@ -32,29 +32,29 @@ if (supabase) {
 const fmt = (iso: string) => new Date(iso).toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' });
 ---
 <Base
-  title="Plumbing & Heating Advice | Ninja Plumbers Blog"
-  description={`Plumbing and heating advice from Ninja Plumbers: what to check yourself, and when to call an engineer. ${site.booking.display}.`}
+  title="Plumbing & Heating Advice Blog | Ninja Plumbers"
+  description={`Advice on plumbing and heating from Ninja Plumbers: the checks you can do yourself, and the signs that call for an engineer visit. ${site.booking.display}.`}
 >
   <Schema slot="head" breadcrumb={crumbs} />
 
   <HeroWithForm
-    eyebrow="Advice"
+    eyebrow="Guides"
     h1="Plumbing and heating advice"
-    intro="What to check yourself before calling, and how to tell when a job needs an engineer. Written by the people who do the work."
+    intro="Checks you can make before you call, and how to spot a job that needs an engineer. Our guides come from the people who carry out the work."
     breadcrumb={crumbs}
     bullets={[
-      'Gas Safe registered and fully insured',
-      'DBS-checked engineers',
-      'Emergency callout available 24/7',
-      'Price agreed before work starts',
+      'Fully insured and on the Gas Safe Register',
+      'Engineers with DBS checks',
+      '24/7 emergency callouts available',
+      'Price agreed before any work begins',
       'Workmanship guaranteed',
     ]}
-    formHeading="Can't find your answer here?"
+    formHeading="Still have a question?"
   />
 
   <section class="section">
     <div class="container">
-      {posts.length === 0 && <p class="blog-empty">Nothing published yet &mdash; check back soon.</p>}
+      {posts.length === 0 && <p class="blog-empty">No guides are live yet &mdash; please look again shortly.</p>}
       {posts.length > 0 && (
         <ul class="grid grid-3 card-grid blog-card-grid">
           {posts.map((post) => (
@@ -64,7 +64,7 @@ const fmt = (iso: string) => new Date(iso).toLocaleDateString('en-GB', { day: '2
               <h2><a href={`/blog/${post.slug}`} class="card-title-link">{post.title}</a></h2>
               <p>{post.excerpt}</p>
               <a href={`/blog/${post.slug}`} class="card-link" aria-label={`Read ${post.title}`}>
-                Read more <span aria-hidden="true">&rarr;</span>
+                Open the post <span aria-hidden="true">&rarr;</span>
               </a>
             </li>
           ))}

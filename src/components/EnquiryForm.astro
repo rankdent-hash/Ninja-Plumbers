@@ -59,7 +59,7 @@ const icon = (k: keyof typeof ICON) =>
         <label for="f-phone">Phone <span class="req-mark" aria-hidden="true">*</span></label>
         <div class="input-wrap">
           <Fragment set:html={icon('phone')} />
-          <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required aria-describedby="e-phone" placeholder="Best number to call">
+          <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required aria-describedby="e-phone" placeholder="Number we can reach you on">
         </div>
         <p class="field-error" id="e-phone" hidden></p>
       </div>
@@ -69,7 +69,7 @@ const icon = (k: keyof typeof ICON) =>
       <label for="f-email">Email</label>
       <div class="input-wrap">
         <Fragment set:html={icon('mail')} />
-        <input id="f-email" name="email" type="email" autocomplete="email" aria-describedby="e-email" placeholder="If you want the quote in writing">
+        <input id="f-email" name="email" type="email" autocomplete="email" aria-describedby="e-email" placeholder="For a written quote">
       </div>
       <p class="field-error" id="e-email" hidden></p>
     </div>
@@ -85,11 +85,11 @@ const icon = (k: keyof typeof ICON) =>
       </div>
 
       <div class="field">
-        <label for="f-service">What do you need?</label>
+        <label for="f-service">Type of job</label>
         <div class="input-wrap">
           <Fragment set:html={icon('wrench')} />
           <select id="f-service" name="service">
-            <option value="">Choose one&hellip;</option>
+            <option value="">Pick one&hellip;</option>
             {extraOption && <option value={extraOption} selected>{extraOption}</option>}
             {services.map((s) => <option value={s.title} selected={!extraOption && s.title === service} set:html={s.title} />)}
             {/* Grouped separately so the list of ten core services still reads
@@ -108,7 +108,7 @@ const icon = (k: keyof typeof ICON) =>
     <p class="postcode-status" id="postcode-status" role="status" hidden></p>
 
     <fieldset class="field urgency">
-      <legend>How urgent is it?</legend>
+      <legend>When do you need us?</legend>
       <div class="urgency-options">
         <label class="urgency-opt">
           <input type="radio" name="urgency" value="Emergency">
@@ -126,20 +126,20 @@ const icon = (k: keyof typeof ICON) =>
     </fieldset>
 
     <details class="enquiry-more">
-      <summary>Add address or details <span class="opt">optional</span></summary>
+      <summary>Your address and more detail <span class="opt">optional</span></summary>
       <div class="enquiry-more-inner">
         <div class="field">
           <label for="f-address">Address</label>
           <div class="input-wrap">
             <Fragment set:html={icon('home')} />
-            <input id="f-address" name="address_line" type="text" autocomplete="street-address" placeholder="House number and street">
+            <input id="f-address" name="address_line" type="text" autocomplete="street-address" placeholder="Street and house number">
           </div>
         </div>
         <div class="field">
-          <label for="f-description">What&rsquo;s happening?</label>
+          <label for="f-description">Tell us about the problem</label>
           <div class="input-wrap input-wrap-area">
             <Fragment set:html={icon('message')} />
-            <textarea id="f-description" name="description" rows="3" placeholder="What the problem is, when it started, and whether the water is still running."></textarea>
+            <textarea id="f-description" name="description" rows="3" placeholder="Describe the fault, when it began and if water is still running."></textarea>
           </div>
         </div>
       </div>
@@ -159,15 +159,15 @@ const icon = (k: keyof typeof ICON) =>
       <span class="foot-sep" aria-hidden="true">&middot;</span>
       <span>WhatsApp <a href={site.whatsapp.url} target="_blank" rel="noopener">{site.whatsapp.display}</a></span>
     </p>
-    <p class="enquiry-privacy">We only use these details to deal with your enquiry. <a href="/privacy">Privacy policy</a></p>
+    <p class="enquiry-privacy">Your details are used only to handle this request. <a href="/privacy">Privacy policy</a></p>
   </form>
 
   <div class="enquiry-done" id="enquiry-done" hidden tabindex="-1">
     <div class="done-mark" aria-hidden="true">
       <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
     </div>
-    <h3>Thanks &mdash; we&rsquo;ve got it</h3>
-    <p id="done-detail">We&rsquo;ll come back to you on the number you gave us. If it&rsquo;s urgent and you&rsquo;d rather not wait, call <a href={`tel:${site.booking.tel}`}>{site.booking.display}</a>.</p>
+    <h3>Thank you &mdash; your enquiry is in</h3>
+    <p id="done-detail">Expect a call back on the number you entered. For anything urgent, there is no need to wait: ring <a href={`tel:${site.booking.tel}`}>{site.booking.display}</a>.</p>
   </div>
 </div>
 
@@ -226,8 +226,8 @@ const icon = (k: keyof typeof ICON) =>
         outOfArea = true;
         submit.disabled = true;
         setStatus('out',
-          '<strong>Sorry &mdash; that&rsquo;s outside our area.</strong> We cover Greater London and the Guildford area, and ' +
-          area + ' postcodes are ' + EXCLUDED[area] + '. You&rsquo;ll be better served by a local firm.');
+          '<strong>Sorry &mdash; we don&rsquo;t cover that postcode.</strong> Our area is Greater London and around Guildford, whereas ' +
+          area + ' postcodes cover ' + EXCLUDED[area] + '. A firm based locally will serve you better.');
         return;
       }
 
@@ -236,7 +236,7 @@ const icon = (k: keyof typeof ICON) =>
         var res = await fetch('https://api.postcodes.io/postcodes/' + encodeURIComponent(raw));
         if (!res.ok) {
           outOfArea = false; submit.disabled = false;
-          setStatus('unknown', 'We couldn&rsquo;t look that postcode up &mdash; check it, or just send it and we&rsquo;ll confirm.');
+          setStatus('unknown', 'That postcode didn&rsquo;t come up &mdash; please look at it again, or send the form anyway for us to check.');
           return;
         }
         var data = await res.json();
@@ -245,13 +245,13 @@ const icon = (k: keyof typeof ICON) =>
         // (src/data/serviceArea.ts, the same list the server checks).
         if (r.region === 'London' || coveredCouncils.indexOf(r.admin_district) !== -1) {
           outOfArea = false; submit.disabled = false;
-          setStatus('in', '<strong>' + (r.admin_district || 'London') + '</strong> &mdash; yes, we cover you.');
+          setStatus('in', '<strong>' + (r.admin_district || 'London') + '</strong> &mdash; you&rsquo;re inside our area.');
         } else {
           outOfArea = true; submit.disabled = true;
           setStatus('out',
-            '<strong>That&rsquo;s outside our area.</strong> ' +
+            '<strong>We don&rsquo;t cover that postcode.</strong> ' +
             (r.admin_district ? r.admin_district + ' is in ' + (r.region || 'another region') + '. ' : '') +
-            'We work across Greater London and around Guildford (Woking, Godalming, Farnham, Camberley, Aldershot, Farnborough, Dorking).');
+            'Our coverage is Greater London plus the area around Guildford (Woking, Godalming, Farnham, Camberley, Aldershot, Farnborough, Dorking).');
         }
       } catch (err) {
         outOfArea = false; submit.disabled = false;
@@ -276,7 +276,7 @@ const icon = (k: keyof typeof ICON) =>
       clearErrors();
 
       if (outOfArea) {
-        setSummary('That postcode is outside our service area, so we can&rsquo;t take the job.');
+        setSummary('We can&rsquo;t take this job because the postcode is outside the area we serve.');
         return;
       }
 
@@ -332,16 +332,16 @@ const icon = (k: keyof typeof ICON) =>
 
         if (body.code === 'not_configured') {
           setSummary(
-            '<strong>The form isn&rsquo;t connected yet.</strong> Please call ' +
+            '<strong>This form is not live yet.</strong> Please ring ' +
             '<a href="tel:' + bookingTel + '">' + bookingDisplay + '</a> or ' +
-            '<a href="' + waUrl + '" target="_blank" rel="noopener">message us on WhatsApp</a> and we&rsquo;ll pick it up straight away.'
+            '<a href="' + waUrl + '" target="_blank" rel="noopener">send us a WhatsApp</a> and we&rsquo;ll deal with it straight away.'
           );
         } else {
-          setSummary(body.message || 'Something went wrong. Please call <a href="tel:' + bookingTel + '">' + bookingDisplay + '</a>.');
+          setSummary(body.message || 'Sorry, that didn&rsquo;t work. Please phone <a href="tel:' + bookingTel + '">' + bookingDisplay + '</a>.');
         }
       } catch (err) {
         setSummary(
-          'We couldn&rsquo;t send that &mdash; you may be offline. Please call ' +
+          'Your enquiry didn&rsquo;t send &mdash; your connection may have dropped. Please phone ' +
           '<a href="tel:' + bookingTel + '">' + bookingDisplay + '</a>.'
         );
       } finally {

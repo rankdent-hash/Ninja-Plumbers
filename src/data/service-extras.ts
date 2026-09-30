@@ -572,7 +572,7 @@ export const serviceExtras: Record<string, ServiceExtra> = {
       factors: [
         {
           title: 'How far down the blockage is',
-          body: 'In the pan or the trap, a plunger or closet auger usually shifts it. In the branch pipe behind the wall, the shared soil stack or the drain outside, it takes longer and heavier equipment, worked from a different access point.',
+          body: 'In the pan or the trap, a plunger or closet auger usually shifts it. Further on, in the branch pipe behind the wall, the drain outside or the shared soil stack, it takes longer and needs heavier equipment, worked from a different access point.',
         },
         {
           title: 'Something solid in the trap',

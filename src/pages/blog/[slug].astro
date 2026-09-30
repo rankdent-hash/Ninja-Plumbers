@@ -99,18 +99,18 @@ const fmt = (iso: string) => new Date(iso).toLocaleDateString('en-GB', { day: '2
   <Schema slot="head" breadcrumb={crumbs} extra={articleSchema} />
 
   <HeroWithForm
-    eyebrow="Advice"
+    eyebrow="Guide"
     h1={post.h1}
     intro={post.excerpt}
     breadcrumb={crumbs}
     bullets={[
-      'Gas Safe registered and fully insured',
-      'DBS-checked engineers',
-      'Emergency callout available 24/7',
-      'Price agreed before work starts',
+      'Fully insured and on the Gas Safe Register',
+      'Engineers with DBS checks',
+      '24/7 emergency callouts available',
+      'Price agreed before any work begins',
       'Workmanship guaranteed',
     ]}
-    formHeading="Need this looked at properly?"
+    formHeading="Want an engineer to check it?"
   />
 
   <section class="section">
@@ -135,15 +135,15 @@ const fmt = (iso: string) => new Date(iso).toLocaleDateString('en-GB', { day: '2
   {(relatedServices.length > 0 || relatedAppliances.length > 0 || relatedDamp.length > 0) && (
     <section class="section section-alt">
       <div class="container">
-        <span class="eyebrow">Related</span>
-        <h2>Pages that cover this properly</h2>
+        <span class="eyebrow">See also</span>
+        <h2>Where this is covered in full</h2>
         <ul class="grid grid-3 card-grid">
           {relatedServices.map((s) => (
             <li class="card">
               <div class="icon"><ServiceIcon name={s.icon} /></div>
               <h3><a href={`/services/${s.slug}`} class="card-title-link" set:html={s.title} /></h3>
               <p>{s.summary}</p>
-              <a href={`/services/${s.slug}`} class="card-link">More on {s.title.replace('&amp;', 'and')} <span aria-hidden="true">&rarr;</span></a>
+              <a href={`/services/${s.slug}`} class="card-link">Read about {s.title.replace('&amp;', 'and')} <span aria-hidden="true">&rarr;</span></a>
             </li>
           ))}
           {relatedAppliances.map((a) => (
@@ -151,7 +151,7 @@ const fmt = (iso: string) => new Date(iso).toLocaleDateString('en-GB', { day: '2
               <div class="icon"><ServiceIcon name={a.icon} /></div>
               <h3><a href={`/appliances/${a.slug}`} class="card-title-link">{a.title}</a></h3>
               <p>{a.summary}</p>
-              <a href={`/appliances/${a.slug}`} class="card-link">More on {a.title.toLowerCase()} <span aria-hidden="true">&rarr;</span></a>
+              <a href={`/appliances/${a.slug}`} class="card-link">Read about {a.title.toLowerCase()} <span aria-hidden="true">&rarr;</span></a>
             </li>
           ))}
           {relatedDamp.map((d) => (
@@ -159,7 +159,7 @@ const fmt = (iso: string) => new Date(iso).toLocaleDateString('en-GB', { day: '2
               <div class="icon"><ServiceIcon name={d.icon} /></div>
               <h3><a href={`/damp/${d.slug}`} class="card-title-link">{d.title}</a></h3>
               <p>{d.summary}</p>
-              <a href={`/damp/${d.slug}`} class="card-link">More on {d.title.toLowerCase()} <span aria-hidden="true">&rarr;</span></a>
+              <a href={`/damp/${d.slug}`} class="card-link">Read about {d.title.toLowerCase()} <span aria-hidden="true">&rarr;</span></a>
             </li>
           ))}
         </ul>
@@ -170,22 +170,22 @@ const fmt = (iso: string) => new Date(iso).toLocaleDateString('en-GB', { day: '2
   {others.length > 0 && (
     <section class="section">
       <div class="container">
-        <span class="eyebrow">Keep reading</span>
-        <h2>More advice</h2>
+        <span class="eyebrow">Read next</span>
+        <h2>Other guides</h2>
         <ul class="combo-links">
           {others.map((p) => (
             <li><a href={`/blog/${p.slug}`}>{p.title}</a></li>
           ))}
         </ul>
-        <p><a href="/blog" class="btn btn-navy">All advice</a></p>
+        <p><a href="/blog" class="btn btn-navy">Every guide</a></p>
       </div>
     </section>
   )}
 
   <section class="section section-navy">
     <div class="container center measure-wide">
-      <h2>Prefer to have it looked at?</h2>
-      <p>Tell us what&rsquo;s happening and where you are, and we&rsquo;ll tell you what it costs before anyone starts work.</p>
+      <h2>Would you rather we took a look?</h2>
+      <p>Let us know the problem and your location, and you&rsquo;ll get the cost before any work begins.</p>
       <div class="cta-row center-row">
         <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">
           <PhoneIcon /> Call {site.booking.display}

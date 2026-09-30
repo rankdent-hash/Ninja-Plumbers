@@ -38,19 +38,19 @@ export const areas: Area[] = [
     kd: 18,
     metaTitle: 'Plumber in Fulham | SW6 Emergency Callouts | Ninja Plumbers',
     metaDescription:
-      'Local plumber in Fulham, SW6, based on the High Street. Boiler repair, blocked drains, bathroom fitting and 24/7 emergency callouts. Call 020 3576 5825.',
+      'Fulham plumber working from the High Street in SW6. Boilers repaired, drains cleared, bathrooms fitted and 24/7 emergency callouts. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers is based on Fulham High Street, so SW6 is where most of our vans start the day. We cover boiler work, drainage and bathroom installation across Fulham and the streets around it, and being local means we are never far away.',
+      'Ninja Plumbers works out of Fulham High Street, so most mornings our vans set off from SW6. Boilers, drains and new bathrooms are all part of the job here, in Fulham and the roads around it, and because we are local the trip is always a short one.',
     character:
-      'Fulham is dense Victorian and Edwardian terraces, a great many of them converted into flats. Two problems come up again and again: original pipework that has been extended and re-routed by successive owners, and shared soil stacks where a blockage in one flat shows up in another lower down the building. Basements and lower-ground conversions are common too, so pumped waste and sump systems are part of the job as often as a straightforward gravity drain.',
+      'Most of Fulham is closely packed Victorian and Edwardian terracing, and plenty of those houses now hold flats. Two faults turn up over and over. One is original pipework that each new owner has lengthened or re-routed. The other is the shared soil stack, where a blockage caused in one flat surfaces in another further down the building. Many homes have also gained a basement or lower-ground conversion, so you are as likely to need work on pumped waste or a sump as on a simple gravity drain.',
     common: [
-      'Shared soil stacks in converted flats',
-      'Original lead and iron pipework still in place behind later work',
-      'Sump pumps in basement conversions that stop working quietly, then flood',
-      'Combi boilers squeezed into kitchen cupboards in flat conversions',
+      'Soil stacks shared between converted flats',
+      'Old lead and iron pipes still hidden behind newer work',
+      'Basement sump pumps that fail without warning and then flood',
+      'Combis crammed into kitchen cupboards in converted flats',
     ],
     nearby: ['clapham', 'wandsworth', 'balham'],
-    note: 'We are based here, on Fulham High Street.',
+    note: 'Our base is here in Fulham, on the High Street.',
   },
   {
     slug: 'croydon',
@@ -61,16 +61,16 @@ export const areas: Area[] = [
     kd: 16,
     metaTitle: 'Plumber in Croydon | CR0 & CR2 Callouts | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Croydon and the CR postcodes. Boiler repair and installation, blocked drains, bathrooms and emergency callouts. Call 020 3576 5825.',
+      'Croydon and CR postcode plumbing from Ninja Plumbers: boilers repaired and installed, drains unblocked, bathrooms and emergency callouts. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers sends engineers across Croydon and the CR postcodes most days, working on houses, flats and commercial premises alike.',
+      'Most days at least one Ninja Plumbers engineer is somewhere in Croydon or the CR postcodes, working on a house, a flat or a commercial unit.',
     character:
-      'Croydon covers an unusually wide range of building types for one borough, from interwar semis and 1930s estates through to town centre towers and a lot of recent flat conversion above shops. Suburban stock tends to bring heating and drainage work, with long external runs and older cast iron drains. Get closer to the centre and it is a different job: communal systems in the flats above shops, where one fault can knock out hot water for several properties at once.',
+      'For a single borough, Croydon has a remarkably broad mix of buildings. There are interwar semis and 1930s estates, towers in the town centre, and a great deal of newer flat conversion above shops. The suburban houses usually need heating and drainage work, with long outside runs and old cast iron drains. Nearer the centre the job changes. Flats above shops often share communal systems, and a single fault can leave several homes without hot water at the same time.',
     common: [
-      'Ageing central heating in 1930s semis',
-      'External drain and gully blockages on longer suburban runs',
-      'One faulty valve in a town centre block taking out hot water for several flats',
-      'Boiler replacements in properties on their original system',
+      'Tired central heating in 1930s semis',
+      'Blocked gullies and outside drains on long suburban runs',
+      'A single failed valve in a town centre block cutting hot water to several flats',
+      'Replacing boilers in homes still running their first system',
     ],
     nearby: ['brixton', 'wimbledon', 'bromley'],
   },
@@ -83,16 +83,16 @@ export const areas: Area[] = [
     kd: 19,
     metaTitle: 'Plumber in Bromley | Boiler & Drain Repair | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Bromley and the BR postcodes. Boiler repair, drain unblocking, bathroom fitting and emergency plumbing. Call 020 3576 5825.',
+      'Plumbing across Bromley and the BR postcodes from Ninja Plumbers. We repair boilers, unblock drains, fit bathrooms and handle emergencies. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers works right across Bromley and the BR postcodes, from a burst pipe at nine in the evening to a bathroom fitted over a planned week.',
+      'Whether it is a pipe that bursts at nine at night or a bathroom planned out over a week, Ninja Plumbers takes on jobs all over Bromley and the BR postcodes.',
     character:
-      'Bromley is largely suburban family housing: interwar and post-war semis and detached houses, many with gardens and outbuildings attached. Because of that, the work here skews toward heating systems, hot water cylinders and outside drainage rather than the flat-conversion problems more typical of inner London. A fair number of the larger properties still run a vented system with a loft tank, which is a genuinely different job to fixing a modern combi and needs diagnosing differently from the start.',
+      'Much of Bromley is suburban family housing: semis and detached homes from between the wars and just after, often with gardens and outbuildings. So the work here leans towards heating, hot water cylinders and outside drains, rather than the flat-conversion faults you see more of in inner London. Quite a few of the bigger houses still have a vented system fed from a tank in the loft. That is a different job from repairing a modern combi, and the diagnosis has to start from a different place too.',
     common: [
-      'Vented systems with loft tanks and hot water cylinders',
-      'Garden drainage, gullies and external blockages',
-      'Outside taps that split behind the wall after a hard frost',
-      'Full-house heating upgrades and radiator replacement',
+      'Vented systems with a loft tank and hot water cylinder',
+      'Blocked gullies, garden drains and other outside runs',
+      'Outside taps that crack behind the wall after a hard frost',
+      'Whole-house heating upgrades and new radiators',
     ],
     nearby: ['croydon', 'wimbledon'],
   },
@@ -105,16 +105,16 @@ export const areas: Area[] = [
     kd: 11,
     metaTitle: 'Plumber in Wandsworth | SW18 Leak Detection | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Wandsworth and the SW postcodes, a short run from our Fulham base. Leak detection, boiler repair and bathrooms. Call 020 3576 5825.',
+      'Wandsworth and the SW postcodes sit a short drive from our Fulham base. Ninja Plumbers offers leak detection, boiler repair and bathrooms. Call 020 3576 5825.',
     intro:
-      'Wandsworth and the SW postcodes around it are a short run from our Fulham office, so Ninja Plumbers is usually there quickly, whether it is a leak that needs tracing or a bathroom going in.',
+      'Our Fulham office is only a short drive from Wandsworth and the nearby SW postcodes, so we usually get there quickly, whether you need a leak traced or a new bathroom fitted.',
     character:
-      'Wandsworth is dominated by Victorian terraces, a large share of them extended at the back and converted into flats. Side-return and rear extensions are extremely common here, and they frequently mean pipework routed through new walls with limited access afterwards. Head towards the river and it is a different job again: new-build blocks with communal heating and pressurised systems, where the fault finding starts at the plant room rather than under the sink.',
+      'Victorian terraces make up most of Wandsworth, and a large number have been extended at the rear and split into flats. Rear and side-return extensions are everywhere here. They often leave pipework running through new walls that are hard to get into later. Nearer the river the job is different again. The new-build blocks there have communal heating and pressurised systems, and tracing a fault begins in the plant room, not under your sink.',
     common: [
-      'Pipework buried in rear and side-return extensions',
-      'Leak detection in extended Victorian terraces',
-      'Flat conversions sharing a single soil stack',
-      'Pressurised systems in riverside new-build blocks',
+      'Pipes hidden inside rear and side-return extensions',
+      'Tracing leaks in extended Victorian terraces',
+      'Converted flats that all drain into one soil stack',
+      'Pressurised systems in new-build blocks by the river',
     ],
     nearby: ['balham', 'clapham', 'fulham'],
   },
@@ -127,16 +127,16 @@ export const areas: Area[] = [
     kd: 20,
     metaTitle: 'Plumber in Harrow | HA1 to HA5 Heating | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Harrow and the HA postcodes. Boiler installation and repair, drains, bathrooms and emergency plumbing. Call 020 3576 5825.',
+      'Harrow and HA postcode plumbing from Ninja Plumbers. We install and repair boilers, clear drains, fit bathrooms and handle emergencies. Call 020 3576 5825.',
     intro:
-      'From HA1 out to HA5, Ninja Plumbers handles the plumbing and heating for family homes, flats and commercial premises across Harrow.',
+      'Ninja Plumbers looks after plumbing and heating all over Harrow, from HA1 right out to HA5, whether the job is in a family home, a flat or a commercial unit.',
     character:
-      'Harrow is classic Metroland: largely 1930s semi-detached housing built as the Metropolitan line pushed out, with later infill filling the gaps. A lot of properties here are on their second or third heating system, with original galvanised or iron pipework still surviving in places, and hot water cylinders in airing cupboards rather than combis. Loft conversions are widespread too, and they often add a bathroom onto a floor the original system was never sized to serve.',
+      'Harrow is textbook Metroland. Most of it is 1930s semi-detached housing that went up as the Metropolitan line extended, with later infill in between. Plenty of homes have already had two or three heating systems. Some of the first galvanised or iron pipes are still in place, and hot water often comes from a cylinder in the airing cupboard rather than a combi. Loft conversions are common as well, and the new bathroom often sits on a floor the first system was never meant to reach.',
     common: [
-      'Heating systems on their second or third replacement',
-      'Loft conversion bathrooms with pressure problems',
-      'Hot water cylinders and immersion heaters',
-      'Original galvanised pipework surviving behind later work',
+      'Heating systems now on their second or third replacement',
+      'Pressure problems in bathrooms added with a loft conversion',
+      'Immersion heaters and hot water cylinders',
+      'Old galvanised pipes still in place behind later work',
     ],
     nearby: ['ealing'],
   },
@@ -149,16 +149,16 @@ export const areas: Area[] = [
     kd: 11,
     metaTitle: 'Plumber in Balham | SW12 Drains & Leaks | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers in Balham, SW12. Blocked drains, leak detection, boiler repair and bathroom installation. Emergency callouts. Call 020 3576 5825.',
+      'Balham plumbers for SW12 from Ninja Plumbers. Drains unblocked, leaks traced, boilers repaired, bathrooms installed and emergency callouts. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers works across Balham and SW12, on houses, flat conversions and the shops along the high road, and most jobs start with the same phone call: something has stopped draining.',
+      'Houses, converted flats and the shops on the high road across Balham and SW12 all see Ninja Plumbers regularly. Most jobs begin with the same call: something is no longer draining.',
     character:
-      'Balham is late-Victorian terraced housing, much of it split into upper and lower flats. The single most common call here follows straight from that split: one soil stack shared by two households, and a blockage that shows up in whichever property sits lower, whether or not it caused it. Loft and rear extensions are widespread too, adding bathrooms and pipe runs onto systems that were never designed to carry them.',
+      'Most of Balham is late-Victorian terracing, and a lot of it has been divided into an upper and a lower flat. The call we get most often comes straight from that division. Two households share a single soil stack, and when it blocks, the flat lower down sees the problem, whoever caused it. Many homes have loft or rear extensions as well, which add bathrooms and pipe runs to a system that was never designed for them.',
     common: [
-      'Shared soil stacks between upper and lower flats',
-      'Blockages presenting in the ground-floor flat',
-      'Added bathrooms in loft and rear extensions',
-      'Older combis serving more outlets than they were sized for',
+      'Soil stacks shared by upper and lower flats',
+      'Blockages that surface in the ground-floor flat',
+      'Extra bathrooms in loft and rear extensions',
+      'Ageing combis asked to feed more outlets than they were built for',
     ],
     nearby: ['clapham', 'wandsworth', 'brixton'],
   },
@@ -171,16 +171,16 @@ export const areas: Area[] = [
     kd: 20,
     metaTitle: 'Plumber in Islington | N1 Period Property | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Islington and N1, including listed and period property. Leak detection, boiler repair and bathrooms. Call 020 3576 5825.',
+      'Plumbing in Islington and N1 from Ninja Plumbers, listed and period homes included. Leak detection, boiler repair and bathrooms. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers takes on plumbing and heating across Islington and the N1 postcodes, from period property and conversions through to commercial premises.',
+      'Across Islington and the N1 postcodes, Ninja Plumbers handles plumbing and heating in period homes and conversions right through to commercial premises.',
     character:
-      'Islington has some of the oldest surviving housing stock we work on: Georgian and early Victorian terraces, a good deal of it in conservation areas or listed outright. That history comes with real constraints on the job itself, not just the building. There are usually limited routes for new pipework, restrictions on what can be altered on the outside, and floorboards that should not be lifted without a plan for putting them back properly. Around the City fringe, by contrast, the work is mostly recent commercial and mixed-use conversion.',
+      'Some of the oldest housing we work on is in Islington. Georgian and early Victorian terraces are common, and many sit in conservation areas or are listed. That age puts real limits on how a job can be done, not only on the building. New pipework often has few possible routes. Changes to the outside may be restricted. Floorboards should only come up once there is a plan to put them back properly. Near the City fringe the picture changes, and most of the work is in recent commercial and mixed-use conversions.',
     common: [
-      'Period and listed property with restricted pipe routing',
-      'Leak detection where floors cannot simply be lifted',
-      'Conservation area constraints on external work',
-      'Commercial and mixed-use premises toward the City fringe',
+      'Listed and period homes where pipe routes are restricted',
+      'Tracing leaks where the floors cannot just be lifted',
+      'Conservation area limits on work to the outside',
+      'Commercial and mixed-use premises near the City fringe',
     ],
     nearby: ['hackney'],
   },
@@ -193,16 +193,16 @@ export const areas: Area[] = [
     kd: 21,
     metaTitle: 'Plumber in Hackney | E8, E9 & N16 Callouts | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Hackney, E8, E9 and N16. Boiler repair, blocked drains, bathroom fitting and emergency callouts. Call 020 3576 5825.',
+      'Hackney plumbing across E8, E9 and N16 from Ninja Plumbers. We repair boilers, clear drains, fit bathrooms and attend emergency callouts. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers is out in Hackney most weeks, working on flats, converted terraces, warehouse conversions and commercial kitchens across E8, E9 and N16.',
+      'Most weeks we have work somewhere in Hackney, whether in flats, converted terraces, warehouse conversions or commercial kitchens across E8, E9 and N16.',
     character:
-      'Few boroughs mix building types the way Hackney does: Victorian terraces, large post-war estates and warehouse conversions sit within a few streets of each other, and each one is a different sort of job. Estates and blocks generally mean communal systems, where one fault can affect many flats rather than just the one that reported it. Warehouse conversions bring their own quirk, with long horizontal waste runs and exposed services that are easy to inspect but prone to falls that are shallower than they should be.',
+      'Hackney mixes building types more than almost any other borough. Victorian terraces, big post-war estates and converted warehouses can all be found within a few streets, and each needs a different approach. Estates and blocks usually have communal systems, so one fault may hit many flats, not only the one that called it in. Warehouse conversions have a quirk of their own. Their waste runs are long and horizontal and the services are exposed, which makes them easy to inspect, but the falls are often shallower than they ought to be.',
     common: [
-      'Communal systems in blocks and estates',
-      'Long, shallow waste runs in warehouse conversions',
-      'Victorian terraces split into multiple flats',
-      'Restaurant and commercial kitchen plumbing',
+      'Shared communal systems in estates and blocks',
+      'Long waste runs with shallow falls in warehouse conversions',
+      'Victorian terraces divided into several flats',
+      'Plumbing for restaurants and commercial kitchens',
     ],
     nearby: ['islington'],
   },
@@ -215,16 +215,16 @@ export const areas: Area[] = [
     kd: 11,
     metaTitle: 'Plumber in Ealing | W5 Boiler Repair | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Ealing and the W5 postcodes. Boiler repair and installation, drains, bathrooms and emergency plumbing. Call 020 3576 5825.',
+      'Plumbing across Ealing and W5 from Ninja Plumbers. Boilers repaired and installed, drains cleared, bathrooms fitted and emergencies handled. Call 020 3576 5825.',
     intro:
-      'Ealing and the W postcodes around it get regular visits from Ninja Plumbers, covering family houses, flats and commercial premises alike.',
+      'We are in Ealing and the nearby W postcodes on a regular basis, and the work takes in commercial premises as well as family houses and flats.',
     character:
-      'Ealing runs from large Edwardian and interwar family houses through to substantial purpose-built flat blocks from the 1930s onward. In the bigger houses, long pipe runs and multiple bathrooms added over the years are usually where pressure and balancing problems start. The purpose-built blocks are a different case: they tend to have communal cold water storage and risers, so a problem there is rarely confined to just one flat.',
+      'Housing in Ealing ranges from big Edwardian and interwar family homes to large purpose-built blocks of flats dating from the 1930s on. In the larger houses, pressure and balancing faults usually start with long pipe runs and the extra bathrooms added over time. The purpose-built blocks are another matter. They often rely on shared cold water storage and risers, so a fault there seldom stays in one flat.',
     common: [
-      'Pressure and balancing across multiple bathrooms',
-      'Communal risers and cold water storage in purpose-built blocks',
-      'Heating systems in large Edwardian houses',
-      'Bathroom and en-suite additions to older layouts',
+      'Balancing pressure between several bathrooms',
+      'Purpose-built blocks with shared cold water storage and risers',
+      'Heating in large Edwardian houses',
+      'En-suites and bathrooms added to older layouts',
     ],
     nearby: ['harrow'],
   },
@@ -237,16 +237,16 @@ export const areas: Area[] = [
     kd: 10,
     metaTitle: 'Plumber in Clapham | SW4 Landlord Repairs | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers in Clapham, SW4. Leak detection, blocked drains, boiler repair and landlord callouts. Fast response. Call 020 3576 5825.',
+      'Clapham plumbers for SW4: leak detection, drain blockages, boiler repair and landlord callouts from Ninja Plumbers. Fast response. Call 020 3576 5825.',
     intro:
-      'Houses, flat shares and converted terraces across Clapham and SW4 keep Ninja Plumbers busy, especially where a property is being run as a rental.',
+      'A lot of our Clapham and SW4 work is in houses, flat shares and converted terraces, and rented property makes up a big part of it.',
     character:
-      'Clapham is largely Victorian terraces, with an unusually high proportion in multiple occupation or split into flats. Heavy use is the theme running through most jobs here: bathrooms and kitchens serving more people than the original system was ever designed for, showers running back to back through the evening, and waste pipes that block more often as a direct result. A significant part of what we do in Clapham is landlord repairs and getting a flat turned around between tenants.',
+      'Clapham is mostly Victorian terracing, and an unusually large share is split into flats or let as shared houses. Most jobs here come back to heavy use. Kitchens and bathrooms serve more people than the system was built for, showers run one after another all evening, and waste pipes block more often because of it. Much of our work in Clapham is landlord repairs and getting flats ready between one tenancy and the next.',
     common: [
-      'Systems under heavier use than they were designed for',
-      'Blocked waste in shared kitchens and bathrooms',
-      'Landlord repairs and tenancy turnarounds',
-      'Shower pressure across multiple simultaneous outlets',
+      'Systems used far harder than they were designed for',
+      'Blocked waste pipes in shared kitchens and bathrooms',
+      'Repairs and tenancy turnarounds for landlords',
+      'Shower pressure when several outlets run at once',
     ],
     nearby: ['balham', 'brixton', 'wandsworth'],
   },
@@ -259,16 +259,16 @@ export const areas: Area[] = [
     kd: 22,
     metaTitle: 'Plumber in Wimbledon | SW19 & SW20 Bathrooms | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Wimbledon, SW19 and SW20. Bathroom installation, boiler repair, drainage and emergency plumbing. Call 020 3576 5825.',
+      'Plumbing in Wimbledon, SW19 and SW20 from Ninja Plumbers. We install bathrooms, repair boilers, sort out drainage and handle emergencies. Call 020 3576 5825.',
     intro:
-      'Family houses, period property and flats across Wimbledon, SW19 and SW20 are all part of the round Ninja Plumbers covers week to week.',
+      'Week in, week out, Ninja Plumbers is at work in family houses, period homes and flats right across Wimbledon, SW19 and SW20.',
     character:
-      'Wimbledon covers larger detached and semi-detached family housing toward the Village and the Common, and denser Victorian terraces and flats nearer the town centre and station. In the bigger properties, vented systems with cylinders and several bathrooms are still common, which makes pressure and balancing a recurring issue rather than a one-off. Period property near the Common tends to carry conservation constraints too, so external work usually needs sorting out with the council before it can start.',
+      'Towards the Village and the Common, Wimbledon has larger detached and semi-detached family homes. Nearer the town centre and the station, Victorian terraces and flats are packed more tightly. Many of the bigger houses still run vented systems with cylinders and several bathrooms, so pressure and balancing come up again and again. Period homes near the Common are often under conservation rules as well, which means outside work usually has to be agreed with the council first.',
     common: [
-      'Vented systems with cylinders in larger houses',
-      'Balancing pressure across several bathrooms',
-      'Conservation constraints on period property',
-      'Bathroom and en-suite installation in family homes',
+      'Vented systems and cylinders in the bigger houses',
+      'Getting pressure even across several bathrooms',
+      'Conservation rules on period homes',
+      'Fitting bathrooms and en-suites in family houses',
     ],
     nearby: ['balham', 'croydon'],
   },
@@ -281,16 +281,16 @@ export const areas: Area[] = [
     kd: 10,
     metaTitle: 'Plumber in Brixton | SW2 & SW9 Commercial | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Brixton, SW2 and SW9. Commercial kitchen plumbing, blocked drains, boiler repair and callouts. Call 020 3576 5825.',
+      'Brixton plumbers for SW2 and SW9. Ninja Plumbers handles commercial kitchens, blocked drains, boiler repair and callouts. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers covers flats, converted terraces and the many food businesses across Brixton, SW2 and SW9, so no two jobs in a week tend to look alike.',
+      'In Brixton, SW2 and SW9 we work in flats, converted terraces and a great many food businesses, so a week of jobs here rarely repeats itself.',
     character:
-      'Brixton is a mix of Victorian terraces split into flats, post-war estates, and a dense concentration of restaurants, bars and food businesses around the market and the main roads. The food businesses bring a distinct kind of work: grease-laden waste, drains that seem to block on a schedule, and jobs that can only happen outside trading hours or not at all. Away from the market, estate blocks and shared terrace stacks are the more usual call.',
+      'Brixton combines Victorian terraces divided into flats, post-war estates, and a packed cluster of restaurants, bars and food outlets around the market and along the main roads. Those food businesses create their own kind of work. Waste is heavy with grease, some drains block almost to a timetable, and many jobs have to wait until trading stops or cannot be done at all. Further from the market, most calls are about estate blocks and stacks shared by terrace flats.',
     common: [
-      'Commercial kitchen waste and grease-related blockages',
-      'Out-of-hours work around trading times',
-      'Communal systems in estates and blocks',
-      'Terrace conversions on a single shared stack',
+      'Grease blockages and waste from commercial kitchens',
+      'Work fitted around trading hours, out of hours',
+      'Shared communal systems in estates and blocks',
+      'Converted terraces draining into one shared stack',
     ],
     nearby: ['clapham', 'balham', 'croydon'],
   },
@@ -307,16 +307,16 @@ export const areas: Area[] = [
     kd: 9,
     metaTitle: 'Plumber in Tooting | SW17 Bec & Broadway | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Tooting, SW17, Tooting Bec and the Broadway. Blocked drains, boiler repair, bathrooms and callouts. Call 020 3576 5825.',
+      'Plumbing across Tooting, SW17, Tooting Bec and the Broadway from Ninja Plumbers. Drains cleared, boilers repaired, bathrooms and callouts. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers covers houses, converted flats and shared homes right across Tooting, SW17 and the streets running off the Broadway.',
+      'We work in houses, converted flats and shared homes throughout Tooting, SW17 and the side streets that run off the Broadway.',
     character:
-      'Tooting is street after street of Victorian and Edwardian terraces, and an unusually high proportion of them are now shared houses or split into flats. That matters for plumbing because bathrooms tend to get added where the drainage was never designed to take them: a second or third bathroom hung off a stack sized for one household, or a back addition carrying waste it was never built for. Down towards the Broadway there is also a dense run of restaurants and takeaways sitting above and below residential flats.',
+      'Victorian and Edwardian terraces fill Tooting street by street, and an unusually large number are now shared houses or flats. For plumbing, that matters because extra bathrooms get put where the drains were not built to cope. A second or third bathroom may hang off a stack meant for one family, or a back addition may carry waste it was never designed for. Towards the Broadway, restaurants and takeaways sit tightly packed above and below flats where people live.',
     common: [
-      'Extra bathrooms added to a stack sized for one',
-      'Shared houses where several people report the same fault differently',
-      'Back-addition waste pipes running at the wrong fall',
-      'Food business drainage on and around the Broadway',
+      'A stack sized for one household now taking extra bathrooms',
+      'Shared houses where each tenant describes the same fault differently',
+      'Waste pipes in back additions laid at the wrong fall',
+      'Drainage for food businesses on and near the Broadway',
     ],
     nearby: ['balham', 'wandsworth', 'streatham'],
   },
@@ -329,16 +329,16 @@ export const areas: Area[] = [
     kd: 7,
     metaTitle: 'Plumber in Lewisham | SE13 & Hither Green | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Lewisham, SE13, Hither Green and Ladywell. Boiler repair, blocked drains, bathrooms and callouts. Call 020 3576 5825.',
+      'Plumbing in Lewisham, SE13, Hither Green and Ladywell from Ninja Plumbers. Boilers repaired, drains unblocked, bathrooms and callouts. Call 020 3576 5825.',
     intro:
-      'Houses, flats and blocks across Lewisham, SE13 and out towards Hither Green and Ladywell are regular ground for Ninja Plumbers.',
+      'Ninja Plumbers regularly works in houses, flats and blocks across Lewisham and SE13, and further out towards Hither Green and Ladywell.',
     character:
-      'Three quite different kinds of building sit on the same street map in Lewisham: Victorian terraces towards Ladywell and Hither Green, large post-war estates, and the town centre towers. In the terraces it is the usual back-addition and original-pipework work. In the estates and towers, though, the fault is rarely in the flat that reported it, so getting to the riser matters more than getting to the kitchen sink.',
+      'Lewisham packs three very different building types onto one map. There are Victorian terraces towards Ladywell and Hither Green, big post-war estates, and towers in the town centre. The terraces bring the familiar back-addition and old-pipework jobs. In the estates and towers, the fault is seldom in the flat that called, so reaching the riser matters more than reaching your kitchen sink.',
     common: [
-      'Communal risers and shared heating in town centre blocks',
-      'Ex-local-authority flats on their original pipework',
-      'Victorian back additions towards Ladywell and Hither Green',
-      'Faults that present in one flat and originate in another',
+      'Shared heating and communal risers in town centre blocks',
+      'Former council flats still on their original pipework',
+      'Victorian back additions near Ladywell and Hither Green',
+      'Faults that start in one flat and show up in another',
     ],
     nearby: ['greenwich', 'peckham', 'bromley'],
   },
@@ -351,16 +351,16 @@ export const areas: Area[] = [
     kd: 13,
     metaTitle: 'Plumber in Streatham | SW16 Common & Norbury | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Streatham, SW16, Streatham Common and Norbury. Boiler repair, blocked drains and bathrooms. Call 020 3576 5825.',
+      'Plumbers for Streatham, SW16, Streatham Common and Norbury from Ninja Plumbers. We repair boilers, clear drains and fit bathrooms. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers covers Streatham, SW16 and down towards Norbury and Streatham Vale, handling everything from a dripping tap to a full heating upgrade.',
+      'From a tap that drips to a whole new heating system, Ninja Plumbers takes on work across Streatham and SW16, down as far as Streatham Vale and Norbury.',
     character:
-      'Streatham has a lot of large late-Victorian and Edwardian houses that were divided into flats decades ago, alongside long runs of 1930s mansion blocks along the High Road. Both share the same underlying problem: a system originally designed for one household now serving four or five, with pipework that has been added to over the years rather than replaced. The mansion blocks in particular often have communal cold water tanks and risers that nobody has actually inspected in a long while.',
+      'Streatham has many big late-Victorian and Edwardian houses that were turned into flats decades ago, plus long rows of 1930s mansion blocks on the High Road. Both have the same root problem. A system built for one household now serves four or five, and its pipework has been added to over the years instead of replaced. The mansion blocks often have shared cold water tanks and risers that no one has properly checked for a long time.',
     common: [
-      'Large houses divided into flats on the original pipework',
-      '1930s mansion blocks with communal tanks and risers',
-      'Heating systems serving more flats than they were sized for',
-      'Long external drain runs on the bigger plots',
+      'Big houses split into flats but still on the original pipes',
+      '1930s mansion blocks with shared tanks and risers',
+      'Heating serving more flats than it was sized for',
+      'Long outside drain runs on the larger plots',
     ],
     nearby: ['brixton', 'balham', 'tooting'],
   },
@@ -373,16 +373,16 @@ export const areas: Area[] = [
     kd: 8,
     metaTitle: 'Plumber in Muswell Hill | N10 Boiler Repair | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Muswell Hill and N10. Boiler repair, blocked drains, bathroom installation and callouts. Call 020 3576 5825.',
+      'Plumbing in Muswell Hill and N10 from Ninja Plumbers. We repair boilers, unblock drains, install bathrooms and attend callouts. Call 020 3576 5825.',
     intro:
-      'The large Edwardian family houses Muswell Hill is known for keep Ninja Plumbers busy across N10, on jobs that usually take more than an afternoon.',
+      'Across N10, much of our work is in the big Edwardian family houses Muswell Hill is known for, and those jobs usually run past a single afternoon.',
     character:
-      'Muswell Hill is one of the most consistently Edwardian parts of London, with large family houses that are mostly still whole rather than converted. That consistency shapes the work: big houses with long pipe runs, original systems that have been extended into loft conversions and rear extensions over the years, and heating that struggles to reach the top floor because nobody resized it when the house grew. Bathrooms added into lofts are a particularly common source of pressure complaints we get called out for.',
+      'Few parts of London are as consistently Edwardian as Muswell Hill, and most of its large family houses are still single homes, not flats. That shapes what we do here. The houses are big, the pipe runs are long, and the original systems have been stretched into loft conversions and rear extensions over the years. Heating often struggles to reach the top floor because no one resized it as the house grew. Loft bathrooms in particular are a frequent reason we are called out about pressure.',
     common: [
-      'Loft bathrooms added without resizing the system',
-      'Poor flow and pressure on the top floor of tall houses',
-      'Long pipe runs in large family houses',
-      'Original heating systems extended into rear extensions',
+      'Loft bathrooms added with no resizing of the system',
+      'Weak flow and pressure at the top of tall houses',
+      'Long pipe runs through big family homes',
+      'Original heating stretched to reach rear extensions',
     ],
     nearby: ['islington', 'hackney', 'walthamstow'],
   },
@@ -395,16 +395,16 @@ export const areas: Area[] = [
     kd: 8,
     metaTitle: 'Plumber in Hammersmith | W6 Riverside Blocks | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Hammersmith and W6. Boiler repair, blocked drains, bathrooms and commercial plumbing. Fast callout. Call 020 3576 5825.',
+      'Hammersmith and W6 plumbers. Ninja Plumbers repairs boilers, clears blocked drains, fits bathrooms and does commercial work. Fast callout. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers is a short hop from Hammersmith and works flats, riverside blocks and the offices around the Broadway just as often as houses in W6.',
+      'Hammersmith is only a short hop for Ninja Plumbers, and in W6 we spend as much time in flats, riverside blocks and the offices by the Broadway as in houses.',
     character:
-      'Hammersmith runs from Victorian terraces in the streets behind the Broadway to riverside mansion blocks and a good deal of post-war and modern office space. The mansion blocks are the distinctive part of the area: communal stacks and risers where a blockage on a lower floor gets reported by a flat several storeys up, and access that generally has to be arranged with a managing agent rather than the tenant themselves. On the commercial side, washroom and kitchen plumbing tends to be booked around office hours rather than at short notice.',
+      'Hammersmith stretches from Victorian terraces in the back streets behind the Broadway to mansion blocks by the river and plenty of post-war and modern offices. The mansion blocks set the area apart. Stacks and risers are shared, so a blockage low down may be reported by a flat several floors up, and access is usually arranged with a managing agent, not the tenant. On the commercial side, kitchen and washroom plumbing is normally booked around office hours rather than at short notice.',
     common: [
-      'Riverside mansion blocks with communal stacks and risers',
-      'Access arranged through managing agents rather than occupiers',
-      'Office washroom and kitchen plumbing around the Broadway',
-      'Victorian terraces converted into flats behind the main roads',
+      'Mansion blocks by the river with shared stacks and risers',
+      'Access agreed with managing agents instead of occupiers',
+      'Kitchen and washroom plumbing in offices near the Broadway',
+      'Converted Victorian terraces in the back streets off the main roads',
     ],
     nearby: ['fulham', 'kensington', 'chelsea'],
   },
@@ -417,16 +417,16 @@ export const areas: Area[] = [
     kd: 12,
     metaTitle: 'Plumber in Greenwich | SE10 & the Peninsula | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Greenwich, SE10, the town centre and the Peninsula. Boiler repair, blocked drains and bathrooms. Call 020 3576 5825.',
+      'Plumbing across Greenwich, SE10, the town centre and the Peninsula from Ninja Plumbers. Boilers repaired, drains cleared, bathrooms. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers covers Greenwich and SE10 end to end, from the Georgian streets around the town centre out to the towers on the Peninsula.',
+      'We work across the whole of Greenwich and SE10, from the Georgian streets near the town centre to the towers out on the Peninsula.',
     character:
-      'Greenwich is really two plumbing jobs sharing one postcode. The town centre is Georgian and early Victorian, much of it in a conservation area and some of it listed outright, which constrains where pipework and flues can go and rules out the obvious external fix more often than not. Down on the Peninsula it is the opposite picture: recent towers on communal heat networks, where the flat has a heat interface unit rather than a boiler, and a "no hot water" call is as likely to trace back to the network as to anything inside the flat.',
+      'In practice, Greenwich holds two quite separate kinds of plumbing work under one postcode. Around the town centre, houses date from the Georgian and early Victorian periods, many sit in a conservation area and some are listed. That limits where pipes and flues can run and often rules out the obvious fix on the outside of the building. The Peninsula is the reverse. Its recent towers run on communal heat networks, each flat has a heat interface unit instead of a boiler, and a "no hot water" call may well be a network fault rather than anything in the flat.',
     common: [
-      'Listed and conservation-area constraints on flues and external pipework',
-      'Heat interface units in Peninsula blocks rather than individual boilers',
-      'Georgian and early Victorian properties on much-altered pipework',
-      'Communal heat network faults presenting as a single-flat problem',
+      'Listed and conservation-area limits on flues and outside pipework',
+      'Heat interface units instead of boilers in Peninsula blocks',
+      'Georgian and early Victorian homes on heavily altered pipework',
+      'Heat network faults that look like a problem in a single flat',
     ],
     nearby: ['lewisham', 'peckham', 'bromley'],
   },
@@ -439,16 +439,16 @@ export const areas: Area[] = [
     kd: 8,
     metaTitle: 'Plumber in Battersea | SW11 & Nine Elms | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Battersea, SW11 and Nine Elms. Boiler repair, blocked drains and bathroom installation. Emergency callout. Call 020 3576 5825.',
+      'Plumbers for Battersea, SW11 and Nine Elms. Ninja Plumbers repairs boilers, clears blocked drains and installs bathrooms. Emergency callout. Call 020 3576 5825.',
     intro:
-      'Victorian terraces and the newer riverside towers both fall under the Ninja Plumbers patch in Battersea, SW11 and Nine Elms.',
+      'In Battersea, SW11 and Nine Elms, our work takes in both the Victorian terraces and the newer towers along the river.',
     character:
-      'Battersea splits between the Victorian terraces in the streets off the park, many now converted into flats, and the Nine Elms and Power Station developments along the river. The new blocks deserve calling out on their own: most run on communal heat networks with a heat interface unit in each flat instead of a boiler, so a "no hot water" call there is a genuinely different diagnosis, and the work usually needs booking through building management rather than turning up on the day.',
+      'Battersea divides in two. Off the park are streets of Victorian terraces, a lot of them now flats. Along the river are the Nine Elms and Power Station developments, and those new blocks deserve their own mention. Most get heating and hot water from a shared heat network, with a heat interface unit in every flat where you would expect a boiler. That makes a "no hot water" call a genuinely different diagnosis, and the visit usually has to be booked through building management instead of arranged on the day.',
     common: [
-      'Heat interface units in Nine Elms and riverside developments',
-      'Communal heat networks where the fault sits outside the flat',
-      'Victorian terrace conversions off the park sharing a stack',
-      'Building management access in the newer blocks',
+      'Riverside blocks at Nine Elms and elsewhere running heat interface units',
+      'Heat network faults that sit outside the flat itself',
+      'Converted Victorian terraces off the park sharing one stack',
+      'Access through building management in the newer blocks',
     ],
     nearby: ['clapham', 'wandsworth', 'fulham'],
   },
@@ -461,16 +461,16 @@ export const areas: Area[] = [
     kd: 10,
     metaTitle: 'Plumber in Walthamstow | E17 Maisonettes | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Walthamstow, E17. Boiler repair, blocked drains and bathroom installation, including Warner maisonettes. Call 020 3576 5825.',
+      'Plumbing in Walthamstow, E17 from Ninja Plumbers, Warner maisonettes included. Boilers repaired, drains unblocked and bathrooms installed. Call 020 3576 5825.',
     intro:
-      'Terraces, Warner maisonettes and converted flats across Walthamstow and E17 all fall within Ninja Plumbers\' regular coverage.',
+      'Ninja Plumbers regularly works in terraces, Warner maisonettes and converted flats throughout Walthamstow and E17.',
     character:
-      'Walthamstow is largely Victorian and Edwardian terraced, with one local feature worth knowing about: the Warner properties, built as pairs of maisonettes each with its own front door. They look like a single house from the street, but they are two dwellings sharing drainage and often a roof too, so a leak or a blockage is frequently not the responsibility of whoever happened to report it. Beyond the Warner stock, the rest of the area has seen heavy extension work over the last decade or so.',
+      'Most of Walthamstow is Victorian and Edwardian terracing, and one local house type is worth understanding: the Warner properties. They were built as pairs of maisonettes, each with a separate front door. From the street they look like one house, but they are two homes sharing drains and, in many cases, a roof. That means the person who reports a leak or blockage is often not the one responsible for it. Outside the Warner stock, much of the area has had a lot of extension work over the past ten years or so.',
     common: [
-      'Warner maisonette pairs sharing drainage between two households',
-      'Rear extensions with waste added to existing runs',
-      'Terraces converted into upper and lower flats',
-      'Original pipework behind more recent kitchen and bathroom work',
+      'Pairs of Warner maisonettes with drainage shared by two households',
+      'Rear extensions whose waste joins existing runs',
+      'Terraces split into upper and lower flats',
+      'Old pipework behind newer kitchens and bathrooms',
     ],
     nearby: ['hackney', 'islington', 'muswell-hill'],
   },
@@ -483,16 +483,16 @@ export const areas: Area[] = [
     kd: 8,
     metaTitle: 'Plumber in Putney | SW15 & Roehampton | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Putney, SW15 and Roehampton. Boiler repair, blocked drains and bathroom installation. Emergency callout. Call 020 3576 5825.',
+      'Plumbers for Putney, SW15 and Roehampton from Ninja Plumbers. We repair boilers, unblock drains and install bathrooms. Emergency callout. Call 020 3576 5825.',
     intro:
-      'Terraces, riverside blocks and estate properties across Putney, SW15 and out to Roehampton are all part of the ground Ninja Plumbers covers.',
+      'Ninja Plumbers works in terraces, riverside blocks and estate homes throughout Putney and SW15, and out as far as Roehampton.',
     character:
-      'Putney runs from riverside mansion blocks and Victorian terraces near the bridge out to the post-war estates at Roehampton, and the two ends of the area call for different work. Near the bridge, communal stacks come with access arrangements that need sorting out in advance. Out at Roehampton it is more often estate properties on communal heating and original pipework. Closer to the river, basement and lower-ground rooms usually need pumped waste rather than a straightforward gravity drain.',
+      'Putney stretches from mansion blocks and Victorian terraces by the bridge to the post-war estates at Roehampton, and each end needs different work. By the bridge, shared stacks come with access that has to be arranged ahead of time. At Roehampton it is more often estate homes on communal heating and their original pipes. Nearer the river, basements and lower-ground rooms usually need pumped waste, not a simple gravity drain.',
     common: [
-      'Riverside mansion blocks with communal stacks',
-      'Pumped waste in lower-ground rooms near the river',
-      'Estate properties at Roehampton on communal heating',
-      'Victorian terraces divided into flats near the bridge',
+      'Mansion blocks by the river with shared stacks',
+      'Pumped waste for lower-ground rooms close to the river',
+      'Estate homes at Roehampton on communal heating',
+      'Victorian terraces near the bridge split into flats',
     ],
     nearby: ['wandsworth', 'wimbledon', 'fulham'],
   },
@@ -505,16 +505,16 @@ export const areas: Area[] = [
     kd: 9,
     metaTitle: 'Plumber in Peckham | SE15 Rye Lane & Nunhead | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Peckham, SE15 and Nunhead. Blocked drains, boiler repair and commercial plumbing along Rye Lane. Call 020 3576 5825.',
+      'Plumbing in Peckham, SE15 and Nunhead from Ninja Plumbers. Drains unblocked, boilers repaired and commercial plumbing on Rye Lane. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers works converted flats, estate properties and the food businesses along Rye Lane, covering Peckham, SE15 and Nunhead.',
+      'Across Peckham, SE15 and Nunhead, Ninja Plumbers works in converted flats, estate homes and the food businesses on Rye Lane.',
     character:
-      'Peckham mixes Victorian terraces, most now split into flats, with substantial ex-local-authority estates and a dense strip of food and drink businesses along Rye Lane. The three bring different work. Estates mean communal riser jobs. Conversions bring the familiar problem of several flats sharing drainage that was designed for one household. And the commercial strip means grease-related blockages, plus jobs that can only be scheduled once the kitchen has closed for the night.',
+      'Peckham combines Victorian terraces, most of them now flats, with large ex-local-authority estates and a busy run of food and drink businesses on Rye Lane. Each of the three brings its own jobs. On the estates, it is work on communal risers. In the conversions, several flats share drainage built for one household. On the commercial strip, grease causes blockages, and work often has to wait until the kitchen closes for the night.',
     common: [
-      'Ex-local-authority blocks with communal risers',
-      'Terrace conversions with several flats on one stack',
-      'Commercial kitchen waste and grease blockages on Rye Lane',
-      'Out-of-hours work around food business trading times',
+      'Former council blocks with communal risers',
+      'Converted terraces with several flats on a single stack',
+      'Grease blockages and kitchen waste from Rye Lane businesses',
+      'Work outside trading hours for food businesses',
     ],
     nearby: ['brixton', 'lewisham', 'dulwich'],
   },
@@ -527,16 +527,16 @@ export const areas: Area[] = [
     kd: 9,
     metaTitle: 'Plumber in Kensington | W8 & Holland Park | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Kensington, W8 and Holland Park. Boiler repair, blocked drains and bathroom installation in period property. Call 020 3576 5825.',
+      'Plumbers for Kensington, W8 and Holland Park. Ninja Plumbers repairs boilers, clears blocked drains and installs bathrooms in period homes. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers takes on stucco terraces, mansion blocks and garden square properties across Kensington, W8 and Holland Park.',
+      'In Kensington, W8 and Holland Park, Ninja Plumbers works in stucco terraces, mansion blocks and homes on the garden squares.',
     character:
-      'Kensington is stucco terraces, garden squares and mansion blocks, a large share of it listed or sitting in a conservation area. That status is the defining constraint on most jobs here: flue positions, external pipework and any soil stack alterations all need thinking through before work starts, not once it is under way. Deep basement conversions are common too, and they bring pumped drainage with them, which is a system that needs maintaining rather than one you can simply fit and forget.',
+      'Kensington is made up of stucco terraces, garden squares and mansion blocks, and much of it is listed or in a conservation area. That shapes most jobs here. Flue positions, outside pipework and any change to a soil stack have to be thought through before work begins, not after. Deep basement conversions are also common. They depend on pumped drainage, which needs regular maintenance and cannot just be installed and left alone.',
     common: [
-      'Listed building and conservation area constraints on flues and pipework',
-      'Basement conversions relying on pumped drainage',
-      'Mansion block communal stacks and risers',
-      'Period properties where earlier alterations are undocumented',
+      'Listed building and conservation area limits on flues and pipes',
+      'Basement conversions that depend on pumped drainage',
+      'Shared stacks and risers in mansion blocks',
+      'Period homes with past alterations nobody recorded',
     ],
     nearby: ['chelsea', 'fulham', 'hammersmith'],
   },
@@ -549,16 +549,16 @@ export const areas: Area[] = [
     kd: 10,
     metaTitle: 'Plumber in Dulwich | SE21 & West Dulwich | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Dulwich, SE21, Dulwich Village and West Dulwich. Boiler repair, blocked drains and bathrooms. Call 020 3576 5825.',
+      'Plumbing across Dulwich, SE21, Dulwich Village and West Dulwich from Ninja Plumbers. Boilers repaired, drains cleared, bathrooms. Call 020 3576 5825.',
     intro:
-      'Large period family homes across Dulwich, SE21 and out to East and West Dulwich are the kind of property Ninja Plumbers deals with most in this area.',
+      'Large period family homes are the typical property here, and most of our work in Dulwich and SE21, as far as East and West Dulwich, is in houses like these.',
     character:
-      'Dulwich is mostly large Georgian, Victorian and interwar family housing on generous plots, much of it still in single occupation rather than split up. The practical consequences follow on from that: long pipe runs, sizeable heating systems that get expensive if left running badly, and drainage that travels a fair distance before it reaches the sewer, so a blockage is often further from the house than the owner expects. A good deal of the area also sits under the Dulwich Estate scheme of management, which can affect what is permitted externally.',
+      'Dulwich is largely big Georgian, Victorian and interwar family houses on generous plots, and most are still single homes. Several practical points follow. Pipe runs are long, the heating systems are large and costly to run if they are not set up well, and drains travel a good way before meeting the sewer, so a blockage is often further from the house than you might think. Much of the area also comes under the Dulwich Estate scheme of management, and that may restrict what you can change on the outside.',
     common: [
-      'Long external drain runs where blockages sit well away from the house',
-      'Large heating systems in single-occupation family homes',
-      'Estate scheme of management restrictions on external alterations',
-      'Loft and rear extensions added to original systems',
+      'Long outside drain runs with blockages far from the house',
+      'Big heating systems in family homes with one household',
+      'Limits on outside changes under the Dulwich Estate scheme of management',
+      'Loft and rear extensions tacked onto the original system',
     ],
     nearby: ['peckham', 'brixton', 'lewisham'],
   },
@@ -571,16 +571,16 @@ export const areas: Area[] = [
     kd: 6,
     metaTitle: 'Plumber in Chelsea | SW3 Townhouses & Mews | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Chelsea, SW3, Brompton and Knightsbridge. Boiler repair, blocked drains and bathrooms in period homes. Call 020 3576 5825.',
+      'Plumbers for Chelsea, SW3, Brompton and Knightsbridge. Ninja Plumbers repairs boilers, clears drains and fits bathrooms in period homes. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers covers Chelsea, SW3 and the streets towards Brompton and Knightsbridge, on properties ranging from mews cottages to grand townhouses.',
+      'From mews cottages to grand townhouses, Ninja Plumbers works across Chelsea, SW3 and the streets leading to Brompton and Knightsbridge.',
     character:
-      'Chelsea is Georgian and Victorian townhouses, mews properties and mansion blocks, with a high proportion listed. The townhouses tend to be tall and narrow, which puts the boiler or cylinder a long way from the top-floor bathroom and makes pressure and flow a recurring complaint rather than an occasional one. Basement excavation is common too, and it brings pumped drainage that needs regular servicing. Mews properties have their own quirk: limited external routing options, plus awkward access for anything that will not fit down the mews itself.',
+      'Chelsea is made up of Georgian and Victorian townhouses, mews homes and mansion blocks, and a large share is listed. Townhouses are usually tall and narrow, so the boiler or cylinder sits far below the top-floor bathroom, and weak pressure and flow are a regular complaint, not a rare one. Many basements have been dug out as well, which brings pumped drainage that needs servicing on a schedule. Mews homes have their own quirk. There are few ways to route pipes outside, and anything too big to fit down the mews is awkward to get in.',
     common: [
-      'Pressure and flow problems in tall, narrow townhouses',
-      'Excavated basements relying on pumped drainage',
-      'Listed building constraints on flues and external pipework',
-      'Restricted access and routing in mews properties',
+      'Weak pressure and flow in tall, narrow townhouses',
+      'Dug-out basements that depend on pumped drainage',
+      'Listed building limits on flues and outside pipework',
+      'Tight access and few routing options in mews homes',
     ],
     nearby: ['kensington', 'fulham', 'battersea'],
   },
@@ -593,16 +593,16 @@ export const areas: Area[] = [
     kd: 13,
     metaTitle: 'Plumber in Acton | W3 North & South Acton | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Acton and W3, North, South and East Acton. Boiler repair and servicing, blocked drains and bathrooms. Call 020 3576 5825.',
+      'Acton and W3 plumbing, covering North, South and East Acton. Ninja Plumbers repairs and services boilers, clears drains and fits bathrooms. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers has watched Acton change fast, and covers it end to end, from the Victorian terraces in South Acton to the newer blocks going up around North Acton.',
+      'Acton has changed quickly, and Ninja Plumbers works across all of it, whether that means a Victorian terrace in South Acton or one of the new blocks rising around North Acton.',
     character:
-      'Acton has changed faster than most of west London, and the plumbing reflects that split. The older streets are Victorian and Edwardian terraces, a high proportion converted into flats or run as shared houses, with drainage that was designed for a fraction of the occupancy it now carries. Around North Acton and Park Royal the picture is entirely different, with recent high-density blocks running on communal systems, where a fault is usually a building matter rather than a single flat\'s, and access goes through management rather than a resident.',
+      'Few parts of west London have changed as quickly as Acton, and its plumbing shows the divide. In the older streets you find Victorian and Edwardian terraces, many converted into flats or let as shared houses, with drains built for far fewer people than now live there. Around North Acton and Park Royal it is a completely different picture. Recent high-density blocks run on communal systems, a fault is usually a matter for the building rather than one flat, and access is through management, not residents.',
     common: [
-      'Conversions and shared houses on drainage sized for one household',
-      'Recent North Acton blocks on communal systems with managed access',
-      'Boilers relocated during kitchen extensions, with pipework extended rather than replaced',
-      'Ageing systems in terraces that have gained bathrooms over the years',
+      'Conversions and shared houses on drains sized for one household',
+      'Newer North Acton blocks with communal systems and managed access',
+      'Boilers moved during kitchen extensions, with pipework lengthened instead of renewed',
+      'Ageing systems in terraced houses that have picked up extra bathrooms',
     ],
     nearby: ['ealing', 'hammersmith', 'fulham'],
   },
@@ -618,16 +618,16 @@ export const areas: Area[] = [
     kd: 22,
     metaTitle: 'Plumber in Enfield | EN1 to EN3 Callouts | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Enfield, EN1 to EN3. Boiler repair and servicing, blocked drains and bathroom installation. Call 020 3576 5825.',
+      'Plumbers for Enfield, EN1 to EN3, from Ninja Plumbers. We repair and service boilers, unblock drains and install bathrooms. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers covers suburban houses, flats and the estates in between right across Enfield and the EN postcodes.',
+      'Throughout Enfield and the EN postcodes, Ninja Plumbers works in suburban houses, flats and the estates that sit between them.',
     character:
-      'Enfield is mostly interwar and post-war suburban housing on generous plots, with older stock around Enfield Town and Forty Hill. Because the plots are big, a blocked drain is frequently several chambers away from the house rather than sitting right under the kitchen window. It is also far enough out that garages, outbuildings and loft spaces go unheated through winter, which is exactly where burst pipes tend to start once a proper cold snap arrives.',
+      'Most of Enfield is suburban housing from between the wars and after, on generous plots, with older homes near Enfield Town and Forty Hill. On plots this size, a blocked drain is often several chambers from the house, not right under the kitchen window. Being this far out also means garages, outbuildings and lofts sit unheated all winter, which is where burst pipes usually begin when a real cold spell arrives.',
     common: [
-      'Long external drain runs where the blockage sits well away from the house',
-      'Burst pipes in unheated garages and outbuildings after a freeze',
-      'Ageing heating systems in interwar and post-war semis',
-      'Outside taps left connected over winter and splitting behind the wall',
+      'Long outside drain runs with the blockage far from the house',
+      'Burst pipes in cold garages and outbuildings after a freeze',
+      'Tired heating in semis built between the wars and after',
+      'Outside taps left on through winter that crack behind the wall',
     ],
     nearby: ['tottenham', 'barnet', 'walthamstow'],
   },
@@ -640,16 +640,16 @@ export const areas: Area[] = [
     kd: 31,
     metaTitle: 'Plumber in Barnet | EN5 & New Barnet | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Barnet, EN5, Whetstone and New Barnet. Boiler repair and servicing, blocked drains and bathrooms. Call 020 3576 5825.',
+      'Plumbing in Barnet, EN5, Whetstone and New Barnet from Ninja Plumbers. Boilers repaired and serviced, drains cleared, bathrooms. Call 020 3576 5825.',
     intro:
-      'From Chipping Barnet down towards Whetstone and New Barnet, Ninja Plumbers covers the plumbing and heating across Barnet and EN5.',
+      'Ninja Plumbers looks after plumbing and heating across Barnet and EN5, from Chipping Barnet south to Whetstone and New Barnet.',
     character:
-      'Barnet runs from the older centre of Chipping Barnet, where some of the stock is genuinely old and a good deal of it listed or in a conservation area, out to interwar suburbs and post-war estates. There is a practical split between the two. Period property means flue and external pipework need thinking about before the job starts. Larger suburban houses, on the other hand, more often bring heating that has never been resized despite extensions added over the decades.',
+      'Barnet reaches from the old centre of Chipping Barnet, where some buildings are truly old and many are listed or protected by a conservation area, to the interwar suburbs and post-war estates further out. The two halves need different thinking. With period homes, flues and outside pipework have to be planned before work begins. The bigger suburban houses more often have heating that was never resized, even after decades of extensions.',
     common: [
-      'Conservation-area and listed constraints around the older centre',
-      'Suburban heating systems never resized for later extensions',
-      'Long drain runs on larger plots towards New Barnet',
-      'Older cylinders and vented systems still in service',
+      'Listed and conservation-area limits near the old centre',
+      'Suburban heating never resized after later extensions',
+      'Long drain runs on bigger plots towards New Barnet',
+      'Vented systems and older cylinders still working',
     ],
     nearby: ['finchley', 'enfield', 'muswell-hill'],
   },
@@ -662,16 +662,16 @@ export const areas: Area[] = [
     kd: 12,
     metaTitle: 'Plumber in Woolwich | SE18 Royal Arsenal | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Woolwich, SE18 and Royal Arsenal. Boiler repair, blocked drains and bathroom installation. Call 020 3576 5825.',
+      'Plumbers for Woolwich, SE18 and Royal Arsenal. Ninja Plumbers repairs boilers, clears blocked drains and installs bathrooms. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers covers Woolwich and SE18 from the Victorian terraces right through to the new riverside blocks at the Arsenal.',
+      'In Woolwich and SE18 we work everywhere from the Victorian terraces to the new blocks by the river at the Arsenal.',
     character:
-      'Woolwich has effectively been rebuilt around itself. Victorian terraces and substantial post-war estates sit alongside a decade of new riverside development at Royal Arsenal, and the three types behave completely differently. Estates bring communal risers and shared heating. The new blocks bring heat interface units, building management and access that needs arranging in advance. The terraces, by contrast, bring the ordinary work most of London has: old pipework and back additions.',
+      'Woolwich has in effect been rebuilt around its old core. Victorian terraces and large post-war estates now stand next to a decade of new riverside building at Royal Arsenal, and each type behaves in its own way. The estates come with shared heating and communal risers. In the new blocks you find heat interface units, building management, and access you need to arrange ahead. The terraces bring the everyday work found across most of London: old pipes and back additions.',
     common: [
-      'Post-war estates with communal risers and shared heating',
-      'Riverside blocks on heat networks rather than individual boilers',
-      'Access through concierge or building management in newer developments',
-      'Victorian terraces on much-altered original pipework',
+      'Shared heating and communal risers on the post-war estates',
+      'Blocks by the river on heat networks, not individual boilers',
+      'Access via concierge or building management in new developments',
+      'Victorian terraces on heavily altered original pipes',
     ],
     nearby: ['greenwich', 'eltham', 'lewisham'],
   },
@@ -684,16 +684,16 @@ export const areas: Area[] = [
     kd: 7,
     metaTitle: 'Plumber in Forest Hill | SE23 Callouts | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Forest Hill, SE23 and Honor Oak. Boiler repair, blocked drains and bathroom installation. Call 020 3576 5825.',
+      'Plumbing across Forest Hill, SE23 and Honor Oak from Ninja Plumbers. We repair boilers, unblock drains and install bathrooms. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers covers Forest Hill, SE23 and the hill up towards Honor Oak, on a mix of divided period houses and smaller conversions.',
+      'Across Forest Hill, SE23 and up the hill to Honor Oak, Ninja Plumbers works in divided period houses and smaller conversions.',
     character:
-      'Forest Hill is built on a genuinely steep hill, and that shows up in the plumbing more than most people expect. Large Victorian and Edwardian houses run up the slope, many of them divided into flats, and the height between a loft tank and a top-floor bathroom is often not enough on its own to give decent pressure. Pumps and pressurised systems end up being standard here rather than optional. Gravity drainage across sloping plots behaves differently from flat ground too, and older falls were not always got right the first time.',
+      'Forest Hill sits on a properly steep hill, and that affects the plumbing more than most people realise. Big Victorian and Edwardian houses climb the slope, many split into flats. The drop from a loft tank to a top-floor bathroom is often too small to give good pressure by itself, so pumps and pressurised systems are the norm here, not an extra. Gravity drains on sloping plots also behave differently from those on level ground, and the original falls were not always set correctly.',
     common: [
-      'Poor gravity pressure on upper floors of tall houses on the slope',
-      'Shower pumps and pressurised systems fitted to compensate',
-      'Large houses divided into flats on the original pipework',
-      'Drainage across sloping plots where falls were improvised',
+      'Weak gravity pressure upstairs in tall houses on the slope',
+      'Pressurised systems and shower pumps fitted to make up for it',
+      'Big houses split into flats on the original pipes',
+      'Drains on sloping plots where the falls were improvised',
     ],
     nearby: ['sydenham', 'lewisham', 'dulwich'],
   },
@@ -706,16 +706,16 @@ export const areas: Area[] = [
     kd: 20,
     metaTitle: 'Plumber in Chiswick | W4 Bedford Park | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Chiswick, W4 and Bedford Park. Boiler repair and servicing, blocked drains and bathroom installation. Call 020 3576 5825.',
+      'Plumbers for Chiswick, W4 and Bedford Park. Ninja Plumbers repairs and services boilers, clears blocked drains and installs bathrooms. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers covers terraces, riverside property and the Bedford Park conservation area across Chiswick and W4.',
+      'Terraces, riverside homes and houses in the Bedford Park conservation area make up our work in Chiswick and W4.',
     character:
-      'Chiswick is largely late Victorian and Edwardian, and a substantial part of it, Bedford Park in particular, one of the earliest garden suburbs, sits in a conservation area with a good deal of listed stock. That status constrains flue positions and external pipework in a way most of west London does not have to deal with. Down closer to the river, lower-ground rooms and basements need pumped drainage rather than gravity, and flooding risk there is treated as a live consideration rather than a theoretical one.',
+      'Chiswick is mainly late Victorian and Edwardian. A large part of it, Bedford Park above all, which was one of the first garden suburbs, is in a conservation area and has plenty of listed buildings. That limits where flues and outside pipes can go, something most of west London never has to deal with. Nearer the river, basements and lower-ground rooms need pumped drainage instead of gravity, and flood risk there is treated as a real concern, not a theoretical one.',
     common: [
-      'Conservation-area and listed constraints on flues and external pipework',
-      'Pumped drainage in lower-ground rooms near the river',
-      'Original pipework behind later kitchen and bathroom work',
-      'Side-return extensions with waste added to existing runs',
+      'Flue and outside pipe positions limited by listing and conservation rules',
+      'Pumped drainage for lower-ground rooms by the river',
+      'Old pipework behind newer kitchens and bathrooms',
+      'Side-return extensions whose waste joins existing runs',
     ],
     nearby: ['acton', 'hammersmith', 'ealing'],
   },
@@ -728,16 +728,16 @@ export const areas: Area[] = [
     kd: 6,
     metaTitle: 'Plumber in Camberwell | SE5 Grove & Green | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Camberwell and SE5. Boiler repair, blocked drains and bathroom installation. Emergency callout. Call 020 3576 5825.',
+      'Plumbing in Camberwell and SE5 from Ninja Plumbers. We repair boilers, clear blocked drains and install bathrooms. Emergency callout. Call 020 3576 5825.',
     intro:
-      'Georgian and Victorian houses, converted flats and estate property across Camberwell and SE5 are all regular work for Ninja Plumbers.',
+      'Throughout Camberwell and SE5 we are regularly at work in Georgian and Victorian houses, in converted flats and on the estates.',
     character:
-      'Camberwell has an unusual spread of building types for one area: genuinely Georgian terraces around Camberwell Grove, a great deal of Victorian housing now split into flats, and large post-war estates, all within a short walk of each other. Each brings something different. The Georgian stock means listed-building constraints and pipework that has been re-routed by generations of owners. The estates mean communal systems. The conversions mean several households sharing drainage that was only ever designed for one.',
+      'Camberwell has an unusually wide range of buildings for one area. There are true Georgian terraces around Camberwell Grove, lots of Victorian houses now split into flats, and big post-war estates, all a short walk apart. Each type brings different work. The Georgian homes come with listed-building rules and pipes re-routed by owner after owner. The estates have communal systems. The conversions leave several households on drainage built for just one.',
     common: [
-      'Listed Georgian property where earlier alterations are undocumented',
-      'Estate blocks with communal risers and shared supply',
-      'Terrace conversions with several flats on one stack',
-      'Older systems in houses that were never fully modernised',
+      'Listed Georgian homes with past alterations nobody recorded',
+      'Estate blocks with shared supply and communal risers',
+      'Converted terraces with several flats on a single stack',
+      'Older systems in houses never fully brought up to date',
     ],
     nearby: ['peckham', 'brixton', 'dulwich'],
   },
@@ -750,16 +750,16 @@ export const areas: Area[] = [
     kd: 11,
     metaTitle: 'Plumber in Westminster | SW1 & W1 Commercial | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Westminster, SW1 and W1. Boiler repair, blocked drains and commercial plumbing. Out-of-hours callouts. Call 020 3576 5825.',
+      'Plumbers for Westminster, SW1 and W1. Ninja Plumbers repairs boilers, clears drains and handles commercial plumbing. Out-of-hours callouts. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers works mansion blocks, period conversions and commercial premises across Westminster, SW1 and W1, mostly by appointment rather than on the doorstep.',
+      'Across Westminster, SW1 and W1 we work in mansion blocks, period conversions and commercial premises, usually by booked appointment rather than turning up at the door.',
     character:
-      'Westminster is mansion blocks, period conversions and a high concentration of commercial property, much of it listed and nearly all of it managed rather than owner-occupied. In practice, access is usually the first problem and the plumbing itself the second: getting to a riser or a plant room means going through a managing agent, a porter and, more often than not, a booked slot. Work in occupied commercial premises almost always has to happen outside trading hours.',
+      'Most of Westminster is made up of mansion blocks, converted period buildings and a dense mass of commercial property. Much of it is listed, and nearly all of it is managed rather than lived in by the owner. Access tends to be the first hurdle and the plumbing the second. Reaching a riser or plant room means dealing with a managing agent and a porter, and usually booking a slot. In commercial premises that are in use, work nearly always has to be done outside trading hours.',
     common: [
-      'Mansion block risers reached through managing agents and porters',
-      'Listed and conservation constraints across most of the stock',
-      'Commercial premises needing out-of-hours attendance',
-      'Leaks presenting several floors below where they started',
+      'Risers in mansion blocks reached via managing agents and porters',
+      'Listed and conservation rules across most buildings',
+      'Commercial premises that need out-of-hours visits',
+      'Leaks that appear several floors below their source',
     ],
     nearby: ['chelsea', 'kensington', 'islington'],
   },
@@ -772,16 +772,16 @@ export const areas: Area[] = [
     kd: 14,
     metaTitle: 'Plumber in Sydenham | SE26 Callouts | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Sydenham, SE26 and towards Forest Hill. Boiler repair, blocked drains and bathroom installation. Call 020 3576 5825.',
+      'Plumbing across Sydenham, SE26 and towards Forest Hill from Ninja Plumbers. Boilers repaired, drains unblocked and bathrooms installed. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers covers Sydenham, SE26 and the streets towards Forest Hill and Crystal Palace, where sloping ground shapes a lot of the work.',
+      'In Sydenham, SE26 and the streets leading to Forest Hill and Crystal Palace, Ninja Plumbers finds that sloping ground shapes much of the work.',
     character:
-      'Sydenham is large Victorian housing on sloping ground, much of it long since divided into flats. That combination is what matters here: a house built for one household now serving three or four, on a slope, with both drainage and pressure compromised by the split. Top-floor flats in particular tend to have pressure problems that no amount of boiler work is going to fix, simply because the real cause is the height of the building, not the heating.',
+      'Sydenham is big Victorian houses on sloping land, many of them split into flats long ago. It is that mix that counts. A house built for one family now serves three or four, it stands on a slope, and the split has weakened both drainage and pressure. Top-floor flats often suffer pressure problems that no boiler work will cure, because the real cause is how tall the building is, not the heating.',
     common: [
-      'Large houses divided into flats on drainage sized for one',
-      'Top-floor pressure problems caused by height rather than the boiler',
-      'Sloping plots where drain falls were improvised during conversion',
-      'Shared stacks where one blockage affects several flats',
+      'Big houses split into flats on drains sized for one',
+      'Pressure problems upstairs caused by height, not the boiler',
+      'Drain falls on sloping plots that were improvised at conversion',
+      'Shared stacks where one blockage hits several flats at once',
     ],
     nearby: ['forest-hill', 'crystal-palace', 'lewisham'],
   },
@@ -794,16 +794,16 @@ export const areas: Area[] = [
     kd: 1,
     metaTitle: 'Plumber in Notting Hill | W11 Callouts | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Notting Hill and W11. Boiler repair, blocked drains and bathroom installation in period property. Call 020 3576 5825.',
+      'Plumbers for Notting Hill and W11. Ninja Plumbers repairs boilers, unblocks drains and installs bathrooms in period homes. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers covers stucco terraces, garden square property and converted flats across Notting Hill and W11.',
+      'Our work in Notting Hill and W11 covers converted flats, stucco terraces and homes on the garden squares.',
     character:
-      'Notting Hill is stucco terraces and garden squares, a large share of it listed or in a conservation area, and much of it divided into flats decades ago. Basement and lower-ground conversions are common, and they bring pumped drainage with them, which needs looking after rather than being left to run itself. As elsewhere in the borough, the real constraint on any work touching the outside of the building is what is permitted, not simply what is technically possible.',
+      'Stucco terraces and garden squares define Notting Hill. A large share of the housing is listed or sits in a conservation area, and a lot of it was divided into flats decades ago. Many homes have basement or lower-ground conversions, and these rely on pumped drainage that needs care rather than being left alone. As in the rest of the borough, what really limits any work on the outside of a building is what is allowed, not only what is technically possible.',
     common: [
-      'Listed and conservation constraints on flues and external pipework',
-      'Basement conversions relying on pumped drainage',
-      'Converted flats sharing original stacks',
-      'Period pipework altered repeatedly and rarely documented',
+      'Listed and conservation limits on flues and outside pipes',
+      'Basement conversions that depend on pumped drainage',
+      'Converted flats sharing the original stacks',
+      'Period pipework changed many times and seldom recorded',
     ],
     nearby: ['kensington', 'chelsea', 'hammersmith'],
   },
@@ -816,16 +816,16 @@ export const areas: Area[] = [
     kd: 9,
     metaTitle: 'Plumber in Eltham | SE9 & Progress Estate | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Eltham, SE9 and the Progress Estate. Boiler repair and servicing, blocked drains and bathrooms. Call 020 3576 5825.',
+      'Plumbing in Eltham, SE9 and the Progress Estate from Ninja Plumbers. Boilers repaired and serviced, drains cleared, bathrooms. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers covers interwar semis, estate housing and the older property around the village across Eltham and SE9.',
+      'In Eltham and SE9, Ninja Plumbers works in interwar semis, estate houses and the older homes around the village.',
     character:
-      'Eltham is predominantly interwar and early twentieth-century suburban housing, including the Progress Estate, which was built to an unusually high standard for its date and remains largely intact today. Most of the stock is family housing on decent-sized plots, and the recurring work follows a familiar pattern here: heating systems that have been added to rather than replaced, and drainage runs long enough that a blockage rarely turns up where the householder first expects it.',
+      'Eltham is mostly suburban housing from the interwar years and the early twentieth century. That includes the Progress Estate, whose houses were built to a notably high standard for the period and remain largely intact. Most homes are family houses on good-sized plots, and the regular work follows a familiar pattern. Heating systems have been added to instead of replaced, and drain runs are so long that a blockage seldom turns up where the owner first looks.',
     common: [
-      'Interwar semis on heating systems extended over decades',
-      'Long external drain runs across larger suburban plots',
-      'Older cylinders and vented systems still in service',
-      'Conservation-area constraints on parts of the Progress Estate',
+      'Interwar semis on heating extended over the decades',
+      'Long outside drain runs across bigger suburban plots',
+      'Vented systems and ageing cylinders still running',
+      'Parts of the Progress Estate under conservation-area rules',
     ],
     nearby: ['greenwich', 'woolwich', 'bromley'],
   },
@@ -838,16 +838,16 @@ export const areas: Area[] = [
     kd: 9,
     metaTitle: 'Plumber in East Dulwich | SE22 Extensions | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers East Dulwich, SE22 and Peckham Rye. Boiler repair, blocked drains and bathroom installation. Call 020 3576 5825.',
+      'Plumbers for East Dulwich, SE22 and Peckham Rye. Ninja Plumbers repairs boilers, clears blocked drains and installs bathrooms. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers covers East Dulwich, SE22 and the streets running towards Peckham Rye, and side-return extensions come up constantly in the work.',
+      'Side-return extensions crop up again and again in the jobs Ninja Plumbers does in East Dulwich, SE22 and the streets leading to Peckham Rye.',
     character:
-      'East Dulwich is street after street of late Victorian terraces, and an unusually high proportion have had side-return extensions and loft conversions built in the last twenty years. That is the defining feature for plumbing here: waste runs added to accommodate a new kitchen or a loft bathroom, often at a fall that works fine until, one day, it does not, and heating systems asked to serve a house that has grown by a third since the original boiler went in.',
+      'East Dulwich is row upon row of late Victorian terraces, and an unusually large share have had a loft conversion or side-return extension added over the past twenty years. For plumbing, that is what defines the area. Waste runs have been added for a new kitchen or loft bathroom, often at a fall that copes until suddenly it does not. Heating systems are expected to serve a house a third larger than it was when the first boiler was fitted.',
     common: [
-      'Side-return extensions with waste added to existing runs',
-      'Loft bathrooms added without resizing the heating system',
-      'Kitchen relocations that moved the boiler and extended the pipework',
-      'Terraces on shared stacks where the neighbour is part of the problem',
+      'Side-return extensions whose waste joins existing runs',
+      'Loft bathrooms added with no resizing of the heating',
+      'Moved kitchens that took the boiler with them and lengthened the pipes',
+      'Terraces on shared stacks where next door is part of the cause',
     ],
     nearby: ['dulwich', 'peckham', 'camberwell'],
   },
@@ -860,16 +860,16 @@ export const areas: Area[] = [
     kd: 10,
     metaTitle: 'Plumber in Leytonstone | E11 Boiler Repair | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Leytonstone and E11. Boiler repair, blocked drains and bathroom installation. Emergency callouts. Call 020 3576 5825.',
+      'Plumbing in Leytonstone and E11 from Ninja Plumbers. We repair boilers, unblock drains and install bathrooms. Emergency callouts. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers covers terraces, conversions and the newer flats around the station across Leytonstone and E11.',
+      'Across Leytonstone and E11, Ninja Plumbers works in terraces, conversions and the newer flats near the station.',
     character:
-      'Leytonstone is largely Victorian and Edwardian terraced, with a strong recent history of extension and conversion as the area has filled up. The work that follows from that is fairly predictable: waste added for new kitchens and bathrooms, boilers moved during extensions with the pipework lengthened rather than properly renewed, and condensate runs put outside where they freeze solid on the first hard frost of the year.',
+      'Leytonstone is mainly Victorian and Edwardian terracing, and it has seen a great deal of recent extension and conversion as the area filled up. The resulting work is fairly easy to predict. Waste gets added for new kitchens and bathrooms. Boilers are moved during extensions, and the pipes are lengthened instead of properly renewed. Condensate pipes get run outside, where the first hard frost of winter freezes them solid.',
     common: [
-      'Condensate pipes run externally during extension work and freezing in winter',
-      'Boilers relocated during kitchen extensions with extended pipework',
-      'Terraces converted into upper and lower flats sharing drainage',
-      'Bathrooms added where the original waste run was not designed for them',
+      'Condensate pipes run outside during extensions that freeze in winter',
+      'Boilers moved during kitchen extensions with lengthened pipework',
+      'Terraces split into upper and lower flats sharing drains',
+      'New bathrooms on waste runs that were never built to take them',
     ],
     nearby: ['leyton', 'walthamstow', 'stratford'],
   },
@@ -882,16 +882,16 @@ export const areas: Area[] = [
     kd: 12,
     metaTitle: 'Plumber in Leyton | E10 Shared Houses | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Leyton and E10. Boiler repair, blocked drains and bathroom installation for houses and shared flats. Call 020 3576 5825.',
+      'Plumbers for Leyton and E10. Ninja Plumbers repairs boilers, clears drains and installs bathrooms in houses and shared flats. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers covers terraces, shared houses and converted flats across Leyton and E10, most of it dense Victorian terracing.',
+      'In Leyton and E10 our work is in terraces, shared houses and converted flats, and most of the area is tightly packed Victorian terracing.',
     character:
-      'Leyton is dense Victorian terracing with a high proportion of shared houses and flat conversions, and drainage that was laid for a fraction of the occupancy it now carries. Where a house has been split, the second and third bathroom are usually hung off a stack sized for just one, which is fine until several people are up and using it at once. Rear extensions have added waste runs of varying quality on top of that, not all of them done to the same standard.',
+      'Leyton is closely built Victorian terracing with many shared houses and flat conversions, and drains laid for far fewer people than now use them. In a split house, the second and third bathrooms usually hang off a stack meant for one. That works until several people use it at the same time. On top of this, rear extensions have added waste runs of mixed quality, and not all of them were built to the same standard.',
     common: [
-      'Extra bathrooms discharging into a stack sized for one household',
-      'Shared houses where the person reporting the fault is not the person causing it',
-      'Rear extensions with waste added at marginal falls',
-      'Original pipework surviving behind more recent work',
+      'Added bathrooms emptying into a stack built for one household',
+      'Faults reported by one tenant in a shared house but caused by another',
+      'Rear extensions with waste laid at borderline falls',
+      'Old pipework still in place behind newer work',
     ],
     nearby: ['leytonstone', 'walthamstow', 'hackney'],
   },
@@ -904,16 +904,16 @@ export const areas: Area[] = [
     kd: 4,
     metaTitle: 'Plumber in Hampstead | NW3 Period Homes | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Hampstead and NW3. Boiler repair and servicing, blocked drains and bathroom installation. Call 020 3576 5825.',
+      'Plumbing in Hampstead and NW3 from Ninja Plumbers. We repair and service boilers, clear blocked drains and install bathrooms. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers covers period houses, mansion flats and converted property across Hampstead and NW3.',
+      'In Hampstead and NW3, Ninja Plumbers works in period houses, mansion flats and converted homes.',
     character:
-      'Hampstead has one of the highest concentrations of listed and conservation-area property in London, and it also sits on a hill, and both facts matter to the work. Listing constrains where a flue can terminate and what may be run externally, so those questions have to be settled before choosing equipment rather than after. The topography adds tall houses where the top floor sits a long way above the water source, which means pressure complaints that are really about height rather than about the boiler.',
+      'Few places in London have as much listed and conservation-area property as Hampstead, and it is built on a hill too. Both shape the work. Listing limits where a flue can end and what can run on the outside, so those points must be agreed before any equipment is chosen, not afterwards. The slope means tall houses whose top floor is far above the water source, which leads to pressure complaints caused by height rather than by the boiler.',
     common: [
-      'Listed and conservation constraints on flues and external pipework',
-      'Top-floor pressure problems in tall houses on the hill',
-      'Basement conversions relying on pumped drainage',
-      'Period pipework altered by successive owners and rarely recorded',
+      'Listed and conservation limits on flues and outside pipework',
+      'Weak pressure on the top floors of tall hillside houses',
+      'Basement conversions that depend on pumped drainage',
+      'Period pipework changed by owner after owner and seldom recorded',
     ],
     nearby: ['highgate', 'kilburn', 'islington'],
   },
@@ -926,16 +926,16 @@ export const areas: Area[] = [
     kd: 8,
     metaTitle: 'Plumber in Crystal Palace | SE19 High Ground | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Crystal Palace, SE19, Sydenham and Anerley. Boiler repair, blocked drains and bathroom installation. Call 020 3576 5825.',
+      'Plumbers for Crystal Palace, SE19, Sydenham and Anerley. Ninja Plumbers repairs boilers, clears blocked drains and installs bathrooms. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers covers Crystal Palace, SE19 and the streets running down towards Sydenham and Anerley, most of it built on a steep slope.',
+      'Ninja Plumbers works across Crystal Palace, SE19 and the streets that drop down to Sydenham and Anerley, nearly all of it on a steep slope.',
     character:
-      'Crystal Palace sits on one of the highest points in south London, and the ground falls away sharply in every direction from it. Large Victorian houses run down those slopes, most of them now divided into flats. Height above the mains and height between storeys both work against water pressure here, which is exactly why pumped and pressurised systems are so common. The area also straddles five different boroughs, which matters more for working out who is responsible for a drain than it does for the plumbing itself.',
+      'Crystal Palace stands on one of the highest spots in south London, and the land drops steeply on every side. Big Victorian houses line those slopes, and most are now flats. Both the height above the mains and the height between floors work against water pressure, which is why pumped and pressurised systems are so common. The area also spans five boroughs. That matters more when deciding who is responsible for a drain than it does for the plumbing itself.',
     common: [
-      'Weak pressure at the top of tall houses on high ground',
-      'Pumped and pressurised systems fitted to compensate',
-      'Steeply sloping plots where drainage falls were improvised',
-      'Large houses divided into flats on the original stack',
+      'Low top-floor pressure in tall houses on the high ground',
+      'Pressurised and pumped systems fitted to make up for it',
+      'Steep plots where drain falls were improvised',
+      'Big houses split into flats still draining into the original stack',
     ],
     nearby: ['sydenham', 'streatham', 'bromley'],
   },
@@ -948,16 +948,16 @@ export const areas: Area[] = [
     kd: 13,
     metaTitle: 'Plumber in Catford | SE6 Drainage | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Catford and SE6. Blocked drains, boiler repair and bathroom installation. Emergency callout. Call 020 3576 5825.',
+      'Plumbing in Catford and SE6 from Ninja Plumbers. We clear blocked drains, repair boilers and install bathrooms. Emergency callout. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers covers terraces, estate property and converted flats across Catford and SE6, and drainage is usually the first thing people call about.',
+      'Across Catford and SE6 we work in terraces, estate homes and converted flats, and drains are usually the reason people first ring us.',
     character:
-      'Catford is Victorian and Edwardian terraces alongside substantial post-war estate housing, with the River Ravensbourne running through it, which is worth knowing because parts of the area have a genuine surface water and flooding history rather than a theoretical one. Low-lying property here is more exposed to drainage backing up in heavy rain than most of London manages to be, and that changes what an overflowing gully actually means when you see one.',
+      'Catford has Victorian and Edwardian terraces next to large post-war estates, and the River Ravensbourne runs through it. That matters, because parts of the area have a real history of surface water and flooding, not just a theoretical risk. Low-lying homes here are more likely than most in London to have drains back up in heavy rain, and that changes what an overflowing gully is really telling you when you see one.',
     common: [
-      'Surface water and drainage backing up in heavy rain on low-lying streets',
-      'Estate property with communal risers and shared supply',
-      'Victorian terraces on ageing original drainage',
-      'Conversions where several flats share one stack',
+      'Drains and surface water backing up during heavy rain on the low-lying streets',
+      'Estate homes with shared supply and communal risers',
+      'Victorian terraces on old original drains',
+      'Conversions with several flats on one stack',
     ],
     nearby: ['lewisham', 'forest-hill', 'bromley'],
   },
@@ -970,16 +970,16 @@ export const areas: Area[] = [
     kd: 9,
     metaTitle: 'Plumber in Canary Wharf | E14 Towers & HIUs | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Canary Wharf and E14. Boiler repair, blocked drains and commercial plumbing in towers and blocks. Call 020 3576 5825.',
+      'Plumbers for Canary Wharf and E14. Ninja Plumbers repairs boilers, clears drains and handles commercial plumbing in towers and blocks. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers covers residential towers, riverside flats and commercial premises across Canary Wharf and E14.',
+      'In Canary Wharf and E14, Ninja Plumbers works in commercial premises, riverside flats and residential towers.',
     character:
-      'Canary Wharf is almost entirely towers and modern blocks, which makes it the least typical plumbing environment we work in across London. Most flats have no boiler at all, since heating and hot water come from a communal network through a heat interface unit, so a loss of hot water is a network question before it is ever a flat question. Everything else follows from the building rather than the individual property: concierge access, booked slots, and isolation that happens at the riser rather than under a sink.',
+      'Nearly everything in Canary Wharf is a tower or a modern block, so it is the least typical place we work anywhere in London. Most flats have no boiler of their own. Their heating and hot water are supplied by a communal network via a heat interface unit, so if the hot water stops, the network is the first question, not the flat. Everything else is set by the building rather than the home: concierge access, booked slots, and isolation at the riser rather than under a sink.',
     common: [
-      'Heat interface units rather than individual boilers in most flats',
-      'Communal networks where several flats lose hot water together',
-      'Concierge and building management access arranged in advance',
-      'Isolation at the riser rather than inside the property',
+      'Most flats running a heat interface unit, not a boiler',
+      'Several flats losing hot water together on a communal network',
+      'Concierge and building management access booked ahead',
+      'Isolation done at the riser, not inside the home',
     ],
     nearby: ['stratford', 'greenwich', 'hackney'],
   },
@@ -992,16 +992,16 @@ export const areas: Area[] = [
     kd: 8,
     metaTitle: 'Plumber in Blackheath | SE3 Heath & Village | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Blackheath, SE3, the heath and the village. Boiler repair and servicing, blocked drains and bathrooms. Call 020 3576 5825.',
+      'Plumbing across Blackheath, SE3, the heath and the village from Ninja Plumbers. Boilers repaired and serviced, drains cleared, bathrooms. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers covers Georgian and Victorian property around the heath and the village across Blackheath and SE3.',
+      'In Blackheath and SE3, Ninja Plumbers works in Georgian and Victorian homes near the village and around the heath.',
     character:
-      'Blackheath has a high concentration of Georgian and early Victorian property, much of it listed and most of the village sitting in a conservation area. That status is the working constraint on most jobs: anything altering the outside of the building, a flue terminal, external pipework, a soil stack, needs establishing before the job starts rather than worked out halfway through. The houses tend to be large and old too, which means long pipe runs and successive layers of alteration that no surviving drawing records.',
+      'Georgian and early Victorian property is plentiful in Blackheath. A lot of it is listed, and most of the village lies in a conservation area. That governs most jobs. Anything that changes the outside of a building, whether a flue terminal, outside pipework or a soil stack, has to be settled before work starts, not sorted out halfway. The houses are also big and old, with long pipe runs and layer on layer of changes that no remaining drawing shows.',
     common: [
-      'Listed and conservation constraints around the village and the heath',
-      'Long pipe runs in large period houses',
-      'Undocumented alterations from successive owners',
-      'Older vented systems and cylinders still in service',
+      'Listed and conservation limits across the heath and the village',
+      'Long pipe runs through big period houses',
+      'Alterations by past owners that nobody recorded',
+      'Vented systems and old cylinders still in daily use',
     ],
     nearby: ['greenwich', 'lewisham', 'eltham'],
   },
@@ -1014,16 +1014,16 @@ export const areas: Area[] = [
     kd: 9,
     metaTitle: 'Plumber in Tottenham | N17 High Road | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Tottenham and N17. Boiler repair, blocked drains and bathroom installation. Emergency callouts. Call 020 3576 5825.',
+      'Plumbers for Tottenham and N17. Ninja Plumbers repairs boilers, clears blocked drains and installs bathrooms. Emergency callouts. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers covers terraces, estate property and converted flats across Tottenham and N17.',
+      'In Tottenham and N17, Ninja Plumbers works in converted flats, estate homes and terraced houses.',
     character:
-      'Tottenham is Victorian and Edwardian terracing with a high proportion converted into flats, alongside significant estate housing and a growing amount of recent development around the High Road. Most of the work is in the conversions: houses divided decades ago, with drainage and heating that were never properly reworked for the split, and a second bathroom added at some later point onto a stack that was never designed to take it.',
+      'Tottenham is mainly terraced, Victorian and Edwardian, with much of it now flats, alongside a lot of estate housing and more and more new building around the High Road. Most of our work is in the conversions. These houses were split decades ago, their drains and heating were never properly reworked for it, and at some point a second bathroom was added to a stack that was not built to take it.',
     common: [
-      'Terraces divided into flats without reworking drainage or heating',
-      'Estate property with communal risers and shared supply',
-      'Second bathrooms added onto stacks sized for one household',
-      'Newer development around the High Road on communal systems',
+      'Terraces split into flats with drains and heating left as they were',
+      'Estate homes with shared supply and communal risers',
+      'Second bathrooms added to stacks sized for one household',
+      'Recent building near the High Road running on communal systems',
     ],
     nearby: ['enfield', 'walthamstow', 'hackney'],
   },
@@ -1036,16 +1036,16 @@ export const areas: Area[] = [
     kd: 15,
     metaTitle: 'Plumber in Stratford | E15 & E20 Callouts | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Stratford, E15 and E20. Boiler repair, blocked drains and bathroom installation. Emergency callouts. Call 020 3576 5825.',
+      'Plumbing in Stratford, E15 and E20 from Ninja Plumbers. We repair boilers, unblock drains and install bathrooms. Emergency callouts. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers covers older terraces and the newer blocks around the park across Stratford, E15 and E20.',
+      'Across Stratford, E15 and E20, Ninja Plumbers works in older terraces and the newer blocks near the park.',
     character:
-      'Stratford splits sharply between the older housing in E15 and the post-Olympic development in E20, and they are genuinely different jobs. The older terraces and estate property behave much like the rest of east London: ageing pipework, conversions, shared stacks. The newer blocks, on the other hand, run communal heat networks with a heat interface unit in each flat, managed access, and faults that frequently sit in the building rather than in any one property.',
+      'Stratford divides sharply between older homes in E15 and the post-Olympic building in E20, and the two are really different jobs. The older terraces and estate homes behave like much of east London, with ageing pipes, conversions and shared stacks. In the newer blocks, heating comes from a communal heat network, each flat has its own heat interface unit, access is managed, and faults often lie in the building rather than in a single home.',
     common: [
-      'Heat interface units in the newer E20 blocks rather than boilers',
-      'Communal heat networks where several flats are affected together',
-      'Older E15 terraces and estate property on ageing pipework',
-      'Building management access in the newer developments',
+      'Heat interface units instead of boilers in the newer E20 blocks',
+      'Communal heat networks where several flats are hit at once',
+      'Older E15 terraces and estate homes on ageing pipes',
+      'Access arranged through building management in the new developments',
     ],
     nearby: ['canary-wharf', 'leyton', 'hackney'],
   },
@@ -1058,16 +1058,16 @@ export const areas: Area[] = [
     kd: 11,
     metaTitle: 'Plumber in Southwark | SE1 Bankside | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Southwark, SE1 and Bankside. Boiler repair, blocked drains and commercial plumbing. Call 020 3576 5825.',
+      'Southwark, SE1 and Bankside plumbers. Ninja Plumbers repairs boilers, clears drains and handles commercial plumbing. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers covers warehouse conversions, estate property and commercial premises across Southwark and SE1.',
+      'In Southwark and SE1, Ninja Plumbers works in commercial premises, estate homes and warehouse conversions.',
     character:
-      'Southwark and Bankside are an unusual mix: converted warehouses and wharf buildings, large estates, and a dense concentration of commercial property, often within a few streets of each other. The warehouse conversions are the distinctive part of the area, being deep-plan buildings where a flat can sit a long way from any external wall, which constrains flue routing and often means long service runs to reach it. Much of the commercial work has to happen outside trading hours, whatever the job.',
+      'Southwark and Bankside are an odd mix. Old warehouses and wharf buildings turned into flats often sit within a few streets of big estates and a dense cluster of commercial property. The warehouse conversions stand out. They are deep-plan buildings where a flat may be far from any outside wall, which limits flue routes and often means long service runs to reach it. Much of the commercial work must be done outside trading hours, whatever the job.',
     common: [
-      'Warehouse conversions where flats sit far from any external wall',
-      'Constrained flue routing in deep-plan converted buildings',
-      'Estate property with communal risers',
-      'Commercial premises needing out-of-hours attendance',
+      'Converted warehouses with flats far from any outside wall',
+      'Limited flue routes in deep-plan converted buildings',
+      'Estate homes with communal risers',
+      'Commercial premises that need out-of-hours visits',
     ],
     nearby: ['westminster', 'camberwell', 'peckham'],
   },
@@ -1080,16 +1080,16 @@ export const areas: Area[] = [
     kd: 8,
     metaTitle: 'Plumber in Kilburn | NW6 Conversions | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Kilburn and NW6. Boiler repair, blocked drains and bathroom installation in converted flats. Call 020 3576 5825.',
+      'Plumbing in Kilburn and NW6 from Ninja Plumbers. We repair boilers, clear blocked drains and install bathrooms in converted flats. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers covers converted flats, mansion blocks and terraced property across Kilburn and NW6.',
+      'In Kilburn and NW6, Ninja Plumbers works in converted flats, mansion blocks and terraced houses.',
     character:
-      'Kilburn is large Victorian and Edwardian houses, the great majority converted into flats a long time ago, with mansion blocks lining the main roads. Both share the same underlying issue: a building designed for one household now running several, on original stacks and often with heating that was split up rather than properly replaced. Boilers here tend to sit in whatever cupboard the original conversion allowed, rather than one chosen with servicing in mind.',
+      'Kilburn is big Victorian and Edwardian houses, nearly all turned into flats long ago, while mansion blocks line the main roads. Both have the same root issue. A building meant for one household now serves several, on the original stacks, often with heating that was divided up instead of properly replaced. Boilers usually sit in whatever cupboard the first conversion left free, not in one picked with servicing in mind.',
     common: [
-      'Houses converted into flats on the original stack and supply',
-      'Mansion blocks with communal risers and tanks',
-      'Boilers in conversion cupboards with poor servicing access',
-      'Heating systems split between flats rather than replaced',
+      'Houses split into flats still on the original stack and supply',
+      'Shared tanks and communal risers in mansion blocks',
+      'Boilers in conversion cupboards that are hard to service',
+      'Heating divided between flats instead of replaced',
     ],
     nearby: ['hampstead', 'muswell-hill', 'acton'],
   },
@@ -1102,16 +1102,16 @@ export const areas: Area[] = [
     kd: 15,
     metaTitle: 'Plumber in Highgate | N6 Period Houses | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Highgate and N6. Boiler repair and servicing, blocked drains and bathroom installation. Call 020 3576 5825.',
+      'Plumbers for Highgate and N6. Ninja Plumbers repairs and services boilers, unblocks drains and installs bathrooms. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers covers period houses on the hill and converted flats below it across Highgate and N6.',
+      'In Highgate and N6, Ninja Plumbers works in period houses up on the hill and converted flats further down.',
     character:
-      'Highgate is period property on one of the steepest hills in London, with a large conservation area and a great deal of listed stock around the village. The two constraints compound each other: listing limits what can be run or terminated externally, while the topography means tall houses where the top floor has very little head of water above it. Pressure complaints here are usually a matter of geometry rather than equipment, and no boiler upgrade on its own will fix that.',
+      'Highgate is period housing on a hill as steep as any in London, with a big conservation area and plenty of listed buildings around the village. The two limits add up. Listing restricts what can run or end on the outside, and the slope gives tall houses whose top floor has hardly any head of water above it. Pressure complaints here are usually down to geometry, not equipment, and a new boiler alone will not solve them.',
     common: [
-      'Listed and conservation constraints around the village',
-      'Top-floor pressure limited by height rather than by the boiler',
-      'Large period houses with long pipe runs and layered alterations',
-      'Conversions sharing original stacks',
+      'Listed and conservation limits around the village',
+      'Top-floor pressure held back by height, not the boiler',
+      'Big period houses with long pipe runs and layers of changes',
+      'Conversions sharing the original stacks',
     ],
     nearby: ['hampstead', 'muswell-hill', 'islington'],
   },
@@ -1124,16 +1124,16 @@ export const areas: Area[] = [
     kd: 7,
     metaTitle: 'Plumber in Finchley | N3 & N12 Boiler Repair | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Finchley, N3 and N12. Boiler repair and servicing, blocked drains and bathroom installation. Call 020 3576 5825.',
+      'Plumbing in Finchley, N3 and N12 from Ninja Plumbers. We repair and service boilers, clear blocked drains and install bathrooms. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers covers suburban family houses and converted flats across Finchley, N3 and N12.',
+      'In Finchley, N3 and N12, Ninja Plumbers works in converted flats and suburban family houses.',
     character:
-      'Finchley is predominantly interwar suburban housing, semis and detached family homes on reasonable plots, most of them still whole rather than split into flats. The recurring work follows on from that: heating systems sized for the house as it was originally built, then asked to cover a loft conversion and a rear extension added since, plus long external drain runs where a blockage is rarely anywhere near the house itself.',
+      'Finchley is mostly interwar suburbia: semis and detached family houses on fair-sized plots, most still single homes rather than flats. The regular work follows from that. Heating was sized for the house as first built, then asked to cope with a loft conversion and rear extension added later. Outside drain runs are long too, and a blockage is seldom anywhere close to the house.',
     common: [
-      'Loft conversions and extensions added without resizing the system',
-      'Interwar semis on their second or third boiler',
-      'Long external drain runs across suburban plots',
-      'Older cylinders and vented systems still in service',
+      'Extensions and loft conversions added with no resizing of the system',
+      'Interwar semis now on their second or third boiler',
+      'Long outside drain runs over suburban plots',
+      'Old cylinders and vented systems that are still running',
     ],
     nearby: ['barnet', 'muswell-hill', 'highgate'],
   },
@@ -1146,16 +1146,16 @@ export const areas: Area[] = [
     kd: 16,
     metaTitle: 'Plumber in Chingford | E4 Epping Forest | Ninja Plumbers',
     metaDescription:
-      'Ninja Plumbers covers Chingford and E4. Boiler repair and servicing, blocked drains and bathroom installation. Call 020 3576 5825.',
+      'Plumbers for Chingford and E4. Ninja Plumbers repairs and services boilers, clears blocked drains and installs bathrooms. Call 020 3576 5825.',
     intro:
-      'Ninja Plumbers covers suburban houses on the edge of Epping Forest across Chingford and E4.',
+      'In Chingford and E4, out on the edge of Epping Forest, Ninja Plumbers works in suburban homes.',
     character:
-      'Chingford is suburban family housing on the northern edge of London, backing onto Epping Forest. Plots are larger than inner London and the housing is mostly interwar and post-war, still in single occupation rather than converted. That combination brings long external drain runs, mature trees close to older clay drainage where root ingress is a genuine recurring cause rather than an occasional one, and unheated garages and outbuildings where pipes freeze the first time it turns properly cold.',
+      'Chingford is family suburbia at the northern edge of London, next to Epping Forest. Plots are bigger than in inner London, and most homes are interwar or post-war and still lived in by one household rather than split. That brings long outside drain runs, mature trees near old clay drains, where roots getting in is a regular cause rather than a rare one, and cold garages and outbuildings where pipes freeze the first time real cold arrives.',
     common: [
-      'Root ingress into older clay drainage near mature trees',
-      'Long external drain runs across larger plots',
-      'Burst pipes in unheated garages and outbuildings after a freeze',
-      'Interwar and post-war heating systems extended over the years',
+      'Roots getting into old clay drains near mature trees',
+      'Long outside drain runs across bigger plots',
+      'Pipes bursting in cold garages and outbuildings after a freeze',
+      'Heating in interwar and post-war homes, added to bit by bit',
     ],
     nearby: ['walthamstow', 'enfield', 'leyton'],
   },

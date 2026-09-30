@@ -65,22 +65,22 @@ const sections = [
   },
   {
     heading: 'What affects the price',
-    body: 'We agree the price before any work starts, and it depends on the job. For a repair, the main factors are the part that has failed, whether it is in stock for your make and model, and how easy the boiler is to reach. For a replacement, it is the type and size of boiler your home needs, whether it goes in the same place, any changes to the flue, gas pipe or condensate route, and whether the system needs flushing first. Telling us the make, model and any fault code when you get in touch helps us give you a clearer idea from the start.',
+    body: 'We agree the price before any work starts, and it depends on the job. For a repair, the main factors are the part that has failed, whether it is in stock for your make and model, and how easy the boiler is to reach. For a replacement, it is the type and size of boiler your home needs, whether it goes in the same place, any changes to the flue, gas pipe or condensate route, and whether the system needs flushing first. If you give us the make and model, plus any fault code, when you first get in touch, we can give you a clearer idea from the start.',
   },
 ];
 
 const faqs = [
   {
-    q: 'Do you work on every boiler make?',
-    a: 'We do. Any Gas Safe registered engineer is legally entitled to work on any make of gas boiler — if a brand is no longer sold new, the badge isn’t the issue, getting hold of parts is.',
+    q: 'Will you work on any make of boiler?',
+    a: 'Yes. The law allows any Gas Safe registered engineer to work on any make of gas boiler. When a brand is no longer sold new, the badge is not the problem; finding parts is.',
   },
   {
-    q: 'Are you an approved installer for any manufacturer?',
-    a: 'We do not claim manufacturer accreditation. Gas work is carried out by Gas Safe registered engineers, which is the legal requirement, and we would rather state what we hold than imply something we do not.',
+    q: 'Are you approved by any boiler manufacturer?',
+    a: 'We make no claim to manufacturer accreditation. Our gas work is done by Gas Safe registered engineers, which is what the law requires, and we would sooner tell you what we hold than hint at something we do not.',
   },
   {
-    q: 'How often should a boiler be serviced?',
-    a: 'Once a year. Most manufacturers make an annual service a condition of the warranty, and it is the point where worn seals, a blocked condensate trap or a failing part get picked up before they stop the boiler in winter.',
+    q: 'How often does a boiler need servicing?',
+    a: 'Every year. For most manufacturers an annual service is a warranty condition, and it is when worn seals, a blocked condensate trap or a part on its way out get spotted before they stop the boiler in winter.',
   },
   {
     q: 'My boiler is still under the manufacturer’s warranty. Should I call you?',
@@ -119,14 +119,14 @@ const hubSchema = {
   <HeroWithForm
     eyebrow="Heating and hot water"
     h1="Boiler and gas engineers in London"
-    intro="Whatever the make and whatever the problem, our Gas Safe registered engineers repair, service, install and replace gas boilers across London. Every engineer is directly employed, DBS-checked and insured, and you get a price before any work starts. Pick what is happening from the list below, or send us the make, model and any fault code and we will tell you what is likely wrong before anyone sets off."
+    intro="Whatever the make and whatever the problem, our Gas Safe registered engineers repair, service, install and replace gas boilers across London. Every engineer is directly employed, DBS-checked and insured, and you get a price before any work starts. Pick what is happening from the list below, or send the make, model and fault code, if there is one, and we will tell you the likely problem before anyone sets off."
     breadcrumb={crumbs}
     bullets={[
-      'Gas Safe registered and fully insured',
-      'DBS-checked engineers',
-      'Emergency callout available 24/7',
-      'Price agreed before work starts',
-      'Workmanship guaranteed',
+      'Fully insured and Gas Safe registered',
+      'Engineers who are DBS-checked',
+      '24/7 emergency callouts on offer',
+      'You agree the price before we start',
+      'Our workmanship is guaranteed',
     ]}
     formHeading="Tell us about the boiler"
   />
@@ -151,11 +151,11 @@ const hubSchema = {
 
   <section class="section section-alt">
     <div class="container">
-      <span class="eyebrow">What you need</span>
-      <h2>Four different jobs</h2>
+      <span class="eyebrow">Choose the job</span>
+      <h2>Four separate jobs</h2>
       <p class="measure">
-        Each of these is a different job with a different answer, which is why we've kept them
-        on separate pages instead of lumping them together.
+        Each job has its own answer, so we give each one a page of its own rather than
+        grouping them together.
       </p>
       <ul class="grid grid-2 card-grid">
         {boilerServices.map((s) => (
@@ -184,11 +184,11 @@ const hubSchema = {
 
   <section class="section section-alt">
     <div class="container">
-      <span class="eyebrow">Brands</span>
-      <h2>Makes we work on</h2>
+      <span class="eyebrow">Boiler makes</span>
+      <h2>The makes we cover</h2>
       <p class="measure">
-        A Gas Safe registered engineer can legally work on any make out there. The pages below
-        set out what's typical of each brand and the faults that tend to show up on it.
+        The law lets any Gas Safe registered engineer work on every make. Each page below
+        explains what is typical of that brand and which faults tend to appear.
       </p>
       <ul class="combo-links">
         {active.map((b) => (
@@ -196,10 +196,10 @@ const hubSchema = {
         ))}
       </ul>
 
-      <h3>Legacy and transitioning brands</h3>
+      <h3>Brands that are legacy or transitioning</h3>
       <p class="measure">
-        Still widely installed, but not straightforwardly available new. We service and repair
-        these and advise on what replaces them.
+        Plenty are still fitted in homes, though buying one new is not simple. We service and
+        repair them and advise on the right replacement.
       </p>
       <ul class="combo-links">
         {legacy.map((b) => (
@@ -211,8 +211,8 @@ const hubSchema = {
 
   <section class="section">
     <div class="container measure-wide">
-      <span class="eyebrow">Questions</span>
-      <h2>Before you call</h2>
+      <span class="eyebrow">FAQs</span>
+      <h2>Things to know before calling</h2>
       <div class="faqs">
         {faqs.map((f) => (
           <details class="faq">
@@ -232,17 +232,17 @@ const hubSchema = {
 
   <section class="section section-navy">
     <div class="container center measure-wide">
-      <h2>Boiler playing up?</h2>
+      <h2>Trouble with your boiler?</h2>
       <p>
-        Message Ninja Plumbers the make, model and any fault code showing on the display, and
-        we can often work out what's likely wrong before an engineer even leaves the office.
+        Send Ninja Plumbers the make, the model and whatever fault code is on the display.
+        Often we can work out the likely cause before an engineer has left the office.
       </p>
       <div class="cta-row center-row">
         <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">
           <PhoneIcon /> Call {site.booking.display}
         </a>
         <a href={site.whatsapp.url} class="btn btn-outline btn-lg" target="_blank" rel="noopener">
-          <WhatsAppIcon /> WhatsApp us
+          <WhatsAppIcon /> Message us on WhatsApp
         </a>
       </div>
     </div>

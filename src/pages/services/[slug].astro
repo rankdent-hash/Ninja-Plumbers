@@ -132,10 +132,10 @@ const electricalRegistered = site.electricalRegistration?.scheme
 // certification that refrigerant work needs; electrical drops Gas Safe,
 // which says nothing about electrical work.
 const heroBullets = service.slug.startsWith('air-conditioning-')
-  ? ['F-Gas certified for refrigerant work', 'Fully insured, DBS-checked engineers', 'Price agreed before work starts', 'Workmanship guaranteed']
+  ? ['Refrigerant work by F-Gas certified engineers', 'Engineers DBS-checked and fully insured', 'Price agreed before we start', 'Workmanship guaranteed']
   : currentGroup?.slug === 'electrical'
-    ? [electricalRegistered, 'Fully insured, DBS-checked engineers', 'Emergency callout available 24/7', 'Price agreed before work starts', 'Workmanship guaranteed']
-    : ['Gas Safe registered and fully insured', 'DBS-checked engineers', 'Emergency callout available 24/7', 'Price agreed before work starts', 'Workmanship guaranteed'];
+    ? [electricalRegistered, 'Engineers DBS-checked and fully insured', '24/7 emergency callouts', 'Price agreed before we start', 'Workmanship guaranteed']
+    : ['Fully insured and Gas Safe registered', 'Engineers DBS-checked', '24/7 emergency callouts', 'Price agreed before we start', 'Workmanship guaranteed'];
 const crumbs = [
   { label: 'Home', href: '/' },
   { label: 'Services', href: '/services' },
@@ -187,13 +187,13 @@ const serviceSchema = {
   <section class="section">
     <div class="container service-row">
       <div class="service-copy">
-        <span class="eyebrow">What we cover</span>
-        <h2>What this includes</h2>
+        <span class="eyebrow">The work</span>
+        <h2>Included in the job</h2>
         <ul class="ticks">
           {service.does.map((d) => <li><Tick /> {d}</li>)}
         </ul>
         <div class="cta-row">
-          <a href="/contact#enquiry" class="btn btn-navy">Send us the details</a>
+          <a href="/contact#enquiry" class="btn btn-navy">Tell us what you need</a>
         </div>
       </div>
       <aside class="service-aside">
@@ -203,12 +203,12 @@ const serviceSchema = {
               src="/images/services/emergency-plumbing-burst-pipe-callout.png"
               width="900"
               height="675"
-              alt="Illustration of a burst pipe spraying water beside a 24/7 callout badge, representing Ninja Plumbers' round-the-clock emergency plumbing service in London"
-              title="24/7 emergency plumbing callout — Ninja Plumbers"
+              alt="Drawing of water spraying from a burst pipe next to a 24/7 callout badge, standing for the Ninja Plumbers emergency plumbing service that runs round the clock in London"
+              title="Ninja Plumbers: emergency plumbing callouts, 24/7"
               loading="lazy"
               decoding="async"
             />
-            <figcaption>Round-the-clock callout for burst pipes and major leaks across London.</figcaption>
+            <figcaption>Callouts for major leaks and burst pipes anywhere in London, day or night.</figcaption>
           </figure>
         )}
         {service.slug === 'general-plumbing' && (
@@ -237,9 +237,9 @@ const serviceSchema = {
                   </svg>
                 </div>
               </div>
-              <p class="gp-message"><strong>Taps, toilets, radiators and pipework.</strong> The everyday jobs that never quite get done.</p>
+              <p class="gp-message"><strong>Pipework, radiators, toilets and taps.</strong> The small household jobs that keep getting put off.</p>
             </div>
-            <figcaption>Small jobs quoted like large ones — often fixed on the first visit.</figcaption>
+            <figcaption>Small jobs get a proper quote too, and are often sorted in a single visit.</figcaption>
           </figure>
         )}
         {service.slug === 'boiler-repair' && (
@@ -262,14 +262,14 @@ const serviceSchema = {
                 </div>
               </div>
               <p class="br-message">
-                <strong>Diagnosed before we quote.</strong>
-                Repair or replace, you get both numbers — and you decide.
+                <strong>We find the fault, then quote.</strong>
+                You see a repair price and a replacement price, and the choice is yours.
               </p>
               <a class="br-call" href={`tel:${primaryTel.tel}`}>
                 <PhoneIcon /> Call {primaryTel.display}
               </a>
             </div>
-            <figcaption>No heat, no hot water, or a boiler locked out on a fault code.</figcaption>
+            <figcaption>A boiler locked out on a fault code, or no heating or hot water.</figcaption>
           </figure>
         )}
         <div class="icon"><ServiceIcon name={service.icon} /></div>
@@ -282,8 +282,8 @@ const serviceSchema = {
   {service.spaces && (
     <section class="section">
       <div class="container">
-        <span class="eyebrow">Types of premises</span>
-        <h2>The spaces we work in</h2>
+        <span class="eyebrow">Where we work</span>
+        <h2>Premises we look after</h2>
         <div class="guidance">
           {service.spaces.map((s) => (
             <div class="guidance-item">
@@ -298,9 +298,9 @@ const serviceSchema = {
 
   <section class="section section-alt">
     <div class="container">
-      <span class="eyebrow">Before you call</span>
-      <h2>Worth knowing first</h2>
-      <p class="measure">A little of this might mean you do not need to call us at all — we would still rather you knew it.</p>
+      <span class="eyebrow">Good to know</span>
+      <h2>Read this before you ring</h2>
+      <p class="measure">You may find you can sort some of this yourself, without calling us. We are fine with that, and would rather you knew it.</p>
       <div class="guidance">
         {service.guidance.map((g) => (
           <div class="guidance-item">
@@ -315,7 +315,7 @@ const serviceSchema = {
   {extra?.haveReady && (
     <section class="section">
       <div class="container measure-wide">
-        <span class="eyebrow">When you ring</span>
+        <span class="eyebrow">Calling us</span>
         <h2>{extra.haveReady.heading}</h2>
         <ul class="ticks">
           {extra.haveReady.items.map((item) => <li><Tick /> {item}</li>)}
@@ -327,8 +327,8 @@ const serviceSchema = {
   {extra?.price && (
     <section class={extra.haveReady ? 'section section-alt' : 'section'}>
       <div class="container">
-        <span class="eyebrow">Pricing</span>
-        <h2>What affects the price</h2>
+        <span class="eyebrow">Cost</span>
+        <h2>What changes the price</h2>
         <p class="measure">{extra.price.intro}</p>
         <div class="guidance">
           {extra.price.factors.map((f) => (
@@ -338,15 +338,15 @@ const serviceSchema = {
             </div>
           ))}
         </div>
-        <p class="measure price-terms">The price is agreed before any work starts. We take card and cash.</p>
+        <p class="measure price-terms">We agree the price with you before any work begins, and accept both card and cash.</p>
       </div>
     </section>
   )}
 
   <section class={extra?.price && !extra.haveReady ? 'section section-alt' : 'section'}>
     <div class="container measure-wide">
-      <span class="eyebrow">Questions</span>
-      <h2>Common questions</h2>
+      <span class="eyebrow">Your questions</span>
+      <h2>Questions we often get</h2>
       <div class="faqs">
         {allFaqs.map((f) => (
           <details class="faq">
@@ -361,9 +361,9 @@ const serviceSchema = {
   {localPages.length > 0 && (
     <section class="section section-alt">
       <div class="container">
-        <span class="eyebrow">By area</span>
-        <h2>{label} near you</h2>
-        <p class="measure">Local pages for the areas where this comes up most.</p>
+        <span class="eyebrow">Local pages</span>
+        <h2>{label} in your area</h2>
+        <p class="measure">Pages for the parts of London where we are asked for this most often.</p>
         <ul class="combo-links">
           {localPages.map((c) => {
             const a = allAreas.find((x) => x.slug === c.area)!;
@@ -377,10 +377,10 @@ const serviceSchema = {
   {relatedAppliances.length > 0 && (
     <section class="section">
       <div class="container">
-        <span class="eyebrow">Fitted and serviced</span>
-        <h2>Related appliance work</h2>
+        <span class="eyebrow">Appliances</span>
+        <h2>Appliance jobs linked to this service</h2>
         <p class="measure">
-          These installations sit under this service, and each has its own page covering what is involved.
+          Each of these installations falls under this service, with a page of its own explaining the work.
         </p>
         <ul class="grid grid-3 card-grid">
           {relatedAppliances.map((a) => (
@@ -389,7 +389,7 @@ const serviceSchema = {
               <h3><a href={`/appliances/${a.slug}`} class="card-title-link">{a.title}</a></h3>
               <p>{a.summary}</p>
               <a href={`/appliances/${a.slug}`} class="card-link">
-                More on {a.title.toLowerCase()} <span aria-hidden="true">&rarr;</span>
+                Read about {a.title.toLowerCase()} <span aria-hidden="true">&rarr;</span>
               </a>
             </li>
           ))}
@@ -400,8 +400,8 @@ const serviceSchema = {
 
   <section class="section">
     <div class="container">
-      <span class="eyebrow">Other services</span>
-      <h2>{othersInGroup ? `More ${currentGroup.label.toLowerCase().replace(/^bathrooms$/, 'bathroom')} work we take on` : 'Other work we take on'}</h2>
+      <span class="eyebrow">Related services</span>
+      <h2>{othersInGroup ? `Other ${currentGroup.label.toLowerCase().replace(/^bathrooms$/, 'bathroom')} jobs we do` : 'Other jobs we do'}</h2>
       <ul class="grid grid-3 card-grid">
         {others.map((s) => (
           <li class="card">
@@ -409,39 +409,39 @@ const serviceSchema = {
             <h3>{s.title}</h3>
             <p>{s.summary}</p>
             <a href={`/services/${s.slug}`} class="card-link">
-              More on {s.title} <span aria-hidden="true">&rarr;</span>
+              Read about {s.title} <span aria-hidden="true">&rarr;</span>
             </a>
           </li>
         ))}
       </ul>
       {sectorMentions.length > 0 && (
         <p class="measure">
-          We also do {lowerTitle(service.title)} for businesses, including {sectorMentions.map((sc, i) => (
+          Businesses use us for {lowerTitle(service.title)} too, among them {sectorMentions.map((sc, i) => (
             <>{i > 0 && (i === sectorMentions.length - 1 && !moreMentions ? ' and ' : ', ')}<a href={`/commercial/${sc.slug}`}>{sc.name.replace('&', 'and').toLowerCase()}</a></>
-          ))}{moreMentions && <>, and <a href="/services/commercial-plumbing">many other kinds of business</a></>}.
+          ))}{moreMentions && <>, and <a href="/services/commercial-plumbing">plenty of other business types</a></>}.
         </p>
       )}
       {relatedDamp.length > 0 && (
         <p class="measure">
-          Not sure whether it is a leak or damp? A slow leak often looks like damp, and the reverse.
-          See {relatedDamp.map((d, i) => (
+          Leak or damp? A slow leak can look just like damp, and damp can pass for a leak.
+          Read {relatedDamp.map((d, i) => (
             <>{i > 0 && (i === relatedDamp.length - 1 ? ' and ' : ', ')}<a href={`/damp/${d.slug}`}>{d.title.toLowerCase()}</a></>
-          ))}, or our <a href="/damp">damp and condensation</a> page.
+          ))}, or go to our <a href="/damp">damp and condensation</a> page.
         </p>
       )}
-      <p class="all-services-link"><a href="/services">See every service we offer <span aria-hidden="true">&rarr;</span></a></p>
+      <p class="all-services-link"><a href="/services">Browse all our services <span aria-hidden="true">&rarr;</span></a></p>
     </div>
   </section>
 
   {sectorGroups.length > 0 && (
     <section class="section section-alt">
       <div class="container">
-        <span class="eyebrow">Businesses we work for</span>
-        <h2>Plumbing for small businesses</h2>
+        <span class="eyebrow">Our business customers</span>
+        <h2>Small business plumbing</h2>
         <p class="measure">
-          Most small premises have plumbing much like a home, just used harder and with less room
-          for it to be out of action. Pick your type of business to see what we do for premises like yours,
-          or see <a href="/services/commercial-washroom-refurbishment">commercial washroom refurbishment</a> for toilet and changing-room refits.
+          The plumbing in most small premises is much like a home&rsquo;s, only it works harder and can
+          less afford to be out of action. Choose your type of business to see what we do for places like yours.
+          For toilet and changing-room refits, see <a href="/services/commercial-washroom-refurbishment">commercial washroom refurbishment</a>.
         </p>
         <div class="sector-groups">
           {sectorGroups.map((g) => (
@@ -467,8 +467,8 @@ const serviceSchema = {
   {relatedPosts.length > 0 && (
     <section class="section section-alt">
       <div class="container">
-        <span class="eyebrow">From the blog</span>
-        <h2>Related advice</h2>
+        <span class="eyebrow">Our blog</span>
+        <h2>Advice on this topic</h2>
         <ul class="combo-links">
           {relatedPosts.map((p) => (
             <li><a href={`/blog/${p.slug}`}>{p.title}</a></li>
@@ -481,11 +481,11 @@ const serviceSchema = {
   {service.slug.startsWith('boiler-') && (
     <section class="section section-alt brand-crosslink">
       <div class="container">
-        <span class="eyebrow">By brand</span>
-        <h2>Looking for a specific make?</h2>
+        <span class="eyebrow">Boiler makes</span>
+        <h2>Have a particular make of boiler?</h2>
         <p class="measure">
-          Every brand gets its own page on what is typical of it and the faults that tend to
-          come up on that make.
+          Every make has its own page, covering what is typical of it and the faults
+          it tends to develop.
         </p>
         <ul class="combo-links">
           {brands.map((b) => (
@@ -499,8 +499,8 @@ const serviceSchema = {
 
   <section class="section section-navy">
     <div class="container center measure-wide">
-      <h2>Need {lowerTitle(service.title)} in London?</h2>
-      <p>Describe the problem and give us your area, and we&rsquo;ll tell you the price before anyone starts work.</p>
+      <h2>Looking for {lowerTitle(service.title)} in London?</h2>
+      <p>Tell us what is wrong and where you are, and you will have the price before any work begins.</p>
       <div class="cta-row center-row">
         <a href={`tel:${primaryTel.tel}`} class="btn btn-orange btn-lg">
           <PhoneIcon /> Call {primaryTel.display}

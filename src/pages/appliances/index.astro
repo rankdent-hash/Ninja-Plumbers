@@ -29,37 +29,37 @@ const backTo = ['general-plumbing', 'boiler-service', 'bathroom-installation']
 
 const faqs = [
   {
-    q: 'Do I need a plumber to connect a washing machine or dishwasher?',
-    a: 'If there is already a cold feed with an isolating valve and a waste connection in the right place, connecting a new machine is usually simple. You need a plumber when those are missing, in the wrong place, leaking, or when the machine is moving to a new spot and needs a new supply and waste run.',
+    q: 'Does a washing machine or dishwasher need a plumber to connect it?',
+    a: 'Where a cold feed with an isolating valve and a waste connection are already in the right spot, hooking up a new machine is normally straightforward. A plumber is needed when any of those are missing, badly placed or leaking, or when the machine is going somewhere new that needs its own supply and waste run.',
   },
   {
-    q: 'How do I know if my heating needs a power flush?',
-    a: 'The usual signs are radiators that are warm at the top and cold along the bottom, a boiler that is noisy or keeps cutting out, and black or brown water when you bleed a radiator. All of them point to sludge in the system. A flush clears it; bleeding the radiators will not.',
+    q: 'How can I tell whether my heating needs power flushing?',
+    a: 'Look for radiators that are warm at the top but cold along the bottom, a boiler that is noisy or keeps cutting out, and black or brown water when a radiator is bled. Each of these suggests sludge in the system. Flushing removes it; bleeding the radiators does not.',
   },
   {
-    q: 'Is a water softener worth it in London?',
-    a: 'London water is hard, so a softener cuts limescale on taps, showers and glass, and inside boilers, cylinders and appliances. Whether it is worth it depends on your home and how much scale bothers you. Our blog post on water softeners in London sets out the pros and cons.',
+    q: 'Is it worth having a water softener in London?',
+    a: 'Because London’s water is hard, a softener reduces limescale on taps, showers and glass, as well as inside boilers, cylinders and appliances. Whether that makes it worthwhile depends on your home and how much the scale bothers you. The pros and cons are laid out in our blog post on water softeners in London.',
   },
   {
-    q: 'What is the difference between a Saniflo and a sump pump?',
-    a: 'A Saniflo, or macerator, pumps waste from a toilet, basin or shower away where there is no fall for normal gravity drainage, such as a basement or loft bathroom. A sump pump removes groundwater or surface water that collects in a pit, usually in a basement or cellar, and pumps it out.',
+    q: 'How does a Saniflo differ from a sump pump?',
+    a: 'A Saniflo, also called a macerator, pumps waste away from a toilet, basin or shower where there is not enough fall for ordinary gravity drainage, as in a basement or loft bathroom. A sump pump deals with groundwater or surface water gathering in a pit, usually in a basement or cellar, and pumps it out.',
   },
   {
-    q: 'What does a boiling water tap need under the sink?',
-    a: 'Most need room in the cupboard below for a small tank, a cold water supply, and an electrical socket for the tank. Some also have a filter that needs changing from time to time. We check the space and the supply before the tap goes in.',
+    q: 'What has to go under the sink for a boiling water tap?',
+    a: 'Most models need cupboard space below for a small tank, a cold water supply and an electrical socket to power the tank. Some include a filter that needs replacing now and then. We check the space and the supply before fitting the tap.',
   },
 ];
 ---
 <Base
-  title="Appliance &amp; Fixture Plumbing | Ninja Plumbers London"
-  description={`Ninja Plumbers fits and repairs water softeners, underfloor heating, power flushing, boiling taps and pumps across London. Call ${site.booking.display}.`}
+  title="Appliance &amp; Fixture Plumbing in London | Ninja Plumbers"
+  description={`Across London, Ninja Plumbers installs and repairs water softeners, underfloor heating, boiling taps and pumps, and does power flushing. Call ${site.booking.display}.`}
 >
   <Schema slot="head" breadcrumb={crumbs} faqs={faqs} />
 
   <HeroWithForm
     eyebrow="Appliances & fixtures"
-    h1="Appliance and fixture plumbing in London"
-    intro="These are the jobs people search for by naming the thing, not the trade — a softener, a power flush, a boiling tap, a pump that's given up. Ninja Plumbers has given each one its own page covering what's involved and what's worth checking first."
+    h1="Appliance and fixture plumbing across London"
+    intro="People tend to look for these jobs by the item itself rather than by trade: a boiling tap, a power flush, a softener, a pump that has stopped working. Ninja Plumbers gives each one a page of its own, setting out what the work involves and what to check before you book."
     breadcrumb={crumbs}
     bullets={[
       'Gas Safe registered and fully insured',
@@ -68,7 +68,7 @@ const faqs = [
       'Price agreed before work starts',
       'Workmanship guaranteed',
     ]}
-    formHeading="Tell us what needs fitting"
+    formHeading="What would you like fitted?"
   />
 
   {grouped.map((g) => (
@@ -95,8 +95,8 @@ const faqs = [
 
   <section class="section section-alt">
     <div class="container measure-wide">
-      <span class="eyebrow">Questions</span>
-      <h2>Common questions</h2>
+      <span class="eyebrow">FAQs</span>
+      <h2>Questions people ask</h2>
       <div class="faqs">
         {faqs.map((f) => (
           <details class="faq">
@@ -106,7 +106,7 @@ const faqs = [
         ))}
       </div>
       <p class="measure" style="margin-top:24px;">
-        More help on our blog: <a href="/blog/is-a-water-softener-worth-it-in-london">water softeners in London</a>,
+        Further reading on the blog: <a href="/blog/is-a-water-softener-worth-it-in-london">water softeners in London</a>,
         <a href="/blog/what-is-a-saniflo-and-when-do-you-need-one">Saniflo pumps</a> and
         <a href="/blog/why-outside-taps-freeze-and-burst">outside taps in winter</a>.
       </p>
@@ -115,10 +115,10 @@ const faqs = [
 
   <section class="section">
     <div class="container">
-      <span class="eyebrow">Looking for something else</span>
-      <h2>The main services</h2>
+      <span class="eyebrow">Something else?</span>
+      <h2>Our core services</h2>
       <p class="measure">
-        Looking for a repair rather than a new fitting? It's probably one of the pages below.
+        After a repair instead of a new fitting? You will most likely find it on one of these pages.
       </p>
       <ul class="grid grid-3 card-grid">
         {backTo.map((s) => (
@@ -132,14 +132,14 @@ const faqs = [
           </li>
         ))}
       </ul>
-      <p><a href="/services" class="btn btn-navy">All services</a></p>
+      <p><a href="/services" class="btn btn-navy">Browse every service</a></p>
     </div>
   </section>
 
   <section class="section section-navy">
     <div class="container center measure-wide">
-      <h2>Not sure which one you need?</h2>
-      <p>Tell us what's actually wrong &mdash; scale, pressure, a leak, a machine refusing to drain &mdash; and Ninja Plumbers will point you to whichever of these fixes it. Sometimes none of them are the answer, and we'll tell you that too rather than sell you the wrong job.</p>
+      <h2>Unsure which of these fits?</h2>
+      <p>Describe the real problem &mdash; scale, low pressure, a leak, an appliance that refuses to empty &mdash; and Ninja Plumbers will tell you which of these deals with it. If none of them is the answer, we will say so instead of selling you the wrong job.</p>
       <div class="cta-row center-row">
         <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">
           <PhoneIcon /> Call {site.booking.display}

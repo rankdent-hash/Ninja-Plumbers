@@ -22,28 +22,28 @@ Astro.response.headers.set('Cache-Control', 'public, s-maxage=300, stale-while-r
 ---
 <Base
   title="London Plumbing Services | Ninja Plumbers"
-  description={`Ninja Plumbers covers emergency call-outs, boiler work, drain unblocking, leak detection and bathroom fits across London. Call ${site.booking.display}.`}
+  description={`Emergency call-outs, boiler work, leak detection, drain unblocking and bathroom fitting from Ninja Plumbers, anywhere in London. Call ${site.booking.display}.`}
 >
 
 <HeroWithForm
-  eyebrow="Our services"
+  eyebrow="Services"
   h1="Plumbing, heating, drainage and electrical work across London"
-  intro="Ninja Plumbers' own engineers carry out every job listed here, for homes and commercial premises alike. Can't see what you need? Ring and ask — quicker than guessing from a list."
+  intro="Every job on this page is carried out by engineers of our own, for householders and commercial clients alike. Missing the job you need? Give us a ring. Asking takes less time than guessing from a list."
   breadcrumb={[{ label: 'Home', href: '/' }, { label: 'Services' }]}
   bullets={[
-    'Gas Safe registered and fully insured',
-    'DBS-checked engineers',
-    'Emergency callout available 24/7',
-    'Price agreed before work starts',
+    'Fully insured and Gas Safe registered',
+    'Engineers DBS-checked',
+    '24/7 emergency callouts',
+    'Price agreed before we start',
     'Workmanship guaranteed',
   ]}
 />
 
 <section class="section">
   <div class="container">
-    <span class="eyebrow">What we do</span>
-    <h2>Choose the job</h2>
-    <p class="measure">Click through to any of these and you'll find what's included, what's worth checking before you pick up the phone, and the questions people ask us most often.</p>
+    <span class="eyebrow">The full list</span>
+    <h2>Pick your job</h2>
+    <p class="measure">Each page sets out what the job includes, the things worth checking before you ring us, and the questions we hear most often.</p>
 
     <ul class="grid grid-3 card-grid">
       {services.map((s) => (
@@ -51,7 +51,7 @@ Astro.response.headers.set('Cache-Control', 'public, s-maxage=300, stale-while-r
           <div class="icon"><ServiceIcon name={s.icon} /></div>
           <h3><a href={`/services/${s.slug}`} class="card-title-link" set:html={s.title} /></h3>
           <p>{s.summary}</p>
-          <a href={`/services/${s.slug}`} class="card-link" aria-label={`More on ${s.title.replace('&amp;', 'and')}`}>
+          <a href={`/services/${s.slug}`} class="card-link" aria-label={`Read about ${s.title.replace('&amp;', 'and')}`}>
             Read more <span aria-hidden="true">&rarr;</span>
           </a>
         </li>
@@ -64,23 +64,23 @@ Astro.response.headers.set('Cache-Control', 'public, s-maxage=300, stale-while-r
   <div class="container">
     <div class="split">
       <div class="split-panel">
-        <h3>For your home</h3>
-        <p>We work with homeowners, tenants and landlords across the capital — the burst pipe at eleven at night, and the bathroom you&rsquo;ve been putting off replacing for three years.</p>
+        <h3>Homes and landlords</h3>
+        <p>Homeowners, tenants and landlords all over the capital call us, whether for a pipe that bursts at eleven at night or a bathroom you&rsquo;ve been meaning to redo for three years now.</p>
         <ul class="ticks">
-          <li><Tick /> Emergency repairs, day or night</li>
-          <li><Tick /> Boiler servicing and replacement</li>
-          <li><Tick /> Bathroom and en-suite installation</li>
-          <li><Tick /> Landlord repairs and tenancy turnarounds</li>
+          <li><Tick /> Repairs in an emergency, at any hour</li>
+          <li><Tick /> Boiler replacement and servicing</li>
+          <li><Tick /> En-suite and bathroom fitting</li>
+          <li><Tick /> Tenancy turnarounds and repairs for landlords</li>
         </ul>
       </div>
       <div class="split-panel">
-        <h3>For your business</h3>
-        <p>Offices, restaurants, shops and blocks of flats. We work around opening hours and tenants, and report back to whoever signs it off.</p>
+        <h3>Businesses and managed blocks</h3>
+        <p>We look after offices, restaurants, shops and blocks of flats, fitting the work around tenants and opening hours and reporting back to the person who signs the work off.</p>
         <ul class="ticks">
-          <li><Tick /> Washroom and commercial kitchen plumbing</li>
-          <li><Tick /> Commercial drain clearance and CCTV survey</li>
-          <li><Tick /> Reactive repairs for managing agents</li>
-          <li><Tick /> Out-of-hours work to avoid disrupting trade</li>
+          <li><Tick /> Plumbing for washrooms and commercial kitchens</li>
+          <li><Tick /> Drain clearance and CCTV surveys for commercial sites</li>
+          <li><Tick /> Reactive repairs on behalf of managing agents</li>
+          <li><Tick /> Visits out of hours so trading is not disrupted</li>
         </ul>
         <div class="cta-row">
           <a href="/services/commercial-plumbing" class="btn btn-navy">Commercial plumbing</a>
@@ -92,13 +92,13 @@ Astro.response.headers.set('Cache-Control', 'public, s-maxage=300, stale-while-r
 
 <section class="section section-alt">
   <div class="container">
-    <span class="eyebrow">Boilers</span>
-    <h2>Boiler work by brand</h2>
+    <span class="eyebrow">Boiler brands</span>
+    <h2>Boiler work, make by make</h2>
     <p class="measure">
-      Repair, servicing, installation and replacement are each covered on their own page above.
-      For what tends to come up on your specific make, we've got a page per brand too.
+      Each boiler job, from repair and servicing to installation and replacement, has a page of its own above.
+      There is also a page for every brand, explaining the faults it tends to develop.
     </p>
-    <p><a href="/boilers" class="btn btn-navy">All boiler brands</a></p>
+    <p><a href="/boilers" class="btn btn-navy">See every boiler brand</a></p>
   </div>
 </section>
 
@@ -107,23 +107,23 @@ Astro.response.headers.set('Cache-Control', 'public, s-maxage=300, stale-while-r
     <span class="eyebrow">Damp</span>
     <h2>Damp and condensation</h2>
     <p class="measure">
-      We also survey, diagnose and treat damp — rising, penetrating and condensation each need a different fix, so Ninja Plumbers starts with a proper inspection rather than guessing.
+      Damp is something we survey, diagnose and treat as well. Rising damp, penetrating damp and condensation each call for a different fix, so Ninja Plumbers begins with a proper inspection instead of a guess.
     </p>
     <p><a href="/damp" class="btn btn-navy">Damp & condensation services</a></p>
   </div>
 </section>
 
-<RelatedPosts covers={staticServices.map((s) => `/services/${s.slug}`)} heading="Plumbing and heating advice" />
+<RelatedPosts covers={staticServices.map((s) => `/services/${s.slug}`)} heading="Advice on plumbing and heating" />
 
 <section class="section section-navy">
   <div class="container center measure-wide">
-    <h2>Not sure what you need?</h2>
-    <p>Tell Ninja Plumbers what's going on and we'll talk you through what's involved and what it costs. If it's urgent, ring rather than email — a real person answers the booking line and can get an engineer moving.</p>
+    <h2>Unsure what the job needs?</h2>
+    <p>Explain what is happening and Ninja Plumbers will walk you through the work involved and the cost. For anything urgent, call instead of emailing. The booking line is answered by a real person who can get an engineer on the way.</p>
     <div class="cta-row center-row">
       <a href={`tel:${site.booking.tel}`} class="btn btn-orange btn-lg">
         <PhoneIcon /> Call {site.booking.display}
       </a>
-      <a href="/contact#enquiry" class="btn btn-outline btn-lg">Send us the job</a>
+      <a href="/contact#enquiry" class="btn btn-outline btn-lg">Send an enquiry</a>
     </div>
   </div>
 </section>
