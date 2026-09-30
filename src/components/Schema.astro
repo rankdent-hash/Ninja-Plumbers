@@ -37,7 +37,8 @@ if (faqs.length > 0) {
   });
 }
 
-if (extra) graph.push(extra);
+// One node or several (a page may describe itself and its service separately).
+if (extra) for (const node of Array.isArray(extra) ? extra : [extra]) graph.push(node);
 ---
 {graph.map((node) => (
   <script type="application/ld+json" set:html={JSON.stringify(node)} />

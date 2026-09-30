@@ -10,7 +10,9 @@ import Tick from '../../components/Tick.astro';
 import PhoneIcon from '../../components/PhoneIcon.astro';
 import WhatsAppIcon from '../../components/WhatsAppIcon.astro';
 import site from '../../data/site.json';
-import { sectors, type Sector } from '../../data/sectors';
+import { sectors, audienceOf, type Sector } from '../../data/sectors';
+import { providerRef, WEBSITE_ID } from '../../data/entity';
+import { SECTORS_UPDATED } from '../../data/contentDates';
 import { services } from '../../data/services';
 import { appliances } from '../../data/appliances';
 import { dampPages } from '../../data/damp';
@@ -49,21 +51,72 @@ const crumbs = [
   { label: sector.name },
 ];
 
+const audience = audienceOf(sector);
+const Audience = audience.charAt(0).toUpperCase() + audience.slice(1);
+const updatedLabel = new Date(`${SECTORS_UPDATED}T12:00:00Z`).toLocaleDateString('en-GB', {
+  month: 'long', year: 'numeric', timeZone: 'Europe/London',
+});
+
+// The facts a search engine or an AI assistant is most often asked about a
+// trade — who, what, where, when, who does the work, price, how to book —
+// stated once, plainly, in one place. The same facts are true for every
+// sector, so they are composed here from the business's details rather than
+// written 40 times, and cannot drift out of step with each other.
+const facts = [
+  { k: 'Who it is for', v: `${Audience} in London and nearby Surrey` },
+  { k: 'What we do', v: 'Plumbing, heating, drainage, electrics and air conditioning, from one team' },
+  { k: 'Typical jobs', v: sector.does.slice(0, 4).join('; ') },
+  { k: 'Where', v: 'Greater London, plus Guildford, Woking and nearby Surrey and north-east Hampshire towns' },
+  { k: 'When', v: 'Planned work early, late or at weekends, around your opening hours. Emergency callout 24/7.' },
+  { k: 'Who does the work', v: 'Gas Safe registered engineers, registered electricians and F-Gas certified air conditioning engineers. DBS-checked, directly employed and fully insured.' },
+  { k: 'Price', v: 'Agreed with you before any work starts. Workmanship guaranteed. Card or cash.' },
+  { k: 'How to book', v: `Call ${site.booking.display}, message us on WhatsApp, or use the form at the top of this page.` },
+];
+
 const pageUrl = new URL(`/commercial/${sector.slug}`, Astro.site).href;
+const abs = (href: string) => new URL(href, Astro.site).href;
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
+  '@id': `${pageUrl}#service`,
   name: sector.h1,
-  description: sector.metaDescription,
-  serviceType: 'Commercial plumbing',
+  description: sector.summary,
+  serviceType: `Plumbing, heating and electrical services for ${audience}`,
+  category: 'Commercial plumbing',
   url: pageUrl,
-  audience: { '@type': 'BusinessAudience', name: sector.name.replace('&', 'and') },
+  audience: { '@type': 'BusinessAudience', audienceType: audience },
   areaServed: SCHEMA_AREA_SERVED,
-  provider: { '@type': ['Plumber', 'Electrician'], name: site.name, telephone: site.booking.tel, url: site.url },
+  provider: providerRef,
+  availableChannel: {
+    '@type': 'ServiceChannel',
+    serviceUrl: pageUrl,
+    servicePhone: { '@type': 'ContactPoint', telephone: site.booking.tel, contactType: 'customer service', availableLanguage: 'en-GB' },
+  },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: `Jobs we take on for ${audience}`,
+    itemListElement: sector.does.map((d) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: d } })),
+  },
+};
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': pageUrl,
+  url: pageUrl,
+  name: sector.metaTitle,
+  description: sector.metaDescription,
+  inLanguage: 'en-GB',
+  isPartOf: { '@type': 'WebSite', '@id': WEBSITE_ID, url: site.url, name: site.name },
+  about: { '@id': `${pageUrl}#service` },
+  dateModified: SECTORS_UPDATED,
+  // The short answer and the opening paragraph are the parts written to be
+  // read aloud or quoted by an assistant.
+  speakable: { '@type': 'SpeakableSpecification', cssSelector: ['.glance-answer', '.sector-lead'] },
+  relatedLink: [...sector.links.map((l) => abs(l.href)), ...related.map((r) => abs(`/commercial/${r.slug}`))],
 };
 ---
 <Base title={sector.metaTitle} description={sector.metaDescription}>
-  <Schema slot="head" breadcrumb={crumbs} faqs={sector.faqs} extra={serviceSchema} />
+  <Schema slot="head" breadcrumb={crumbs} faqs={sector.faqs} extra={[pageSchema, serviceSchema]} />
 
   <HeroWithForm
     eyebrow={sector.eyebrow}
@@ -89,7 +142,7 @@ const serviceSchema = {
         <span class="eyebrow">What we do</span>
         <h2>{sector.h1}</h2>
         <p class="lead sector-lead">{sector.intro}</p>
-        <h3 class="sector-jobs-h">Jobs we take on for {sector.name.replace('&', 'and').toLowerCase()}</h3>
+        <h3 class="sector-jobs-h">What jobs do we take on for {audience}?</h3>
         <ul class="ticks sector-does">
           {sector.does.map((d) => <li><Tick /> {d}</li>)}
         </ul>
@@ -106,10 +159,33 @@ const serviceSchema = {
     </div>
   </section>
 
+  <section class="section section-tight" aria-labelledby="glance-h">
+    <div class="container">
+      <div class="glance">
+        <span class="eyebrow">At a glance</span>
+        <h2 id="glance-h">Who does plumbing for {audience} in London?</h2>
+        <p class="glance-answer">
+          Ninja Plumbers does. We are a London plumbing, heating and electrical company with our own
+          engineers and electricians, and we look after {audience} across Greater London and nearby
+          Surrey, working around your opening hours with the price agreed before anything starts.
+        </p>
+        <dl class="glance-facts">
+          {facts.map((f) => (
+            <div>
+              <dt>{f.k}</dt>
+              <dd>{f.v}</dd>
+            </div>
+          ))}
+        </dl>
+        <p class="glance-updated">Page updated <time datetime={SECTORS_UPDATED}>{updatedLabel}</time></p>
+      </div>
+    </div>
+  </section>
+
   <section class="section section-alt">
     <div class="container">
       <span class="eyebrow">What premises like yours need</span>
-      <h2>Plumbing, heating and electrics for {sector.name.replace('&', 'and').toLowerCase()}</h2>
+      <h2>What do {audience} need from their plumbing, heating and electrics?</h2>
       <ul class="grid grid-2 card-grid">
         {sector.needs.map((n) => (
           <li class="card">
@@ -138,7 +214,7 @@ const serviceSchema = {
   <section class="section section-alt">
     <div class="container">
       <span class="eyebrow">Services</span>
-      <h2>The services that matter most to {sector.name.replace('&', 'and').toLowerCase()}</h2>
+      <h2>Which of our services matter most to {audience}?</h2>
       <ul class="grid grid-3 card-grid">
         {sector.links.map((l) => (
           <li class="card">
@@ -155,7 +231,7 @@ const serviceSchema = {
   <section class="section">
     <div class="container measure-wide">
       <span class="eyebrow">Questions</span>
-      <h2>Common questions</h2>
+      <h2>Questions about plumbing for {audience}</h2>
       <div class="faqs">
         {sector.faqs.map((f) => (
           <details class="faq">

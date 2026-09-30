@@ -5,6 +5,7 @@ import sitemap from '@astrojs/sitemap';
 import { createClient } from '@supabase/supabase-js';
 import { INDEX_POSTCODE_PAGES } from './src/data/postcodes.ts';
 import { services } from './src/data/services.ts';
+import { SECTORS_UPDATED } from './src/data/contentDates.ts';
 import vercel from '@astrojs/vercel';
 
 const SITE_URL = 'https://www.ninjaplumbers.co.uk';
@@ -120,6 +121,12 @@ export default defineConfig({
     '/commercial': { status: 301, destination: '/services/commercial-plumbing' },
     // Widened to every faith and community hall.
     '/commercial/churches-and-community-halls': { status: 301, destination: '/commercial/places-of-worship-and-community-halls' },
+    // Combined pages split into one page per profession, each written for
+    // its own audience. The old URLs were live for a day; each goes to the
+    // first profession it named.
+    '/commercial/physio-and-osteopathy-clinics': { status: 301, destination: '/commercial/physiotherapy-clinics' },
+    '/commercial/solicitors-and-accountants': { status: 301, destination: '/commercial/solicitors' },
+    '/commercial/yoga-and-pilates-studios': { status: 301, destination: '/commercial/yoga-studios' },
   },
   adapter: vercel(),
   integrations: [
@@ -143,6 +150,13 @@ export default defineConfig({
         // Postcode district pages come out of the sitemap together with their
         // noindex, controlled by the one flag in src/data/postcodes.ts.
         (INDEX_POSTCODE_PAGES || !/\/postcodes\//.test(page)),
+      // A real revision date on the sector pages, taken from the same constant
+      // as their visible "Updated" line. Left off everywhere else rather than
+      // stamping every URL with the build time, which would say nothing.
+      serialize(item) {
+        if (/\/commercial\/[^/]+$/.test(item.url)) item.lastmod = SECTORS_UPDATED;
+        return item;
+      },
     }),
   ],
 });

@@ -3157,3 +3157,20 @@ body.qr-open { overflow: hidden; }
 }
 .sector-tile:hover, .sector-tile:focus-visible { border-color: var(--blue-ink); color: var(--blue-ink); }
 .sector-tile-icon { flex: none; display: inline-flex; color: var(--blue-ink); }
+
+/* Sector pages: "At a glance". A short direct answer and the key facts in a
+   definition list — the shape both a skimming reader and an AI answer engine
+   pull from. Kept visually quiet so it reads as a summary, not an advert. */
+.section-tight { padding-top: 8px; padding-bottom: 8px; }
+.glance {
+  background: var(--white); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 24px 22px; max-width: 980px; margin: 0 auto;
+}
+.glance h2 { margin: 4px 0 10px; font-size: clamp(1.25rem, 1rem + 1vw, 1.6rem); }
+.glance-answer { font-size: 1.05rem; margin: 0 0 18px; }
+.glance-facts { display: grid; gap: 0; margin: 0; border-top: 1px solid var(--border); }
+.glance-facts > div { display: grid; gap: 2px 18px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+@media (min-width: 700px) { .glance-facts > div { grid-template-columns: 190px 1fr; } }
+.glance-facts dt { font-weight: 700; color: var(--navy); font-size: 0.92rem; }
+.glance-facts dd { margin: 0; font-size: 0.95rem; }
+.glance-updated { margin: 12px 0 0; font-size: 0.8rem; color: var(--muted); }

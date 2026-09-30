@@ -1,6 +1,7 @@
 ---
 import site from '../data/site.json';
 import { SCHEMA_AREA_SERVED } from '../data/serviceArea';
+import { BUSINESS_ID } from '../data/entity';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import MobileBar from '../components/MobileBar.astro';
@@ -29,6 +30,7 @@ const ogImage = new URL(image, Astro.site).href;
 const localBusiness = {
   '@context': 'https://schema.org',
   '@type': ['Plumber', 'Electrician'],
+  '@id': BUSINESS_ID,
   name: site.name,
   legalName: site.legalName,
   url: site.url,
