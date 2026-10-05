@@ -1,0 +1,46 @@
+---
+/*
+ * The design's white quote card: gradient top rule, centred heading, reply
+ * line, then the site's real enquiry form.
+ *
+ * EnquiryForm.astro is rendered untouched. Its markup, ids and inline script
+ * carry the live postcode service-area check, field validation, the honeypot
+ * and the /thank-you redirect that Google Ads fires its conversion on, so
+ * forking it for the redesign would have meant maintaining that twice. The
+ * redesign's look comes entirely from the .enquiry-form rules in
+ * ninja-redesign.css.
+ *
+ * `reply` is optional and takes no default: the canvas printed "Average
+ * reply: 12 minutes" on every card, which is a performance claim nothing in
+ * this repo measures, so a page passes one only when it has something true
+ * to say.
+ */
+import EnquiryForm from '../EnquiryForm.astro';
+import NinjaIcon from './NinjaIcon.astro';
+
+const {
+  heading = 'Get your free quote',
+  intro = '',
+  reply = '',
+  service = '',
+  submitLabel = 'Send enquiry',
+  trust = [] as string[],
+} = Astro.props;
+---
+<div class="quote-card">
+  <div class="quote-head">
+    <h2>{heading}</h2>
+    {intro && <p>{intro}</p>}
+    {reply && <span class="reply"><NinjaIcon name="clock" />{reply}</span>}
+  </div>
+
+  <EnquiryForm service={service} submitLabel={submitLabel} />
+
+  {trust.length > 0 && (
+    <p class="form-trust">
+      {trust.map((t: string) => (
+        <span><NinjaIcon name="check" />{t}</span>
+      ))}
+    </p>
+  )}
+</div>

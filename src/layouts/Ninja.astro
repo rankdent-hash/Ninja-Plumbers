@@ -1,0 +1,117 @@
+---
+/*
+ * Layout for the redesigned pages (home, service, contact).
+ *
+ * Deliberately parallel to Base.astro rather than a change to it: this one
+ * loads ninja-redesign.css and the redesign's own header/footer, so the
+ * pages still on Base.astro keep exactly the markup and styling they have
+ * today while the redesign is in review. The <head> is kept in step with
+ * Base.astro — same canonical, OG, favicon and schema handling — so a page
+ * moved between the two layouts does not lose SEO.
+ *
+ * Fonts are self-hosted through @fontsource, the same rule Base.astro
+ * follows: a public page makes no third-party font request, so nothing about
+ * a visitor is disclosed to Google to render text.
+ */
+import site from '../data/site.json';
+import { SCHEMA_AREA_SERVED } from '../data/serviceArea';
+import { BUSINESS_ID } from '../data/entity';
+import NinjaHeader from '../components/ninja/NinjaHeader.astro';
+import NinjaFooter from '../components/ninja/NinjaFooter.astro';
+import NinjaMobileBar from '../components/ninja/NinjaMobileBar.astro';
+import Analytics from '../components/Analytics.astro';
+
+import '@fontsource/plus-jakarta-sans/600.css';
+import '@fontsource/plus-jakarta-sans/700.css';
+import '@fontsource/plus-jakarta-sans/800.css';
+import '@fontsource/figtree/400.css';
+import '@fontsource/figtree/500.css';
+import '@fontsource/figtree/600.css';
+import '@fontsource/figtree/700.css';
+import '../styles/ninja-redesign.css';
+
+const {
+  title,
+  description,
+  schema = false,
+  noindex = false,
+  image = '/images/og-default.png',
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href.replace(/\/$/, '') || site.url;
+const ogImage = new URL(image, Astro.site).href;
+
+const localBusiness = {
+  '@context': 'https://schema.org',
+  '@type': ['Plumber', 'Electrician'],
+  '@id': BUSINESS_ID,
+  name: site.name,
+  legalName: site.legalName,
+  url: site.url,
+  image: new URL('/images/og-ninja-vans.jpg', Astro.site).href,
+  telephone: site.booking.tel,
+  email: site.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.address.line1,
+    addressLocality: site.address.city,
+    postalCode: site.address.postcode,
+    addressCountry: site.address.country,
+  },
+  areaServed: SCHEMA_AREA_SERVED,
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: site.hours.days,
+      opens: site.hours.opens,
+      closes: site.hours.closes,
+    },
+  ],
+};
+---
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{title}</title>
+<meta name="description" content={description}>
+{site.googleSiteVerification && <meta name="google-site-verification" content={site.googleSiteVerification} />}
+<link rel="canonical" href={canonical}>
+{noindex && <meta name="robots" content="noindex, nofollow">}
+<meta property="og:title" content={title}>
+<meta property="og:description" content={description}>
+<meta property="og:type" content="website">
+<meta property="og:url" content={canonical}>
+<meta property="og:image" content={ogImage}>
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content={ogImage}>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+{schema && <script type="application/ld+json" set:html={JSON.stringify(localBusiness)} />}
+<Analytics />
+<slot name="head" />
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<NinjaHeader />
+
+<main id="main">
+  <slot />
+</main>
+
+<NinjaFooter />
+<NinjaMobileBar />
+
+<!-- Contact-intent click tracking. Kept from Base.astro so tel:/WhatsApp
+     clicks on the redesigned pages are still counted in /admin/activity. -->
+<script src="/track.js" is:inline></script>
+</body>
+</html>

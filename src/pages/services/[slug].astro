@@ -18,7 +18,9 @@
 export const prerender = false;
 
 import { SCHEMA_AREA_SERVED } from '../../data/serviceArea';
-import Base from '../../layouts/Base.astro';
+import Ninja from '../../layouts/Ninja.astro';
+import NinjaIcon from '../../components/ninja/NinjaIcon.astro';
+import NinjaQuoteCard from '../../components/ninja/NinjaQuoteCard.astro';
 import site from '../../data/site.json';
 import { services } from '../../data/services';
 import { appliances } from '../../data/appliances';
@@ -32,10 +34,6 @@ import { groupedSectors, sectorsLinkingTo } from '../../data/sectors';
 import SectorPictogram from '../../components/SectorPictogram.astro';
 import { dampPages } from '../../data/damp';
 import ServiceIcon from '../../components/ServiceIcon.astro';
-import Tick from '../../components/Tick.astro';
-import PhoneIcon from '../../components/PhoneIcon.astro';
-import WhatsAppIcon from '../../components/WhatsAppIcon.astro';
-import HeroWithForm from '../../components/HeroWithForm.astro';
 import Schema from '../../components/Schema.astro';
 import { serviceExtras } from '../../data/service-extras';
 import { getSupabaseAdmin } from '../../lib/supabaseAdmin';
@@ -167,123 +165,153 @@ const serviceSchema = {
   areaServed: SCHEMA_AREA_SERVED,
 };
 ---
-<Base
+<Ninja
   title={service.metaTitle}
   description={service.metaDescription}
 >
   <Schema slot="head" breadcrumb={crumbs} faqs={allFaqs} extra={serviceSchema} />
 
-  <HeroWithForm
-    eyebrow={service.eyebrow}
-    h1={service.h1}
-    intro={service.intro}
-    breadcrumb={crumbs}
-    bullets={heroBullets}
-    formHeading={`Get a price for ${lowerTitle(service.title)}`}
-    service={service.title}
-    tel={primaryTel}
-  />
+  {/* ---------- Hero ---------- */}
+  <section class="hero">
+    <svg class="hero-rings" viewBox="0 0 600 600" aria-hidden="true">
+      <circle cx="300" cy="300" r="118"/><circle cx="300" cy="300" r="178"/>
+      <circle cx="300" cy="300" r="238"/><circle cx="300" cy="300" r="296"/>
+    </svg>
 
-  <section class="section">
-    <div class="container service-row">
-      <div class="service-copy">
-        <span class="eyebrow">The work</span>
-        <h2>Included in the job</h2>
-        <ul class="ticks">
-          {service.does.map((d) => <li><Tick /> {d}</li>)}
-        </ul>
-        <div class="cta-row">
-          <a href="/contact#enquiry" class="btn btn-navy">Tell us what you need</a>
+    <div class="shell">
+      <div>
+        <ol class="crumbs">
+          {crumbs.map((c, i) => (
+            <>
+              <li>{c.href ? <a href={c.href}>{c.label}</a> : c.label}</li>
+              {i < crumbs.length - 1 && <li aria-hidden="true">/</li>}
+            </>
+          ))}
+        </ol>
+
+        <div style="display:flex;gap:22px;align-items:flex-start">
+          <div style="flex:1;min-width:0">
+            <span class="hero-chip"><span class="dot"></span>{service.eyebrow}</span>
+            <h1 style="margin-top:14px">{service.h1}</h1>
+          </div>
+          <span class="badge badge-lg" style="flex:none">
+            <span class="disc" style="background:rgba(255,255,255,.1)"></span>
+            <span class="ring" style="border-color:rgba(140,207,232,.6)"></span>
+            <ServiceIcon name={service.icon} />
+          </span>
         </div>
+
+        <p class="lead">{service.intro}</p>
+
+        <ul class="hero-bullets">
+          {heroBullets.map((b) => <li><NinjaIcon name="check" />{b}</li>)}
+        </ul>
+
+        <div class="hero-actions">
+          <a class="btn btn-light btn-lg" href={`tel:${primaryTel.tel}`}>
+            <NinjaIcon name="phone" /> Call {primaryTel.display}
+          </a>
+          <a class="btn btn-wa btn-lg" href={site.whatsapp.url} target="_blank" rel="noopener">
+            <NinjaIcon name="whatsapp" /> WhatsApp us
+          </a>
+        </div>
+
+        {/* The canvas puts a boiler-brand logo row here. These are the real
+            brand names from brands.ts, capped at eight: all 25 turned the
+            hero into four rows of chips and buried the call button. The
+            full list is linked from the brands section further down. */}
+        {service.slug.startsWith('boiler-') && (
+          <div class="hero-logos">
+            {brands.slice(0, 8).map((b) => <span>{b.name}</span>)}
+          </div>
+        )}
       </div>
-      <aside class="service-aside">
-        {service.slug === 'emergency-plumbing' && (
-          <figure class="service-aside-figure">
-            <img
-              src="/images/services/emergency-plumbing-burst-pipe-callout.png"
-              width="900"
-              height="675"
-              alt="Drawing of water spraying from a burst pipe next to a 24/7 callout badge, standing for the Ninja Plumbers emergency plumbing service that runs round the clock in London"
-              title="Ninja Plumbers: emergency plumbing callouts, 24/7"
-              loading="lazy"
-              decoding="async"
-            />
-            <figcaption>Callouts for major leaks and burst pipes anywhere in London, day or night.</figcaption>
-          </figure>
-        )}
-        {service.slug === 'general-plumbing' && (
-          <figure class="service-aside-figure">
-            <div class="gp-anim-panel">
-              <div class="gp-icons">
-                <div class="gp-icon gp-icon-1">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M4 7h5"/><path d="M6.5 7v6"/><path d="M6.5 10H13a4 4 0 0 1 4 4v1"/><path d="M17 18v3"/><line x1="14" y1="21" x2="20" y2="21"/>
-                  </svg>
-                  <span class="gp-drop" aria-hidden="true"></span>
-                </div>
-                <div class="gp-icon gp-icon-2">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M3 12h18v3a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5v-3z"/><path d="M7 12V5.5a2.5 2.5 0 0 1 5 0"/><line x1="7" y1="20" x2="6" y2="22"/><line x1="17" y1="20" x2="18" y2="22"/>
-                  </svg>
-                </div>
-                <div class="gp-icon gp-icon-3">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <rect x="4" y="5" width="16" height="12" rx="2"/><line x1="9" y1="5" x2="9" y2="17"/><line x1="13" y1="5" x2="13" y2="17"/><line x1="17" y1="5" x2="17" y2="17"/><line x1="7" y1="19" x2="7" y2="21"/><line x1="17" y1="19" x2="17" y2="21"/>
-                  </svg>
-                </div>
-                <div class="gp-icon gp-icon-4">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
-                  </svg>
-                </div>
-              </div>
-              <p class="gp-message"><strong>Pipework, radiators, toilets and taps.</strong> The small household jobs that keep getting put off.</p>
-            </div>
-            <figcaption>Small jobs get a proper quote too, and are often sorted in a single visit.</figcaption>
-          </figure>
-        )}
-        {service.slug === 'boiler-repair' && (
-          <figure class="service-aside-figure">
-            <div class="br-anim-panel">
-              <div class="br-stage" aria-hidden="true">
-                <span class="br-heat br-heat-1"></span>
-                <span class="br-heat br-heat-2"></span>
-                <span class="br-heat br-heat-3"></span>
-                <div class="br-unit">
-                  <span class="br-screen">
-                    <span class="br-state br-state-1">FAULT</span>
-                    <span class="br-state br-state-2">DIAGNOSED</span>
-                    <span class="br-state br-state-3">HEAT ON</span>
-                  </span>
-                  <span class="br-dials"><i></i><i></i></span>
-                  <svg class="br-flame" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>
-                  </svg>
-                </div>
-              </div>
-              <p class="br-message">
-                <strong>We find the fault, then quote.</strong>
-                You see a repair price and a replacement price, and the choice is yours.
-              </p>
-              <a class="br-call" href={`tel:${primaryTel.tel}`}>
-                <PhoneIcon /> Call {primaryTel.display}
-              </a>
-            </div>
-            <figcaption>A boiler locked out on a fault code, or no heating or hot water.</figcaption>
-          </figure>
-        )}
-        <div class="icon"><ServiceIcon name={service.icon} /></div>
-        <h3>{service.aside.title}</h3>
-        <p>{service.aside.body}</p>
-      </aside>
+
+      <NinjaQuoteCard
+        heading={`Get a price for ${lowerTitle(service.title)}`}
+        intro="We'll come back to you about the work and the price."
+        service={service.title}
+        submitLabel="Send enquiry"
+        trust={['No obligation', 'Price agreed before work starts']}
+      />
     </div>
   </section>
 
+  {/* ---------- Trust strip ---------- */}
+  <section class="trust">
+    <div class="shell">
+      <div class="trust-grid">
+        <div>
+          <span class="ti"><NinjaIcon name="shield" /></span>
+          <span><strong>{heroBullets[0]}</strong><small>Fully insured engineers</small></span>
+        </div>
+        <div>
+          <span class="ti"><NinjaIcon name="lock" /></span>
+          <span><strong>Price agreed first</strong><small>You approve the quote before we start</small></span>
+        </div>
+        <div>
+          <span class="ti"><NinjaIcon name="clock" /></span>
+          <span><strong>Emergency callout 24/7</strong><small>Across Greater London and Surrey</small></span>
+        </div>
+        <div>
+          <span class="ti"><NinjaIcon name="check" /></span>
+          <span><strong>Guaranteed workmanship</strong><small>Put right if it isn&rsquo;t</small></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ---------- Included in the job ---------- */}
+  <section class="section">
+    <div class="shell">
+      <div class="split" style="align-items:start">
+        <div>
+          <p class="eyebrow">The work</p>
+          <h2>Included in the job</h2>
+          <ul class="check-list" style="margin-top:22px">
+            {service.does.map((d) => <li><NinjaIcon name="check" />{d}</li>)}
+          </ul>
+          <p style="margin-top:26px">
+            <a class="btn btn-primary" href="#enquiry">Tell us what you need</a>
+          </p>
+        </div>
+
+        <div style="display:grid;gap:16px">
+          {service.slug === 'emergency-plumbing' && (
+            <figure class="photo" style="margin:0">
+              <img
+                src="/images/services/emergency-plumbing-burst-pipe-callout.png"
+                width="900"
+                height="675"
+                alt="Drawing of water spraying from a burst pipe next to a 24/7 callout badge, standing for the Ninja Plumbers emergency plumbing service that runs round the clock in London"
+                title="Ninja Plumbers: emergency plumbing callouts, 24/7"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+          )}
+          <div class="aside-card">
+            <span class="badge badge-sm" style="margin-bottom:12px">
+              <span class="disc"></span>
+              <span class="ring"></span>
+              <ServiceIcon name={service.icon} />
+            </span>
+            <h3>{service.aside.title}</h3>
+            <p>{service.aside.body}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ---------- Premises (commercial only) ---------- */}
   {service.spaces && (
-    <section class="section">
-      <div class="container">
-        <span class="eyebrow">Where we work</span>
-        <h2>Premises we look after</h2>
+    <section class="section section-cream">
+      <div class="shell">
+        <div class="section-head">
+          <p class="eyebrow">Where we work</p>
+          <h2>Premises we look after</h2>
+        </div>
         <div class="guidance">
           {service.spaces.map((s) => (
             <div class="guidance-item">
@@ -296,11 +324,14 @@ const serviceSchema = {
     </section>
   )}
 
-  <section class="section section-alt">
-    <div class="container">
-      <span class="eyebrow">Good to know</span>
-      <h2>Read this before you ring</h2>
-      <p class="measure">You may find you can sort some of this yourself, without calling us. We are fine with that, and would rather you knew it.</p>
+  {/* ---------- Guidance ---------- */}
+  <section class="section section-white">
+    <div class="shell">
+      <div class="section-head">
+        <p class="eyebrow">Good to know</p>
+        <h2>Read this before you ring</h2>
+        <p>You may find you can sort some of this yourself, without calling us. We are fine with that, and would rather you knew it.</p>
+      </div>
       <div class="guidance">
         {service.guidance.map((g) => (
           <div class="guidance-item">
@@ -312,24 +343,34 @@ const serviceSchema = {
     </div>
   </section>
 
+  {/* ---------- Have ready ---------- */}
   {extra?.haveReady && (
-    <section class="section">
-      <div class="container measure-wide">
-        <span class="eyebrow">Calling us</span>
-        <h2>{extra.haveReady.heading}</h2>
-        <ul class="ticks">
-          {extra.haveReady.items.map((item) => <li><Tick /> {item}</li>)}
+    <section class="section section-cream">
+      <div class="shell">
+        <div class="section-head">
+          <p class="eyebrow">Calling us</p>
+          <h2>{extra.haveReady.heading}</h2>
+        </div>
+        <ul class="check-list">
+          {extra.haveReady.items.map((item) => <li><NinjaIcon name="check" />{item}</li>)}
         </ul>
       </div>
     </section>
   )}
 
+  {/* ---------- What changes the price ----------
+      The canvas drew a four-row price table here ("Diagnosis visit [FROM £]"
+      and so on). There are no prices anywhere in this repo to put in it, and
+      inventing them on a plumbing page is not a design decision, so the
+      section keeps the real "what changes the price" copy instead. */}
   {extra?.price && (
-    <section class={extra.haveReady ? 'section section-alt' : 'section'}>
-      <div class="container">
-        <span class="eyebrow">Cost</span>
-        <h2>What changes the price</h2>
-        <p class="measure">{extra.price.intro}</p>
+    <section class={extra.haveReady ? 'section section-white' : 'section section-cream'}>
+      <div class="shell">
+        <div class="section-head">
+          <p class="eyebrow">Cost</p>
+          <h2>What changes the price</h2>
+          <p>{extra.price.intro}</p>
+        </div>
         <div class="guidance">
           {extra.price.factors.map((f) => (
             <div class="guidance-item">
@@ -338,19 +379,25 @@ const serviceSchema = {
             </div>
           ))}
         </div>
-        <p class="measure price-terms">We agree the price with you before any work begins, and accept both card and cash.</p>
+        <div class="callout" style="margin-top:24px">
+          <NinjaIcon name="lock" />
+          <p>We agree the price with you before any work begins, and accept both card and cash.</p>
+        </div>
       </div>
     </section>
   )}
 
-  <section class={extra?.price && !extra.haveReady ? 'section section-alt' : 'section'}>
-    <div class="container measure-wide">
-      <span class="eyebrow">Your questions</span>
-      <h2>Questions we often get</h2>
-      <div class="faqs">
-        {allFaqs.map((f) => (
-          <details class="faq">
-            <summary>{f.q}</summary>
+  {/* ---------- FAQ ---------- */}
+  <section class="section">
+    <div class="shell">
+      <div class="section-head center">
+        <p class="eyebrow">Your questions</p>
+        <h2>Questions we often get</h2>
+      </div>
+      <div class="faq">
+        {allFaqs.map((f, i) => (
+          <details open={i === 0}>
+            <summary>{f.q}<NinjaIcon name="chevron" /></summary>
             <p>{f.a}</p>
           </details>
         ))}
@@ -358,13 +405,37 @@ const serviceSchema = {
     </div>
   </section>
 
+  {/* ---------- Dark CTA band ---------- */}
+  <section class="band">
+    <div class="shell">
+      <div>
+        <p class="eyebrow">Ready when you are</p>
+        <h2>Looking for {lowerTitle(service.title)} in London?</h2>
+        <p>Tell us what is wrong and where you are, and you will have the price before any work begins.</p>
+        <a class="phone-big" href={`tel:${primaryTel.tel}`}>
+          <span class="pi"><NinjaIcon name="phone" /></span>{primaryTel.display}
+        </a>
+      </div>
+      <div class="actions">
+        <a class="btn btn-light btn-lg" href={`tel:${primaryTel.tel}`}>Call now</a>
+        <a class="btn btn-wa btn-lg" href={site.whatsapp.url} target="_blank" rel="noopener">
+          WhatsApp us
+        </a>
+        <a class="btn btn-ghost" href="#enquiry">Not urgent? Get a quote</a>
+      </div>
+    </div>
+  </section>
+
+  {/* ---------- Local pages ---------- */}
   {localPages.length > 0 && (
-    <section class="section section-alt">
-      <div class="container">
-        <span class="eyebrow">Local pages</span>
-        <h2>{label} in your area</h2>
-        <p class="measure">Pages for the parts of London where we are asked for this most often.</p>
-        <ul class="combo-links">
+    <section class="section">
+      <div class="shell">
+        <div class="section-head">
+          <p class="eyebrow">Local pages</p>
+          <h2>{label} in your area</h2>
+          <p>Pages for the parts of London where we are asked for this most often.</p>
+        </div>
+        <ul class="chips">
           {localPages.map((c) => {
             const a = allAreas.find((x) => x.slug === c.area)!;
             return <li><a href={`/services/${c.service}/${c.area}`}>{label} in {a.name}</a></li>;
@@ -374,102 +445,119 @@ const serviceSchema = {
     </section>
   )}
 
+  {/* ---------- Related appliances ---------- */}
   {relatedAppliances.length > 0 && (
-    <section class="section">
-      <div class="container">
-        <span class="eyebrow">Appliances</span>
-        <h2>Appliance jobs linked to this service</h2>
-        <p class="measure">
-          Each of these installations falls under this service, with a page of its own explaining the work.
-        </p>
-        <ul class="grid grid-3 card-grid">
+    <section class="section section-cream">
+      <div class="shell">
+        <div class="section-head">
+          <p class="eyebrow">Appliances</p>
+          <h2>Appliance jobs linked to this service</h2>
+          <p>Each of these installations falls under this service, with a page of its own explaining the work.</p>
+        </div>
+        <div class="grid-3">
           {relatedAppliances.map((a) => (
-            <li class="card">
-              <div class="icon"><ServiceIcon name={a.icon} /></div>
-              <h3><a href={`/appliances/${a.slug}`} class="card-title-link">{a.title}</a></h3>
+            <a class="svc-card" href={`/appliances/${a.slug}`}>
+              <span class="badge badge-sm">
+                <span class="disc"></span>
+                <span class="ring"></span>
+                <ServiceIcon name={a.icon} />
+              </span>
+              <h3>{a.title}</h3>
               <p>{a.summary}</p>
-              <a href={`/appliances/${a.slug}`} class="card-link">
-                Read about {a.title.toLowerCase()} <span aria-hidden="true">&rarr;</span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
-  )}
-
-  <section class="section">
-    <div class="container">
-      <span class="eyebrow">Related services</span>
-      <h2>{othersInGroup ? `Other ${currentGroup.label.toLowerCase().replace(/^bathrooms$/, 'bathroom')} jobs we do` : 'Other jobs we do'}</h2>
-      <ul class="grid grid-3 card-grid">
-        {others.map((s) => (
-          <li class="card">
-            <div class="icon"><ServiceIcon name={s.icon} /></div>
-            <h3>{s.title}</h3>
-            <p>{s.summary}</p>
-            <a href={`/services/${s.slug}`} class="card-link">
-              Read about {s.title} <span aria-hidden="true">&rarr;</span>
+              <span class="go">Read about {a.title.toLowerCase()} <NinjaIcon name="arrow" /></span>
             </a>
-          </li>
-        ))}
-      </ul>
-      {sectorMentions.length > 0 && (
-        <p class="measure">
-          Businesses use us for {lowerTitle(service.title)} too, among them {sectorMentions.map((sc, i) => (
-            <>{i > 0 && (i === sectorMentions.length - 1 && !moreMentions ? ' and ' : ', ')}<a href={`/commercial/${sc.slug}`}>{sc.name.replace('&', 'and').toLowerCase()}</a></>
-          ))}{moreMentions && <>, and <a href="/services/commercial-plumbing">plenty of other business types</a></>}.
-        </p>
-      )}
-      {relatedDamp.length > 0 && (
-        <p class="measure">
-          Leak or damp? A slow leak can look just like damp, and damp can pass for a leak.
-          Read {relatedDamp.map((d, i) => (
-            <>{i > 0 && (i === relatedDamp.length - 1 ? ' and ' : ', ')}<a href={`/damp/${d.slug}`}>{d.title.toLowerCase()}</a></>
-          ))}, or go to our <a href="/damp">damp and condensation</a> page.
-        </p>
-      )}
-      <p class="all-services-link"><a href="/services">Browse all our services <span aria-hidden="true">&rarr;</span></a></p>
-    </div>
-  </section>
-
-  {sectorGroups.length > 0 && (
-    <section class="section section-alt">
-      <div class="container">
-        <span class="eyebrow">Our business customers</span>
-        <h2>Small business plumbing</h2>
-        <p class="measure">
-          The plumbing in most small premises is much like a home&rsquo;s, only it works harder and can
-          less afford to be out of action. Choose your type of business to see what we do for places like yours.
-          For toilet and changing-room refits, see <a href="/services/commercial-washroom-refurbishment">commercial washroom refurbishment</a>.
-        </p>
-        <div class="sector-groups">
-          {sectorGroups.map((g) => (
-            <div class="sector-group">
-              <h3 class="sector-group-h">{g.label}</h3>
-              <ul class="sector-tiles">
-                {g.sectors.map((sc) => (
-                  <li>
-                    <a href={`/commercial/${sc.slug}`} class="sector-tile">
-                      <span class="sector-tile-icon"><SectorPictogram slug={sc.slug} /></span>
-                      <span>{sc.name}</span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
           ))}
         </div>
       </div>
     </section>
   )}
 
+  {/* ---------- Related services ---------- */}
+  <section class="section section-white">
+    <div class="shell">
+      <div class="section-head">
+        <p class="eyebrow">Related services</p>
+        <h2>{othersInGroup ? `Other ${currentGroup.label.toLowerCase().replace(/^bathrooms$/, 'bathroom')} jobs we do` : 'Other jobs we do'}</h2>
+      </div>
+      <div class="grid-3">
+        {others.map((s) => (
+          <a class="svc-card" href={`/services/${s.slug}`}>
+            <span class="badge badge-sm">
+              <span class="disc"></span>
+              <span class="ring"></span>
+              <ServiceIcon name={s.icon} />
+            </span>
+            <h3 set:html={s.title} />
+            <p>{s.summary}</p>
+            <span class="go">Read about {s.title} <NinjaIcon name="arrow" /></span>
+          </a>
+        ))}
+      </div>
+
+      {sectorMentions.length > 0 && (
+        <p style="margin-top:28px;max-width:46rem">
+          Businesses use us for {lowerTitle(service.title)} too, among them {sectorMentions.map((sc, i) => (
+            <>{i > 0 && (i === sectorMentions.length - 1 && !moreMentions ? ' and ' : ', ')}<a href={`/commercial/${sc.slug}`}>{sc.name.replace('&', 'and').toLowerCase()}</a></>
+          ))}{moreMentions && <>, and <a href="/services/commercial-plumbing">plenty of other business types</a></>}.
+        </p>
+      )}
+
+      {relatedDamp.length > 0 && (
+        <p style="max-width:46rem">
+          Leak or damp? A slow leak can look just like damp, and damp can pass for a leak.
+          Read {relatedDamp.map((d, i) => (
+            <>{i > 0 && (i === relatedDamp.length - 1 ? ' and ' : ', ')}<a href={`/damp/${d.slug}`}>{d.title.toLowerCase()}</a></>
+          ))}, or go to our <a href="/damp">damp and condensation</a> page.
+        </p>
+      )}
+
+      <p style="margin:24px 0 0">
+        <a class="btn btn-outline" href="/services">Browse all our services</a>
+      </p>
+    </div>
+  </section>
+
+  {/* ---------- Sector tiles (commercial plumbing) ---------- */}
+  {sectorGroups.length > 0 && (
+    <section class="section section-cream">
+      <div class="shell">
+        <div class="section-head">
+          <p class="eyebrow">Our business customers</p>
+          <h2>Small business plumbing</h2>
+          <p>
+            The plumbing in most small premises is much like a home&rsquo;s, only it works harder and can
+            less afford to be out of action. Choose your type of business to see what we do for places like yours.
+            For toilet and changing-room refits, see <a href="/services/commercial-washroom-refurbishment">commercial washroom refurbishment</a>.
+          </p>
+        </div>
+        {sectorGroups.map((g) => (
+          <div style="margin-bottom:32px">
+            <h3 style="margin-bottom:14px">{g.label}</h3>
+            <ul class="related">
+              {g.sectors.map((sc) => (
+                <li>
+                  <a href={`/commercial/${sc.slug}`}>
+                    <span class="badge badge-sm"><span class="disc"></span><SectorPictogram slug={sc.slug} /></span>
+                    <span>{sc.name}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {/* ---------- Related posts ---------- */}
   {relatedPosts.length > 0 && (
-    <section class="section section-alt">
-      <div class="container">
-        <span class="eyebrow">Our blog</span>
-        <h2>Advice on this topic</h2>
-        <ul class="combo-links">
+    <section class="section">
+      <div class="shell">
+        <div class="section-head">
+          <p class="eyebrow">Our blog</p>
+          <h2>Advice on this topic</h2>
+        </div>
+        <ul class="chips">
           {relatedPosts.map((p) => (
             <li><a href={`/blog/${p.slug}`}>{p.title}</a></li>
           ))}
@@ -478,37 +566,24 @@ const serviceSchema = {
     </section>
   )}
 
+  {/* ---------- Boiler brands ---------- */}
   {service.slug.startsWith('boiler-') && (
-    <section class="section section-alt brand-crosslink">
-      <div class="container">
-        <span class="eyebrow">Boiler makes</span>
-        <h2>Have a particular make of boiler?</h2>
-        <p class="measure">
-          Every make has its own page, covering what is typical of it and the faults
-          it tends to develop.
-        </p>
-        <ul class="combo-links">
+    <section class="section section-cream">
+      <div class="shell">
+        <div class="section-head">
+          <p class="eyebrow">Boiler makes</p>
+          <h2>Have a particular make of boiler?</h2>
+          <p>Every make has its own page, covering what is typical of it and the faults it tends to develop.</p>
+        </div>
+        <ul class="chips">
           {brands.map((b) => (
             <li><a href={`/boilers/${b.slug}`}>{b.name}</a></li>
           ))}
         </ul>
-        <p><a href="/boilers" class="btn btn-navy">Boiler and gas engineers</a></p>
+        <p style="margin:24px 0 0">
+          <a class="btn btn-outline" href="/boilers">Boiler and gas engineers</a>
+        </p>
       </div>
     </section>
   )}
-
-  <section class="section section-navy">
-    <div class="container center measure-wide">
-      <h2>Looking for {lowerTitle(service.title)} in London?</h2>
-      <p>Tell us what is wrong and where you are, and you will have the price before any work begins.</p>
-      <div class="cta-row center-row">
-        <a href={`tel:${primaryTel.tel}`} class="btn btn-orange btn-lg">
-          <PhoneIcon /> Call {primaryTel.display}
-        </a>
-        <a href={site.whatsapp.url} class="btn btn-outline btn-lg">
-          <WhatsAppIcon /> WhatsApp us
-        </a>
-      </div>
-    </div>
-  </section>
-</Base>
+</Ninja>

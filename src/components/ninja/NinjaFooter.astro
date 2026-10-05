@@ -1,0 +1,96 @@
+---
+/*
+ * Footer for the redesigned pages. Four columns on the deep brand blue, as
+ * the canvas draws it.
+ *
+ * Service and area links are read from the real data files rather than typed
+ * out, so the footer cannot drift from the pages it points at. The company
+ * line uses site.json: the canvas's footer read "family-run since 2012",
+ * which is not this company — site.json records it as established 2024,
+ * company number 15973185.
+ */
+import site from '../../data/site.json';
+import { groupedServices } from '../../data/nav';
+import { areas } from '../../data/areas';
+import NinjaIcon from './NinjaIcon.astro';
+
+const plumbing = groupedServices.find((g) => g.slug === 'plumbing');
+const heating = groupedServices.find((g) => g.slug === 'heating');
+
+// Six service links: the first few from plumbing and heating, which is what
+// the canvas lists, taken in the order the nav already shows them.
+const footerServices = [
+  ...(plumbing?.items.slice(0, 3) ?? []),
+  ...(heating?.items.slice(0, 3) ?? []),
+];
+
+const topAreas = [...areas].sort((a, b) => b.volume - a.volume).slice(0, 5);
+const year = new Date().getFullYear();
+---
+<footer class="footer">
+  <div class="shell">
+    <div class="cols">
+      <div>
+        <a class="logo" href="/" aria-label={`${site.name} — home`}>
+          <span class="logo-mark"><NinjaIcon name="ninja" cls="" /></span>
+          <span>Ninja Plumbers<small>Fulham &middot; London</small></span>
+        </a>
+        <p style="color:#B9CCD7;margin:18px 0 0;max-width:30ch">
+          {site.legalName}, established {site.established} and based in Fulham.
+          Plumbing, heating and drainage across Greater London and Surrey.
+        </p>
+        <p style="color:#9FB8C6;margin:10px 0 0;font-size:.85rem">
+          Company number {site.companyNumber}
+        </p>
+      </div>
+
+      <div>
+        <h4>Services</h4>
+        <ul>
+          {footerServices.map((s) => (
+            <li><a href={`/services/${s.slug}`} set:html={s.title} /></li>
+          ))}
+          <li><a href="/services">All services</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Areas</h4>
+        <ul>
+          {topAreas.map((a) => (
+            <li><a href={`/areas/${a.slug}`}>{a.name}</a></li>
+          ))}
+          <li><a href="/areas-we-cover">All {areas.length} areas</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <ul class="contact-list">
+          <li><NinjaIcon name="phone" /><a href={`tel:${site.booking.tel}`}>{site.booking.display}</a></li>
+          <li>
+            <NinjaIcon name="whatsapp" />
+            <a href={site.whatsapp.url} target="_blank" rel="noopener">WhatsApp {site.whatsapp.display}</a>
+          </li>
+          <li><NinjaIcon name="mail" /><a href={`mailto:${site.email}`}>{site.email}</a></li>
+          <li>
+            <NinjaIcon name="pin" />
+            <span>{site.address.line1}, {site.address.city} {site.address.postcode}</span>
+          </li>
+          <li><NinjaIcon name="clock" /><span>{site.hours.office}</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bottom">
+      <span>
+        &copy; {year} {site.legalName} &middot;
+        <a href="/privacy">Privacy</a> &middot;
+        <a href="/terms">Terms</a> &middot;
+        <a href="/cookies">Cookies</a> &middot;
+        <a href="/site-map">Site map</a>
+      </span>
+      <span>Plumber in Fulham &middot; Emergency plumber London</span>
+    </div>
+  </div>
+</footer>

@@ -1,8 +1,21 @@
 ---
-import Base from '../layouts/Base.astro';
-import site from '../data/site.json';
-import HeroWithForm from '../components/HeroWithForm.astro';
+/*
+ * Contact page, rebuilt to the "Ninja Plumbers Redesign" canvas (Contact —
+ * desktop 1440 / Contact — mobile 390).
+ *
+ * All four contact routes, the office and company details, the "useful
+ * details to give us" list, the four steps and the FAQs are the page's own
+ * existing copy, restyled. Two things the canvas drew are deliberately not
+ * here: the "£25 off your first call-out" offer in its top bar, which is not
+ * an offer this business runs, and the Google Maps iframe, which would be the
+ * only third-party request on the page — the address links out to directions
+ * instead, so nothing about a visitor reaches Google just to render this page.
+ */
+import Ninja from '../layouts/Ninja.astro';
+import NinjaIcon from '../components/ninja/NinjaIcon.astro';
+import NinjaQuoteCard from '../components/ninja/NinjaQuoteCard.astro';
 import Schema from '../components/Schema.astro';
+import site from '../data/site.json';
 
 const crumbs = [{ label: 'Home', href: '/' }, { label: 'Contact' }];
 
@@ -21,6 +34,53 @@ const faqs = [
   { q: 'Do you cover my area?', a: 'We cover Greater London, plus Guildford, Woking and the towns around them in Surrey and north-east Hampshire. The areas page lets you check your postcode.' },
 ];
 
+// site.json currently carries the same number for booking and management.
+// The old layout listed both regardless, which in these cards reads as the
+// same phone number twice; the management route only appears once it is
+// actually a different line.
+const managementIsSeparate = site.management.tel !== site.booking.tel;
+
+const routes = [
+  {
+    href: `tel:${site.booking.tel}`,
+    icon: 'phone',
+    bg: '#1B1F2A',
+    value: site.booking.display,
+    label: managementIsSeparate
+      ? 'Job booking — quickest for getting an engineer out'
+      : 'Job booking, and commercial, accounts and complaints — quickest for getting an engineer out',
+  },
+  {
+    href: site.whatsapp.url,
+    icon: 'whatsapp',
+    bg: '#25D366',
+    fg: '#0B3D22',
+    value: `WhatsApp ${site.whatsapp.display}`,
+    label: 'Send a photo or video of the problem for a quicker answer',
+    external: true,
+  },
+  {
+    href: `mailto:${site.email}`,
+    icon: 'mail',
+    bg: '#19647F',
+    value: site.email,
+    label: 'Landlords, agents and written quotes — suits anything that can wait',
+  },
+  ...(managementIsSeparate
+    ? [{
+        href: `tel:${site.management.tel}`,
+        icon: 'headset',
+        bg: '#0E3A4B',
+        value: site.management.display,
+        label: 'Management — commercial, accounts and complaints',
+      }]
+    : []),
+];
+
+const directions = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
+  `${site.address.line1}, ${site.address.city} ${site.address.postcode}`
+)}`;
+
 const contactSchema = {
   '@context': 'https://schema.org',
   '@type': 'ContactPage',
@@ -29,113 +89,131 @@ const contactSchema = {
   about: { '@type': 'Plumber', name: site.name, telephone: site.booking.tel, email: site.email, url: site.url },
 };
 ---
-<Base
+<Ninja
   title="Contact Us | Book a London Plumber | Ninja Plumbers"
   description={`Contact Ninja Plumbers in London by phone on ${site.booking.display}, WhatsApp on ${site.whatsapp.display} or email. Office in Fulham, emergency callout 24/7.`}
 >
 <Schema slot="head" breadcrumb={crumbs} faqs={faqs} extra={contactSchema} />
 
-<HeroWithForm
-  eyebrow="Get in touch"
-  h1="Book a plumber"
-  intro="Ring Ninja Plumbers and you'll speak to someone who can actually get an engineer moving. If it's urgent, don't sit waiting on an email — call."
-  breadcrumb={crumbs}
-  bullets={[
-    'Fully insured and on the Gas Safe Register',
-    'Engineers with DBS checks',
-    '24/7 emergency callouts available',
-    'Price agreed before any work begins',
-    'Workmanship guaranteed',
-  ]}
-  formHeading="Tell us about the job"
-/>
+{/* ---------- Hero ---------- */}
+<section class="hero">
+  <svg class="hero-rings" viewBox="0 0 600 600" aria-hidden="true">
+    <circle cx="300" cy="300" r="118"/><circle cx="300" cy="300" r="178"/>
+    <circle cx="300" cy="300" r="238"/><circle cx="300" cy="300" r="296"/>
+  </svg>
 
-<section class="section">
-  <div class="container contact-layout">
-    <div>
-      <h2>Ways to contact us</h2>
-      <p class="measure">However you'd rather get in touch, it lands with the same Fulham office — pick whichever's easiest.</p>
-
-      <a href={`tel:${site.booking.tel}`} class="route route-call route-lg">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        <span class="route-text">
-          <span class="route-label">Job booking &mdash; quickest for getting an engineer out</span>
-          <span class="route-value">{site.booking.display}</span>
-        </span>
-      </a>
-      <a href={site.whatsapp.url} class="route route-wa route-lg">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.13h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.36c0-4.54 3.7-8.23 8.25-8.23a8.2 8.2 0 0 1 8.23 8.24c0 4.54-3.69 8.21-8.23 8.21zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.09-.16.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.03s.87 2.35.99 2.51c.12.16 1.71 2.61 4.14 3.66.58.25 1.03.4 1.38.51.58.19 1.11.16 1.53.1.47-.07 1.44-.59 1.64-1.16.2-.57.2-1.05.14-1.16-.06-.1-.22-.16-.47-.28z"/></svg>
-        <span class="route-text">
-          <span class="route-label">WhatsApp &mdash; show us the problem in a photo</span>
-          <span class="route-value">{site.whatsapp.display}</span>
-        </span>
-      </a>
-      <a href={`mailto:${site.email}`} class="route route-mail route-lg">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
-        <span class="route-text">
-          <span class="route-label">Email &mdash; suits quotes that can wait</span>
-          <span class="route-value">{site.email}</span>
-        </span>
-      </a>
-      <a href={`tel:${site.management.tel}`} class="route route-mgmt route-lg">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        <span class="route-text">
-          <span class="route-label">Management &mdash; commercial, accounts and complaints</span>
-          <span class="route-value">{site.management.display}</span>
-        </span>
-      </a>
-
-      <div class="tell-us">
-        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg></div>
-        <div>
-          <h3>Useful details to give us</h3>
-          <p>With these four details to hand, you should get a proper answer on the first call, rather than needing three:</p>
-          <ul class="ticks">
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> The postcode of the property</li>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> The problem, and about when it began</li>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> If the water has been turned off or is still flowing</li>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Access to the property, and when you will be in</li>
-          </ul>
-          <p class="small">There is no need to type out a long description &mdash; a WhatsApp photo usually shows us more, and makes it likelier the engineer arrives with the right part on the first visit.</p>
-        </div>
-      </div>
-    </div>
-
-    <aside class="contact-side">
-      <div class="check-area">
-        <h2>Office</h2>
-        <dl class="detail-list">
-          <dt>Address</dt>
-          <dd>{site.address.line1},<br>{site.address.city}, {site.address.postcode}</dd>
-          <dt>Opening hours</dt>
-          <dd>{site.hours.office}</dd>
-          <dt>Emergencies</dt>
-          <dd>24/7 callouts</dd>
-          <dt>Coverage</dt>
-          <dd>All of Greater London, as well as Guildford, Woking and neighbouring Surrey towns &mdash; <a href="/areas-we-cover">view every area</a></dd>
-        </dl>
-      </div>
-      <div class="check-area">
-        <h2>Company</h2>
-        <dl class="detail-list">
-          <dt>Registered company</dt>
-          <dd>{site.legalName}</dd>
-          <dt>Company number</dt>
-          <dd>{site.companyNumber}</dd>
-        </dl>
-      </div>
-    </aside>
+  <div class="shell" style="display:block;padding:48px 0 44px">
+    <ol class="crumbs">
+      <li><a href="/">Home</a></li>
+      <li aria-hidden="true">/</li>
+      <li>Contact</li>
+    </ol>
+    <p class="eyebrow">Get in touch</p>
+    <h1 style="max-width:24ch;margin:0 0 14px">Talk to a real person &mdash; not a call centre</h1>
+    <p class="lead" style="max-width:54ch;margin:0">
+      Ring Ninja Plumbers and you&rsquo;ll speak to someone who can actually get an engineer
+      moving. If it&rsquo;s urgent, don&rsquo;t sit waiting on an email &mdash; call.
+    </p>
   </div>
 </section>
 
-<section class="section section-alt">
-  <div class="container">
-    <span class="eyebrow">After you get in touch</span>
-    <h2>From your call to a finished job</h2>
-    <ol class="contact-steps">
-      {steps.map((st) => (
-        <li>
-          <strong>{st.title}</strong>
+{/* ---------- Routes + form ---------- */}
+<section class="section" style="padding-top:56px">
+  <div class="shell contact-grid">
+    <div style="display:grid;gap:14px">
+      <h2 style="margin-bottom:4px">Ways to contact us</h2>
+      <p style="margin:0 0 6px">
+        However you&rsquo;d rather get in touch, it lands with the same Fulham office &mdash;
+        pick whichever&rsquo;s easiest.
+      </p>
+
+      {routes.map((r) => (
+        <a
+          class="ccard"
+          href={r.href}
+          target={r.external ? '_blank' : undefined}
+          rel={r.external ? 'noopener' : undefined}
+        >
+          <span class="ci" style={`background:${r.bg}${r.fg ? `;color:${r.fg}` : ''}`}>
+            <NinjaIcon name={r.icon} />
+          </span>
+          <span><strong>{r.value}</strong><small>{r.label}</small></span>
+          <NinjaIcon name="arrow" cls="ic arrow" />
+        </a>
+      ))}
+
+      <div class="hours">
+        <h3 style="margin-bottom:6px">Opening hours</h3>
+        <div><span>Monday &ndash; Sunday</span><span>7am &ndash; 10pm</span></div>
+        <div><span>Bank holidays</span><span>7am &ndash; 10pm</span></div>
+        <div><span>Emergency callout</span><span>24/7</span></div>
+        <p class="small muted" style="margin:8px 0 0">
+          Outside office hours the emergency line is still answered for burst pipes, major
+          leaks, no water and no heating.
+        </p>
+      </div>
+
+      <div class="aside-card">
+        <h3>Useful details to give us</h3>
+        <p>With these four details to hand, you should get a proper answer on the first call, rather than needing three:</p>
+        <ul class="check-list" style="grid-template-columns:1fr;margin-top:14px">
+          <li><NinjaIcon name="check" />The postcode of the property</li>
+          <li><NinjaIcon name="check" />The problem, and about when it began</li>
+          <li><NinjaIcon name="check" />If the water has been turned off or is still flowing</li>
+          <li><NinjaIcon name="check" />Access to the property, and when you will be in</li>
+        </ul>
+        <p class="small muted" style="margin:14px 0 0">
+          There&rsquo;s no need to type out a long description &mdash; a WhatsApp photo usually
+          shows us more, and makes it likelier the engineer arrives with the right part on the
+          first visit.
+        </p>
+      </div>
+
+      <div class="hours">
+        <h3 style="margin-bottom:6px">Office &amp; company</h3>
+        <div><span>Address</span><span>{site.address.line1}, {site.address.postcode}</span></div>
+        <div><span>Registered company</span><span>{site.legalName}</span></div>
+        <div><span>Company number</span><span>{site.companyNumber}</span></div>
+        <div><span>Coverage</span><span>Greater London &amp; Surrey</span></div>
+        <p class="small" style="margin:8px 0 0">
+          <a href={directions} target="_blank" rel="noopener">Get directions <NinjaIcon name="arrow" /></a>
+          &nbsp;&middot;&nbsp;
+          <a href="/areas-we-cover">View every area</a>
+        </p>
+      </div>
+
+      <div class="callout">
+        <NinjaIcon name="alert" />
+        <p>
+          <strong>Emergency right now?</strong> Please call rather than using the form &mdash;
+          water through a ceiling or a smell of gas needs a voice, not an inbox. If you can
+          smell gas, leave the property and ring the National Gas Emergency Service free on
+          <a href="tel:0800111999">0800 111 999</a> first.
+        </p>
+      </div>
+    </div>
+
+    <NinjaQuoteCard
+      heading="Send us the job"
+      intro="Quotes and bookings — we'll call you back about the work and the price."
+      submitLabel="Send & get a call back"
+      trust={['No obligation', 'No spam, ever', 'Price agreed before work starts']}
+    />
+  </div>
+</section>
+
+{/* ---------- Steps ---------- */}
+<section class="section section-cream">
+  <div class="shell">
+    <div class="section-head center">
+      <p class="eyebrow">After you get in touch</p>
+      <h2>From your call to a finished job</h2>
+    </div>
+    <ol class="steps" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+      {steps.map((st, i) => (
+        <li class="step">
+          <span class="n">{i + 1}</span>
+          <h3>{st.title}</h3>
           <p>{st.body}</p>
         </li>
       ))}
@@ -143,31 +221,48 @@ const contactSchema = {
   </div>
 </section>
 
+{/* ---------- FAQ ---------- */}
 <section class="section">
-  <div class="container measure-wide">
-    <span class="eyebrow">FAQs</span>
-    <h2>Worth knowing before you contact us</h2>
-    <div class="faqs">
-      {faqs.map((f) => (
-        <details class="faq">
-          <summary>{f.q}</summary>
+  <div class="shell">
+    <div class="section-head center">
+      <p class="eyebrow">FAQs</p>
+      <h2>Worth knowing before you contact us</h2>
+    </div>
+    <div class="faq">
+      {faqs.map((f, i) => (
+        <details open={i === 0}>
+          <summary>{f.q}<NinjaIcon name="chevron" /></summary>
           <p>{f.a}</p>
         </details>
       ))}
     </div>
-    <p class="measure" style="margin-top:24px;">
-      Looking for a particular job? Start with <a href="/services">all our services</a>, or go straight to
-      <a href="/services/emergency-plumbing">emergency plumbing</a>, <a href="/boilers">boilers</a>,
-      <a href="/heating">heating</a> or <a href="/drainage">drainage</a>.
+    <p style="text-align:center;margin:28px 0 0">
+      Looking for a particular job? Start with <a href="/services">all our services</a>, or go
+      straight to <a href="/services/emergency-plumbing">emergency plumbing</a>,
+      <a href="/boilers">boilers</a>, <a href="/heating">heating</a> or
+      <a href="/drainage">drainage</a>.
     </p>
   </div>
 </section>
 
-<div class="emergency-banner">
-  <div class="container">
-    <strong>No water, no heating or a burst pipe?</strong>
-    <p>Rather than emailing, <a href={`tel:${site.booking.tel}`}>ring {site.booking.display}</a>. Our emergency callouts cover London at any hour, day or night.</p>
+{/* ---------- Dark CTA band ---------- */}
+<section class="band">
+  <div class="shell">
+    <div>
+      <p class="eyebrow">Don&rsquo;t email an emergency</p>
+      <h2>No water, no heating or a burst pipe?</h2>
+      <p>Our emergency callouts cover London at any hour, day or night.</p>
+      <a class="phone-big" href={`tel:${site.booking.tel}`}>
+        <span class="pi"><NinjaIcon name="phone" /></span>{site.booking.display}
+      </a>
+    </div>
+    <div class="actions">
+      <a class="btn btn-light btn-lg" href={`tel:${site.booking.tel}`}>Call now</a>
+      <a class="btn btn-wa btn-lg" href={site.whatsapp.url} target="_blank" rel="noopener">
+        WhatsApp us
+      </a>
+    </div>
   </div>
-</div>
+</section>
 
-</Base>
+</Ninja>

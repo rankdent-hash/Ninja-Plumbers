@@ -1,0 +1,121 @@
+---
+/*
+ * Header for the redesigned pages: dark info bar, sticky translucent header,
+ * flat pill nav, bordered phone button and a primary quote CTA.
+ *
+ * The nav is a flat row of six, as the canvas draws it, rather than the
+ * eight mega-menu dropdowns in Header.astro. Every entry below points at a
+ * page that exists today — the two category hubs (/heating, /drainage, from
+ * hubs.ts), the full services hub, two individual service pages and
+ * /contact — so the redesign cannot introduce a dead link. The complete
+ * 42-service list is still one click away on /services.
+ */
+import site from '../../data/site.json';
+import NinjaIcon from './NinjaIcon.astro';
+
+const nav = [
+  { label: 'Emergency', href: '/services/emergency-plumbing' },
+  { label: 'Boilers & Heating', href: '/heating' },
+  { label: 'Drains', href: '/drainage' },
+  { label: 'Bathrooms', href: '/services/bathroom-installation' },
+  { label: 'All services', href: '/services' },
+  { label: 'Contact', href: '/contact' },
+];
+
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isCurrent = (href: string) => path === href.replace(/\/$/, '');
+---
+<div class="topbar">
+  <div class="shell">
+    <a href={`tel:${site.booking.tel}`}>
+      <NinjaIcon name="phone" />
+      {site.booking.display}
+      {/* The full opening-hours sentence wraps the bar onto two lines at
+          phone width, so the short form shows there instead. */}
+      <span class="hide-m">&nbsp;&middot; office {site.hours.office}</span>
+      <span class="only-m">&nbsp;&middot; 7am&ndash;10pm</span>
+    </a>
+    <span class="hide-m">Greater London &middot; Guildford &amp; Surrey</span>
+    <span class="amber hide-m">Emergency callout 24/7</span>
+  </div>
+</div>
+
+<header class="header">
+  <div class="shell">
+    <a class="logo" href="/" aria-label={`${site.name} — home`}>
+      <span class="logo-mark"><NinjaIcon name="ninja" cls="" /></span>
+      <span>Ninja Plumbers<small>Fulham &middot; London</small></span>
+    </a>
+
+    <ul class="nav">
+      {nav.map((item) => (
+        <li>
+          <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a>
+        </li>
+      ))}
+    </ul>
+
+    <div class="hdr-actions">
+      <a class="hdr-phone" href={`tel:${site.booking.tel}`}>
+        <NinjaIcon name="phone" />
+        <span><small>Call now</small>{site.booking.display}</span>
+      </a>
+      <a class="btn btn-primary" href="#enquiry">Get a free quote</a>
+      <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="ninja-menu" data-menu-toggle>
+        <NinjaIcon name="burger" />
+      </button>
+    </div>
+  </div>
+
+  <nav class="m-menu shell" id="ninja-menu" aria-label="Menu" hidden>
+    <ul>
+      {nav.map((item) => (
+        <li><a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a></li>
+      ))}
+      <li><a href="/areas-we-cover">Areas we cover</a></li>
+      <li><a href="/about">About us</a></li>
+    </ul>
+    <div class="m-menu-cta">
+      <a class="btn btn-call" href={`tel:${site.booking.tel}`}>
+        <NinjaIcon name="phone" /> Call {site.booking.display}
+      </a>
+      <a class="btn btn-wa" href={site.whatsapp.url} target="_blank" rel="noopener">
+        <NinjaIcon name="whatsapp" /> WhatsApp us
+      </a>
+    </div>
+  </nav>
+</header>
+
+<script is:inline>
+  (function () {
+    var toggle = document.querySelector('[data-menu-toggle]');
+    var menu = document.getElementById('ninja-menu');
+    if (!toggle || !menu) return;
+
+    function setOpen(open) {
+      menu.hidden = !open;
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    }
+
+    toggle.addEventListener('click', function () {
+      setOpen(menu.hidden);
+    });
+
+    // Escape closes it and puts focus back on the button, so a keyboard user
+    // is never left inside a panel they cannot get out of.
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !menu.hidden) {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+
+    // The panel is a mobile affordance; if the viewport grows past the
+    // breakpoint where the full nav returns, drop it rather than leaving an
+    // orphaned open panel above the page.
+    window.matchMedia('(min-width: 961px)').addEventListener('change', function (e) {
+      if (e.matches) setOpen(false);
+    });
+  })();
+</script>

@@ -1,0 +1,22 @@
+---
+/*
+ * Fixed Call / WhatsApp / quote bar, shown under 640px only (see .m-bar in
+ * ninja-redesign.css). The canvas note on the home artboard asks for it to
+ * be pinned to the bottom of the viewport, which is what position:fixed
+ * plus the body padding-bottom in that stylesheet does.
+ *
+ * The third button is an in-page jump to the enquiry form, which every
+ * redesigned page renders with id="enquiry" (EnquiryForm.astro's own id).
+ */
+import site from '../../data/site.json';
+import NinjaIcon from './NinjaIcon.astro';
+---
+<nav class="m-bar" aria-label="Quick contact">
+  <a class="btn btn-call" href={`tel:${site.booking.tel}`}>
+    <NinjaIcon name="phone" /> Call
+  </a>
+  <a class="btn btn-wa" href={site.whatsapp.url} target="_blank" rel="noopener">
+    <NinjaIcon name="whatsapp" /> WhatsApp
+  </a>
+  <a class="btn btn-primary" href="#enquiry">Get a quote</a>
+</nav>
