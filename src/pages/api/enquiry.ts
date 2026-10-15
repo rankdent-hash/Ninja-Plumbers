@@ -38,6 +38,11 @@ async function notify(enquiry: Record<string, any>) {
     `Urgency:  ${enquiry.urgency || '-'}`,
     '',
     enquiry.description || '(no description given)',
+    '',
+    // This inbox also receives enquiries from the other sites run alongside
+    // this one, and the lead's own details carry no clue which site they came
+    // from. Name the source explicitly.
+    `Sent by the ${site.name} website (${site.url})`,
   ];
   if (enquiry.in_service_area === false) {
     lines.unshift('*** OUTSIDE SERVICE AREA ***', '');
@@ -48,10 +53,14 @@ async function notify(enquiry: Record<string, any>) {
       method: 'POST',
       headers: { authorization: `Bearer ${key}`, 'content-type': 'application/json' },
       body: JSON.stringify({
-        from: import.meta.env.NOTIFY_FROM || 'Ninja Website <onboarding@resend.dev>',
+        // The sender name is what the recipient actually sees in their inbox
+        // list. NOTIFY_FROM overrides it and must be on a Resend-verified
+        // domain; the fallback takes the brand from site.json so it can never
+        // drift to the name of another site this codebase was copied from.
+        from: import.meta.env.NOTIFY_FROM || `${site.name} Website <onboarding@resend.dev>`,
         to,
         reply_to: enquiry.email || undefined,
-        subject: `New enquiry — ${enquiry.name}, ${enquiry.postcode} (${enquiry.urgency || 'no urgency given'})`,
+        subject: `${site.name} — new enquiry: ${enquiry.name}, ${enquiry.postcode} (${enquiry.urgency || 'no urgency given'})`,
         text: lines.join('\n'),
       }),
       signal: AbortSignal.timeout(5000),
